@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 20.0393, 1, 20.0073 )
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_transparent = true
+albedo_color = Color( 0.227451, 0.25098, 0.419608, 1 )
+
+[sub_resource type="VisualShader" id=6]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx, async_visible;
+
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Output:0
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+
+[sub_resource type="ShaderMaterial" id=5]
+next_pass = SubResource( 3 )
+shader = SubResource( 6 )
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 2.35282, 0.257601, 3.1744 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Floor" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+shape = SubResource( 1 )
+
+[node name="CSGMesh" type="CSGMesh" parent="Floor"]
+transform = Transform( 20, 0, 0, 0, 1, 0, 0, 0, 20, 0.0147979, 0, 0 )
+mesh = SubResource( 2 )
+material = SubResource( 5 )
+
+[node name="Ramp" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.955743, 0 )
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="Ramp"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, -2.46636 )
+polygon = PoolVector2Array( 0, 0, 10, 0, 10, 2 )
+
+[node name="CSGPolygon" type="CSGPolygon" parent="Ramp"]
+polygon = PoolVector2Array( 0, 0, 10, 0, 10, 2 )
+depth = 5.0
+
+[node name="platform" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1893, 0.346255, -2.98594 )
+
+[node name="CollisionShape" type="CollisionShape" parent="platform"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.48368, -0.206038 )
+shape = SubResource( 7 )
+
+[node name="CSGBox" type="CSGBox" parent="platform"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.51258, 0 )
+width = 4.70496
+height = 0.436651
+depth = 6.80402
+
+[node name="platform2" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1893, 1.95003, 5.00145 )
+
+[node name="CollisionShape" type="CollisionShape" parent="platform2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.48368, -0.206038 )
+shape = SubResource( 7 )
+
+[node name="CSGBox" type="CSGBox" parent="platform2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.51258, 0 )
+width = 4.70496
+height = 0.436651
+depth = 6.80402
+
+[node name="platform3" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.96019, 3.37493, 5.00145 )
+
+[node name="CollisionShape" type="CollisionShape" parent="platform3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.48368, -0.206038 )
+shape = SubResource( 7 )
+
+[node name="CSGBox" type="CSGBox" parent="platform3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.51258, 0 )
+width = 4.70496
+height = 0.436651
+depth = 6.80402
