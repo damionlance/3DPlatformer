@@ -9,10 +9,10 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "EditorVCSInterface",
+"base": "",
 "class": "GitAPI",
 "language": "NativeScript",
-"path": "res://addons/godot-git-plugin-v2.1.0/addons/godot-git-plugin/git_api.gdns"
+"path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
 "base": "LiquidLayer",
 "class": "LavaLayer",
