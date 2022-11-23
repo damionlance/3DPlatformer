@@ -39,11 +39,13 @@ func update(delta):
 			return
 	else:
 		_fall_timer = 0
-	if state.InputDirection == Vector3.ZERO:
-		if player.Velocity == Vector3.ZERO:
+	if state.InputDirection == Vector2.ZERO:
+		state.current_speed *= state.GroundFriction
+		if state.current_speed == 0:
 			state.update_state("Idle")
 			return
-	
-	player.Velocity += state.InputDirection * state.MovementSpeed * state.GroundFriction * delta
+	else:
+		state.current_speed += state.MovementSpeed
+	state.current_speed = clamp(state.current_speed, 0, state.MaxSpeed)
 	
 	pass

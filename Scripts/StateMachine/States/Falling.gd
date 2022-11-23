@@ -31,7 +31,7 @@ func update(delta):
 		return
 	
 	player.ClippingVector = Vector3.ZERO
-	player.Velocity += state.Gravity * delta
+	state.current_jump += state.Gravity.y * delta
 	
 	pass
 

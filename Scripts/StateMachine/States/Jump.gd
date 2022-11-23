@@ -27,7 +27,7 @@ func _ready():
 func update(delta):
 	if !state.is_jumping:
 		player.ClippingVector = Vector3.ZERO
-		player.Velocity.y = state.JumpStrength
+		state.current_jump = state.JumpStrength
 		state.is_jumping = true
 		print(state.JumpStrength)
 	
@@ -35,7 +35,7 @@ func update(delta):
 		player.ClippingVector = Vector3.DOWN
 		state.update_state("Idle")
 		return
-	player.Velocity += state.Gravity * delta
+	state.current_jump += state.Gravity.y * delta
 	
 	if player.Velocity.y < 0:
 		state.update_state("Falling")

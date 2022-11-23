@@ -529,7 +529,7 @@ fov = 84.375
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 6 )
-GroundFriction = 0.9
+GroundFriction = 0.1
 JumpStrength = 40
 
 [node name="State" type="Node" parent="StateMachine"]

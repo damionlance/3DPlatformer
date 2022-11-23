@@ -29,11 +29,11 @@ func _ready():
 func update(delta):
 	state.is_jumping = false
 	#player.animation_player.play("Idle")
-	if state.InputDirection != Vector3.ZERO:
+	if state.InputDirection != Vector2.ZERO:
 		state.update_state("Running")
 		return
 	else:
-		player.Velocity = Vector3.ZERO
+		state.current_speed = 0
 	if state.attempting_jump:
 		state.update_state("Jump")
 		return

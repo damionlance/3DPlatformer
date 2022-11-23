@@ -15,11 +15,16 @@ var motion_direction = Vector2(0.0,0.0)
 
 #Player Physics Variables
 var Gravity := Vector3(0.0, -200, 0.0)
-export var MovementSpeed := 4
+export var MovementSpeed := 5
+export var MaxSpeed := 20
 export var GroundFriction := .8
 export var JumpStrength := 10
 export var AirSpeed := 2
 export var CoyoteTime := 10
+
+var current_jump = 0
+var current_speed = 0
+var current_dir := Vector2(0,1)
 
 # Player State Flags
 var attempting_jump := false
@@ -37,20 +42,22 @@ var _input_just_happened
 var _execute_motion_input
 var _charge
 
-var InputDirection :=  Vector3.ZERO
+var InputDirection :=  Vector2.ZERO
 
 #onready variables
 onready var player = get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	_charge = false
 	motion_direction = Vector2(0,0)
 	pass # Replace with function body.
 
 func _process(delta):
-	_current_state.update(delta)
 	input_handling()
+	_current_state.update(delta)
+	player.Velocity = Vector3(current_dir.x*current_speed, current_jump, current_dir.y*current_speed)
 
 func _unhandled_input(event):
 	if event.is_pressed() and !event.is_echo():
@@ -59,13 +66,19 @@ func _unhandled_input(event):
 		_input_just_happened = true
 
 func input_handling():
-	
-	InputDirection = Vector3.ZERO
+	InputDirection = Vector2.ZERO
 	
 	# Direction Handling for Player Movement
-	InputDirection.x = Input.get_action_strength("Right") - Input.get_action_strength("Left")
-	InputDirection.z = Input.get_action_strength("Backward") - Input.get_action_strength("Forward")
-	InputDirection = InputDirection.rotated(Vector3.UP, player.spring_arm.rotation.y).normalized()
+	InputDirection = Input.get_vector("Right", "Left", "Forward", "Backward")
+	InputDirection = InputDirection.rotated(player.spring_arm.rotation.y).normalized()
+	
+	if InputDirection.length() != 0:
+		var x = InputDirection.angle()
+		var y = current_dir.angle()
+		var angle = atan2(sin((x-y)), cos((x-y)))
+		var oldDir = current_dir
+		current_dir.x = -(cos(angle) * oldDir.x - sin( angle) * oldDir.y)
+		current_dir.y = (sin(angle) * oldDir.x + cos( angle) * oldDir.y)
 	
 	attempting_jump = Input.is_action_just_pressed("Jump")
 
