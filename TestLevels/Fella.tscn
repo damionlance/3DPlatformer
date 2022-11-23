@@ -1,9 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://3D Assets/Godot Worthy Models/skin.material" type="Material" id=1]
 [ext_resource path="res://3D Assets/Skins/humanMaleA.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/StateMachine/State.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/StateMachine/StateMachine.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/StateMachine/States/Running.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/StateMachine/States/Idle.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/StateMachine/States/Falling.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/StateMachine/States/Jump.gd" type="Script" id=10]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "untitled_characterMedium"
@@ -208,9 +214,9 @@ height = 1.79597
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 3 )
 
-[node name="Root" type="Spatial" parent="."]
+[node name="PlayerModel" type="Spatial" parent="."]
 
-[node name="Skeleton" type="Skeleton" parent="Root"]
+[node name="Skeleton" type="Skeleton" parent="PlayerModel"]
 bones/0/name = "LeftFootCtrl"
 bones/0/parent = -1
 bones/0/rest = Transform( -3.57628e-07, -6.40372e-08, -1, -1.92112e-07, -1, 6.40373e-08, -1, 1.92112e-07, 3.57628e-07, 0.302855, 0.193205, -0.14881 )
@@ -502,7 +508,7 @@ bones/57/rest = Transform( 1, -2.66737e-08, -1.10292e-06, 2.66736e-08, 1, -1.174
 bones/57/enabled = true
 bones/57/bound_children = [  ]
 
-[node name="characterMedium" type="MeshInstance" parent="Root/Skeleton"]
+[node name="characterMedium" type="MeshInstance" parent="PlayerModel/Skeleton"]
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
 material/0 = SubResource( 3 )
@@ -511,11 +517,32 @@ material/0 = SubResource( 3 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.74348, -0.0666518 )
 shape = SubResource( 4 )
 
-[node name="look_at" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.90936, 0 )
+[node name="SpringArm" type="SpringArm" parent="."]
+spring_length = 7.0
+margin = 0.2
+script = ExtResource( 4 )
+camera_sensitivity = Vector2( 4, 4 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( -1, 4.18164e-08, -8.4377e-15, 3.92044e-08, 0.937537, 0.347885, 1.45473e-08, 0.347885, -0.937537, 0, 9.6206, -10.5003 )
+[node name="Camera" type="Camera" parent="SpringArm"]
 current = true
 fov = 84.375
-script = ExtResource( 4 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 6 )
+GroundFriction = 0.9
+JumpStrength = 40
+
+[node name="State" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
+
+[node name="Running" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+
+[node name="Falling" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )

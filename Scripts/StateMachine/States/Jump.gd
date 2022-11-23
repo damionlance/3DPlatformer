@@ -1,0 +1,48 @@
+extends Node
+
+class_name Jump
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+
+#public variables
+var cancellable = true
+var breaks_momentum = false
+var motion_input : String
+
+#private variables
+var _state_name = "Jump"
+
+#onready variables
+onready var state = get_parent()
+onready var player = get_parent().get_parent()
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	state.state_dictionary[_state_name] = self
+	pass # Replace with function body.
+
+func update(delta):
+	if !state.is_jumping:
+		player.ClippingVector = Vector3.ZERO
+		player.Velocity.y = state.JumpStrength
+		state.is_jumping = true
+		print(state.JumpStrength)
+	
+	elif player.is_on_floor():
+		player.ClippingVector = Vector3.DOWN
+		state.update_state("Idle")
+		return
+	player.Velocity += state.Gravity * delta
+	
+	if player.Velocity.y < 0:
+		state.update_state("Falling")
+		return
+	
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
