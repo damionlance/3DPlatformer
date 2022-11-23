@@ -25,7 +25,7 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	print(_state_name)
+	player.player_anim.play("FallALoop")
 	if player.is_on_floor():
 		player.ClippingVector = Vector3.DOWN
 		state.update_state("Idle")

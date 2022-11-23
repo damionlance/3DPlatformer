@@ -1,12 +1,19 @@
 extends KinematicBody
 
 onready var spring_arm : SpringArm = $SpringArm
-onready var player_model = $PlayerModel
+onready var player_model = $Player/PlayerModel
+onready var player_anim = $Player/AnimationPlayer
+onready var player_anim_tree = $AnimationTree
 
 var Velocity :=  Vector3.ZERO
 var ClippingVector := Vector3.DOWN
 
+var animations = ['Idle0', 'Running', 'Jumping', 'FallALoop']
+
 func _ready():
+	for animation in animations:
+		animation = player_anim.get_animation(animation)	
+		animation.loop = true
 	pass # Replace with function body.
 
 func _process(delta):

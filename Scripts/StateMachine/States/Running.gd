@@ -26,7 +26,7 @@ func _ready():
 	pass 
 
 func update(delta):
-	print(_state_name)
+	player.player_anim.play("Running")
 	state.is_jumping = false
 	if state.attempting_jump:
 		state.update_state("Jump")
@@ -41,7 +41,7 @@ func update(delta):
 		_fall_timer = 0
 	if state.InputDirection == Vector2.ZERO:
 		state.current_speed *= state.GroundFriction
-		if state.current_speed == 0:
+		if state.current_speed < .1:
 			state.update_state("Idle")
 			return
 	else:

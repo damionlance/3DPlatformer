@@ -25,7 +25,7 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	print(_state_name)
+	player.player_anim.play("FallALoop")
 	if !state.attempting_jump:
 		state.current_jump *= .6
 		state.update_state("Falling")

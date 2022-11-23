@@ -27,6 +27,7 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
+	player.player_anim.play("Idle0")
 	state.is_jumping = false
 	#player.animation_player.play("Idle")
 	if state.InputDirection != Vector2.ZERO:
