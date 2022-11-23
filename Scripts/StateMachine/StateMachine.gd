@@ -14,13 +14,22 @@ var state_dictionary : Dictionary
 var motion_direction = Vector2(0.0,0.0)
 
 #Player Physics Variables
-var Gravity := Vector3(0.0, -200, 0.0)
+
+export var jump_height : float
+export var jump_time_to_peak : float
+export var jump_time_to_descent : float
+
+onready var jump_velocity : float = (2.0 * jump_height) / jump_time_to_peak
+onready var jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
+onready var fall_gravity : float = (-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)
+
 export var MovementSpeed := 5
 export var MaxSpeed := 20
 export var GroundFriction := .8
-export var JumpStrength := 10
 export var AirSpeed := 2
 export var CoyoteTime := 10
+
+export var rotation_speed := .1
 
 var current_jump = 0
 var current_speed = 0
@@ -43,13 +52,13 @@ var _execute_motion_input
 var _charge
 
 var InputDirection :=  Vector2.ZERO
+var InputDirectionGlobal := Vector2.ZERO
 
 #onready variables
 onready var player = get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	_charge = false
 	motion_direction = Vector2(0,0)
 	pass # Replace with function body.
@@ -59,6 +68,20 @@ func _process(delta):
 	if player.is_on_floor():
 		player.Velocity.y = 0
 	_current_state.update(delta)
+	
+	if InputDirection.length() != 0 and false:
+		current_dir = InputDirection
+	
+	if InputDirection.length() != 0 or false:
+		var x = InputDirection.angle()
+		var y = current_dir.angle()
+		var diff =  x-y
+		diff = atan2(sin(diff), cos(diff))*rotation_speed
+		print(x, "\t", y, "\t", diff)
+		var oldDir = current_dir
+		current_dir.x = (cos(diff) * oldDir.x - sin( diff) * oldDir.y)
+		current_dir.y = (sin(diff) * oldDir.x + cos( diff) * oldDir.y)
+	
 	player.Velocity = Vector3(current_dir.x*current_speed, current_jump, current_dir.y*current_speed)
 
 func _unhandled_input(event):
@@ -71,18 +94,8 @@ func input_handling():
 	InputDirection = Vector2.ZERO
 	
 	# Direction Handling for Player Movement
-	InputDirection = Input.get_vector("Right", "Left", "Forward", "Backward")
-	InputDirection = InputDirection.rotated(player.spring_arm.rotation.y).normalized()
-	
+	InputDirection = Input.get_vector("Left","Right", "Forward", "Backward")
 	attempting_jump = Input.is_action_pressed("Jump")
-	
-	if InputDirection.length() != 0:
-		var x = InputDirection.angle()
-		var y = current_dir.angle()
-		var angle = atan2(sin((x-y)), cos((x-y)))
-		var oldDir = current_dir
-		current_dir.x = -(cos(angle) * oldDir.x - sin( angle) * oldDir.y)
-		current_dir.y = (sin(angle) * oldDir.x + cos( angle) * oldDir.y)
 
 func update_state( new_state ):
 	_current_state = state_dictionary[new_state]
