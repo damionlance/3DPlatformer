@@ -25,19 +25,21 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
+	print(_state_name)
+	if !state.attempting_jump:
+		state.current_jump *= .6
+		state.update_state("Falling")
+		return
+	
 	if !state.is_jumping:
 		player.ClippingVector = Vector3.ZERO
 		state.current_jump = state.JumpStrength
 		state.is_jumping = true
-		print(state.JumpStrength)
 	
-	elif player.is_on_floor():
-		player.ClippingVector = Vector3.DOWN
-		state.update_state("Idle")
-		return
 	state.current_jump += state.Gravity.y * delta
-	
+		
 	if player.Velocity.y < 0:
+		
 		state.update_state("Falling")
 		return
 	

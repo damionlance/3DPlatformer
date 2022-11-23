@@ -56,6 +56,8 @@ func _ready():
 
 func _process(delta):
 	input_handling()
+	if player.is_on_floor():
+		player.Velocity.y = 0
 	_current_state.update(delta)
 	player.Velocity = Vector3(current_dir.x*current_speed, current_jump, current_dir.y*current_speed)
 
@@ -72,6 +74,8 @@ func input_handling():
 	InputDirection = Input.get_vector("Right", "Left", "Forward", "Backward")
 	InputDirection = InputDirection.rotated(player.spring_arm.rotation.y).normalized()
 	
+	attempting_jump = Input.is_action_pressed("Jump")
+	
 	if InputDirection.length() != 0:
 		var x = InputDirection.angle()
 		var y = current_dir.angle()
@@ -79,8 +83,6 @@ func input_handling():
 		var oldDir = current_dir
 		current_dir.x = -(cos(angle) * oldDir.x - sin( angle) * oldDir.y)
 		current_dir.y = (sin(angle) * oldDir.x + cos( angle) * oldDir.y)
-	
-	attempting_jump = Input.is_action_just_pressed("Jump")
 
 func update_state( new_state ):
 	_current_state = state_dictionary[new_state]
