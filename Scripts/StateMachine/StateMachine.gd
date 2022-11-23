@@ -95,6 +95,7 @@ func input_handling():
 	
 	# Direction Handling for Player Movement
 	InputDirection = Input.get_vector("Left","Right", "Forward", "Backward")
+	InputDirection = InputDirection.rotated(-player.spring_arm.rotation.y).normalized()
 	attempting_jump = Input.is_action_pressed("Jump")
 
 func update_state( new_state ):
