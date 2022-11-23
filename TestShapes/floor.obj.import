@@ -15,6 +15,4 @@ dest_files=[ "res://.import/floor.obj-264663b99eddefa9bbe7dc4e7e7b684a.mesh", "r
 
 generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-octahedral_compression=true
-optimize_mesh_flags=4286
+optimize_mesh=true

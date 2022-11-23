@@ -25,14 +25,13 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	print(_state_name)
 	if player.is_on_floor():
 		player.ClippingVector = Vector3.DOWN
 		state.update_state("Idle")
 		return
 	
 	player.ClippingVector = Vector3.ZERO
-	state.current_jump += state.Gravity.y * delta
+	state.current_jump += state.fall_gravity * delta
 	
 	pass
 

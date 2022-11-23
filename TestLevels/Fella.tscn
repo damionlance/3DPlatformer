@@ -529,8 +529,12 @@ fov = 84.375
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 6 )
-GroundFriction = 0.1
-JumpStrength = 40
+jump_height = 4.25
+jump_time_to_peak = 0.3
+jump_time_to_descent = 0.2
+MovementSpeed = 1
+MaxSpeed = 15
+GroundFriction = 0.9
 
 [node name="State" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )

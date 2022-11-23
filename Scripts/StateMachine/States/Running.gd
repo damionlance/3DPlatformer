@@ -26,7 +26,6 @@ func _ready():
 	pass 
 
 func update(delta):
-	print(_state_name)
 	state.is_jumping = false
 	if state.attempting_jump:
 		state.update_state("Jump")
