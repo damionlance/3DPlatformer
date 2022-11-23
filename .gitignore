@@ -12,6 +12,7 @@ export.cfg
 export_presets.cfg
 project.godot
 addons/
+funding.yml
 3D Assets/
 
 # Mono-specific ignores
