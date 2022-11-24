@@ -10,6 +10,8 @@ var ClippingVector := Vector3.DOWN
 
 var animations = ['Idle0', 'Running', 'Jumping', 'FallALoop']
 
+var coins = 0
+
 func _ready():
 	for animation in animations:
 		animation = player_anim.get_animation(animation)	
@@ -27,3 +29,7 @@ func _physics_process(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func add_coin():
+	coins += 1
+	print(coins, " coins")
