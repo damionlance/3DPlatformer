@@ -27,6 +27,7 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
+	player.current_jump = 0
 	player.player_anim.play("Idle0")
 	state.is_jumping = false
 	#player.animation_player.play("Idle")

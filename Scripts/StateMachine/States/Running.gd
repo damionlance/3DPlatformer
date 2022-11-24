@@ -42,7 +42,7 @@ func update(delta):
 		_fall_timer = 0
 	if state.InputDirection == Vector2.ZERO:
 		state.current_speed *= state.GroundFriction
-		if state.current_speed < .1:
+		if state.current_speed < 1:
 			state.update_state("Idle")
 			return
 	else:

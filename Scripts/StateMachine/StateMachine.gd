@@ -67,7 +67,6 @@ func _process(delta):
 	input_handling()
 	if player.is_on_floor():
 		player.Velocity.y = 0
-	_current_state.update(delta)
 	
 	if InputDirection.length() != 0 and false:
 		current_dir = InputDirection
@@ -76,13 +75,17 @@ func _process(delta):
 		var x = InputDirection.angle()
 		var y = current_dir.angle()
 		var diff =  x-y
-		diff = atan2(sin(diff), cos(diff))*rotation_speed
-		print(x, "\t", y, "\t", diff)
+		if _current_state._state_name == "Idle":
+			diff = atan2(sin(diff), cos(diff))
+		else:
+			diff = atan2(sin(diff), cos(diff))* rotation_speed
 		var oldDir = current_dir
 		current_dir.x = (cos(diff) * oldDir.x - sin( diff) * oldDir.y)
 		current_dir.y = (sin(diff) * oldDir.x + cos( diff) * oldDir.y)
 	
 	player.Velocity = Vector3(current_dir.x*current_speed, current_jump, current_dir.y*current_speed)
+	
+	_current_state.update(delta)
 
 func _unhandled_input(event):
 	if event.is_pressed() and !event.is_echo():
