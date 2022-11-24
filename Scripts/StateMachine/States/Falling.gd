@@ -33,6 +33,11 @@ func update(delta):
 	
 	player.ClippingVector = Vector3.ZERO
 	state.current_jump += state.fall_gravity * delta
+	if state.InputDirection == Vector2.ZERO:
+		state.current_speed *= state.AirFriction
+	else:
+		if state.current_speed > state.MaxSpeed:
+			state.current_speed = state.MaxSpeed
 	
 	pass
 

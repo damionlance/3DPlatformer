@@ -21,7 +21,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	
-	if Velocity.length() > 0.2:
+	if Velocity.length() > 0.2 and is_on_floor():
 		player_model.rotation.y = Vector2(Velocity.z, Velocity.x).angle()
 	move_and_slide_with_snap(Velocity, ClippingVector, Vector3.UP, true)
 # Called every frame. 'delta' is the elapsed time since the previous frame.

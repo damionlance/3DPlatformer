@@ -521,7 +521,6 @@ set_owner_batch_size = 16
 [node name="entity_0_worldspawn" type="StaticBody" parent="QodotMap"]
 
 [node name="entity_0_mesh_instance" type="MeshInstance" parent="QodotMap/entity_0_worldspawn"]
-use_in_baked_light = true
 mesh = SubResource( 9 )
 
 [node name="entity_0_brush_0_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn"]

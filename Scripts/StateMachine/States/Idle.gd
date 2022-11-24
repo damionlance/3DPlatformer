@@ -31,6 +31,8 @@ func update(delta):
 	player.player_anim.play("Idle0")
 	state.is_jumping = false
 	#player.animation_player.play("Idle")
+	if !player.is_on_floor():
+		state.update_state("Falling")
 	if state.InputDirection != Vector2.ZERO:
 		state.update_state("Running")
 		return

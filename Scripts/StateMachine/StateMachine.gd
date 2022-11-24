@@ -23,10 +23,11 @@ onready var jump_velocity : float = (2.0 * jump_height) / jump_time_to_peak
 onready var jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
 onready var fall_gravity : float = (-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)
 
-export var MovementSpeed := 5
-export var MaxSpeed := 20
+export var MovementSpeed := 5.0
+export var MaxSpeed := 20.0
 export var GroundFriction := .8
-export var AirSpeed := 2
+export var AirFriction := 0.1
+export var AirSpeed := 2.0
 export var CoyoteTime := 10
 
 export var rotation_speed := .1
@@ -34,6 +35,7 @@ export var rotation_speed := .1
 var current_jump = 0
 var current_speed = 0
 var current_dir := Vector2(0,1)
+var character_model_direction := Vector2.ZERO
 
 # Player State Flags
 var attempting_jump := false
@@ -65,18 +67,22 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
+	character_model_direction.x = cos(player.player_model.rotation.y)
+	character_model_direction.y = sin(player.player_model.rotation.y)
+	
 	input_handling()
 	if player.is_on_floor():
 		if !attempting_jump:
 			allow_jump = true
 		player.Velocity.y = 0
+	else:
+		character_model_direction.x = cos(player.player_model.rotation.y)
+		character_model_direction.y = sin(player.player_model.rotation.y)
 	
-	if InputDirection.length() != 0 and false:
-		current_dir = InputDirection
-	
-	if InputDirection.length() != 0 or false:
+	if InputDirection.length() != 0:
 		var x = InputDirection.angle()
 		var y = current_dir.angle()
+		var dotprod = current_dir.dot(InputDirection)
 		var diff =  x-y
 		if _current_state._state_name == "Idle":
 			diff = atan2(sin(diff), cos(diff))

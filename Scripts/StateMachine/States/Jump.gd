@@ -38,9 +38,14 @@ func update(delta):
 		state.allow_jump = false
 	
 	state.current_jump += state.jump_gravity * delta
+	
+	if state.InputDirection == Vector2.ZERO:
+		state.current_speed *= state.AirFriction
+	else:
+		if state.current_speed > state.MaxSpeed:
+			state.current_speed = state.MaxSpeed
 		
 	if player.Velocity.y < 0:
-		
 		state.update_state("Falling")
 		return
 	
