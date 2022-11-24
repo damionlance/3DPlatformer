@@ -29,7 +29,7 @@ func update(delta):
 	player.player_anim.play("Running")
 	
 	state.is_jumping = false
-	if state.attempting_jump:
+	if state.attempting_jump and state.allow_jump:
 		state.update_state("Jump")
 		return
 	

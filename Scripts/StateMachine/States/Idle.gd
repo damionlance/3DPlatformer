@@ -36,7 +36,7 @@ func update(delta):
 		return
 	else:
 		state.current_speed = 0
-	if state.attempting_jump:
+	if state.attempting_jump and state.allow_jump:
 		state.update_state("Jump")
 		return
 	pass

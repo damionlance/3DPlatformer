@@ -38,6 +38,7 @@ var current_dir := Vector2(0,1)
 # Player State Flags
 var attempting_jump := false
 var is_jumping := false
+var allow_jump := false
 var is_on_floor := false
 
 #private variables
@@ -66,6 +67,8 @@ func _ready():
 func _process(delta):
 	input_handling()
 	if player.is_on_floor():
+		if !attempting_jump:
+			allow_jump = true
 		player.Velocity.y = 0
 	
 	if InputDirection.length() != 0 and false:

@@ -35,6 +35,7 @@ func update(delta):
 		player.ClippingVector = Vector3.ZERO
 		state.current_jump = state.jump_velocity
 		state.is_jumping = true
+		state.allow_jump = false
 	
 	state.current_jump += state.jump_gravity * delta
 		
