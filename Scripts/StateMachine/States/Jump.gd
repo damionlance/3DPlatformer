@@ -19,6 +19,8 @@ var _state_name = "Jump"
 onready var state = get_parent()
 onready var player = get_parent().get_parent()
 
+var entering_angle : Vector2
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	state.state_dictionary[_state_name] = self
@@ -32,6 +34,7 @@ func update(delta):
 		return
 	
 	if !state.is_jumping:
+		entering_angle = state.InputDirection
 		player.ClippingVector = Vector3.ZERO
 		state.current_jump = state.jump_velocity
 		state.is_jumping = true
@@ -39,7 +42,7 @@ func update(delta):
 	
 	state.current_jump += state.jump_gravity * delta
 	
-	if state.InputDirection == Vector2.ZERO:
+	if state.InputDirection == Vector2.ZERO or entering_angle.dot(state.InputDirection) < -.5:
 		state.current_speed *= state.AirFriction
 	else:
 		if state.current_speed > state.MaxSpeed:

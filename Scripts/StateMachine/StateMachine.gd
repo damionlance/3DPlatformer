@@ -67,32 +67,16 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	character_model_direction.x = cos(player.player_model.rotation.y)
-	character_model_direction.y = sin(player.player_model.rotation.y)
 	
 	input_handling()
-	if player.is_on_floor():
+	if player.is_on_floor() and InputDirection.length()!= 0:
+		character_model_direction = InputDirection
+		player.Velocity = Vector3(InputDirection.x*current_speed, current_jump, InputDirection.y*current_speed)
 		if !attempting_jump:
 			allow_jump = true
 		player.Velocity.y = 0
 	else:
-		character_model_direction.x = cos(player.player_model.rotation.y)
-		character_model_direction.y = sin(player.player_model.rotation.y)
-	
-	if InputDirection.length() != 0:
-		var x = InputDirection.angle()
-		var y = current_dir.angle()
-		var dotprod = current_dir.dot(InputDirection)
-		var diff =  x-y
-		if _current_state._state_name == "Idle":
-			diff = atan2(sin(diff), cos(diff))
-		else:
-			diff = atan2(sin(diff), cos(diff))* rotation_speed
-		var oldDir = current_dir
-		current_dir.x = (cos(diff) * oldDir.x - sin( diff) * oldDir.y)
-		current_dir.y = (sin(diff) * oldDir.x + cos( diff) * oldDir.y)
-	
-	player.Velocity = Vector3(current_dir.x*current_speed, current_jump, current_dir.y*current_speed)
+		player.Velocity = Vector3(character_model_direction.x * current_speed, current_jump, character_model_direction.y * current_speed)
 	
 	_current_state.update(delta)
 
@@ -107,7 +91,7 @@ func input_handling():
 	
 	# Direction Handling for Player Movement
 	InputDirection = Input.get_vector("Left","Right", "Forward", "Backward")
-	InputDirection = InputDirection.rotated(-player.spring_arm.rotation.y).normalized()
+	InputDirection = InputDirection.rotated(-player.spring_arm.rotation.y)
 	attempting_jump = Input.is_action_pressed("Jump")
 
 func update_state( new_state ):
