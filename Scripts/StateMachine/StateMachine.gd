@@ -19,10 +19,10 @@ var velocity :=  Vector3.ZERO
 var snap_vector := Vector3.DOWN
 
 # Air Physics Constants
-export var jump_height : float
-export var jump_time_to_peak : float
-export var jump_time_to_descent : float
-export var air_friction := 0.99
+export var jump_height := 3.1
+export var jump_time_to_peak := 0.3
+export var jump_time_to_descent := 0.216
+export var air_friction := 0.9
 export var air_acceleration := 2.0
 export var coyote_time := 10
 
@@ -32,10 +32,10 @@ onready var _jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * 
 onready var _fall_gravity : float = (-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)
 
 # Floor Physics Constants
-export var floor_acceleration := 1.0
-export var max_speed := 12.0
+export var floor_acceleration := 0.5
+export var max_speed := 10.0
 export var floor_fricion := .8
-export var floor_rotation_speed :=  .5
+export var floor_rotation_speed :=  .2
 
 var current_jump = 0
 var current_speed = 0
@@ -69,6 +69,12 @@ func _ready():
 func _process(delta):
 	input_handling()
 	
+	if attempting_jump and _jump_state == allow_jump:
+		_jump_state = jump_pressed
+	elif not attempting_jump and _jump_state != jump_released:
+		_jump_state = jump_released
+	if _jump_state == jump_released and _player.is_on_floor():
+		_jump_state = allow_jump
 	
 	_current_state.update(delta)
 	

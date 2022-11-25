@@ -41,13 +41,14 @@ func update(delta):
 		_state.velocity.y = _state._jump_strength
 		_state._jump_state = _state.jump_held
 	
-	_state.velocity = _state.calculate_velocity(_state._fall_gravity, delta)
-	
 	if not _state.input_direction or entering_angle.dot(_state.input_direction) < -.5:
 		_state.current_speed *= _state.air_friction
 	else:
 		if _state.current_speed > _state.max_speed:
 			_state.current_speed = _state.max_speed
+	
+	
+	_state.velocity = _state.calculate_velocity(_state._jump_gravity, delta)
 	
 	if _state.velocity.y < 0:
 		_state.update_state("Falling")

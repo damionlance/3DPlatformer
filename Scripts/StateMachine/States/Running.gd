@@ -28,17 +28,14 @@ func _ready():
 func update(delta):
 	_player.player_anim.play("Running")
 	
-	if not _state.attempting_jump:
-		_state._jump_state = _state.allow_jump
-	elif _state.allow_jump:
-		_state._jump_state = _state.jump_pressed
-	
-	var forwards = _state._camera.global_transform.basis.z * _state.input_direction.z
+	var forwards = _state._camera.global_transform.basis.z
+	forwards.y = 0
+	forwards = forwards.normalized()
+	forwards *= _state.input_direction.z
 	var right = _state._camera.global_transform.basis.x * _state.input_direction.x
 	
-	print(forwards)
 	_state.move_direction = forwards + right
-	print(_state.move_direction)
+	
 	if _state.move_direction.length() > 1:
 		_state.move_direction = _state.move_direction.normalized()
 	_state.move_direction.y = 0
@@ -48,6 +45,7 @@ func update(delta):
 		# from the camera's perspective and interpolates to that value by some rotation speed
 		var target_direction = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 		_player.transform = _player.transform.interpolate_with(target_direction, _state.floor_rotation_speed)
+	
 	if _state._jump_state == _state.jump_pressed:
 		_state.update_state("Jump")
 		return
@@ -59,6 +57,7 @@ func update(delta):
 			return
 	else:
 		_fall_timer = 0
+	
 	if not _state.input_direction:
 		_state.current_speed *= _state.floor_fricion
 		if _state.current_speed < 1:

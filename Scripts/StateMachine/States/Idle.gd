@@ -29,17 +29,16 @@ func _ready():
 func update(_delta):
 	_player.player_anim.play("Idle0")
 	#player.animation_player.play("Idle")
+	
 	if not _player.is_on_floor():
 		_state.update_state("Falling")
-	elif not _state.attempting_jump:
-		_state._jump_state = _state.allow_jump
-	if _state.input_direction or _state.move_direction:
+	if _state.input_direction:
 		_state.update_state("Running")
 		return
 	else:
 		_state.current_speed = 0
-	if _state.attempting_jump and _state._jump_state == _state.allow_jump:
-		_state._jump_state = _state.jump_pressed
+		_state.velocity = Vector3.ZERO
+	if  _state._jump_state == _state.jump_pressed:
 		_state.update_state("Jump")
 		return
 	pass
