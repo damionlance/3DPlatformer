@@ -5,9 +5,6 @@ onready var player_model = $Player/PlayerModel
 onready var player_anim = $Player/AnimationPlayer
 onready var player_anim_tree = $AnimationTree
 
-var Velocity :=  Vector3.ZERO
-var ClippingVector := Vector3.DOWN
-
 var animations = ['Idle0', 'Running', 'Jumping', 'FallALoop']
 
 var coins = 0
@@ -18,17 +15,8 @@ func _ready():
 		animation.loop = true
 	pass # Replace with function body.
 
-func _process(delta):
+func _process(_delta):
 	spring_arm.translation = translation
-
-func _physics_process(delta):
-	
-	if Velocity.length() > 0.2 and is_on_floor():
-		player_model.rotation.y = Vector2(Velocity.z, Velocity.x).angle()
-	move_and_slide_with_snap(Velocity, ClippingVector, Vector3.UP, true)
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 func add_coin():
 	coins += 1

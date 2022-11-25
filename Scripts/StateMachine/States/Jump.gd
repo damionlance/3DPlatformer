@@ -16,40 +16,41 @@ var motion_input : String
 var _state_name = "Jump"
 
 #onready variables
-onready var state = get_parent()
-onready var player = get_parent().get_parent()
+onready var _state = get_parent()
+onready var _player = get_parent().get_parent()
 
-var entering_angle : Vector2
+var entering_angle : Vector3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	state.state_dictionary[_state_name] = self
+	_state.state_dictionary[_state_name] = self
 	pass # Replace with function body.
 
 func update(delta):
-	player.player_anim.play("FallALoop")
-	if !state.attempting_jump:
-		state.current_jump *= .6
-		state.update_state("Falling")
+	_player.player_anim.play("FallALoop")
+	
+	if not _state.attempting_jump:
+		_state._jump_state = _state.jump_released
+		_state.velocity.y *= .6
+		_state.update_state("Falling")
 		return
 	
-	if !state.is_jumping:
-		entering_angle = state.InputDirection
-		player.ClippingVector = Vector3.ZERO
-		state.current_jump = state.jump_velocity
-		state.is_jumping = true
-		state.allow_jump = false
+	if _state._jump_state == _state.jump_pressed:
+		entering_angle = _state.input_direction
+		_state.snap_vector = Vector3.ZERO
+		_state.velocity.y = _state._jump_strength
+		_state._jump_state = _state.jump_held
 	
-	state.current_jump += state.jump_gravity * delta
+	_state.velocity = _state.calculate_velocity(_state._fall_gravity, delta)
 	
-	if state.InputDirection == Vector2.ZERO or entering_angle.dot(state.InputDirection) < -.5:
-		state.current_speed *= state.AirFriction
+	if not _state.input_direction or entering_angle.dot(_state.input_direction) < -.5:
+		_state.current_speed *= _state.air_friction
 	else:
-		if state.current_speed > state.MaxSpeed:
-			state.current_speed = state.MaxSpeed
-		
-	if player.Velocity.y < 0:
-		state.update_state("Falling")
+		if _state.current_speed > _state.max_speed:
+			_state.current_speed = _state.max_speed
+	
+	if _state.velocity.y < 0:
+		_state.update_state("Falling")
 		return
 	
 	pass

@@ -520,6 +520,7 @@ tree_attach_batch_size = 16
 set_owner_batch_size = 16
 
 [node name="entity_0_worldspawn" type="StaticBody" parent="QodotMap"]
+collision_layer = 3
 
 [node name="entity_0_mesh_instance" type="MeshInstance" parent="QodotMap/entity_0_worldspawn"]
 mesh = SubResource( 9 )

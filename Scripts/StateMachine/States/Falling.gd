@@ -16,28 +16,35 @@ var motion_input : String
 var _state_name = "Falling"
 
 #onready variables
-onready var state = get_parent()
-onready var player = get_parent().get_parent()
+onready var _state = get_parent()
+onready var _player = get_parent().get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	state.state_dictionary[_state_name] = self
+	_state.state_dictionary[_state_name] = self
 	pass # Replace with function body.
 
 func update(delta):
-	player.player_anim.play("FallALoop")
-	if player.is_on_floor():
-		player.ClippingVector = Vector3.DOWN
-		state.update_state("Idle")
+	_player.player_anim.play("FallALoop")
+	if _player.is_on_floor():
+		_state.snap_vector = Vector3.DOWN
+		_state.update_state("Idle")
 		return
 	
-	player.ClippingVector = Vector3.ZERO
-	state.current_jump += state.fall_gravity * delta
-	if state.InputDirection == Vector2.ZERO:
-		state.current_speed *= state.AirFriction
+	if _state.move_direction.length() > 1:
+		_state.move_direction = _state.move_direction.normalized()
+	_state.move_direction.y = 0
+	
+	_state.snap_vector = Vector3.ZERO
+	_state.current_jump += _state._fall_gravity * delta
+	if not _state.input_direction:
+		_state.current_speed *= _state.air_friction
 	else:
-		if state.current_speed > state.MaxSpeed:
-			state.current_speed = state.MaxSpeed
+		if _state.current_speed > _state.max_speed:
+			_state.current_speed = _state.max_speed
+	
+	
+	_state.velocity = _state.calculate_velocity(_state._fall_gravity, delta)
 	
 	pass
 

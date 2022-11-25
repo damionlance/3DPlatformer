@@ -17,29 +17,30 @@ var _state_name = "Idle"
 var _keys
 
 #onready variables
-onready var state = get_parent()
-onready var player = get_parent().get_parent()
+onready var _state = get_parent()
+onready var _player = get_parent().get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	state.state_dictionary[_state_name] = self
-	state.update_state(_state_name)
+	_state.state_dictionary[_state_name] = self
+	_state.update_state(_state_name)
 	pass # Replace with function body.
 
-func update(delta):
-	state.current_jump = 0
-	player.player_anim.play("Idle0")
-	state.is_jumping = false
+func update(_delta):
+	_player.player_anim.play("Idle0")
 	#player.animation_player.play("Idle")
-	if !player.is_on_floor():
-		state.update_state("Falling")
-	if state.InputDirection != Vector2.ZERO:
-		state.update_state("Running")
+	if not _player.is_on_floor():
+		_state.update_state("Falling")
+	elif not _state.attempting_jump:
+		_state._jump_state = _state.allow_jump
+	if _state.input_direction or _state.move_direction:
+		_state.update_state("Running")
 		return
 	else:
-		state.current_speed = 0
-	if state.attempting_jump and state.allow_jump:
-		state.update_state("Jump")
+		_state.current_speed = 0
+	if _state.attempting_jump and _state._jump_state == _state.allow_jump:
+		_state._jump_state = _state.jump_pressed
+		_state.update_state("Jump")
 		return
 	pass
 

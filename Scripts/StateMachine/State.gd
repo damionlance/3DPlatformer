@@ -24,7 +24,7 @@ func _ready():
 	state.state_dictionary[_state_name] = self
 	pass # Replace with function body.
 
-func update(delta):
+func update(_delta):
 	
 	pass
 

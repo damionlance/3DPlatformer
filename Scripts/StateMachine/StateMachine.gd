@@ -15,84 +15,75 @@ var motion_direction = Vector2(0.0,0.0)
 
 #Player Physics Variables
 
+var velocity :=  Vector3.ZERO
+var snap_vector := Vector3.DOWN
+
+# Air Physics Constants
 export var jump_height : float
 export var jump_time_to_peak : float
 export var jump_time_to_descent : float
+export var air_friction := 0.99
+export var air_acceleration := 2.0
+export var coyote_time := 10
 
-onready var jump_velocity : float = (2.0 * jump_height) / jump_time_to_peak
-onready var jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
-onready var fall_gravity : float = (-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)
+# Jump parameter Constants calculated at runtime
+onready var _jump_strength : float = (2.0 * jump_height) / jump_time_to_peak
+onready var _jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
+onready var _fall_gravity : float = (-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)
 
-export var MovementSpeed := 5.0
-export var MaxSpeed := 20.0
-export var GroundFriction := .8
-export var AirFriction := 0.1
-export var AirSpeed := 2.0
-export var CoyoteTime := 10
-
-export var rotation_speed := .1
+# Floor Physics Constants
+export var floor_acceleration := 1.0
+export var max_speed := 12.0
+export var floor_fricion := .8
+export var floor_rotation_speed :=  .5
 
 var current_jump = 0
 var current_speed = 0
 var current_dir := Vector2(0,1)
 var character_model_direction := Vector2.ZERO
 
-# Player State Flags
+var _current_state
+
+# Player Jump Flags
+var _jump_state := 2
+enum {
+	jump_pressed = 0,
+	jump_held = 1,
+	jump_released = 2,
+	allow_jump = 3
+}
 var attempting_jump := false
-var is_jumping := false
-var allow_jump := false
 var is_on_floor := false
 
-#private variables
-var _hold_frames : int = 5 #time to transition from a press to a hold
-var _keys
-var _motion_input_buffer : Array
-var _motion_input_frame_reset : int = 7
-var _motion_input_current_frame = 0
-var _current_state
-var _input_just_happened
-var _execute_motion_input
-var _charge
-
-var InputDirection :=  Vector2.ZERO
-var InputDirectionGlobal := Vector2.ZERO
+var input_direction :=  Vector3.ZERO
+var move_direction := Vector3.ZERO
 
 #onready variables
-onready var player = get_parent()
+onready var _player = get_parent()
+onready var _camera = get_parent().get_node("SpringArm")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_charge = false
-	motion_direction = Vector2(0,0)
 	pass # Replace with function body.
 
 func _process(delta):
-	
 	input_handling()
-	if player.is_on_floor() and InputDirection.length()!= 0:
-		character_model_direction = InputDirection
-		player.Velocity = Vector3(InputDirection.x*current_speed, current_jump, InputDirection.y*current_speed)
-		if !attempting_jump:
-			allow_jump = true
-		player.Velocity.y = 0
-	else:
-		player.Velocity = Vector3(character_model_direction.x * current_speed, current_jump, character_model_direction.y * current_speed)
+	
 	
 	_current_state.update(delta)
-
-func _unhandled_input(event):
-	if event.is_pressed() and !event.is_echo():
-		_input_just_happened = true
-	elif !event.is_pressed():
-		_input_just_happened = true
+	
+	velocity = _player.move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)
 
 func input_handling():
-	InputDirection = Vector2.ZERO
-	
-	# Direction Handling for Player Movement
-	InputDirection = Input.get_vector("Left","Right", "Forward", "Backward")
-	InputDirection = InputDirection.rotated(-player.spring_arm.rotation.y)
+	input_direction.x = Input.get_action_strength("Right") - Input.get_action_strength("Left")
+	input_direction.z = Input.get_action_strength("Backward") - Input.get_action_strength("Forward")
 	attempting_jump = Input.is_action_pressed("Jump")
 
 func update_state( new_state ):
 	_current_state = state_dictionary[new_state]
+
+
+func calculate_velocity(gravity: float, delta) -> Vector3:
+	var new_velocity = move_direction * current_speed
+	new_velocity.y += velocity.y + gravity * delta
+	return new_velocity

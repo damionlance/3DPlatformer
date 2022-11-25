@@ -7,9 +7,9 @@ func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
-	rotation_degrees.y -= (Input.get_action_strength("CameraLeft")-Input.get_action_strength("CameraRight")) * camera_sensitivity.y
+func _physics_process(_delta):
+	rotation_degrees.y -= Input.get_axis("CameraRight", "CameraLeft") * camera_sensitivity.y
 	rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
-	rotation_degrees.x -= (Input.get_action_strength("CameraDown")-Input.get_action_strength("CameraUp")) * camera_sensitivity.x
-	rotation_degrees.x = clamp(rotation_degrees.x, -90.0, 30.0)
+	rotation_degrees.x -= Input.get_axis("CameraDown", "CameraUp") * camera_sensitivity.x
+	rotation_degrees.x = clamp(rotation_degrees.x, -80.0, 30.0)
 	pass

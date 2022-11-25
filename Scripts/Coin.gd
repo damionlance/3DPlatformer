@@ -15,7 +15,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if taken:
 		queue_free()
 
