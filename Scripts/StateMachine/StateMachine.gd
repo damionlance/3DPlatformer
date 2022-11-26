@@ -15,19 +15,29 @@ var spin_jump_sign := int(0)
 var previous_angle := [0.0, 0.0]
 var previous_direction := Vector2.ZERO
 var spin_jump_executed := false
-export var spin_jump_buffer := 10
+export var spin_jump_buffer := 75
 var spin_jump_timer := 0
 export var _spin_polling_speed := 2
 var _spin_polling_timer := 0
+
+var _just_landed = false
+var _jump_count = 0
+
+var _jump_timer := 0
+var _jump_buffer := 30
 
 # Air Physics Constants
 export var jump_height := 3.1
 export var jump_time_to_peak := 0.3
 export var jump_time_to_descent := 0.216
 
+export var jump2_height := 50.1
+export var jump2_time_to_peak := 0.35
+export var jump2_time_to_descent := 0.266
+
 export var spin_jump_height := 5.1
 export var spin_jump_time_to_peak := .4
-export var spin_jump_time_to_descent := 4.0
+export var spin_jump_time_to_descent := 1.0
 
 export var air_friction := 0.9
 export var air_acceleration := 2.0
@@ -37,6 +47,10 @@ export var coyote_time := 10
 onready var _jump_strength : float = (2.0 * jump_height) / jump_time_to_peak
 onready var _jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
 onready var _fall_gravity : float = (-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)
+
+onready var _jump2_strength : float = (2.0 * jump2_height) / jump2_time_to_peak
+onready var _jump2_gravity : float = (-2.0 * jump2_height) / (jump2_time_to_peak * jump2_time_to_peak)
+onready var _fall2_gravity : float = (-2.0 * jump2_height) / (jump2_time_to_descent * jump2_time_to_descent)
 
 onready var _spin_jump_strength : float = (2.0 * spin_jump_height) / spin_jump_time_to_peak
 onready var _spin_jump_gravity : float = (-2.0 * spin_jump_height) / (spin_jump_time_to_peak * spin_jump_time_to_peak)
@@ -110,8 +124,12 @@ func input_handling():
 	input_direction.x = controller_input.x
 	input_direction.z = controller_input.y
 	attempting_jump = Input.is_action_pressed("Jump")
-	
-	if _spin_polling_speed == _spin_polling_timer:
+	if spin_jump_executed:
+		spin_jump_timer += 1
+		if spin_jump_buffer == spin_jump_timer:
+			spin_jump_executed = false
+			spin_jump_timer = 0
+	elif _spin_polling_speed == _spin_polling_timer:
 		_spin_polling_timer = 0
 		var lengths = previous_direction.length() * controller_input.length()
 		previous_angle[1] = previous_angle[0]
@@ -128,8 +146,7 @@ func input_handling():
 			spin_jump_sign = sign(previous_angle[1]-previous_angle[0])
 		else:
 			spin_jump_angle += previous_angle[0] - previous_angle[1]
-			if abs(spin_jump_angle) > 7*PI/6:
-				print("Hi")
+			if abs(spin_jump_angle) > 2*PI/3:
 				spin_jump_executed = true
 		previous_direction = controller_input
 	else:

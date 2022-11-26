@@ -42,7 +42,6 @@ func update(delta):
 	_state.move_direction.y = 0
 	
 	_state.snap_vector = Vector3.ZERO
-	_state.current_jump += _state._fall_gravity * delta
 	if abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > (3 * PI)/4:
 		# Drift Backwards logic
 		_state.current_speed += _state.air_acceleration

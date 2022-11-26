@@ -39,7 +39,10 @@ func update(_delta):
 		_state.current_speed = 0
 		_state.velocity = Vector3.ZERO
 	if  _state._jump_state == _state.jump_pressed:
-		_state.update_state("Jump")
+		if _state._just_landed:
+			_state.update_state("Jump2")
+		else:
+			_state.update_state("Jump")
 		return
 	pass
 
