@@ -39,7 +39,7 @@ func update(delta):
 	forwards.y = 0
 	forwards = forwards.normalized()
 	forwards *= _state.input_direction.z
-	var right = Vector3.ZERO
+	var right = _state._camera.global_transform.basis.x * _state.input_direction.x
 	
 	if _state._jump_state == _state.jump_pressed:
 		_state.entering_jump_angle = _state.input_direction
@@ -53,10 +53,8 @@ func update(delta):
 		_state._air_drift_state = _state.not_air_drifting
 	elif abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > PI/3:
 		# Drift Sideways logic
-		if (_state._air_drift_state == _state.not_air_drifting) or true:
+		if (_state._air_drift_state == _state.not_air_drifting):
 			_state._air_drift_state = _state.air_drifting
-			right = _state._camera.global_transform.basis.x * _state.input_direction.x
-			print("Air drifting")
 	elif not _state.input_direction:
 		_state._air_drift_state = _state.not_air_drifting
 		_state.current_speed *= _state.air_friction

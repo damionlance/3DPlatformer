@@ -8,10 +8,27 @@ var state_dictionary : Dictionary
 var velocity :=  Vector3.ZERO
 var snap_vector := Vector3.DOWN
 
+# Special inputs tracking
+var spin_jump_angle := 0.0
+var spin_jump_start := Vector2.ZERO
+var spin_jump_sign := int(0)
+var previous_angle := [0.0, 0.0]
+var previous_direction := Vector2.ZERO
+var spin_jump_executed := false
+export var spin_jump_buffer := 10
+var spin_jump_timer := 0
+export var _spin_polling_speed := 2
+var _spin_polling_timer := 0
+
 # Air Physics Constants
 export var jump_height := 3.1
 export var jump_time_to_peak := 0.3
 export var jump_time_to_descent := 0.216
+
+export var spin_jump_height := 5.1
+export var spin_jump_time_to_peak := .4
+export var spin_jump_time_to_descent := 4.0
+
 export var air_friction := 0.9
 export var air_acceleration := 2.0
 export var coyote_time := 10
@@ -20,6 +37,10 @@ export var coyote_time := 10
 onready var _jump_strength : float = (2.0 * jump_height) / jump_time_to_peak
 onready var _jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
 onready var _fall_gravity : float = (-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)
+
+onready var _spin_jump_strength : float = (2.0 * spin_jump_height) / spin_jump_time_to_peak
+onready var _spin_jump_gravity : float = (-2.0 * spin_jump_height) / (spin_jump_time_to_peak * spin_jump_time_to_peak)
+onready var _spin_fall_gravity : float = (-2.0 * spin_jump_height) / (spin_jump_time_to_descent * spin_jump_time_to_descent)
 
 # Floor Physics Constants
 export var floor_acceleration := 0.5
@@ -67,6 +88,12 @@ func _ready():
 func _process(delta):
 	input_handling()
 	
+	if spin_jump_executed:
+		spin_jump_timer += 1
+		if spin_jump_timer == spin_jump_buffer:
+			spin_jump_executed = false
+			spin_jump_timer = 0
+	
 	if attempting_jump and _jump_state == allow_jump:
 		_jump_state = jump_pressed
 	elif not attempting_jump and _jump_state != jump_released:
@@ -79,9 +106,34 @@ func _process(delta):
 	velocity = _player.move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)
 
 func input_handling():
-	input_direction.x = Input.get_action_strength("Right") - Input.get_action_strength("Left")
-	input_direction.z = Input.get_action_strength("Backward") - Input.get_action_strength("Forward")
+	var controller_input = Input.get_vector("Left", "Right", "Forward", "Backward")
+	input_direction.x = controller_input.x
+	input_direction.z = controller_input.y
 	attempting_jump = Input.is_action_pressed("Jump")
+	
+	if _spin_polling_speed == _spin_polling_timer:
+		_spin_polling_timer = 0
+		var lengths = previous_direction.length() * controller_input.length()
+		previous_angle[1] = previous_angle[0]
+	
+		if lengths:
+			previous_angle[0] = controller_input.angle()
+		else:
+			previous_angle[0] = previous_angle[1]
+		if spin_jump_start == Vector2.ZERO:
+			spin_jump_start = controller_input
+		elif sign(previous_angle[1]-previous_angle[0]) != spin_jump_sign:
+			spin_jump_angle = 0
+			spin_jump_start = controller_input
+			spin_jump_sign = sign(previous_angle[1]-previous_angle[0])
+		else:
+			spin_jump_angle += previous_angle[0] - previous_angle[1]
+			if abs(spin_jump_angle) > 7*PI/6:
+				print("Hi")
+				spin_jump_executed = true
+		previous_direction = controller_input
+	else:
+		_spin_polling_timer += 1
 
 func update_state( new_state ):
 	_current_state = state_dictionary[new_state]

@@ -35,7 +35,7 @@ func update(delta):
 	forwards.y = 0
 	forwards = forwards.normalized()
 	forwards *= _state.input_direction.z
-	var right = Vector3.ZERO
+	var right = _state._camera.global_transform.basis.x * _state.input_direction.x
 	
 	if _state.move_direction.length() > 1:
 		_state.move_direction = _state.move_direction.normalized()
@@ -51,7 +51,6 @@ func update(delta):
 		# Drift Sideways logic
 		if (_state._air_drift_state == _state.not_air_drifting):
 			_state._air_drift_state = _state.air_drifting
-			right = _state._camera.global_transform.basis.x * _state.input_direction.x
 		
 		
 	elif not _state.input_direction:

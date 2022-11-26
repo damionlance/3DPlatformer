@@ -47,7 +47,10 @@ func update(delta):
 		_player.transform = _player.transform.interpolate_with(target_direction, _state.floor_rotation_speed)
 	
 	if _state._jump_state == _state.jump_pressed:
-		_state.update_state("Jump")
+		if _state.spin_jump_executed:
+			_state.update_state("SpinJump")
+		else:
+			_state.update_state("Jump")
 		return
 	
 	if not _player.is_on_floor():
