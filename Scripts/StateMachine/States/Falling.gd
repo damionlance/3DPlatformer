@@ -31,19 +31,36 @@ func update(delta):
 		_state.update_state("Idle")
 		return
 	
+	var forwards = _state._camera.global_transform.basis.z
+	forwards.y = 0
+	forwards = forwards.normalized()
+	forwards *= _state.input_direction.z
+	var right = Vector3.ZERO
+	
 	if _state.move_direction.length() > 1:
 		_state.move_direction = _state.move_direction.normalized()
 	_state.move_direction.y = 0
 	
 	_state.snap_vector = Vector3.ZERO
 	_state.current_jump += _state._fall_gravity * delta
-	if not _state.input_direction:
+	if abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > (3 * PI)/4:
+		# Drift Backwards logic
+		_state.current_speed += _state.air_acceleration
+		_state._air_drift_state = _state.not_air_drifting
+	elif abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > PI/3:
+		# Drift Sideways logic
+		if (_state._air_drift_state == _state.not_air_drifting):
+			_state._air_drift_state = _state.air_drifting
+			right = _state._camera.global_transform.basis.x * _state.input_direction.x
+		
+		
+	elif not _state.input_direction:
+		_state._air_drift_state = _state.not_air_drifting
 		_state.current_speed *= _state.air_friction
-	else:
-		if _state.current_speed > _state.max_speed:
-			_state.current_speed = _state.max_speed
+	if _state.current_speed > _state.max_speed:
+		_state.current_speed = _state.max_speed
 	
-	
+	_state.move_direction = forwards + right
 	_state.velocity = _state.calculate_velocity(_state._fall_gravity, delta)
 	
 	pass

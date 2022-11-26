@@ -1,17 +1,7 @@
 extends Node
 
-#constants
-
-enum {
-	JUST_PRESSED = 0,
-	HELD = 1,
-	JUST_RELEASED = 2,
-	RELEASED = 3
-}
-
 #public variables
 var state_dictionary : Dictionary
-var motion_direction = Vector2(0.0,0.0)
 
 #Player Physics Variables
 
@@ -42,6 +32,8 @@ var current_speed = 0
 var current_dir := Vector2(0,1)
 var character_model_direction := Vector2.ZERO
 
+var entering_jump_angle := Vector3.ZERO
+
 var _current_state
 
 # Player Jump Flags
@@ -52,6 +44,12 @@ enum {
 	jump_released = 2,
 	allow_jump = 3
 }
+var _air_drift_state
+enum {
+	not_air_drifting,
+	air_drifting
+}
+
 var attempting_jump := false
 var is_on_floor := false
 

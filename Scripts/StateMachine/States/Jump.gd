@@ -35,19 +35,35 @@ func update(delta):
 		_state.update_state("Falling")
 		return
 	
+	var forwards = _state._camera.global_transform.basis.z
+	forwards.y = 0
+	forwards = forwards.normalized()
+	forwards *= _state.input_direction.z
+	var right = Vector3.ZERO
+	
 	if _state._jump_state == _state.jump_pressed:
-		entering_angle = _state.input_direction
+		_state.entering_jump_angle = _state.input_direction
 		_state.snap_vector = Vector3.ZERO
 		_state.velocity.y = _state._jump_strength
 		_state._jump_state = _state.jump_held
-	
-	if not _state.input_direction or entering_angle.dot(_state.input_direction) < -.5:
+		
+	if abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > (3 * PI)/4:
+		# Drift Backwards logic
+		_state.current_speed += _state.air_acceleration
+		_state._air_drift_state = _state.not_air_drifting
+	elif abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > PI/3:
+		# Drift Sideways logic
+		if (_state._air_drift_state == _state.not_air_drifting) or true:
+			_state._air_drift_state = _state.air_drifting
+			right = _state._camera.global_transform.basis.x * _state.input_direction.x
+			print("Air drifting")
+	elif not _state.input_direction:
+		_state._air_drift_state = _state.not_air_drifting
 		_state.current_speed *= _state.air_friction
-	else:
-		if _state.current_speed > _state.max_speed:
-			_state.current_speed = _state.max_speed
+	if _state.current_speed > _state.max_speed:
+		_state.current_speed = _state.max_speed
 	
-	
+	_state.move_direction = forwards + right
 	_state.velocity = _state.calculate_velocity(_state._jump_gravity, delta)
 	
 	if _state.velocity.y < 0:

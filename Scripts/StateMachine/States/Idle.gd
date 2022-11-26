@@ -29,7 +29,7 @@ func _ready():
 func update(_delta):
 	_player.player_anim.play("Idle0")
 	#player.animation_player.play("Idle")
-	
+	_state._air_drift_state = _state.not_air_drifting
 	if not _player.is_on_floor():
 		_state.update_state("Falling")
 	if _state.input_direction:

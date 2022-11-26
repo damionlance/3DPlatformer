@@ -13,7 +13,6 @@ func _ready():
 	for animation in animations:
 		animation = player_anim.get_animation(animation)	
 		animation.loop = true
-	pass # Replace with function body.
 
 func _process(_delta):
 	spring_arm.translation = translation
