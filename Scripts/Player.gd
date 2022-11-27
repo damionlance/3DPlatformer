@@ -1,18 +1,17 @@
 extends KinematicBody
 
 onready var camera_pivot : Spatial = $CameraPivot
-onready var player_model = $Player/PlayerModel
-onready var player_anim = $Player/AnimationPlayer
+onready var player_model = $lilfella/Armature
+onready var player_anim = $lilfella/AnimationPlayer
 onready var player_anim_tree = $AnimationTree
 
-var animations = ['Idle0', 'Running', 'Jumping', 'FallALoop']
+var animations = ['Idle', 'Run', 'Jump', 'Fall']
 
 var coins = 0
 
 func _ready():
 	for animation in animations:
-		animation = player_anim.get_animation(animation)	
-		animation.loop = true
+		animation = player_anim.get_animation(animation)
 
 func _process(_delta):
 	camera_pivot.translation = translation

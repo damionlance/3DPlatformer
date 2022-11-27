@@ -26,7 +26,7 @@ func _ready():
 	pass 
 
 func update(delta):
-	_player.player_anim.play("Running")
+	_player.player_anim.play("Run")
 	
 	var forwards = _state._camera.global_transform.basis.z
 	forwards.y = 0

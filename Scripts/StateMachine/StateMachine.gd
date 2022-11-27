@@ -141,7 +141,7 @@ func input_handling():
 		previous_angle[1] = previous_angle[0]
 	
 		if lengths:
-			previous_angle[0] += controller_input.angle()
+			previous_angle[0] = controller_input.angle()
 		else:
 			previous_angle[0] = previous_angle[1]
 		if spin_jump_start == Vector2.ZERO:
