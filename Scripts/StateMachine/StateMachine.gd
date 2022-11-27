@@ -135,25 +135,27 @@ func input_handling():
 		if spin_jump_buffer == spin_jump_timer:
 			spin_jump_executed = false
 			spin_jump_timer = 0
-	elif controller_input != Vector2.ZERO:
+	if controller_input != Vector2.ZERO:
 		_spin_polling_timer = 0
 		var lengths = previous_direction.length() * controller_input.length()
 		previous_angle[1] = previous_angle[0]
 	
 		if lengths:
-			previous_angle[0] = controller_input.angle()
+			previous_angle[0] += controller_input.angle()
 		else:
 			previous_angle[0] = previous_angle[1]
 		if spin_jump_start == Vector2.ZERO:
 			spin_jump_start = controller_input
-		elif abs(previous_angle[1]-previous_angle[0]) > .1 and sign(previous_angle[1]-previous_angle[0]) != spin_jump_sign: 
+		elif abs(previous_angle[1]-previous_angle[0]) > .2 and sign(previous_angle[1]-previous_angle[0]) != spin_jump_sign:
 			spin_jump_angle = 0
 			spin_jump_start = controller_input
 			spin_jump_sign = sign(previous_angle[1]-previous_angle[0])
 		else:
 			spin_jump_angle += previous_angle[0] - previous_angle[1]
-			if abs(spin_jump_angle) > PI:
+			if abs(spin_jump_angle) > 3 *PI / 2:
 				spin_jump_executed = true
+				spin_jump_start == Vector2.ZERO
+				spin_jump_angle = 0
 		previous_direction = controller_input
 
 func update_state( new_state ):
