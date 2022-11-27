@@ -588,7 +588,7 @@ font_data = SubResource( 149 )
 [node name="Spatial" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.49998, 0, -0.00447668, 0, 0.5, 0, 0.00447668, 0, -0.49998, 0, 3.52774, 0 )
+transform = Transform( -0.99996, 0, -0.00895336, 0, 1, 0, 0.00895336, 0, -0.99996, 0, 3.52774, 0 )
 
 [node name="QodotMap" type="Spatial" parent="."]
 script = ExtResource( 2 )

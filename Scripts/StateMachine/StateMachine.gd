@@ -15,13 +15,12 @@ var spin_jump_sign := int(0)
 var previous_angle := [0.0, 0.0]
 var previous_direction := Vector2.ZERO
 var spin_jump_executed := false
-export var spin_jump_buffer := 75
+export var spin_jump_buffer := 90
 var spin_jump_timer := 0
-export var _spin_polling_speed := 2
+export var _spin_polling_speed := 1
 var _spin_polling_timer := 0
 
-var _just_landed = false
-var _jump_count = 0
+var just_landed = false
 
 var _jump_timer := 0
 var _jump_buffer := 30
@@ -31,7 +30,7 @@ export var jump_height := 3.1
 export var jump_time_to_peak := 0.3
 export var jump_time_to_descent := 0.216
 
-export var jump2_height := 50.1
+export var jump2_height := 5.1
 export var jump2_time_to_peak := 0.35
 export var jump2_time_to_descent := 0.266
 
@@ -93,7 +92,7 @@ var move_direction := Vector3.ZERO
 
 #onready variables
 onready var _player = get_parent()
-onready var _camera = get_parent().get_node("SpringArm")
+onready var _camera = $"../CameraPivot"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -102,17 +101,24 @@ func _ready():
 func _process(delta):
 	input_handling()
 	
+	if just_landed:
+		_jump_timer += 1
+		if _jump_buffer == _jump_timer:
+			just_landed = false
+			_jump_timer = 0
+	
 	if spin_jump_executed:
 		spin_jump_timer += 1
 		if spin_jump_timer == spin_jump_buffer:
 			spin_jump_executed = false
 			spin_jump_timer = 0
-	
 	if attempting_jump and _jump_state == allow_jump:
 		_jump_state = jump_pressed
+	if attempting_jump and jump_pressed:
+		_jump_state = jump_held
 	elif not attempting_jump and _jump_state != jump_released:
 		_jump_state = jump_released
-	if _jump_state == jump_released and _player.is_on_floor():
+	if not attempting_jump and _player.is_on_floor():
 		_jump_state = allow_jump
 	
 	_current_state.update(delta)
@@ -129,7 +135,7 @@ func input_handling():
 		if spin_jump_buffer == spin_jump_timer:
 			spin_jump_executed = false
 			spin_jump_timer = 0
-	elif _spin_polling_speed == _spin_polling_timer:
+	elif controller_input != Vector2.ZERO:
 		_spin_polling_timer = 0
 		var lengths = previous_direction.length() * controller_input.length()
 		previous_angle[1] = previous_angle[0]
@@ -140,17 +146,15 @@ func input_handling():
 			previous_angle[0] = previous_angle[1]
 		if spin_jump_start == Vector2.ZERO:
 			spin_jump_start = controller_input
-		elif sign(previous_angle[1]-previous_angle[0]) != spin_jump_sign:
+		elif abs(previous_angle[1]-previous_angle[0]) > .1 and sign(previous_angle[1]-previous_angle[0]) != spin_jump_sign: 
 			spin_jump_angle = 0
 			spin_jump_start = controller_input
 			spin_jump_sign = sign(previous_angle[1]-previous_angle[0])
 		else:
 			spin_jump_angle += previous_angle[0] - previous_angle[1]
-			if abs(spin_jump_angle) > 2*PI/3:
+			if abs(spin_jump_angle) > PI:
 				spin_jump_executed = true
 		previous_direction = controller_input
-	else:
-		_spin_polling_timer += 1
 
 func update_state( new_state ):
 	_current_state = state_dictionary[new_state]

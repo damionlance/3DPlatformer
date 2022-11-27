@@ -29,6 +29,7 @@ func update(delta):
 	if _player.is_on_floor():
 		_state.snap_vector = Vector3.DOWN
 		_state.update_state("Idle")
+		_state.just_landed = true
 		return
 	
 	var forwards = _state._camera.global_transform.basis.z

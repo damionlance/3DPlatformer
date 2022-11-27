@@ -49,6 +49,8 @@ func update(delta):
 	if _state._jump_state == _state.jump_pressed:
 		if _state.spin_jump_executed:
 			_state.update_state("SpinJump")
+		elif _state.just_landed:
+			_state.update_state("Jump2")
 		else:
 			_state.update_state("Jump")
 		return

@@ -1,0 +1,13 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+path="res://.import/poolparty.8.map-1e47c29565cfc61ba0bcb318c15e5171.tres"
+
+[deps]
+
+source_file="res://TestLevels/Maps/autosave/poolparty.8.map"
+dest_files=[ "res://.import/poolparty.8.map-1e47c29565cfc61ba0bcb318c15e5171.tres" ]
+
+[params]
+

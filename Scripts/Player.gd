@@ -1,6 +1,6 @@
 extends KinematicBody
 
-onready var spring_arm : SpringArm = $SpringArm
+onready var camera_pivot : Spatial = $CameraPivot
 onready var player_model = $Player/PlayerModel
 onready var player_anim = $Player/AnimationPlayer
 onready var player_anim_tree = $AnimationTree
@@ -15,7 +15,7 @@ func _ready():
 		animation.loop = true
 
 func _process(_delta):
-	spring_arm.translation = translation
+	camera_pivot.translation = translation
 
 func add_coin():
 	coins += 1
