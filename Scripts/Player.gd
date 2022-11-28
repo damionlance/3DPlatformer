@@ -20,6 +20,5 @@ func add_coin():
 	coins += 1
 	print(coins, " coins")
 
-
 func _on_Area_coinCollected():
 	pass # Replace with function body.

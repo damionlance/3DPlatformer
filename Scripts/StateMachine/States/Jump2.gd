@@ -28,7 +28,10 @@ func _ready():
 
 func update(delta):
 	_player.player_anim.play("Jump")
-	print("hi")
+	
+	if _player.is_on_wall():
+		_state.update_state("WallSlide")
+		return
 	if not _state.attempting_jump:
 		_state._jump_state = _state.jump_released
 		_state.velocity.y *= .6
@@ -70,6 +73,9 @@ func update(delta):
 	
 	pass
 
+func reset():
+	
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

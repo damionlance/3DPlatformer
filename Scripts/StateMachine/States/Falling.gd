@@ -31,7 +31,9 @@ func update(delta):
 		_state.update_state("Idle")
 		_state.just_landed = true
 		return
-	
+	if _player.is_on_wall():
+		_state.update_state("WallSlide")
+		return
 	var forwards = _state._camera.global_transform.basis.z
 	forwards.y = 0
 	forwards = forwards.normalized()
@@ -67,3 +69,5 @@ func update(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+func reset():
+	pass

@@ -25,12 +25,14 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	_player.player_anim.play("FallALoop")
+	_player.player_anim.play("Fall")
 	if _player.is_on_floor():
 		_state.snap_vector = Vector3.DOWN
 		_state.update_state("Idle")
 		return
-	
+	if _player.is_on_wall():
+		_state.update_state("WallSlide")
+		return
 	var forwards = _state._camera.global_transform.basis.z
 	forwards.y = 0
 	forwards = forwards.normalized()
@@ -63,6 +65,8 @@ func update(delta):
 	
 	pass
 
+func reset():
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

@@ -86,6 +86,7 @@ enum {
 
 var attempting_jump := false
 var is_on_floor := false
+var collision_normal := Vector3.ZERO
 
 var input_direction :=  Vector3.ZERO
 var move_direction := Vector3.ZERO
@@ -96,40 +97,71 @@ onready var _camera = $"../CameraPivot"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	update_state("Idle")
 	pass # Replace with function body.
 
 func _process(delta):
+	
 	input_handling()
 	
+	jump_state_handling()
+	_current_state.update(delta)
+	#print(_current_state)
+	velocity = _player.move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)
+	# calculate collision vector
+	if _player.get_slide_count() != 0:
+		collision_normal = _player.get_slide_collision(0).normal
+
+func input_handling():	
+	var controller_input = Input.get_vector("Left", "Right", "Forward", "Backward")
+	input_direction.x = controller_input.x
+	input_direction.z = controller_input.y
+	attempting_jump = Input.is_action_pressed("Jump")
+	
+	spin_jump_handling(controller_input)
+	
+
+func update_state( new_state ):
+	_current_state = state_dictionary[new_state]
+	_current_state.reset()
+
+func calculate_velocity(gravity: float, delta) -> Vector3:
+	var new_velocity = move_direction * current_speed
+	new_velocity.y += velocity.y + gravity * delta
+	return new_velocity
+
+################################################################################
+############################ HELPER FUNCTIONS ##################################
+################################################################################
+
+func jump_state_handling():
+	# Handle how short timing you need to start a double or triple jump
 	if just_landed:
 		_jump_timer += 1
 		if _jump_buffer == _jump_timer:
 			just_landed = false
 			_jump_timer = 0
 	
+	# Spin Jump Buffer Handling
 	if spin_jump_executed:
 		spin_jump_timer += 1
 		if spin_jump_timer == spin_jump_buffer:
 			spin_jump_executed = false
 			spin_jump_timer = 0
+	var resetting_collision = false
+	if _player.is_on_floor() or _player.is_on_wall():
+		resetting_collision = true
+	# Jump State Handling
 	if attempting_jump and _jump_state == allow_jump:
 		_jump_state = jump_pressed
-	if attempting_jump and jump_pressed:
+	elif attempting_jump and jump_pressed:
 		_jump_state = jump_held
-	elif not attempting_jump and _jump_state != jump_released:
-		_jump_state = jump_released
-	if not attempting_jump and _player.is_on_floor():
+	elif resetting_collision and not attempting_jump:
 		_jump_state = allow_jump
-	
-	_current_state.update(delta)
-	
-	velocity = _player.move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)
+	elif not attempting_jump:
+		_jump_state = jump_released
 
-func input_handling():
-	var controller_input = Input.get_vector("Left", "Right", "Forward", "Backward")
-	input_direction.x = controller_input.x
-	input_direction.z = controller_input.y
-	attempting_jump = Input.is_action_pressed("Jump")
+func spin_jump_handling(controller_input: Vector2):
 	if spin_jump_executed:
 		spin_jump_timer += 1
 		if spin_jump_buffer == spin_jump_timer:
@@ -157,12 +189,3 @@ func input_handling():
 				spin_jump_start == Vector2.ZERO
 				spin_jump_angle = 0
 		previous_direction = controller_input
-
-func update_state( new_state ):
-	_current_state = state_dictionary[new_state]
-
-
-func calculate_velocity(gravity: float, delta) -> Vector3:
-	var new_velocity = move_direction * current_speed
-	new_velocity.y += velocity.y + gravity * delta
-	return new_velocity

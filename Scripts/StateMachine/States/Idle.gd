@@ -46,6 +46,10 @@ func update(_delta):
 		return
 	pass
 
+func reset():
+	
+	pass
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

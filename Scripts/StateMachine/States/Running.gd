@@ -75,3 +75,6 @@ func update(delta):
 	_state.velocity = _state.calculate_velocity(_state._fall_gravity, delta)
 	pass
 
+func reset():
+	
+	pass

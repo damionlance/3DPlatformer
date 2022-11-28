@@ -28,11 +28,6 @@ func _ready():
 
 func update(delta):
 	_player.player_anim.play("Jump")
-	if not _state.attempting_jump:
-		_state._jump_state = _state.jump_released
-		_state.velocity.y *= .6
-		_state.update_state("Falling")
-		return
 	
 	var forwards = _state._camera.global_transform.basis.z
 	forwards.y = 0
@@ -63,9 +58,21 @@ func update(delta):
 	_state.move_direction = forwards + right
 	_state.velocity = _state.calculate_velocity(_state._jump_gravity, delta)
 	
+	if _player.is_on_wall():
+		_state.update_state("WallSlide")
+		return
+	if not _state.attempting_jump:
+		_state._jump_state = _state.jump_released
+		_state.velocity.y *= .6
+		_state.update_state("Falling")
+		return
 	if _state.velocity.y < 0:
 		_state.update_state("Falling")
 		return
+	
+	pass
+
+func reset():
 	
 	pass
 
