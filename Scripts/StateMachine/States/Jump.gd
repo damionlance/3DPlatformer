@@ -55,10 +55,9 @@ func update(delta):
 	if _state.current_speed > _state.max_speed:
 		_state.current_speed = _state.max_speed
 	
-	_state.move_direction = forwards + right
 	_state.velocity = _state.calculate_velocity(_state._jump_gravity, delta)
 	
-	if _player.is_on_wall():
+	if _player.is_on_wall() and _state._allow_wall_jump:
 		_state.update_state("WallSlide")
 		return
 	if not _state.attempting_jump:

@@ -19,6 +19,9 @@ export var spin_jump_buffer := 90
 var spin_jump_timer := 0
 export var _spin_polling_speed := 1
 var _spin_polling_timer := 0
+var _allow_wall_jump := true
+var _wall_jump_buffer := 15
+var _wall_jump_timer := 0
 
 var just_landed = false
 
@@ -38,7 +41,7 @@ export var spin_jump_height := 5.1
 export var spin_jump_time_to_peak := .4
 export var spin_jump_time_to_descent := 1.0
 
-export var air_friction := 0.9
+export var air_friction := 0.99
 export var air_acceleration := 2.0
 export var coyote_time := 10
 
@@ -136,6 +139,14 @@ func calculate_velocity(gravity: float, delta) -> Vector3:
 
 func jump_state_handling():
 	# Handle how short timing you need to start a double or triple jump
+	
+	if not _allow_wall_jump:
+		if _wall_jump_timer == _wall_jump_buffer:
+			_allow_wall_jump = true
+			_wall_jump_timer = 0
+		else:
+			_wall_jump_timer += 1
+	
 	if just_landed:
 		_jump_timer += 1
 		if _jump_buffer == _jump_timer:
@@ -149,7 +160,7 @@ func jump_state_handling():
 			spin_jump_executed = false
 			spin_jump_timer = 0
 	var resetting_collision = false
-	if _player.is_on_floor() or _player.is_on_wall():
+	if _player.is_on_floor() or _player.is_on_wall() and _allow_wall_jump:
 		resetting_collision = true
 	# Jump State Handling
 	if attempting_jump and _jump_state == allow_jump:
