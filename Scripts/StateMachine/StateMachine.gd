@@ -26,8 +26,11 @@ export var _shorthop_buffer := 7
 
 var just_landed = false
 
+var _consecutive_jump_timer := 0
+var _consecutive_jump_buffer := 1
+
+var _jump_buffer := 30
 var _jump_timer := 0
-var _jump_buffer := 1
 
 # Air Physics Constants
 export var jump_height := 3.1
@@ -138,6 +141,13 @@ func calculate_velocity(gravity: float, delta) -> Vector3:
 
 func jump_state_handling():
 	# Handle how short timing you need to start a double or triple jump
+	if attempting_jump and (not _player.is_on_floor() or _player.is_on_wall()):
+		if _jump_state == jump_pressed:
+			_jump_timer = _jump_buffer
+		if _jump_state == jump_held:
+			_jump_timer += 1
+	else	:
+		_jump_timer = _jump_buffer
 	
 	if not _allow_wall_jump:
 		if _wall_jump_timer == _wall_jump_buffer:
@@ -147,10 +157,10 @@ func jump_state_handling():
 			_wall_jump_timer += 1
 	
 	if just_landed:
-		_jump_timer += 1
-		if _jump_buffer == _jump_timer:
+		_consecutive_jump_timer += 1
+		if _consecutive_jump_buffer == _consecutive_jump_timer:
 			just_landed = false
-			_jump_timer = 0
+			_consecutive_jump_timer = 0
 	
 	# Spin Jump Buffer Handling
 	if spin_jump_executed:
@@ -166,7 +176,7 @@ func jump_state_handling():
 		_jump_state = jump_pressed
 	elif attempting_jump and jump_pressed:
 		_jump_state = jump_held
-	elif resetting_collision and not attempting_jump:
+	elif (resetting_collision or _jump_timer < _jump_buffer) and _jump_state != jump_held:
 		_jump_state = allow_jump
 	elif not attempting_jump:
 		_jump_state = jump_released
@@ -203,7 +213,7 @@ func spin_jump_handling(controller_input: Vector2):
 func wall_jump_collision_check():
 	if _raycast_left.is_colliding() or _raycast_left.is_colliding():
 		if _player.is_on_wall():
-			var horizontalVelocity = Vector3(velocity.x, 0, velocity.y)
+			var horizontalVelocity = Vector3(velocity.x, 0, velocity.z)
 			print(horizontalVelocity)
 			if horizontalVelocity.length() > max_speed/2:
 				return true

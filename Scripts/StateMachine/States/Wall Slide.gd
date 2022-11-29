@@ -18,6 +18,12 @@ var _keys
 var entering_angle : Vector3
 var surface_normal : Vector3
 
+var wall_bounce_buffer := 5
+var wall_bounce_timer := 0
+
+var forwards
+var right
+
 #onready variables
 onready var _state = get_parent()
 onready var _player = get_parent().get_parent()
@@ -33,22 +39,45 @@ func update(delta):
 	#player.animation_player.play("Idle")
 	_state.move_direction = _state.snap_vector
 	_state.current_speed = 2
+	
+	wall_bounce_timer += 1
+	
 	if _player.is_on_floor():
 		_state.update_state("Idle")
 		return
 	
-	if  _state._jump_state == _state.jump_pressed:
-		_state.move_direction = entering_angle.bounce(surface_normal)
-		_state.current_speed = _state.max_speed
-		_state.update_state("Jump")
-		_state._allow_wall_jump = false
+	if wall_bounce_timer < wall_bounce_buffer:
+		if  _state._jump_state == _state.jump_pressed:
+			_state.move_direction = entering_angle.bounce(surface_normal)
+			_state.current_speed = _state.max_speed
+			_state.update_state("Jump")
+			_state._allow_wall_jump = false
+	else:
+		if  _state._jump_state == _state.jump_pressed:
+			directional_input_handling()
+			_state.current_speed = _state.max_speed
+			_state.update_state("Jump")
+			_state._allow_wall_jump = false
 	_state.velocity = _state.calculate_velocity(-1, delta)
 	pass
 
+func directional_input_handling():
+	forwards = _state._camera.global_transform.basis.z
+	forwards.y = 0
+	forwards = forwards.normalized()
+	forwards *= _state.input_direction.z
+	right = _state._camera.global_transform.basis.x * _state.input_direction.x
+	if forwards.dot(surface_normal) < 0 or _state.input_direction.length() < .001:
+			_state.move_direction = entering_angle.bounce(surface_normal)
+	else:
+		_state.move_direction = forwards + right
+
 func reset():
+	wall_bounce_timer = 0
 	_state.current_speed = 0
 	_state.velocity = Vector3.ZERO
 	entering_angle = Vector3(_state.move_direction.x,0, _state.move_direction.z).normalized()
+	
 	if _state._raycast_left == null:
 		return
 	var collisionLeft = _state._raycast_left.get_collision_normal()

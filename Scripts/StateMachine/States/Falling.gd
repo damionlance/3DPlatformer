@@ -26,14 +26,7 @@ func _ready():
 
 func update(delta):
 	_player.player_anim.play("Fall")
-	if _player.is_on_floor():
-		_state.snap_vector = Vector3.DOWN
-		_state.update_state("Idle")
-		_state.just_landed = true
-		return
-	if _state.wall_jump_collision_check() and _state._allow_wall_jump:
-		_state.update_state("WallSlide")
-		return
+	print(_state.velocity)
 	var forwards = _state._camera.global_transform.basis.z
 	forwards.y = 0
 	forwards = forwards.normalized()
@@ -63,6 +56,15 @@ func update(delta):
 	
 	#_state.move_direction = forwards + right
 	_state.velocity = _state.calculate_velocity(_state._fall_gravity, delta)
+	
+	if _player.is_on_floor():
+		_state.snap_vector = Vector3.DOWN
+		_state.update_state("Idle")
+		_state.just_landed = true
+		return
+	if _state.wall_jump_collision_check() and _state._allow_wall_jump:
+		_state.update_state("WallSlide")
+		return
 	
 	pass
 
