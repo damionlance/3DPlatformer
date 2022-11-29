@@ -36,6 +36,7 @@ func update(delta):
 	if _player.is_on_floor():
 		_state.update_state("Idle")
 		return
+	
 	if  _state._jump_state == _state.jump_pressed:
 		_state.move_direction = entering_angle.bounce(surface_normal)
 		_state.current_speed = _state.max_speed
@@ -45,10 +46,24 @@ func update(delta):
 	pass
 
 func reset():
+	_state.current_speed = 0
 	_state.velocity = Vector3.ZERO
 	entering_angle = Vector3(_state.move_direction.x,0, _state.move_direction.z).normalized()
-	_state.current_speed = 0
-	_state.snap_vector = -_state.collision_normal
-	surface_normal = _state.collision_normal
+	if _state._raycast_left == null:
+		return
+	var collisionLeft = _state._raycast_left.get_collision_normal()
+	var collisionRight = _state._raycast_right.get_collision_normal()
+	if (collisionLeft - collisionRight).length() < 0.001: 
+		surface_normal = collisionLeft
+	elif not _state._raycast_left.is_colliding():
+		surface_normal = collisionRight
+	elif not _state._raycast_right.is_colliding():
+		surface_normal = collisionLeft
+	else:
+		var leftDot = collisionLeft.dot(entering_angle)
+		var rightDot = collisionRight.dot(entering_angle)
+		surface_normal = collisionLeft if leftDot < rightDot else collisionRight
+	_state.snap_vector = -surface_normal
+	print(_state.snap_vector)
 	_player.transform = _player.transform.looking_at(surface_normal, Vector3.UP)
 	pass

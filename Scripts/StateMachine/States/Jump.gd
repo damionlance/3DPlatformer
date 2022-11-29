@@ -14,6 +14,7 @@ var motion_input : String
 
 #private variables
 var _state_name = "Jump"
+var shorthop_timer := 0
 
 #onready variables
 onready var _state = get_parent()
@@ -35,12 +36,8 @@ func update(delta):
 	forwards *= _state.input_direction.z
 	var right = _state._camera.global_transform.basis.x * _state.input_direction.x
 	
-	if _state._jump_state == _state.jump_pressed:
-		_state.entering_jump_angle = _state.input_direction
-		_state.snap_vector = Vector3.ZERO
-		_state.velocity.y = _state._jump_strength
-		_state._jump_state = _state.jump_held
-		
+	shorthop_timer += 1
+	
 	if abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > (3 * PI)/4:
 		# Drift Backwards logic
 		_state.current_speed += _state.air_acceleration
@@ -57,10 +54,10 @@ func update(delta):
 	
 	_state.velocity = _state.calculate_velocity(_state._jump_gravity, delta)
 	
-	if _player.is_on_wall() and _state._allow_wall_jump:
+	if _state.wall_jump_collision_check() and _state._allow_wall_jump:
 		_state.update_state("WallSlide")
 		return
-	if not _state.attempting_jump:
+	if not _state.attempting_jump and shorthop_timer == _state._shorthop_buffer:
 		_state._jump_state = _state.jump_released
 		_state.velocity.y *= .6
 		_state.update_state("Falling")
@@ -72,7 +69,11 @@ func update(delta):
 	pass
 
 func reset():
-	
+	shorthop_timer = 0
+	_state.entering_jump_angle = _state.input_direction
+	_state.snap_vector = Vector3.ZERO
+	_state.velocity.y = _state._jump_strength
+	_state._jump_state = _state.jump_held
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -30,7 +30,7 @@ func update(delta):
 		_state.snap_vector = Vector3.DOWN
 		_state.update_state("Idle")
 		return
-	if _player.is_on_wall() and _state._allow_wall_jump:
+	if _state.wall_jump_collision_check() and _state._allow_wall_jump:
 		_state.update_state("WallSlide")
 		return
 	var forwards = _state._camera.global_transform.basis.z

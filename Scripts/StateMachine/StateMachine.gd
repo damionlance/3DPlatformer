@@ -22,11 +22,12 @@ var _spin_polling_timer := 0
 var _allow_wall_jump := true
 var _wall_jump_buffer := 15
 var _wall_jump_timer := 0
+export var _shorthop_buffer := 7
 
 var just_landed = false
 
 var _jump_timer := 0
-var _jump_buffer := 30
+var _jump_buffer := 1
 
 # Air Physics Constants
 export var jump_height := 3.1
@@ -89,7 +90,6 @@ enum {
 
 var attempting_jump := false
 var is_on_floor := false
-var collision_normal := Vector3.ZERO
 
 var input_direction :=  Vector3.ZERO
 var move_direction := Vector3.ZERO
@@ -97,10 +97,12 @@ var move_direction := Vector3.ZERO
 #onready variables
 onready var _player = get_parent()
 onready var _camera = $"../CameraPivot"
+onready var _raycast_left = _player.get_node("WallRayLeft")
+onready var _raycast_right = _player.get_node("WallRayRight")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	update_state("Idle")
+	update_state("Falling")
 	pass # Replace with function body.
 
 func _process(delta):
@@ -111,14 +113,11 @@ func _process(delta):
 	_current_state.update(delta)
 	#print(_current_state)
 	velocity = _player.move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)
-	# calculate collision vector
-	if _player.get_slide_count() != 0:
-		collision_normal = _player.get_slide_collision(0).normal
 
 func input_handling():	
-	var controller_input = Input.get_vector("Left", "Right", "Forward", "Backward")
+	var controller_input = Input.get_vector("Left", "Right", "Backward", "Forward")
 	input_direction.x = controller_input.x
-	input_direction.z = controller_input.y
+	input_direction.z = -controller_input.y
 	attempting_jump = Input.is_action_pressed("Jump")
 	
 	spin_jump_handling(controller_input)
@@ -200,3 +199,11 @@ func spin_jump_handling(controller_input: Vector2):
 				spin_jump_start == Vector2.ZERO
 				spin_jump_angle = 0
 		previous_direction = controller_input
+
+func wall_jump_collision_check():
+	if _raycast_left.is_colliding() or _raycast_left.is_colliding():
+		if _player.is_on_wall():
+			var horizontalVelocity = Vector3(velocity.x, 0, velocity.y)
+			if horizontalVelocity.length() > max_speed/2:
+				return true
+	return false
