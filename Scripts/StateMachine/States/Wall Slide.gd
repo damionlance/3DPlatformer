@@ -64,6 +64,5 @@ func reset():
 		var rightDot = collisionRight.dot(entering_angle)
 		surface_normal = collisionLeft if leftDot < rightDot else collisionRight
 	_state.snap_vector = -surface_normal
-	print(_state.snap_vector)
-	_player.transform = _player.transform.looking_at(surface_normal, Vector3.UP)
+	_player.transform = _player.transform.looking_at(_player.global_transform.origin + surface_normal, Vector3.UP)
 	pass

@@ -20,7 +20,7 @@ var spin_jump_timer := 0
 export var _spin_polling_speed := 1
 var _spin_polling_timer := 0
 var _allow_wall_jump := true
-var _wall_jump_buffer := 15
+var _wall_jump_buffer := 5
 var _wall_jump_timer := 0
 export var _shorthop_buffer := 7
 
@@ -204,6 +204,7 @@ func wall_jump_collision_check():
 	if _raycast_left.is_colliding() or _raycast_left.is_colliding():
 		if _player.is_on_wall():
 			var horizontalVelocity = Vector3(velocity.x, 0, velocity.y)
+			print(horizontalVelocity)
 			if horizontalVelocity.length() > max_speed/2:
 				return true
 	return false
