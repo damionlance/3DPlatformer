@@ -26,7 +26,6 @@ func _ready():
 
 func update(delta):
 	_player.player_anim.play("Fall")
-	print(_state.velocity)
 	var forwards = _state._camera.global_transform.basis.z
 	forwards.y = 0
 	forwards = forwards.normalized()

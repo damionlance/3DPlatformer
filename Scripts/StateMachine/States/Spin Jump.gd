@@ -28,7 +28,7 @@ func _ready():
 
 func update(delta):
 	_player.player_anim.play("Jump")
-	
+	print("Hello")
 	if not _state.attempting_jump:
 		_state._jump_state = _state.jump_released
 		_state.velocity.y *= .6
@@ -40,12 +40,6 @@ func update(delta):
 	forwards = forwards.normalized()
 	forwards *= _state.input_direction.z
 	var right = _state._camera.global_transform.basis.x * _state.input_direction.x
-	
-	if _state._jump_state == _state.jump_pressed:
-		_state.entering_jump_angle = _state.input_direction
-		_state.snap_vector = Vector3.ZERO
-		_state.velocity.y = _state._spin_jump_strength
-		_state._jump_state = _state.jump_held
 	
 	if abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > (3 * PI)/4:
 		# Drift Backwards logic
@@ -71,5 +65,8 @@ func update(delta):
 	pass
 
 func reset():
-	
+	_state.entering_jump_angle = _state.input_direction
+	_state.snap_vector = Vector3.ZERO
+	_state.velocity.y = _state._spin_jump_strength
+	_state._jump_state = _state.jump_held
 	pass

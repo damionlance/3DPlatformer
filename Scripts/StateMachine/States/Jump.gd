@@ -58,7 +58,6 @@ func update(delta):
 		_state.update_state("WallSlide")
 		return
 	if not _state.attempting_jump and shorthop_timer == _state._shorthop_buffer:
-		_state._jump_state = _state.jump_released
 		_state.velocity.y *= .6
 		_state.update_state("Falling")
 		return

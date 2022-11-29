@@ -30,7 +30,7 @@ var _consecutive_jump_timer := 0
 var _consecutive_jump_buffer := 1
 
 var _jump_buffer := 30
-var _jump_timer := 0
+var _jump_timer := 30
 
 # Air Physics Constants
 export var jump_height := 3.1
@@ -168,9 +168,11 @@ func jump_state_handling():
 		if spin_jump_timer == spin_jump_buffer:
 			spin_jump_executed = false
 			spin_jump_timer = 0
+	
 	var resetting_collision = false
 	if _player.is_on_floor() or _player.is_on_wall() and _allow_wall_jump:
 		resetting_collision = true
+	
 	# Jump State Handling
 	if attempting_jump and _jump_state == allow_jump:
 		_jump_state = jump_pressed
@@ -187,27 +189,32 @@ func spin_jump_handling(controller_input: Vector2):
 		if spin_jump_buffer == spin_jump_timer:
 			spin_jump_executed = false
 			spin_jump_timer = 0
+			spin_jump_angle = 0
+			spin_jump_start = Vector2.ZERO
+	
 	if controller_input != Vector2.ZERO:
 		_spin_polling_timer = 0
 		var lengths = previous_direction.length() * controller_input.length()
 		previous_angle[1] = previous_angle[0]
-	
+		
 		if lengths:
 			previous_angle[0] = controller_input.angle()
+			if previous_angle[0]<0:
+				previous_angle[0] += 2*PI
 		else:
 			previous_angle[0] = previous_angle[1]
-		if spin_jump_start == Vector2.ZERO:
+		if spin_jump_start.length() < .01:
 			spin_jump_start = controller_input
-		elif abs(previous_angle[1]-previous_angle[0]) > .2 and sign(previous_angle[1]-previous_angle[0]) != spin_jump_sign:
 			spin_jump_angle = 0
-			spin_jump_start = controller_input
-			spin_jump_sign = sign(previous_angle[1]-previous_angle[0])
+		elif abs(previous_angle[0]-previous_angle[1]) > .02 and sign(previous_angle[0]-previous_angle[1]) != spin_jump_sign:
+			if not (previous_angle[1] > deg2rad(350) and previous_angle[0] > 0):
+				spin_jump_angle = 0
+				spin_jump_start = controller_input
+				spin_jump_sign = sign(previous_angle[0]-previous_angle[1])
 		else:
 			spin_jump_angle += previous_angle[0] - previous_angle[1]
-			if abs(spin_jump_angle) > 3 *PI / 2:
+			if abs(spin_jump_angle) > 4 * PI / 3:
 				spin_jump_executed = true
-				spin_jump_start == Vector2.ZERO
-				spin_jump_angle = 0
 		previous_direction = controller_input
 
 func wall_jump_collision_check():
