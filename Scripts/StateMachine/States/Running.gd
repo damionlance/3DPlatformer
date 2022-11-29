@@ -32,7 +32,9 @@ func update(delta):
 	forwards.y = 0
 	forwards = forwards.normalized()
 	forwards *= _state.input_direction.z
-	var right = _state._camera.global_transform.basis.x * _state.input_direction.x
+	var right = _state._camera.global_transform.basis.x
+	right = right.normalized()
+	right *= _state.input_direction.x
 	
 	_state.move_direction = forwards + right
 	

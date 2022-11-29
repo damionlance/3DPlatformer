@@ -28,7 +28,7 @@ func _ready():
 
 func update(delta):
 	_player.player_anim.play("Jump")
-	print("Hello")
+	
 	if not _state.attempting_jump:
 		_state._jump_state = _state.jump_released
 		_state.velocity.y *= .6
