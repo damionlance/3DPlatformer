@@ -11,7 +11,7 @@
 [ext_resource path="res://textures/DemoLevel/metalfloor.png" type="Texture" id=9]
 [ext_resource path="res://textures/DemoLevel/carpet.png" type="Texture" id=10]
 [ext_resource path="res://textures/DemoLevel/blocks1.png" type="Texture" id=11]
-[ext_resource path="res://TestLevels/Coin.tscn" type="PackedScene" id=12]
+[ext_resource path="res://TestLevels/levelItems/Coin.tscn" type="PackedScene" id=12]
 [ext_resource path="res://textures/coinsprite.png" type="Texture" id=13]
 [ext_resource path="res://Scripts/Counter.gd" type="Script" id=14]
 

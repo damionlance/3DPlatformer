@@ -1,14 +1,14 @@
 [gd_scene load_steps=247 format=2]
 
-[ext_resource path="res://TestLevels/Fella.tscn" type="PackedScene" id=1]
-[ext_resource path="res://addons/qodot/src/nodes/qodot_map.gd" type="Script" id=2]
-[ext_resource path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" type="Resource" id=3]
-[ext_resource path="res://textures/DemoLevel/water.png" type="Texture" id=4]
-[ext_resource path="res://TestLevels/levelItems/splash.tres" type="Animation" id=5]
-[ext_resource path="res://TestLevels/Coin.tscn" type="PackedScene" id=6]
-[ext_resource path="res://textures/coinsprite.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/Water.gd" type="Script" id=1]
+[ext_resource path="res://textures/DemoLevel/water.png" type="Texture" id=2]
+[ext_resource path="res://textures/coinsprite.png" type="Texture" id=3]
+[ext_resource path="res://TestLevels/Fella.tscn" type="PackedScene" id=4]
+[ext_resource path="res://TestLevels/levelItems/Coin.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/qodot/src/nodes/qodot_map.gd" type="Script" id=6]
+[ext_resource path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" type="Resource" id=7]
 [ext_resource path="res://Scripts/Counter.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/Water.gd" type="Script" id=9]
+[ext_resource path="res://TestLevels/levelItems/tres/splash.tres" type="Animation" id=9]
 
 [sub_resource type="SpatialMaterial" id=1]
 
@@ -765,7 +765,7 @@ font_data = SubResource( 361 )
 [sub_resource type="SpatialMaterial" id=363]
 
 [sub_resource type="SpatialMaterial" id=511]
-albedo_texture = ExtResource( 4 )
+albedo_texture = ExtResource( 2 )
 
 [sub_resource type="ArrayMesh" id=512]
 surfaces/0 = {
@@ -961,10 +961,10 @@ points = PoolVector3Array( -37.6212, 0.50303, -25.2182, -37.6212, -0.49697, -25.
 [node name="Spatial" type="Spatial"]
 
 [node name="QodotMap" type="Spatial" parent="."]
-script = ExtResource( 2 )
+script = ExtResource( 6 )
 map_file = "C:/Users/Damion/Documents/Code/games/3dPlatformer/3DPlatformer/TestLevels/Maps/demomap.map"
 inverse_scale_factor = 16.0
-entity_fgd = ExtResource( 3 )
+entity_fgd = ExtResource( 7 )
 base_texture_dir = "res://textures"
 texture_file_extensions = PoolStringArray( "png" )
 worldspawn_layers = [  ]
@@ -1426,7 +1426,7 @@ shape = SubResource( 715 )
 [node name="entity_0_brush_146_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn"]
 shape = SubResource( 716 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
+[node name="Player" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.52259, -2 )
 
 [node name="dynamicObjects" type="Spatial" parent="."]
@@ -1534,7 +1534,7 @@ shape = SubResource( 346 )
 root_node = NodePath("../splashzone")
 autoplay = "splash"
 anims/RESET = SubResource( 347 )
-anims/splash = ExtResource( 5 )
+anims/splash = ExtResource( 9 )
 
 [node name="splash2" type="Spatial" parent="dynamicObjects"]
 transform = Transform( 1, 0, 0, 0, 6.70552e-08, 1, 0, -1, 6.70552e-08, -1, 6.9, -9.23332 )
@@ -1601,229 +1601,229 @@ anims/sploosh = SubResource( 358 )
 [node name="Spatial38" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 6, 2.374, 0 )
 
-[node name="Area" parent="coins/Spatial38" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial38" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial37" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 9.6, 2.374, 0 )
 
-[node name="Area" parent="coins/Spatial37" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial37" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial36" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 13.1, 2.374, 0 )
 
-[node name="Area" parent="coins/Spatial36" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial36" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial35" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 16.4, 2.374, 0 )
 
-[node name="Area" parent="coins/Spatial35" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial35" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial34" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 20.7, 3.974, 59.8 )
 
-[node name="Area" parent="coins/Spatial34" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial34" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial33" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 22.9, 3.374, 57.9 )
 
-[node name="Area" parent="coins/Spatial33" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial33" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial32" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 18.8, 3.374, 61.6 )
 
-[node name="Area" parent="coins/Spatial32" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial32" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial31" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 35.9, 1.174, 61.6 )
 
-[node name="Area" parent="coins/Spatial31" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial31" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial30" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 37.1, 1.174, 61.6 )
 
-[node name="Area" parent="coins/Spatial30" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial30" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial29" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 38.2, 1.174, 61.6 )
 
-[node name="Area" parent="coins/Spatial29" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial29" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial28" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 39.4, 1.174, 61.6 )
 
-[node name="Area" parent="coins/Spatial28" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial28" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial27" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 40.6, 1.174, 61.6 )
 
-[node name="Area" parent="coins/Spatial27" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial27" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial26" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 41.7, 1.174, 61.6 )
 
-[node name="Area" parent="coins/Spatial26" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial26" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial25" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 40.6, 1.174, 62.9 )
 
-[node name="Area" parent="coins/Spatial25" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial25" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial24" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 39.4, 1.174, 62.9 )
 
-[node name="Area" parent="coins/Spatial24" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial24" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial23" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 38.2, 1.174, 62.9 )
 
-[node name="Area" parent="coins/Spatial23" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial23" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial22" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 36.9, 1.174, 62.9 )
 
-[node name="Area" parent="coins/Spatial22" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial22" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial21" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, 38.8, 1.174, 64.1 )
 
-[node name="Area" parent="coins/Spatial21" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial21" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, -7.10543e-15, 0, 0, 1, 0, 1.074, 0 )
 
 [node name="Spatial20" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -7.8, 5.774, 29.5 )
 
-[node name="Area" parent="coins/Spatial20" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial20" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial19" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -7.8, 5.574, 31.5 )
 
-[node name="Area" parent="coins/Spatial19" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial19" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial18" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -7.8, 5.374, 33.4 )
 
-[node name="Area" parent="coins/Spatial18" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial18" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial17" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -7.8, 6.074, 20.8 )
 
-[node name="Area" parent="coins/Spatial17" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial17" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial16" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -7.8, 5.874, 13.9 )
 
-[node name="Area" parent="coins/Spatial16" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial16" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial15" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -14.7, 8.974, 10.6 )
 
-[node name="Area" parent="coins/Spatial15" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial15" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial14" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -14.7, 10.574, 17.6 )
 
-[node name="Area" parent="coins/Spatial14" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial14" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial13" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -14.7, 11.874, 24.2 )
 
-[node name="Area" parent="coins/Spatial13" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial13" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial12" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -33, 15.074, 27.5 )
 
-[node name="Area" parent="coins/Spatial12" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial12" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial11" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -33, 15.874, 25.6 )
 
-[node name="Area" parent="coins/Spatial11" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial11" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 3.55271e-15, 0, -7.10543e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial10" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -33, 16.674, 23.4 )
 
-[node name="Area" parent="coins/Spatial10" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial10" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial9" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -33, 18.074, 21.1 )
 
-[node name="Area" parent="coins/Spatial9" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial9" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial8" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -28.1, 18.974, 7.9 )
 
-[node name="Area" parent="coins/Spatial8" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial8" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial7" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -28.1, 18.974, 9.8 )
 
-[node name="Area" parent="coins/Spatial7" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial7" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial6" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -28.1, 18.974, 11.8 )
 
-[node name="Area" parent="coins/Spatial6" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial6" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial5" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -29.9, 18.974, 9.8 )
 
-[node name="Area" parent="coins/Spatial5" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial5" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial4" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -26.2, 18.974, 9.8 )
 
-[node name="Area" parent="coins/Spatial4" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial4" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial3" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -18.6, 15.174, 48.3 )
 
-[node name="Area" parent="coins/Spatial3" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial3" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial2" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -18.6, 15.174, 50.7 )
 
-[node name="Area" parent="coins/Spatial2" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial2" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, -3.55271e-15, 0, 3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Spatial39" type="Spatial" parent="coins"]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.180097, -7.87228e-09, -18.6, 15.174, 52.7 )
 
-[node name="Area" parent="coins/Spatial39" instance=ExtResource( 6 )]
+[node name="Area" parent="coins/Spatial39" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, -3.55271e-15, 0, 3.55271e-15, 1, 0, 1.074, 0 )
 
 [node name="Control" type="Control" parent="."]
@@ -1833,7 +1833,7 @@ anchor_bottom = 1.0
 [node name="Coinsprite" type="Sprite" parent="Control"]
 position = Vector2( 854, 41 )
 scale = Vector2( 0.514286, 0.514286 )
-texture = ExtResource( 7 )
+texture = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="Control"]
 anchor_left = 0.916
@@ -1864,7 +1864,7 @@ script = ExtResource( 8 )
 
 [node name="water" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.6212, -1.00303, 51.2182 )
-script = ExtResource( 9 )
+script = ExtResource( 1 )
 
 [node name="entity_1_mesh_instance" type="MeshInstance" parent="water"]
 mesh = SubResource( 512 )
