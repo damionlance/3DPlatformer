@@ -67,10 +67,11 @@ func directional_input_handling():
 	forwards = forwards.normalized()
 	forwards *= _state.input_direction.z
 	right = _state._camera.global_transform.basis.x * _state.input_direction.x
-	if forwards.dot(surface_normal) < 0 or _state.input_direction.length() < .001:
-			_state.move_direction = entering_angle.bounce(surface_normal)
+	var dir = (forwards + right).normalized()
+	if dir.dot(surface_normal) < 0 or _state.input_direction.length() < .001:
+		_state.move_direction = entering_angle.bounce(surface_normal)
 	else:
-		_state.move_direction = forwards + right
+		_state.move_direction = dir
 
 func reset():
 	wall_bounce_timer = 0

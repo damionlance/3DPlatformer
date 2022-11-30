@@ -73,6 +73,7 @@ func reset():
 	_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = _state._jump_strength
 	_state._jump_state = _state.jump_held
+	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

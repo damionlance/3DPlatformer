@@ -42,7 +42,7 @@ nodes/Animation/position = Vector2( 200, 60 )
 nodes/Blend2/node = SubResource( 28 )
 nodes/Blend2/position = Vector2( 400, 100 )
 nodes/output/position = Vector2( 600, 120 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
 
 [sub_resource type="AnimationNodeAnimation" id=33]
 animation = "Running"

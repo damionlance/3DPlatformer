@@ -114,7 +114,6 @@ func _process(delta):
 	
 	jump_state_handling()
 	_current_state.update(delta)
-	#print(_current_state)
 	velocity = _player.move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)
 
 func input_handling():	
@@ -221,7 +220,6 @@ func wall_jump_collision_check():
 	if _raycast_left.is_colliding() or _raycast_left.is_colliding():
 		if _player.is_on_wall():
 			var horizontalVelocity = Vector3(velocity.x, 0, velocity.z)
-			print(horizontalVelocity)
 			if horizontalVelocity.length() > max_speed/2:
 				return true
 	return false
