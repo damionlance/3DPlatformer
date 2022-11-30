@@ -58,7 +58,7 @@ tracks/0/keys = {
 [node name="Spatial" type="Spatial"]
 
 [node name="movingPlatform" type="KinematicBody" parent="."]
-transform = Transform( 0.999998, 1.28786e-05, 0.00224237, -1.28584e-05, 1, -9.00271e-06, -0.00224238, 8.97384e-06, 0.999998, 0, 0, 0 )
+transform = Transform( 0.999998, 1.28786e-05, 0.00224238, -1.28584e-05, 1, -9.0027e-06, -0.00224238, 8.97384e-06, 0.999998, 43.5839, 1.61541, 55.9583 )
 
 [node name="MeshInstance" type="MeshInstance" parent="movingPlatform"]
 mesh = SubResource( 133 )
@@ -72,7 +72,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.3831, 0, 64.3535 )
 curve = SubResource( 135 )
 
 [node name="PathFollow" type="PathFollow" parent="Path"]
-transform = Transform( 1, 1.74533e-05, 0, -1.74533e-05, 1, -1.74533e-05, -3.04618e-10, 1.74533e-05, 1, -0.0687313, 0.055048, 0.00088501 )
+transform = Transform( 1, 1.74533e-05, 0, -1.74533e-05, 1, -1.74533e-05, -3.04618e-10, 1.74533e-05, 1, 18.2008, 1.61541, -8.39526 )
+offset = 2.31468
 
 [node name="RemoteTransform" type="RemoteTransform" parent="Path/PathFollow"]
 remote_path = NodePath("../../../movingPlatform")

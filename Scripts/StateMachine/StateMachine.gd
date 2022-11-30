@@ -217,9 +217,10 @@ func spin_jump_handling(controller_input: Vector2):
 		previous_direction = controller_input
 
 func wall_jump_collision_check():
-	if _raycast_left.is_colliding() or _raycast_left.is_colliding():
-		if _player.is_on_wall():
-			var horizontalVelocity = Vector3(velocity.x, 0, velocity.z)
-			if horizontalVelocity.length() > max_speed/2:
-				return true
+	if _raycast_left.is_colliding() or _raycast_right.is_colliding():
+		if abs(_raycast_left.get_collision_normal().y) > 0 or abs(_raycast_right.get_collision_normal().y) > 0:
+			if _player.is_on_wall():
+				var horizontalVelocity = Vector3(velocity.x, 0, velocity.z)
+				if horizontalVelocity.length() > max_speed/2:
+					return true
 	return false

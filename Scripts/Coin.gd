@@ -19,7 +19,7 @@ func _ready():
 
 func _physics_process(_delta):
 	# Rotate
-	rotate(Vector3(0, 1, 0), .1)
+	rotate(Vector3(0, 0, 1), .1)
 	
 	if taken:
 		queue_free()

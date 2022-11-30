@@ -15,7 +15,7 @@ addons/
 funding.yml
 3D Assets/
 textures/
-
+TestLevels/Maps/
 
 # Mono-specific ignores
 .mono/
