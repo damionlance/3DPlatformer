@@ -27,7 +27,7 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	_player.player_anim.play("Jump")
+	_player.anim_tree.travel("Spin Jump")
 	
 	if not _state.attempting_jump:
 		_state._jump_state = _state.jump_released

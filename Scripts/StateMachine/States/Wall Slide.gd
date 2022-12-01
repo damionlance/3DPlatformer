@@ -35,7 +35,7 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	_player.player_anim.play("Idle")
+	_player.anim_tree.travel("Wall Slide")
 	#player.animation_player.play("Idle")
 	_state.move_direction = _state.snap_vector
 	_state.current_speed = 2
@@ -49,7 +49,7 @@ func update(delta):
 	if wall_bounce_timer < wall_bounce_buffer:
 		if  _state._jump_state == _state.jump_pressed:
 			_state.move_direction = entering_angle.bounce(surface_normal)
-			_state.current_speed = _state.max_speed
+			_state.current_speed = _state.max_speed * 1.25
 			_state.update_state("Jump")
 			_state._allow_wall_jump = false
 	else:

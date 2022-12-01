@@ -25,9 +25,12 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	_player.player_anim.play("Fall")
+	_player.anim_tree.travel("Spin Jump")
 	
 	if _player.is_on_floor():
+		if _state.input_direction:
+			_state.update_state("Running")
+			return
 		_state.snap_vector = Vector3.DOWN
 		_state.update_state("Idle")
 		return

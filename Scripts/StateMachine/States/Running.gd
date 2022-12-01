@@ -26,7 +26,7 @@ func _ready():
 	pass 
 
 func update(delta):
-	_player.player_anim.play("Run")
+	_player.anim_tree.travel("Run")
 	
 	var forwards = _state._camera.global_transform.basis.z
 	forwards.y = 0
@@ -48,6 +48,10 @@ func update(delta):
 		var target_direction = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 		_player.transform = _player.transform.interpolate_with(target_direction, _state.floor_rotation_speed)
 	
+	if _state._dive_state == _state.dive_pressed:
+		_state.update_state("Dive")
+		return
+	
 	if _state._jump_state == _state.jump_pressed:
 		if _state.spin_jump_executed:
 			_state.update_state("SpinJump")
@@ -66,13 +70,15 @@ func update(delta):
 		_fall_timer = 0
 	
 	if not _state.input_direction:
-		_state.current_speed *= _state.floor_fricion
-		if _state.current_speed < 1:
-			_state.update_state("Idle")
-			return
+		_state.update_state("Idle")
+		return
 	else:
-		_state.current_speed += _state.floor_acceleration
-	_state.current_speed = clamp(_state.current_speed, 0, _state.max_speed)
+		if _state.current_speed + _state.floor_acceleration > _state.max_speed:
+			_state.current_speed = _state.max_speed
+		else:
+			_state.current_speed += _state.floor_acceleration
+	if _state.current_speed > _state.max_speed:
+		_state.current_speed = lerp(_state.current_speed, _state.max_speed, .25)
 	
 	_state.velocity = _state.calculate_velocity(_state._fall_gravity, delta)
 	pass

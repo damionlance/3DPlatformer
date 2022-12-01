@@ -28,7 +28,7 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	_player.player_anim.play("Jump")
+	_player.anim_tree.travel("Jump")
 	
 	var forwards = _state._camera.global_transform.basis.z
 	forwards.y = 0
@@ -49,8 +49,6 @@ func update(delta):
 	elif not _state.input_direction:
 		_state._air_drift_state = _state.not_air_drifting
 		_state.current_speed *= _state.air_friction
-	if _state.current_speed > _state.max_speed:
-		_state.current_speed = _state.max_speed
 	
 	_state.velocity = _state.calculate_velocity(_state._jump_gravity, delta)
 	

@@ -28,7 +28,7 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	_player.player_anim.play("Jump")
+	_player.anim_tree.travel("Jump")
 	
 	if _state.wall_jump_collision_check() and _state._allow_wall_jump:
 		_state.update_state("WallSlide")
@@ -59,8 +59,6 @@ func update(delta):
 	elif not _state.input_direction:
 		_state._air_drift_state = _state.not_air_drifting
 		_state.current_speed *= _state.air_friction
-	if _state.current_speed > _state.max_speed:
-		_state.current_speed = _state.max_speed
 	
 	#_state.move_direction = forwards + right
 	_state.velocity = _state.calculate_velocity(_state._jump2_gravity, delta)

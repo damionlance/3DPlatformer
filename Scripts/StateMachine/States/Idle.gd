@@ -27,9 +27,12 @@ func _ready():
 	pass # Replace with function body.
 
 func update(_delta):
-	_player.player_anim.play("Idle")
+	_player.anim_tree.travel("Idle1")
 	#player.animation_player.play("Idle")
 	_state._air_drift_state = _state.not_air_drifting
+	
+	_state.current_speed *= _state.floor_fricion
+	
 	if not _player.is_on_floor():
 		_state.update_state("Falling")
 	if _state.input_direction:

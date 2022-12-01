@@ -1462,7 +1462,7 @@ anims/idle = SubResource( 132 )
 [node name="platform2" type="Spatial" parent="dynamicObjects"]
 
 [node name="movingPlatform" type="KinematicBody" parent="dynamicObjects/platform2"]
-transform = Transform( 0.999997, 1.74533e-05, 1.06195e-15, -1.74532e-05, 1, -1.74532e-05, -3.04617e-10, 1.74533e-05, 0.999997, 49.4371, 0, 64.6231 )
+transform = Transform( 0.999997, 1.74533e-05, 1.92237e-15, -1.74532e-05, 1, -1.74532e-05, -3.04618e-10, 1.74533e-05, 0.999997, 49.4371, 0, 64.6231 )
 
 [node name="MeshInstance" type="MeshInstance" parent="dynamicObjects/platform2/movingPlatform"]
 mesh = SubResource( 133 )
@@ -2035,14 +2035,14 @@ shape = SubResource( 566 )
 shape = SubResource( 567 )
 
 [connection signal="coinCollected" from="coins/Spatial38/Area" to="Control/Counter" method="_on_Area_coinCollected"]
-[connection signal="coinCollected" from="coins/Spatial37/Area" to="Control/Counter" method="_on_Area_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial37/Area" to="Control/Counter" method="_on_Area2_coinCollected"]
-[connection signal="coinCollected" from="coins/Spatial36/Area" to="Control/Counter" method="_on_Area_coinCollected"]
+[connection signal="coinCollected" from="coins/Spatial37/Area" to="Control/Counter" method="_on_Area_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial36/Area" to="Control/Counter" method="_on_Area3_coinCollected"]
+[connection signal="coinCollected" from="coins/Spatial36/Area" to="Control/Counter" method="_on_Area_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial35/Area" to="Control/Counter" method="_on_Area4_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial35/Area" to="Control/Counter" method="_on_Area_coinCollected"]
-[connection signal="coinCollected" from="coins/Spatial34/Area" to="Control/Counter" method="_on_Area_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial34/Area" to="Control/Counter" method="_on_Area5_coinCollected"]
+[connection signal="coinCollected" from="coins/Spatial34/Area" to="Control/Counter" method="_on_Area_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial33/Area" to="Control/Counter" method="_on_Area6_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial33/Area" to="Control/Counter" method="_on_Area_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial32/Area" to="Control/Counter" method="_on_Area_coinCollected"]

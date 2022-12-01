@@ -29,8 +29,8 @@ var just_landed = false
 var _consecutive_jump_timer := 0
 var _consecutive_jump_buffer := 1
 
-var _jump_buffer := 30
-var _jump_timer := 30
+var _jump_buffer := 90
+var _jump_timer := 90
 
 # Air Physics Constants
 export var jump_height := 3.1
@@ -85,6 +85,15 @@ enum {
 	jump_released = 2,
 	allow_jump = 3
 }
+
+var _dive_state := 2
+enum {
+	dive_pressed = 0,
+	dive_held = 1,
+	dive_released = 2,
+	allow_dive = 3
+}
+
 var _air_drift_state
 enum {
 	not_air_drifting,
@@ -92,6 +101,7 @@ enum {
 }
 
 var attempting_jump := false
+var attempting_dive := false
 var is_on_floor := false
 
 var input_direction :=  Vector3.ZERO
@@ -109,7 +119,6 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	
 	input_handling()
 	
 	jump_state_handling()
@@ -121,6 +130,7 @@ func input_handling():
 	input_direction.x = controller_input.x
 	input_direction.z = -controller_input.y
 	attempting_jump = Input.is_action_pressed("Jump")
+	attempting_dive = Input.is_action_pressed("DiveButton")
 	
 	spin_jump_handling(controller_input)
 	
@@ -139,14 +149,6 @@ func calculate_velocity(gravity: float, delta) -> Vector3:
 ################################################################################
 
 func jump_state_handling():
-	# Handle how short timing you need to start a double or triple jump
-	if attempting_jump and (not _player.is_on_floor() or _player.is_on_wall()):
-		if _jump_state == jump_pressed:
-			_jump_timer = _jump_buffer
-		if _jump_state == jump_held:
-			_jump_timer += 1
-	else	:
-		_jump_timer = _jump_buffer
 	
 	if not _allow_wall_jump:
 		if _wall_jump_timer == _wall_jump_buffer:
@@ -169,18 +171,35 @@ func jump_state_handling():
 			spin_jump_timer = 0
 	
 	var resetting_collision = false
-	if _player.is_on_floor() or _player.is_on_wall() and _allow_wall_jump:
+	if _player.is_on_floor() or (_player.is_on_wall() and _allow_wall_jump):
 		resetting_collision = true
 	
 	# Jump State Handling
 	if attempting_jump and _jump_state == allow_jump:
 		_jump_state = jump_pressed
-	elif attempting_jump and jump_pressed:
+		_jump_timer = _jump_buffer
+	elif attempting_jump and not resetting_collision:
 		_jump_state = jump_held
-	elif (resetting_collision or _jump_timer < _jump_buffer) and _jump_state != jump_held:
+	elif resetting_collision and (_jump_timer < _jump_buffer or not attempting_jump):
 		_jump_state = allow_jump
 	elif not attempting_jump:
 		_jump_state = jump_released
+		_jump_timer = 0
+	
+	if attempting_jump and not (_player.is_on_floor() or _player.is_on_wall()):
+		if _jump_state == jump_held:
+			_jump_timer += 1
+	
+	if attempting_dive and _dive_state == allow_dive:
+		_dive_state = dive_pressed
+		_jump_timer = _jump_buffer
+	elif attempting_dive and not resetting_collision:
+		_dive_state = dive_held
+	elif resetting_collision and (_jump_timer < _jump_buffer or not attempting_dive):
+		_dive_state = allow_dive
+	elif not attempting_dive:
+		_dive_state = dive_released
+		_jump_timer = 0
 
 func spin_jump_handling(controller_input: Vector2):
 	if spin_jump_executed:
