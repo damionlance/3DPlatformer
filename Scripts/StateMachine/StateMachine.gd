@@ -29,8 +29,9 @@ var just_landed = false
 var _consecutive_jump_timer := 0
 var _consecutive_jump_buffer := 1
 
-var _jump_buffer := 90
-var _jump_timer := 90
+var _jump_buffer := 5
+var _jump_timer := 5
+var _dive_timer := 5
 
 # Air Physics Constants
 export var jump_height := 3.1
@@ -195,11 +196,15 @@ func jump_state_handling():
 		_jump_timer = _jump_buffer
 	elif attempting_dive and not resetting_collision:
 		_dive_state = dive_held
-	elif resetting_collision and (_jump_timer < _jump_buffer or not attempting_dive):
+	elif resetting_collision and (_dive_timer < _jump_buffer or not attempting_dive):
 		_dive_state = allow_dive
 	elif not attempting_dive:
 		_dive_state = dive_released
-		_jump_timer = 0
+		_dive_timer = 0
+	
+	if attempting_dive and not (_player.is_on_floor() or _player.is_on_wall()):
+		if _dive_state == dive_held:
+			_dive_timer += 1
 
 func spin_jump_handling(controller_input: Vector2):
 	if spin_jump_executed:

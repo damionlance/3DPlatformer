@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Dive",
 "language": "GDScript",
-"path": "res://TestLevels/Dive.gd"
+"path": "res://Scripts/StateMachine/States/Dive.gd"
 }, {
 "base": "Node",
 "class": "Falling",

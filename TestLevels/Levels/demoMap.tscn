@@ -962,7 +962,7 @@ points = PoolVector3Array( -37.6212, 0.50303, -25.2182, -37.6212, -0.49697, -25.
 
 [node name="QodotMap" type="Spatial" parent="."]
 script = ExtResource( 6 )
-map_file = "C:/Users/Damion/Documents/Code/games/3dPlatformer/3DPlatformer/TestLevels/Maps/demomap.map"
+map_file = "/Users/davidhartman/Projects/3DPlatformer/TestLevels/Maps/demomap.map"
 inverse_scale_factor = 16.0
 entity_fgd = ExtResource( 7 )
 base_texture_dir = "res://textures"
@@ -1462,7 +1462,7 @@ anims/idle = SubResource( 132 )
 [node name="platform2" type="Spatial" parent="dynamicObjects"]
 
 [node name="movingPlatform" type="KinematicBody" parent="dynamicObjects/platform2"]
-transform = Transform( 0.999997, 1.74533e-05, 1.92237e-15, -1.74532e-05, 1, -1.74532e-05, -3.04618e-10, 1.74533e-05, 0.999997, 49.4371, 0, 64.6231 )
+transform = Transform( 0.999997, 1.74533e-05, 1.17297e-15, -1.74532e-05, 1, -1.74532e-05, -3.04617e-10, 1.74533e-05, 0.999997, 49.4371, 0, 64.6231 )
 
 [node name="MeshInstance" type="MeshInstance" parent="dynamicObjects/platform2/movingPlatform"]
 mesh = SubResource( 133 )
@@ -2035,16 +2035,16 @@ shape = SubResource( 566 )
 shape = SubResource( 567 )
 
 [connection signal="coinCollected" from="coins/Spatial38/Area" to="Control/Counter" method="_on_Area_coinCollected"]
-[connection signal="coinCollected" from="coins/Spatial37/Area" to="Control/Counter" method="_on_Area2_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial37/Area" to="Control/Counter" method="_on_Area_coinCollected"]
-[connection signal="coinCollected" from="coins/Spatial36/Area" to="Control/Counter" method="_on_Area3_coinCollected"]
+[connection signal="coinCollected" from="coins/Spatial37/Area" to="Control/Counter" method="_on_Area2_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial36/Area" to="Control/Counter" method="_on_Area_coinCollected"]
-[connection signal="coinCollected" from="coins/Spatial35/Area" to="Control/Counter" method="_on_Area4_coinCollected"]
+[connection signal="coinCollected" from="coins/Spatial36/Area" to="Control/Counter" method="_on_Area3_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial35/Area" to="Control/Counter" method="_on_Area_coinCollected"]
-[connection signal="coinCollected" from="coins/Spatial34/Area" to="Control/Counter" method="_on_Area5_coinCollected"]
+[connection signal="coinCollected" from="coins/Spatial35/Area" to="Control/Counter" method="_on_Area4_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial34/Area" to="Control/Counter" method="_on_Area_coinCollected"]
-[connection signal="coinCollected" from="coins/Spatial33/Area" to="Control/Counter" method="_on_Area6_coinCollected"]
+[connection signal="coinCollected" from="coins/Spatial34/Area" to="Control/Counter" method="_on_Area5_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial33/Area" to="Control/Counter" method="_on_Area_coinCollected"]
+[connection signal="coinCollected" from="coins/Spatial33/Area" to="Control/Counter" method="_on_Area6_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial32/Area" to="Control/Counter" method="_on_Area_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial31/Area" to="Control/Counter" method="_on_Area_coinCollected"]
 [connection signal="coinCollected" from="coins/Spatial30/Area" to="Control/Counter" method="_on_Area_coinCollected"]

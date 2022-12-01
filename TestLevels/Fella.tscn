@@ -15,7 +15,7 @@
 [ext_resource path="res://Scripts/StateMachine/States/Jump2.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/StateMachine/States/Falling2.gd" type="Script" id=14]
 [ext_resource path="res://3D Assets/Godot Worthy Models/Boot.material" type="Material" id=15]
-[ext_resource path="res://TestLevels/Dive.gd" type="Script" id=16]
+[ext_resource path="res://Scripts/StateMachine/States/Dive.gd" type="Script" id=16]
 
 [sub_resource type="SphereShape" id=40]
 radius = 0.500044
@@ -77,7 +77,7 @@ xfade_time = 0.1
 xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=61]
-xfade_time = 1.0
+xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=62]
 

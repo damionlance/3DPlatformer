@@ -52,6 +52,10 @@ func update(delta):
 	
 	_state.velocity = _state.calculate_velocity(_state._jump_gravity, delta)
 	
+	if _state._dive_state == _state.dive_pressed:
+		_state.update_state("Dive")
+		return
+	
 	if _state.wall_jump_collision_check() and _state._allow_wall_jump:
 		_state.update_state("WallSlide")
 		return

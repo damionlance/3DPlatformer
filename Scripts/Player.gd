@@ -19,7 +19,6 @@ func _ready():
 
 func _process(_delta):
 	camera_pivot.translation = lerp(camera_pivot.translation, translation, .1)
-	#camera_pivot.translation = translation
 	pass
 
 func add_coin():
