@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/StateMachine/States/Falling2.gd"
 }, {
 "base": "Node",
+"class": "FloorSlide",
+"language": "GDScript",
+"path": "res://TestLevels/Floor Slide.gd"
+}, {
+"base": "Node",
 "class": "Idle",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Idle.gd"
@@ -234,6 +239,7 @@ _global_script_class_icons={
 "Dive": "",
 "Falling": "",
 "Falling2": "",
+"FloorSlide": "",
 "Idle": "",
 "Jump": "",
 "Jump2": "",

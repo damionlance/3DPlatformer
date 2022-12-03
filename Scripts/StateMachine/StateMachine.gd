@@ -23,6 +23,8 @@ var _allow_wall_jump := true
 var _wall_jump_buffer := 5
 var _wall_jump_timer := 0
 export var _shorthop_buffer := 7
+var pivot_buffer = []
+var pivot_buffer_size := 10
 
 var just_landed = false
 
@@ -103,6 +105,7 @@ enum {
 
 var attempting_jump := false
 var attempting_dive := false
+var attempting_pivot := false
 var is_on_floor := false
 
 var input_direction :=  Vector3.ZERO
@@ -117,17 +120,22 @@ onready var _raycast_right = _player.get_node("WallRayRight")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_state("Falling")
+	pivot_buffer.resize(pivot_buffer_size)
 	pass # Replace with function body.
 
 func _process(delta):
 	input_handling()
-	
 	jump_state_handling()
+	pivot_handling()
+	
 	_current_state.update(delta)
 	velocity = _player.move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)
 
-func input_handling():	
+func input_handling():
 	var controller_input = Input.get_vector("Left", "Right", "Backward", "Forward")
+	pivot_buffer.push_front(controller_input)
+	pivot_buffer.pop_back()
+	
 	input_direction.x = controller_input.x
 	input_direction.z = -controller_input.y
 	attempting_jump = Input.is_action_pressed("Jump")
@@ -148,6 +156,41 @@ func calculate_velocity(gravity: float, delta) -> Vector3:
 ################################################################################
 ############################ HELPER FUNCTIONS ##################################
 ################################################################################
+
+func pivot_handling():
+	if attempting_pivot:
+		return
+	
+	var correct_input = null
+	var mag = null
+	var i = 0
+	if input_direction.length() < .01:
+		return
+	for angle in pivot_buffer:
+		if angle == null:
+			attempting_pivot = false
+			break
+		if pivot_buffer[0].dot(angle) < -.9:
+			correct_input = angle
+			break
+		i += 1
+	
+	if correct_input == null:
+		return
+	var previous_mag
+	for n in i:
+		if mag == null:
+			mag = pivot_buffer[n].length()
+		elif n < i/2:
+			if mag > previous_mag:
+				break
+		else:
+			if mag < previous_mag:
+				break
+		if n == i - 1:
+			attempting_pivot = true
+		previous_mag = mag
+	pass
 
 func jump_state_handling():
 	

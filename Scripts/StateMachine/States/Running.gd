@@ -48,6 +48,9 @@ func update(delta):
 		var target_direction = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 		_player.transform = _player.transform.interpolate_with(target_direction, _state.floor_rotation_speed)
 	
+	if _state.attempting_pivot:
+		_state.update_state("FloorSlide")
+		return
 	if _state._dive_state == _state.dive_pressed:
 		_state.update_state("Dive")
 		return

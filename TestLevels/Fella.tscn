@@ -1,7 +1,7 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
-[ext_resource path="res://3D Assets/Godot Worthy Models/JacketMat.material" type="Material" id=2]
+[ext_resource path="res://TestLevels/Floor Slide.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/StateMachine/State.gd" type="Script" id=5]
@@ -14,7 +14,6 @@
 [ext_resource path="res://Scripts/StateMachine/States/Spin Fall.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/StateMachine/States/Jump2.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/StateMachine/States/Falling2.gd" type="Script" id=14]
-[ext_resource path="res://3D Assets/Godot Worthy Models/Boot.material" type="Material" id=15]
 [ext_resource path="res://Scripts/StateMachine/States/Dive.gd" type="Script" id=16]
 
 [sub_resource type="SphereShape" id=40]
@@ -132,7 +131,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194883,
 "index_count": 14868,
-"material": ExtResource( 15 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.116977, -0.0596533, -0.309489, 0.446111, 0.650154, 0.774673 ) ],
 "vertex_count": 2480
@@ -181,7 +179,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194883,
 "index_count": 14868,
-"material": ExtResource( 15 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.565004, -0.0596533, -0.309489, 0.446111, 0.650154, 0.774673 ) ],
 "vertex_count": 2480
@@ -196,7 +193,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194911,
 "index_count": 8820,
-"material": ExtResource( 2 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( -0.787768, 0.298187, -0.780458, 1.54762, 1.21375, 1.52471 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.46847, 1.16586, -0.526438, 0.950717, 0.346074, 0.972313 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.500843, 1.19192, -0.526438, 0.971075, 0.320022, 0.972313 ) ],
 "vertex_count": 1795
@@ -225,7 +221,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 744,
-"material": ExtResource( 2 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.245026, 0.78036, -0.149398, 0.656933, 0.645796, 0.291028 ), AABB( 0.245026, 0.78036, -0.149398, 0.656933, 0.645796, 0.291028 ), AABB( -0.833872, 0.78036, -0.149398, 0.588846, 0.645796, 0.291028 ), AABB( -0.901959, 0.78036, -0.149398, 0.656933, 0.645796, 0.291028 ) ],
 "vertex_count": 260
@@ -1019,6 +1014,9 @@ script = ExtResource( 1 )
 
 [node name="Dive" type="Node" parent="StateMachine"]
 script = ExtResource( 16 )
+
+[node name="Floor Slide" type="Node" parent="StateMachine"]
+script = ExtResource( 2 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 30 )
