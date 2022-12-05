@@ -37,6 +37,8 @@ export var spin_jump_time_to_descent := 1.0
 export var air_friction := 0.99
 export var air_acceleration := 2.0
 
+var dive_speed := 7.5
+
 onready var _state = get_parent()
 onready var _player = get_parent().get_parent()
 
@@ -53,7 +55,7 @@ func wall_jump_collision_check():
 func standard_aerial_drift():
 	if abs(_state.input_direction.angle_to(entering_jump_angle)) > (3 * PI)/4:
 		# Drift Backwards logic
-		_state.current_speed += _state.air_acceleration
+		_state.current_speed += air_acceleration
 		_state._air_drift_state = _state.not_air_drifting
 	elif abs(_state.input_direction.angle_to(entering_jump_angle)) > PI/3:
 		# Drift Sideways logic

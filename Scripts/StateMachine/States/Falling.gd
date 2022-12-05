@@ -39,8 +39,14 @@ func update(delta):
 		_state.update_state("WallSlide")
 		return
 	
+	var current_fall_gravity
+	match current_jump:
+		1: current_fall_gravity = _fall_gravity
+		2: current_fall_gravity = _fall2_gravity
+		_: current_fall_gravity = _fall_gravity
+	
 	# Process Physics
-	_state.velocity = _state.calculate_velocity(_fall_gravity, delta)
+	_state.velocity = _state.calculate_velocity(current_fall_gravity, delta)
 	
 	pass
 

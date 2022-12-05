@@ -40,7 +40,12 @@ func update(delta):
 		return
 		
 	# Process physics
-	_state.velocity = _state.calculate_velocity(_jump_gravity, delta)
+	var current_jump_gravity
+	match current_jump:
+		1: current_jump_gravity = _jump_gravity
+		2: current_jump_gravity = _jump2_gravity
+		
+	_state.velocity = _state.calculate_velocity(current_jump_gravity, delta)
 	pass
 
 func reset():

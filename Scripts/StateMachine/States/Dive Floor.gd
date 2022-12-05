@@ -1,6 +1,6 @@
-extends AerialMovement
+extends GroundedMovement
 
-class_name Dive
+class_name DiveFloor
 
 
 # Declare member variables here. Examples:
@@ -13,7 +13,7 @@ var breaks_momentum = false
 var motion_input : String
 
 #private variables
-var _state_name = "Dive"
+var _state_name = "Dive Floor"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,27 +25,28 @@ func update(delta):
 	_player.anim_tree.travel("Floor Slide")
 	
 	# Process relevant timers
-	shorthop_timer += 1
 	
 	# Handle inputs
-	standard_aerial_drift()
 	
 	# Handle state changes
-	if _player.is_on_floor():
-		_state.update_state("Dive Floor")
+	if _state.current_speed <= .5:
+		_state.update_state("Idle")
+		return
+	if (_player.is_on_floor()):
+		_state.current_speed *= .95
+		if _state._jump_state == _state.jump_pressed:
+			_state.update_state("Jump")
+		if _state.current_speed < .01:
+			_state.current_speed = 0
+	else:
+		_state.update_state("Falling")
+	
 	# Process Physics
-	_state.velocity = _state.calculate_velocity(_jump_gravity, delta)
-	
-	
+	_state.velocity = _state.calculate_velocity(0, delta)
 	pass
 
 func reset():
-	shorthop_timer = 0
-	entering_jump_angle = _state.input_direction
-	_state.snap_vector = Vector3.ZERO
-	_state.velocity.y = _jump_strength*.75
-	_state.current_speed += dive_speed
-	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
+	_state.snap_vector = Vector3.DOWN
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

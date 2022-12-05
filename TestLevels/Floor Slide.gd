@@ -33,7 +33,6 @@ func update(_delta):
 	#_state.current_speed *= _state.floor_fricion * 2
 	
 	if _state.velocity.length() < .01:
-		print("Hi")
 		_state.update_state("Idle")
 		_state.attempting_pivot = false
 		return

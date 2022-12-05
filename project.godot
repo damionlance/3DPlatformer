@@ -19,10 +19,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Camera/CameraRig.gd"
 }, {
-"base": "Node",
+"base": "AerialMovement",
 "class": "Dive",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Dive.gd"
+}, {
+"base": "GroundedMovement",
+"class": "DiveFloor",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/States/Dive Floor.gd"
 }, {
 "base": "AerialMovement",
 "class": "Falling",
@@ -44,7 +49,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/grounded_movement.gd"
 }, {
-"base": "Node",
+"base": "GroundedMovement",
 "class": "Idle",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Idle.gd"
@@ -229,12 +234,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/qodot/src/resources/game-definitions/trenchbroom/trenchbroom_tag.gd"
 }, {
-"base": "Node",
+"base": "GroundedMovement",
 "class": "Walking",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Running.gd"
 }, {
-"base": "Node",
+"base": "AerialMovement",
 "class": "WallSlide",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Wall Slide.gd"
@@ -248,6 +253,7 @@ _global_script_class_icons={
 "AerialMovement": "",
 "CameraRig": "",
 "Dive": "",
+"DiveFloor": "",
 "Falling": "",
 "Falling2": "",
 "FloorSlide": "",

@@ -38,11 +38,6 @@ var _dive_timer := 5
 
 export var coyote_time := 10
 
-# Floor Physics Constants
-export var floor_acceleration := 0.5
-export var max_speed := 10.0
-export var floor_fricion := .8
-export var floor_rotation_speed :=  .2
 
 var _current_state
 
@@ -76,6 +71,7 @@ var is_on_floor := false
 
 var input_direction :=  Vector3.ZERO
 var move_direction := Vector3.ZERO
+var previous_move_direction:= Vector3.ZERO
 var character_model_direction := Vector2.ZERO
 var current_dir := Vector2(0,1)
 var current_speed = 0
@@ -128,8 +124,13 @@ func update_state( new_state ):
 	_current_state.reset()
 
 func calculate_velocity(gravity: float, delta) -> Vector3:
-	var new_velocity = move_direction * current_speed
+	var new_velocity
+	if previous_move_direction > move_direction:
+		new_velocity = move_direction * previous_move_direction.length() * current_speed
+	else:
+		new_velocity = move_direction * current_speed
 	new_velocity.y += velocity.y + gravity * delta
+	previous_move_direction = move_direction
 	return new_velocity
 
 ################################################################################
@@ -196,10 +197,12 @@ func pivot_handling():
 			mag = pivot_buffer[n].length()
 		elif n < i/2:
 			if mag > previous_mag:
-				break
+				return
+			print(mag)
 		else:
 			if mag < previous_mag:
-				break
+				return
+			print(mag)
 		if n == i - 1:
 			attempting_pivot = true
 		previous_mag = mag
