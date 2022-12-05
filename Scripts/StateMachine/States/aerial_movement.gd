@@ -2,34 +2,12 @@ extends Node
 
 class_name AerialMovement
 
-# Aerial Movement Variables
-var spin_jump_angle := 0.0
-var spin_jump_start := Vector2.ZERO
-var spin_jump_sign := int(0)
-var previous_angle := [0.0, 0.0]
-var previous_direction := Vector2.ZERO
-var spin_jump_executed := false
-
 # Aerial Tech Timers
-var spin_jump_buffer := 90
-var spin_jump_timer := 0
-var _spin_polling_speed := 1
-var _spin_polling_timer := 0
-var _wall_jump_buffer := 5
-var _wall_jump_timer := 0
-var _shorthop_buffer := 7
-var _consecutive_jump_timer := 0
-var _consecutive_jump_buffer := 1
-var coyote_time := 10
 var shorthop_timer := 0
-var _jump_buffer := 5
-var _jump_timer := 5
-var _dive_timer := 5
 
 # Jump Logic Variables
-var _allow_wall_jump := true
-var just_landed = false
 var current_jump := 0
+var entering_jump_angle := Vector3.ZERO
 
 # Air Physics Constants
 onready var _jump_strength : float = (2.0 * jump_height) / jump_time_to_peak
@@ -59,30 +37,39 @@ export var spin_jump_time_to_descent := 1.0
 export var air_friction := 0.99
 export var air_acceleration := 2.0
 
-onready var _state = $"../StateMachine"
-onready var _player = $"../../Player"
+onready var _state = get_parent()
+onready var _player = get_parent().get_parent()
 
 # Helper Functions
+func wall_jump_collision_check():
+	if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
+		if abs(_state._raycast_left.get_collision_normal().y) > 0 or abs(_state._raycast_right.get_collision_normal().y) > 0:
+			if _player.is_on_wall():
+				var horizontalVelocity = Vector3(_state.velocity.x, 0, _state.velocity.z)
+				if horizontalVelocity.length() > _state.max_speed/2:
+					return true
+	return false
+
 func standard_aerial_drift():
-	if abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > (3 * PI)/4:
+	if abs(_state.input_direction.angle_to(entering_jump_angle)) > (3 * PI)/4:
 		# Drift Backwards logic
 		_state.current_speed += _state.air_acceleration
 		_state._air_drift_state = _state.not_air_drifting
-	elif abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > PI/3:
+	elif abs(_state.input_direction.angle_to(entering_jump_angle)) > PI/3:
 		# Drift Sideways logic
 		if (_state._air_drift_state == _state.not_air_drifting):
 			_state._air_drift_state = _state.air_drifting
 	elif not _state.input_direction:
 		_state._air_drift_state = _state.not_air_drifting
-		_state.current_speed *= _state.air_friction
+		_state.current_speed *= air_friction
 	pass
 
 func spin_jump_drift():
-	if abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > (3 * PI)/4:
+	if abs(_state.input_direction.angle_to(entering_jump_angle)) > (3 * PI)/4:
 		# Drift Backwards logic
 		_state.current_speed += _state.air_acceleration
 		_state._air_drift_state = _state.not_air_drifting
-	elif abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > PI/3:
+	elif abs(_state.input_direction.angle_to(entering_jump_angle)) > PI/3:
 		# Drift Sideways logic
 		if (_state._air_drift_state == _state.not_air_drifting):
 			_state._air_drift_state = _state.air_drifting

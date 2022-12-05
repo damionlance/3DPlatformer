@@ -7,8 +7,6 @@ var _state_name = "Jump"
 
 #onready variables
 
-var entering_angle : Vector3
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_state.state_dictionary[_state_name] = self
@@ -16,7 +14,7 @@ func _ready():
 
 func update(delta):
 	# Handle animation tree
-	_player.anim_tree.travel("Jump" + String(current_jump))
+	_player.anim_tree.travel("Jump")
 	
 	# Process movements
 	standard_aerial_drift()
@@ -29,7 +27,7 @@ func update(delta):
 		_state.update_state("Dive")
 		return
 	
-	if _state.wall_jump_collision_check() and _state._allow_wall_jump:
+	if wall_jump_collision_check() and _state._allow_wall_jump:
 		_state.update_state("WallSlide")
 		return
 	
@@ -42,18 +40,18 @@ func update(delta):
 		return
 		
 	# Process physics
-	_state.velocity = _state.calculate_velocity(_state._jump_gravity, delta)
+	_state.velocity = _state.calculate_velocity(_jump_gravity, delta)
 	pass
 
 func reset():
-	if just_landed:
+	if _state.just_landed:
 		current_jump += 1
 	else:
 		current_jump = 1
 	
 	shorthop_timer = 0
-	_state.entering_jump_angle = _state.input_direction
+	entering_jump_angle = _state.input_direction
 	_state.snap_vector = Vector3.ZERO
-	_state.velocity.y = _state._jump_strength
+	_state.velocity.y = _jump_strength
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 	pass

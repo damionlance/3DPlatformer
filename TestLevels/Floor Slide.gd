@@ -1,6 +1,6 @@
 extends Node
 
-class_name Idle
+class_name FloorSlide
 
 
 # Declare member variables here. Examples:
@@ -13,7 +13,7 @@ var breaks_momentum = false
 var motion_input : String
 
 #private variables
-var _state_name = "Idle"
+var _state_name = "FloorSlide"
 var _keys
 
 #onready variables
@@ -27,25 +27,25 @@ func _ready():
 	pass # Replace with function body.
 
 func update(_delta):
-	_player.anim_tree.travel("Idle1")
+	_player.anim_tree.travel("Floor Skid")
 	#player.animation_player.play("Idle")
 	_state._air_drift_state = _state.not_air_drifting
+	#_state.current_speed *= _state.floor_fricion * 2
 	
-	_state.current_speed *= _state.floor_fricion
+	if _state.velocity.length() < .01:
+		print("Hi")
+		_state.update_state("Idle")
+		_state.attempting_pivot = false
+		return
 	
 	if not _player.is_on_floor():
 		_state.update_state("Falling")
-	if _state.input_direction:
-		_state.update_state("Running")
 		return
 	else:
 		_state.current_speed = 0
 		_state.velocity = Vector3.ZERO
 	if  _state._jump_state == _state.jump_pressed:
-		if _state.just_landed:
-			_state.update_state("Jump2")
-		else:
-			_state.update_state("Jump")
+		print("DO A SIDE FLIP")
 		return
 	pass
 

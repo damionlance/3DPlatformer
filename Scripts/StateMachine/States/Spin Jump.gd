@@ -34,7 +34,7 @@ func update(delta):
 	pass
 
 func reset():
-	_state.entering_jump_angle = _state.input_direction
+	entering_jump_angle = _state.input_direction
 	_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = _state._spin_jump_strength
 	_state._jump_state = _state.jump_held

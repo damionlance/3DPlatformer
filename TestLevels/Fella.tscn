@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
 [ext_resource path="res://3D Assets/Godot Worthy Models/JacketMat.material" type="Material" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scripts/StateMachine/States/Jump.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/StateMachine/States/Spin Jump.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/StateMachine/States/Spin Fall.gd" type="Script" id=12]
+[ext_resource path="res://TestLevels/Floor Slide.gd" type="Script" id=13]
 [ext_resource path="res://3D Assets/Godot Worthy Models/Boot.material" type="Material" id=15]
 [ext_resource path="res://Scripts/StateMachine/States/Dive.gd" type="Script" id=16]
 
@@ -106,7 +107,7 @@ states/Fall/position = Vector2( 400.59, 22.0475 )
 states/Idle1/node = SubResource( 45 )
 states/Idle1/position = Vector2( 210.402, 115.391 )
 states/Jump/node = SubResource( 46 )
-states/Jump/position = Vector2( 564.315, 131.235 )
+states/Jump/position = Vector2( 564.927, 131.235 )
 states/Run/node = SubResource( 47 )
 states/Run/position = Vector2( 402.09, 113.735 )
 "states/Side Flip/node" = SubResource( 48 )
@@ -1011,6 +1012,9 @@ script = ExtResource( 1 )
 
 [node name="Dive" type="Node" parent="StateMachine"]
 script = ExtResource( 16 )
+
+[node name="Floor Slide" type="Node" parent="StateMachine"]
+script = ExtResource( 13 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 30 )

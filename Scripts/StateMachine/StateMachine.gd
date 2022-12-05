@@ -8,20 +8,24 @@ var velocity :=  Vector3.ZERO
 var snap_vector := Vector3.DOWN
 
 # Special inputs tracking
-var spin_jump_angle := 0.0
-var spin_jump_start := Vector2.ZERO
-var spin_jump_sign := int(0)
 var previous_angle := [0.0, 0.0]
 var previous_direction := Vector2.ZERO
 var spin_jump_executed := false
-export var spin_jump_buffer := 90
-var spin_jump_timer := 0
 export var _spin_polling_speed := 1
 var _spin_polling_timer := 0
 var _allow_wall_jump := true
 var _wall_jump_buffer := 5
 var _wall_jump_timer := 0
 export var _shorthop_buffer := 7
+var pivot_buffer = []
+var pivot_buffer_size := 10
+
+# ALL SPIN JUMP STATE HANDLING
+var spin_jump_buffer := 90
+var spin_jump_timer := 0
+var spin_jump_angle := 0.0
+var spin_jump_start := Vector2.ZERO
+var spin_jump_sign := int(0)
 
 var just_landed = false
 
@@ -32,35 +36,7 @@ var _jump_buffer := 5
 var _jump_timer := 5
 var _dive_timer := 5
 
-# Air Physics Constants
-export var jump_height := 3.1
-export var jump_time_to_peak := 0.3
-export var jump_time_to_descent := 0.216
-
-export var jump2_height := 5.1
-export var jump2_time_to_peak := 0.35
-export var jump2_time_to_descent := 0.266
-
-export var spin_jump_height := 5.1
-export var spin_jump_time_to_peak := .4
-export var spin_jump_time_to_descent := 1.0
-
-export var air_friction := 0.99
-export var air_acceleration := 2.0
 export var coyote_time := 10
-
-# Jump parameter Constants calculated at runtime
-onready var _jump_strength : float = (2.0 * jump_height) / jump_time_to_peak
-onready var _jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
-onready var _fall_gravity : float = (-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)
-
-onready var _jump2_strength : float = (2.0 * jump2_height) / jump2_time_to_peak
-onready var _jump2_gravity : float = (-2.0 * jump2_height) / (jump2_time_to_peak * jump2_time_to_peak)
-onready var _fall2_gravity : float = (-2.0 * jump2_height) / (jump2_time_to_descent * jump2_time_to_descent)
-
-onready var _spin_jump_strength : float = (2.0 * spin_jump_height) / spin_jump_time_to_peak
-onready var _spin_jump_gravity : float = (-2.0 * spin_jump_height) / (spin_jump_time_to_peak * spin_jump_time_to_peak)
-onready var _spin_fall_gravity : float = (-2.0 * spin_jump_height) / (spin_jump_time_to_descent * spin_jump_time_to_descent)
 
 # Floor Physics Constants
 export var floor_acceleration := 0.5
@@ -95,6 +71,7 @@ enum {
 
 var attempting_jump := false
 var attempting_dive := false
+var attempting_pivot := false
 var is_on_floor := false
 
 var input_direction :=  Vector3.ZERO
@@ -116,17 +93,22 @@ onready var _raycast_right = _player.get_node("WallRayRight")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_state("Falling")
+	pivot_buffer.resize(pivot_buffer_size)
 	pass # Replace with function body.
 
 func _process(delta):
 	input_handling()
-	
 	jump_state_handling()
+	pivot_handling()
+	
 	_current_state.update(delta)
 	velocity = _player.move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)
 
-func input_handling():	
+func input_handling():
 	var controller_input = Input.get_vector("Left", "Right", "Backward", "Forward")
+	pivot_buffer.push_front(controller_input)
+	pivot_buffer.pop_back()
+	
 	input_direction.x = controller_input.x
 	input_direction.z = -controller_input.y
 	attempting_jump = Input.is_action_pressed("Jump")
@@ -138,7 +120,7 @@ func input_handling():
 	forwards *= input_direction.z
 	right = _camera.global_transform.basis.x * input_direction.x
 	
-	spin_jump_handling(controller_input)
+	#spin_jump_handling(controller_input)
 	
 
 func update_state( new_state ):
@@ -154,8 +136,76 @@ func calculate_velocity(gravity: float, delta) -> Vector3:
 ############################ HELPER FUNCTIONS ##################################
 ################################################################################
 
-func jump_state_handling():
+func spin_jump_handling(controller_input: Vector2):
+	if spin_jump_executed:
+		spin_jump_timer += 1
+		if spin_jump_buffer == spin_jump_timer:
+			spin_jump_executed = false
+			spin_jump_timer = 0
+			spin_jump_angle = 0
+			spin_jump_start = Vector2.ZERO
 	
+	if controller_input != Vector2.ZERO:
+		_spin_polling_timer = 0
+		var lengths = previous_direction.length() * controller_input.length()
+		previous_angle[1] = previous_angle[0]
+		
+		if lengths:
+			previous_angle[0] = controller_input.angle()
+			if previous_angle[0]<0:
+				previous_angle[0] += 2*PI
+		else:
+			previous_angle[0] = previous_angle[1]
+		if spin_jump_start.length() < .01:
+			spin_jump_start = controller_input
+			spin_jump_angle = 0
+		elif abs(previous_angle[0]-previous_angle[1]) > .02 and sign(previous_angle[0]-previous_angle[1]) != spin_jump_sign:
+			if not (previous_angle[1] > deg2rad(350) and previous_angle[0] > 0):
+				spin_jump_angle = 0
+				spin_jump_start = controller_input
+				spin_jump_sign = sign(previous_angle[0]-previous_angle[1])
+		else:
+			spin_jump_angle += previous_angle[0] - previous_angle[1]
+			if abs(spin_jump_angle) > 4 * PI / 3:
+				spin_jump_executed = true
+		previous_direction = controller_input
+
+func pivot_handling():
+	if attempting_pivot:
+		return
+	
+	var correct_input = null
+	var mag = null
+	var i = 0
+	if input_direction.length() < .01:
+		return
+	for angle in pivot_buffer:
+		if angle == null:
+			attempting_pivot = false
+			break
+		if pivot_buffer[0].dot(angle) < -.9:
+			correct_input = angle
+			break
+		i += 1
+	
+	if correct_input == null:
+		return
+	var previous_mag
+	for n in i:
+		if mag == null:
+			mag = pivot_buffer[n].length()
+		elif n < i/2:
+			if mag > previous_mag:
+				break
+		else:
+			if mag < previous_mag:
+				break
+		if n == i - 1:
+			attempting_pivot = true
+		previous_mag = mag
+	pass
+
+func jump_state_handling():
 	if not _allow_wall_jump:
 		if _wall_jump_timer == _wall_jump_buffer:
 			_allow_wall_jump = true
@@ -210,46 +260,3 @@ func jump_state_handling():
 	if attempting_dive and not (_player.is_on_floor() or _player.is_on_wall()):
 		if _dive_state == dive_held:
 			_dive_timer += 1
-
-func spin_jump_handling(controller_input: Vector2):
-	if spin_jump_executed:
-		spin_jump_timer += 1
-		if spin_jump_buffer == spin_jump_timer:
-			spin_jump_executed = false
-			spin_jump_timer = 0
-			spin_jump_angle = 0
-			spin_jump_start = Vector2.ZERO
-	
-	if controller_input != Vector2.ZERO:
-		_spin_polling_timer = 0
-		var lengths = previous_direction.length() * controller_input.length()
-		previous_angle[1] = previous_angle[0]
-		
-		if lengths:
-			previous_angle[0] = controller_input.angle()
-			if previous_angle[0]<0:
-				previous_angle[0] += 2*PI
-		else:
-			previous_angle[0] = previous_angle[1]
-		if spin_jump_start.length() < .01:
-			spin_jump_start = controller_input
-			spin_jump_angle = 0
-		elif abs(previous_angle[0]-previous_angle[1]) > .02 and sign(previous_angle[0]-previous_angle[1]) != spin_jump_sign:
-			if not (previous_angle[1] > deg2rad(350) and previous_angle[0] > 0):
-				spin_jump_angle = 0
-				spin_jump_start = controller_input
-				spin_jump_sign = sign(previous_angle[0]-previous_angle[1])
-		else:
-			spin_jump_angle += previous_angle[0] - previous_angle[1]
-			if abs(spin_jump_angle) > 4 * PI / 3:
-				spin_jump_executed = true
-		previous_direction = controller_input
-
-func wall_jump_collision_check():
-	if _raycast_left.is_colliding() or _raycast_right.is_colliding():
-		if abs(_raycast_left.get_collision_normal().y) > 0 or abs(_raycast_right.get_collision_normal().y) > 0:
-			if _player.is_on_wall():
-				var horizontalVelocity = Vector3(velocity.x, 0, velocity.z)
-				if horizontalVelocity.length() > max_speed/2:
-					return true
-	return false
