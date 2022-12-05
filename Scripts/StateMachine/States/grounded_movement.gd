@@ -17,11 +17,11 @@ onready var _player = get_parent().get_parent()
 
 
 func grounded_movement_processing():
-	_state.move_direction = _state.forwards + _state.right
+	_state.move_direction = (_state.forwards + _state.right).normalized()
 	if _state.current_speed > max_speed:
 		_state.current_speed = lerp(_state.current_speed, max_speed, .25)
-	elif _state.current_speed + floor_acceleration > max_speed:
-		_state.current_speed = max_speed
+	elif _state.current_speed + floor_acceleration > max_speed * _state.input_direction.length():
+		_state.current_speed = max_speed * _state.input_direction.length()
 	else:
 		_state.current_speed += floor_acceleration
 

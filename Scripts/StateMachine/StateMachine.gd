@@ -123,13 +123,8 @@ func update_state( new_state ):
 	_current_state.reset()
 
 func calculate_velocity(gravity: float, delta) -> Vector3:
-	var new_velocity
-	if (previous_move_direction.length() - move_direction.length()) > .1:
-		new_velocity = velocity
-	else:
-		new_velocity = move_direction * current_speed
+	var new_velocity = move_direction * current_speed
 	new_velocity.y += velocity.y + gravity * delta
-	previous_move_direction = move_direction
 	return new_velocity
 
 ################################################################################
@@ -173,7 +168,7 @@ func spin_jump_handling(controller_input: Vector2):
 func pivot_handling():
 	if attempting_pivot:
 		return
-	if (forwards+right).dot(velocity) < -.7:
+	if (forwards+right).dot(velocity) < -.5:
 		attempting_pivot = true
 	pass
 

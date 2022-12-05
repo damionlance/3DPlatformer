@@ -21,9 +21,7 @@ func update(delta):
 	_player.anim_tree.travel("Floor Skid")
 	
 	_state._air_drift_state = _state.not_air_drifting
-	_state.current_speed *= .95
-	
-	_state.move_direction = _state.velocity.normalized()
+	#_state.current_speed *= .95
 	
 	if _state.velocity.length() < .5:
 		_state.update_state("Idle")
