@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
 [ext_resource path="res://3D Assets/Godot Worthy Models/JacketMat.material" type="Material" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Scripts/StateMachine/States/Dive Floor.gd" type="Script" id=14]
 [ext_resource path="res://3D Assets/Godot Worthy Models/Boot.material" type="Material" id=15]
 [ext_resource path="res://Scripts/StateMachine/States/Dive.gd" type="Script" id=16]
+[ext_resource path="res://Scripts/StateMachine/States/SideFlip.gd" type="Script" id=17]
 
 [sub_resource type="SphereShape" id=40]
 radius = 0.500044
@@ -90,7 +91,7 @@ xfade_time = 0.1
 [sub_resource type="AnimationNodeStateMachineTransition" id=67]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=68]
-xfade_time = 1.0
+xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=69]
 xfade_time = 0.1
@@ -1019,6 +1020,9 @@ script = ExtResource( 14 )
 
 [node name="Floor Slide" type="Node" parent="StateMachine"]
 script = ExtResource( 13 )
+
+[node name="SideFlip" type="Node" parent="StateMachine"]
+script = ExtResource( 17 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 30 )

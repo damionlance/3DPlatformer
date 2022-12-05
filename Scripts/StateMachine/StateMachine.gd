@@ -102,9 +102,8 @@ func _process(delta):
 
 func input_handling():
 	var controller_input = Input.get_vector("Left", "Right", "Backward", "Forward")
-	pivot_buffer.push_front(controller_input)
-	pivot_buffer.pop_back()
 	
+	spin_jump_handling(controller_input)
 	input_direction.x = controller_input.x
 	input_direction.z = -controller_input.y
 	attempting_jump = Input.is_action_pressed("Jump")
@@ -125,8 +124,8 @@ func update_state( new_state ):
 
 func calculate_velocity(gravity: float, delta) -> Vector3:
 	var new_velocity
-	if previous_move_direction > move_direction:
-		new_velocity = move_direction * previous_move_direction.length() * current_speed
+	if (previous_move_direction.length() - move_direction.length()) > .1:
+		new_velocity = velocity
 	else:
 		new_velocity = move_direction * current_speed
 	new_velocity.y += velocity.y + gravity * delta
@@ -174,38 +173,8 @@ func spin_jump_handling(controller_input: Vector2):
 func pivot_handling():
 	if attempting_pivot:
 		return
-	
-	var correct_input = null
-	var mag = null
-	var i = 0
-	if input_direction.length() < .01:
-		return
-	for angle in pivot_buffer:
-		if angle == null:
-			attempting_pivot = false
-			break
-		if pivot_buffer[0].dot(angle) < -.9:
-			correct_input = angle
-			break
-		i += 1
-	
-	if correct_input == null:
-		return
-	var previous_mag
-	for n in i:
-		if mag == null:
-			mag = pivot_buffer[n].length()
-		elif n < i/2:
-			if mag > previous_mag:
-				return
-			print(mag)
-		else:
-			if mag < previous_mag:
-				return
-			print(mag)
-		if n == i - 1:
-			attempting_pivot = true
-		previous_mag = mag
+	if (forwards+right).dot(velocity) < -.7:
+		attempting_pivot = true
 	pass
 
 func jump_state_handling():

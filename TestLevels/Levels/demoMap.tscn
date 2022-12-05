@@ -1462,7 +1462,7 @@ anims/idle = SubResource( 132 )
 [node name="platform2" type="Spatial" parent="dynamicObjects"]
 
 [node name="movingPlatform" type="KinematicBody" parent="dynamicObjects/platform2"]
-transform = Transform( 0.999997, 1.74533e-05, 1.22848e-15, -1.74532e-05, 1, -1.74532e-05, -3.04617e-10, 1.74533e-05, 0.999997, 49.4371, 0, 64.6231 )
+transform = Transform( 0.999997, 1.74533e-05, 1.25624e-15, -1.74532e-05, 1, -1.74532e-05, -3.04617e-10, 1.74533e-05, 0.999997, 49.4371, 0, 64.6231 )
 
 [node name="MeshInstance" type="MeshInstance" parent="dynamicObjects/platform2/movingPlatform"]
 mesh = SubResource( 133 )

@@ -29,7 +29,7 @@ func update(delta):
 		_state.update_state("Falling")
 		return
 	
-	_state.velocity = _state.calculate_velocity(_state._spin_fall_gravity, delta)
+	_state.velocity = _state.calculate_velocity(_spin_fall_gravity, delta)
 	pass
 
 func reset():

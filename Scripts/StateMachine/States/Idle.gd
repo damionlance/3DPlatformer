@@ -31,10 +31,7 @@ func update(delta):
 		_state.current_speed = 0
 		_state.velocity = Vector3.ZERO
 	if  _state._jump_state == _state.jump_pressed:
-		if _state.just_landed:
-			_state.update_state("Jump2")
-		else:
-			_state.update_state("Jump")
+		_state.update_state("Jump")
 		return
 	
 	# Process physics

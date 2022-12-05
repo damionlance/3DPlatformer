@@ -36,9 +36,9 @@ func update(delta):
 	# Process all relevant timers
 	
 	# Handle all states
-	#if _state.attempting_pivot:
-		#_state.update_state("FloorSlide")
-		#return
+	if _state.attempting_pivot:
+		_state.update_state("FloorSlide")
+		return
 	if _state._dive_state == _state.dive_pressed:
 		_state.update_state("Dive")
 		return

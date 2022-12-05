@@ -48,7 +48,7 @@ func wall_jump_collision_check():
 		if abs(_state._raycast_left.get_collision_normal().y) > 0 or abs(_state._raycast_right.get_collision_normal().y) > 0:
 			if _player.is_on_wall():
 				var horizontalVelocity = Vector3(_state.velocity.x, 0, _state.velocity.z)
-				if horizontalVelocity.length() > _state.max_speed/2:
+				if horizontalVelocity.length() > 1:
 					return true
 	return false
 
@@ -69,7 +69,7 @@ func standard_aerial_drift():
 func spin_jump_drift():
 	if abs(_state.input_direction.angle_to(entering_jump_angle)) > (3 * PI)/4:
 		# Drift Backwards logic
-		_state.current_speed += _state.air_acceleration
+		_state.current_speed += air_acceleration
 		_state._air_drift_state = _state.not_air_drifting
 	elif abs(_state.input_direction.angle_to(entering_jump_angle)) > PI/3:
 		# Drift Sideways logic
@@ -78,8 +78,6 @@ func spin_jump_drift():
 	elif not _state.input_direction:
 		_state._air_drift_state = _state.not_air_drifting
 		_state.current_speed *= _state.air_friction
-	if _state.current_speed > _state.max_speed:
-		_state.current_speed = _state.max_speed
 	
 	_state.move_direction = _state.forwards + _state.right
 	pass
