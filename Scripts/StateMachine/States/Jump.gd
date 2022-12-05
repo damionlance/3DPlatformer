@@ -1,24 +1,11 @@
-extends Node
+extends AerialMovement
 
 class_name Jump
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-#public variables
-var cancellable = true
-var breaks_momentum = false
-var motion_input : String
-
 #private variables
 var _state_name = "Jump"
-var shorthop_timer := 0
 
 #onready variables
-onready var _state = get_parent()
-onready var _player = get_parent().get_parent()
 
 var entering_angle : Vector3
 
@@ -28,30 +15,16 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	_player.anim_tree.travel("Jump")
+	# Handle animation tree
+	_player.anim_tree.travel("Jump" + String(current_jump))
 	
-	var forwards = _state._camera.global_transform.basis.z
-	forwards.y = 0
-	forwards = forwards.normalized()
-	forwards *= _state.input_direction.z
-	var right = _state._camera.global_transform.basis.x * _state.input_direction.x
+	# Process movements
+	standard_aerial_drift()
 	
+	# Update all relevant counters
 	shorthop_timer += 1
 	
-	if abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > (3 * PI)/4:
-		# Drift Backwards logic
-		_state.current_speed += _state.air_acceleration
-		_state._air_drift_state = _state.not_air_drifting
-	elif abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > PI/3:
-		# Drift Sideways logic
-		if (_state._air_drift_state == _state.not_air_drifting):
-			_state._air_drift_state = _state.air_drifting
-	elif not _state.input_direction:
-		_state._air_drift_state = _state.not_air_drifting
-		_state.current_speed *= _state.air_friction
-	
-	_state.velocity = _state.calculate_velocity(_state._jump_gravity, delta)
-	
+	# Handle all state logic
 	if _state._dive_state == _state.dive_pressed:
 		_state.update_state("Dive")
 		return
@@ -59,6 +32,7 @@ func update(delta):
 	if _state.wall_jump_collision_check() and _state._allow_wall_jump:
 		_state.update_state("WallSlide")
 		return
+	
 	if not _state.attempting_jump and shorthop_timer == _state._shorthop_buffer:
 		_state.velocity.y *= .6
 		_state.update_state("Falling")
@@ -66,18 +40,20 @@ func update(delta):
 	if _state.velocity.y < 0:
 		_state.update_state("Falling")
 		return
-	
+		
+	# Process physics
+	_state.velocity = _state.calculate_velocity(_state._jump_gravity, delta)
 	pass
 
 func reset():
+	if just_landed:
+		current_jump += 1
+	else:
+		current_jump = 1
+	
 	shorthop_timer = 0
 	_state.entering_jump_angle = _state.input_direction
 	_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = _state._jump_strength
-	_state._jump_state = _state.jump_held
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

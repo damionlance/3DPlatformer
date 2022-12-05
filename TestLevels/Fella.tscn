@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
 [ext_resource path="res://3D Assets/Godot Worthy Models/JacketMat.material" type="Material" id=2]
@@ -12,8 +12,6 @@
 [ext_resource path="res://Scripts/StateMachine/States/Jump.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/StateMachine/States/Spin Jump.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/StateMachine/States/Spin Fall.gd" type="Script" id=12]
-[ext_resource path="res://Scripts/StateMachine/States/Jump2.gd" type="Script" id=13]
-[ext_resource path="res://Scripts/StateMachine/States/Falling2.gd" type="Script" id=14]
 [ext_resource path="res://3D Assets/Godot Worthy Models/Boot.material" type="Material" id=15]
 [ext_resource path="res://Scripts/StateMachine/States/Dive.gd" type="Script" id=16]
 
@@ -999,14 +997,8 @@ script = ExtResource( 7 )
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
 
-[node name="Jump2" type="Node" parent="StateMachine"]
-script = ExtResource( 13 )
-
 [node name="Falling" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
-
-[node name="Falling2" type="Node" parent="StateMachine"]
-script = ExtResource( 14 )
 
 [node name="Spin Jump" type="Node" parent="StateMachine"]
 script = ExtResource( 11 )

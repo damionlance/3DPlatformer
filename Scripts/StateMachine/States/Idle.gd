@@ -17,7 +17,6 @@ var _state_name = "Idle"
 var _keys
 
 #onready variables
-onready var _state = get_parent()
 onready var _player = get_parent().get_parent()
 
 # Called when the node enters the scene tree for the first time.

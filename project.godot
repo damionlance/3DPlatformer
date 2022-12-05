@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AerialMovement",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/States/aerial_movement.gd"
+}, {
 "base": "Spatial",
 "class": "CameraRig",
 "language": "GDScript",
@@ -19,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Dive.gd"
 }, {
-"base": "Node",
+"base": "AerialMovement",
 "class": "Falling",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Falling.gd"
@@ -34,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Idle.gd"
 }, {
-"base": "Node",
+"base": "AerialMovement",
 "class": "Jump",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Jump.gd"
@@ -184,7 +189,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Spin Fall.gd"
 }, {
-"base": "Node",
+"base": "AerialMovement",
 "class": "SpinJump",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Spin Jump.gd"
@@ -215,11 +220,6 @@ _global_script_classes=[ {
 "path": "res://addons/qodot/src/resources/game-definitions/trenchbroom/trenchbroom_tag.gd"
 }, {
 "base": "Node",
-"class": "Walking",
-"language": "GDScript",
-"path": "res://Scripts/StateMachine/States/Running.gd"
-}, {
-"base": "Node",
 "class": "WallSlide",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Wall Slide.gd"
@@ -230,6 +230,7 @@ _global_script_classes=[ {
 "path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/water.gd"
 } ]
 _global_script_class_icons={
+"AerialMovement": "",
 "CameraRig": "",
 "Dive": "",
 "Falling": "",
@@ -271,7 +272,6 @@ _global_script_class_icons={
 "TrenchBroomGameConfigFile": "",
 "TrenchBroomGameConfigFolder": "",
 "TrenchBroomTag": "",
-"Walking": "",
 "WallSlide": "",
 "WaterLayer": ""
 }
