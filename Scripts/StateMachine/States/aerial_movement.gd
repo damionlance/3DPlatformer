@@ -79,7 +79,7 @@ func spin_jump_drift():
 			_state._air_drift_state = _state.air_drifting
 	elif not _state.input_direction:
 		_state._air_drift_state = _state.not_air_drifting
-		_state.current_speed *= _state.air_friction
+		_state.current_speed *= air_friction
 	
 	_state.move_direction = _state.forwards + _state.right
 	pass
