@@ -19,14 +19,17 @@ var _state_name = "SpinFall"
 onready var _state = get_parent()
 onready var _player = get_parent().get_parent()
 
+var last_velocity = Vector3.ZERO
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	last_velocity = _state.velocity
 	_state.state_dictionary[_state_name] = self
 	pass # Replace with function body.
 
 func update(delta):
-	_player.anim_tree.travel("Spin Jump")
 	
+	_player.anim_tree.travel("Spin Jump")
 	if _player.is_on_floor():
 		if _state.input_direction:
 			_state.update_state("Running")
@@ -69,6 +72,10 @@ func update(delta):
 	_state.move_direction = forwards + right
 	_state.velocity = _state.calculate_velocity(_state._spin_fall_gravity, delta)
 	
+	if _state.velocity.y > (last_velocity.y + _state._spin_jump_gravity) * delta:
+		_state.velocity.y += (delta * -50)
+	
+	last_velocity = _state.velocity
 	pass
 
 func reset():

@@ -1,7 +1,6 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
-[ext_resource path="res://3D Assets/Godot Worthy Models/JacketMat.material" type="Material" id=2]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/StateMachine/State.gd" type="Script" id=5]
@@ -14,7 +13,6 @@
 [ext_resource path="res://Scripts/StateMachine/States/Spin Fall.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/StateMachine/States/Jump2.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/StateMachine/States/Falling2.gd" type="Script" id=14]
-[ext_resource path="res://3D Assets/Godot Worthy Models/Boot.material" type="Material" id=15]
 [ext_resource path="res://Scripts/StateMachine/States/Dive.gd" type="Script" id=16]
 
 [sub_resource type="SphereShape" id=40]
@@ -132,7 +130,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194883,
 "index_count": 14868,
-"material": ExtResource( 15 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.116977, -0.0596533, -0.309489, 0.446111, 0.650154, 0.774673 ) ],
 "vertex_count": 2480
@@ -172,6 +169,9 @@ bind/9/name = "Head"
 bind/9/bone = -1
 bind/9/pose = Transform( 1.39873, -0.0170577, -0.000968004, 0.0170577, 1.39873, 4.52422e-07, 0.000967926, -1.19812e-05, 1.39884, 0.0390726, -1.88979, -0.0556001 )
 
+[sub_resource type="SpatialMaterial" id=75]
+albedo_color = Color( 1, 0.984314, 0, 1 )
+
 [sub_resource type="ArrayMesh" id=3]
 resource_name = "lil fella_Mesh"
 surfaces/0 = {
@@ -181,11 +181,16 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194883,
 "index_count": 14868,
-"material": ExtResource( 15 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.565004, -0.0596533, -0.309489, 0.446111, 0.650154, 0.774673 ) ],
 "vertex_count": 2480
 }
+
+[sub_resource type="SpatialMaterial" id=76]
+albedo_color = Color( 1, 0.984314, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=77]
+params_cull_mode = 2
 
 [sub_resource type="ArrayMesh" id=4]
 resource_name = "lil fella_Sphere001"
@@ -196,11 +201,15 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194911,
 "index_count": 8820,
-"material": ExtResource( 2 ),
+"material": SubResource( 77 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( -0.787768, 0.298187, -0.780458, 1.54762, 1.21375, 1.52471 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.46847, 1.16586, -0.526438, 0.950717, 0.346074, 0.972313 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.500843, 1.19192, -0.526438, 0.971075, 0.320022, 0.972313 ) ],
 "vertex_count": 1795
 }
+
+[sub_resource type="SpatialMaterial" id=73]
+params_cull_mode = 2
+albedo_color = Color( 0.0784314, 0.133333, 0.960784, 1 )
 
 [sub_resource type="ArrayMesh" id=5]
 resource_name = "lil fella_Sphere"
@@ -225,11 +234,17 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 744,
-"material": ExtResource( 2 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.245026, 0.78036, -0.149398, 0.656933, 0.645796, 0.291028 ), AABB( 0.245026, 0.78036, -0.149398, 0.656933, 0.645796, 0.291028 ), AABB( -0.833872, 0.78036, -0.149398, 0.588846, 0.645796, 0.291028 ), AABB( -0.901959, 0.78036, -0.149398, 0.656933, 0.645796, 0.291028 ) ],
 "vertex_count": 260
 }
+
+[sub_resource type="SpatialMaterial" id=74]
+albedo_color = Color( 0, 0.505882, 1, 1 )
+metallic = 0.12
+clearcoat_enabled = true
+clearcoat = 1.0
+clearcoat_gloss = 0.53
 
 [sub_resource type="Animation" id=7]
 resource_name = "Fall"
@@ -973,6 +988,14 @@ tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = PoolRealArray( 0, 1, 4.65916e-08, -1.49012e-08, -5.96046e-08, -3.10088e-09, -0.43099, 0.0490503, 0.901023, 1, 1, 1 )
 
+[sub_resource type="SpatialMaterial" id=71]
+params_billboard_mode = 1
+params_grow = true
+params_grow_amount = -8.348
+
+[sub_resource type="QuadMesh" id=72]
+material = SubResource( 71 )
+
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 3 )
 
@@ -1056,7 +1079,7 @@ cast_to = Vector3( 0, 0, -2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.078943, 0.145806, -0.344221 )
 
 [node name="Object" type="Spatial" parent="lilfella"]
-transform = Transform( 0.71488, 0, 0, 0, 0.71488, 0, 0, 0, 0.71488, -0.0114286, 0.54469, 0.34452 )
+transform = Transform( 0.71, 0, 0, 0, 0.71, 0, 0, 0, 0.71, -0.0114286, 0.54469, 0.34452 )
 
 [node name="Skeleton" type="Skeleton" parent="lilfella/Object"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.5 )
@@ -1114,14 +1137,17 @@ bones/9/bound_children = [  ]
 [node name="Boot Left" type="MeshInstance" parent="lilfella/Object/Skeleton"]
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
+material/0 = SubResource( 75 )
 
 [node name="Boot Right" type="MeshInstance" parent="lilfella/Object/Skeleton"]
 mesh = SubResource( 3 )
 skin = SubResource( 2 )
+material/0 = SubResource( 76 )
 
 [node name="Coat" type="MeshInstance" parent="lilfella/Object/Skeleton"]
 mesh = SubResource( 4 )
 skin = SubResource( 2 )
+material/0 = SubResource( 73 )
 
 [node name="Head" type="MeshInstance" parent="lilfella/Object/Skeleton"]
 mesh = SubResource( 5 )
@@ -1130,6 +1156,7 @@ skin = SubResource( 2 )
 [node name="Sleeves" type="MeshInstance" parent="lilfella/Object/Skeleton"]
 mesh = SubResource( 6 )
 skin = SubResource( 2 )
+material/0 = SubResource( 74 )
 
 [node name="Empty" type="Spatial" parent="lilfella"]
 transform = Transform( 0.0099109, 2.67075e-07, 2.24037, -2.24037, 6.67688e-07, 0.00991103, -8.01226e-07, -2.24039, 1.33538e-07, -2.54099, -1.15464, 0 )
@@ -1148,3 +1175,20 @@ anims/Run = SubResource( 13 )
 "anims/Side Flip" = SubResource( 14 )
 "anims/Spin Jump" = SubResource( 15 )
 "anims/Wall Slide" = SubResource( 16 )
+
+[node name="particles" type="CPUParticles" parent="lilfella"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.078943, 2.45419, -3.35578 )
+visible = false
+amount = 7
+lifetime = 0.09
+speed_scale = 0.89
+explosiveness = 0.2
+randomness = 0.24
+lifetime_randomness = 0.08
+mesh = SubResource( 72 )
+direction = Vector3( 0, 1, 0 )
+gravity = Vector3( 0, 5, 0 )
+initial_velocity = 8.0
+initial_velocity_random = 0.14
+scale_amount = 0.1
+scale_amount_random = 0.2

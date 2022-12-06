@@ -27,6 +27,7 @@ func _ready():
 
 func update(delta):
 	_player.anim_tree.travel("Run")
+	_player.particles.emitting = true
 	
 	var forwards = _state._camera.global_transform.basis.z
 	forwards.y = 0

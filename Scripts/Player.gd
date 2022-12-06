@@ -5,6 +5,7 @@ onready var player_model = $lilfella/Object
 onready var player_anim = $lilfella/AnimationPlayer
 onready var player_anim_tree = $AnimationTree
 onready var camera = $CameraPivot/SpringArm/Camera
+onready var particles = $lilfella/particles
 var anim_tree
 
 var animations = ['Idle1', 'Run', 'Jump', 'Fall']

@@ -61,6 +61,7 @@ func update(delta):
 	if _state.velocity.y < 0:
 		_state.update_state("SpinFall")
 		return
+		
 	
 	pass
 

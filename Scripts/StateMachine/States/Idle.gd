@@ -27,6 +27,7 @@ func _ready():
 	pass # Replace with function body.
 
 func update(_delta):
+	_player.particles.emitting = false
 	_player.anim_tree.travel("Idle1")
 	#player.animation_player.play("Idle")
 	_state._air_drift_state = _state.not_air_drifting

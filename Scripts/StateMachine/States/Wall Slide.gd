@@ -49,7 +49,10 @@ func update(delta):
 	if wall_bounce_timer < wall_bounce_buffer:
 		if  _state._jump_state == _state.jump_pressed:
 			_state.move_direction = entering_angle.bounce(surface_normal)
-			_state.current_speed = _state.max_speed * 1.25
+			if _state.current_speed + _state.max_speed * .5 < _state.max_speed:
+				_state.current_speed += _state.max_speed * .5
+			else:
+				_state.current_speed = _state.max_speed
 			_state.update_state("Jump")
 			_state._allow_wall_jump = false
 	else:
