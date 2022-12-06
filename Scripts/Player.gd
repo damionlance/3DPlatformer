@@ -35,11 +35,12 @@ func add_coin():
 	
 func add_star():
 	stars = 0
+	print(Global.stars)
 	for star in Global.stars.keys():
 		if Global.stars[star]:
 			stars += 1
 	print(stars, " stars")
 	if stars == 3:
 		time_now = OS.get_unix_time()
-		print("You finished in: " + (Global.time_start - time_now) + ". Good job!")
+		print("You finished in: " + str(-1 * (Global.time_start - time_now)) + ". Good job!")
  

@@ -1193,10 +1193,15 @@ font_data = SubResource( 439 )
 [sub_resource type="Environment" id=441]
 background_mode = 1
 background_color = Color( 0.129412, 0.109804, 0.180392, 1 )
-background_energy = 1.63
+background_energy = 1.86
 ambient_light_color = Color( 0.635294, 0.596078, 0.447059, 1 )
 ambient_light_energy = 0.09
 fog_enabled = true
+fog_color = Color( 0.407843, 0.45098, 0.494118, 1 )
+fog_sun_color = Color( 1, 0.901961, 0.701961, 1 )
+fog_depth_begin = 11.0
+fog_depth_end = 110.0
+fog_transmit_enabled = true
 
 [node name="Spatial" type="Spatial"]
 
