@@ -179,10 +179,7 @@ func spin_jump_handling(controller_input: Vector2):
 		previous_direction = controller_input
 
 func pivot_handling():
-	if attempting_pivot:
-		return
-	if (forwards+right).dot(velocity) < -.5:
-		attempting_pivot = true
+	
 	pass
 
 func jump_state_handling():

@@ -989,11 +989,11 @@ script = ExtResource( 3 )
 shadow_path = NodePath("PlayerShadow")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.614172, 0 )
 shape = SubResource( 40 )
 
 [node name="BackCollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.258137, 0.105312 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.364348, 0.105312 )
 shape = SubResource( 41 )
 
 [node name="StateMachine" type="Node" parent="."]
