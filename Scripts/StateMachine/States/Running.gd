@@ -34,7 +34,6 @@ func update(delta):
 		_player.transform = _player.transform.interpolate_with(target_direction, floor_rotation_speed)
 	
 	# Process all relevant timers
-	
 	# Handle all states
 	if _state.attempting_pivot:
 		_state.update_state("FloorSlide")
@@ -60,7 +59,7 @@ func update(delta):
 		return
 	
 	#Process physics
-	_state.velocity = _state.calculate_velocity(0, delta)
+	_state.velocity = _state.calculate_velocity(-1, delta)
 	
 	pass
 
