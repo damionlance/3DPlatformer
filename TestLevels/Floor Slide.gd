@@ -32,14 +32,14 @@ func update(delta):
 		_state.update_state("Falling")
 		return
 	if  _state._jump_state == _state.jump_pressed:
-		print("DO A SIDE FLIP")
+		_state.update_state("SideFlip")
 		return
 	
 	_state.velocity = _state.calculate_velocity(0, delta)
 	pass
 
 func reset():
-	
+	_state.attempting_pivot = false
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
