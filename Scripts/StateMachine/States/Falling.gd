@@ -1,11 +1,6 @@
-extends Node
+extends AerialMovement
 
 class_name Falling
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
 #public variables
 var cancellable = true
@@ -16,8 +11,6 @@ var motion_input : String
 var _state_name = "Falling"
 
 #onready variables
-onready var _state = get_parent()
-onready var _player = get_parent().get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,35 +18,15 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
+	# Handle animation tree
 	_player.anim_tree.travel("Fall")
-	var forwards = _state._camera.global_transform.basis.z
-	forwards.y = 0
-	forwards = forwards.normalized()
-	forwards *= _state.input_direction.z
-	var right = _state._camera.global_transform.basis.x * _state.input_direction.x
 	
-	if _state.move_direction.length() > 1:
-		_state.move_direction = _state.move_direction.normalized()
-	_state.move_direction.y = 0
+	# Process movements
+	standard_aerial_drift()
 	
-	_state.snap_vector = Vector3.ZERO
-	if abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > (3 * PI)/4:
-		# Drift Backwards logic
-		_state.current_speed += _state.air_acceleration
-		_state._air_drift_state = _state.not_air_drifting
-	elif abs(_state.input_direction.angle_to(_state.entering_jump_angle)) > PI/3:
-		# Drift Sideways logic
-		if (_state._air_drift_state == _state.not_air_drifting):
-			_state._air_drift_state = _state.air_drifting
-		
-		
-	elif not _state.input_direction:
-		_state._air_drift_state = _state.not_air_drifting
-		_state.current_speed *= _state.air_friction
+	# Update relevant counters
 	
-	#_state.move_direction = forwards + right
-	_state.velocity = _state.calculate_velocity(_state._fall_gravity, delta)
-	
+	# Handle state logic
 	if _player.is_on_floor():
 		if _state.input_direction:
 			_state.update_state("Running")
@@ -62,14 +35,21 @@ func update(delta):
 		_state.update_state("Idle")
 		_state.just_landed = true
 		return
-	if _state.wall_jump_collision_check() and _state._allow_wall_jump:
+	if wall_jump_collision_check() and _state._allow_wall_jump:
 		_state.update_state("WallSlide")
 		return
 	
+	var current_fall_gravity
+	match current_jump:
+		1: current_fall_gravity = _fall_gravity
+		2: current_fall_gravity = _fall2_gravity
+		_: current_fall_gravity = _fall_gravity
+	
+	# Process Physics
+	_state.velocity = _state.calculate_velocity(current_fall_gravity, delta)
+	
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 func reset():
+	_state.snap_vector = Vector3.ZERO
 	pass

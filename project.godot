@@ -9,17 +9,27 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AerialMovement",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/States/aerial_movement.gd"
+}, {
 "base": "Spatial",
 "class": "CameraRig",
 "language": "GDScript",
 "path": "res://Scripts/Camera/CameraRig.gd"
 }, {
-"base": "Node",
+"base": "AerialMovement",
 "class": "Dive",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Dive.gd"
 }, {
-"base": "Node",
+"base": "GroundedMovement",
+"class": "DiveFloor",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/States/Dive Floor.gd"
+}, {
+"base": "AerialMovement",
 "class": "Falling",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Falling.gd"
@@ -29,12 +39,22 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Falling2.gd"
 }, {
+"base": "GroundedMovement",
+"class": "FloorSlide",
+"language": "GDScript",
+"path": "res://TestLevels/Floor Slide.gd"
+}, {
 "base": "Node",
+"class": "GroundedMovement",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/States/grounded_movement.gd"
+}, {
+"base": "GroundedMovement",
 "class": "Idle",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Idle.gd"
 }, {
-"base": "Node",
+"base": "AerialMovement",
 "class": "Jump",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Jump.gd"
@@ -174,17 +194,22 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/qodot/src/import_plugins/quake_wad_import_plugin.gd"
 }, {
+"base": "AerialMovement",
+"class": "SideFlip",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/States/SideFlip.gd"
+}, {
 "base": "LiquidLayer",
 "class": "SlimeLayer",
 "language": "GDScript",
 "path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/slime.gd"
 }, {
-"base": "Node",
+"base": "AerialMovement",
 "class": "SpinFall",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Spin Fall.gd"
 }, {
-"base": "Node",
+"base": "AerialMovement",
 "class": "SpinJump",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Spin Jump.gd"
@@ -214,12 +239,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/qodot/src/resources/game-definitions/trenchbroom/trenchbroom_tag.gd"
 }, {
-"base": "Node",
+"base": "GroundedMovement",
 "class": "Walking",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Running.gd"
 }, {
-"base": "Node",
+"base": "AerialMovement",
 "class": "WallSlide",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Wall Slide.gd"
@@ -230,10 +255,14 @@ _global_script_classes=[ {
 "path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/water.gd"
 } ]
 _global_script_class_icons={
+"AerialMovement": "",
 "CameraRig": "",
 "Dive": "",
+"DiveFloor": "",
 "Falling": "",
 "Falling2": "",
+"FloorSlide": "",
+"GroundedMovement": "",
 "Idle": "",
 "Jump": "",
 "Jump2": "",
@@ -263,6 +292,7 @@ _global_script_class_icons={
 "QuakePaletteImportPlugin": "",
 "QuakeWadFile": "",
 "QuakeWadImportPlugin": "",
+"SideFlip": "",
 "SlimeLayer": "",
 "SpinFall": "",
 "SpinJump": "",

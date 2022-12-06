@@ -1,4 +1,4 @@
-extends Node
+extends AerialMovement
 
 class_name WallSlide
 
@@ -25,8 +25,6 @@ var forwards
 var right
 
 #onready variables
-onready var _state = get_parent()
-onready var _player = get_parent().get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
