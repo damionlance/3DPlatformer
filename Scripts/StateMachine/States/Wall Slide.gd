@@ -56,7 +56,7 @@ func update(delta):
 	else:
 		if  _state._jump_state == _state.jump_pressed:
 			directional_input_handling()
-			_state.current_speed = _state.max_speed
+			#_state.current_speed = _state.max_speed
 			_state.update_state("Jump")
 			_state._allow_wall_jump = false
 	_state.velocity = _state.calculate_velocity(-1, delta)

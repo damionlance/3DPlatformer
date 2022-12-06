@@ -17,4 +17,4 @@ func _ready():
 
 func _on_poolPartyPortal_body_entered(body):
 	if body is preload("res://Scripts/Player.gd"):
-		get_tree().change_scene_to(load('res://TestLevels/Levels/demoMap.tscn'))
+		get_tree().change_scene_to(load('res://TestLevels/Levels/poolparty.tscn'))

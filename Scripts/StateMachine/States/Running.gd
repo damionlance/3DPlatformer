@@ -24,7 +24,7 @@ func _ready():
 func update(delta):
 	# Handle Animation Tree
 	_player.anim_tree.travel("Run")
-	_player.particles.emitting = true
+	#_player.particles.emitting = true
 	
 	# Process all inputs
 	grounded_movement_processing()

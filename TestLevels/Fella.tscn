@@ -1,7 +1,7 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
-[ext_resource path="res://3D Assets/Godot Worthy Models/JacketMat.material" type="Material" id=2]
+[ext_resource path="res://3D Assets/shadow.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/StateMachine/State.gd" type="Script" id=5]
@@ -14,7 +14,7 @@
 [ext_resource path="res://Scripts/StateMachine/States/Spin Fall.gd" type="Script" id=12]
 [ext_resource path="res://TestLevels/Floor Slide.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/StateMachine/States/Dive Floor.gd" type="Script" id=14]
-[ext_resource path="res://3D Assets/Godot Worthy Models/Boot.material" type="Material" id=15]
+[ext_resource path="res://Scripts/shadow.gd" type="Script" id=15]
 [ext_resource path="res://Scripts/StateMachine/States/Dive.gd" type="Script" id=16]
 [ext_resource path="res://Scripts/StateMachine/States/SideFlip.gd" type="Script" id=17]
 
@@ -91,7 +91,7 @@ xfade_time = 0.1
 [sub_resource type="AnimationNodeStateMachineTransition" id=67]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=68]
-xfade_time = 0.1
+xfade_time = 1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=69]
 xfade_time = 0.1
@@ -109,7 +109,7 @@ states/Fall/position = Vector2( 400.59, 22.0475 )
 states/Idle1/node = SubResource( 45 )
 states/Idle1/position = Vector2( 210.402, 115.391 )
 states/Jump/node = SubResource( 46 )
-states/Jump/position = Vector2( 564.927, 131.235 )
+states/Jump/position = Vector2( 564.315, 131.235 )
 states/Run/node = SubResource( 47 )
 states/Run/position = Vector2( 402.09, 113.735 )
 "states/Side Flip/node" = SubResource( 48 )
@@ -133,7 +133,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194883,
 "index_count": 14868,
-"material": ExtResource( 15 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.116977, -0.0596533, -0.309489, 0.446111, 0.650154, 0.774673 ) ],
 "vertex_count": 2480
@@ -173,6 +172,9 @@ bind/9/name = "Head"
 bind/9/bone = -1
 bind/9/pose = Transform( 1.39873, -0.0170577, -0.000968004, 0.0170577, 1.39873, 4.52422e-07, 0.000967926, -1.19812e-05, 1.39884, 0.0390726, -1.88979, -0.0556001 )
 
+[sub_resource type="SpatialMaterial" id=78]
+albedo_color = Color( 0.913725, 1, 0.164706, 1 )
+
 [sub_resource type="ArrayMesh" id=3]
 resource_name = "lil fella_Mesh"
 surfaces/0 = {
@@ -182,11 +184,17 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194883,
 "index_count": 14868,
-"material": ExtResource( 15 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.565004, -0.0596533, -0.309489, 0.446111, 0.650154, 0.774673 ) ],
 "vertex_count": 2480
 }
+
+[sub_resource type="SpatialMaterial" id=79]
+albedo_color = Color( 0.913725, 1, 0.164706, 1 )
+
+[sub_resource type="SpatialMaterial" id=77]
+params_cull_mode = 2
+albedo_color = Color( 0.203922, 0.2, 0.67451, 1 )
 
 [sub_resource type="ArrayMesh" id=4]
 resource_name = "lil fella_Sphere001"
@@ -197,7 +205,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194911,
 "index_count": 8820,
-"material": ExtResource( 2 ),
+"material": SubResource( 77 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( -0.787768, 0.298187, -0.780458, 1.54762, 1.21375, 1.52471 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.46847, 1.16586, -0.526438, 0.950717, 0.346074, 0.972313 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.500843, 1.19192, -0.526438, 0.971075, 0.320022, 0.972313 ) ],
 "vertex_count": 1795
@@ -226,11 +234,13 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 744,
-"material": ExtResource( 2 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.245026, 0.78036, -0.149398, 0.656933, 0.645796, 0.291028 ), AABB( 0.245026, 0.78036, -0.149398, 0.656933, 0.645796, 0.291028 ), AABB( -0.833872, 0.78036, -0.149398, 0.588846, 0.645796, 0.291028 ), AABB( -0.901959, 0.78036, -0.149398, 0.656933, 0.645796, 0.291028 ) ],
 "vertex_count": 260
 }
+
+[sub_resource type="SpatialMaterial" id=80]
+albedo_color = Color( 0.290196, 0.658824, 0.988235, 1 )
 
 [sub_resource type="Animation" id=7]
 resource_name = "Fall"
@@ -976,6 +986,7 @@ tracks/9/keys = PoolRealArray( 0, 1, 4.65916e-08, -1.49012e-08, -5.96046e-08, -3
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 3 )
+shadow_path = NodePath("PlayerShadow")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, 0 )
@@ -1118,10 +1129,12 @@ bones/9/bound_children = [  ]
 [node name="Boot Left" type="MeshInstance" parent="lilfella/Object/Skeleton"]
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
+material/0 = SubResource( 78 )
 
 [node name="Boot Right" type="MeshInstance" parent="lilfella/Object/Skeleton"]
 mesh = SubResource( 3 )
 skin = SubResource( 2 )
+material/0 = SubResource( 79 )
 
 [node name="Coat" type="MeshInstance" parent="lilfella/Object/Skeleton"]
 mesh = SubResource( 4 )
@@ -1134,6 +1147,7 @@ skin = SubResource( 2 )
 [node name="Sleeves" type="MeshInstance" parent="lilfella/Object/Skeleton"]
 mesh = SubResource( 6 )
 skin = SubResource( 2 )
+material/0 = SubResource( 80 )
 
 [node name="Empty" type="Spatial" parent="lilfella"]
 transform = Transform( 0.0099109, 2.67075e-07, 2.24037, -2.24037, 6.67688e-07, 0.00991103, -8.01226e-07, -2.24039, 1.33538e-07, -2.54099, -1.15464, 0 )
@@ -1152,3 +1166,12 @@ anims/Run = SubResource( 13 )
 "anims/Side Flip" = SubResource( 14 )
 "anims/Spin Jump" = SubResource( 15 )
 "anims/Wall Slide" = SubResource( 16 )
+
+[node name="PlayerShadow" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.01, 0 )
+opacity = 0.6
+texture = ExtResource( 2 )
+script = ExtResource( 15 )
+scale_min = 3.0
+scale_max = 5.5
+max_distance_from_ground = 3.0

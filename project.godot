@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Camera/CameraRig.gd"
 }, {
-"base": "AerialMovement",
+"base": "Node",
 "class": "Dive",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Dive.gd"
@@ -29,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Dive Floor.gd"
 }, {
-"base": "AerialMovement",
+"base": "Node",
 "class": "Falling",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Falling.gd"
@@ -49,12 +49,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/grounded_movement.gd"
 }, {
-"base": "GroundedMovement",
+"base": "Node",
 "class": "Idle",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Idle.gd"
 }, {
-"base": "AerialMovement",
+"base": "Node",
 "class": "Jump",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Jump.gd"
@@ -204,12 +204,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/slime.gd"
 }, {
-"base": "AerialMovement",
+"base": "Node",
 "class": "SpinFall",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Spin Fall.gd"
 }, {
-"base": "AerialMovement",
+"base": "Node",
 "class": "SpinJump",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Spin Jump.gd"
@@ -312,9 +312,18 @@ config/name="3D Platformer"
 run/main_scene="res://TestLevels/Fella.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Scripts/global.gd"
+
 [debug]
 
 settings/fps/force_fps=60
+
+[display]
+
+window/size/width=960
+window/size/height=720
 
 [editor]
 

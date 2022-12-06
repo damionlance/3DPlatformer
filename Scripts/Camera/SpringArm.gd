@@ -3,7 +3,7 @@ extends SpringArm
 # Control the zoom of the camera with `zoom`, a value between 0 and 1
 
 export var length_range := Vector2(3.0, 6.0) setget set_length_range
-export var zoom := 0.5 setget set_zoom
+export var zoom := 1.0 setget set_zoom
 
 onready var _position_start: Vector3 = translation
 

@@ -90,15 +90,28 @@ onready var _raycast_right = _player.get_node("WallRayRight")
 func _ready():
 	update_state("Falling")
 	pivot_buffer.resize(pivot_buffer_size)
+	_player.get_node("PlayerShadow").translation = Vector3.ZERO
 	pass # Replace with function body.
 
 func _process(delta):
+	update_shadow()
 	input_handling()
 	jump_state_handling()
 	pivot_handling()
 	
 	_current_state.update(delta)
 	velocity = _player.move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)
+
+func update_shadow():
+	# update shadow
+	var player_shadow = _player.get_node("PlayerShadow")
+	var player_body = _player.get_node("lilfella")
+	var space_state = _player.get_world().direct_space_state
+	var result = space_state.intersect_ray(_player.translation, _player.translation + Vector3(0, -100, 00))
+	if result:
+		if "worldspawn" in result.collider.name:
+			var distance_from_ground = result.position - _player.translation
+			player_shadow.update_shadow(_player.translation, distance_from_ground.y, _player.rotation)
 
 func input_handling():
 	var controller_input = Input.get_vector("Left", "Right", "Backward", "Forward")
