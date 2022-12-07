@@ -33,8 +33,8 @@ func update(delta):
 		_state.update_state("Idle")
 		return
 	if (_player.is_on_floor()):
-		_state.current_speed *= .95
-		if _state._jump_state == _state.jump_pressed:
+		_state.current_speed *= .915
+		if _state.attempting_jump:
 			_state.update_state("Jump")
 		if _state.current_speed < .01:
 			_state.current_speed = 0

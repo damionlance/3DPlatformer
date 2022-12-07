@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
 [ext_resource path="res://3D Assets/Godot Worthy Models/JacketMat.material" type="Material" id=2]
@@ -17,6 +17,9 @@
 [ext_resource path="res://3D Assets/Godot Worthy Models/Boot.material" type="Material" id=15]
 [ext_resource path="res://Scripts/StateMachine/States/Dive.gd" type="Script" id=16]
 [ext_resource path="res://Scripts/StateMachine/States/SideFlip.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/Controller.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scripts/StateMachine/States/aerial_movement.gd" type="Script" id=19]
+[ext_resource path="res://Scripts/StateMachine/States/grounded_movement.gd" type="Script" id=20]
 
 [sub_resource type="SphereShape" id=40]
 radius = 0.500044
@@ -982,7 +985,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.61
 shape = SubResource( 40 )
 
 [node name="BackCollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.364348, 0.105312 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.384848, 0.173857 )
 shape = SubResource( 41 )
 
 [node name="StateMachine" type="Node" parent="."]
@@ -1023,6 +1026,14 @@ script = ExtResource( 13 )
 
 [node name="SideFlip" type="Node" parent="StateMachine"]
 script = ExtResource( 17 )
+
+[node name="Controller" parent="StateMachine" instance=ExtResource( 18 )]
+
+[node name="AerialMovement" type="Node" parent="StateMachine"]
+script = ExtResource( 19 )
+
+[node name="GroundedMovement" type="Node" parent="StateMachine"]
+script = ExtResource( 20 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 30 )

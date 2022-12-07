@@ -41,7 +41,8 @@ func update(delta):
 
 func reset():
 	shorthop_timer = 0
-	entering_jump_angle = _state.input_direction
+	entering_jump_angle = _state._controller.movement_direction
+	_state.move_direction = _state.camera_relative_movement
 	_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = _jump_strength*.75
 	_state.current_speed += dive_speed

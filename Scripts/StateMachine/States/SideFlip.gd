@@ -11,11 +11,11 @@ func _ready():
 func update(delta):
 	_player.anim_tree.travel("Side Flip")
 	
-	if wall_jump_collision_check() and _state._allow_wall_jump:
+	if wall_jump_collision_check():
 		_state.update_state("WallSlide")
 		return
 	if _player.is_on_floor():
-		if _state.input_direction:
+		if _state._controller.movement_direction:
 			_state.update_state("Running")
 			return
 		_state.snap_vector = Vector3.DOWN
@@ -23,13 +23,14 @@ func update(delta):
 		_state.just_landed = true
 		return
 	
-	_state.velocity = _state.calculate_velocity(_fall2_gravity, delta)
+	_state.velocity = _state.calculate_velocity(_side_jump_gravity, delta)
 	
 	pass
 
 func reset():
-	_state.move_direction = _state.move_direction
-	_state.velocity.y = _jump2_strength * 2
+	_state.move_direction = -_state.move_direction
+	_state.current_speed = 6
+	_state.velocity.y = _side_jump_strength
 	_state.snap_vector = Vector3.ZERO
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 	pass

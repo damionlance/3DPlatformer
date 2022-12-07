@@ -15,27 +15,26 @@ func _ready():
 func update(delta):
 	# Handle animation Tree
 	_player.anim_tree.travel("Idle1")
-	
 	# Process inputs
-	_state.current_speed *= floor_fricion
+	_state.current_speed *= floor_friction
 	
 	# Handle all relevant timers
 	
 	# Handle all states
 	if not _player.is_on_floor():
 		_state.update_state("Falling")
-	if _state.input_direction:
+	if _state._controller.input_strength > .1:
 		_state.update_state("Running")
 		return
 	else:
 		_state.current_speed = 0
 		_state.velocity = Vector3.ZERO
-	if  _state._jump_state == _state.jump_pressed:
+	if  _state.attempting_jump:
 		_state.update_state("Jump")
 		return
 	
 	# Process physics
-	_state.velocity = _state.calculate_velocity(0, delta)
+	_state.velocity = _state.calculate_velocity(-1, delta)
 	pass
 
 func reset():

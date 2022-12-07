@@ -21,17 +21,16 @@ func update(delta):
 	
 	# Update all relevant counters
 	shorthop_timer += 1
-	
 	# Handle all state logic
-	if _state._dive_state == _state.dive_pressed:
+	if _state.attempting_dive:
 		_state.update_state("Dive")
 		return
 	
-	if wall_jump_collision_check() and _state._allow_wall_jump:
+	if wall_jump_collision_check():
 		_state.update_state("WallSlide")
 		return
 	
-	if not _state.attempting_jump and shorthop_timer == _state._shorthop_buffer:
+	if _state._controller._jump_state == _state._controller.jump_released and shorthop_timer == shorthop_buffer:
 		_state.velocity.y *= .6
 		_state.update_state("Falling")
 		return
@@ -44,6 +43,7 @@ func update(delta):
 	match current_jump:
 		1: current_jump_gravity = _jump_gravity
 		2: current_jump_gravity = _jump2_gravity
+		_: current_jump_gravity = _jump_gravity
 		
 	_state.velocity = _state.calculate_velocity(current_jump_gravity, delta)
 	pass
@@ -55,7 +55,7 @@ func reset():
 		current_jump = 1
 	
 	shorthop_timer = 0
-	entering_jump_angle = _state.input_direction
+	entering_jump_angle = _state._controller.movement_direction
 	_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = _jump_strength
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)

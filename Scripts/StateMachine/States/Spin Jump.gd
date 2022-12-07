@@ -20,8 +20,7 @@ func update(delta):
 	# Update relevant timers
 	
 	# Handle All State Logic
-	if not _state.attempting_jump:
-		_state._jump_state = _state.jump_released
+	if _state._controller._jump_state == _state._controller.jump_released:
 		_state.velocity.y *= .6
 		_state.update_state("Falling")
 		return
@@ -34,7 +33,6 @@ func update(delta):
 	pass
 
 func reset():
-	entering_jump_angle = _state.input_direction
 	_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = _spin_jump_strength
 	pass

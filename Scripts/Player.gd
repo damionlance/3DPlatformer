@@ -9,6 +9,9 @@ var anim_tree
 
 var animations = ['Idle1', 'Run', 'Jump', 'Fall']
 
+var velocity := Vector3.ZERO
+var snap_vector := Vector3.ZERO
+
 var coins = 0
 var tween
 
@@ -20,6 +23,13 @@ func _ready():
 func _process(_delta):
 	camera_pivot.translation = lerp(camera_pivot.translation, translation, .1)
 	pass
+
+func _physics_process(delta):
+	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)
+
+func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
+	velocity = _velocity
+	snap_vector = _snap_vector
 
 func add_coin():
 	coins += 1
