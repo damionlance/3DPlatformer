@@ -18,11 +18,6 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	_player.anim_tree.travel("Floor Skid")
-	
-	_state._air_drift_state = _state.not_air_drifting
-	_state.current_speed *= .85
-	
 	if _state.current_speed < .5:
 		_state.update_state("Idle")
 		return
@@ -33,6 +28,11 @@ func update(delta):
 	if  _state.attempting_jump:
 		_state.update_state("SideFlip")
 		return
+	
+	_player.anim_tree.travel("Floor Skid")
+	
+	_state._air_drift_state = _state.not_air_drifting
+	_state.current_speed *= .85
 	
 	_state.velocity = _state.calculate_velocity(0, delta)
 	pass

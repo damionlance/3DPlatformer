@@ -8,7 +8,7 @@ class_name GroundedMovement
 
 # Floor Physics Constants
 export var floor_acceleration := 0.3
-export var max_speed := 13.0
+export var max_speed := 10
 export var floor_friction := .8
 export var floor_rotation_speed :=  .3
 

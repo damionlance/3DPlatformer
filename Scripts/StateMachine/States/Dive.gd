@@ -21,6 +21,10 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
+	# Handle state changes
+	if _player.is_on_floor():
+		_state.update_state("Dive Floor")
+	
 	# Handle animation tree
 	_player.anim_tree.travel("Floor Slide")
 	
@@ -30,9 +34,7 @@ func update(delta):
 	# Handle inputs
 	standard_aerial_drift()
 	
-	# Handle state changes
-	if _player.is_on_floor():
-		_state.update_state("Dive Floor")
+	
 	# Process Physics
 	_state.velocity = _state.calculate_velocity(_jump_gravity, delta)
 	

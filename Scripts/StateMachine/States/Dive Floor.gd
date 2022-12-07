@@ -21,13 +21,6 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	# Handle animation tree
-	_player.anim_tree.travel("Floor Slide")
-	
-	# Process relevant timers
-	
-	# Handle inputs
-	
 	# Handle state changes
 	if _state.current_speed <= .5:
 		_state.update_state("Idle")
@@ -40,6 +33,13 @@ func update(delta):
 			_state.current_speed = 0
 	else:
 		_state.update_state("Falling")
+	
+	# Handle animation tree
+	_player.anim_tree.travel("Floor Slide")
+	
+	# Process relevant timers
+	
+	# Handle inputs
 	
 	# Process Physics
 	_state.velocity = _state.calculate_velocity(0, delta)

@@ -22,6 +22,28 @@ func _ready():
 	pass 
 
 func update(delta):
+	# Handle all states
+	if _state._controller.spin_entered:
+		_state.update_state("Floor Spin")
+	if _state._controller.pivot_entered:
+		_state.update_state("FloorSlide")
+		return
+	if _state.attempting_dive:
+		_state.update_state("Dive")
+		return
+	if _state.attempting_jump:
+		_state.update_state("Jump")
+		return
+	if not _player.is_on_floor():
+		_fall_timer += 1
+		if _fall_timer > _state.coyote_time:
+			_state.update_state("Falling")
+			return
+	else:
+		_fall_timer = 0
+	if _state._controller.input_strength < .2 and _state.current_speed < .5:
+		_state.update_state("Idle")
+		return
 	# Handle Animation Tree
 	_player.anim_tree.travel("Run")
 	#_player.particles.emitting = true
@@ -35,29 +57,6 @@ func update(delta):
 		_player.transform = _player.transform.interpolate_with(target_direction, floor_rotation_speed)
 	
 	# Process all relevant timers
-	# Handle all states
-	if _state._controller.pivot_entered:
-		_state.update_state("FloorSlide")
-		return
-	if _state.attempting_dive:
-		_state.update_state("Dive")
-		return
-	if _state.attempting_jump:
-		if _state.spin_allowed:
-			_state.update_state("SpinJump")
-		else:
-			_state.update_state("Jump")
-		return
-	if not _player.is_on_floor():
-		_fall_timer += 1
-		if _fall_timer > _state.coyote_time:
-			_state.update_state("Falling")
-			return
-	else:
-		_fall_timer = 0
-	if _state._controller.input_strength < .2 and _state.current_speed < .5:
-		_state.update_state("Idle")
-		return
 	
 	#Process physics
 	_state.velocity = _state.calculate_velocity(-1, delta)
@@ -65,5 +64,5 @@ func update(delta):
 	pass
 
 func reset():
-	
+	_state.snap_vector = Vector3.DOWN
 	pass

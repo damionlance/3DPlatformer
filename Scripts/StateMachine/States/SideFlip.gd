@@ -9,19 +9,16 @@ func _ready():
 	_state.update_state(_state_name)
 
 func update(delta):
-	_player.anim_tree.travel("Side Flip")
-	
 	if wall_jump_collision_check():
 		_state.update_state("WallSlide")
 		return
 	if _player.is_on_floor():
-		if _state._controller.movement_direction:
-			_state.update_state("Running")
-			return
 		_state.snap_vector = Vector3.DOWN
 		_state.update_state("Idle")
 		_state.just_landed = true
 		return
+	
+	_player.anim_tree.travel("Side Flip")
 	
 	_state.velocity = _state.calculate_velocity(_side_jump_gravity, delta)
 	
