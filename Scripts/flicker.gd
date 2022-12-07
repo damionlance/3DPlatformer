@@ -5,6 +5,8 @@ extends SpotLight
 # var a = 2
 # var b = "text"
 onready var flickerTimer = get_node("Timer")
+onready var light_mesh = $"/root/Spatial/QodotMap/entity_4_func_group/entity_4_mesh_instance"
+onready var light_mesh_mat = light_mesh.get_active_material(0)
 
 var rng = RandomNumberGenerator.new()
 var state = 2
@@ -18,7 +20,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(flickerTimer.get_time_left())
 	rng.randomize()
 	var new_emission = rng.randf_range(-10.0,50.0)
 	rng.randomize()
@@ -36,12 +37,14 @@ func _process(delta):
 			state = 0
 			
 	if state == 2:
-			light_energy = 50
+		light_mesh_mat.emission_enabled = true
+		light_energy = 50
 	elif state == 1:
-			light_energy = 7
+		light_mesh_mat.emission_enabled = true
+		light_energy = 7
 	else:
+			light_mesh_mat.emission_enabled = false
 			light_energy = 1
 			if flickerTimer.is_stopped():
-				print("here?")
 				flickerTimer.start(.5)
 		

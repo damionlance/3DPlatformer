@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Camera/CameraRig.gd"
 }, {
-"base": "Node",
+"base": "AerialMovement",
 "class": "Dive",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Dive.gd"
@@ -29,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Dive Floor.gd"
 }, {
-"base": "Node",
+"base": "AerialMovement",
 "class": "Falling",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Falling.gd"
@@ -49,12 +49,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/grounded_movement.gd"
 }, {
-"base": "Node",
+"base": "GroundedMovement",
 "class": "Idle",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Idle.gd"
 }, {
-"base": "Node",
+"base": "AerialMovement",
 "class": "Jump",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Jump.gd"
@@ -204,12 +204,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/slime.gd"
 }, {
-"base": "Node",
+"base": "AerialMovement",
 "class": "SpinFall",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Spin Fall.gd"
 }, {
-"base": "Node",
+"base": "AerialMovement",
 "class": "SpinJump",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Spin Jump.gd"

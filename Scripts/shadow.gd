@@ -1,9 +1,9 @@
 extends Sprite3D
 
-export (float, 0, 10) var scale_min = 1
-export (float, 0, 10) var scale_max = 2
+export (float, 0, 10) var scale_min = 2
+export (float, 0, 10) var scale_max = 6
 export (float, 1, 10) var max_distance_from_ground = 2
-export (float, 0, -2) var position_offset = -0.2
+export (float, 0, -2) var position_offset = -0.4
 
 func update_shadow(origin_position: Vector3, distance_from_ground: float, player_rotation) -> void:
 	# set shadow position

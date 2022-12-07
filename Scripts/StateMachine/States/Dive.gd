@@ -44,7 +44,7 @@ func reset():
 	entering_jump_angle = _state._controller.movement_direction
 	_state.move_direction = _state.camera_relative_movement
 	_state.snap_vector = Vector3.ZERO
-	_state.velocity.y = _jump_strength*.75
+	_state.velocity.y = _jump_strength*.5
 	_state.current_speed += dive_speed
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 	pass

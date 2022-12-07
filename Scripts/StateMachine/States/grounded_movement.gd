@@ -7,10 +7,10 @@ class_name GroundedMovement
 # var b = "text"
 
 # Floor Physics Constants
-export var floor_acceleration := 0.5
-export var max_speed := 10.0
+export var floor_acceleration := 0.3
+export var max_speed := 13.0
 export var floor_friction := .8
-export var floor_rotation_speed :=  .2
+export var floor_rotation_speed :=  .3
 
 onready var _state = get_parent()
 onready var _player = get_parent().get_parent()

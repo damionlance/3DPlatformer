@@ -55,7 +55,7 @@ func update(delta):
 			return
 	else:
 		_fall_timer = 0
-	if _state._controller.input_strength < .2 and _state.velocity.length() < .5:
+	if _state._controller.input_strength < .2 and _state.current_speed < .5:
 		_state.update_state("Idle")
 		return
 	

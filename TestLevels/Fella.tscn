@@ -1,7 +1,7 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
-[ext_resource path="res://3D Assets/Godot Worthy Models/JacketMat.material" type="Material" id=2]
+[ext_resource path="res://3D Assets/shadow.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/StateMachine/State.gd" type="Script" id=5]
@@ -14,12 +14,13 @@
 [ext_resource path="res://Scripts/StateMachine/States/Spin Fall.gd" type="Script" id=12]
 [ext_resource path="res://TestLevels/Floor Slide.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/StateMachine/States/Dive Floor.gd" type="Script" id=14]
-[ext_resource path="res://3D Assets/Godot Worthy Models/Boot.material" type="Material" id=15]
+[ext_resource path="res://3D Assets/Alpha_Joints_MAT.material" type="Material" id=15]
 [ext_resource path="res://Scripts/StateMachine/States/Dive.gd" type="Script" id=16]
 [ext_resource path="res://Scripts/StateMachine/States/SideFlip.gd" type="Script" id=17]
 [ext_resource path="res://Scripts/Controller.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scripts/StateMachine/States/aerial_movement.gd" type="Script" id=19]
 [ext_resource path="res://Scripts/StateMachine/States/grounded_movement.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/shadow.gd" type="Script" id=21]
 
 [sub_resource type="SphereShape" id=40]
 radius = 0.500044
@@ -102,6 +103,11 @@ xfade_time = 0.1
 [sub_resource type="AnimationNodeStateMachineTransition" id=70]
 xfade_time = 0.1
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=72]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=73]
+
 [sub_resource type="AnimationNodeStateMachine" id=30]
 states/Fall/node = SubResource( 42 )
 states/Fall/position = Vector2( 400.59, 22.0475 )
@@ -121,9 +127,9 @@ states/Run/position = Vector2( 402.09, 113.735 )
 "states/Spin Jump/position" = Vector2( 210.025, 196.173 )
 "states/Wall Slide/node" = SubResource( 50 )
 "states/Wall Slide/position" = Vector2( 566.09, 21.0475 )
-transitions = [ "Idle1", "Run", SubResource( 51 ), "Run", "Idle1", SubResource( 52 ), "Run", "Jump", SubResource( 53 ), "Jump", "Fall", SubResource( 54 ), "Fall", "Idle1", SubResource( 55 ), "Jump", "Wall Slide", SubResource( 56 ), "Wall Slide", "Jump", SubResource( 57 ), "Run", "Fall", SubResource( 58 ), "Idle1", "Fall", SubResource( 59 ), "Run", "Spin Jump", SubResource( 60 ), "Spin Jump", "Fall", SubResource( 61 ), "Spin Jump", "Idle1", SubResource( 62 ), "Floor Skid", "Side Flip", SubResource( 64 ), "Side Flip", "Idle1", SubResource( 65 ), "Run", "Floor Slide", SubResource( 66 ), "Floor Slide", "Idle1", SubResource( 67 ), "Run", "Floor Skid", SubResource( 68 ), "Idle1", "Jump", SubResource( 69 ), "Fall", "Run", SubResource( 70 ) ]
+transitions = [ "Idle1", "Run", SubResource( 51 ), "Run", "Idle1", SubResource( 52 ), "Run", "Jump", SubResource( 53 ), "Jump", "Fall", SubResource( 54 ), "Fall", "Idle1", SubResource( 55 ), "Jump", "Wall Slide", SubResource( 56 ), "Wall Slide", "Jump", SubResource( 57 ), "Run", "Fall", SubResource( 58 ), "Idle1", "Fall", SubResource( 59 ), "Run", "Spin Jump", SubResource( 60 ), "Spin Jump", "Fall", SubResource( 61 ), "Spin Jump", "Idle1", SubResource( 62 ), "Floor Skid", "Side Flip", SubResource( 64 ), "Side Flip", "Idle1", SubResource( 65 ), "Run", "Floor Slide", SubResource( 66 ), "Floor Slide", "Idle1", SubResource( 67 ), "Run", "Floor Skid", SubResource( 68 ), "Idle1", "Jump", SubResource( 69 ), "Fall", "Run", SubResource( 70 ), "Floor Skid", "Idle1", SubResource( 72 ), "Side Flip", "Wall Slide", SubResource( 73 ) ]
 start_node = "Idle1"
-graph_offset = Vector2( -173.7, -23.0775 )
+graph_offset = Vector2( -173.7, -14.1255 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=25]
 
@@ -200,7 +206,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194911,
 "index_count": 8820,
-"material": ExtResource( 2 ),
+"material": ExtResource( 15 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( -0.787768, 0.298187, -0.780458, 1.54762, 1.21375, 1.52471 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.46847, 1.16586, -0.526438, 0.950717, 0.346074, 0.972313 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.500843, 1.19192, -0.526438, 0.971075, 0.320022, 0.972313 ) ],
 "vertex_count": 1795
@@ -229,7 +235,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 744,
-"material": ExtResource( 2 ),
+"material": ExtResource( 15 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.245026, 0.78036, -0.149398, 0.656933, 0.645796, 0.291028 ), AABB( 0.245026, 0.78036, -0.149398, 0.656933, 0.645796, 0.291028 ), AABB( -0.833872, 0.78036, -0.149398, 0.588846, 0.645796, 0.291028 ), AABB( -0.901959, 0.78036, -0.149398, 0.656933, 0.645796, 0.291028 ) ],
 "vertex_count": 260
@@ -679,6 +685,21 @@ tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = PoolRealArray( 0, 1, 4.26326e-14, -1.49012e-08, -5.96046e-08, -0.164998, -2.2513e-15, -3.93387e-08, 0.986294, 1, 1, 1, 0.0666667, 1, 4.26326e-14, -1.49012e-08, -5.96046e-08, -0.147829, -1.12256e-15, -3.94144e-08, 0.989013, 1, 1, 1, 0.133333, 1, 4.26326e-14, -1.49012e-08, -5.96046e-08, -0.107903, -4.69032e-15, -3.95441e-08, 0.994161, 1, 1, 1, 0.333333, 1, 4.26326e-14, -1.49012e-08, -5.96046e-08, 0.0475078, -2.11181e-15, -3.94423e-08, 0.998871, 1, 1, 1, 0.4, 1, 4.26326e-14, -1.49012e-08, -5.96046e-08, 0.0694001, -3.58912e-15, -5.44296e-09, 0.997589, 1, 1, 1, 0.416667, 1, 4.26326e-14, 1.49012e-08, -5.96046e-08, 0.0720345, 4.22984e-15, 1.71743e-08, 0.997402, 1, 1, 1 )
 
+[sub_resource type="Animation" id=71]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Object:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
 [sub_resource type="Animation" id=13]
 resource_name = "Run"
 length = 0.416667
@@ -826,7 +847,19 @@ tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/keys = PoolRealArray( 0, 1, 5.40174e-08, 7.45058e-08, -5.96046e-08, 1.88376e-08, -0.717122, 0.0816146, 0.692152, 1, 1, 1, 0.0666667, 1, 5.40174e-08, 7.45058e-08, -5.96046e-08, -0.17404, -0.674197, 0.261209, 0.668534, 1, 1, 1, 0.133333, 1, 5.40174e-08, 7.45058e-08, -5.96046e-08, -0.480769, -0.457675, 0.559689, 0.496128, 1, 1, 1, 0.2, 1, 5.40174e-08, 7.45058e-08, -5.96046e-08, -0.644727, -0.179897, 0.695178, 0.26209, 1, 1, 1, 0.266667, 1, 5.40174e-08, 7.45058e-08, -5.96046e-08, -0.693333, 0.0245045, 0.714253, 0.0923673, 1, 1, 1, 0.333333, 1, 5.40174e-08, 7.45058e-08, -5.96046e-08, 0.701488, -0.189071, -0.684532, 0.0598469, 1, 1, 1, 0.4, 1, 5.40174e-08, 7.45058e-08, -5.96046e-08, 0.696697, -0.33144, -0.597176, 0.219412, 1, 1, 1, 0.466667, 1, 5.40174e-08, 7.45058e-08, -5.96046e-08, 0.614456, -0.500985, -0.433518, 0.428393, 1, 1, 1, 0.533333, 1, 5.40174e-08, 7.45058e-08, -5.96046e-08, 0.316698, -0.669906, -0.16059, 0.652027, 1, 1, 1, 0.6, 1, 5.40174e-08, 7.45058e-08, -5.96046e-08, 0.0474534, -0.695902, 0.0441799, 0.715204, 1, 1, 1, 0.625, 1, 5.40174e-08, 7.45058e-08, -5.96046e-08, 0.00284018, -0.692554, 0.0758754, 0.717358, 1, 1, 1 )
+tracks/9/keys = PoolRealArray( 0, 1, 5.40174e-08, 7.45058e-08, -5.96046e-08, 1.88376e-08, -0.717122, 0.0816146, 0.692152, 1, 1, 1, 0.6, 1, 5.40174e-08, 7.45058e-08, -5.96046e-08, -0.047, -0.696, 0.044, 0.715, 1, 1, 1, 0.625, 1, 5.40174e-08, 7.45058e-08, -5.96046e-08, -0.003, -0.693, 0.076, 0.717, 1, 1, 1 )
+tracks/10/type = "value"
+tracks/10/path = NodePath("Object:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -180, 0, 0 ), Vector3( -355, 0, 0 ), Vector3( -360, 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=15]
 resource_name = "Spin Jump"
@@ -1159,7 +1192,14 @@ anims/Fall = SubResource( 7 )
 anims/Idle1 = SubResource( 10 )
 anims/Idle2 = SubResource( 11 )
 anims/Jump = SubResource( 12 )
+anims/RESET = SubResource( 71 )
 anims/Run = SubResource( 13 )
 "anims/Side Flip" = SubResource( 14 )
 "anims/Spin Jump" = SubResource( 15 )
 "anims/Wall Slide" = SubResource( 16 )
+
+[node name="PlayerShadow" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.1, 0 )
+opacity = 0.74
+texture = ExtResource( 2 )
+script = ExtResource( 21 )

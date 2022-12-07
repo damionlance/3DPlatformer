@@ -57,7 +57,7 @@ func update(delta):
 			directional_input_handling()
 			_state.current_speed = 10
 			_state.update_state("Jump")
-	_state.velocity = _state.calculate_velocity(-1, delta)
+	_state.velocity = _state.calculate_velocity(-10, delta)
 	pass
 
 func directional_input_handling():

@@ -51,7 +51,7 @@ export var air_acceleration := 2.0
 
 var wall_jump_speed = 12.5
 
-var dive_speed := 5
+var dive_speed := 6
 
 onready var _state = get_parent()
 onready var _player = get_parent().get_parent()

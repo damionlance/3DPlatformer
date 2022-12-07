@@ -84,6 +84,8 @@ func _process(delta):
 	_current_state.update(delta)
 	_player.update_physics_data(velocity, snap_vector)
 	velocity = _player.velocity
+	
+	update_shadow()
 
 func input_handling():
 	forwards = _camera.global_transform.basis.z
@@ -138,5 +140,17 @@ func calculate_velocity(gravity: float, delta) -> Vector3:
 	var new_velocity = move_direction * current_speed
 	new_velocity.y += velocity.y + gravity * delta
 	return new_velocity
+	
+func update_shadow():
+	# update shadow
+	var player_shadow = _player.get_node("PlayerShadow")
+	var player_body = _player.get_node("lilfella")
+	var space_state = _player.get_world().direct_space_state
+	var result = space_state.intersect_ray(Vector3(0, _player.translation.y, 0), _player.translation + Vector3(0, -20, 0))
+	if result:
+		if "worldspawn" in result.collider.name:
+			var distance_from_ground = result.position - _player.translation
+			player_shadow.update_shadow(_player.translation, distance_from_ground.y, _player.rotation)
+
 
 
