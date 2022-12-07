@@ -19,8 +19,6 @@ var pivot_buffer = []
 var pivot_buffer_size := 10
 
 # ALL SPIN JUMP STATE HANDLING
-var spin_jump_buffer := 90
-var spin_jump_timer := 0
 var spin_jump_angle := 0.0
 var spin_jump_start := Vector2.ZERO
 var spin_jump_sign := int(0)
@@ -127,7 +125,6 @@ func input_handling():
 		_jump_buffer += 1
 	else: 
 		attempting_dive = false
-	
 	if (_controller._jump_state == _controller.jump_released and
 		_controller._dive_state == _controller.dive_released):
 			_jump_buffer = 0

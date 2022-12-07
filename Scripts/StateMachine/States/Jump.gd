@@ -13,14 +13,6 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	# Handle animation tree
-	_player.anim_tree.travel("Jump")
-	
-	# Process movements
-	standard_aerial_drift()
-	
-	# Update all relevant counters
-	shorthop_timer += 1
 	# Handle all state logic
 	if _state.attempting_dive:
 		_state.update_state("Dive")
@@ -37,6 +29,14 @@ func update(delta):
 	if _state.velocity.y < 0:
 		_state.update_state("Falling")
 		return
+	# Handle animation tree
+	_player.anim_tree.travel("Jump")
+	
+	# Process movements
+	standard_aerial_drift()
+	
+	# Update all relevant counters
+	shorthop_timer += 1
 		
 	# Process physics
 	var current_jump_gravity

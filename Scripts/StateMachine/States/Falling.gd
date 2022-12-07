@@ -18,22 +18,12 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	# Handle animation tree
-	_player.anim_tree.travel("Fall")
-	
-	# Process movements
-	standard_aerial_drift()
-	
-	# Update relevant counters
 	
 	# Handle state logic
 	if _state.attempting_dive:
 		_state.update_state("Dive")
 		return
 	if _player.is_on_floor():
-		if _state._controller.movement_direction:
-			_state.update_state("Running")
-			return
 		_state.snap_vector = Vector3.DOWN
 		_state.update_state("Idle")
 		_state.just_landed = true
@@ -41,6 +31,14 @@ func update(delta):
 	if wall_jump_collision_check():
 		_state.update_state("WallSlide")
 		return
+	
+	# Handle animation tree
+	_player.anim_tree.travel("Fall")
+	
+	# Process movements
+	standard_aerial_drift()
+	
+	# Update relevant counters
 	
 	var current_fall_gravity
 	match current_jump:

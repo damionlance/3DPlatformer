@@ -12,14 +12,8 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	_player.anim_tree.travel("Spin Jump")
-	
-	spin_jump_drift()
 	
 	if _player.is_on_floor():
-		if _state._controller.movement_direction:
-			_state.update_state("Running")
-			return
 		_state.snap_vector = Vector3.DOWN
 		_state.update_state("Idle")
 		return
@@ -27,6 +21,10 @@ func update(delta):
 		_state.velocity.y *= .6
 		_state.update_state("Falling")
 		return
+	
+	_player.anim_tree.travel("Spin Jump")
+	
+	spin_jump_drift()
 	
 	_state.velocity = _state.calculate_velocity(_spin_fall_gravity, delta)
 	pass
