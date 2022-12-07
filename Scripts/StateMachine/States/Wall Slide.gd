@@ -45,31 +45,24 @@ func update(delta):
 		return
 	
 	if wall_bounce_timer < wall_bounce_buffer:
-		if  _state._jump_state == _state.jump_pressed:
+		if  _state.attempting_jump:
 			_state.move_direction = entering_angle.bounce(surface_normal)
 			if _state.current_speed + 0.25 > 12.5:
 				_state.current_speed += 0.25
 			else:
 				_state.current_speed = 12.5
 			_state.update_state("Jump")
-			_state._allow_wall_jump = false
 	else:
-		if  _state._jump_state == _state.jump_pressed:
+		if  _state.attempting_jump:
 			directional_input_handling()
 			_state.current_speed = 10
 			_state.update_state("Jump")
-			_state._allow_wall_jump = false
 	_state.velocity = _state.calculate_velocity(-1, delta)
 	pass
 
 func directional_input_handling():
-	forwards = _state._camera.global_transform.basis.z
-	forwards.y = 0
-	forwards = forwards.normalized()
-	forwards *= _state.input_direction.z
-	right = _state._camera.global_transform.basis.x * _state.input_direction.x
-	var dir = (forwards + right).normalized()
-	if dir.dot(surface_normal) < 0 or _state.input_direction.length() < .001:
+	var dir = _state.camera_relative_movement.normalized()
+	if dir.dot(surface_normal) < 0 or _state._controller.input_strength < .001:
 		_state.move_direction = entering_angle.bounce(surface_normal)
 	else:
 		_state.move_direction = dir
@@ -78,7 +71,7 @@ func reset():
 	wall_bounce_timer = 0
 	_state.current_speed = 0
 	_state.velocity = Vector3.ZERO
-	entering_angle = Vector3(_state.move_direction.x,0, _state.move_direction.z).normalized()
+	entering_angle = Vector3(_state.move_direction.x,0, _state.move_direction.z)
 	
 	if _state._raycast_left == null:
 		return

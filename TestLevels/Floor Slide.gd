@@ -21,17 +21,16 @@ func update(delta):
 	_player.anim_tree.travel("Floor Skid")
 	
 	_state._air_drift_state = _state.not_air_drifting
-	#_state.current_speed *= .95
+	_state.current_speed *= .95
 	
 	if _state.velocity.length() < .5:
 		_state.update_state("Idle")
-		_state.attempting_pivot = false
 		return
 	
 	if not _player.is_on_floor():
 		_state.update_state("Falling")
 		return
-	if  _state._jump_state == _state.jump_pressed:
+	if  _state.attempting_jump:
 		_state.update_state("SideFlip")
 		return
 	
@@ -39,7 +38,7 @@ func update(delta):
 	pass
 
 func reset():
-	_state.attempting_pivot = false
+	_state.move_direction = -(_state.camera_relative_movement)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

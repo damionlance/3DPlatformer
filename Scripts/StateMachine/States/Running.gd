@@ -36,14 +36,14 @@ func update(delta):
 	
 	# Process all relevant timers
 	# Handle all states
-	if _state.attempting_pivot:
+	if _state._controller.pivot_entered:
 		_state.update_state("FloorSlide")
 		return
-	if _state._dive_state == _state.dive_pressed:
+	if _state.attempting_dive:
 		_state.update_state("Dive")
 		return
-	if _state._jump_state == _state.jump_pressed:
-		if _state.spin_jump_executed:
+	if _state.attempting_jump:
+		if _state.spin_allowed:
 			_state.update_state("SpinJump")
 		else:
 			_state.update_state("Jump")
@@ -55,7 +55,7 @@ func update(delta):
 			return
 	else:
 		_fall_timer = 0
-	if not _state.input_direction:
+	if _state._controller.input_strength < .2 and _state.velocity.length() < .5:
 		_state.update_state("Idle")
 		return
 	

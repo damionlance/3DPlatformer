@@ -17,14 +17,13 @@ func update(delta):
 	spin_jump_drift()
 	
 	if _player.is_on_floor():
-		if _state.input_direction:
+		if _state._controller.movement_direction:
 			_state.update_state("Running")
 			return
 		_state.snap_vector = Vector3.DOWN
 		_state.update_state("Idle")
 		return
-	if not _state.attempting_jump:
-		_state._jump_state = _state.jump_released
+	if _state._controller._jump_state == _state._controller.jump_released:
 		_state.velocity.y *= .6
 		_state.update_state("Falling")
 		return
