@@ -33,7 +33,7 @@ func _process(_delta):
 	camera_pivot.translation = lerp(camera_pivot.translation, translation, .1)
 	
 func _physics_process(delta):
-	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP)
+	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)
 
 func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
 	velocity = _velocity
