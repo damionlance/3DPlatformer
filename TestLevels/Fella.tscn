@@ -21,12 +21,10 @@
 [ext_resource path="res://Scripts/StateMachine/States/aerial_movement.gd" type="Script" id=19]
 [ext_resource path="res://Scripts/StateMachine/States/grounded_movement.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/shadow.gd" type="Script" id=21]
+[ext_resource path="res://3D Assets/shadow.png" type="Texture" id=22]
 
 [sub_resource type="SphereShape" id=40]
 radius = 0.500044
-
-[sub_resource type="BoxShape" id=41]
-extents = Vector3( 0.410268, 0.164798, 0.257036 )
 
 [sub_resource type="AnimationNodeAnimation" id=42]
 animation = "Fall"
@@ -1018,10 +1016,6 @@ script = ExtResource( 3 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.614172, 0 )
 shape = SubResource( 40 )
 
-[node name="BackCollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.384848, 0.173857 )
-shape = SubResource( 41 )
-
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 6 )
 
@@ -1204,4 +1198,5 @@ anims/Run = SubResource( 13 )
 [node name="PlayerShadow" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.1, 0 )
 opacity = 0.74
+texture = ExtResource( 22 )
 script = ExtResource( 21 )
