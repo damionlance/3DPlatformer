@@ -31,15 +31,15 @@ func _ready():
 
 var previous_camera_height = 0
 func _process(_delta):
-	var camera_tracking_position = Vector3.ZERO
-	if is_on_floor():
+	var camera_tracking_position
+	var height_difference = abs(previous_camera_height - translation.y)
+	if not is_on_floor() and height_difference < 6:
+		camera_tracking_position = Vector3(translation.x, previous_camera_height, translation.z)
+	else:
 		previous_camera_height = translation.y
 		camera_tracking_position = translation
-		camera_pivot.translation = lerp(camera_pivot.translation, camera_tracking_position, .07)
-	else:
-		camera_tracking_position = Vector3(translation.x, previous_camera_height, translation.z)
-		
-		camera_pivot.translation = lerp(camera_pivot.translation, camera_tracking_position, .07)
+	camera_pivot.translation = lerp(camera_pivot.translation, camera_tracking_position, .05)
+
 func _physics_process(delta):
 	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)
 
