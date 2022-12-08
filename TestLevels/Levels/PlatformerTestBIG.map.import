@@ -1,0 +1,13 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+path="res://.import/PlatformerTestBIG.map-13f4e3dc26915d00e007d5e6947044ad.tres"
+
+[deps]
+
+source_file="res://TestLevels/Levels/PlatformerTestBIG.map"
+dest_files=[ "res://.import/PlatformerTestBIG.map-13f4e3dc26915d00e007d5e6947044ad.tres" ]
+
+[params]
+

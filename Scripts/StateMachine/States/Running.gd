@@ -41,7 +41,7 @@ func update(delta):
 			return
 	else:
 		_fall_timer = 0
-	if _state._controller.input_strength < .2 and _state.current_speed < .5:
+	if _state.current_speed == 0 and not _state._controller.movement_direction:
 		_state.update_state("Idle")
 		return
 	# Handle Animation Tree

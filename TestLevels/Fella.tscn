@@ -122,7 +122,7 @@ states/Run/position = Vector2( 402.09, 113.735 )
 "states/Side Flip/node" = SubResource( 48 )
 "states/Side Flip/position" = Vector2( 399.49, 194.501 )
 "states/Spin Jump/node" = SubResource( 49 )
-"states/Spin Jump/position" = Vector2( 210.025, 196.173 )
+"states/Spin Jump/position" = Vector2( 210.212, 195.354 )
 "states/Wall Slide/node" = SubResource( 50 )
 "states/Wall Slide/position" = Vector2( 566.09, 21.0475 )
 transitions = [ "Idle1", "Run", SubResource( 51 ), "Run", "Idle1", SubResource( 52 ), "Run", "Jump", SubResource( 53 ), "Jump", "Fall", SubResource( 54 ), "Fall", "Idle1", SubResource( 55 ), "Jump", "Wall Slide", SubResource( 56 ), "Wall Slide", "Jump", SubResource( 57 ), "Run", "Fall", SubResource( 58 ), "Idle1", "Fall", SubResource( 59 ), "Run", "Spin Jump", SubResource( 60 ), "Spin Jump", "Fall", SubResource( 61 ), "Spin Jump", "Idle1", SubResource( 62 ), "Floor Skid", "Side Flip", SubResource( 64 ), "Side Flip", "Idle1", SubResource( 65 ), "Run", "Floor Slide", SubResource( 66 ), "Floor Slide", "Idle1", SubResource( 67 ), "Run", "Floor Skid", SubResource( 68 ), "Idle1", "Jump", SubResource( 69 ), "Fall", "Run", SubResource( 70 ), "Floor Skid", "Idle1", SubResource( 72 ), "Side Flip", "Wall Slide", SubResource( 73 ) ]
@@ -1079,21 +1079,22 @@ camera_sensitivity = Vector2( 4, 4 )
 
 [node name="SpringArm" type="SpringArm" parent="CameraPivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
-spring_length = 7.0
+spring_length = 9.0
 margin = 0.2
 
 [node name="Camera" type="Camera" parent="CameraPivot/SpringArm"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.122316, 0.0393596 )
 current = true
 fov = 80.0
+far = 200.0
 
 [node name="WallRayRight" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.5208, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.82402, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, -2 )
 
 [node name="WallRayLeft" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.5208, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.82402, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, -2 )
 

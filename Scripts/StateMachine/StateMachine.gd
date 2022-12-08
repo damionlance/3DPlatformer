@@ -79,6 +79,7 @@ func _ready():
 func _process(delta):
 	input_handling()
 	
+	_player.get_node("lilfella/AnimationPlayer").playback_speed = 400
 	_current_state.update(delta)
 	_player.update_physics_data(velocity, snap_vector)
 	velocity = _player.velocity

@@ -29,9 +29,17 @@ func _ready():
 	anim_tree = player_anim_tree["parameters/playback"]
 	shadow = get_node(shadow_path)
 
+var previous_camera_height = 0
 func _process(_delta):
-	camera_pivot.translation = lerp(camera_pivot.translation, translation, .1)
-	
+	var camera_tracking_position = Vector3.ZERO
+	if is_on_floor():
+		previous_camera_height = translation.y
+		camera_tracking_position = translation
+		camera_pivot.translation = lerp(camera_pivot.translation, camera_tracking_position, .07)
+	else:
+		camera_tracking_position = Vector3(translation.x, previous_camera_height, translation.z)
+		
+		camera_pivot.translation = lerp(camera_pivot.translation, camera_tracking_position, .07)
 func _physics_process(delta):
 	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)
 
