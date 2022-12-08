@@ -9,6 +9,9 @@ func _ready():
 	_state.update_state(_state_name)
 
 func update(delta):
+	if _state.attempting_dive:
+		_state.update_state("Dive")
+		return
 	if wall_jump_collision_check():
 		_state.update_state("WallSlide")
 		return

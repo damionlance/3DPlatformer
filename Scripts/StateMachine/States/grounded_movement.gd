@@ -18,7 +18,6 @@ onready var _controller = get_parent().get_node("Controller")
 
 
 func grounded_movement_processing():
-	print(_state.current_speed)
 	if _controller.movement_direction:
 		_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, floor_rotation_speed)
 		_state.current_speed += floor_acceleration
