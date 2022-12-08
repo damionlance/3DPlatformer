@@ -38,6 +38,7 @@ func update(delta):
 	pass
 
 func reset():
+	_state.velocity.y = 0
 	_state.move_direction = -(_state.camera_relative_movement)
 	pass
 
