@@ -75,7 +75,15 @@ func _process(_delta):
 			_state.just_landed = false
 
 func standard_aerial_drift():
-	
+	var relative_angle = entering_jump_angle.dot(_controller.movement_direction)
+	if not _controller.movement_direction:
+		_state.current_speed *= air_friction
+	elif relative_angle < -.5:
+		_state.current_speed *= air_friction * .98
+		_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .001)
+	elif entering_jump_angle == Vector2.ZERO and _controller.movement_direction:
+		_state.current_speed += .2
+		_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .1)
 	pass
 
 func spin_jump_drift():

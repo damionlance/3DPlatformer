@@ -15,6 +15,9 @@ func _ready():
 
 func update(delta):
 	# Handle All State Logic
+	if not _player.is_on_floor():
+		_state.update_state("SpinFall")
+		return
 	if _state.attempting_jump:
 		_state.update_state("SpinJump")
 		return
