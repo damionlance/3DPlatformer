@@ -14,7 +14,6 @@ var motion_input : String
 
 #private variables
 var _state_name = "Dive"
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_state.state_dictionary[_state_name] = self
@@ -26,7 +25,6 @@ func update(delta):
 		_state.update_state("Dive Floor")
 	
 	# Handle animation tree
-	_player.anim_tree.travel("Floor Slide")
 	
 	# Process relevant timers
 	shorthop_timer += 1
@@ -42,6 +40,8 @@ func update(delta):
 	pass
 
 func reset():
+	_player.anim_tree.travel("Dive")
+	_player.player_anim_tree["parameters/Dive/playback"].travel("Dive")
 	shorthop_timer = 0
 	entering_jump_angle = _state._controller.movement_direction
 	_state.move_direction = _state.camera_relative_movement

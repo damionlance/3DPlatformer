@@ -1,4 +1,4 @@
-extends AerialMovement
+extends "aerial_movement.gd"
 
 class_name WallSlide
 
@@ -33,15 +33,13 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	_player.anim_tree.travel("Wall Slide")
-	#player.animation_player.play("Idle")
-	_state.move_direction = _state.snap_vector
-	_state.current_speed = 2
+	#_state.move_direction = _state.snap_vector
+	#_state.current_speed = 2
 	
 	wall_bounce_timer += 1
 	
 	if _player.is_on_floor():
-		_state.update_state("Idle")
+		_state.update_state("Running")
 		return
 	
 	if wall_bounce_timer < wall_bounce_buffer:
@@ -68,6 +66,9 @@ func directional_input_handling():
 		_state.move_direction = dir
 
 func reset():
+	if _player.player_anim_tree != null:
+		_player.player_anim_tree["parameters/Jump/playback"].travel("Wall Slide")
+	
 	wall_bounce_timer = 0
 	_state.current_speed = 0
 	_state.velocity = Vector3.ZERO

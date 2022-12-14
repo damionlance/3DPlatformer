@@ -1,4 +1,4 @@
-extends AerialMovement
+extends "aerial_movement.gd"
 
 class_name SideFlip
 
@@ -17,17 +17,19 @@ func update(delta):
 		return
 	if _player.is_on_floor():
 		_state.snap_vector = Vector3.DOWN
-		_state.update_state("Idle")
+		_state.update_state("Running")
 		_state.just_landed = true
 		return
-	
-	_player.anim_tree.travel("Side Flip")
 	
 	_state.velocity = _state.calculate_velocity(_side_jump_gravity, delta)
 	
 	pass
 
 func reset():
+	if _player.anim_tree != null:
+		_player.anim_tree.travel("Jump")
+		_player.player_anim_tree["parameters/Jump/playback"].start("Side Flip")
+	
 	_state.move_direction = -_state.move_direction
 	_state.current_speed = 8
 	_state.velocity.y = _side_jump_strength

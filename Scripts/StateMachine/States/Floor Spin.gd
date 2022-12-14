@@ -25,7 +25,7 @@ func update(delta):
 		_spinning_buffer = 0
 	_spinning_buffer += 1
 	if _spinning_buffer == _spinning_timer:
-		_state.update_state("Idle")
+		_state.update_state("Running")
 	
 	# Handle Animation Tree
 	_player.anim_tree.travel("Spin Jump")

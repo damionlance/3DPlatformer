@@ -1,4 +1,4 @@
-extends AerialMovement
+extends "aerial_movement.gd"
 
 class_name SpinJump
 

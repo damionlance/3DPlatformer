@@ -26,7 +26,7 @@ var spin_jump_sign := int(0)
 var just_landed = false
 
 var _consecutive_jump_timer := 0
-var _consecutive_jump_buffer := 1
+var _consecutive_jump_buffer := 5
 
 var _jump_buffer := 5
 var _jump_timer := 5
@@ -74,6 +74,7 @@ onready var _controller = $"Controller"
 func _ready():
 	update_state("Falling")
 	pivot_buffer.resize(pivot_buffer_size)
+	state_dictionary.empty()
 	pass # Replace with function body.
 
 func _process(delta):
@@ -98,6 +99,13 @@ func input_handling():
 	var jump_released_since_jump = false
 	if _player.is_on_floor() or _player.is_on_wall():
 		resetting_collision = true
+		if _consecutive_jump_timer < _consecutive_jump_buffer:
+			just_landed = true
+			_consecutive_jump_timer += 1
+		else:
+			just_landed = false
+			_consecutive_jump_timer = 0
+	
 	
 	if (resetting_collision):
 		allow_jump = true

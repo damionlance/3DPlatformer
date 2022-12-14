@@ -1,4 +1,4 @@
-extends AerialMovement
+extends "aerial_movement.gd"
 
 class_name SpinFall
 
@@ -15,7 +15,7 @@ func update(delta):
 	
 	if _player.is_on_floor():
 		_state.snap_vector = Vector3.DOWN
-		_state.update_state("Idle")
+		_state.update_state("Running")
 		return
 	if _state._controller._jump_state == _state._controller.jump_released:
 		_state.velocity.y *= .6

@@ -66,7 +66,7 @@ func _process(_delta):
 	
 	pass
 
-var stayed_still_buffer = 15
+var stayed_still_buffer = 5
 var stayed_still_timer = 0
 var resetplz = false
 

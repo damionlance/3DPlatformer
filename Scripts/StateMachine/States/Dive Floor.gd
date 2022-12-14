@@ -23,19 +23,18 @@ func _ready():
 func update(delta):
 	# Handle state changes
 	if _state.current_speed <= .5:
-		_state.update_state("Idle")
+		_state.update_state("Running")
 		return
 	if (_player.is_on_floor()):
 		_state.current_speed *= .915
 		if _state.attempting_jump:
-			_state.update_state("Jump")
+			_state.update_state("Rollout")
 		if _state.current_speed < .01:
 			_state.current_speed = 0
 	else:
 		_state.update_state("Falling")
 	
 	# Handle animation tree
-	_player.anim_tree.travel("Floor Slide")
 	
 	# Process relevant timers
 	

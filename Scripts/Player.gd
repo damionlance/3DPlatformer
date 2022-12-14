@@ -11,8 +11,6 @@ export (NodePath) var shadow_path
 
 var anim_tree
 
-var animations = ['Idle1', 'Run', 'Jump', 'Fall']
-
 var velocity := Vector3.ZERO
 var snap_vector := Vector3.ZERO
 
@@ -23,22 +21,11 @@ var shadow
 var tween
 
 func _ready():
-
-	for animation in animations:
-		animation = player_anim.get_animation(animation)
 	anim_tree = player_anim_tree["parameters/playback"]
 	shadow = get_node(shadow_path)
 
-var previous_camera_height = 0
 func _process(_delta):
-	var camera_tracking_position
-	var height_difference = abs(previous_camera_height - translation.y)
-	if not is_on_floor() and height_difference < 6:
-		camera_tracking_position = Vector3(translation.x, previous_camera_height, translation.z)
-	else:
-		previous_camera_height = translation.y
-		camera_tracking_position = translation
-	camera_pivot.translation = lerp(camera_pivot.translation, camera_tracking_position, .05)
+	pass
 
 func _physics_process(delta):
 	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)

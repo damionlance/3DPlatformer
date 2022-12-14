@@ -19,7 +19,7 @@ func _ready():
 
 func update(delta):
 	if _state.current_speed < .5:
-		_state.update_state("Idle")
+		_state.update_state("Running")
 		return
 	
 	if not _player.is_on_floor():
@@ -29,8 +29,6 @@ func update(delta):
 		_state.update_state("SideFlip")
 		return
 	
-	_player.anim_tree.travel("Floor Skid")
-	
 	_state._air_drift_state = _state.not_air_drifting
 	_state.current_speed *= .85
 	
@@ -38,6 +36,8 @@ func update(delta):
 	pass
 
 func reset():
+	if _player.anim_tree != null:
+		_player.anim_tree.travel("Skid")
 	_state.velocity.y = 0
 	_state.move_direction = -(_state.camera_relative_movement)
 	pass

@@ -41,11 +41,8 @@ func update(delta):
 			return
 	else:
 		_fall_timer = 0
-	if _state.current_speed == 0 and not _state._controller.movement_direction:
-		_state.update_state("Idle")
-		return
 	# Handle Animation Tree
-	_player.anim_tree.travel("Run")
+	_player.player_anim_tree["parameters/Run/Blend/blend_amount"] = _state.current_speed / max_speed
 	#_player.particles.emitting = true
 	
 	# Process all inputs
@@ -67,4 +64,5 @@ func reset():
 	_state._air_drift_state = _state.not_air_drifting
 	_state.snap_vector = Vector3.DOWN
 	_state.velocity.y = 0
+	_player.anim_tree.travel("Run")
 	pass

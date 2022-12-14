@@ -57,6 +57,9 @@ onready var _state = get_parent()
 onready var _player = get_parent().get_parent()
 onready var _controller = get_parent().get_node("Controller")
 
+func _ready():
+	_state = get_parent()
+
 # Helper Functions
 func wall_jump_collision_check():
 	if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():

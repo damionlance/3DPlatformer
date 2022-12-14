@@ -25,7 +25,7 @@ func update(delta):
 		return
 	if _player.is_on_floor():
 		_state.snap_vector = Vector3.DOWN
-		_state.update_state("Idle")
+		_state.update_state("Running")
 		_state.just_landed = true
 		return
 	if wall_jump_collision_check():
@@ -33,7 +33,6 @@ func update(delta):
 		return
 	
 	# Handle animation tree
-	_player.anim_tree.travel("Fall")
 	
 	# Process movements
 	standard_aerial_drift()
@@ -53,4 +52,6 @@ func update(delta):
 
 func reset():
 	_state.snap_vector = Vector3.ZERO
+	if _player.anim_tree != null:
+		_player.anim_tree.travel("Fall")
 	pass

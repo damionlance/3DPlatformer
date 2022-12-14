@@ -1,9 +1,9 @@
-extends AerialMovement
+extends "aerial_movement.gd"
 
-class_name Jump
+class_name Rollout
 
 #private variables
-var _state_name = "Jump"
+var _state_name = "Rollout"
 
 #onready variables
 
@@ -14,17 +14,9 @@ func _ready():
 
 func update(delta):
 	# Handle all state logic
-	if _state.attempting_dive:
-		_state.update_state("Dive")
-		return
 	
 	if wall_jump_collision_check():
 		_state.update_state("WallSlide")
-		return
-	
-	if _state._controller._jump_state == _state._controller.jump_released and shorthop_timer == shorthop_buffer:
-		_state.velocity.y *= .6
-		_state.update_state("Falling")
 		return
 	if _state.velocity.y < 0:
 		_state.update_state("Falling")
@@ -38,31 +30,20 @@ func update(delta):
 	shorthop_timer += 1
 		
 	# Process physics
-	var current_jump_gravity
-	match current_jump:
-		1: current_jump_gravity = _jump_gravity
-		2: current_jump_gravity = _jump2_gravity
-		_: current_jump_gravity = _jump_gravity
 		
-	_state.velocity = _state.calculate_velocity(current_jump_gravity, delta)
+	_state.velocity = _state.calculate_velocity(_jump_gravity, delta)
 	pass
 
 func reset():
-	_player.anim_tree.travel("Jump")
+	_player.player_anim_tree["parameters/Dive/playback"].travel("Rollout")
 	if _state.just_landed:
 		current_jump += 1
 	else:
 		current_jump = 1
 	
-	match current_jump:
-		1:
-			_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
-		2:
-			_player.player_anim_tree["parameters/Jump/playback"].start("Jump2")
-	
 	shorthop_timer = 0
 	entering_jump_angle = _state._controller.movement_direction
 	_state.snap_vector = Vector3.ZERO
-	_state.velocity.y = _jump_strength
+	_state.velocity.y = _jump_strength / 2
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 	pass
