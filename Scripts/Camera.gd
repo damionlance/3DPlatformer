@@ -14,7 +14,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	var _parent_position = _player.translation
-	var camera_tracking_position
+	var camera_tracking_position = Vector3.ZERO
 	var height_difference = abs(previous_camera_height - _parent_position.y)
 	
 	if not _player.is_on_floor() and height_difference < 6:

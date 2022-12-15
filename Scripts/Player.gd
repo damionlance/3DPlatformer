@@ -1,7 +1,7 @@
 extends KinematicBody
 
 onready var camera_pivot : Spatial = $CameraPivot
-onready var player_model = $lilfella/Object
+onready var player_model = $lilfella
 onready var player_anim = $lilfella/AnimationPlayer
 onready var player_anim_tree = $AnimationTree
 onready var camera = $CameraPivot/SpringArm/Camera
@@ -48,4 +48,3 @@ func add_star():
 	if stars == 3:
 		time_now = OS.get_unix_time()
 		print("You finished in: " + str(-1 * (Global.time_start - time_now)) + ". Good job!")
- 

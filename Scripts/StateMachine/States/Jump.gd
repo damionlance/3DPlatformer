@@ -29,6 +29,8 @@ func update(delta):
 	if _state.velocity.y < 0:
 		_state.update_state("Falling")
 		return
+	if _state.attempting_throw:
+		_state._throw()
 	# Handle animation tree
 	
 	# Process movements

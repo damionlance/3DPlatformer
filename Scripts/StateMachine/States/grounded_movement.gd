@@ -16,6 +16,8 @@ onready var _state = get_parent()
 onready var _player = get_parent().get_parent()
 onready var _controller = get_parent().get_node("Controller")
 
+var turning := 0
+
 func grounded_movement_processing():
 	if _controller.movement_direction:
 		_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, floor_rotation_speed)

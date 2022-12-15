@@ -28,7 +28,6 @@ func update(delta):
 		_state.update_state("Running")
 	
 	# Handle Animation Tree
-	_player.anim_tree.travel("Spin Jump")
 	
 	# Handle movements
 	grounded_movement_processing()
@@ -43,6 +42,7 @@ func update(delta):
 	pass
 
 func reset():
+	_player.anim_tree.travel("Spinning")
 	_state.snap_vector = Vector3.DOWN
 	_spinning_buffer = 0
 	pass

@@ -7,6 +7,7 @@ var previous_direction := Vector2.ZERO
 
 # Spin variables
 var angle := [0.0, 0.0]
+var turning := 0
 var spin_entered := false
 var spin_jump_start := Vector2.ZERO
 var spin_jump_angle := 0.0
@@ -27,6 +28,13 @@ enum {
 	dive_pressed = 1,
 	dive_held = 2,
 	dive_released = 0
+}
+
+var _throw_state := 0
+enum {
+	throw_pressed = 1,
+	throw_held = 2,
+	throw_released = 0
 }
 
 var pivot_entered := false
@@ -57,6 +65,9 @@ func _process(_delta):
 	if Input.get_action_strength("DiveButton"):
 		_dive_state = dive_pressed if _dive_state == 0 else dive_held
 	else: _dive_state = dive_released
+	if Input.get_action_strength("Throw"):
+		_throw_state = throw_pressed if _throw_state == 0 else throw_held
+	else: _throw_state = throw_released
 	
 	check_for_spin()
 	check_for_pivot()
@@ -77,6 +88,7 @@ func check_for_spin():
 			resetplz = true
 	else: stayed_still_timer = 0
 	if spin_entered or resetplz:
+		turning = 0
 		angle = [0.0, 0.0]
 		spin_entered = false
 		spin_jump_start = Vector2.ZERO
@@ -96,6 +108,7 @@ func check_for_spin():
 		else:
 			angle[0] = angle[1]
 		if abs(angle[0]-angle[1]) > .02 and sign(angle[0]-angle[1]) != spin_jump_sign:
+			turning = sign(angle[0] - angle[1])
 			if spin_jump_sign != -1 and not (angle[1] > deg2rad(300) and angle[0] > 0):
 				spin_jump_angle = 0
 				spin_jump_start = movement_direction

@@ -7,6 +7,8 @@ var state_dictionary : Dictionary
 var velocity :=  Vector3.ZERO
 var snap_vector := Vector3.DOWN
 
+var grapple_position = Vector3.ZERO
+
 # Special inputs tracking
 var previous_angle := [0.0, 0.0]
 var previous_direction := Vector2.ZERO
@@ -51,6 +53,7 @@ var spin_allowed := false
 var spin_timer := 0
 var spin_buffer := 30
 var is_on_floor := false
+var attempting_throw := false
 
 var camera_relative_movement := Vector3.ZERO
 var move_direction := Vector3.ZERO
@@ -69,6 +72,9 @@ onready var _camera = $"../CameraPivot"
 onready var _raycast_left = _player.get_node("WallRayLeft")
 onready var _raycast_right = _player.get_node("WallRayRight")
 onready var _controller = $"Controller"
+
+#signals
+signal throw_fella
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -134,6 +140,14 @@ func input_handling():
 		_jump_buffer += 1
 	else: 
 		attempting_dive = false
+	
+	if _controller._throw_state == _controller.throw_pressed:
+		attempting_throw = true
+	elif _controller._throw_state == _controller.throw_held:
+		attempting_throw = false
+	else:
+		attempting_throw = false
+	
 	if (_controller._jump_state == _controller.jump_released and
 		_controller._dive_state == _controller.dive_released):
 			_jump_buffer = 0
@@ -158,5 +172,12 @@ func update_shadow():
 			var distance_from_ground = result.position - _player.translation
 			player_shadow.update_shadow(_player.translation, distance_from_ground.y, _player.rotation)
 
+func _throw():
+	_player.player_anim_tree["parameters/Run/OneShot/active"] = true
+	emit_signal("throw_fella")
 
 
+func _on_Friendo_hit_wall(friendo_position):
+	grapple_position = friendo_position
+	update_state("SwingFromFriendo")
+	pass # Replace with function body.

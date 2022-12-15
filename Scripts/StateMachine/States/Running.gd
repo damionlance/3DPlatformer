@@ -16,6 +16,10 @@ var motion_input : String
 var _state_name = "Running"
 var _fall_timer := 0
 
+var vertical_rotation
+
+var base_rotation = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_state.state_dictionary[_state_name] = self
@@ -43,16 +47,22 @@ func update(delta):
 		_fall_timer = 0
 	# Handle Animation Tree
 	_player.player_anim_tree["parameters/Run/Blend/blend_amount"] = _state.current_speed / max_speed
+	if _state.attempting_throw:
+		_state._throw()
 	#_player.particles.emitting = true
 	
 	# Process all inputs
 	grounded_movement_processing()
+	_player.player_model.rotation_degrees.z = base_rotation
 	if _state.move_direction:
 		# This insanely long line calculates the vector of the player's direction
 		# from the camera's perspective and interpolates to that value by some rotation speed
 		var target_direction = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 		_player.transform = _player.transform.interpolate_with(target_direction, floor_rotation_speed)
-	
+		#if _state._controller.turning < 0:
+			#_player.player_model.rotation_degrees.z = lerp(_player.player_model.rotation_degrees.z, 45, .15)
+		#if _state._controller.turning > 0:
+			#_player.player_model.rotation_degrees.z = lerp(_player.player_model.rotation_degrees.z, -45, .15)
 	# Process all relevant timers
 	
 	#Process physics
