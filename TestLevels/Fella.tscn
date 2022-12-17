@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=2]
+[gd_scene load_steps=110 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StateMachine/States/Floor Spin.gd" type="Script" id=2]
@@ -29,6 +29,13 @@
 [ext_resource path="res://3D Assets/Shaders/Toon Shader.gdshader" type="Shader" id=27]
 [ext_resource path="res://Scripts/StateMachine/States/Rollout.gd" type="Script" id=28]
 [ext_resource path="res://TestLevels/Friendo.gd" type="Script" id=29]
+[ext_resource path="res://MiscScenes/invertedSphereCollider.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Scripts/StateMachine/States/Friendo/Idle.gd" type="Script" id=31]
+[ext_resource path="res://Scripts/StateMachine/States/Friendo/StuckToWall.gd" type="Script" id=32]
+[ext_resource path="res://Scripts/StateMachine/States/Friendo/Tossing.gd" type="Script" id=33]
+[ext_resource path="res://Scripts/StateMachine/FriendoStateMachine.gd" type="Script" id=34]
+[ext_resource path="res://Scripts/StateMachine/States/Friendo/Throwing.gd" type="Script" id=35]
+[ext_resource path="res://Scripts/StateMachine/States/Friendo/Grappling.gd" type="Script" id=36]
 
 [sub_resource type="SphereShape" id=40]
 radius = 0.500044
@@ -54,7 +61,7 @@ shader_param/border_width = 0.01
 [sub_resource type="SphereShape" id=86]
 radius = 0.096878
 
-[sub_resource type="ArrayMesh" id=1]
+[sub_resource type="ArrayMesh" id=145]
 resource_name = "New Fella_Torus002"
 surfaces/0 = {
 "aabb": AABB( -0.339391, 1.54708, -0.291772, 0.719563, 0.360463, 0.616059 ),
@@ -2287,7 +2294,8 @@ graph_offset = Vector2( -69.48, 63.6635 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=127]
 
 [node name="Player" type="KinematicBody"]
-collision_layer = 2
+collision_layer = 6
+collision_mask = 5
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -2302,8 +2310,6 @@ script = ExtResource( 11 )
 
 [node name="State" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
-
-[node name="Controller" parent="StateMachine" instance=ExtResource( 18 )]
 
 [node name="AerialMovement" type="Node" parent="StateMachine"]
 script = ExtResource( 19 )
@@ -2396,6 +2402,26 @@ material = SubResource( 93 )
 
 [node name="CollisionShape" type="CollisionShape" parent="FriendoHomingNode/Friendo"]
 shape = SubResource( 86 )
+
+[node name="Grapple" parent="FriendoHomingNode/Friendo" instance=ExtResource( 30 )]
+
+[node name="StateMachine" type="Node" parent="FriendoHomingNode/Friendo"]
+script = ExtResource( 34 )
+
+[node name="Idle" type="Node" parent="FriendoHomingNode/Friendo/StateMachine"]
+script = ExtResource( 31 )
+
+[node name="Throwing" type="Node" parent="FriendoHomingNode/Friendo/StateMachine"]
+script = ExtResource( 35 )
+
+[node name="Grappling" type="Node" parent="FriendoHomingNode/Friendo/StateMachine"]
+script = ExtResource( 36 )
+
+[node name="Tossing" type="Node" parent="FriendoHomingNode/Friendo/StateMachine"]
+script = ExtResource( 33 )
+
+[node name="StuckToWall" type="Node" parent="FriendoHomingNode/Friendo/StateMachine"]
+script = ExtResource( 32 )
 
 [node name="lilfella" type="Spatial" parent="."]
 
@@ -2493,7 +2519,7 @@ bones/16/enabled = true
 bones/16/bound_children = [  ]
 
 [node name="Beanie" type="MeshInstance" parent="lilfella/Armature/Skeleton"]
-mesh = SubResource( 1 )
+mesh = SubResource( 145 )
 skin = SubResource( 2 )
 material/0 = SubResource( 128 )
 
@@ -2560,6 +2586,8 @@ parameters/Dive/playback = SubResource( 126 )
 parameters/Jump/playback = SubResource( 127 )
 parameters/Run/Blend/blend_amount = 0.0
 parameters/Run/OneShot/active = false
+
+[node name="Controller" parent="." instance=ExtResource( 18 )]
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]

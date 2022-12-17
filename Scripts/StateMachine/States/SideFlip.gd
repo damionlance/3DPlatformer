@@ -6,7 +6,6 @@ var _state_name = "SideFlip"
 
 func _ready():
 	_state.state_dictionary[_state_name] = self
-	_state.update_state(_state_name)
 
 func update(delta):
 	if _state.attempting_dive:

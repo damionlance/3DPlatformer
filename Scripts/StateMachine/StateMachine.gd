@@ -71,7 +71,7 @@ onready var _player = get_parent()
 onready var _camera = $"../CameraPivot"
 onready var _raycast_left = _player.get_node("WallRayLeft")
 onready var _raycast_right = _player.get_node("WallRayRight")
-onready var _controller = $"Controller"
+onready var _controller = $"../Controller"
 
 #signals
 signal throw_fella
@@ -84,9 +84,9 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	input_handling()
+	print(_current_state._state_name)
 	
-	_player.get_node("lilfella/AnimationPlayer").playback_speed = 400
+	input_handling()
 	_current_state.update(delta)
 	_player.update_physics_data(velocity, snap_vector)
 	velocity = _player.velocity

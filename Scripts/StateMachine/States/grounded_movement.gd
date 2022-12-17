@@ -14,7 +14,7 @@ export var floor_rotation_speed :=  .2
 
 onready var _state = get_parent()
 onready var _player = get_parent().get_parent()
-onready var _controller = get_parent().get_node("Controller")
+onready var _controller = get_parent().get_parent().get_node("Controller")
 
 var turning := 0
 

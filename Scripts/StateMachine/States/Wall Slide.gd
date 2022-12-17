@@ -29,7 +29,6 @@ var right
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_state.state_dictionary[_state_name] = self
-	_state.update_state(_state_name)
 	pass # Replace with function body.
 
 func update(delta):

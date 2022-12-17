@@ -55,7 +55,7 @@ var dive_speed := 6
 
 onready var _state = get_parent()
 onready var _player = get_parent().get_parent()
-onready var _controller = get_parent().get_node("Controller")
+onready var _controller = get_parent().get_parent().get_node("Controller")
 
 func _ready():
 	_state = get_parent()

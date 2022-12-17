@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://3D Assets/grappleSphereCollider.obj" type="ArrayMesh" id=1]
+
+[node name="Spatial" type="StaticBody"]
+
+[node name="grappleSphereCollider" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 1 )
