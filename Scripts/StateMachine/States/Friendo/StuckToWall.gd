@@ -13,12 +13,24 @@ func _ready():
 	_state.state_dictionary[_state_name] = self
 	pass # Replace with function body.
 
+var last_distance
+
 func update(_delta):
 	# State processing
-	if _state._controller._throw_state == _state._controller.throw_released:
-		_grapple.get_child(0).get_child(0).queue_free()
+	if _state._controller._throw_state == 0:
+		if _grapple.get_child(0).get_child(0):
+			_grapple.get_child(0).get_child(0).queue_free()
 		_state.update_state("Idle")
 	
+	var distance = (_state._player.global_transform.origin - _friendo.global_transform.origin).length()
+	if not _grapple.get_child(0).get_child(0) and distance >= last_distance:
+		_grapple.translation = _friendo.translation
+		_grapple.scale.x = distance * 2 + 2
+		_grapple.scale.y = distance * 2 + 2
+		_grapple.scale.z = distance * 2 + 2
+		_grapple.get_node("grappleSphereCollider").create_trimesh_collision()
+	
+	last_distance = distance
 	pass
 
 func reset():
@@ -26,13 +38,8 @@ func reset():
 	if is_instance_valid(_grapple.get_node("grappleSphereCollider/StaticBody")):
 		_grapple.get_node("grappleSphereCollider/StaticBody").queue_free()
 	
-	var distance = (_state._player.global_transform.origin - _friendo.global_transform.origin).length()
-	_grapple.translation = _friendo.translation
-	_grapple.scale.x = distance * 2 + 2
-	_grapple.scale.y = distance * 2 + 2
-	_grapple.scale.z = distance * 2 + 2
-	_grapple.get_node("grappleSphereCollider").create_trimesh_collision()
-	
+	last_distance = 9999
+	_friendo.velocity = Vector3.ZERO
 	_state.move_direction = Vector3.ZERO
 	_state.movement_speed = 0.0
 	_friendo.emit_signal("hit_wall", _friendo.global_transform.origin)

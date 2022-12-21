@@ -65,6 +65,6 @@ func reset():
 	shorthop_timer = 0
 	entering_jump_angle = _state._controller.movement_direction
 	_state.snap_vector = Vector3.ZERO
-	_state.velocity.y = _jump_strength
+	_state.velocity.y += _jump_strength
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 	pass

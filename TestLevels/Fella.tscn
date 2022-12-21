@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=2]
+[gd_scene load_steps=112 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StateMachine/States/Floor Spin.gd" type="Script" id=2]
@@ -36,6 +36,8 @@
 [ext_resource path="res://Scripts/StateMachine/FriendoStateMachine.gd" type="Script" id=34]
 [ext_resource path="res://Scripts/StateMachine/States/Friendo/Throwing.gd" type="Script" id=35]
 [ext_resource path="res://Scripts/StateMachine/States/Friendo/Grappling.gd" type="Script" id=36]
+[ext_resource path="res://MiscScenes/VelocityCast.gd" type="Script" id=37]
+[ext_resource path="res://Scripts/StateMachine/States/ReelIn.gd" type="Script" id=38]
 
 [sub_resource type="SphereShape" id=40]
 radius = 0.500044
@@ -2198,7 +2200,7 @@ animation = "Wall Slide"
 
 [sub_resource type="AnimationNodeStateMachine" id=106]
 states/Jump/node = SubResource( 98 )
-states/Jump/position = Vector2( 317.219, 167 )
+states/Jump/position = Vector2( 319.422, 165 )
 states/Jump2/node = SubResource( 99 )
 states/Jump2/position = Vector2( 318.125, 97 )
 "states/Side Flip/node" = SubResource( 100 )
@@ -2206,7 +2208,7 @@ states/Jump2/position = Vector2( 318.125, 97 )
 "states/Wall Slide/node" = SubResource( 101 )
 "states/Wall Slide/position" = Vector2( 594.74, 117.219 )
 transitions = [ "Jump", "Wall Slide", SubResource( 102 ), "Jump2", "Wall Slide", SubResource( 103 ), "Side Flip", "Wall Slide", SubResource( 104 ), "Wall Slide", "Jump", SubResource( 105 ) ]
-graph_offset = Vector2( 70.5801, -44.375 )
+graph_offset = Vector2( -415.78, -16.8125 )
 
 [sub_resource type="AnimationNodeAnimation" id=107]
 animation = "ThrowFriendo"
@@ -2285,7 +2287,7 @@ states/Spinning/node = SubResource( 114 )
 states/Spinning/position = Vector2( 407.761, 97.1914 )
 transitions = [ "Run", "Jump", SubResource( 115 ), "Run", "Skid", SubResource( 116 ), "Skid", "Jump", SubResource( 117 ), "Skid", "Run", SubResource( 118 ), "Jump", "Run", SubResource( 119 ), "Run", "Spinning", SubResource( 120 ), "Jump", "Dive", SubResource( 121 ), "Dive", "Run", SubResource( 122 ), "Spinning", "Jump", SubResource( 123 ), "Jump", "Fall", SubResource( 139 ), "Skid", "Fall", SubResource( 140 ), "Run", "Fall", SubResource( 141 ), "Fall", "Run", SubResource( 142 ) ]
 start_node = "Run"
-graph_offset = Vector2( -69.48, 63.6635 )
+graph_offset = Vector2( -156.33, 55.7885 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=125]
 
@@ -2294,7 +2296,7 @@ graph_offset = Vector2( -69.48, 63.6635 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=127]
 
 [node name="Player" type="KinematicBody"]
-collision_layer = 6
+collision_layer = 2
 collision_mask = 5
 script = ExtResource( 3 )
 
@@ -2353,6 +2355,9 @@ script = ExtResource( 7 )
 [node name="SwingFromFriendo" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
 
+[node name="ReelIn" type="Node" parent="StateMachine"]
+script = ExtResource( 38 )
+
 [node name="CameraPivot" type="Spatial" parent="."]
 script = ExtResource( 4 )
 camera_sensitivity = Vector2( 2, 2 )
@@ -2403,8 +2408,6 @@ material = SubResource( 93 )
 [node name="CollisionShape" type="CollisionShape" parent="FriendoHomingNode/Friendo"]
 shape = SubResource( 86 )
 
-[node name="Grapple" parent="FriendoHomingNode/Friendo" instance=ExtResource( 30 )]
-
 [node name="StateMachine" type="Node" parent="FriendoHomingNode/Friendo"]
 script = ExtResource( 34 )
 
@@ -2422,6 +2425,8 @@ script = ExtResource( 33 )
 
 [node name="StuckToWall" type="Node" parent="FriendoHomingNode/Friendo/StateMachine"]
 script = ExtResource( 32 )
+
+[node name="Grapple" parent="FriendoHomingNode/Friendo" instance=ExtResource( 30 )]
 
 [node name="lilfella" type="Spatial" parent="."]
 
@@ -2593,6 +2598,11 @@ parameters/Run/OneShot/active = false
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, -1 )
+
+[node name="VelocityCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02584, 0 )
+enabled = true
+script = ExtResource( 37 )
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]

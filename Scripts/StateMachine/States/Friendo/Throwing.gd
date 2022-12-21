@@ -26,4 +26,5 @@ func update(_delta):
 	pass
 
 func reset():
+	
 	pass

@@ -84,10 +84,10 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
+	print(velocity.y)
 	input_handling()
 	_current_state.update(delta)
 	_player.update_physics_data(velocity, snap_vector)
-	velocity = _player.velocity
 	
 	update_shadow()
 
@@ -158,7 +158,12 @@ func calculate_velocity(gravity: float, delta) -> Vector3:
 	var new_velocity = move_direction * current_speed
 	new_velocity.y += velocity.y + gravity * delta
 	return new_velocity
-	
+
+func grapple_velocity(gravity: float, delta) -> Vector3:
+	var new_velocity = velocity
+	new_velocity.y += gravity * delta
+	return new_velocity
+
 func update_shadow():
 	# update shadow
 	var player_shadow = _player.get_node("PlayerShadow")

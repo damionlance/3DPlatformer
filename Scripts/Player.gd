@@ -29,10 +29,11 @@ func _process(_delta):
 	pass
 
 func _physics_process(delta):
-	#if grappling:
-	#	velocity = move_and_slide(velocity, Vector3.UP)
-	#else:
-	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, false)
+	if grappling:
+		velocity = move_and_slide_with_snap(velocity, snap_vector)
+	else:
+		velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)
+	$StateMachine.velocity = velocity
 
 func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
 	velocity = _velocity

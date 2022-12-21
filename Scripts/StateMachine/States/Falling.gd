@@ -31,6 +31,8 @@ func update(delta):
 	if wall_jump_collision_check():
 		_state.update_state("WallSlide")
 		return
+	if _state.attempting_throw:
+		_state._throw()
 	
 	# Handle animation tree
 	

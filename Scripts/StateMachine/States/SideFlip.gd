@@ -19,6 +19,8 @@ func update(delta):
 		_state.update_state("Running")
 		_state.just_landed = true
 		return
+	if _state.attempting_throw:
+		_state._throw()
 	
 	_state.velocity = _state.calculate_velocity(_side_jump_gravity, delta)
 	

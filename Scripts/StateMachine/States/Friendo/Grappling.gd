@@ -29,7 +29,7 @@ func update(_delta):
 	pass
 
 func reset():
-	_state.move_direction = _state._player_state.move_direction
-	_state.movement_speed = 4*_state.max_speed
+	_state.move_direction = _state._player_state.camera_relative_movement
+	_state.movement_speed = 40*_state.max_speed
 	_grapple_raycast.enabled = true
 	pass
