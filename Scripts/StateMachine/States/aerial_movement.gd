@@ -89,6 +89,17 @@ func standard_aerial_drift():
 		_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .1)
 	pass
 
+func grapple_movement_processing():
+	if _controller.movement_direction:
+		_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, 1)
+		if _state.current_speed != 10:
+			_state.current_speed += .25
+	elif _state.current_speed < 1:
+		_state.current_speed = 0
+		_state.move_direction == Vector3.ZERO
+	if _state.current_speed + .25 > 10:
+		_state.current_speed = 10
+
 func spin_jump_drift():
 	if _state._controller.input_strength < .2:
 		_state._air_drift_state = _state.not_air_drifting

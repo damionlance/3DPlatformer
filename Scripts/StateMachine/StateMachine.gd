@@ -84,8 +84,6 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	print(_current_state._state_name)
-	
 	input_handling()
 	_current_state.update(delta)
 	_player.update_physics_data(velocity, snap_vector)

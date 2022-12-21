@@ -19,6 +19,7 @@ var stars = 0
 var time_now = 0
 var shadow
 var tween
+var grappling := false
 
 func _ready():
 	anim_tree = player_anim_tree["parameters/playback"]
@@ -28,7 +29,10 @@ func _process(_delta):
 	pass
 
 func _physics_process(delta):
-	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true)
+	#if grappling:
+	#	velocity = move_and_slide(velocity, Vector3.UP)
+	#else:
+	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, false)
 
 func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
 	velocity = _velocity

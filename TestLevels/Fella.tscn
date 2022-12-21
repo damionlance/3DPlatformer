@@ -2371,12 +2371,12 @@ far = 200.0
 [node name="WallRayRight" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.82402, 0 )
 enabled = true
-cast_to = Vector3( 0, 0, -2 )
+cast_to = Vector3( 0, 0, -0.75 )
 
 [node name="WallRayLeft" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.82402, 0 )
 enabled = true
-cast_to = Vector3( 0, 0, -2 )
+cast_to = Vector3( 0, 0, -0.75 )
 
 [node name="PlayerShadow" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.1, 0 )
@@ -2588,6 +2588,11 @@ parameters/Run/Blend/blend_amount = 0.0
 parameters/Run/OneShot/active = false
 
 [node name="Controller" parent="." instance=ExtResource( 18 )]
+
+[node name="GrappleRaycast" type="RayCast" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -1 )
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]

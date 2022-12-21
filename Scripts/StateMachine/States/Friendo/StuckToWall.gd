@@ -27,10 +27,10 @@ func reset():
 		_grapple.get_node("grappleSphereCollider/StaticBody").queue_free()
 	
 	var distance = (_state._player.global_transform.origin - _friendo.global_transform.origin).length()
-	print(distance)
-	_grapple.scale.x = distance * 2
-	_grapple.scale.y = distance * 2
-	_grapple.scale.z = distance * 2
+	_grapple.translation = _friendo.translation
+	_grapple.scale.x = distance * 2 + 2
+	_grapple.scale.y = distance * 2 + 2
+	_grapple.scale.z = distance * 2 + 2
 	_grapple.get_node("grappleSphereCollider").create_trimesh_collision()
 	
 	_state.move_direction = Vector3.ZERO
