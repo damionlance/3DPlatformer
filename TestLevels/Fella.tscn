@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=2]
+[gd_scene load_steps=111 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StateMachine/States/Floor Spin.gd" type="Script" id=2]
@@ -36,7 +36,6 @@
 [ext_resource path="res://Scripts/StateMachine/FriendoStateMachine.gd" type="Script" id=34]
 [ext_resource path="res://Scripts/StateMachine/States/Friendo/Throwing.gd" type="Script" id=35]
 [ext_resource path="res://Scripts/StateMachine/States/Friendo/Grappling.gd" type="Script" id=36]
-[ext_resource path="res://MiscScenes/VelocityCast.gd" type="Script" id=37]
 [ext_resource path="res://Scripts/StateMachine/States/ReelIn.gd" type="Script" id=38]
 
 [sub_resource type="SphereShape" id=40]
@@ -2598,11 +2597,6 @@ parameters/Run/OneShot/active = false
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, -1 )
-
-[node name="VelocityCast" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02584, 0 )
-enabled = true
-script = ExtResource( 37 )
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]

@@ -38,7 +38,7 @@ func update(_delta):
 		_state.movement_speed = 0
 	
 	
-	_state.calculate_velocity(_delta)
+	_state.calculate_velocity(Vector3.ZERO, _delta)
 	pass
 
 func reset():

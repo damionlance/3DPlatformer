@@ -19,17 +19,20 @@ func update(_delta):
 		if _grapple_raycast.is_colliding():
 			_friendo.translation = _grapple_raycast.get_collision_point()
 		_state.update_state("StuckToWall")
-		_grapple_raycast.enabled = false
-		_grapple_raycast.cast_to = Vector3.ZERO
+		_grapple_raycast.enabled
 		return
 	# handle all movement processing
 	_grapple_raycast.cast_to = _grapple_raycast.to_local(_friendo.global_transform.origin)
-	
-	_state.calculate_velocity(_delta)
+	var return_vector = (_state._player.global_transform.origin - _friendo.global_transform.origin).normalized()
+	_state.calculate_velocity(return_vector * 500, _delta)
 	pass
 
 func reset():
-	_state.move_direction = _state._player_state.camera_relative_movement
+	if _state._player_state.camera_relative_movement:
+		_state.move_direction = _state._player_state.camera_relative_movement
+	else:
+		_state.move_direction = _state._player_state.current_dir
 	_state.movement_speed = 40*_state.max_speed
 	_grapple_raycast.enabled = true
+	_grapple_raycast.cast_to = Vector3.ZERO
 	pass

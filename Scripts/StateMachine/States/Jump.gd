@@ -61,6 +61,8 @@ func reset():
 			_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
 		2:
 			_player.player_anim_tree["parameters/Jump/playback"].start("Jump2")
+		_:
+			_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
 	
 	shorthop_timer = 0
 	entering_jump_angle = _state._controller.movement_direction

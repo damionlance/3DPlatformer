@@ -22,6 +22,8 @@ func update(_delta):
 	pass
 
 func reset():
-	_state.move_direction = _state._player_state.move_direction
+	var direction = _state._player.move_direction if _state._player.move_direction else _state._player.current_dir
+	print(direction)
+	_state.move_direction = direction
 	_state.movement_speed = 2*_state.max_speed
 	pass

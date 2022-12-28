@@ -33,7 +33,10 @@ func update(delta):
 		_state.update_state("FloorSlide")
 		return
 	if _state.attempting_dive:
-		_state.update_state("Dive")
+		if _player.grappling:
+			_state.update_state("ReelIn")
+		else:
+			_state.update_state("Dive")
 		return
 	if _state.attempting_jump:
 		_state.update_state("Jump")
@@ -54,11 +57,13 @@ func update(delta):
 	# Process all inputs
 	grounded_movement_processing()
 	_player.player_model.rotation_degrees.z = base_rotation
+	if _state.move_direction != Vector3.ZERO: _state.current_dir = _state.move_direction
 	if _state.move_direction:
 		# This insanely long line calculates the vector of the player's direction
 		# from the camera's perspective and interpolates to that value by some rotation speed
 		var target_direction = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 		_player.transform = _player.transform.interpolate_with(target_direction, floor_rotation_speed)
+		
 		#if _state._controller.turning < 0:
 			#_player.player_model.rotation_degrees.z = lerp(_player.player_model.rotation_degrees.z, 45, .15)
 		#if _state._controller.turning > 0:

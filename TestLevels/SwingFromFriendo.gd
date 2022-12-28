@@ -12,12 +12,11 @@ func _ready():
 
 func update(delta):
 	if _controller._throw_state == 0:
-		_state.update_state("SideFlip")
 		_player.grappling = false
+		_state.update_state("Falling")
 		return
 	if _state.attempting_dive:
-		_player.grappling = false
-		_state.update_state("Dive")
+		_state.update_state("ReelIn")
 		return
 	if _state.attempting_jump:
 		_player.grappling = false

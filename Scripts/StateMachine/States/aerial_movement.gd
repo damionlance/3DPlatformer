@@ -66,7 +66,7 @@ func wall_jump_collision_check():
 		if abs(_state._raycast_left.get_collision_normal().y) > 0 or abs(_state._raycast_right.get_collision_normal().y) > 0:
 			if _player.is_on_wall():
 				var horizontalVelocity = Vector3(_state.velocity.x, 0, _state.velocity.z)
-				if horizontalVelocity.length() > 1:
+				if horizontalVelocity.length() > 1 or _player.grappling:
 					return true
 	return false
 

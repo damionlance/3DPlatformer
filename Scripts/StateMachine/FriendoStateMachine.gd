@@ -36,6 +36,6 @@ func update_state( new_state ):
 	_current_state = state_dictionary[new_state]
 	_current_state.reset()
 
-func calculate_velocity(delta):
+func calculate_velocity(gravity, delta):
 	velocity = (move_direction * movement_speed)
 	_friendo.velocity = velocity

@@ -17,6 +17,7 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
+	print("Hey!")
 	if _state.current_speed < .5:
 		_state.update_state("Running")
 		return

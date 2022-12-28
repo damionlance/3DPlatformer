@@ -8,6 +8,7 @@ onready var _state = get_parent()
 onready var _friendo = get_parent().get_parent()
 onready var _grapple = $"../../Grapple"
 
+onready var _grapple_raycast = $"../../../../GrappleRaycast"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_state.state_dictionary[_state_name] = self
@@ -17,20 +18,23 @@ var last_distance
 
 func update(_delta):
 	# State processing
-	if _state._controller._throw_state == 0:
+	if not _state._player.grappling:
 		if _grapple.get_child(0).get_child(0):
 			_grapple.get_child(0).get_child(0).queue_free()
-		_state.update_state("Idle")
+			_state.update_state("Idle")
 	
 	var distance = (_state._player.global_transform.origin - _friendo.global_transform.origin).length()
-	if not _grapple.get_child(0).get_child(0) and distance >= last_distance:
-		_grapple.translation = _friendo.translation
-		_grapple.scale.x = distance * 2 + 2
-		_grapple.scale.y = distance * 2 + 2
-		_grapple.scale.z = distance * 2 + 2
-		_grapple.get_node("grappleSphereCollider").create_trimesh_collision()
+	if _state._controller._throw_state != 0:
+		if not _grapple.get_child(0).get_child(0) and distance >= last_distance:
+			_grapple.translation = _friendo.translation
+			_grapple.scale.x = distance * 2 + 2
+			_grapple.scale.y = distance * 2 + 2
+			_grapple.scale.z = distance * 2 + 2
+			_grapple.get_node("grappleSphereCollider").create_trimesh_collision()
 	
+	_grapple_raycast.cast_to = _grapple_raycast.to_local(_friendo.global_transform.origin)
 	last_distance = distance
+	print(_friendo.global_transform.origin)
 	pass
 
 func reset():

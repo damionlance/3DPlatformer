@@ -48,7 +48,7 @@ enum {
 var attempting_jump := false
 var allow_jump := false
 var attempting_dive := false
-var allow_dive := false
+var allow_dive := true
 var spin_allowed := false
 var spin_timer := 0
 var spin_buffer := 30
@@ -57,8 +57,7 @@ var attempting_throw := false
 
 var camera_relative_movement := Vector3.ZERO
 var move_direction := Vector3.ZERO
-var character_model_direction := Vector2.ZERO
-var current_dir := Vector2(0,1)
+var current_dir := Vector3.ZERO
 var desired_speed = 0.0
 var current_speed = 0.0
 
@@ -84,7 +83,6 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	print(velocity.y)
 	input_handling()
 	_current_state.update(delta)
 	_player.update_physics_data(velocity, snap_vector)
@@ -133,9 +131,6 @@ func input_handling():
 		attempting_jump = false
 	if _controller._dive_state == _controller.dive_pressed and allow_dive:
 		attempting_dive = true
-	elif _controller._dive_state == _controller.dive_held and _jump_buffer < _jump_timer:
-		attempting_dive = true
-		_jump_buffer += 1
 	else: 
 		attempting_dive = false
 	
