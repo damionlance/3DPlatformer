@@ -21,7 +21,8 @@ func update(_delta):
 	if not _state._player.grappling:
 		if _grapple.get_child(0).get_child(0):
 			_grapple.get_child(0).get_child(0).queue_free()
-			_state.update_state("Idle")
+		_state.update_state("Idle")
+		return
 	
 	var distance = (_state._player.global_transform.origin - _friendo.global_transform.origin).length()
 	if _state._controller._throw_state != 0:

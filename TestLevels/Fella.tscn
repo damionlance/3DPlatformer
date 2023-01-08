@@ -2561,7 +2561,7 @@ mesh = SubResource( 9 )
 skin = SubResource( 2 )
 
 [node name="RightHand" type="BoneAttachment" parent="lilfella/Armature/Skeleton"]
-transform = Transform( -0.924519, 0.381137, 1.50065e-07, -0.381137, -0.924519, 1.97497e-09, 1.39491e-07, -5.53694e-08, 1, 0.623407, 0.190625, -2.143e-08 )
+transform = Transform( -0.924519, 0.381137, 1.50065e-07, -0.381137, -0.924519, 1.97497e-09, 1.39491e-07, -5.53698e-08, 1, 0.623406, 0.190624, -2.14303e-08 )
 bone_name = "Right Hand"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="lilfella"]
