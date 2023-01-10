@@ -65,6 +65,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/StateMachine/States/Friendo/StuckToWall.gd"
 }, {
 "base": "Node",
+"class": "FriendoThrowOut",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/States/Friendo/ThrowOut.gd"
+}, {
+"base": "Node",
 "class": "FriendoThrowing",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Friendo/Throwing.gd"
@@ -118,6 +123,11 @@ _global_script_classes=[ {
 "class": "PhysicsEntity",
 "language": "GDScript",
 "path": "res://addons/qodot/game_definitions/fgd/solid_classes/physics.gd"
+}, {
+"base": "AerialMovement",
+"class": "PopperBounce",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/States/PopperBounce.gd"
 }, {
 "base": "Reference",
 "class": "QodotDependencies",
@@ -306,6 +316,7 @@ _global_script_class_icons={
 "FriendoGrappling": "",
 "FriendoIdle": "",
 "FriendoStuck": "",
+"FriendoThrowOut": "",
 "FriendoThrowing": "",
 "FriendoTossing": "",
 "GroundedMovement": "",
@@ -317,6 +328,7 @@ _global_script_class_icons={
 "OrbitArm": "",
 "PhysicsBall": "",
 "PhysicsEntity": "",
+"PopperBounce": "",
 "QodotDependencies": "",
 "QodotEntity": "",
 "QodotFGDBaseClass": "",

@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=2]
+[gd_scene load_steps=114 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StateMachine/States/Floor Spin.gd" type="Script" id=2]
@@ -36,10 +36,13 @@
 [ext_resource path="res://Scripts/StateMachine/FriendoStateMachine.gd" type="Script" id=34]
 [ext_resource path="res://Scripts/StateMachine/States/Friendo/Throwing.gd" type="Script" id=35]
 [ext_resource path="res://Scripts/StateMachine/States/Friendo/Grappling.gd" type="Script" id=36]
+[ext_resource path="res://Scripts/StateMachine/States/PopperBounce.gd" type="Script" id=37]
 [ext_resource path="res://Scripts/StateMachine/States/ReelIn.gd" type="Script" id=38]
+[ext_resource path="res://Scripts/StateMachine/States/Friendo/ThrowOut.gd" type="Script" id=39]
 
-[sub_resource type="SphereShape" id=40]
-radius = 0.500044
+[sub_resource type="CapsuleShape" id=147]
+radius = 0.533599
+height = 0.733509
 
 [sub_resource type="ShaderMaterial" id=93]
 shader = ExtResource( 27 )
@@ -61,6 +64,10 @@ shader_param/border_width = 0.01
 
 [sub_resource type="SphereShape" id=86]
 radius = 0.096878
+
+[sub_resource type="CylinderShape" id=146]
+height = 0.171016
+radius = 0.607043
 
 [sub_resource type="ArrayMesh" id=145]
 resource_name = "New Fella_Torus002"
@@ -2296,12 +2303,12 @@ graph_offset = Vector2( -156.33, 55.7885 )
 
 [node name="Player" type="KinematicBody"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 7
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.614172, 0 )
-shape = SubResource( 40 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.968688, 0 )
+shape = SubResource( 147 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 6 )
@@ -2357,6 +2364,9 @@ script = ExtResource( 8 )
 [node name="ReelIn" type="Node" parent="StateMachine"]
 script = ExtResource( 38 )
 
+[node name="PopperBounce" type="Node" parent="StateMachine"]
+script = ExtResource( 37 )
+
 [node name="CameraPivot" type="Spatial" parent="."]
 script = ExtResource( 4 )
 camera_sensitivity = Vector2( 2, 2 )
@@ -2396,7 +2406,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67483, 0 )
 
 [node name="Friendo" type="KinematicBody" parent="FriendoHomingNode"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.559247, -0.571541, 0.503783 )
-collision_layer = 2
+collision_layer = 8
 script = ExtResource( 29 )
 toss_friendo = true
 
@@ -2425,7 +2435,17 @@ script = ExtResource( 33 )
 [node name="StuckToWall" type="Node" parent="FriendoHomingNode/Friendo/StateMachine"]
 script = ExtResource( 32 )
 
+[node name="ThrowOut" type="Node" parent="FriendoHomingNode/Friendo/StateMachine"]
+script = ExtResource( 39 )
+
 [node name="Grapple" parent="FriendoHomingNode/Friendo" instance=ExtResource( 30 )]
+
+[node name="PopperBounceArea" type="Area" parent="FriendoHomingNode/Friendo"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="FriendoHomingNode/Friendo/PopperBounceArea"]
+shape = SubResource( 146 )
 
 [node name="lilfella" type="Spatial" parent="."]
 

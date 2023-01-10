@@ -15,10 +15,7 @@ func _ready():
 func update(_delta):
 	# State processing
 	if _friendo.toss_friendo:
-		if _state._controller._throw_state != 0:
-			_state.update_state("Grappling")
-		else:
-			_state.update_state("Tossing")
+		_state.update_state("ThrowOut")
 		return
 	
 	# handle all movement processing

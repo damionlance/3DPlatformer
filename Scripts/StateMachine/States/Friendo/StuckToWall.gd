@@ -32,10 +32,10 @@ func update(_delta):
 			_grapple.scale.y = distance * 2 + 2
 			_grapple.scale.z = distance * 2 + 2
 			_grapple.get_node("grappleSphereCollider").create_trimesh_collision()
-	
+			_grapple.get_child(0).get_child(0).set_collision_mask(_grapple.get_collision_mask())
+			_grapple.get_child(0).get_child(0).set_collision_layer(_grapple.get_collision_layer())
 	_grapple_raycast.cast_to = _grapple_raycast.to_local(_friendo.global_transform.origin)
 	last_distance = distance
-	print(_friendo.global_transform.origin)
 	pass
 
 func reset():
