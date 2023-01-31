@@ -152,7 +152,8 @@ func update_state( new_state ):
 
 func calculate_velocity(gravity: float, delta) -> Vector3:
 	var new_velocity = move_direction * current_speed
-	new_velocity.y += velocity.y + gravity * delta
+	if gravity != 0:
+		new_velocity.y = velocity.y + gravity * delta
 	return new_velocity
 
 func grapple_velocity(gravity: float, delta) -> Vector3:

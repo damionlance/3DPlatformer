@@ -42,14 +42,28 @@ func update(delta):
 		else:
 			current_fall_gravity = _jump_gravity
 	else:
-		if _state._controller.movement_direction.y > .5:
+		if _state._controller.movement_direction.y > .9:
 			_state.update_state("Jump")
 			return
-		if _state._controller.movement_direction.y < -.5:
+		if _state._controller.movement_direction.y < -.9:
 			_state.update_state("Falling")
 			return
-		_state.move_direction = _state.snap_vector.cross(Vector3.UP) * sign(direction)
-		_state.current_speed = 1
+		if _state.snap_vector.cross(Vector3.UP) == _state.snap_vector.cross(Vector3.UP) * sign(direction):
+			#Moving Right
+			if _state._raycast_right.get_collision_normal().dot(-_state.snap_vector) > .9:
+				_state.move_direction = _state.snap_vector.cross(Vector3.UP) * sign(direction)
+				_state.current_speed = 1
+			else:
+				_state.move_direction = Vector3.ZERO
+				_state.current_speed = 0
+		else:
+			#Moving Left
+			if _state._raycast_left.get_collision_normal().dot(-_state.snap_vector) > .9:
+				_state.move_direction = _state.snap_vector.cross(Vector3.UP) * sign(direction)
+				_state.current_speed = 1
+			else:
+				_state.move_direction = Vector3.ZERO
+				_state.current_speed = 0
 	
 	# Process Physics
 	_state.velocity = _state.calculate_velocity(current_fall_gravity, delta)

@@ -39,7 +39,6 @@ func reset():
 	_state.current_speed = 8
 	_state.velocity.y = _side_jump_strength
 	_state.snap_vector = Vector3.ZERO
-	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

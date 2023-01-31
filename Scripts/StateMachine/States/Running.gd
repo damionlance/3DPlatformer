@@ -29,7 +29,7 @@ func update(delta):
 	# Handle all states
 	if _state._controller.spin_entered:
 		_state.update_state("Floor Spin")
-	if _state._controller.pivot_entered and _state.current_speed > max_speed*.5:
+	if _state._controller.pivot_entered and _state.current_speed > max_speed*.2:
 		_state.update_state("FloorSlide")
 		return
 	if _state.attempting_dive:

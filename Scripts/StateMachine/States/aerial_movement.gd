@@ -74,8 +74,7 @@ func wall_collision_check():
 				var horizontalVelocity = Vector3(_state.velocity.x, 0, _state.velocity.z)
 				if horizontalVelocity.length() > 1 or _player.grappling:
 					return wall_collision.wallSlide
-	elif _state._raycast_middle.is_colliding():
-		print("ledge grab!")
+	elif _state._raycast_middle.is_colliding() and _state.velocity.y < 0:
 		return wall_collision.ledgeGrab
 	return wall_collision.noCollision
 
