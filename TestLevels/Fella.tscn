@@ -2244,7 +2244,7 @@ nodes/Blend/node = SubResource( 110 )
 nodes/Blend/position = Vector2( -130, 110 )
 nodes/OneShot/node = SubResource( 111 )
 nodes/OneShot/position = Vector2( 130, 150 )
-node_connections = [ "OneShot", 0, "Blend", "OneShot", 1, "Animation 2", "Blend", 0, "Animation 3", "Blend", 1, "Animation", "output", 0, "OneShot" ]
+node_connections = [ "output", 0, "OneShot", "OneShot", 0, "Blend", "OneShot", 1, "Animation 2", "Blend", 0, "Animation 3", "Blend", 1, "Animation" ]
 
 [sub_resource type="AnimationNodeAnimation" id=113]
 animation = "Skid"

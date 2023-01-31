@@ -19,17 +19,16 @@ onready var _controller = get_parent().get_parent().get_node("Controller")
 var turning := 0
 
 func grounded_movement_processing():
+	print(_controller.input_strength)
 	if _controller.movement_direction:
 		_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, floor_rotation_speed)
 		if _state.current_speed != max_speed:
-			_state.current_speed += floor_acceleration
+			_state.current_speed = max_speed * _controller.input_strength
 	elif _state.current_speed < 1:
 		_state.current_speed = 0
 		_state.move_direction == Vector3.ZERO
 	if _state.current_speed > max_speed * _controller.input_strength:
 		_state.current_speed *= floor_friction
-	elif _state.current_speed + floor_acceleration > max_speed:
-		_state.current_speed = max_speed
 	#_player.get_node("lilfella/AnimationPlayer").playback_speed = _state.current_speed/max_speed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -51,6 +51,8 @@ func _process(_delta):
 	
 	movement_direction = Input.get_vector("Right", "Left", "Backward", "Forward")
 	input_strength = movement_direction.length()
+	if input_strength > .9:
+		input_strength = 1
 	
 	pivot_buffer.push_front(movement_direction)
 	pivot_buffer.pop_back()
