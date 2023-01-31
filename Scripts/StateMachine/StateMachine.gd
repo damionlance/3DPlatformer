@@ -70,6 +70,7 @@ onready var _player = get_parent()
 onready var _camera = $"../CameraPivot"
 onready var _raycast_left = _player.get_node("WallRayLeft")
 onready var _raycast_right = _player.get_node("WallRayRight")
+onready var _raycast_middle = _player.get_node("WallRayMiddle")
 onready var _controller = $"../Controller"
 
 #signals

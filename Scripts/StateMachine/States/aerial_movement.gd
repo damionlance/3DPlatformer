@@ -57,18 +57,27 @@ onready var _state = get_parent()
 onready var _player = get_parent().get_parent()
 onready var _controller = get_parent().get_parent().get_node("Controller")
 
+enum wall_collision {
+	noCollision,
+	wallSlide,
+	ledgeGrab
+}
+
 func _ready():
 	_state = get_parent()
 
 # Helper Functions
-func wall_jump_collision_check():
+func wall_collision_check():
 	if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
 		if abs(_state._raycast_left.get_collision_normal().y) > 0 or abs(_state._raycast_right.get_collision_normal().y) > 0:
 			if _player.is_on_wall():
 				var horizontalVelocity = Vector3(_state.velocity.x, 0, _state.velocity.z)
 				if horizontalVelocity.length() > 1 or _player.grappling:
-					return true
-	return false
+					return wall_collision.wallSlide
+	elif _state._raycast_middle.is_colliding():
+		print("ledge grab!")
+		return wall_collision.ledgeGrab
+	return wall_collision.noCollision
 
 func _process(_delta):
 	if _state.just_landed:

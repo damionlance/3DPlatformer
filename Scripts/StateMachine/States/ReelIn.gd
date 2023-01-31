@@ -23,7 +23,7 @@ func update(delta):
 		_player.grappling = false
 		_state.update_state("Dive")
 		return
-	if wall_jump_collision_check():
+	if wall_collision_check() == wall_collision.wallSlide:
 		_player.grappling = false
 		_state.update_state("WallSlide")
 		return

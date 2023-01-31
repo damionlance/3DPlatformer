@@ -15,9 +15,13 @@ func _ready():
 func update(delta):
 	# Handle all state logic
 	
-	if wall_jump_collision_check():
-		_state.update_state("WallSlide")
-		return
+	match wall_collision_check():
+		wall_collision.wallSlide:
+			_state.update_state("WallSlide")
+			return
+		wall_collision.ledgeGrab:
+			_state.update_state("LedgeGrab")
+			return
 	if _state.velocity.y < 0:
 		_state.update_state("Falling")
 		return

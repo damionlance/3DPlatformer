@@ -18,9 +18,14 @@ func update(delta):
 		_state.update_state("Dive")
 		return
 	
-	if wall_jump_collision_check():
-		_state.update_state("WallSlide")
-		return
+	match wall_collision_check():
+		wall_collision.wallSlide:
+			_state.update_state("WallSlide")
+			return
+		wall_collision.ledgeGrab:
+			_state.update_state("LedgeGrab")
+			return
+	
 	
 	if _state._controller._jump_state == _state._controller.jump_released and shorthop_timer == shorthop_buffer:
 		_state.velocity.y *= .6

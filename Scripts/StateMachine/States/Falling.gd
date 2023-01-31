@@ -28,9 +28,13 @@ func update(delta):
 		_state.update_state("Running")
 		_state.just_landed = true
 		return
-	if wall_jump_collision_check():
-		_state.update_state("WallSlide")
-		return
+	match wall_collision_check():
+		wall_collision.wallSlide:
+			_state.update_state("WallSlide")
+			return
+		wall_collision.ledgeGrab:
+			_state.update_state("LedgeGrab")
+			return
 	if _state.attempting_throw:
 		_state._throw()
 	

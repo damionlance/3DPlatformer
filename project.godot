@@ -104,6 +104,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/lava.gd"
 }, {
+"base": "AerialMovement",
+"class": "LedgeGrab",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/States/LedgeGrab.gd"
+}, {
 "base": "Area",
 "class": "LiquidLayer",
 "language": "GDScript",
@@ -324,6 +329,7 @@ _global_script_class_icons={
 "Jump": "",
 "Jump2": "",
 "LavaLayer": "",
+"LedgeGrab": "",
 "LiquidLayer": "",
 "OrbitArm": "",
 "PhysicsBall": "",

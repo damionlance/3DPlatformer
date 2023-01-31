@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=2]
+[gd_scene load_steps=115 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StateMachine/States/Floor Spin.gd" type="Script" id=2]
@@ -39,6 +39,7 @@
 [ext_resource path="res://Scripts/StateMachine/States/PopperBounce.gd" type="Script" id=37]
 [ext_resource path="res://Scripts/StateMachine/States/ReelIn.gd" type="Script" id=38]
 [ext_resource path="res://Scripts/StateMachine/States/Friendo/ThrowOut.gd" type="Script" id=39]
+[ext_resource path="res://Scripts/StateMachine/States/LedgeGrab.gd" type="Script" id=40]
 
 [sub_resource type="CapsuleShape" id=147]
 radius = 0.533599
@@ -2243,7 +2244,7 @@ nodes/Blend/node = SubResource( 110 )
 nodes/Blend/position = Vector2( -130, 110 )
 nodes/OneShot/node = SubResource( 111 )
 nodes/OneShot/position = Vector2( 130, 150 )
-node_connections = [ "output", 0, "OneShot", "OneShot", 0, "Blend", "OneShot", 1, "Animation 2", "Blend", 0, "Animation 3", "Blend", 1, "Animation" ]
+node_connections = [ "OneShot", 0, "Blend", "OneShot", 1, "Animation 2", "Blend", 0, "Animation 3", "Blend", 1, "Animation", "output", 0, "OneShot" ]
 
 [sub_resource type="AnimationNodeAnimation" id=113]
 animation = "Skid"
@@ -2313,20 +2314,14 @@ shape = SubResource( 147 )
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 6 )
 
-[node name="Spin Jump" type="Node" parent="StateMachine"]
-script = ExtResource( 11 )
-
 [node name="State" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
 
 [node name="AerialMovement" type="Node" parent="StateMachine"]
 script = ExtResource( 19 )
 
-[node name="GroundedMovement" type="Node" parent="StateMachine"]
-script = ExtResource( 20 )
-
-[node name="Dive" type="Node" parent="StateMachine"]
-script = ExtResource( 16 )
+[node name="LedgeGrab" type="Node" parent="StateMachine"]
+script = ExtResource( 40 )
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
@@ -2334,17 +2329,35 @@ script = ExtResource( 10 )
 [node name="Falling" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
 
+[node name="Spin Jump" type="Node" parent="StateMachine"]
+script = ExtResource( 11 )
+
 [node name="Spin Fall" type="Node" parent="StateMachine"]
 script = ExtResource( 12 )
 
 [node name="Rollout" type="Node" parent="StateMachine"]
 script = ExtResource( 28 )
 
+[node name="Dive" type="Node" parent="StateMachine"]
+script = ExtResource( 16 )
+
 [node name="SideFlip" type="Node" parent="StateMachine"]
 script = ExtResource( 17 )
 
 [node name="Wall Slide" type="Node" parent="StateMachine"]
 script = ExtResource( 1 )
+
+[node name="SwingFromFriendo" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
+
+[node name="PopperBounce" type="Node" parent="StateMachine"]
+script = ExtResource( 37 )
+
+[node name="ReelIn" type="Node" parent="StateMachine"]
+script = ExtResource( 38 )
+
+[node name="GroundedMovement" type="Node" parent="StateMachine"]
+script = ExtResource( 20 )
 
 [node name="Dive Floor" type="Node" parent="StateMachine"]
 script = ExtResource( 14 )
@@ -2357,15 +2370,6 @@ script = ExtResource( 13 )
 
 [node name="Running" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
-
-[node name="SwingFromFriendo" type="Node" parent="StateMachine"]
-script = ExtResource( 8 )
-
-[node name="ReelIn" type="Node" parent="StateMachine"]
-script = ExtResource( 38 )
-
-[node name="PopperBounce" type="Node" parent="StateMachine"]
-script = ExtResource( 37 )
 
 [node name="CameraPivot" type="Spatial" parent="."]
 script = ExtResource( 4 )
@@ -2389,6 +2393,11 @@ cast_to = Vector3( 0, 0, -0.75 )
 
 [node name="WallRayLeft" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.82402, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -0.75 )
+
+[node name="WallRayMiddle" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, -0.75 )
 
