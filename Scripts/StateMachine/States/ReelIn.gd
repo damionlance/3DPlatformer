@@ -20,14 +20,6 @@ func update(delta):
 		_player.grappling = false
 		_state.update_state("Dive")
 		return
-	if wall_collision_check() == wall_collision.wallSlide:
-		_player.grappling = false
-		_state.update_state("WallSlide")
-		return
-	if wall_collision_check() == wall_collision.ledgeGrab:
-		_player.grappling = false
-		_state.update_state("LedgeGrab")
-		return
 	if _state.attempting_jump:
 		_player.grappling = false
 		_state.update_state("Jump")
@@ -35,12 +27,17 @@ func update(delta):
 	# Handle animation tree
 	
 	# Process movements
-	
-	var diff = _friendo.global_transform.origin - _player.global_transform.origin
+	var altered = _friendo.global_transform.origin
+	altered.y -= 1.25
+	var diff = altered - _player.global_transform.origin
 	if diff.length() < 1:
-		_player.transform = _player.transform.looking_at(_player.global_transform.origin + -_state._raycast_middle.get_collision_normal(), Vector3.UP)
+		_player.grappling = false
+		_state.update_state("Falling")
+		return
 	else:
-		_player.transform = _player.transform.looking_at(_friendo.global_transform.origin, Vector3.UP)
+		var direction = _friendo.global_transform.origin
+		direction.y = _player.transform.origin.y
+		_player.transform = _player.transform.looking_at(direction, Vector3.UP)
 	# Update all relevant counters
 	
 	# Process physics

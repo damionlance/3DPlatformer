@@ -68,13 +68,13 @@ func _ready():
 
 # Helper Functions
 func wall_collision_check():
-	if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
+	if _state._raycast_left.colliding or _state._raycast_right.colliding:
 		if abs(_state._raycast_left.get_collision_normal().y) > 0 or abs(_state._raycast_right.get_collision_normal().y) > 0:
 			if _player.is_on_wall():
 				var horizontalVelocity = Vector3(_state.velocity.x, 0, _state.velocity.z)
 				if horizontalVelocity.length() > 1 or _player.grappling:
 					return wall_collision.wallSlide
-	elif _state._raycast_middle.is_colliding() and _state.velocity.y < 0:
+	elif _state._raycast_middle.colliding and _state.velocity.y < 0:
 		return wall_collision.ledgeGrab
 	return wall_collision.noCollision
 

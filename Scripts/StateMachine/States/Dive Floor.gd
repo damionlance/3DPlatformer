@@ -29,6 +29,7 @@ func update(delta):
 		_state.current_speed *= .915
 		if _state.attempting_jump:
 			_state.update_state("Rollout")
+			return
 		if _state.current_speed < .01:
 			_state.current_speed = 0
 	else:

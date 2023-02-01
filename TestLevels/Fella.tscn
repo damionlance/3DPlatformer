@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=2]
+[gd_scene load_steps=116 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StateMachine/States/Floor Spin.gd" type="Script" id=2]
@@ -40,6 +40,7 @@
 [ext_resource path="res://Scripts/StateMachine/States/ReelIn.gd" type="Script" id=38]
 [ext_resource path="res://Scripts/StateMachine/States/Friendo/ThrowOut.gd" type="Script" id=39]
 [ext_resource path="res://Scripts/StateMachine/States/LedgeGrab.gd" type="Script" id=40]
+[ext_resource path="res://TestLevels/WallRayRight.gd" type="Script" id=41]
 
 [sub_resource type="CapsuleShape" id=147]
 radius = 0.533599
@@ -2390,16 +2391,19 @@ far = 200.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.82402, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, -0.75 )
+script = ExtResource( 41 )
 
 [node name="WallRayLeft" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.82402, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, -0.75 )
+script = ExtResource( 41 )
 
 [node name="WallRayMiddle" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, -0.75 )
+script = ExtResource( 41 )
 
 [node name="PlayerShadow" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.1, 0 )

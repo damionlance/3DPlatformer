@@ -10,6 +10,8 @@ var motion_input : String
 #private variables
 var _state_name = "LedgeGrab"
 var snapped = false
+
+var height_of_platform := 0
 #onready variables
 
 # Called when the node enters the scene tree for the first time.
@@ -35,12 +37,15 @@ func update(delta):
 	
 	var current_fall_gravity = 0
 	if not snapped:
-		if _state._raycast_left.is_colliding():
+		if _state._raycast_left.colliding:
+			_player.global_translation.y = height_of_platform - 1.2
 			_state.velocity = Vector3.ZERO
 			_state._player.velocity = Vector3.ZERO
+			_state.move_direction = Vector3.ZERO
+			_state.current_speed = 0
 			snapped = true
 		else:
-			current_fall_gravity = _jump_gravity
+			current_fall_gravity = _fall_gravity
 	else:
 		if _state._controller.movement_direction.y > .9:
 			_state.update_state("Jump")
@@ -71,11 +76,20 @@ func update(delta):
 	pass
 
 func reset():
+	var global_cast_to = _state._raycast_middle.to_global(_state._raycast_middle.cast_to)
+	var space_state = _player.get_world().direct_space_state
+	
+	var result = space_state.intersect_ray(global_cast_to + Vector3(0,2,0), global_cast_to)
+	if result:
+		height_of_platform = result.position.y
+		print(height_of_platform)
+	
 	snapped = false
 	_state.velocity = Vector3(0, _state.velocity.y, 0)
 	_state.move_direction = Vector3.ZERO
 	_state.current_speed = 0
 	_state.snap_vector = -_state._raycast_middle.get_collision_normal()
+	_state.snap_vector.y = 0
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.snap_vector, Vector3.UP)
 	if _player.anim_tree != null:
 		_player.anim_tree.travel("Running")

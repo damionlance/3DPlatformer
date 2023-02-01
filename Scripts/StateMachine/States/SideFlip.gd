@@ -18,6 +18,9 @@ func update(delta):
 		wall_collision.ledgeGrab:
 			_state.update_state("LedgeGrab")
 			return
+	if _state.velocity.y < 0:
+		_state.update_state("Falling")
+		return
 	if _player.is_on_floor():
 		_state.snap_vector = Vector3.DOWN
 		_state.update_state("Running")
@@ -36,6 +39,7 @@ func reset():
 		_player.player_anim_tree["parameters/Jump/playback"].start("Side Flip")
 	
 	_state.move_direction = -_state.move_direction
+	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 	_state.current_speed = 8
 	_state.velocity.y = _side_jump_strength
 	_state.snap_vector = Vector3.ZERO

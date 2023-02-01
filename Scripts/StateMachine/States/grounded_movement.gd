@@ -19,7 +19,6 @@ onready var _controller = get_parent().get_parent().get_node("Controller")
 var turning := 0
 
 func grounded_movement_processing():
-	print(_controller.input_strength)
 	if _controller.movement_direction:
 		_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, floor_rotation_speed)
 		if _state.current_speed != max_speed:
