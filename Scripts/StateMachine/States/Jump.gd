@@ -45,12 +45,6 @@ func update(delta):
 	shorthop_timer += 1
 		
 	# Process physics
-	var current_jump_gravity
-	match current_jump:
-		1: current_jump_gravity = _jump_gravity
-		2: current_jump_gravity = _jump2_gravity
-		_: current_jump_gravity = _jump_gravity
-		
 	_state.velocity = _state.calculate_velocity(current_jump_gravity, delta)
 	pass
 
@@ -60,6 +54,11 @@ func reset():
 		current_jump += 1
 	else:
 		current_jump = 1
+	
+	match current_jump:
+		1: current_jump_gravity = _jump_gravity
+		2: current_jump_gravity = _jump2_gravity
+		_: current_jump_gravity = _jump_gravity
 	
 	match current_jump:
 		1:

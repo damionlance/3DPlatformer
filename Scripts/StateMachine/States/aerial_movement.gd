@@ -51,7 +51,7 @@ export var air_acceleration := 2.0
 
 var wall_jump_speed = 12.5
 var max_reel_in = 25
-
+var current_jump_gravity := 0
 var dive_speed := 6
 
 onready var _state = get_parent()

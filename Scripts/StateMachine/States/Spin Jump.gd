@@ -32,10 +32,11 @@ func update(delta):
 		
 	
 	#Process Physics
-	_state.velocity = _state.calculate_velocity(_spin_jump_gravity, delta)
+	_state.velocity = _state.calculate_velocity(current_jump_gravity, delta)
 	pass
 
 func reset():
+	current_jump_gravity = _spin_jump_gravity
 	_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = _spin_jump_strength
 	pass

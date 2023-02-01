@@ -29,7 +29,7 @@ func update(delta):
 	if _state.attempting_throw:
 		_state._throw()
 	
-	_state.velocity = _state.calculate_velocity(_side_jump_gravity, delta)
+	_state.velocity = _state.calculate_velocity(current_jump_gravity, delta)
 	
 	pass
 
@@ -37,7 +37,7 @@ func reset():
 	if _player.anim_tree != null:
 		_player.anim_tree.travel("Jump")
 		_player.player_anim_tree["parameters/Jump/playback"].start("Side Flip")
-	
+	current_jump_gravity = _side_jump_gravity
 	_state.move_direction = -_state.move_direction
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 	_state.current_speed = 8
