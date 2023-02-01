@@ -19,7 +19,7 @@ func update(_delta):
 		if _grapple_raycast.is_colliding():
 			_friendo.translation = _grapple_raycast.get_collision_point()
 		_state.update_state("StuckToWall")
-		_grapple_raycast.enabled
+		_grapple_raycast.enabled = false
 		return
 	# handle all movement processing
 	_grapple_raycast.cast_to = _grapple_raycast.to_local(_friendo.global_transform.origin)

@@ -14,7 +14,6 @@ func _ready():
 
 func update(delta):
 	# Handle all state logic
-	
 	match wall_collision_check():
 		wall_collision.wallSlide:
 			_state.update_state("WallSlide")
@@ -22,8 +21,11 @@ func update(delta):
 		wall_collision.ledgeGrab:
 			_state.update_state("LedgeGrab")
 			return
-	if _state.velocity.y < 0:
+	if _state.velocity.y < -6: #-6 is faster than the highest y velocity player experiences during a grounded rollout
 		_state.update_state("Falling")
+		return
+	if _player.is_on_floor():
+		_state.update_state("Running")
 		return
 	# Handle animation tree
 	

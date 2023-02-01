@@ -30,7 +30,7 @@ func update(delta):
 	var altered = _friendo.global_transform.origin
 	altered.y -= 1.25
 	var diff = altered - _player.global_transform.origin
-	if diff.length() < 1:
+	if diff.length() < .5:
 		_player.grappling = false
 		_state.update_state("Falling")
 		return
@@ -42,7 +42,7 @@ func update(delta):
 	
 	# Process physics
 	_state.move_direction = diff.normalized()
-	_state.current_speed += 1.5
+	_state.current_speed += 1.5 if _state.current_speed < max_reel_in else 0
 	_state.velocity = _state.calculate_velocity(0, delta)
 	
 	pass

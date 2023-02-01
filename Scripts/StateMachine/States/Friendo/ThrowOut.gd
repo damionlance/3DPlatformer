@@ -12,7 +12,7 @@ onready var _grapple_raycast = $"../../../../GrappleRaycast"
 func _ready():
 	_state.state_dictionary[_state_name] = self
 	pass # Replace with function body.
-
+var gravity
 func update(delta):
 	_grapple_raycast.cast_to = _grapple_raycast.to_local(_friendo.global_transform.origin)
 	
@@ -23,17 +23,22 @@ func update(delta):
 		_grapple_raycast.enabled
 		return
 	
-	_state.movement_speed *= .8
-	if _state.movement_speed <= 1:
+	_state.movement_speed *= .85
+	if _state._controller._throw_state:
+		gravity.y -= 15
+	else:
+		gravity.y = 0
+	if _state.movement_speed <= .2:
 		if not _state._controller._throw_state:
 			_state.update_state("Tossing")
 			return
 		_state.update_state("Idle")
 		return
 	
-	_state.calculate_velocity(Vector3.ZERO, delta)
+	_state.calculate_velocity(gravity, delta)
 
 func reset():
+	gravity = Vector3.ZERO
 	if _state._player_state.camera_relative_movement:
 		_state.move_direction = _state._player_state.camera_relative_movement
 	else:

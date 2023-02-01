@@ -21,6 +21,7 @@ func _ready():
 
 func update(delta):
 	
+	
 	# Handle state logic
 	if _state.attempting_jump:
 		_state.update_state("Jump")
@@ -48,6 +49,8 @@ func update(delta):
 			current_fall_gravity = _fall_gravity
 	else:
 		if _state._controller.movement_direction.y > .9:
+			_state.move_direction = _state.snap_vector
+			_state.current_speed = 3
 			_state.update_state("Jump")
 			return
 		if _state._controller.movement_direction.y < -.9:
@@ -76,13 +79,13 @@ func update(delta):
 	pass
 
 func reset():
+	
 	var global_cast_to = _state._raycast_middle.to_global(_state._raycast_middle.cast_to)
 	var space_state = _player.get_world().direct_space_state
 	
 	var result = space_state.intersect_ray(global_cast_to + Vector3(0,2,0), global_cast_to)
 	if result:
 		height_of_platform = result.position.y
-		print(height_of_platform)
 	
 	snapped = false
 	_state.velocity = Vector3(0, _state.velocity.y, 0)

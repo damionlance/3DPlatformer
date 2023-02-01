@@ -50,6 +50,7 @@ export var air_friction := 0.99
 export var air_acceleration := 2.0
 
 var wall_jump_speed = 12.5
+var max_reel_in = 25
 
 var dive_speed := 6
 
