@@ -40,6 +40,9 @@ func update(delta):
 	if _player.is_on_floor():
 		_state.update_state("Running")
 		return
+	if not _player.is_on_wall():
+		_state.update_state("Falling")
+		return
 	
 	if wall_bounce_timer < wall_bounce_buffer:
 		if  _state.attempting_jump:
@@ -76,7 +79,6 @@ func reset():
 	_state.current_speed = 0
 	_state.velocity = Vector3.ZERO
 	entering_angle = Vector3(_state.move_direction.x,0, _state.move_direction.z)
-	
 	if _state._raycast_left == null:
 		return
 	var collisionLeft = _state._raycast_left.get_collision_normal()
@@ -92,5 +94,6 @@ func reset():
 		var rightDot = collisionRight.dot(entering_angle)
 		surface_normal = collisionLeft if leftDot < rightDot else collisionRight
 	_state.snap_vector = -surface_normal
+	_state.move_direction = _state.snap_vector
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + surface_normal, Vector3.UP)
 	pass

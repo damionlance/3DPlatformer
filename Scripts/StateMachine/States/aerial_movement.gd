@@ -55,6 +55,7 @@ var wall_jump_speed = 12.5
 var max_reel_in = 25
 var current_jump_gravity := 0
 var dive_speed := 6
+var spin_skip_strength := 0.7
 
 onready var _state = get_parent()
 onready var _player = get_parent().get_parent()
@@ -106,6 +107,9 @@ func standard_aerial_drift():
 	elif entering_jump_angle == Vector2.ZERO and _controller.movement_direction:
 		_state.current_speed += .2
 		_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .1)
+	if _player.is_on_wall():
+		var position = _player.get_last_slide_collision().position - _player.global_translation
+		_state.move_direction = (_state.move_direction - position.normalized()).normalized()
 	pass
 
 
@@ -116,4 +120,9 @@ func spin_jump_drift():
 		_state.current_speed *= air_friction
 	
 	_state.move_direction = _state.camera_relative_movement
+	
+	if _player.is_on_wall():
+		var position = _player.get_last_slide_collision().position - _player.global_translation
+		_state.move_direction = (_state.move_direction - (position.normalized() * spin_skip_strength)).normalized()
+	
 	pass
