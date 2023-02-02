@@ -39,7 +39,11 @@ func update(delta):
 	var current_fall_gravity = 0
 	if not snapped:
 		if _state._raycast_left.colliding:
-			_player.global_translation.y = height_of_platform - 1.2
+			
+			while _state._raycast_left.is_colliding():
+				_player.global_translation.y += .1
+				_state._raycast_left.force_raycast_update()
+			_player.global_translation.y -= .15
 			_state.velocity = Vector3.ZERO
 			_state._player.velocity = Vector3.ZERO
 			_state.move_direction = Vector3.ZERO
