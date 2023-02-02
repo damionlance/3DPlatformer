@@ -29,9 +29,10 @@ func update(delta):
 		_state.velocity = Vector3.ZERO
 		_state.movement_speed = 0
 		_friendo.velocity = Vector3.ZERO
-		if abs((_friendo.global_translation-_state._player.global_translation).length()) < distanceOfThrow:
-			_friendo.global_translation = ((_state._player.global_translation + Vector3(0,.5,0)) - 
+		#if abs((_friendo.global_translation-_state._player.global_translation).length()) < distanceOfThrow * 2:
+		_friendo.global_translation = ((_state._player.global_translation + Vector3(0,.5,0)) - 
 									(_state._player.velocity.normalized() * distanceOfThrow))
+		_friendo.global_translation.y = _state._player.global_translation.y
 		_state.update_state("Tossing")
 		return
 	
@@ -59,19 +60,19 @@ func reset():
 	var pDirection = _state._player_state.move_direction
 	var pDiveSpeed = $"../../../../StateMachine/AerialMovement".dive_speed
 	var pJump = $"../../../../StateMachine/AerialMovement"._jump_strength*.5
-	
-	pVelocity += (pDirection * pDiveSpeed) + Vector3.UP * pJump
+	pVelocity.y = 0
+	pVelocity += (pDirection * (pCurrentSpeed + pDiveSpeed)) + Vector3.UP * pJump
 	var timeOfJump
 	if pGravity != 0:
 		 timeOfJump = 2*( pVelocity.y / pGravity)
 	else:
 		timeOfJump = 2*( pVelocity.y / defaultPGravity)
-	pVelocity.y = 0
+	
 	if pCurrentSpeed < pMaxSpeed:
-		pCurrentSpeed = pMaxSpeed
+		pVelocity *= pMaxSpeed
 	pCurrentSpeed += pDiveSpeed
-	distanceOfThrow = (pCurrentSpeed * timeOfJump)
-	print(distanceOfThrow)
+	distanceOfThrow = (pVelocity.length() * timeOfJump)
+	
 	gravity = Vector3.ZERO
 	if _state._player_state.camera_relative_movement:
 		_state.move_direction = _state._player_state.camera_relative_movement
