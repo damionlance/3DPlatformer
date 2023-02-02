@@ -407,6 +407,7 @@ singletons=[  ]
 [global]
 
 fps=false
+framerate=false
 
 [gui]
 

@@ -24,6 +24,7 @@ func update(delta):
 		_state.update_state("StuckToWall")
 		_grapple_raycast.enabled
 		return
+	
 	if _state._controller._dive_state == 1:
 		_state.velocity = Vector3.ZERO
 		_state.movement_speed = 0
@@ -31,9 +32,9 @@ func update(delta):
 		if abs((_friendo.global_translation-_state._player.global_translation).length()) < distanceOfThrow:
 			_friendo.global_translation = ((_state._player.global_translation + Vector3(0,.5,0)) - 
 									(_state._player.velocity.normalized() * distanceOfThrow))
-		if not _state._controller._throw_state:
-			_state.update_state("Tossing")
-			return
+		_state.update_state("Tossing")
+		return
+	
 	_state.movement_speed *= .85
 	if _state._controller._throw_state:
 		gravity.y -= 15

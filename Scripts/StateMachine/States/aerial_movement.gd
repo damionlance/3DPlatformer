@@ -2,6 +2,8 @@ extends Node
 
 class_name AerialMovement
 
+var backwardsLedgeGrab := false
+
 # Aerial Tech Timers
 var shorthop_timer := 0
 var shorthop_buffer := 7
@@ -69,14 +71,22 @@ func _ready():
 
 # Helper Functions
 func wall_collision_check():
+	var ledgeGrabHit = false
 	if _state._raycast_left.colliding or _state._raycast_right.colliding:
 		if abs(_state._raycast_left.get_collision_normal().y) > 0 or abs(_state._raycast_right.get_collision_normal().y) > 0:
 			if _player.is_on_wall():
 				var horizontalVelocity = Vector3(_state.velocity.x, 0, _state.velocity.z)
 				if horizontalVelocity.length() > 1 or _player.grappling:
 					return wall_collision.wallSlide
-	elif _state._raycast_middle.colliding and _state.velocity.y < 0:
-		return wall_collision.ledgeGrab
+	else:
+		for i in 2:
+			if _state._raycast_middle.is_colliding() and _state.velocity.y < 0:
+				ledgeGrabHit = true
+				break
+			_state._raycast_middle.cast_to *= -1
+			_state._raycast_middle.force_raycast_update()
+	
+	if ledgeGrabHit: return wall_collision.ledgeGrab
 	return wall_collision.noCollision
 
 func _process(_delta):
