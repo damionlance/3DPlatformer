@@ -72,6 +72,7 @@ onready var _raycast_left = _player.get_node("WallRayLeft")
 onready var _raycast_right = _player.get_node("WallRayRight")
 onready var _raycast_middle = _player.get_node("WallRayMiddle")
 onready var _controller = $"../Controller"
+onready var _skeleton = $"../lilfella/Armature/Skeleton"
 
 #signals
 signal throw_fella

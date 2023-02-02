@@ -42,6 +42,7 @@ func update(delta):
 	pass
 
 func reset():
+	_player.rotation.z = 0
 	_player.anim_tree.travel("Spinning")
 	_state.snap_vector = Vector3.DOWN
 	_spinning_buffer = 0
