@@ -43,7 +43,7 @@ func update(delta):
 			while _state._raycast_left.is_colliding():
 				_player.global_translation.y += .1
 				_state._raycast_left.force_raycast_update()
-			_player.global_translation.y -= .15
+			_player.global_translation.y -= .125
 			_state.velocity = Vector3.ZERO
 			_state._player.velocity = Vector3.ZERO
 			_state.move_direction = Vector3.ZERO
@@ -83,13 +83,6 @@ func update(delta):
 	pass
 
 func reset():
-	
-	var global_cast_to = _state._raycast_middle.to_global(_state._raycast_middle.cast_to)
-	var space_state = _player.get_world().direct_space_state
-	
-	var result = space_state.intersect_ray(global_cast_to + Vector3(0,2,0), global_cast_to)
-	if result:
-		height_of_platform = result.position.y
 	
 	snapped = false
 	_state.velocity = Vector3(0, _state.velocity.y, 0)

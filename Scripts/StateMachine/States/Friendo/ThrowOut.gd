@@ -51,10 +51,12 @@ func update(delta):
 
 func reset():
 	
-	var pVelocity = $"../../../../StateMachine".velocity
+	var pVelocity = _state._player_state.velocity
+	var pCurrentSpeed = _state._player_state.current_speed
 	var pGravity = $"../../../../StateMachine/AerialMovement".current_jump_gravity
 	var defaultPGravity = $"../../../../StateMachine/AerialMovement"._jump_gravity
-	var pDirection = $"../../../../StateMachine".move_direction
+	var pMaxSpeed = $"../../../../StateMachine/GroundedMovement".max_speed
+	var pDirection = _state._player_state.move_direction
 	var pDiveSpeed = $"../../../../StateMachine/AerialMovement".dive_speed
 	var pJump = $"../../../../StateMachine/AerialMovement"._jump_strength*.5
 	
@@ -65,8 +67,11 @@ func reset():
 	else:
 		timeOfJump = 2*( pVelocity.y / defaultPGravity)
 	pVelocity.y = 0
-	distanceOfThrow = (pVelocity.length() * timeOfJump)
-	
+	if pCurrentSpeed < pMaxSpeed:
+		pCurrentSpeed = pMaxSpeed
+	pCurrentSpeed += pDiveSpeed
+	distanceOfThrow = (pCurrentSpeed * timeOfJump)
+	print(distanceOfThrow)
 	gravity = Vector3.ZERO
 	if _state._player_state.camera_relative_movement:
 		_state.move_direction = _state._player_state.camera_relative_movement
