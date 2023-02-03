@@ -86,8 +86,14 @@ func wall_collision_check():
 				break
 			_state._raycast_middle.cast_to *= -1
 			_state._raycast_middle.force_raycast_update()
-	
-	if ledgeGrabHit: return wall_collision.ledgeGrab
+	var wallHit = false
+	if ledgeGrabHit:
+		_state._raycast_left.cast_to *= -1
+		_state._raycast_left.force_raycast_update()
+		if _state._raycast_left.is_colliding():
+			wallHit = true
+		_state._raycast_left.cast_to *= -1
+	if ledgeGrabHit and not wallHit: return wall_collision.ledgeGrab
 	return wall_collision.noCollision
 
 func _process(_delta):
