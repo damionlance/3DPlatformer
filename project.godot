@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Floor Spin.gd"
 }, {
+"base": "Particles",
+"class": "FootstepParticles",
+"language": "GDScript",
+"path": "res://MiscScenes/ParticleEffects/FootstepParticles.gd"
+}, {
 "base": "Node",
 "class": "FriendoGrappling",
 "language": "GDScript",
@@ -318,6 +323,7 @@ _global_script_class_icons={
 "Falling2": "",
 "FloorSlide": "",
 "FloorSpin": "",
+"FootstepParticles": "",
 "FriendoGrappling": "",
 "FriendoIdle": "",
 "FriendoStuck": "",

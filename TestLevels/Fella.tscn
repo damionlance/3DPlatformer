@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=2]
+[gd_scene load_steps=117 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StateMachine/States/Floor Spin.gd" type="Script" id=2]
@@ -41,6 +41,7 @@
 [ext_resource path="res://Scripts/StateMachine/States/Friendo/ThrowOut.gd" type="Script" id=39]
 [ext_resource path="res://Scripts/StateMachine/States/LedgeGrab.gd" type="Script" id=40]
 [ext_resource path="res://TestLevels/WallRayRight.gd" type="Script" id=41]
+[ext_resource path="res://Scripts/Tools/ParticleHandler.gd" type="Script" id=42]
 
 [sub_resource type="CapsuleShape" id=147]
 radius = 0.533599
@@ -1154,6 +1155,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [ true ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("../ParticleHandler:footstep")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../ParticleHandler:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.300955, 0, -0.290773 ) ]
+}
 
 [sub_resource type="Animation" id=16]
 resource_name = "RightLean"
@@ -1405,6 +1430,7 @@ tracks/16/keys = PoolRealArray( 0, 1, -1.84326e-17, -0.0830131, 0.011859, -0.776
 resource_name = "Run"
 length = 0.583333
 loop = true
+step = 0.01
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:Left Hand")
 tracks/0/interp = 1
@@ -1535,6 +1561,30 @@ tracks/17/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector3( 0, 1.67483, 0 ) ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("../ParticleHandler:footstep")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0.01, 0.29 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("../ParticleHandler:translation")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0.01, 0.29 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.306, 0, -0.35 ), Vector3( 0.301, 0, -0.35 ) ]
 }
 
 [sub_resource type="Animation" id=19]
@@ -2234,7 +2284,7 @@ filter_enabled = true
 filters = [ "Armature/Skeleton:Left Upper Arm", "Armature/Skeleton:Right Upper Arm", "Armature/Skeleton:Spine1" ]
 
 [sub_resource type="AnimationNodeBlendTree" id=112]
-graph_offset = Vector2( -435.454, -10.4495 )
+graph_offset = Vector2( -780.32, 67.4475 )
 nodes/Animation/node = SubResource( 109 )
 nodes/Animation/position = Vector2( -470, 150 )
 "nodes/Animation 2/node" = SubResource( 107 )
@@ -2630,6 +2680,11 @@ parameters/Run/OneShot/active = false
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, -1 )
+
+[node name="ParticleHandler" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.300955, 0, -0.290773 )
+script = ExtResource( 42 )
+footstep = true
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]
