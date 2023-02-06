@@ -98,7 +98,7 @@ func wall_collision_check():
 		_state._raycast_left.force_raycast_update()
 		_state._raycast_right.cast_to *= -1
 		_state._raycast_right.force_raycast_update()
-		if _state._raycast_left.is_colliding() and _state._raycast_left.is_colliding():
+		if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
 			wallHit = true
 		if _controller._jump_state == 1:
 			wallHit = false
