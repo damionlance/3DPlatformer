@@ -23,6 +23,7 @@ func update(delta):
 	# Handle state changes
 	if _player.is_on_floor():
 		_state.update_state("Dive Floor")
+		return
 	
 	# Handle animation tree
 	
