@@ -1,4 +1,4 @@
-[gd_scene load_steps=477 format=2]
+[gd_scene load_steps=479 format=2]
 
 [ext_resource path="res://textures/hub/floor.png" type="Texture" id=1]
 [ext_resource path="res://textures/hub/trim.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://textures/hub/yellow.png" type="Texture" id=11]
 [ext_resource path="res://textures/hub/red.png" type="Texture" id=12]
 [ext_resource path="res://textures/hub/green.png" type="Texture" id=13]
+[ext_resource path="res://Scripts/Tools/UnstablePlatform.gd" type="Script" id=14]
 
 [sub_resource type="SpatialMaterial" id=1]
 
@@ -1573,6 +1574,8 @@ tracks/0/keys = {
 "values": [ Vector3( -52, 17, -73 ), Vector3( -52, 22, -73 ), Vector3( -52, 24, -73 ), Vector3( -52, 19, -73 ), Vector3( -52, 17, -73 ) ]
 }
 
+[sub_resource type="BoxShape" id=893]
+
 [node name="Spatial2" type="Spatial"]
 
 [node name="QodotMap" type="Spatial" parent="."]
@@ -3000,3 +3003,145 @@ root_node = NodePath("../entity_3_func_group")
 autoplay = "idle"
 anims/RESET = SubResource( 438 )
 anims/idle = SubResource( 439 )
+
+[node name="Dynamic Objects" type="Node" parent="."]
+
+[node name="UnstablePlatform" type="RigidBody" parent="Dynamic Objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.68209, 0.654408, 0 )
+collision_layer = 4
+collision_mask = 0
+mode = 1
+script = ExtResource( 14 )
+stableTime = 2.0
+resetTime = 5.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Dynamic Objects/UnstablePlatform"]
+shape = SubResource( 893 )
+
+[node name="Timer" type="Timer" parent="Dynamic Objects/UnstablePlatform"]
+
+[node name="Area" type="Area" parent="Dynamic Objects/UnstablePlatform"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CSGBox" type="CSGBox" parent="Dynamic Objects/UnstablePlatform"]
+
+[node name="UnstablePlatform2" type="RigidBody" parent="Dynamic Objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.8254, 0.506232, 0 )
+collision_layer = 4
+collision_mask = 0
+mode = 1
+script = ExtResource( 14 )
+stableTime = 0.5
+resetTime = 5.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Dynamic Objects/UnstablePlatform2"]
+shape = SubResource( 893 )
+
+[node name="Timer" type="Timer" parent="Dynamic Objects/UnstablePlatform2"]
+
+[node name="Area" type="Area" parent="Dynamic Objects/UnstablePlatform2"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CSGBox" type="CSGBox" parent="Dynamic Objects/UnstablePlatform2"]
+
+[node name="UnstablePlatform3" type="RigidBody" parent="Dynamic Objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4944, 0.446837, 0 )
+collision_layer = 4
+collision_mask = 0
+mode = 1
+script = ExtResource( 14 )
+stableTime = 2.0
+resetTime = 5.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Dynamic Objects/UnstablePlatform3"]
+shape = SubResource( 893 )
+
+[node name="Timer" type="Timer" parent="Dynamic Objects/UnstablePlatform3"]
+
+[node name="Area" type="Area" parent="Dynamic Objects/UnstablePlatform3"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CSGBox" type="CSGBox" parent="Dynamic Objects/UnstablePlatform3"]
+
+[node name="UnstablePlatform4" type="RigidBody" parent="Dynamic Objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4944, 0.446837, 5.68947 )
+collision_layer = 4
+collision_mask = 0
+mode = 1
+script = ExtResource( 14 )
+stableTime = 2.0
+resetTime = 5.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Dynamic Objects/UnstablePlatform4"]
+shape = SubResource( 893 )
+
+[node name="Timer" type="Timer" parent="Dynamic Objects/UnstablePlatform4"]
+
+[node name="Area" type="Area" parent="Dynamic Objects/UnstablePlatform4"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CSGBox" type="CSGBox" parent="Dynamic Objects/UnstablePlatform4"]
+
+[node name="UnstablePlatform5" type="RigidBody" parent="Dynamic Objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4944, 0.446837, 10.9789 )
+collision_layer = 4
+collision_mask = 0
+mode = 1
+script = ExtResource( 14 )
+stableTime = 2.0
+resetTime = 5.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Dynamic Objects/UnstablePlatform5"]
+shape = SubResource( 893 )
+
+[node name="Timer" type="Timer" parent="Dynamic Objects/UnstablePlatform5"]
+
+[node name="Area" type="Area" parent="Dynamic Objects/UnstablePlatform5"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CSGBox" type="CSGBox" parent="Dynamic Objects/UnstablePlatform5"]
+
+[node name="UnstablePlatform6" type="RigidBody" parent="Dynamic Objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4944, 0.446837, 16.3301 )
+collision_layer = 4
+collision_mask = 0
+mode = 1
+script = ExtResource( 14 )
+stableTime = 2.0
+resetTime = 5.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Dynamic Objects/UnstablePlatform6"]
+shape = SubResource( 893 )
+
+[node name="Timer" type="Timer" parent="Dynamic Objects/UnstablePlatform6"]
+
+[node name="Area" type="Area" parent="Dynamic Objects/UnstablePlatform6"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CSGBox" type="CSGBox" parent="Dynamic Objects/UnstablePlatform6"]
+
+[node name="UnstablePlatform7" type="RigidBody" parent="Dynamic Objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4944, 0.446837, 22.7701 )
+collision_layer = 4
+collision_mask = 0
+mode = 1
+script = ExtResource( 14 )
+stableTime = 2.0
+resetTime = 5.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Dynamic Objects/UnstablePlatform7"]
+shape = SubResource( 893 )
+
+[node name="Timer" type="Timer" parent="Dynamic Objects/UnstablePlatform7"]
+
+[node name="Area" type="Area" parent="Dynamic Objects/UnstablePlatform7"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CSGBox" type="CSGBox" parent="Dynamic Objects/UnstablePlatform7"]
