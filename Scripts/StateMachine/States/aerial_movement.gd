@@ -82,12 +82,14 @@ func wall_collision_check():
 					return wall_collision.wallSlide
 	
 	else:
-		for i in 2:
-			if _state._raycast_middle.is_colliding() and _state.velocity.y < 0:
-				ledgeGrabHit = true
-				break
-			_state._raycast_middle.cast_to *= -1
-			_state._raycast_middle.force_raycast_update()
+		if _state._raycast_middle.is_colliding() and _state.velocity.y < 0:
+			ledgeGrabHit = true
+		_state._raycast_middle.cast_to *= -1
+		_state._raycast_middle.force_raycast_update()
+		if _state._raycast_middle.is_colliding() and _state.velocity.y < 0:
+			ledgeGrabHit = true
+		_state._raycast_middle.cast_to *= -1
+		_state._raycast_middle.force_raycast_update()
 	
 	var wallHit = false
 	
