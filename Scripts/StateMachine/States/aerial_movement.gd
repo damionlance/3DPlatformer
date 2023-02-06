@@ -54,7 +54,7 @@ export var air_acceleration := 2.0
 var wall_jump_speed = 12.5
 var max_reel_in = 25
 var current_jump_gravity := 0
-var dive_speed := 6
+var dive_speed := 4
 var spin_skip_strength := 0.7
 
 onready var _state = get_parent()
@@ -94,9 +94,14 @@ func wall_collision_check():
 	if ledgeGrabHit:
 		_state._raycast_left.cast_to *= -1
 		_state._raycast_left.force_raycast_update()
-		if _state._raycast_left.is_colliding():
+		_state._raycast_right.cast_to *= -1
+		_state._raycast_right.force_raycast_update()
+		if _state._raycast_left.is_colliding() and _state._raycast_left.is_colliding():
 			wallHit = true
+		if _controller._jump_state == 1:
+			wallHit = false
 		_state._raycast_left.cast_to *= -1
+		_state._raycast_right.cast_to *= -1
 	
 	if ledgeGrabHit and not wallHit: return wall_collision.ledgeGrab
 	return wall_collision.noCollision
