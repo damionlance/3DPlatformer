@@ -40,7 +40,7 @@ func update(delta):
 			_state.update_state("Jump")
 		return
 	if _state.attempting_jump:
-		if _state.just_landed:
+		if _state.just_landed and _state.current_jump < 3:
 			_state.current_jump += 1
 		else:
 			_state.current_jump = 1
