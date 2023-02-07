@@ -75,7 +75,7 @@ func wall_collision_check():
 	var ledgeGrabHit = false
 	
 	if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
-		if abs(_state._raycast_left.get_collision_normal().y) == 0 or abs(_state._raycast_right.get_collision_normal().y) == 0:
+		if abs(_state._raycast_left.get_collision_normal().y) <= .01 or abs(_state._raycast_right.get_collision_normal().y) <= .01:
 			if _player.is_on_wall():
 				var horizontalVelocity = Vector3(_state.velocity.x, 0, _state.velocity.z)
 				if horizontalVelocity.length() > 1 or not _player.grappling:

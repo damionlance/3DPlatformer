@@ -44,6 +44,17 @@ enum {
 	not_air_drifting,
 	air_drifting
 }
+var _jump_state
+enum {
+	no_jump,
+	jump,
+	jump2,
+	jump3,
+	spin_jump,
+	side_flip,
+	dive,
+	quick_getup
+}
 
 var attempting_jump := false
 var allow_jump := false

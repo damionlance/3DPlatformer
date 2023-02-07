@@ -32,8 +32,8 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	#_state.move_direction = _state.snap_vector
-	#_state.current_speed = 2
+	_state.move_direction = _state.snap_vector
+	_state.current_speed = 1
 	
 	wall_bounce_timer += 1
 	
