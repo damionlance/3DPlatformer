@@ -84,6 +84,7 @@ func reset():
 			_player.player_anim_tree["parameters/Jump/playback"].start("Rollout")
 		_: 
 			current_jump_gravity = _jump_gravity
+			current_jump_strength = _jump_strength
 			_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
 	
 	shorthop_timer = 0
