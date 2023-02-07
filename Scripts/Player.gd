@@ -6,6 +6,7 @@ onready var player_anim = $lilfella/AnimationPlayer
 onready var player_anim_tree = $AnimationTree
 onready var camera = $CameraPivot/SpringArm/Camera
 onready var particles = $lilfella/particles
+onready var _state = $StateMachine
 
 export (NodePath) var shadow_path
 
