@@ -62,7 +62,7 @@ func update(delta):
 	# Process all relevant timers
 	
 	#Process physics
-	_state.velocity = _state.calculate_velocity(0, delta)
+	_state.velocity = _state.calculate_velocity(-9.8, delta)
 	
 	pass
 

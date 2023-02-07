@@ -13,6 +13,7 @@ var anim_tree
 
 var velocity := Vector3.ZERO
 var snap_vector := Vector3.ZERO
+var inertia := 10
 
 var coins = 0
 var stars = 0
@@ -38,6 +39,10 @@ func _physics_process(delta):
 		velocity = move_and_slide_with_snap(velocity, snap_vector)
 	else:
 		velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true, 4, PI/4, false)
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider is RigidBody:
+			collision.collider.apply_impulse(collision.position, -collision.normal * inertia)
 	$StateMachine.velocity = velocity
 
 func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
