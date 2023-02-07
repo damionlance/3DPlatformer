@@ -3198,6 +3198,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.50205, -26.0905 )
 
 [node name="RigidBody" parent="Dynamic Objects/RotatingPlatform" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.66993, 0 )
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
 
 [node name="CollisionShape" parent="Dynamic Objects/RotatingPlatform/RigidBody" index="0"]
 shape = SubResource( 897 )

@@ -41,8 +41,8 @@ func _physics_process(delta):
 		velocity = move_and_slide_with_snap(velocity, snap_vector)
 	else:
 		velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, false, 4, 0.610865, false)
-	for i in get_slide_count():
-		var collision = get_slide_collision(i)
+	var collision = get_last_slide_collision()
+	if collision:
 		if collision.collider is RigidBody:
 			collision.collider.apply_impulse(collision.position, -collision.normal * inertia)
 	$StateMachine.velocity = velocity

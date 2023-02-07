@@ -8,6 +8,10 @@ script = ExtResource( 1 )
 [node name="Hinge" type="StaticBody" parent="."]
 
 [node name="RigidBody" type="RigidBody" parent="."]
+mass = 100.0
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
 
