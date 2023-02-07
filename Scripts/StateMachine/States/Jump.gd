@@ -78,6 +78,7 @@ func reset():
 			_state.move_direction = _state.camera_relative_movement
 			_player.player_anim_tree["parameters/Jump/playback"].start("Dive")
 		_state.rollout:
+			_state.current_jump = 0
 			current_jump_gravity = _dive_jump_gravity
 			current_jump_strength = _dive_jump_strength
 			_player.player_anim_tree["parameters/Jump/playback"].start("Rollout")
