@@ -72,9 +72,9 @@ var current_jump_gravity := 0
 var dive_speed := 2
 var spin_skip_strength := 0.7
 
-onready var _state = get_parent()
-onready var _player = get_parent().get_parent()
-onready var _controller = get_parent().get_parent().get_node("Controller")
+onready var _player = find_parent("Player")
+onready var _state = find_parent("StateMachine")
+onready var _controller = _player.find_node("Controller")
 
 enum wall_collision {
 	noCollision,
@@ -82,12 +82,9 @@ enum wall_collision {
 	ledgeGrab
 }
 
-func _ready():
-	_state = get_parent()
-
 # Helper Functions
 func wall_collision_check():
-	if _state._jump_state == _state.dive:
+	if _state._jump_state == _state.dive or _player.is_on_floor():
 		return wall_collision.noCollision
 	
 	var ledgeGrabHit = false

@@ -46,7 +46,7 @@ func update(delta):
 		return
 	
 	if wall_bounce_timer < wall_bounce_buffer:
-		if  _state.attempting_jump:
+		if  _state.attempting_jump and _state._controller._jump_state:
 			surface_normal.y = 0
 			surface_normal = surface_normal.normalized()
 			_state.move_direction = entering_angle.bounce(surface_normal)

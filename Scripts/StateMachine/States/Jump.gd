@@ -5,6 +5,8 @@ class_name Jump
 #private variables
 var _state_name = "Jump"
 var current_jump_strength : float
+
+var no_wall_jump : bool
 #onready variables
 
 # Called when the node enters the scene tree for the first time.
@@ -21,7 +23,8 @@ func update(delta):
 	
 	match wall_collision_check():
 		wall_collision.wallSlide:
-			_state.update_state("WallSlide")
+			if not no_wall_jump:
+				_state.update_state("WallSlide")
 			return
 		wall_collision.ledgeGrab:
 			_state.update_state("LedgeGrab")
@@ -54,7 +57,6 @@ func update(delta):
 
 func reset():
 	_player.anim_tree.travel("Jump")
-	
 	match _state._jump_state:
 		_state.jump: 
 			current_jump_gravity = _jump_gravity
@@ -86,6 +88,10 @@ func reset():
 			current_jump_gravity = _jump_gravity
 			current_jump_strength = _jump_strength
 			_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
+	if not wall_collision_check():
+		no_wall_jump = true
+	else:
+		no_wall_jump = false
 	
 	shorthop_timer = 0
 	entering_jump_angle = _state._controller.movement_direction

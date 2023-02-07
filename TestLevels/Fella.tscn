@@ -2348,40 +2348,40 @@ script = ExtResource( 5 )
 [node name="AerialMovement" type="Node" parent="StateMachine"]
 script = ExtResource( 19 )
 
-[node name="LedgeGrab" type="Node" parent="StateMachine"]
-script = ExtResource( 40 )
-
-[node name="Jump" type="Node" parent="StateMachine"]
+[node name="Jump" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource( 10 )
 
-[node name="Falling" type="Node" parent="StateMachine"]
+[node name="LedgeGrab" type="Node" parent="StateMachine/AerialMovement"]
+script = ExtResource( 40 )
+
+[node name="Falling" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource( 9 )
 
-[node name="Wall Slide" type="Node" parent="StateMachine"]
+[node name="Wall Slide" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource( 1 )
 
-[node name="SwingFromFriendo" type="Node" parent="StateMachine"]
+[node name="SwingFromFriendo" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource( 8 )
 
-[node name="PopperBounce" type="Node" parent="StateMachine"]
+[node name="PopperBounce" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource( 37 )
 
-[node name="ReelIn" type="Node" parent="StateMachine"]
+[node name="ReelIn" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource( 38 )
 
 [node name="GroundedMovement" type="Node" parent="StateMachine"]
 script = ExtResource( 20 )
 
-[node name="Dive Floor" type="Node" parent="StateMachine"]
+[node name="Dive Floor" type="Node" parent="StateMachine/GroundedMovement"]
 script = ExtResource( 14 )
 
-[node name="Floor Spin" type="Node" parent="StateMachine"]
+[node name="Floor Spin" type="Node" parent="StateMachine/GroundedMovement"]
 script = ExtResource( 2 )
 
-[node name="Floor Slide" type="Node" parent="StateMachine"]
+[node name="Floor Slide" type="Node" parent="StateMachine/GroundedMovement"]
 script = ExtResource( 13 )
 
-[node name="Running" type="Node" parent="StateMachine"]
+[node name="Running" type="Node" parent="StateMachine/GroundedMovement"]
 script = ExtResource( 7 )
 
 [node name="CameraPivot" type="Spatial" parent="."]

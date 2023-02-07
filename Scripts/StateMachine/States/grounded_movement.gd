@@ -14,9 +14,9 @@ export var floor_rotation_speed :=  .2
 
 export var maximum_lean := PI/6
 
-onready var _state = get_parent()
-onready var _player = get_parent().get_parent()
-onready var _controller = get_parent().get_parent().get_node("Controller")
+onready var _player = find_parent("Player")
+onready var _state = find_parent("StateMachine")
+onready var _controller = _player.find_node("Controller")
 
 var turning := 0
 var rotation_scale = 1

@@ -17,8 +17,8 @@ var _current_state
 onready var _player_state = get_parent().get_parent().get_parent().get_node("StateMachine")
 onready var _player = get_parent().get_parent().get_parent()
 onready var _friendo = get_parent()
-onready var _camera = $"../../CameraPivot"
-onready var _controller = $"../../../Controller"
+onready var _camera = find_node("CameraPivot")
+onready var _controller = find_node("Controller")
 
 onready var _homing_node = $"../../../FriendoHomingNode"
 onready var _hand_node = $"../../../lilfella/Armature/Skeleton/RightHand"
