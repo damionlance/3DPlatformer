@@ -36,14 +36,21 @@ func update(delta):
 		if _player.grappling:
 			_state.update_state("ReelIn")
 		else:
-			_state.update_state("Dive")
+			_state._jump_state = _state.dive
+			_state.update_state("Jump")
 		return
 	if _state.attempting_jump:
+		if _state.just_landed:
+			_state.current_jump += 1
+		else:
+			_state.current_jump = 1
+		_state._jump_state = _state.current_jump
 		_state.update_state("Jump")
 		return
 	if not _player.is_on_floor():
 		_fall_timer += 1
 		if _fall_timer > _state.coyote_time:
+			_state._jump_state = _state.jump
 			_state.update_state("Falling")
 			return
 	else:

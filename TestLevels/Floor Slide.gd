@@ -22,10 +22,14 @@ func update(delta):
 		return
 	
 	if not _player.is_on_floor():
+		_state.jump_state = _state.jump
 		_state.update_state("Falling")
 		return
 	if  _state.attempting_jump:
-		_state.update_state("SideFlip")
+		_state.move_direction = -_state.move_direction
+		_state.current_speed = 8
+		_state._jump_state = _state.side_flip
+		_state.update_state("Jump")
 		return
 	
 	_state._air_drift_state = _state.not_air_drifting

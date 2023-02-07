@@ -8,7 +8,7 @@ func _ready():
 	_state.state_dictionary[_state_name] = self
 
 func update(delta):
-	if _state.attempting_dive:
+	if _state.attempting_dive and not (_state._jump_state == _state.dive or _state._jump_state == _state.rollout):
 		_state.update_state("Dive")
 		return
 	match wall_collision_check():
@@ -36,13 +36,8 @@ func update(delta):
 func reset():
 	if _player.anim_tree != null:
 		_player.anim_tree.travel("Jump")
-		_player.player_anim_tree["parameters/Jump/playback"].start("Side Flip")
-	current_jump_gravity = _side_jump_gravity
-	_state.move_direction = -_state.move_direction
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
-	_state.current_speed = 8
-	_state.velocity.y = _side_jump_strength
-	_state.snap_vector = Vector3.ZERO
+	
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

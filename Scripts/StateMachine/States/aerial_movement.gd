@@ -12,7 +12,6 @@ var double_jump_timer := 0
 var double_jump_buffer := 5
 
 # Jump Logic Variables
-var current_jump := 0
 var entering_jump_angle := Vector2.ZERO
 
 # Air Physics Constants
@@ -32,6 +31,14 @@ onready var _side_jump_strength : float = (2.0 * side_jump_height) / side_jump_t
 onready var _side_jump_gravity : float = (-2.0 * side_jump_height) / (side_jump_time_to_peak * side_jump_time_to_peak)
 onready var _side_fall_gravity : float = (-2.0 * side_jump_height) / (side_jump_time_to_descent * side_jump_time_to_descent)
 
+onready var _dive_jump_strength : float = (2.0 * dive_jump_height) / dive_jump_time_to_peak
+onready var _dive_jump_gravity : float = (-2.0 * dive_jump_height) / (dive_jump_time_to_peak * dive_jump_time_to_peak)
+onready var _dive_fall_gravity : float = (-2.0 * dive_jump_height) / (dive_jump_time_to_descent * dive_jump_time_to_descent)
+
+onready var _rollout_jump_strength : float = (2.0 * rollout_jump_height) / rollout_jump_time_to_peak
+onready var _rollout_jump_gravity : float = (-2.0 * rollout_jump_height) / (rollout_jump_time_to_peak * rollout_jump_time_to_peak)
+onready var _rollout_fall_gravity : float = (-2.0 * rollout_jump_height) / (rollout_jump_time_to_descent * rollout_jump_time_to_descent)
+
 export var jump_height := 3.1
 export var jump_time_to_peak := 0.3
 export var jump_time_to_descent := 0.216
@@ -48,13 +55,21 @@ export var side_jump_height := 7.1
 export var side_jump_time_to_peak := .4
 export var side_jump_time_to_descent := .4
 
+export var dive_jump_height := 2.1
+export var dive_jump_time_to_peak := 0.3
+export var dive_jump_time_to_descent := 0.3
+
+export var rollout_jump_height := 2.1
+export var rollout_jump_time_to_peak := 0.3
+export var rollout_jump_time_to_descent := 0.3
+
 export var air_friction := 0.99
 export var air_acceleration := 2.0
 
 var wall_jump_speed = 12.5
 var max_reel_in = 25
 var current_jump_gravity := 0
-var dive_speed := 4
+var dive_speed := 2
 var spin_skip_strength := 0.7
 
 onready var _state = get_parent()
@@ -72,6 +87,9 @@ func _ready():
 
 # Helper Functions
 func wall_collision_check():
+	if _state._jump_state == _state.dive:
+		return wall_collision.noCollision
+	
 	var ledgeGrabHit = false
 	
 	if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():

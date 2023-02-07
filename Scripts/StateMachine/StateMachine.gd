@@ -2,12 +2,13 @@ extends Node
 
 #public variables
 var state_dictionary : Dictionary
+var level_loaded : bool
 
 #Player Physics Variables
 var velocity :=  Vector3.ZERO
 var snap_vector := Vector3.DOWN
-
 var grapple_position = Vector3.ZERO
+var current_jump := 0
 
 # Special inputs tracking
 var previous_angle := [0.0, 0.0]
@@ -37,7 +38,7 @@ var _dive_timer := 5
 export var coyote_time := 10
 
 
-var _current_state
+var _current_state = null
 
 var _air_drift_state
 enum {
@@ -53,6 +54,7 @@ enum {
 	spin_jump,
 	side_flip,
 	dive,
+	rollout,
 	quick_getup
 }
 
@@ -90,12 +92,18 @@ signal throw_fella
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	update_state("Falling")
+	level_loaded = false
 	pivot_buffer.resize(pivot_buffer_size)
 	state_dictionary.empty()
 	pass # Replace with function body.
 
 func _process(delta):
+	if not level_loaded:
+		return
+	if _current_state == null:
+		_jump_state = jump
+		update_state("Falling")
+	
 	input_handling()
 	_current_state.update(delta)
 	_player.update_physics_data(velocity, snap_vector)

@@ -16,10 +16,12 @@ func _ready():
 func update(delta):
 	# Handle All State Logic
 	if not _player.is_on_floor():
-		_state.update_state("SpinFall")
+		_state._jump_state = _state.spin_jump
+		_state.update_state("Falling")
 		return
 	if _state.attempting_jump:
-		_state.update_state("SpinJump")
+		_state._jump_state = _state.spin_jump
+		_state.update_state("Jump")
 		return
 	if _state._controller.spin_entered:
 		_spinning_buffer = 0

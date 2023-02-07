@@ -24,6 +24,7 @@ var grappling := false
 var popperBounce := false
 var popperAngle := Vector3.ZERO
 
+
 func _ready():
 	anim_tree = player_anim_tree["parameters/playback"]
 	shadow = get_node(shadow_path)

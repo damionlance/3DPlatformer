@@ -1,4 +1,4 @@
-[gd_scene load_steps=483 format=2]
+[gd_scene load_steps=484 format=2]
 
 [ext_resource path="res://textures/hub/floor.png" type="Texture" id=1]
 [ext_resource path="res://textures/hub/trim.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://textures/hub/green.png" type="Texture" id=13]
 [ext_resource path="res://Scripts/Tools/UnstablePlatform.gd" type="Script" id=14]
 [ext_resource path="res://Tools/Dynamic Objects/RotatingPlatform.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scripts/OnLevelStart.gd" type="Script" id=16]
 
 [sub_resource type="SpatialMaterial" id=1]
 
@@ -1588,6 +1589,7 @@ height = 1.0
 radius = 5.0
 
 [node name="Spatial2" type="Spatial"]
+script = ExtResource( 16 )
 
 [node name="QodotMap" type="Spatial" parent="."]
 script = ExtResource( 3 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=2]
+[gd_scene load_steps=106 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/States/Wall Slide.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StateMachine/States/Floor Spin.gd" type="Script" id=2]
@@ -10,13 +10,9 @@
 [ext_resource path="res://TestLevels/SwingFromFriendo.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/StateMachine/States/Falling.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/StateMachine/States/Jump.gd" type="Script" id=10]
-[ext_resource path="res://Scripts/StateMachine/States/Spin Jump.gd" type="Script" id=11]
-[ext_resource path="res://Scripts/StateMachine/States/Spin Fall.gd" type="Script" id=12]
 [ext_resource path="res://TestLevels/Floor Slide.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/StateMachine/States/Dive Floor.gd" type="Script" id=14]
 [ext_resource path="res://3D Assets/Godot Worthy Models/Hat Shader.material" type="Material" id=15]
-[ext_resource path="res://Scripts/StateMachine/States/Dive.gd" type="Script" id=16]
-[ext_resource path="res://Scripts/StateMachine/States/SideFlip.gd" type="Script" id=17]
 [ext_resource path="res://Scripts/Controller.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scripts/StateMachine/States/aerial_movement.gd" type="Script" id=19]
 [ext_resource path="res://Scripts/StateMachine/States/grounded_movement.gd" type="Script" id=20]
@@ -27,7 +23,6 @@
 [ext_resource path="res://3D Assets/Godot Worthy Models/Boot Shader.material" type="Material" id=25]
 [ext_resource path="res://3D Assets/Godot Worthy Models/Skin Shader.material" type="Material" id=26]
 [ext_resource path="res://3D Assets/Shaders/Toon Shader.gdshader" type="Shader" id=27]
-[ext_resource path="res://Scripts/StateMachine/States/Rollout.gd" type="Script" id=28]
 [ext_resource path="res://TestLevels/Friendo.gd" type="Script" id=29]
 [ext_resource path="res://MiscScenes/invertedSphereCollider.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Scripts/StateMachine/States/Friendo/Idle.gd" type="Script" id=31]
@@ -2214,33 +2209,20 @@ tracks/16/imported = false
 tracks/16/enabled = true
 tracks/16/keys = PoolRealArray( 0, 1, 0, 0, 0, 8.59524e-10, 0.704304, -1.6532e-07, 0.709899, 1, 1, 1 )
 
-[sub_resource type="AnimationNodeAnimation" id=94]
-animation = "Dive"
-
-[sub_resource type="AnimationNodeAnimation" id=95]
-animation = "Rollout"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=96]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=143]
-
-[sub_resource type="AnimationNodeStateMachine" id=97]
-states/Dive/node = SubResource( 94 )
-states/Dive/position = Vector2( 315, 87.875 )
-states/Rollout/node = SubResource( 95 )
-states/Rollout/position = Vector2( 496.5, 99.8125 )
-transitions = [ "Dive", "Rollout", SubResource( 96 ), "Rollout", "Dive", SubResource( 143 ) ]
-start_node = "Dive"
-graph_offset = Vector2( 156.33, -47.25 )
-
 [sub_resource type="AnimationNodeAnimation" id=138]
 animation = "Fall"
+
+[sub_resource type="AnimationNodeAnimation" id=148]
+animation = "Dive"
 
 [sub_resource type="AnimationNodeAnimation" id=98]
 animation = "Jump"
 
 [sub_resource type="AnimationNodeAnimation" id=99]
 animation = "Jump2"
+
+[sub_resource type="AnimationNodeAnimation" id=149]
+animation = "Rollout"
 
 [sub_resource type="AnimationNodeAnimation" id=100]
 animation = "Side Flip"
@@ -2257,16 +2239,20 @@ animation = "Wall Slide"
 [sub_resource type="AnimationNodeStateMachineTransition" id=105]
 
 [sub_resource type="AnimationNodeStateMachine" id=106]
+states/Dive/node = SubResource( 148 )
+states/Dive/position = Vector2( 320.77, 233.562 )
 states/Jump/node = SubResource( 98 )
 states/Jump/position = Vector2( 319.422, 165 )
 states/Jump2/node = SubResource( 99 )
 states/Jump2/position = Vector2( 318.125, 97 )
+states/Rollout/node = SubResource( 149 )
+states/Rollout/position = Vector2( 314.181, 288.75 )
 "states/Side Flip/node" = SubResource( 100 )
 "states/Side Flip/position" = Vector2( 316.312, 27.5 )
 "states/Wall Slide/node" = SubResource( 101 )
 "states/Wall Slide/position" = Vector2( 594.74, 117.219 )
 transitions = [ "Jump", "Wall Slide", SubResource( 102 ), "Jump2", "Wall Slide", SubResource( 103 ), "Side Flip", "Wall Slide", SubResource( 104 ), "Wall Slide", "Jump", SubResource( 105 ) ]
-graph_offset = Vector2( -415.78, -16.8125 )
+graph_offset = Vector2( -259.45, 105.25 )
 
 [sub_resource type="AnimationNodeAnimation" id=107]
 animation = "ThrowFriendo"
@@ -2315,11 +2301,6 @@ animation = "Spinning"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=120]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=121]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=122]
-xfade_time = 0.15
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=123]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=139]
@@ -2331,25 +2312,21 @@ xfade_time = 0.15
 [sub_resource type="AnimationNodeStateMachineTransition" id=142]
 
 [sub_resource type="AnimationNodeStateMachine" id=124]
-states/Dive/node = SubResource( 97 )
-states/Dive/position = Vector2( 238.892, 97.5803 )
 states/Fall/node = SubResource( 138 )
-states/Fall/position = Vector2( 408.035, 262.539 )
+states/Fall/position = Vector2( 408.035, 261.977 )
 states/Jump/node = SubResource( 106 )
-states/Jump/position = Vector2( 408.31, 177.71 )
+states/Jump/position = Vector2( 408.173, 177.421 )
 states/Run/node = SubResource( 112 )
 states/Run/position = Vector2( 238.98, 176.632 )
 states/Skid/node = SubResource( 113 )
 states/Skid/position = Vector2( 239.157, 261.414 )
 states/Spinning/node = SubResource( 114 )
-states/Spinning/position = Vector2( 407.761, 97.1914 )
-transitions = [ "Run", "Jump", SubResource( 115 ), "Run", "Skid", SubResource( 116 ), "Skid", "Jump", SubResource( 117 ), "Skid", "Run", SubResource( 118 ), "Jump", "Run", SubResource( 119 ), "Run", "Spinning", SubResource( 120 ), "Jump", "Dive", SubResource( 121 ), "Dive", "Run", SubResource( 122 ), "Spinning", "Jump", SubResource( 123 ), "Jump", "Fall", SubResource( 139 ), "Skid", "Fall", SubResource( 140 ), "Run", "Fall", SubResource( 141 ), "Fall", "Run", SubResource( 142 ) ]
+states/Spinning/position = Vector2( 407.854, 97.8858 )
+transitions = [ "Run", "Jump", SubResource( 115 ), "Run", "Skid", SubResource( 116 ), "Skid", "Jump", SubResource( 117 ), "Skid", "Run", SubResource( 118 ), "Jump", "Run", SubResource( 119 ), "Run", "Spinning", SubResource( 120 ), "Spinning", "Jump", SubResource( 123 ), "Jump", "Fall", SubResource( 139 ), "Skid", "Fall", SubResource( 140 ), "Run", "Fall", SubResource( 141 ), "Fall", "Run", SubResource( 142 ) ]
 start_node = "Run"
 graph_offset = Vector2( -156.33, 55.7885 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=125]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=126]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=127]
 
@@ -2379,21 +2356,6 @@ script = ExtResource( 10 )
 
 [node name="Falling" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
-
-[node name="Spin Jump" type="Node" parent="StateMachine"]
-script = ExtResource( 11 )
-
-[node name="Spin Fall" type="Node" parent="StateMachine"]
-script = ExtResource( 12 )
-
-[node name="Rollout" type="Node" parent="StateMachine"]
-script = ExtResource( 28 )
-
-[node name="Dive" type="Node" parent="StateMachine"]
-script = ExtResource( 16 )
-
-[node name="SideFlip" type="Node" parent="StateMachine"]
-script = ExtResource( 17 )
 
 [node name="Wall Slide" type="Node" parent="StateMachine"]
 script = ExtResource( 1 )
@@ -2669,7 +2631,6 @@ tree_root = SubResource( 124 )
 anim_player = NodePath("../lilfella/AnimationPlayer")
 active = true
 parameters/playback = SubResource( 125 )
-parameters/Dive/playback = SubResource( 126 )
 parameters/Jump/playback = SubResource( 127 )
 parameters/Run/Blend/blend_amount = 0.0
 parameters/Run/OneShot/active = false

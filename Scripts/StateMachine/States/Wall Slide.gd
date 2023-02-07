@@ -41,6 +41,7 @@ func update(delta):
 		_state.update_state("Running")
 		return
 	if not _player.is_on_wall():
+		_state._jump_state = _state.jump
 		_state.update_state("Falling")
 		return
 	
@@ -53,6 +54,7 @@ func update(delta):
 				_state.current_speed += 0.25
 			else:
 				_state.current_speed = 12.5
+			_state._jump_state = _state.jump
 			_state.update_state("Jump")
 	else:
 		if  _state.attempting_jump:
@@ -60,6 +62,7 @@ func update(delta):
 			surface_normal = surface_normal.normalized()
 			directional_input_handling()
 			_state.current_speed = 10
+			_state._jump_state = _state.jump
 			_state.update_state("Jump")
 	_state.velocity = _state.calculate_velocity(-10, delta)
 	pass

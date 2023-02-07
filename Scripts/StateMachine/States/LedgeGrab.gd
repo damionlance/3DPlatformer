@@ -55,9 +55,11 @@ func update(delta):
 		if _state._controller.movement_direction.y > .9:
 			_state.move_direction = _state.snap_vector
 			_state.current_speed = 3
+			_state._jump_state = _state.jump
 			_state.update_state("Jump")
 			return
 		if _state._controller.movement_direction.y < -.9:
+			_state._jump_state = _state.jump
 			_state.update_state("Falling")
 			return
 		if _state.snap_vector.cross(Vector3.UP) == _state.snap_vector.cross(Vector3.UP) * sign(direction):

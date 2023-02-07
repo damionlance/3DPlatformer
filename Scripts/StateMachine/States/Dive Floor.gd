@@ -28,11 +28,13 @@ func update(delta):
 	if (_player.is_on_floor()):
 		_state.current_speed *= .915
 		if _state.attempting_jump:
-			_state.update_state("Rollout")
+			_state._jump_state = _state.rollout
+			_state.update_state("Jump")
 			return
 		if _state.current_speed < .01:
 			_state.current_speed = 0
 	else:
+		_state._jump_state = _state.jump
 		_state.update_state("Falling")
 	
 	# Handle animation tree
