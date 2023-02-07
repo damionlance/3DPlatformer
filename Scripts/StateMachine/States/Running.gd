@@ -41,6 +41,7 @@ func update(delta):
 		return
 	if _state.attempting_jump:
 		if _state.just_landed and _state.current_jump < 3:
+			print(_state._consecutive_jump_timer)
 			_state.current_jump += 1
 		else:
 			_state.current_jump = 1

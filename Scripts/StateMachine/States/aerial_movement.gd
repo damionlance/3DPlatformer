@@ -23,6 +23,10 @@ onready var _jump2_strength : float = (2.0 * jump2_height) / jump2_time_to_peak
 onready var _jump2_gravity : float = (-2.0 * jump2_height) / (jump2_time_to_peak * jump2_time_to_peak)
 onready var _fall2_gravity : float = (-2.0 * jump2_height) / (jump2_time_to_descent * jump2_time_to_descent)
 
+onready var _jump3_strength : float = (2.0 * jump3_height) / jump3_time_to_peak
+onready var _jump3_gravity : float = (-2.0 * jump3_height) / (jump3_time_to_peak * jump3_time_to_peak)
+onready var _fall3_gravity : float = (-2.0 * jump3_height) / (jump3_time_to_descent * jump3_time_to_descent)
+
 onready var _spin_jump_strength : float = (2.0 * spin_jump_height) / spin_jump_time_to_peak
 onready var _spin_jump_gravity : float = (-2.0 * spin_jump_height) / (spin_jump_time_to_peak * spin_jump_time_to_peak)
 onready var _spin_fall_gravity : float = (-2.0 * spin_jump_height) / (spin_jump_time_to_descent * spin_jump_time_to_descent)
@@ -47,11 +51,15 @@ export var jump2_height := 5.1
 export var jump2_time_to_peak := 0.35
 export var jump2_time_to_descent := 0.266
 
+export var jump3_height := 7.1
+export var jump3_time_to_peak := 0.45
+export var jump3_time_to_descent := 0.316
+
 export var spin_jump_height := 5.1
 export var spin_jump_time_to_peak := .4
-export var spin_jump_time_to_descent := 1.0
+export var spin_jump_time_to_descent := 1.2
 
-export var side_jump_height := 7.1
+export var side_jump_height := 6.1
 export var side_jump_time_to_peak := .4
 export var side_jump_time_to_descent := .4
 
@@ -122,13 +130,6 @@ func wall_collision_check():
 	
 	if ledgeGrabHit and not wallHit: return wall_collision.ledgeGrab
 	return wall_collision.noCollision
-
-func _process(_delta):
-	if _state.just_landed:
-		double_jump_timer += 1
-		if double_jump_buffer == double_jump_timer:
-			double_jump_timer = 0
-			_state.just_landed = false
 
 func standard_aerial_drift():
 	var relative_angle = entering_jump_angle.dot(_controller.movement_direction)

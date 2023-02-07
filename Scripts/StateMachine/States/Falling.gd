@@ -63,10 +63,13 @@ func reset():
 	_state.snap_vector = Vector3.ZERO
 	match _state._jump_state:
 		_state.jump: 
-			current_fall_gravity = _jump_gravity
+			current_fall_gravity = _fall_gravity
 			_player.anim_tree.travel("Fall")
 		_state.jump2: 
-			current_fall_gravity = _jump2_gravity
+			current_fall_gravity = _fall2_gravity
+			_player.anim_tree.travel("Fall")
+		_state.jump3: 
+			current_fall_gravity = _fall3_gravity
 			_player.anim_tree.travel("Fall")
 		_state.spin_jump:
 			#animation doesn't change for spin jumps falling
@@ -81,6 +84,6 @@ func reset():
 			#animation doesn't change for rollouts falling
 			current_fall_gravity = _rollout_fall_gravity
 		_: 
-			current_jump_gravity = _jump_gravity
+			current_jump_gravity = _fall_gravity
 			_player.anim_tree.travel("Fall")
 	pass
