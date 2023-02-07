@@ -13,7 +13,7 @@ var anim_tree
 
 var velocity := Vector3.ZERO
 var snap_vector := Vector3.ZERO
-var inertia := 10
+var inertia := 1
 
 var coins = 0
 var stars = 0
