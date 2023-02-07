@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Camera/CameraRig.gd"
 }, {
-"base": "AerialMovement",
-"class": "Dive",
-"language": "GDScript",
-"path": "res://Scripts/StateMachine/States/Dive.gd"
-}, {
 "base": "GroundedMovement",
 "class": "DiveFloor",
 "language": "GDScript",
@@ -33,11 +28,6 @@ _global_script_classes=[ {
 "class": "Falling",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Falling.gd"
-}, {
-"base": "Node",
-"class": "Falling2",
-"language": "GDScript",
-"path": "res://Scripts/StateMachine/States/Falling2.gd"
 }, {
 "base": "GroundedMovement",
 "class": "FloorSlide",
@@ -98,11 +88,6 @@ _global_script_classes=[ {
 "class": "Jump",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/Jump.gd"
-}, {
-"base": "Node",
-"class": "Jump2",
-"language": "GDScript",
-"path": "res://Scripts/StateMachine/States/Jump2.gd"
 }, {
 "base": "LiquidLayer",
 "class": "LavaLayer",
@@ -249,30 +234,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/States/ReelIn.gd"
 }, {
-"base": "",
-"class": "Rollout",
-"language": "GDScript",
-"path": "res://Scripts/StateMachine/States/Rollout.gd"
-}, {
-"base": "",
-"class": "SideFlip",
-"language": "GDScript",
-"path": "res://Scripts/StateMachine/States/SideFlip.gd"
-}, {
 "base": "LiquidLayer",
 "class": "SlimeLayer",
 "language": "GDScript",
 "path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/slime.gd"
-}, {
-"base": "",
-"class": "SpinFall",
-"language": "GDScript",
-"path": "res://Scripts/StateMachine/States/Spin Fall.gd"
-}, {
-"base": "",
-"class": "SpinJump",
-"language": "GDScript",
-"path": "res://Scripts/StateMachine/States/Spin Jump.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -317,10 +282,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AerialMovement": "",
 "CameraRig": "",
-"Dive": "",
 "DiveFloor": "",
 "Falling": "",
-"Falling2": "",
 "FloorSlide": "",
 "FloorSpin": "",
 "FootstepParticles": "",
@@ -333,7 +296,6 @@ _global_script_class_icons={
 "GroundedMovement": "",
 "Idle": "",
 "Jump": "",
-"Jump2": "",
 "LavaLayer": "",
 "LedgeGrab": "",
 "LiquidLayer": "",
@@ -363,11 +325,7 @@ _global_script_class_icons={
 "QuakeWadFile": "",
 "QuakeWadImportPlugin": "",
 "ReelIn": "",
-"Rollout": "",
-"SideFlip": "",
 "SlimeLayer": "",
-"SpinFall": "",
-"SpinJump": "",
 "State": "",
 "TrenchBroomFaceAttrib": "",
 "TrenchBroomGameConfigFile": "",

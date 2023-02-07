@@ -76,7 +76,9 @@ func update(delta):
 
 func reset():
 	_state._air_drift_state = _state.not_air_drifting
-	_state.snap_vector = Vector3.DOWN
+	_state.snap_vector = -(_player.get_last_slide_collision().position - _player.global_translation).normalized()
 	_state.velocity.y = 0
 	_player.anim_tree.travel("Run")
+	
+	_player.rotation.z = 0
 	pass

@@ -125,7 +125,6 @@ func input_handling():
 		if _consecutive_jump_timer < _consecutive_jump_buffer:
 			just_landed = true
 			_consecutive_jump_timer += 1
-			print(_consecutive_jump_timer)
 		else:
 			just_landed = false
 			_consecutive_jump_timer = _consecutive_jump_buffer

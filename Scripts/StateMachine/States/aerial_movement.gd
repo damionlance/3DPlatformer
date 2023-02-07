@@ -12,7 +12,7 @@ var double_jump_timer := 0
 var double_jump_buffer := 5
 
 # Jump Logic Variables
-var entering_jump_angle := Vector2.ZERO
+var entering_jump_angle : Vector2
 
 # Air Physics Constants
 onready var _jump_strength : float = (2.0 * jump_height) / jump_time_to_peak
@@ -48,15 +48,15 @@ export var jump_time_to_peak := 0.3
 export var jump_time_to_descent := 0.216
 
 export var jump2_height := 5.1
-export var jump2_time_to_peak := 0.35
+export var jump2_time_to_peak := 0.3
 export var jump2_time_to_descent := 0.266
 
 export var jump3_height := 7.1
-export var jump3_time_to_peak := 0.45
-export var jump3_time_to_descent := 0.316
+export var jump3_time_to_peak := 0.35
+export var jump3_time_to_descent := 0.36
 
 export var spin_jump_height := 5.1
-export var spin_jump_time_to_peak := .4
+export var spin_jump_time_to_peak := .2
 export var spin_jump_time_to_descent := 1.2
 
 export var side_jump_height := 6.1
@@ -65,7 +65,7 @@ export var side_jump_time_to_descent := .4
 
 export var dive_jump_height := 2.1
 export var dive_jump_time_to_peak := 0.3
-export var dive_jump_time_to_descent := 0.3
+export var dive_jump_time_to_descent := 0.22
 
 export var rollout_jump_height := 2.1
 export var rollout_jump_time_to_peak := 0.3
@@ -133,13 +133,14 @@ func wall_collision_check():
 
 func standard_aerial_drift():
 	var relative_angle = entering_jump_angle.dot(_controller.movement_direction)
+	var horizontal_velocity = Vector3(_state.velocity.x, 0, _state.velocity.z)
 	if not _controller.movement_direction:
 		_state.current_speed *= air_friction
 	elif relative_angle < -.5:
 		_state.current_speed *= air_friction * .98
 		_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .001)
-	elif entering_jump_angle == Vector2.ZERO and _controller.movement_direction:
-		_state.current_speed += .2
+	elif horizontal_velocity == Vector3.ZERO and _controller.movement_direction:
+		_state.current_speed += 3
 		_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .1)
 	if _player.is_on_wall():
 		var position = _player.get_last_slide_collision().position - _player.global_translation
