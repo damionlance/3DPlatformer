@@ -26,6 +26,7 @@ func update(delta):
 		_state.update_state("Jump")
 		return
 	if _player.is_on_floor():
+		airdrifting = false
 		_state.snap_vector = Vector3.DOWN
 		if _state._jump_state == _state.dive:
 			_state.update_state("Dive Floor")
@@ -36,9 +37,11 @@ func update(delta):
 	match wall_collision_check():
 		wall_collision.wallSlide:
 			_state.update_state("WallSlide")
+			airdrifting = false
 			return
 		wall_collision.ledgeGrab:
 			_state.update_state("LedgeGrab")
+			airdrifting = false
 			return
 	if _state.attempting_throw and _state._jump_state != _state.dive:
 		_state._throw()

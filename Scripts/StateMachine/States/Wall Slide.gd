@@ -32,8 +32,6 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	_state.move_direction = _state.snap_vector
-	_state.current_speed = 1
 	
 	wall_bounce_timer += 1
 	
@@ -78,10 +76,20 @@ func reset():
 	if _player.player_anim_tree != null:
 		_player.player_anim_tree["parameters/Jump/playback"].travel("Wall Slide")
 	
+	entering_angle = Vector3(_state.velocity.x,0, _state.velocity.z)
+	
 	wall_bounce_timer = 0
-	_state.current_speed = 0
+	_state.current_speed = 1
 	_state.velocity = Vector3.ZERO
-	entering_angle = Vector3(_state.move_direction.x,0, _state.move_direction.z)
+	var position = _player.get_last_slide_collision().position - _player.global_translation
+	position.y = 0
+	surface_normal = -position.normalized()
+	_state.move_direction = position.normalized()
+	_state.snap_vector = position.normalized()
+	_player.transform = _player.transform.looking_at(_player.global_transform.origin - surface_normal, Vector3.UP)
+	return
+	
+	
 	if _state._raycast_left == null:
 		return
 	var collisionLeft = _state._raycast_left.get_collision_normal()

@@ -79,6 +79,7 @@ var max_reel_in = 25
 var current_jump_gravity := 0
 var dive_speed := 2
 var spin_skip_strength := 0.7
+var airdrifting := false
 
 onready var _player = find_parent("Player")
 onready var _state = find_parent("StateMachine")
@@ -98,7 +99,7 @@ func wall_collision_check():
 	var ledgeGrabHit = false
 	
 	if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
-		if abs(_state._raycast_left.get_collision_normal().y) <= .01 or abs(_state._raycast_right.get_collision_normal().y) <= .01:
+		if abs(_state._raycast_left.get_collision_normal().y) <= .1 or abs(_state._raycast_right.get_collision_normal().y) <= .1:
 			if _player.is_on_wall():
 				var horizontalVelocity = Vector3(_state.velocity.x, 0, _state.velocity.z)
 				if horizontalVelocity.length() > 1 or not _player.grappling:
@@ -139,15 +140,14 @@ func standard_aerial_drift():
 	elif relative_angle < -.5:
 		_state.current_speed *= air_friction * .98
 		_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .001)
-	elif horizontal_velocity == Vector3.ZERO and _controller.movement_direction:
+	elif relative_angle > -.5 and relative_angle < .5 and not airdrifting:
 		_state.current_speed += 3
 		_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .1)
+		airdrifting = true
 	if _player.is_on_wall():
 		var position = _player.get_last_slide_collision().position - _player.global_translation
 		_state.move_direction = (_state.move_direction - position.normalized()).normalized()
 	pass
-
-
 
 func spin_jump_drift():
 	if _state._controller.input_strength < .2:

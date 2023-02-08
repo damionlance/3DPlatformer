@@ -42,7 +42,7 @@ func update(delta):
 	
 	# Process physics
 	_state.move_direction = diff.normalized()
-	_state.current_speed += 1.5 if _state.current_speed < max_reel_in else 0
+	_state.current_speed += 1.5 if _state.current_speed < max_reel_in else 0.0
 	_state.velocity = _state.calculate_velocity(0, delta)
 	
 	pass

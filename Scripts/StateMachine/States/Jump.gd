@@ -23,8 +23,7 @@ func update(delta):
 	
 	match wall_collision_check():
 		wall_collision.wallSlide:
-			if not no_wall_jump:
-				_state.update_state("WallSlide")
+			_state.update_state("WallSlide")
 			return
 		wall_collision.ledgeGrab:
 			_state.update_state("LedgeGrab")
@@ -92,10 +91,6 @@ func reset():
 			current_jump_gravity = _jump_gravity
 			current_jump_strength = _jump_strength
 			_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
-	if not wall_collision_check():
-		no_wall_jump = true
-	else:
-		no_wall_jump = false
 	
 	shorthop_timer = 0
 	entering_jump_angle = _state._controller.movement_direction
