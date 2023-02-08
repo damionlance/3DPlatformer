@@ -2,7 +2,7 @@ extends AerialMovement
 
 var _state_name = "SwingFromFriendo"
 
-onready var grapple = $"../../GrappleRaycast"
+onready var grapple = $"../../../GrappleRaycast"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

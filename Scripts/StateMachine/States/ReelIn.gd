@@ -6,8 +6,8 @@ class_name ReelIn
 var _state_name = "ReelIn"
 
 #onready variables
-onready var _grapple_raycast = $"../../GrappleRaycast"
-onready var _friendo = $"../../FriendoHomingNode/Friendo"
+onready var _grapple_raycast = $"../../../GrappleRaycast"
+onready var _friendo = $"../../../FriendoHomingNode/Friendo"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

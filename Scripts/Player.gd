@@ -40,7 +40,7 @@ func _physics_process(delta):
 	if grappling:
 		velocity = move_and_slide_with_snap(velocity, snap_vector)
 	else:
-		velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, false, 4, 0.610865, false)
+		velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true, 4, PI/3, false)
 	var collision = get_last_slide_collision()
 	if collision:
 		if collision.collider is RigidBody:

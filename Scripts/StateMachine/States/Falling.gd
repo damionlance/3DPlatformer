@@ -67,7 +67,6 @@ func reset():
 			_player.anim_tree.travel("Fall")
 		_state.jump2: 
 			current_fall_gravity = _fall2_gravity
-			_player.anim_tree.travel("Fall")
 		_state.jump3: 
 			current_fall_gravity = _fall3_gravity
 			_player.anim_tree.travel("Fall")

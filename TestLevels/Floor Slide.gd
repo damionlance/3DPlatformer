@@ -22,7 +22,7 @@ func update(delta):
 		return
 	
 	if not _player.is_on_floor():
-		_state.jump_state = _state.jump
+		_state._jump_state = _state.jump
 		_state.update_state("Falling")
 		return
 	if  _state.attempting_jump:
