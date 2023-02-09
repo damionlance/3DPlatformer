@@ -23,5 +23,4 @@ func _on_VelocityTrigger_velocity_trigger_fired(body):
 		body._state.snap_vector = Vector3.ZERO
 		body._state.update_state("Falling")
 		body._state._jump_state = body._state.jump
-		print("HI!")
 	pass # Replace with function body.

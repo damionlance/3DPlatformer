@@ -32,13 +32,12 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	
 	wall_bounce_timer += 1
 	
 	if _player.is_on_floor():
 		_state.update_state("Running")
 		return
-	if not _player.is_on_wall():
+	if not _state._raycast_middle.is_colliding():
 		_state._jump_state = _state.jump
 		_state.update_state("Falling")
 		return
