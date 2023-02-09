@@ -32,7 +32,8 @@ func _ready():
 
 func _process(_delta):
 	if popperBounce:
-		$StateMachine.update_state("PopperBounce")
+		$StateMachine._jump_state = $StateMachine.popper_bounce
+		$StateMachine.update_state("Jump")
 	popperBounce = false
 	pass
 

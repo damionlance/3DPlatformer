@@ -1326,10 +1326,23 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector3( -0.294744, 0, -0.290773 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("../StateMachine/AerialMovement/Jump:ground_pound_finished")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=18]
 resource_name = "Rollout"
 length = 0.666667
+step = 0.01
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:Glove.L")
 tracks/0/interp = 1
@@ -1505,6 +1518,18 @@ tracks/24/loop_wrap = true
 tracks/24/imported = false
 tracks/24/enabled = true
 tracks/24/keys = PoolRealArray( 0, 1, 0.120926, -1.15422, -0.845863, -6.00685e-08, -4.44066e-16, 7.45058e-09, 1, 1, 1, 1, 0.0666667, 1, 0.135988, -0.423292, -0.726622, -6.00685e-08, -4.44066e-16, 7.45058e-09, 1, 1, 1, 1, 0.133333, 1, 0.0958718, -0.364356, -1.04421, -1.1967e-07, -7.45058e-09, 1.11759e-08, 1, 1, 1, 1, 0.2, 1, 0.0859205, -0.261521, -1.12299, -6.00685e-08, -4.44066e-16, 7.45058e-09, 1, 1, 1, 1, 0.333333, 1, 0.121683, 0.230353, -0.83987, -6.00685e-08, -4.44066e-16, 7.45058e-09, 1, 1, 1, 1, 0.4, 1, 0.133734, 0.374663, -0.74447, -6.00685e-08, -4.44066e-16, 7.45058e-09, 1, 1, 1, 1, 0.466667, 1, 0.12956, 0.275411, -0.777512, -5.96016e-08, -2.22033e-16, 3.72529e-09, 1, 1, 1, 1, 0.533333, 1, 0.120012, 0.0795041, -0.853098, -5.96016e-08, -2.22033e-16, 3.72529e-09, 1, 1, 1, 1, 0.6, 1, 0.119177, 0.0623623, -0.859711, -6.00685e-08, -4.44066e-16, 7.45058e-09, 1, 1, 1, 1, 0.666667, 1, 0.119177, 0.0623623, -0.859711, -6.00685e-08, -4.44066e-16, 7.45058e-09, 1, 1, 1, 1 )
+tracks/25/type = "value"
+tracks/25/path = NodePath("../StateMachine/AerialMovement/Jump:ground_pound_finished")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0.66 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=19]
 resource_name = "Run"
@@ -2445,6 +2470,7 @@ script = ExtResource( 19 )
 
 [node name="Jump" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource( 10 )
+ground_pound_finished = true
 
 [node name="LedgeGrab" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource( 40 )

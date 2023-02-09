@@ -4,11 +4,14 @@ extends Node
 var state_dictionary : Dictionary
 var level_loaded : bool
 
+var halt_frames : Dictionary
+
 #Player Physics Variables
 var velocity :=  Vector3.ZERO
 var snap_vector := Vector3.DOWN
 var grapple_position = Vector3.ZERO
 var current_jump := 0
+var terminal_velocity := 50
 
 # Special inputs tracking
 var previous_angle := [0.0, 0.0]
@@ -20,11 +23,6 @@ export var _shorthop_buffer := 0
 var _shorthop_timer := 7
 var pivot_buffer = []
 var pivot_buffer_size := 10
-
-# ALL SPIN JUMP STATE HANDLING
-var spin_jump_angle := 0.0
-var spin_jump_start := Vector2.ZERO
-var spin_jump_sign := int(0)
 
 var just_landed = false
 
@@ -55,6 +53,8 @@ enum {
 	side_flip,
 	dive,
 	rollout,
+	popper_bounce,
+	ground_pound,
 	quick_getup
 }
 
@@ -175,7 +175,8 @@ func update_state( new_state ):
 func calculate_velocity(gravity: float, delta) -> Vector3:
 	var new_velocity = move_direction * current_speed
 	if gravity != 0:
-		new_velocity.y = velocity.y + gravity * delta
+		var temp =  velocity.y + gravity * delta
+		new_velocity.y = temp if temp < terminal_velocity else terminal_velocity
 	return new_velocity
 
 func grapple_velocity(gravity: float, delta) -> Vector3:

@@ -21,10 +21,15 @@ func _ready():
 func update(delta):
 	
 	# Handle state logic
-	if _state.attempting_dive and not (_state._jump_state == _state.dive or _state._jump_state == _state.rollout):
-		_state._jump_state = _state.dive
-		_state.update_state("Jump")
+	if _state.attempting_dive and not (_state._jump_state == _state.dive or _state._jump_state == _state.rollout or _state._jump_state == _state.ground_pound):
+		if _state._controller.input_strength > .2:
+			_state._jump_state = _state.dive
+			_state.update_state("Jump")
+		else:
+			_state._jump_state = _state.ground_pound
+			_state.update_state("Jump")
 		return
+	
 	if _player.is_on_floor():
 		airdrifting = false
 		_state.snap_vector = Vector3.DOWN
@@ -45,11 +50,12 @@ func update(delta):
 			return
 	if _state.attempting_throw and _state._jump_state != _state.dive:
 		_state._throw()
-	
 	# Handle animation tree
 	
 	# Process movements
-	if _state._jump_state == _state.spin_jump:
+	if _state._jump_state == _state.ground_pound:
+		pass
+	elif _state._jump_state == _state.spin_jump:
 		spin_jump_drift()
 	elif _state._jump_state != _state.dive:
 		standard_aerial_drift()
@@ -85,6 +91,13 @@ func reset():
 		_state.rollout:
 			#animation doesn't change for rollouts falling
 			current_fall_gravity = _rollout_fall_gravity
+		_state.popper_bounce:
+			_player.anim_tree.travel("Fall")
+			current_fall_gravity = _side_fall_gravity
+		_state.ground_pound:
+			current_fall_gravity = _fall_gravity
+			_state.velocity.y = -_state.terminal_velocity
+			_player.velocity.y = -_state.terminal_velocity
 		_: 
 			current_jump_gravity = _fall_gravity
 			_player.anim_tree.travel("Fall")

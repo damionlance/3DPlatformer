@@ -7,6 +7,8 @@ var _state_name = "Jump"
 var current_jump_strength : float
 
 var no_wall_jump : bool
+export var ground_pound_finished := false
+
 #onready variables
 
 # Called when the node enters the scene tree for the first time.
@@ -16,9 +18,19 @@ func _ready():
 
 func update(delta):
 	# Handle all state logic
+	if _state._jump_state == _state.ground_pound:
+		if ground_pound_finished:
+			_state.update_state("Falling")
+		else:
+			return
+	
 	if _state.attempting_dive and _state._jump_state != _state.dive:
-		_state._jump_state = _state.dive
-		_state.update_state("Jump")
+		if _state._controller.input_strength > .2:
+			_state._jump_state = _state.dive
+			_state.update_state("Jump")
+		else:
+			_state._jump_state = _state.ground_pound
+			_state.update_state("Jump")
 		return
 	
 	match wall_collision_check():
@@ -29,6 +41,11 @@ func update(delta):
 			_state.update_state("LedgeGrab")
 			return
 	
+	if _state._jump_state == _state.ground_pound:
+		if not _player.player_anim.is_playing():
+			_state.update_state("Falling")
+		else:
+			return
 	
 	if _state._controller._jump_state == _state._controller.jump_released and shorthop_timer == shorthop_buffer:
 		_state.velocity.y *= .6
@@ -87,12 +104,24 @@ func reset():
 			current_jump_gravity = _dive_jump_gravity
 			current_jump_strength = _dive_jump_strength
 			_player.player_anim_tree["parameters/Jump/playback"].start("Rollout")
+		_state.popper_bounce:
+			current_jump_gravity = _side_jump_gravity
+			current_jump_strength = _side_jump_strength
+			_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
+		_state.ground_pound:
+			current_jump_gravity = 0
+			current_jump_strength = 0
+			_player.velocity = Vector3.ZERO
+			_state.velocity = Vector3.ZERO
+			_state.current_speed = 0.0
+			_player.player_anim_tree["parameters/Jump/playback"].start("Rollout")
 		_: 
 			current_jump_gravity = _jump_gravity
 			current_jump_strength = _jump_strength
 			_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
 	
 	shorthop_timer = 0
+	ground_pound_finished = false
 	entering_jump_angle = _state._controller.movement_direction
 	_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = current_jump_strength
