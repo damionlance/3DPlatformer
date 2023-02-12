@@ -1,11 +1,11 @@
-extends Area
+extends Area3D
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
-export var taken = false
-onready var mesh = $CSGCylinder
+@export var taken = false
+@onready var mesh = $CSGCylinder3D
 
 signal coinCollected
 

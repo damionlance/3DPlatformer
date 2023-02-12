@@ -4,10 +4,10 @@ class_name FriendoTossing
 #private variables
 var _state_name = "Tossing"
 #onready variables
-onready var _state = get_parent()
-onready var _friendo = get_parent().get_parent()
-onready var _popper = $"../../PopperBounceArea"
-onready var _camera = $"../../../../CameraPivot"
+@onready var _state = get_parent()
+@onready var _friendo = get_parent().get_parent()
+@onready var _popper = $"../../PopperBounceArea"
+@onready var _camera = $"../../../../CameraPivot"
 
 var aim_direction = Vector3.ZERO
 
@@ -28,7 +28,7 @@ func update(_delta):
 	var camera_relative_movement = -forwards + -right
 	aim_direction = Vector3(camera_relative_movement.x, 1, camera_relative_movement.z)
 	for body in _popper.get_overlapping_bodies():
-		if body is KinematicBody:
+		if body is CharacterBody3D:
 			if not body.get("popperBounce") == null:
 				if not body.popperBounce:
 					body.popperBounce = true
@@ -46,8 +46,7 @@ func update(_delta):
 
 func reset():
 	popperTimer = 0
-	aim_direction = Vector3(_state._controller.movement_direction.x, 1, 
-						   _state._controller.movement_direction.y)
+	aim_direction = Vector3(_state._controller.movement_direction.x, 1, _state._controller.movement_direction.y)
 	_state.move_direction = Vector3.ZERO
 	_state.movement_speed = 0
 	pass

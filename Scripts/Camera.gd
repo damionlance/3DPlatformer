@@ -1,17 +1,17 @@
-extends Spatial
+extends Node3D
 
-export var camera_sensitivity := Vector2(0,0)
-onready var _player := get_parent()
-onready var _camera := $"SpringArm/Camera"
+@export var camera_sensitivity := Vector2(0,0)
+@onready var _player := get_parent()
+@onready var _camera := $"SpringArm3D/Camera3D"
 
-export var change_in_fov = 7.5
-export var base_fov = 80
+@export var change_in_fov = 7.5
+@export var base_fov = 80.0
 
 var manual_camera := false
 var previous_camera_height = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_as_toplevel(true)
+	set_as_top_level(true)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,7 +21,7 @@ func _physics_process(_delta):
 		_camera.fov = lerp(_camera.fov, base_fov + (change_in_fov * (horizontal_speed/12)), .05)
 	else:
 		_camera.fov = lerp(_camera.fov, base_fov, .05)
-	var _parent_position = _player.translation
+	var _parent_position = _player.position
 	var camera_tracking_position = Vector3.ZERO
 	var height_difference = abs(previous_camera_height - _parent_position.y)
 	
@@ -36,6 +36,6 @@ func _physics_process(_delta):
 	rotation_degrees.x = clamp(rotation_degrees.x, -80.0, 30.0)
 	rotation_degrees.y -= Input.get_axis("CameraRight", "CameraLeft") * camera_sensitivity.y
 	rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
-	translation = lerp(translation, camera_tracking_position, .05)
+	position = lerp(position, camera_tracking_position, .05)
 	
 	pass

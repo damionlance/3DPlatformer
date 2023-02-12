@@ -13,8 +13,8 @@ var motion_input : String
 #private variables
 var _state_name = "Idle"
 #onready variables
-onready var _state = get_parent()
-onready var _friendo = get_parent().get_parent()
+@onready var _state = get_parent()
+@onready var _friendo = get_parent().get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,7 +28,7 @@ func update(_delta):
 		return
 	
 	# handle all movement processing
-	if _friendo.translation.distance_to(_state._homing_node.global_transform.origin) > .5:
+	if _friendo.position.distance_to(_state._homing_node.global_transform.origin) > .5:
 		var friendoPos = _friendo.global_transform.origin
 		var goalPos = _state._homing_node.global_transform.origin
 		_state.move_direction = goalPos - friendoPos

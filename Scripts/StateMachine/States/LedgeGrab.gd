@@ -41,9 +41,9 @@ func update(delta):
 		if _state._raycast_left.colliding:
 			
 			while _state._raycast_left.is_colliding():
-				_player.global_translation.y += .1
+				_player.global_position.y += .1
 				_state._raycast_left.force_raycast_update()
-			_player.global_translation.y -= .125
+			_player.global_position.y -= .125
 			_state.velocity = Vector3.ZERO
 			_state._player.velocity = Vector3.ZERO
 			_state.move_direction = Vector3.ZERO

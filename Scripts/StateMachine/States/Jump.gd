@@ -7,7 +7,7 @@ var _state_name = "Jump"
 var current_jump_strength : float
 
 var no_wall_jump : bool
-export var ground_pound_finished := false
+@export var ground_pound_finished := false
 
 #onready variables
 

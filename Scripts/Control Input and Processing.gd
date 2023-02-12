@@ -84,7 +84,7 @@ var stayed_still_timer = 0
 var resetplz = false
 
 func check_for_spin():
-	if previous_direction == movement_direction or not movement_direction:
+	if previous_direction == movement_direction or not movement_direction == Vector2.ZERO:
 		stayed_still_timer += 1
 		if stayed_still_buffer == stayed_still_timer:
 			resetplz = true
@@ -111,17 +111,17 @@ func check_for_spin():
 			angle[0] = angle[1]
 		if abs(angle[0]-angle[1]) > .02 and sign(angle[0]-angle[1]) != spin_jump_sign:
 			turning = sign(angle[0] - angle[1])
-			if spin_jump_sign != -1 and not (angle[1] > deg2rad(300) and angle[0] > 0):
+			if spin_jump_sign != -1 and not (angle[1] > deg_to_rad(300) and angle[0] > 0):
 				spin_jump_angle = 0
 				spin_jump_start = movement_direction
 				spin_jump_sign = sign(angle[0]-angle[1])
-			if spin_jump_sign != 1 and not (angle[0] > deg2rad(300) and angle[1] > 0):
+			if spin_jump_sign != 1 and not (angle[0] > deg_to_rad(300) and angle[1] > 0):
 				spin_jump_angle = 0
 				spin_jump_start = movement_direction
 				spin_jump_sign = sign(angle[0]-angle[1])
 		else:
 			spin_jump_angle += angle[0] - angle[1]
-			if abs(spin_jump_angle) >= deg2rad(540):
+			if abs(spin_jump_angle) >= deg_to_rad(540):
 				spin_entered = true
 		previous_direction = movement_direction
 

@@ -2,7 +2,7 @@ extends AerialMovement
 
 var _state_name = "SwingFromFriendo"
 
-onready var grapple = $"../../../GrappleRaycast"
+@onready var grapple = $"../../../GrappleRaycast"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,7 +22,7 @@ func update(delta):
 		_player.grappling = false
 		_state.update_state("Jump")
 		return
-	_state.snap_vector = grapple.cast_to.normalized()
+	_state.snap_vector = grapple.target_position.normalized()
 	_state.velocity = _state.grapple_velocity(_jump_gravity, delta)
 	_state.current_speed = _state.velocity.length()
 	pass

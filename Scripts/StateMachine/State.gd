@@ -16,8 +16,8 @@ var motion_input : String
 var _state_name = "Demo"
 
 #onready variables
-onready var state = get_parent()
-onready var player = get_parent().get_parent()
+@onready var state = get_parent()
+@onready var player = get_parent().get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

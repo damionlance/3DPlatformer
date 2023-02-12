@@ -8,9 +8,9 @@ func _draw():
 	var angle_from = 0
 	var angle_to = angle_from + get_parent().get_parent().spin_jump_angle
 	var nb_points = 32
-	var points_arc = PoolVector2Array()
+	var points_arc = PackedVector2Array()
 	points_arc.push_back(position)
-	var colors = PoolColorArray([Color.yellow])
+	var colors = PackedColorArray([Color.YELLOW])
 	
 	for i in range(nb_points + 1):
 		var angle_point = angle_from + i * (angle_to - angle_from) / nb_points - 90
@@ -25,5 +25,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	update()
+	queue_redraw()
 	pass

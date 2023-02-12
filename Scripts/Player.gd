@@ -1,18 +1,16 @@
-extends KinematicBody
+extends CharacterBody3D
 
-onready var camera_pivot : Spatial = $CameraPivot
-onready var player_model = $lilfella
-onready var player_anim = $lilfella/AnimationPlayer
-onready var player_anim_tree = $AnimationTree
-onready var camera = $CameraPivot/SpringArm/Camera
-onready var particles = $lilfella/particles
-onready var _state = $StateMachine
+@onready var camera_pivot : Node3D = $CameraPivot
+@onready var player_model = $lilfella
+@onready var player_anim = $lilfella/AnimationPlayer
+@onready var player_anim_tree = $AnimationTree
+@onready var camera = $CameraPivot/SpringArm3D/Camera3D
+@onready var _state = $StateMachine
 
-export (NodePath) var shadow_path
+@export var shadow_path : NodePath
 
-var anim_tree
+@onready var anim_tree = player_anim_tree["parameters/playback"]
 
-var velocity := Vector3.ZERO
 var snap_vector := Vector3.ZERO
 var inertia := 1
 
@@ -27,7 +25,6 @@ var popperAngle := Vector3.ZERO
 
 
 func _ready():
-	anim_tree = player_anim_tree["parameters/playback"]
 	shadow = get_node(shadow_path)
 
 func _process(_delta):
@@ -39,13 +36,24 @@ func _process(_delta):
 
 func _physics_process(delta):
 	if grappling:
-		velocity = move_and_slide_with_snap(velocity, snap_vector)
+		set_velocity(velocity)
+		# TODOConverter40 looks that snap in Godot 4.0 is float, not vector like in Godot 3 - previous value `snap_vector`
+		move_and_slide()
+		velocity = velocity
 	else:
-		velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true, 4, PI/3, false)
+		set_velocity(velocity)
+		# TODOConverter40 looks that snap in Godot 4.0 is float, not vector like in Godot 3 - previous value `snap_vector`
+		set_up_direction(Vector3.UP)
+		set_floor_stop_on_slope_enabled(true)
+		set_max_slides(4)
+		set_floor_max_angle(PI/3)
+		# TODOConverter40 infinite_inertia were removed in Godot 4.0 - previous value `false`
+		move_and_slide()
+		velocity = velocity
 	var collision = get_last_slide_collision()
 	if collision:
-		if collision.collider is RigidBody:
-			collision.collider.apply_impulse(collision.position, -collision.normal * inertia)
+		if collision.get_collider() is RigidBody3D:
+			collision.get_collider().apply_impulse(-collision.normal * inertia, collision.position)
 	$StateMachine.velocity = velocity
 
 func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
@@ -64,5 +72,5 @@ func add_star():
 			stars += 1
 	print(stars, " stars")
 	if stars == 3:
-		time_now = OS.get_unix_time()
+		time_now = Time.get_unix_time_from_system()
 		print("You finished in: " + str(-1 * (Global.time_start - time_now)) + ". Good job!")

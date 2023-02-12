@@ -1,12 +1,12 @@
-extends RigidBody
+extends RigidBody3D
 
-onready var collision_shape = $CollisionShape
-onready var timer = $Timer
-onready var area = $Area
+@onready var collision_shape = $CollisionShape3D
+@onready var timer = $Timer
+@onready var area = $Area3D
 
-export var gravity := 9.8
-export var stableTime := 1.0
-export var resetTime := 1.0
+@export var gravity := 9.8
+@export var stableTime := 1.0
+@export var resetTime := 1.0
 
 var state := 0
 var original_position
@@ -22,7 +22,7 @@ enum {
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.one_shot = true
-	original_position = global_translation
+	original_position = self.global_position
 	area.add_child(collision_shape.duplicate())
 	area.translate(Vector3(0,.1,0))
 	pass # Replace with function body.
@@ -39,7 +39,7 @@ func _process(delta):
 					timer.start(stableTime)
 		begin:
 			if timer.is_stopped():
-				mode = RigidBody.MODE_RIGID
+				self.freeze = false
 				state = fall
 				timer.start(resetTime)
 		fall:
@@ -52,8 +52,8 @@ func _process(delta):
 
 func _reset():
 	state = wait
-	global_translation = original_position
-	mode = RigidBody.MODE_STATIC
+	self.global_translation = original_position
+	self.freeze = true
 	rotation_degrees.x = 0
 	rotation_degrees.y = 0
 	rotation_degrees.z = 0

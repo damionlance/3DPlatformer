@@ -1,11 +1,11 @@
-extends Area
+extends Area3D
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
-export var taken = false
-onready var mesh = $MeshInstance
+@export var taken = false
+@onready var mesh = $MeshInstance3D
 
 signal starCollected
 
@@ -27,7 +27,7 @@ func _on_atopthemountain_body_entered(body):
 		Global.stars["Atop the Mountain"] = true
 		body.add_star()
 		emit_signal("starCollected")
-		get_tree().change_scene_to(load('res://TestLevels/Levels/hub.tscn'))
+		get_tree().change_scene_to_packed(load('res://TestLevels/Levels/hub.tscn'))
 
 func _on_downthelazyriver_body_entered(body):
 	if not taken and body is preload("res://Scripts/Player.gd"):
@@ -35,7 +35,7 @@ func _on_downthelazyriver_body_entered(body):
 		Global.stars["Down the Lazy River"] = true
 		body.add_star()
 		emit_signal("starCollected")
-		get_tree().change_scene_to(load('res://TestLevels/Levels/hub.tscn'))
+		get_tree().change_scene_to_packed(load('res://TestLevels/Levels/hub.tscn'))
 
 func _on_pipes_body_entered(body):
 	if not taken and body is preload("res://Scripts/Player.gd"):
@@ -43,7 +43,7 @@ func _on_pipes_body_entered(body):
 		Global.stars["Pipes!"] = true
 		body.add_star()
 		emit_signal("starCollected")
-		get_tree().change_scene_to(load('res://TestLevels/Levels/hub.tscn'))
+		get_tree().change_scene_to_packed(load('res://TestLevels/Levels/hub.tscn'))
 
 func _on_atopthemountain_ready():
 	if Global.stars["Atop the Mountain"]:

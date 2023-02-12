@@ -1,10 +1,10 @@
-extends KinematicBody
+extends CharacterBody3D
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-onready var platform = $Root
+@onready var platform = $Root
 
 var Velocity = Vector3(0, 0, 0)
 var Direction = true
@@ -31,5 +31,6 @@ func _process(delta):
 	Location.y += Velocity.y
 	
 func _physics_process(delta):
-	move_and_slide(Velocity)
+	set_velocity(Velocity)
+	move_and_slide()
 	pass

@@ -80,12 +80,12 @@ func reset():
 	wall_bounce_timer = 0
 	_state.current_speed = 1
 	_state.velocity = Vector3.ZERO
-	var position = _player.get_last_slide_collision().position - _player.global_translation
+	var position = _player.get_last_slide_collision().get_position() - _player.global_position
 	position.y = 0
 	surface_normal = -position.normalized()
 	_state.move_direction = position.normalized()
 	_state.snap_vector = position.normalized()
-	_player.transform = _player.transform.looking_at(_player.global_transform.origin - surface_normal, Vector3.UP)
+	_player.transform = _player.transform.looking_at(_player.global_position - surface_normal, Vector3.UP)
 	return
 	
 	
@@ -105,5 +105,5 @@ func reset():
 		surface_normal = collisionLeft if leftDot < rightDot else collisionRight
 	_state.snap_vector = -surface_normal
 	_state.move_direction = _state.snap_vector
-	_player.transform = _player.transform.looking_at(_player.global_transform.origin + surface_normal, Vector3.UP)
+	_player.transform = _player.transform.looking_at(_player.global_position + surface_normal, Vector3.UP)
 	pass

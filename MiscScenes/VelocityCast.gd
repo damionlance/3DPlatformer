@@ -1,4 +1,4 @@
-extends RayCast
+extends RayCast3D
 
 
 # Declare member variables here. Examples:
@@ -8,10 +8,10 @@ extends RayCast
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_as_toplevel(true)
+	set_as_top_level(true)
 	pass # Replace with function body.
 
 func _process(delta):
-	cast_to = get_parent().velocity
-	translation = get_parent().translation
-	translation.y += 2
+	target_position = get_parent().velocity
+	position = get_parent().position
+	position.y += 2

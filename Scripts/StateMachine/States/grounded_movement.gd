@@ -7,16 +7,16 @@ class_name GroundedMovement
 # var b = "text"
 
 # Floor Physics Constants
-export var floor_acceleration := 0.3
-export var max_speed := 11.5
-export var floor_friction := .8
-export var floor_rotation_speed :=  .2
+@export var floor_acceleration := 0.3
+@export var max_speed := 11.5
+@export var floor_friction := .8
+@export var floor_rotation_speed :=  .2
 
-export var maximum_lean := PI/6
+@export var maximum_lean := PI/6
 
-onready var _player = find_parent("Player")
-onready var _state = find_parent("StateMachine")
-onready var _controller = _player.find_node("Controller")
+@onready var _player = find_parent("Player")
+@onready var _state = find_parent("StateMachine")
+@onready var _controller = _player.find_child("Controller")
 
 var turning := 0
 var rotation_scale = 1
@@ -26,7 +26,7 @@ func look_forward():
 	_player.rotation.y = lookdir
 
 func lean_into_turns():
-	if not _state.move_direction:
+	if _state.move_direction == Vector3.ZERO:
 		return
 	
 	var direction = _state.camera_relative_movement

@@ -1,6 +1,6 @@
-extends Area
+extends Area3D
 
-export var requiredSpeed := 0.0
+@export var requiredSpeed := 0.0
 
 signal velocity_trigger_fired(body)
 
@@ -11,9 +11,9 @@ func _ready():
 
 func _process(_delta):
 	for body in get_overlapping_bodies():
-		if body is KinematicBody:
+		if body is CharacterBody3D:
 			if body.velocity.length() >= requiredSpeed:
 				emit_signal("velocity_trigger_fired",body)
-		if body is RigidBody:
+		if body is RigidBody3D:
 			if body.linear_velocity.length() >= requiredSpeed:
 				emit_signal("velocity_trigger_fired",body)

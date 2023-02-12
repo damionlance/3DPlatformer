@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/151237__owlstorm__hard-female-footstep-3.wav-b562732e06843dcbff06e550a1c9ec11.sample"
+type="AudioStreamWAV"
+uid="uid://b5t0jx421d1ad"
+path="res://.godot/imported/151237__owlstorm__hard-female-footstep-3.wav-b562732e06843dcbff06e550a1c9ec11.sample"
 
 [deps]
 
 source_file="res://Sounds/Player Sound Effects/151237__owlstorm__hard-female-footstep-3.wav"
-dest_files=[ "res://.import/151237__owlstorm__hard-female-footstep-3.wav-b562732e06843dcbff06e550a1c9ec11.sample" ]
+dest_files=["res://.godot/imported/151237__owlstorm__hard-female-footstep-3.wav-b562732e06843dcbff06e550a1c9ec11.sample"]
 
 [params]
 

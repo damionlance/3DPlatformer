@@ -19,7 +19,7 @@ var previous_direction := Vector2.ZERO
 var spin_jump_executed := false
 var _wall_jump_buffer := 5
 var _wall_jump_timer := 0
-export var _shorthop_buffer := 0
+@export var _shorthop_buffer := 0
 var _shorthop_timer := 7
 var pivot_buffer = []
 var pivot_buffer_size := 10
@@ -33,7 +33,7 @@ var _jump_buffer := 5
 var _jump_timer := 5
 var _dive_timer := 5
 
-export var coyote_time := 10
+@export var coyote_time := 10
 
 
 var _current_state = null
@@ -79,13 +79,13 @@ var forwards := Vector3.ZERO
 var right := Vector3.ZERO
 
 #onready variables
-onready var _player = get_parent()
-onready var _camera = $"../CameraPivot"
-onready var _raycast_left = _player.get_node("WallRayLeft")
-onready var _raycast_right = _player.get_node("WallRayRight")
-onready var _raycast_middle = _player.get_node("WallRayMiddle")
-onready var _controller = $"../Controller"
-onready var _skeleton = $"../lilfella/Armature/Skeleton"
+@onready var _player = get_parent()
+@onready var _camera = $"../CameraPivot"
+@onready var _raycast_left = _player.get_node("WallRayLeft")
+@onready var _raycast_right = _player.get_node("WallRayRight")
+@onready var _raycast_middle = _player.get_node("WallRayMiddle")
+@onready var _controller = $"../Controller"
+@onready var _skeleton = $"../lilfella/Armature/Skeleton3D"
 
 #signals
 signal throw_fella
@@ -94,7 +94,7 @@ signal throw_fella
 func _ready():
 	level_loaded = false
 	pivot_buffer.resize(pivot_buffer_size)
-	state_dictionary.empty()
+	state_dictionary.is_empty()
 	pass # Replace with function body.
 
 func _process(delta):
@@ -107,8 +107,6 @@ func _process(delta):
 	input_handling()
 	_current_state.update(delta)
 	_player.update_physics_data(velocity, snap_vector)
-	
-	update_shadow()
 
 func input_handling():
 	forwards = _camera.global_transform.basis.z
@@ -184,19 +182,8 @@ func grapple_velocity(gravity: float, delta) -> Vector3:
 	new_velocity.y += gravity * delta
 	return new_velocity
 
-func update_shadow():
-	# update shadow
-	var player_shadow = _player.get_node("PlayerShadow")
-	var player_body = _player.get_node("lilfella")
-	var space_state = _player.get_world().direct_space_state
-	var result = space_state.intersect_ray(Vector3(0, _player.translation.y, 0), _player.translation + Vector3(0, -20, 0))
-	if result:
-		if "worldspawn" in result.collider.name:
-			var distance_from_ground = result.position - _player.translation
-			player_shadow.update_shadow(_player.translation, distance_from_ground.y, _player.rotation)
-
 func _throw():
-	_player.player_anim_tree["parameters/Run/OneShot/active"] = true
+	_player.player_anim_tree.set("parameters/Run/OneShot/active", true)
 	emit_signal("throw_fella")
 
 

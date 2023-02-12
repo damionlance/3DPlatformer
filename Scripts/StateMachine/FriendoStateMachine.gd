@@ -14,18 +14,17 @@ var grapple_position = Vector3.ZERO
 var _current_state
 
 #onready variables
-onready var _player_state = get_parent().get_parent().get_parent().get_node("StateMachine")
-onready var _player = get_parent().get_parent().get_parent()
-onready var _friendo = get_parent()
-onready var _camera = find_node("CameraPivot")
-onready var _controller = _player.find_node("Controller")
+@onready var _player_state = get_parent().get_parent().get_parent().get_node("StateMachine")
+@onready var _player = get_parent().get_parent().get_parent()
+@onready var _friendo = get_parent()
+@onready var _camera = find_child("CameraPivot")
+@onready var _controller = _player.find_child("Controller")
 
-onready var _homing_node = $"../../../FriendoHomingNode"
-onready var _hand_node = $"../../../lilfella/Armature/Skeleton/RightHand"
+@onready var _homing_node = $"../../../FriendoHomingNode"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	state_dictionary.empty()
+	state_dictionary.is_empty()
 	update_state("Idle")
 	pass # Replace with function body.
 

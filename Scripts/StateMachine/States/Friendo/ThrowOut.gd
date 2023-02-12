@@ -4,23 +4,23 @@ class_name FriendoThrowOut
 #private variables
 var _state_name = "ThrowOut"
 #onready variables
-onready var _state = get_parent()
-onready var _friendo = get_parent().get_parent()
-onready var _grapple_raycast = $"../../../../GrappleRaycast"
+@onready var _state = get_parent()
+@onready var _friendo = get_parent().get_parent()
+@onready var _grapple_raycast = $"../../../../GrappleRaycast"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_state.state_dictionary[_state_name] = self
-	pass # Replace with function body.
+	
 var gravity
 var distanceOfThrow
 
 func update(delta):
-	_grapple_raycast.cast_to = _grapple_raycast.to_local(_friendo.global_transform.origin)
+	_grapple_raycast.target_position = _grapple_raycast.to_local(_friendo.global_transform.origin)
 	
 	if _friendo.is_on_wall() or _friendo.is_on_ceiling() or _grapple_raycast.is_colliding():
 		if _grapple_raycast.is_colliding():
-			_friendo.translation = _grapple_raycast.get_collision_point()
+			_friendo.position = _grapple_raycast.get_collision_point()
 		_state.update_state("StuckToWall")
 		_grapple_raycast.enabled
 		return
@@ -64,7 +64,7 @@ func reset():
 	pVelocity += (pDirection * (pCurrentSpeed + pDiveSpeed)) + Vector3.UP * pJump
 	var timeOfJump
 	if pGravity != 0:
-		 timeOfJump = 2*( pVelocity.y / pGravity)
+		timeOfJump = 2*( pVelocity.y / pGravity)
 	else:
 		timeOfJump = 2*( pVelocity.y / defaultPGravity)
 	
@@ -80,5 +80,5 @@ func reset():
 		_state.move_direction = _state._player_state.current_dir
 	_state.movement_speed = 30*_state.max_speed
 	_grapple_raycast.enabled = true
-	_grapple_raycast.cast_to = Vector3.ZERO
+	_grapple_raycast.target_position = Vector3.ZERO
 	pass

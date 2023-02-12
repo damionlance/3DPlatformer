@@ -1,26 +1,26 @@
-extends KinematicBody
+extends CharacterBody3D
 
-onready var goal_location := get_parent()
-onready var player_location := get_parent().get_parent()
-onready var hand_location := get_node("../../lilfella/Armature/Skeleton/RightHand")
-onready var _state := get_node("../../StateMachine")
-onready var grapple_shape := $Grapple
-export var toss_friendo := false
+@onready var goal_location := get_parent()
+@onready var player_location := get_parent().get_parent()
+@onready var hand_location := get_node("../../lilfella/Armature/Skeleton3D/RightHand")
+@onready var _state := get_node("../../StateMachine")
+@onready var grapple_shape := $Grapple
+@export var toss_friendo := false
 
-var velocity := Vector3.ZERO
-
-var throwing := false
-var hit_wall := false
+var throwing := bool(false)
 
 signal hit_wall(position)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_as_toplevel(true)
+	set_as_top_level(true)
 	pass # Replace with function body.
 
 func _physics_process(delta):
-	velocity = move_and_slide(velocity, Vector3.UP)
+	set_velocity(velocity)
+	set_up_direction(Vector3.UP)
+	move_and_slide()
+	velocity = velocity
 	pass
 
 func _on_StateMachine_throw_fella():

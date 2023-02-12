@@ -1,12 +1,12 @@
-extends SpotLight
+extends SpotLight3D
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-onready var flickerTimer = get_node("Timer")
-onready var light_mesh = $"/root/Spatial/QodotMap/entity_4_func_group/entity_4_mesh_instance"
-onready var light_mesh_mat = light_mesh.get_active_material(0)
+@onready var flickerTimer = get_node("Timer")
+@onready var light_mesh = $"/root/Node3D/QodotMap/entity_4_func_group/entity_4_mesh_instance"
+@onready var light_mesh_mat = light_mesh.get_active_material(0)
 
 var rng = RandomNumberGenerator.new()
 var state = 2
