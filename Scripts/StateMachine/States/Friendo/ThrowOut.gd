@@ -30,9 +30,9 @@ func update(delta):
 		_state.movement_speed = 0
 		_friendo.velocity = Vector3.ZERO
 		#if abs((_friendo.global_translation-_state._player.global_translation).length()) < distanceOfThrow * 2:
-		_friendo.global_translation = ((_state._player.global_translation + Vector3(0,.5,0)) - 
+		_friendo.global_position = ((_state._player.global_position + Vector3(0,.5,0)) - 
 									(_state._player.velocity.normalized() * distanceOfThrow))
-		_friendo.global_translation.y = _state._player.global_translation.y
+		_friendo.global_position.y = _state._player.global_position.y
 		_state.update_state("Tossing")
 		return
 	

@@ -27,6 +27,7 @@ settings/fps/force_fps=60
 
 window/size/viewport_width=960
 window/size/viewport_height=720
+window/size/mode=2
 
 [dotnet]
 
@@ -39,7 +40,7 @@ version_control_plugin_name="GitAPI"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/qodot/plugin.cfg")
+enabled=PackedStringArray("res://addons/tbloader/plugin.cfg")
 
 [gdnative]
 

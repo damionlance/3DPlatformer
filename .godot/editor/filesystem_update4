@@ -1,9 +1,11 @@
-res://TestLevels/Fella.tscn
 res://TestLevels/Levels/playground.tscn
-res://Scripts/Tools/UnstablePlatform.gd
-res://Scripts/Player.gd
+res://TestLevels/Fella.tscn
+res://MiscScenes/ParticleEffects/FootstepParticles.tscn
+res://3D Assets/Godot Worthy Models/Jacket Shader.material
+res://TestLevels/FellaShader.gdshader
+res://3D Assets/Godot Worthy Models/Hat Shader.material
+res://3D Assets/Animations/Material.material
+res://Shaders/VisibleThruObjects.tres
+res://3D Assets/Godot Worthy Models/Boot Shader.material
+res://Shaders/FellaShader.gdshader
 res://Scripts/StateMachine/States/aerial_movement.gd
-res://Scripts/StateMachine/States/Jump.gd
-res://Scripts/StateMachine/States/LedgeGrab.gd
-res://Scripts/StateMachine/States/Wall Slide.gd
-res://Scripts/StateMachine/StateMachine.gd

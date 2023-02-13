@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3]
+
+[ext_resource type="Shader" path="res://Shaders/FellaShader.gdshader" id="1_dgf3i"]
+[ext_resource type="Material" uid="uid://bwyf813fo0jxj" path="res://3D Assets/Godot Worthy Models/Hat Shader.material" id="1_yo4l5"]
+
+[resource]
+render_priority = 0
+next_pass = ExtResource("1_yo4l5")
+shader = ExtResource("1_dgf3i")
+shader_parameter/height_scale = 0.5
