@@ -17,3 +17,6 @@ res://Scripts/StateMachine/States/ReelIn.gd
 res://Scripts/StateMachine/StateMachine.gd
 res://Scripts/StateMachine/States/Jump.gd
 res://Scripts/StateMachine/States/Falling.gd
+res://Tools/Dynamic Objects/UnstablePlatform.tscn
+res://Tools/Dynamic Objects/RotatingPlatform.tscn
+res://Scripts/Tools/RotatingPlatform.gd

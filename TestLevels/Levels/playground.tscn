@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://c3cceltkw0sfr"]
+[gd_scene load_steps=47 format=3 uid="uid://c3cceltkw0sfr"]
 
 [ext_resource type="Script" path="res://Scripts/OnLevelStart.gd" id="1_c5rs5"]
 [ext_resource type="PackedScene" uid="uid://dt4rqk6tx2ccu" path="res://TestLevels/Fella.tscn" id="3"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bl8u6s34nwhrj" path="res://textures/playground/white5.png" id="16"]
 [ext_resource type="Texture2D" uid="uid://ce2xveyld5o34" path="res://textures/playground/bars.png" id="17"]
 [ext_resource type="Script" path="res://Scripts/Tools/UnstablePlatform.gd" id="18"]
+[ext_resource type="Script" path="res://Scripts/Tools/RotatingPlatform.gd" id="18_ii47e"]
 
 [sub_resource type="ConvexPolygonShape3D" id="683"]
 points = PackedVector3Array(-2, 0.5, -2, -2, -0.5, -2, 2, -0.5, -2, 2, 0.5, -2, -2, 0.5, 2, -2, -0.5, 2, 2, -0.5, 2, 2, 0.5, 2)
@@ -288,6 +289,9 @@ _surfaces = [{
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bna5g"]
 data = PackedVector3Array(-8, 1, -4, -8, -1, -4, -4, -1, -4, -8, 1, -4, -4, -1, -4, -4, 1, -4, -8, 1, -4, -8, 1, 4, -8, -1, 4, -8, 1, -4, -8, -1, 4, -8, -1, -4, -4, -1, -4, -8, -1, -4, -8, -1, 4, -4, -1, -4, -8, -1, 4, -4, -1, 4, -4, 1, -4, -4, 1, 4, -8, 1, 4, -4, 1, -4, -8, 1, 4, -8, 1, -4, -4, 1, -4, -4, -1, -4, -4, -1, 4, -4, 1, -4, -4, -1, 4, -4, 1, 4, -8, 1, 4, -4, 1, 4, -4, -1, 4, -8, 1, 4, -4, -1, 4, -8, -1, 4, -8, -1, -4, -4, -1, -8, -4, 1, -8, -8, -1, -4, -4, 1, -8, -8, 1, -4, -8, -1, -4, -4, -1, -4, -4, -1, -8, -8, 1, -4, -4, 1, -8, -4, 1, -4, -4, 1, -8, -4, -1, -8, -4, -1, -4, -4, 1, -8, -4, -1, -4, -4, 1, -4, -8, 1, -4, -4, 1, -4, -4, -1, -4, -8, 1, -4, -4, -1, -4, -8, -1, -4, -4, 1, -8, -4, -1, -8, 4, -1, -8, -4, 1, -8, 4, -1, -8, 4, 1, -8, -4, 1, -8, -4, 1, -4, -4, -1, -4, -4, 1, -8, -4, -1, -4, -4, -1, -8, 4, -1, -8, -4, -1, -8, -4, -1, -4, 4, -1, -8, -4, -1, -4, 4, -1, -4, 4, 1, -8, 4, 1, -4, -4, 1, -4, 4, 1, -8, -4, 1, -4, -4, 1, -8, 4, 1, -8, 4, -1, -8, 4, -1, -4, 4, 1, -8, 4, -1, -4, 4, 1, -4, -4, 1, -4, 4, 1, -4, 4, -1, -4, -4, 1, -4, 4, -1, -4, -4, -1, -4, -4, 1, -4, -4, -1, -4, 4, -1, -4, -4, 1, -4, 4, -1, -4, 4, 1, -4, -4, 1, -4, -4, 1, 4, -4, -1, 4, -4, 1, -4, -4, -1, 4, -4, -1, -4, 4, -1, -4, -4, -1, -4, -4, -1, 4, 4, -1, -4, -4, -1, 4, 4, -1, 4, 4, 1, -4, 4, 1, 4, -4, 1, 4, 4, 1, -4, -4, 1, 4, -4, 1, -4, 4, 1, -4, 4, -1, -4, 4, -1, 4, 4, 1, -4, 4, -1, 4, 4, 1, 4, -4, 1, 4, 4, 1, 4, 4, -1, 4, -4, 1, 4, 4, -1, 4, -4, -1, 4, 4, 1, -8, 4, -1, -8, 8, -1, -4, 4, 1, -8, 8, -1, -4, 8, 1, -4, 4, 1, -8, 4, 1, -4, 4, -1, -4, 4, 1, -8, 4, -1, -4, 4, -1, -8, 8, -1, -4, 4, -1, -8, 4, -1, -4, 8, 1, -4, 4, 1, -4, 4, 1, -8, 8, -1, -4, 4, -1, -4, 4, 1, -4, 8, -1, -4, 4, 1, -4, 8, 1, -4, 4, 1, -4, 4, -1, -4, 8, -1, -4, 4, 1, -4, 8, -1, -4, 8, 1, -4, 4, 1, -4, 4, 1, 4, 4, -1, 4, 4, 1, -4, 4, -1, 4, 4, -1, -4, 8, -1, -4, 4, -1, -4, 4, -1, 4, 8, -1, -4, 4, -1, 4, 8, -1, 4, 8, 1, -4, 8, 1, 4, 4, 1, 4, 8, 1, -4, 4, 1, 4, 4, 1, -4, 8, 1, -4, 8, -1, -4, 8, -1, 4, 8, 1, -4, 8, -1, 4, 8, 1, 4, 4, 1, 4, 8, 1, 4, 8, -1, 4, 4, 1, 4, 8, -1, 4, 4, -1, 4, 4, 1, 4, 4, -1, 4, 8, -1, 4, 4, 1, 4, 8, -1, 4, 8, 1, 4, 4, 1, 4, 4, 1, 8, 4, -1, 8, 4, 1, 4, 4, -1, 8, 4, -1, 4, 8, -1, 4, 4, -1, 4, 4, -1, 8, 8, 1, 4, 4, 1, 8, 4, 1, 4, 8, -1, 4, 4, -1, 8, 4, 1, 8, 8, -1, 4, 4, 1, 8, 8, 1, 4, -4, 1, 4, -4, -1, 4, 4, -1, 4, -4, 1, 4, 4, -1, 4, 4, 1, 4, -4, 1, 4, -4, 1, 8, -4, -1, 8, -4, 1, 4, -4, -1, 8, -4, -1, 4, 4, -1, 4, -4, -1, 4, -4, -1, 8, 4, -1, 4, -4, -1, 8, 4, -1, 8, 4, 1, 4, 4, 1, 8, -4, 1, 8, 4, 1, 4, -4, 1, 8, -4, 1, 4, 4, 1, 4, 4, -1, 4, 4, -1, 8, 4, 1, 4, 4, -1, 8, 4, 1, 8, -4, 1, 8, 4, 1, 8, 4, -1, 8, -4, 1, 8, 4, -1, 8, -4, -1, 8, -8, -1, 4, -4, -1, 4, -4, 1, 4, -8, -1, 4, -4, 1, 4, -8, 1, 4, -8, -1, 4, -4, -1, 8, -4, -1, 4, -8, 1, 4, -4, 1, 4, -4, 1, 8, -4, 1, 4, -4, -1, 4, -4, -1, 8, -4, 1, 4, -4, -1, 8, -4, 1, 8, -8, 1, 4, -4, 1, 8, -4, -1, 8, -8, 1, 4, -4, -1, 8, -8, -1, 4)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w7ttn"]
+radius = 2.56133
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_c5rs5")
 
@@ -369,3 +373,21 @@ mesh = SubResource("ArrayMesh_yd8i6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/sinkningplatform2/entity_2_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_bna5g")
+
+[node name="DynamicObjects" type="Node" parent="."]
+
+[node name="RotatingPlatform" type="RigidBody3D" parent="DynamicObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5101, 3.65147, 0)
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("18_ii47e")
+rotationpersec = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DynamicObjects/RotatingPlatform"]
+shape = SubResource("CylinderShape3D_w7ttn")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="DynamicObjects/RotatingPlatform"]
+radius = 2.6504

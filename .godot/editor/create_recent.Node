@@ -1,5 +1,7 @@
+CSGCylinder3D
 CollisionShape3D
 RigidBody3D
+Node
 TBLoader
 DirectionalLight3D
 RayCast3D

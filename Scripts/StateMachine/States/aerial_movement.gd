@@ -136,7 +136,6 @@ func wall_collision_check():
 
 func standard_aerial_drift():
 	var relative_angle = entering_jump_angle.dot(_controller.movement_direction)
-	print(relative_angle)
 	var horizontal_velocity = Vector3(_state.velocity.x, 0, _state.velocity.z)
 	_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .03)
 	if _controller.movement_direction == Vector2.ZERO:
@@ -144,7 +143,6 @@ func standard_aerial_drift():
 	elif relative_angle < -.5:
 		_state.current_speed *= air_friction
 	elif relative_angle > -.5 and relative_angle < .5 and not airdrifting:
-		print("HI")
 		_state.current_speed += 3
 		airdrifting = true
 	if _player.is_on_wall():
