@@ -15,3 +15,5 @@ res://TestLevels/SwingFromFriendo.gd
 res://Scripts/StateMachine/States/LedgeGrab.gd
 res://Scripts/StateMachine/States/ReelIn.gd
 res://Scripts/StateMachine/StateMachine.gd
+res://Scripts/StateMachine/States/Jump.gd
+res://Scripts/StateMachine/States/Falling.gd

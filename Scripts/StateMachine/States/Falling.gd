@@ -69,6 +69,7 @@ func update(delta):
 	pass
 
 func reset():
+	entering_jump_angle = _state._controller.movement_direction
 	_state.snap_vector = Vector3.ZERO
 	match _state._jump_state:
 		_state.jump: 
