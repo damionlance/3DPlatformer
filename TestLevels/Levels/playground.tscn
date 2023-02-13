@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://c3cceltkw0sfr"]
+[gd_scene load_steps=49 format=3 uid="uid://c3cceltkw0sfr"]
 
 [ext_resource type="Script" path="res://Scripts/OnLevelStart.gd" id="1_c5rs5"]
 [ext_resource type="PackedScene" uid="uid://dt4rqk6tx2ccu" path="res://TestLevels/Fella.tscn" id="3"]
@@ -292,6 +292,12 @@ data = PackedVector3Array(-8, 1, -4, -8, -1, -4, -4, -1, -4, -8, 1, -4, -4, -1, 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_w7ttn"]
 radius = 2.56133
 
+[sub_resource type="BoxShape3D" id="895"]
+size = Vector3(2, 0.907596, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_220p6"]
+size = Vector3(4.54583, 1, 18.5384)
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_c5rs5")
 
@@ -391,3 +397,29 @@ shape = SubResource("CylinderShape3D_w7ttn")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="DynamicObjects/RotatingPlatform"]
 radius = 2.6504
+
+[node name="See Saw" type="Node3D" parent="DynamicObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.3138, 4.79156, 0)
+
+[node name="HingeJoint3D" type="Generic6DOFJoint3D" parent="DynamicObjects/See Saw"]
+node_a = NodePath("../Hinge")
+node_b = NodePath("../RigidBody3D")
+angular_limit_x/enabled = false
+angular_limit_x/softness = 0.01
+angular_limit_x/erp = 0.044
+
+[node name="Hinge" type="StaticBody3D" parent="DynamicObjects/See Saw"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DynamicObjects/See Saw/Hinge"]
+shape = SubResource("895")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="DynamicObjects/See Saw"]
+mass = 100.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DynamicObjects/See Saw/RigidBody3D"]
+shape = SubResource("BoxShape3D_220p6")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="DynamicObjects/See Saw/RigidBody3D"]
+size = Vector3(4.64905, 1, 19.7679)
