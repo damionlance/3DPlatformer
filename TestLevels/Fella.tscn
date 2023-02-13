@@ -3578,12 +3578,12 @@ far = 200.0
 
 [node name="WallRayRight" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.82402, 0)
-target_position = Vector3(0, 0, -1)
+target_position = Vector3(0, 0, -0.75)
 script = ExtResource("41")
 
 [node name="WallRayLeft" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.82402, 0)
-target_position = Vector3(0, 0, -1)
+target_position = Vector3(0, 0, -0.75)
 script = ExtResource("41")
 
 [node name="WallRayMiddle" type="RayCast3D" parent="."]
