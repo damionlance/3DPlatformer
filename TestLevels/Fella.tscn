@@ -3488,9 +3488,6 @@ shape = SubResource("147")
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("6")
 
-[node name="State" type="Node" parent="StateMachine"]
-script = ExtResource("5")
-
 [node name="AerialMovement" type="Node" parent="StateMachine"]
 script = ExtResource("19")
 
@@ -3530,6 +3527,9 @@ script = ExtResource("13")
 
 [node name="Running" type="Node" parent="StateMachine/GroundedMovement"]
 script = ExtResource("7")
+
+[node name="State" type="Node" parent="StateMachine"]
+script = ExtResource("5")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 script = ExtResource("4")

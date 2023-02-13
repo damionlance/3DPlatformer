@@ -2330,6 +2330,7 @@ tree_attach_batch_size = null
 set_owner_batch_size = 16
 
 [node name="entity_0_worldspawn" type="StaticBody3D" parent="QodotMap"]
+collision_mask = 0
 
 [node name="entity_0_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_0_worldspawn"]
 mesh = SubResource("702")
@@ -4331,6 +4332,7 @@ shape = SubResource("1367")
 
 [node name="entity_1_func_group" type="StaticBody3D" parent="QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 2.25, 76)
+collision_mask = 0
 
 [node name="entity_1_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_1_func_group"]
 mesh = SubResource("1368")
@@ -4340,6 +4342,7 @@ shape = SubResource("1369")
 
 [node name="entity_2_func_group" type="StaticBody3D" parent="QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94, 1.5, 48)
+collision_mask = 0
 
 [node name="entity_2_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_2_func_group"]
 mesh = SubResource("1370")
@@ -4379,6 +4382,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5125, 1.54503, 0)
 [node name="UnstablePlatform" type="RigidBody3D" parent="dynamicObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63, 0.5, 46)
 collision_mask = 0
+axis_lock_linear_x = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 100.0
 script = ExtResource("18")
 resetTime = 2.0
 

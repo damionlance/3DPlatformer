@@ -26,6 +26,8 @@ var popperAngle := Vector3.ZERO
 
 func _ready():
 	shadow = get_node(shadow_path)
+	set_max_slides(4)
+	set_up_direction(Vector3.UP)
 
 func _process(_delta):
 	if popperBounce:
@@ -36,24 +38,25 @@ func _process(_delta):
 
 func _physics_process(delta):
 	if grappling:
+		set_floor_constant_speed_enabled(true)
 		set_velocity(velocity)
-		# TODOConverter40 looks that snap in Godot 4.0 is float, not vector like in Godot 3 - previous value `snap_vector`
+		set_floor_stop_on_slope_enabled(false)
+		set_floor_max_angle(PI)
+		set_floor_snap_length(0)
 		move_and_slide()
 		velocity = velocity
 	else:
 		set_velocity(velocity)
-		# TODOConverter40 looks that snap in Godot 4.0 is float, not vector like in Godot 3 - previous value `snap_vector`
-		set_up_direction(Vector3.UP)
+		set_floor_constant_speed_enabled(false)
 		set_floor_stop_on_slope_enabled(true)
-		set_max_slides(4)
 		set_floor_max_angle(PI/3)
-		# TODOConverter40 infinite_inertia were removed in Godot 4.0 - previous value `false`
+		set_floor_snap_length(.1)
 		move_and_slide()
 		velocity = velocity
 	var collision = get_last_slide_collision()
 	if collision:
 		if collision.get_collider() is RigidBody3D:
-			collision.get_collider().apply_impulse(-collision.normal * inertia, collision.position)
+			collision.get_collider().apply_impulse(collision.get_normal() * inertia, collision.get_position())
 	$StateMachine.velocity = velocity
 
 func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):

@@ -21,6 +21,7 @@ enum {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.freeze = true
 	timer.one_shot = true
 	original_position = self.global_position
 	area.add_child(collision_shape.duplicate())
@@ -52,7 +53,7 @@ func _process(delta):
 
 func _reset():
 	state = wait
-	self.global_translation = original_position
+	self.global_position = original_position
 	self.freeze = true
 	rotation_degrees.x = 0
 	rotation_degrees.y = 0

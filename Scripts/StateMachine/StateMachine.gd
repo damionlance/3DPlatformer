@@ -8,6 +8,7 @@ var halt_frames : Dictionary
 
 #Player Physics Variables
 var velocity :=  Vector3.ZERO
+var prev_velocity := Vector3.ZERO
 var snap_vector := Vector3.DOWN
 var grapple_position = Vector3.ZERO
 var current_jump := 0
@@ -175,6 +176,7 @@ func calculate_velocity(gravity: float, delta) -> Vector3:
 	if gravity != 0:
 		var temp =  velocity.y + gravity * delta
 		new_velocity.y = temp if temp < terminal_velocity else terminal_velocity
+	prev_velocity = velocity
 	return new_velocity
 
 func grapple_velocity(gravity: float, delta) -> Vector3:

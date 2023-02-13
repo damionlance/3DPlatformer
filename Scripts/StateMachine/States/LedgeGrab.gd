@@ -52,33 +52,40 @@ func update(delta):
 		else:
 			current_fall_gravity = _fall_gravity
 	else:
-		if _state._controller.movement_direction.y > .9:
+		var dot = _state.camera_relative_movement.dot(_state.snap_vector)
+		_state.current_speed = 0
+		_state.move_direction = Vector3.ZERO
+		if dot > .9:
 			_state.move_direction = _state.snap_vector
 			_state.current_speed = 3
 			_state._jump_state = _state.jump
 			_state.update_state("Jump")
 			return
-		if _state._controller.movement_direction.y < -.9:
+		elif dot < -.9:
 			_state._jump_state = _state.jump
 			_state.update_state("Falling")
 			return
-		if _state.snap_vector.cross(Vector3.UP) == _state.snap_vector.cross(Vector3.UP) * sign(direction):
-			#Moving Right
-			if _state._raycast_right.get_collision_normal().dot(-_state.snap_vector) > .9:
-				_state.move_direction = _state.snap_vector.cross(Vector3.UP) * sign(direction)
-				_state.current_speed = 1
-			else:
-				_state.move_direction = Vector3.ZERO
-				_state.current_speed = 0
 		else:
-			#Moving Left
-			if _state._raycast_left.get_collision_normal().dot(-_state.snap_vector) > .9:
-				_state.move_direction = _state.snap_vector.cross(Vector3.UP) * sign(direction)
-				_state.current_speed = 1
+			var continue_sliding = true
+			var wall_vector = _state.snap_vector.cross(Vector3.UP)
+			var desired_movement = _state.camera_relative_movement.project(wall_vector)
+			if desired_movement.dot(wall_vector) > 0:
+				if _state._raycast_right.is_colliding():
+					_state._raycast_right.position.y += .2
+					_state._raycast_right.force_raycast_update()
+					if _state._raycast_right.is_colliding():
+						continue_sliding = false
+					_state._raycast_right.position.y -= .2
 			else:
-				_state.move_direction = Vector3.ZERO
-				_state.current_speed = 0
-	
+				if _state._raycast_left.is_colliding():
+					_state._raycast_left.position.y += .2
+					_state._raycast_left.force_raycast_update()
+					if _state._raycast_left.is_colliding():
+						continue_sliding = false
+					_state._raycast_left.position.y -= .2
+			if continue_sliding:
+				_state.move_direction = desired_movement
+				_state.current_speed = 1 * _state._controller.input_strength
 	# Process Physics
 	_state.velocity = _state.calculate_velocity(current_fall_gravity, delta)
 	

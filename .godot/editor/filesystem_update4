@@ -1,12 +1,9 @@
 res://TestLevels/Fella.tscn
 res://TestLevels/Levels/playground.tscn
-res://Scripts/StateMachine/States/aerial_movement.gd
-res://Scripts/shadow.gd
-res://Scripts/StateMachine/StateMachine.gd
-res://Scripts/StateMachine/States/Friendo/ThrowOut.gd
-res://Scripts/StateMachine/States/Friendo/Throwing.gd
-res://Scripts/StateMachine/FriendoStateMachine.gd
+res://Scripts/Tools/UnstablePlatform.gd
 res://Scripts/Player.gd
-res://Scripts/StateMachine/States/Friendo/Tossing.gd
+res://Scripts/StateMachine/States/aerial_movement.gd
+res://Scripts/StateMachine/States/Jump.gd
 res://Scripts/StateMachine/States/LedgeGrab.gd
 res://Scripts/StateMachine/States/Wall Slide.gd
+res://Scripts/StateMachine/StateMachine.gd

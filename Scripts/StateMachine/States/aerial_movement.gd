@@ -95,14 +95,13 @@ enum wall_collision {
 func wall_collision_check():
 	if _state._jump_state == _state.dive or _player.is_on_floor():
 		return wall_collision.noCollision
-	
 	var ledgeGrabHit = false
 	
 	if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
 		if abs(_state._raycast_left.get_collision_normal().y) <= .1 or abs(_state._raycast_right.get_collision_normal().y) <= .1:
 			if _player.is_on_wall():
-				var horizontalVelocity = Vector3(_state.velocity.x, 0, _state.velocity.z)
-				if horizontalVelocity.length() > 1 or not _player.grappling:
+				var prev_horizontal_speed = Vector2(_state.prev_velocity.x, _state.prev_velocity.z).length()
+				if prev_horizontal_speed > 4 and not _player.grappling:
 					return wall_collision.wallSlide
 	
 	else:
@@ -135,18 +134,18 @@ func wall_collision_check():
 func standard_aerial_drift():
 	var relative_angle = entering_jump_angle.dot(_controller.movement_direction)
 	var horizontal_velocity = Vector3(_state.velocity.x, 0, _state.velocity.z)
-	if _controller.movement_direction != Vector2.ZERO:
-		_state.current_speed *= air_friction
-	elif relative_angle < -.5:
+	_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .1)
+	if _controller.movement_direction == Vector2.ZERO:
 		_state.current_speed *= air_friction * .98
-		_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .001)
+	elif relative_angle < -.5:
+		_state.current_speed *= air_friction
 	elif relative_angle > -.5 and relative_angle < .5 and not airdrifting:
 		_state.current_speed += 3
-		_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .1)
 		airdrifting = true
 	if _player.is_on_wall():
-		var position = _player.get_last_slide_collision().get_position() - _player.global_position
-		_state.move_direction = (_state.move_direction - position.normalized()).normalized()
+		var wall_normal = _player.get_last_slide_collision().get_normal()
+		var cross = wall_normal.cross(Vector3.UP)
+		_state.move_direction = _state.move_direction.project(cross)
 	pass
 
 func spin_jump_drift():
