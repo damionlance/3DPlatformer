@@ -292,7 +292,7 @@ data = PackedVector3Array(-8, 1, -4, -8, -1, -4, -4, -1, -4, -8, 1, -4, -4, -1, 
 script = ExtResource("1_c5rs5")
 
 [node name="Player" parent="." instance=ExtResource("3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5125, 1.54503, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5125, 1.03859, 4.91573)
 
 [node name="dynamicObjects" type="Node" parent="."]
 
@@ -331,7 +331,7 @@ mesh = SubResource("685")
 shape = SubResource("686")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.536652, 0.786261, -0.306266, 0, 0.362958, 0.931805, 0.843804, -0.500055, 0.194782, 0, 48.6497, 0)
+transform = Transform3D(0.536652, 0.786261, -0.306266, 0.674972, -0.182185, 0.714998, 0.506378, -0.590425, -0.628474, 0, 48.6497, 0)
 shadow_enabled = true
 
 [node name="TBLoader" type="TBLoader" parent="."]

@@ -176,6 +176,8 @@ func calculate_velocity(gravity: float, delta) -> Vector3:
 	if gravity != 0:
 		var temp =  velocity.y + gravity * delta
 		new_velocity.y = temp if temp < terminal_velocity else terminal_velocity
+	if _player.is_on_floor():
+		new_velocity.y = gravity
 	prev_velocity = velocity
 	return new_velocity
 

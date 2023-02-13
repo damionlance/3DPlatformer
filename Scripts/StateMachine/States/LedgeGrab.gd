@@ -23,7 +23,11 @@ func update(delta):
 	
 	
 	# Handle state logic
+	if _player.is_on_floor():
+		_state.update_state("Running")
+		return
 	if _state.attempting_jump:
+		_state._jump_state = _state.jump
 		_state.update_state("Jump")
 		return
 	# Handle animation tree

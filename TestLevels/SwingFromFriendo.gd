@@ -13,6 +13,7 @@ func _ready():
 func update(delta):
 	if _controller._throw_state == 0:
 		_player.grappling = false
+		_state._jump_state = _state.jump
 		_state.update_state("Falling")
 		return
 	if _state.attempting_dive:
@@ -20,15 +21,16 @@ func update(delta):
 		return
 	if _state.attempting_jump:
 		_player.grappling = false
+		_state._jump_state = _state.jump
 		_state.update_state("Jump")
 		return
-	_state.snap_vector = grapple.target_position.normalized()
-	_state.velocity = _state.grapple_velocity(_jump_gravity, delta)
 	_state.current_speed = _state.velocity.length()
+	_state.move_direction = _state.velocity.normalized()
 	pass
 
 func reset():
 	_player.grappling = true
+	_player.grapple_slider.linear_velocity = _player.velocity
 	_state.velocity.y = 0
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.

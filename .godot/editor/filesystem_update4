@@ -9,3 +9,9 @@ res://Shaders/VisibleThruObjects.tres
 res://3D Assets/Godot Worthy Models/Boot Shader.material
 res://Shaders/FellaShader.gdshader
 res://Scripts/StateMachine/States/aerial_movement.gd
+res://Scripts/Player.gd
+res://Scripts/Control Input and Processing.gd
+res://TestLevels/SwingFromFriendo.gd
+res://Scripts/StateMachine/States/LedgeGrab.gd
+res://Scripts/StateMachine/States/ReelIn.gd
+res://Scripts/StateMachine/StateMachine.gd

@@ -6,6 +6,7 @@ extends CharacterBody3D
 @onready var player_anim_tree = $AnimationTree
 @onready var camera = $CameraPivot/SpringArm3D/Camera3D
 @onready var _state = $StateMachine
+@onready var grapple_slider = $GrappleSlider
 
 @export var shadow_path : NodePath
 
@@ -25,8 +26,10 @@ var popperAngle := Vector3.ZERO
 
 
 func _ready():
-	shadow = get_node(shadow_path)
-	set_max_slides(4)
+	grapple_slider.set_as_top_level(true)
+	set_floor_constant_speed_enabled(false)
+	set_floor_stop_on_slope_enabled(false)
+	set_max_slides(6)
 	set_up_direction(Vector3.UP)
 
 func _process(_delta):
@@ -38,26 +41,23 @@ func _process(_delta):
 
 func _physics_process(delta):
 	if grappling:
-		set_floor_constant_speed_enabled(true)
-		set_velocity(velocity)
-		set_floor_stop_on_slope_enabled(false)
-		set_floor_max_angle(PI)
-		set_floor_snap_length(0)
-		move_and_slide()
-		velocity = velocity
+		grapple_slider.freeze = false
+		global_position = grapple_slider.global_position
+		_state.velocity = grapple_slider.linear_velocity
 	else:
-		set_velocity(velocity)
+		grapple_slider.freeze = true
+		grapple_slider.global_position = global_position
+		set_motion_mode(CharacterBody3D.MOTION_MODE_GROUNDED)
 		set_floor_constant_speed_enabled(false)
-		set_floor_stop_on_slope_enabled(true)
-		set_floor_max_angle(PI/3)
-		set_floor_snap_length(.1)
+		set_floor_stop_on_slope_enabled(false)
+		set_velocity(velocity)
+		set_floor_max_angle(PI/4)
+		set_floor_snap_length(.2)
 		move_and_slide()
-		velocity = velocity
 	var collision = get_last_slide_collision()
 	if collision:
 		if collision.get_collider() is RigidBody3D:
 			collision.get_collider().apply_impulse(collision.get_normal() * inertia, collision.get_position())
-	$StateMachine.velocity = velocity
 
 func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
 	velocity = _velocity

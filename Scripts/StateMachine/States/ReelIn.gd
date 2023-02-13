@@ -14,28 +14,31 @@ func _ready():
 	_state.state_dictionary[_state_name] = self
 	pass # Replace with function body.
 
+var altered
+
 func update(delta):
 	# Handle all state logic
 	if _state.attempting_dive:
 		_player.grappling = false
-		_state.update_state("Dive")
+		_state._jump_state = _state.dive
+		_state.update_state("Jump")
 		return
 	if _state.attempting_jump:
 		_player.grappling = false
+		_state._jump_state = _state.jump
 		_state.update_state("Jump")
 		return
 	# Handle animation tree
 	
 	# Process movements
-	var altered = _friendo.global_transform.origin
-	altered.y -= 1.25
 	var diff = altered - _player.global_transform.origin
-	if diff.length() < .5:
+	if diff.length() < 1:
 		_player.grappling = false
+		_state._jump_state = _state.jump
 		_state.update_state("Falling")
 		return
 	else:
-		var direction = _friendo.global_transform.origin
+		var direction = altered
 		direction.y = _player.transform.origin.y
 		_player.transform = _player.transform.looking_at(direction, Vector3.UP)
 	# Update all relevant counters
@@ -48,6 +51,9 @@ func update(delta):
 	pass
 
 func reset():
+	_player.grappling = false
+	altered = _friendo.global_position
+	altered.y -= 1.25
 	shorthop_timer = 0
 	_state.snap_vector = Vector3.ZERO
 	pass

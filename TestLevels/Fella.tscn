@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://dt4rqk6tx2ccu"]
+[gd_scene load_steps=114 format=3 uid="uid://dt4rqk6tx2ccu"]
 
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Wall Slide.gd" id="1"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Floor Spin.gd" id="2"]
@@ -3502,6 +3502,8 @@ _data = {
 "Wall Slide": SubResource("Animation_yfas5")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_qx7cd"]
+
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0956018, 0)
 collision_layer = 2
@@ -3907,6 +3909,13 @@ surface_material_override/0 = ExtResource("37_5pq8c")
 libraries = {
 "": SubResource("AnimationLibrary_4o14t")
 }
+
+[node name="GrappleSlider" type="RigidBody3D" parent="."]
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrappleSlider"]
+shape = SubResource("SphereShape3D_qx7cd")
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]

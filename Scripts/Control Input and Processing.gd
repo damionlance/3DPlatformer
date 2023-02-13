@@ -74,9 +74,6 @@ func _process(_delta):
 	check_for_spin()
 	check_for_pivot()
 	
-	if spin_entered: print("spun")
-	if pivot_entered: print("pivoted")
-	
 	pass
 
 var stayed_still_buffer = 5
