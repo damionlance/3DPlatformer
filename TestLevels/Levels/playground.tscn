@@ -302,7 +302,7 @@ size = Vector3(4.54583, 1, 18.5384)
 script = ExtResource("1_c5rs5")
 
 [node name="Player" parent="." instance=ExtResource("3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5125, 1.03859, 4.91573)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5125, 1.96208, 4.91573)
 
 [node name="dynamicObjects" type="Node" parent="."]
 
