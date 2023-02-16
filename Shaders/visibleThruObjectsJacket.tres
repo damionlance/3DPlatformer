@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://iu06w2tuy41m"]
 
 [ext_resource type="Material" uid="uid://dakejtt3qtesy" path="res://3D Assets/Godot Worthy Models/Jacket Shader.material" id="1_2jpui"]
 [ext_resource type="Shader" path="res://Shaders/FellaShader.gdshader" id="2_hkvnq"]

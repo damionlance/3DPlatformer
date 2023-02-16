@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://buau08b35sc28"]
 
 [ext_resource type="Shader" path="res://Shaders/FellaShader.gdshader" id="1_dgf3i"]
 [ext_resource type="Material" uid="uid://bwyf813fo0jxj" path="res://3D Assets/Godot Worthy Models/Hat Shader.material" id="1_yo4l5"]

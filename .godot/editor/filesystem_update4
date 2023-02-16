@@ -1,22 +1,10 @@
-res://TestLevels/Levels/playground.tscn
 res://TestLevels/Fella.tscn
-res://MiscScenes/ParticleEffects/FootstepParticles.tscn
-res://3D Assets/Godot Worthy Models/Jacket Shader.material
-res://TestLevels/FellaShader.gdshader
 res://3D Assets/Godot Worthy Models/Hat Shader.material
-res://3D Assets/Animations/Material.material
-res://Shaders/VisibleThruObjects.tres
 res://3D Assets/Godot Worthy Models/Boot Shader.material
-res://Shaders/FellaShader.gdshader
-res://Scripts/StateMachine/States/aerial_movement.gd
-res://Scripts/Player.gd
-res://Scripts/Control Input and Processing.gd
-res://TestLevels/SwingFromFriendo.gd
+res://3D Assets/Godot Worthy Models/Jacket Shader.material
+res://Shaders/visibleThruObjectsJacket.tres
+res://Shaders/VisibleThruObjects.tres
+res://3D Assets/Animations/Material.material
+res://TestLevels/Levels/playground.tscn
 res://Scripts/StateMachine/States/LedgeGrab.gd
-res://Scripts/StateMachine/States/ReelIn.gd
-res://Scripts/StateMachine/StateMachine.gd
-res://Scripts/StateMachine/States/Jump.gd
-res://Scripts/StateMachine/States/Falling.gd
-res://Tools/Dynamic Objects/UnstablePlatform.tscn
-res://Tools/Dynamic Objects/RotatingPlatform.tscn
-res://Scripts/Tools/RotatingPlatform.gd
+res://Scripts/StateMachine/States/aerial_movement.gd
