@@ -1965,10 +1965,23 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(-0.294744, 0, -0.290773)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../StateMachine/AerialMovement/Jump:ground_pound_finished")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_qctu6"]
 resource_name = "Rollout"
 length = 0.666667
+step = 0.01
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -2214,6 +2227,18 @@ tracks/34/path = NodePath("Armature/Skeleton3D:Glove.R")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = PackedFloat32Array(0, 1, -0.0813529, 0.00203768, -0.0249573, 0.996371)
+tracks/35/type = "value"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("../StateMachine/AerialMovement/Jump:ground_pound_finished")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"times": PackedFloat32Array(0.66),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_8pg0v"]
 resource_name = "Run"

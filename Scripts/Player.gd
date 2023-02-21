@@ -24,6 +24,8 @@ var grappling := false
 var popperBounce := false
 var popperAngle := Vector3.ZERO
 
+var previous_horizontal_velocity := Vector3.ZERO
+
 
 func _ready():
 	set_motion_mode(CharacterBody3D.MOTION_MODE_GROUNDED)
@@ -43,6 +45,9 @@ func _process(_delta):
 	pass
 
 func _physics_process(delta):
+	if not is_on_wall():
+		previous_horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
+	
 	if grappling:
 		grapple_slider.freeze = false
 		global_position = grapple_slider.global_position

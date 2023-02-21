@@ -61,7 +61,7 @@ func update(delta):
 		_state.move_direction = Vector3.ZERO
 		if dot > .9:
 			_state.move_direction = _state.snap_vector
-			_state.current_speed = 5
+			_state.current_speed = 10
 			_state._jump_state = _state.jump
 			_state.update_state("Jump")
 			return

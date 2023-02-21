@@ -75,9 +75,9 @@ var entering_jump_angle : Vector2
 @export var air_acceleration := 2.0
 
 var wall_jump_speed = 12.5
-var max_reel_in = 25
-var current_jump_gravity := 0
-var dive_speed := 2
+var max_reel_in = 25.0
+var current_jump_gravity := 0.0
+var dive_speed := 2.0
 var spin_skip_strength := 0.7
 var airdrifting := false
 
@@ -102,8 +102,8 @@ func wall_collision_check():
 	
 	if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
 		if abs(_state._raycast_left.get_collision_normal().y) <= .1 or abs(_state._raycast_right.get_collision_normal().y) <= .1:
-			if _player.is_on_wall():
-				var prev_horizontal_speed = Vector2(_state.prev_velocity.x, _state.prev_velocity.z).length()
+			if _player.is_on_wall() and _player.velocity.y < 0:
+				var prev_horizontal_speed = _player.previous_horizontal_velocity.length()
 				if prev_horizontal_speed > 4 and not _player.grappling:
 					return wall_collision.wallSlide
 	
