@@ -14,7 +14,6 @@ var motion_input : String
 
 #private variables
 var _state_name = "WallSlide"
-var _keys
 var entering_angle : Vector3
 var surface_normal : Vector3
 

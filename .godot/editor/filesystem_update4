@@ -1,14 +1,3 @@
-res://Scripts/StateMachine/States/Jump.gd
-res://Scripts/StateMachine/States/aerial_movement.gd
-res://TestLevels/Fella.tscn
-res://3D Assets/Godot Worthy Models/Hat Shader.material
-res://3D Assets/Godot Worthy Models/Boot Shader.material
-res://3D Assets/Godot Worthy Models/Jacket Shader.material
-res://Shaders/visibleThruObjectsJacket.tres
-res://Shaders/VisibleThruObjects.tres
-res://3D Assets/Animations/Material.material
-res://TestLevels/Levels/playground.tscn
-res://Scripts/Player.gd
-res://Scripts/StateMachine/States/LedgeGrab.gd
-res://TestLevels/Friendo.gd
 res://Scripts/StateMachine/States/Wall Slide.gd
+res://Scripts/global.gd
+res://Scripts/StateMachine/States/aerial_movement.gd
