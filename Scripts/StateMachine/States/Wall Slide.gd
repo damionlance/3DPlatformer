@@ -44,7 +44,7 @@ func update(delta):
 	
 	if wall_bounce_timer < wall_bounce_buffer:
 		if  _state.attempting_jump and _state._controller._jump_state:
-			_state.move_direction = entering_angle.bounce(surface_normal)
+			_state.move_direction = _state.camera_relative_movement.normalized().bounce(surface_normal)
 			if _state.current_speed + 0.25 > 12.5:
 				_state.current_speed += 0.25
 			else:
@@ -65,7 +65,7 @@ func directional_input_handling():
 	if _state._controller.input_strength == 0:
 		_state.move_direction = surface_normal
 	elif dir.dot(surface_normal) < 0:
-		_state.move_direction = entering_angle.bounce(surface_normal)
+		_state.move_direction = dir.bounce(surface_normal)
 	else:
 		_state.move_direction = dir
 

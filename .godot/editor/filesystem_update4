@@ -10,3 +10,5 @@ res://3D Assets/Animations/Material.material
 res://TestLevels/Levels/playground.tscn
 res://Scripts/Player.gd
 res://Scripts/StateMachine/States/LedgeGrab.gd
+res://TestLevels/Friendo.gd
+res://Scripts/StateMachine/States/Wall Slide.gd

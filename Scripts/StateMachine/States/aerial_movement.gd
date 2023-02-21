@@ -1,7 +1,7 @@
 extends Node
 
 class_name AerialMovement
-
+#warning-ignore:unused_private_class_variable
 var backwardsLedgeGrab := false
 
 # Aerial Tech Timers
@@ -126,8 +126,6 @@ func wall_collision_check():
 		_state._raycast_right.force_raycast_update()
 		if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
 			wallHit = true
-		if _controller._jump_state == 1:
-			wallHit = false
 		_state._raycast_left.target_position *= -1
 		_state._raycast_right.target_position *= -1
 	
@@ -136,7 +134,6 @@ func wall_collision_check():
 
 func standard_aerial_drift():
 	var relative_angle = entering_jump_angle.dot(_controller.movement_direction)
-	var horizontal_velocity = Vector3(_state.velocity.x, 0, _state.velocity.z)
 	_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .03)
 	if _controller.movement_direction == Vector2.ZERO:
 		_state.current_speed *= air_friction * .98

@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 @onready var goal_location := get_parent()
 @onready var player_location := get_parent().get_parent()
-@onready var hand_location := get_node("../../lilfella/Armature/Skeleton3D/RightHand")
 @onready var _state := get_node("../../StateMachine")
 @onready var grapple_shape := $Grapple
 @export var toss_friendo := false

@@ -44,7 +44,7 @@ func _process(_delta):
 	popperBounce = false
 	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not is_on_wall():
 		previous_horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 	
