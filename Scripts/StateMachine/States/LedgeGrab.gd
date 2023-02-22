@@ -9,7 +9,7 @@ var motion_input : String
 
 #private variables
 var _state_name = "LedgeGrab"
-var snapped = false
+var snapped_to_ledge = false
 
 var height_of_platform := 0
 #onready variables
@@ -41,7 +41,7 @@ func update(delta):
 	# Update relevant counters
 	
 	var current_fall_gravity = 0
-	if not snapped:
+	if not snapped_to_ledge:
 		if _state._raycast_left.colliding:
 			
 			while _state._raycast_left.is_colliding():
@@ -52,7 +52,7 @@ func update(delta):
 			_state._player.velocity = Vector3.ZERO
 			_state.move_direction = Vector3.ZERO
 			_state.current_speed = 0
-			snapped = true
+			snapped_to_ledge = true
 		else:
 			current_fall_gravity = _fall_gravity
 	else:
@@ -96,8 +96,7 @@ func update(delta):
 	pass
 
 func reset():
-	
-	snapped = false
+	snapped_to_ledge = false
 	_state.velocity = Vector3(0, _state.velocity.y, 0)
 	_state.move_direction = Vector3.ZERO
 	_state.current_speed = 0
@@ -105,6 +104,6 @@ func reset():
 	_state.snap_vector.y = 0
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.snap_vector, Vector3.UP)
 	if _player.anim_tree != null:
-		_player.anim_tree.travel("Running")
+		_player.anim_tree.travel("Run")
 		_player.player_anim_tree["parameters/Run/Blend/blend_amount"] = 0
 	pass

@@ -1,9 +1,10 @@
-[gd_scene load_steps=49 format=3 uid="uid://c3cceltkw0sfr"]
+[gd_scene load_steps=51 format=3 uid="uid://c3cceltkw0sfr"]
 
 [ext_resource type="Script" path="res://Scripts/OnLevelStart.gd" id="1_c5rs5"]
 [ext_resource type="PackedScene" uid="uid://dt4rqk6tx2ccu" path="res://TestLevels/Fella.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://wkst42rd1opx" path="res://textures/playground/white.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://d33w461710bp7" path="res://textures/playground/whitex.png" id="5"]
+[ext_resource type="Script" path="res://Scripts/Tools/RigidBody Spawner.gd" id="5_wocxe"]
 [ext_resource type="Texture2D" uid="uid://bo3rs0mousgg6" path="res://textures/playground/white8.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://5v2viwk47no8" path="res://textures/playground/white1.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://b1tidhpsehxms" path="res://textures/playground/white4.png" id="8"]
@@ -53,6 +54,8 @@ _surfaces = [{
 
 [sub_resource type="ConvexPolygonShape3D" id="686"]
 points = PackedVector3Array(-2, 0.5, -2, -2, -0.5, -2, 2, -0.5, -2, 2, 0.5, -2, -2, 0.5, 2, -2, -0.5, 2, 2, -0.5, 2, 2, 0.5, 2)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5lpv2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5naoj"]
 albedo_texture = ExtResource("5")
@@ -339,6 +342,30 @@ mesh = SubResource("685")
 
 [node name="entity_2_brush_0_collision_shape" type="CollisionShape3D" parent="dynamicObjects/entity_2_func_group"]
 shape = SubResource("686")
+
+[node name="RigidBody Spawner" type="Node3D" parent="dynamicObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 5, -17)
+script = ExtResource("5_wocxe")
+spawn_velocity = Vector3(20, 0, 0)
+time_between_launches = 2
+spawned_object_lifetime = 4.0
+
+[node name="direction visualizer" type="RayCast3D" parent="dynamicObjects/RigidBody Spawner"]
+target_position = Vector3(1, 0, 0)
+
+[node name="object_to_launch" type="RigidBody3D" parent="dynamicObjects/RigidBody Spawner"]
+transform = Transform3D(0.00102739, -0.0172473, 0.999851, -0.99823, -0.0594631, 0, 0.0594543, -0.998081, -0.0172778, 0, 0, 0)
+collision_layer = 0
+mass = 10.0
+continuous_cd = true
+can_sleep = false
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="dynamicObjects/RigidBody Spawner/object_to_launch"]
+shape = SubResource("CylinderShape3D_5lpv2")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="dynamicObjects/RigidBody Spawner/object_to_launch"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.536652, 0.786261, -0.306266, 0.674972, -0.182185, 0.714998, 0.506378, -0.590425, -0.628474, 0, 48.6497, 0)

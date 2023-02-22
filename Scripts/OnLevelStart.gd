@@ -14,7 +14,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if $Player.global_position.y < -10:
 		get_tree().reload_current_scene()
 	pass

@@ -11,7 +11,7 @@ var collision_point = Vector3.ZERO
 func _ready():
 	pass # Replace with function body.
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	colliding = is_colliding()
 	
 	if colliding and collision_point == Vector3.ZERO:
