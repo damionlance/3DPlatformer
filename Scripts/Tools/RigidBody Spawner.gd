@@ -7,6 +7,7 @@ extends Node3D
 
 @export var time_between_launches := 1
 @export var spawned_object_lifetime := 1.0
+@export var enabled := false
 
 @onready var spawn_direction := $"Spawn Direction"
 @onready var obj_template := $"object_to_launch"
@@ -26,7 +27,7 @@ func _ready():
 func _process(_delta):
 	if Engine.is_editor_hint():
 		$"direction visualizer".target_position = spawn_velocity.normalized()
-	else:
+	elif enabled:
 		if timer.time_left == 0:
 			timer.start(time_between_launches)
 			var new_child = $"object_to_launch".duplicate()
@@ -40,3 +41,6 @@ func _process(_delta):
 			new_child._ready()
 			add_child(new_child)
 	pass
+
+func _on_velocity_trigger_velocity_trigger_fired(_body):
+	enabled = true

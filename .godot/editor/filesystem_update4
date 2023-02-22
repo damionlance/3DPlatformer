@@ -1,13 +1,11 @@
-res://Scripts/global.gd
-res://Scripts/Tools/RigidBody Spawner.gd
-res://TestLevels/Levels/playground.tscn
+res://Scripts/StateMachine/States/Friendo/Throwing.gd
+res://Scripts/StateMachine/FriendoStateMachine.gd
+res://TestLevels/Fella.tscn
 res://3D Assets/Godot Worthy Models/Hat Shader.material
 res://3D Assets/Godot Worthy Models/Boot Shader.material
 res://3D Assets/Godot Worthy Models/Jacket Shader.material
 res://Shaders/visibleThruObjectsJacket.tres
 res://Shaders/VisibleThruObjects.tres
 res://3D Assets/Animations/Material.material
-res://TestLevels/Fella.tscn
-res://Tools/Dynamic Objects/rigid_body_spawner.tscn
-res://Scripts/StateMachine/States/aerial_movement.gd
-res://Scripts/Tools/temporary_object.gd
+res://TestLevels/Levels/playground.tscn
+res://Scripts/Tools/RigidBody Spawner.gd
