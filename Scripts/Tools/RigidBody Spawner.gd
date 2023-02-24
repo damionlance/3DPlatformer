@@ -9,7 +9,6 @@ extends Node3D
 @export var spawned_object_lifetime := 1.0
 @export var enabled := false
 
-@onready var spawn_direction := $"Spawn Direction"
 @onready var obj_template := $"object_to_launch"
 
 var timer := Timer.new()

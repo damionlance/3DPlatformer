@@ -26,7 +26,7 @@ func update(delta):
 		_state.update_state("Running")
 		return
 	if (_player.is_on_floor()):
-		_state.current_speed *= .915
+		_state.current_speed *= _state.ground_friction
 		if _state.attempting_jump:
 			_state._jump_state = _state.rollout
 			_state.update_state("Jump")
@@ -44,7 +44,7 @@ func update(delta):
 	# Handle inputs
 	
 	# Process Physics
-	_state.velocity = _state.calculate_velocity(0, delta)
+	_state.velocity = _state.calculate_velocity(-9.8, delta)
 	pass
 
 func reset():

@@ -20,12 +20,16 @@ class_name GroundedMovement
 var turning := 0
 var rotation_scale = 1
 var previous_move_direction
+var strength_of_slope := 0.0
+var maximum_slope := PI/6
 
 func look_forward():
 	var lookdir = atan2(-_state.move_direction.x, -_state.move_direction.z)
 	_player.rotation.y = lookdir
 
 func lean_into_turns():
+	if _player.is_on_wall():
+		_player.rotation.z = 0
 	if _state.move_direction == Vector3.ZERO:
 		return
 	
@@ -35,6 +39,10 @@ func lean_into_turns():
 	_player.rotation.z = lerp(_player.rotation.z, direction, .15)
 
 func grounded_movement_processing():
+	if _player.get_floor_angle() > maximum_slope:
+		strength_of_slope += 0.005
+	else:
+		strength_of_slope = 0
 	var ground = ground_probe.get_collider()
 	if ground:
 		if ground.get("friction"):
@@ -47,12 +55,10 @@ func grounded_movement_processing():
 		_state.current_speed = 0
 	else:
 		_state.current_speed *= 1 - _state.ground_friction
-	if _player.is_on_wall():
-		var wall_normal = _player.get_last_slide_collision().get_normal()
-		var cross = wall_normal.cross(Vector3.UP)
-		_state.move_direction = _state.move_direction.project(cross)
 	if _player.is_on_floor():
-		var floor_normal = _player.get_last_slide_collision().get_normal()
-		_state.move_direction += (1-_state.ground_friction) * Vector3(floor_normal.x, 0, floor_normal.z)
-		_state.move_direction = _state.move_direction.normalized()
-		print(_state.move_direction.length())
+		var floor_normal = _player.get_last_slide_collision()
+		if floor_normal:
+			floor_normal = floor_normal.get_normal()
+		else:
+			return
+		_state.move_direction += (strength_of_slope) * Vector3(floor_normal.x, 0, floor_normal.z)
