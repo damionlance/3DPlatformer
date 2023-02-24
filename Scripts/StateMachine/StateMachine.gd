@@ -79,6 +79,8 @@ var current_speed = 0.0
 var forwards := Vector3.ZERO
 var right := Vector3.ZERO
 
+var ground_friction := 1.0
+
 #onready variables
 @onready var _player = get_parent()
 @onready var _camera = $"../CameraPivot"
@@ -172,7 +174,8 @@ func update_state( new_state ):
 	_current_state.reset()
 
 func calculate_velocity(gravity: float, delta) -> Vector3:
-	var new_velocity = move_direction * current_speed
+	var horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
+	var new_velocity = horizontal_velocity.lerp(move_direction * current_speed, ground_friction)
 	if gravity != 0:
 		var temp =  velocity.y + gravity * delta
 		new_velocity.y = temp if temp < terminal_velocity else terminal_velocity

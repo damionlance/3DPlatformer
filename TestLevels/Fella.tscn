@@ -3618,7 +3618,8 @@ script = ExtResource("41")
 
 [node name="ShadowRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211281, 0)
-target_position = Vector3(0, -5, 0)
+visible = false
+target_position = Vector3(0, -20, 0)
 script = ExtResource("21")
 
 [node name="PlayerShadow" type="Decal" parent="ShadowRaycast"]
@@ -3941,6 +3942,10 @@ collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GrappleSlider"]
 shape = SubResource("SphereShape3D_qx7cd")
+
+[node name="Ground Probe" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.140075, 0)
+target_position = Vector3(0, -0.3, 0)
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://c3cceltkw0sfr"]
+[gd_scene load_steps=54 format=3 uid="uid://c3cceltkw0sfr"]
 
 [ext_resource type="Script" path="res://Scripts/OnLevelStart.gd" id="1_c5rs5"]
 [ext_resource type="PackedScene" uid="uid://dt4rqk6tx2ccu" path="res://TestLevels/Fella.tscn" id="3"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://ce2xveyld5o34" path="res://textures/playground/bars.png" id="17"]
 [ext_resource type="Script" path="res://Scripts/Tools/UnstablePlatform.gd" id="18"]
 [ext_resource type="Script" path="res://Scripts/Tools/RotatingPlatform.gd" id="18_ii47e"]
+[ext_resource type="Script" path="res://Scripts/Tools/GroundProperties.gd" id="20_jhsxj"]
 
 [sub_resource type="ConvexPolygonShape3D" id="683"]
 points = PackedVector3Array(-2, 0.5, -2, -2, -0.5, -2, 2, -0.5, -2, 2, 0.5, -2, -2, 0.5, 2, -2, -0.5, 2, 2, -0.5, 2, 2, 0.5, 2)
@@ -395,6 +396,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9422, 2.24688, -6.4372)
 mesh = SubResource("ArrayMesh_0buxs")
 
 [node name="entity_0_geometry_col" type="StaticBody3D" parent="TBLoader/Default Layer"]
+script = ExtResource("20_jhsxj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/Default Layer/entity_0_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_cl8pn")

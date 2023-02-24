@@ -57,6 +57,7 @@ func _physics_process(_delta):
 		grapple_slider.global_position = global_position
 		set_velocity(velocity)
 		move_and_slide()
+	_state.velocity = velocity
 	var collision = get_last_slide_collision()
 	if collision:
 		if collision.get_collider() is RigidBody3D:

@@ -1,5 +1,4 @@
-res://Scripts/StateMachine/States/Friendo/Throwing.gd
-res://Scripts/StateMachine/FriendoStateMachine.gd
+res://Scripts/StateMachine/States/grounded_movement.gd
 res://TestLevels/Fella.tscn
 res://3D Assets/Godot Worthy Models/Hat Shader.material
 res://3D Assets/Godot Worthy Models/Boot Shader.material
@@ -8,4 +7,5 @@ res://Shaders/visibleThruObjectsJacket.tres
 res://Shaders/VisibleThruObjects.tres
 res://3D Assets/Animations/Material.material
 res://TestLevels/Levels/playground.tscn
-res://Scripts/Tools/RigidBody Spawner.gd
+res://Scripts/Tools/ParticleHandler.gd
+res://Scripts/Tools/GroundProperties.gd
