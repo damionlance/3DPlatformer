@@ -64,9 +64,9 @@ func update(delta):
 		_state._throw()
 	
 	# Process all inputs
+	lean_into_turns()
 	grounded_movement_processing()
 	look_forward()
-	lean_into_turns()
 	
 	# Process all relevant timers
 	if _state.current_speed > max_speed * .9:

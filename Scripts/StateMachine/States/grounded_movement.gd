@@ -30,6 +30,7 @@ func look_forward():
 func lean_into_turns():
 	if _player.is_on_wall():
 		_player.rotation.z = 0
+		return
 	if _state.move_direction == Vector3.ZERO:
 		return
 	
@@ -40,9 +41,9 @@ func lean_into_turns():
 
 func grounded_movement_processing():
 	if _player.get_floor_angle() > maximum_slope:
-		strength_of_slope += 0.005
+		strength_of_slope += .001
 	else:
-		strength_of_slope = 0
+		strength_of_slope = 0.00
 	var ground = ground_probe.get_collider()
 	if ground:
 		if ground.get("friction"):
@@ -56,11 +57,10 @@ func grounded_movement_processing():
 	else:
 		_state.current_speed *= 1 - _state.ground_friction
 	
-	previous_move_direction = _state.move_direction
 	if _player.is_on_floor():
 		var floor_normal = _player.get_last_slide_collision()
 		if floor_normal:
 			floor_normal = floor_normal.get_normal()
-		else:
-			return
-		_state.move_direction += (strength_of_slope) * Vector3(floor_normal.x, 0, floor_normal.z)
+			floor_normal.y = 0
+			_state.move_direction = _state.move_direction.lerp(Vector3(floor_normal.x, 0, floor_normal.z), strength_of_slope)
+	previous_move_direction = _state.move_direction

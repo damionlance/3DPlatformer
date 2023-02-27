@@ -31,7 +31,6 @@ func _process(_delta):
 			timer.start(time_between_launches)
 			var new_child = $"object_to_launch".duplicate()
 			new_child.linear_velocity = spawn_velocity
-			print(new_child.linear_velocity)
 			new_child.freeze = false
 			new_child.visible = true
 			new_child.collision_layer = 1

@@ -1,3 +1,6 @@
+MeshInstance3D
+BoneAttachment3D
+SoftBody3D
 Node
 RayCast3D
 CSGSphere3D

@@ -90,10 +90,6 @@ enum wall_collision {
 	wallSlide,
 	ledgeGrab
 }
-
-func _ready():
-	print(_fall_gravity)
-
 # Helper Functions
 func wall_collision_check():
 	if _state._jump_state == _state.dive or _player.is_on_floor():

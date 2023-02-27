@@ -10,7 +10,7 @@ func _ready():
 	
 	pass # Replace with function body.
 
-func update(delta):
+func update(_delta):
 	if _controller._throw_state == 0:
 		_player.grappling = false
 		_state._jump_state = _state.jump
@@ -33,6 +33,3 @@ func reset():
 	_player.grapple_slider.linear_velocity = _player.velocity
 	_state.velocity.y = 0
 	pass
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

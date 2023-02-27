@@ -55,6 +55,7 @@ func _physics_process(_delta):
 	else:
 		grapple_slider.freeze = true
 		grapple_slider.global_position = global_position
+		grapple_slider.global_position.y += 0.5
 		set_velocity(velocity)
 		move_and_slide()
 	_state.velocity = velocity

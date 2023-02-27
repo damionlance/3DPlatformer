@@ -15,6 +15,5 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if time_to_live.time_left <= 0:
-		print("Hey")
 		queue_free()
 	pass
