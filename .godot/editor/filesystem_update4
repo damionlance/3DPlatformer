@@ -1,6 +1,3 @@
-res://Scripts/StateMachine/States/Dive Floor.gd
-res://Scripts/StateMachine/States/grounded_movement.gd
-res://Scripts/StateMachine/StateMachine.gd
 res://TestLevels/Fella.tscn
 res://3D Assets/Godot Worthy Models/Hat Shader.material
 res://3D Assets/Godot Worthy Models/Boot Shader.material
@@ -9,5 +6,4 @@ res://Shaders/visibleThruObjectsJacket.tres
 res://Shaders/VisibleThruObjects.tres
 res://3D Assets/Animations/Material.material
 res://TestLevels/Levels/playground.tscn
-res://Scripts/StateMachine/States/Running.gd
-res://TestLevels/Floor Slide.gd
+res://Scripts/Control Input and Processing.gd

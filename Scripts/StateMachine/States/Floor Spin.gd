@@ -28,6 +28,7 @@ func update(delta):
 	_spinning_buffer += 1
 	if _spinning_buffer == _spinning_timer:
 		_state.update_state("Running")
+	print("Hei")
 	
 	# Handle Animation Tree
 	

@@ -73,7 +73,6 @@ func _process(_delta):
 	
 	check_for_spin()
 	check_for_pivot()
-	
 	pass
 
 var stayed_still_buffer = 5
@@ -81,7 +80,7 @@ var stayed_still_timer = 0
 var resetplz = false
 
 func check_for_spin():
-	if previous_direction == movement_direction or not movement_direction == Vector2.ZERO:
+	if previous_direction == movement_direction or movement_direction == Vector2.ZERO:
 		stayed_still_timer += 1
 		if stayed_still_buffer == stayed_still_timer:
 			resetplz = true
