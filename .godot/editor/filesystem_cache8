@@ -1,5 +1,5 @@
 2a60927148abd1d33b818b535e306557
-::res://::1677268492
+::res://::1677519111
 default_env.tres::Environment::-1::1676057949::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1673141463::0::1::::<><>::
 fallTo.gd::GDScript::-1::1676057949::0::1::::<>Node3D<>::
@@ -12,16 +12,16 @@ Chonker.glb::PackedScene::4010985289828634675::1671734473::1676058036::1::::<><>
 grappleSphereCollider.obj::Mesh::5627923515466723668::1671734470::1676058032::1::::<><>::
 lil fella.glb::PackedScene::6302046862963135165::1671734472::1676058036::1::::<><>::
 shadow.png::CompressedTexture2D::2098918908047633547::1671734470::1676058041::1::::<><>::
-::res://3D Assets/Animations/::1677260677
+::res://3D Assets/Animations/::1677268498
 idle.fbx::PackedScene::8659768968771008219::1671734472::1676058032::1::::<><>::
 jump.fbx::PackedScene::6463960073612989033::1671734472::1676058033::1::::<><>::
-Material.material::StandardMaterial3D::9159514128544072631::1677260677::0::1::::<><>::
+Material.material::StandardMaterial3D::9159514128544072631::1677268498::0::1::::<><>::
 run.fbx::PackedScene::1343538556003658438::1671734472::1676058033::1::::<><>::
-::res://3D Assets/Godot Worthy Models/::1677260677
-Boot Shader.material::StandardMaterial3D::2651293720837625061::1677260677::0::1::::<><>::
+::res://3D Assets/Godot Worthy Models/::1677268498
+Boot Shader.material::StandardMaterial3D::2651293720837625061::1677268498::0::1::::<><>::
 FinalFellaRig.glb::PackedScene::571425260581884215::1675819977::1676059934::1::::<><>::
-Hat Shader.material::StandardMaterial3D::3980484235098449027::1677260677::0::1::::<><>::
-Jacket Shader.material::StandardMaterial3D::7180165797325372772::1677260677::0::1::::<><>::
+Hat Shader.material::StandardMaterial3D::3980484235098449027::1677268498::0::1::::<><>::
+Jacket Shader.material::StandardMaterial3D::7180165797325372772::1677268498::0::1::::<><>::
 ::res://3D Assets/Skins/::1676058031
 humanMaleA.png::CompressedTexture2D::4099342549026767961::1671734472::1676058031::1::::<><>::
 skin.material::StandardMaterial3D::-1::1671734472::0::1::::<><>::
@@ -75,7 +75,7 @@ global.gd::GDScript::-1::1677082208::0::1::::<>Node<>::
 movingPlatform.gd::GDScript::-1::1676057955::0::1::::<>CharacterBody3D<>::
 movingPlatform_y.gd::GDScript::-1::1676057955::0::1::::<>CharacterBody3D<>::
 OnLevelStart.gd::GDScript::-1::1677082295::0::1::::<>Node3D<>::
-Player.gd::GDScript::-1::1677267776::0::1::::<>CharacterBody3D<>::
+Player.gd::GDScript::-1::1677269601::0::1::::<>CharacterBody3D<>::
 portal.gd::GDScript::-1::1676057955::0::1::::<>Area3D<>::
 shadow.gd::GDScript::-1::1676161851::0::1::::<>RayCast3D<>::
 SpinAngleDisplay.gd::GDScript::-1::1676058747::0::1::::<>Node2D<>::
@@ -100,10 +100,10 @@ aerial_movement.gd::GDScript::-1::1677004716::0::1::::AerialMovement<>Node<>::
 Alpha_Body_MAT.material::StandardMaterial3D::-1::1669525766::0::1::::<><>::
 Alpha_Joints_MAT.material::StandardMaterial3D::-1::1669525766::0::1::::<><>::
 cac-1669241991148.glb::PackedScene::7003270702924971396::1669525766::1676058037::1::::<><>::
-Dive Floor.gd::GDScript::-1::1677268349::0::1::::DiveFloor<>GroundedMovement<>::
+Dive Floor.gd::GDScript::-1::1677268786::0::1::::DiveFloor<>GroundedMovement<>::
 Falling.gd::GDScript::-1::1676326193::0::1::::Falling<>AerialMovement<>::
 Floor Spin.gd::GDScript::-1::1676057955::0::1::::FloorSpin<>GroundedMovement<>::
-grounded_movement.gd::GDScript::-1::1677268491::0::1::::GroundedMovement<>Node<>::
+grounded_movement.gd::GDScript::-1::1677269443::0::1::::GroundedMovement<>Node<>::
 Idle.gd::GDScript::-1::1676057955::0::1::::Idle<>GroundedMovement<>::
 Jump.gd::GDScript::-1::1676325983::0::1::::Jump<>AerialMovement<>::
 LedgeGrab.gd::GDScript::-1::1677082667::0::1::::LedgeGrab<>AerialMovement<>::
@@ -123,20 +123,20 @@ Velocity Trigger Test.gd::GDScript::-1::1676057955::0::1::::<>Node3D<>::
 ::res://Scripts/Tools/::1677257572
 GroundProperties.gd::GDScript::-1::1677260708::0::1::::<>StaticBody3D<>::
 ParticleHandler.gd::GDScript::-1::1676059283::0::1::::<>Node<>::
-RigidBody Spawner.gd::GDScript::-1::1677088806::0::1::::<>Node3D<>::
+RigidBody Spawner.gd::GDScript::-1::1677269170::0::1::::<>Node3D<>::
 RotatingPlatform.gd::GDScript::-1::1676329906::0::1::::<>RigidBody3D<>::
 temporary_object.gd::GDScript::-1::1677085943::0::1::::<>RigidBody3D<>::
 UnstablePlatform.gd::GDScript::-1::1676301503::0::1::::<>RigidBody3D<>::
 VelocityTrigger.gd::GDScript::-1::1677088635::0::1::::<>Area3D<>::
-::res://Shaders/::1677260677
+::res://Shaders/::1677268498
 FellaShader.gdshader::Shader::-1::1676330370::0::1::::<><>::
-VisibleThruObjects.tres::ShaderMaterial::3791458277285052271::1677260677::0::1::::<><>::res://Shaders/FellaShader.gdshader<>uid://bwyf813fo0jxj
-visibleThruObjectsJacket.tres::ShaderMaterial::604372786730067860::1677260677::0::1::::<><>::uid://dakejtt3qtesy<>res://Shaders/FellaShader.gdshader
+VisibleThruObjects.tres::ShaderMaterial::3791458277285052271::1677268498::0::1::::<><>::res://Shaders/FellaShader.gdshader<>uid://bwyf813fo0jxj
+visibleThruObjectsJacket.tres::ShaderMaterial::604372786730067860::1677268498::0::1::::<><>::uid://dakejtt3qtesy<>res://Shaders/FellaShader.gdshader
 ::res://Sounds/::1676057715
 ::res://Sounds/Player Sound Effects/::1676058032
 151237__owlstorm__hard-female-footstep-3.wav::AudioStreamWAV::4532844421223544515::1671734925::1676058032::1::::<><>::
-::res://TestLevels/::1677268459
-Fella.tscn::PackedScene::8553778370666670920::1677268459::0::1::::<><>::res://Scripts/StateMachine/States/Wall Slide.gd<>res://Scripts/StateMachine/States/Floor Spin.gd<>res://Scripts/Player.gd<>res://Scripts/Camera.gd<>res://Scripts/StateMachine/State.gd<>res://Scripts/StateMachine/StateMachine.gd<>res://Scripts/StateMachine/States/Running.gd<>res://TestLevels/SwingFromFriendo.gd<>res://Scripts/StateMachine/States/Falling.gd<>res://Scripts/StateMachine/States/Jump.gd<>res://TestLevels/Floor Slide.gd<>res://Scripts/StateMachine/States/Dive Floor.gd<>uid://bwyf813fo0jxj<>res://Scripts/Controller.tscn<>res://Scripts/StateMachine/States/aerial_movement.gd<>res://Scripts/StateMachine/States/grounded_movement.gd<>res://Scripts/shadow.gd<>uid://45y5girgkimd<>uid://b5t0jx421d1ad<>uid://bd1koj1ptobgv<>res://3D Assets/Shaders/Toon Shader.gdshader<>res://TestLevels/Friendo.gd<>res://MiscScenes/invertedSphereCollider.tscn<>res://Scripts/StateMachine/States/Friendo/Idle.gd<>res://Scripts/StateMachine/States/Friendo/StuckToWall.gd<>res://Scripts/StateMachine/States/Friendo/Tossing.gd<>res://Scripts/StateMachine/FriendoStateMachine.gd<>res://Scripts/StateMachine/States/Friendo/Throwing.gd<>res://Shaders/FellaShader.gdshader<>res://Scripts/StateMachine/States/Friendo/Grappling.gd<>res://Scripts/StateMachine/States/PopperBounce.gd<>uid://iu06w2tuy41m<>uid://buau08b35sc28<>res://Scripts/StateMachine/States/ReelIn.gd<>uid://d3q64hs24l1yx<>res://Scripts/StateMachine/States/Friendo/ThrowOut.gd<>res://Scripts/StateMachine/States/LedgeGrab.gd<>res://TestLevels/WallRayRight.gd<>res://Scripts/Tools/ParticleHandler.gd
+::res://TestLevels/::1677269899
+Fella.tscn::PackedScene::8553778370666670920::1677269899::0::1::::<><>::res://Scripts/StateMachine/States/Wall Slide.gd<>res://Scripts/StateMachine/States/Floor Spin.gd<>res://Scripts/Player.gd<>res://Scripts/Camera.gd<>res://Scripts/StateMachine/State.gd<>res://Scripts/StateMachine/StateMachine.gd<>res://Scripts/StateMachine/States/Running.gd<>res://TestLevels/SwingFromFriendo.gd<>res://Scripts/StateMachine/States/Falling.gd<>res://Scripts/StateMachine/States/Jump.gd<>res://TestLevels/Floor Slide.gd<>res://Scripts/StateMachine/States/Dive Floor.gd<>uid://bwyf813fo0jxj<>res://Scripts/Controller.tscn<>res://Scripts/StateMachine/States/aerial_movement.gd<>res://Scripts/StateMachine/States/grounded_movement.gd<>res://Scripts/shadow.gd<>uid://45y5girgkimd<>uid://b5t0jx421d1ad<>uid://bd1koj1ptobgv<>res://3D Assets/Shaders/Toon Shader.gdshader<>res://TestLevels/Friendo.gd<>res://MiscScenes/invertedSphereCollider.tscn<>res://Scripts/StateMachine/States/Friendo/Idle.gd<>res://Scripts/StateMachine/States/Friendo/StuckToWall.gd<>res://Scripts/StateMachine/States/Friendo/Tossing.gd<>res://Scripts/StateMachine/FriendoStateMachine.gd<>res://Scripts/StateMachine/States/Friendo/Throwing.gd<>res://Shaders/FellaShader.gdshader<>res://Scripts/StateMachine/States/Friendo/Grappling.gd<>res://Scripts/StateMachine/States/PopperBounce.gd<>uid://iu06w2tuy41m<>uid://buau08b35sc28<>res://Scripts/StateMachine/States/ReelIn.gd<>uid://d3q64hs24l1yx<>res://Scripts/StateMachine/States/Friendo/ThrowOut.gd<>res://Scripts/StateMachine/States/LedgeGrab.gd<>res://TestLevels/WallRayRight.gd<>res://Scripts/Tools/ParticleHandler.gd
 FellaShader.gdshader::Shader::-1::1676311449::0::1::::<><>::
 FirstFloor.tscn::PackedScene::-1::1676057950::0::1::::<><>::res://TestLevels/testMap2.tscn<>res://TestLevels/Fella.tscn
 Floor Slide.gd::GDScript::-1::1676057950::0::1::::FloorSlide<>GroundedMovement<>::
@@ -158,12 +158,12 @@ Star.tscn::PackedScene::-1::1676057955::0::1::::<><>::res://TestLevels/levelItem
 ::res://TestLevels/levelItems/tres/::1676057715
 Coin.tres::CylinderShape3D::-1::1676057955::0::1::::<><>::
 splash.tres::Animation::-1::1676057955::0::1::::<><>::
-::res://TestLevels/Levels/::1677268459
+::res://TestLevels/Levels/::1677269900
 bigPool.tscn::PackedScene::-1::1676057952::0::1::::<><>::res://textures/hub/floor.png<>res://textures/hub/trim.png<>res://addons/qodot/src/nodes/qodot_map.gd<>res://TestLevels/Fella.tscn<>res://addons/qodot/game_definitions/fgd/qodot_fgd.tres<>res://Scripts/Counter.gd<>res://textures/hub/poolside.png<>res://textures/coinsprite.png<>res://textures/hub/otherblue.png<>res://textures/hub/pooltile.png<>res://textures/hub/yellow.png<>res://textures/hub/red.png<>res://textures/hub/green.png<>res://Scripts/Tools/UnstablePlatform.gd<>res://Tools/Dynamic Objects/RotatingPlatform.tscn<>res://Scripts/OnLevelStart.gd<>res://Scripts/Testing Scripts/Velocity Trigger Test.gd<>res://Scripts/Tools/VelocityTrigger.gd
 demoMap.tscn::PackedScene::-1::1676057952::0::1::::<><>::res://Scripts/Water.gd<>res://textures/DemoLevel/water.png<>res://textures/coinsprite.png<>res://TestLevels/Fella.tscn<>res://TestLevels/levelItems/Coin.tscn<>res://addons/qodot/src/nodes/qodot_map.gd<>res://addons/qodot/game_definitions/fgd/qodot_fgd.tres<>res://Scripts/Counter.gd<>res://TestLevels/levelItems/tres/splash.tres
 hub.tscn::PackedScene::-1::1676057953::0::1::::<><>::res://addons/qodot/src/nodes/qodot_map.gd<>res://TestLevels/Fella.tscn<>res://addons/qodot/game_definitions/fgd/qodot_fgd.tres<>res://textures/hub/painting1.png<>res://Scripts/portal.gd<>res://textures/hub/sidewalk.png<>res://textures/hub/street.png<>res://textures/hub/streetline.png<>res://textures/hub/floor.png<>res://textures/hub/wall.png<>res://textures/hub/floorstairs.png<>res://textures/hub/sidewall.png<>res://Scripts/StarCounter.gd<>res://textures/star.png<>res://textures/DemoLevel/concrete_04.png<>res://textures/hub/woodfloor.png<>res://textures/hub/brickwall.png<>res://textures/hub/outsidewall.png<>res://textures/hub/trim.png<>res://textures/hub/dirt.png<>res://textures/hub/outsidewall2.png<>res://textures/hub/Untitled.png<>res://Scripts/flicker.gd
 newPool.tscn::PackedScene::-1::1676057953::0::1::::<><>::res://Scripts/OnLevelStart.gd<>res://addons/qodot/src/nodes/qodot_map.gd<>res://addons/qodot/game_definitions/fgd/qodot_fgd.tres<>res://textures/playground/black.png<>res://TestLevels/Fella.tscn<>res://textures/playground/white.png
-playground.tscn::PackedScene::6742386929513273643::1677268459::0::1::::<><>::res://Scripts/OnLevelStart.gd<>uid://dt4rqk6tx2ccu<>uid://wkst42rd1opx<>uid://d33w461710bp7<>res://Scripts/Tools/RigidBody Spawner.gd<>uid://bo3rs0mousgg6<>res://Scripts/Tools/VelocityTrigger.gd<>uid://5v2viwk47no8<>uid://b1tidhpsehxms<>uid://n8oyeadl8hku<>uid://cnosp71vjfhlp<>uid://y6ha7u43u2if<>uid://6a41ykjpju1y<>uid://di1r0s68wl7mi<>uid://bui1ixm2amsbk<>uid://dgitigdvadpen<>uid://bl8u6s34nwhrj<>uid://ce2xveyld5o34<>res://Scripts/Tools/UnstablePlatform.gd<>res://Scripts/Tools/RotatingPlatform.gd<>res://Scripts/Tools/GroundProperties.gd
+playground.tscn::PackedScene::6742386929513273643::1677269900::0::1::::<><>::res://Scripts/OnLevelStart.gd<>uid://dt4rqk6tx2ccu<>uid://wkst42rd1opx<>uid://d33w461710bp7<>res://Scripts/Tools/RigidBody Spawner.gd<>uid://bo3rs0mousgg6<>res://Scripts/Tools/VelocityTrigger.gd<>uid://5v2viwk47no8<>uid://b1tidhpsehxms<>uid://n8oyeadl8hku<>uid://cnosp71vjfhlp<>uid://y6ha7u43u2if<>uid://6a41ykjpju1y<>uid://di1r0s68wl7mi<>uid://bui1ixm2amsbk<>uid://dgitigdvadpen<>uid://bl8u6s34nwhrj<>uid://ce2xveyld5o34<>res://Scripts/Tools/UnstablePlatform.gd<>res://Scripts/Tools/RotatingPlatform.gd<>res://Scripts/Tools/GroundProperties.gd
 pool.tscn::PackedScene::-1::1676057954::0::1::::<><>::res://TestLevels/Fella.tscn<>res://addons/qodot/src/nodes/qodot_map.gd<>res://addons/qodot/game_definitions/fgd/qodot_fgd.tres<>res://textures/DemoLevel/wall.png<>res://textures/DemoLevel/metal1.png<>res://textures/DemoLevel/concrete2.png<>res://textures/DemoLevel/grosswall.png<>res://textures/DemoLevel/water.png<>res://textures/DemoLevel/metalfloor.png<>res://textures/DemoLevel/carpet.png<>res://textures/DemoLevel/blocks1.png<>res://TestLevels/levelItems/Coin.tscn<>res://textures/coinsprite.png<>res://Scripts/Counter.gd
 poolparty.tscn::PackedScene::-1::1676057954::0::1::::<><>::res://TestLevels/levelItems/Coin.tscn<>res://Scripts/Water.gd<>res://addons/qodot/src/nodes/qodot_map.gd<>res://TestLevels/Fella.tscn<>res://addons/qodot/game_definitions/fgd/qodot_fgd.tres<>res://Scripts/Counter.gd<>res://textures/DemoLevel/water.png<>res://textures/coinsprite.png<>res://textures/DemoLevel/carpet.png<>res://textures/DemoLevel/concrete2.png<>res://textures/DemoLevel/wall.png<>res://textures/DemoLevel/wood_plywood_2.png<>res://textures/DemoLevel/concrete_04.png<>res://textures/DemoLevel/rock_cliff_2_norm.png<>res://textures/DemoLevel/rock_cliff_2.png<>res://textures/DemoLevel/color_gold.png<>res://textures/DemoLevel/color_green.png<>res://textures/DemoLevel/metal2.png<>res://textures/DemoLevel/color_softbloodorange.png<>res://TestLevels/levelItems/tres/splash.tres<>res://textures/DemoLevel/metal1.png<>res://TestLevels/levelItems/Star.gd
 ::res://TestLevels/Levels/hub/::1676058032

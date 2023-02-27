@@ -137,6 +137,7 @@ Throw={
 
 [physics]
 
+3d/default_gravity=132.888
 common/enable_pause_aware_picking=true
 
 [rendering]

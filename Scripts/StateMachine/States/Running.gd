@@ -19,7 +19,9 @@ var _fall_timer := 0
 var vertical_rotation
 
 var base_rotation = 0
-
+var can_slide := false
+var can_slide_timer := 0
+var can_slide_buffer := 5
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_state.state_dictionary[_state_name] = self
@@ -29,7 +31,8 @@ func update(delta):
 	# Handle all states
 	if _state._controller.spin_entered:
 		_state.update_state("Floor Spin")
-	if _state._controller.pivot_entered and _state.current_speed > max_speed*.2:
+		return
+	if _state._controller.pivot_entered and can_slide:
 		_state.update_state("FloorSlide")
 		return
 	if _state.attempting_dive:
@@ -59,7 +62,6 @@ func update(delta):
 	_player.player_anim_tree["parameters/Run/Blend/blend_amount"] = _state.current_speed / max_speed
 	if _state.attempting_throw:
 		_state._throw()
-	#_player.particles.emitting = true
 	
 	# Process all inputs
 	grounded_movement_processing()
@@ -67,7 +69,15 @@ func update(delta):
 	lean_into_turns()
 	
 	# Process all relevant timers
-	
+	if _state.current_speed > max_speed * .9:
+		can_slide = true
+		can_slide_timer = 0
+	elif can_slide:
+		can_slide_timer += 1
+		if can_slide_timer == can_slide_buffer:
+			can_slide_timer = 0
+			can_slide = false
+
 	#Process physics
 	_state.velocity = _state.calculate_velocity(-9.8, delta)
 	
@@ -82,6 +92,7 @@ func reset():
 		_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = 0
 	_player.anim_tree.travel("Run")
-	
+	can_slide = false
+	can_slide_timer = 0
 	_player.rotation.z = 0
 	pass

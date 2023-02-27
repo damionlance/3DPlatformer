@@ -17,7 +17,7 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	if _state.current_speed < .5:
+	if _state.current_speed < .1:
 		_state.update_state("Running")
 		return
 	
@@ -43,6 +43,7 @@ func reset():
 		_player.anim_tree.travel("Skid")
 	_state.velocity.y = 0
 	_state.move_direction = -(_state.camera_relative_movement)
+	_state.current_speed = max_speed
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
