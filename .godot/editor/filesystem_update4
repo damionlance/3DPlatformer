@@ -7,3 +7,5 @@ res://Shaders/VisibleThruObjects.tres
 res://3D Assets/Animations/Material.material
 res://TestLevels/Levels/playground.tscn
 res://Scripts/Control Input and Processing.gd
+res://TestLevels/Levels/newPool.tscn
+res://Scripts/StateMachine/States/Dive Floor.gd

@@ -26,7 +26,7 @@ func update(delta):
 		_state.update_state("Running")
 		return
 	if (_player.is_on_floor()):
-		_state.current_speed *= _state.ground_friction
+		_state.current_speed *= _state.ground_friction * .95
 		if _state.attempting_jump:
 			_state._jump_state = _state.rollout
 			_state.update_state("Jump")
