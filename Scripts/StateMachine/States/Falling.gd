@@ -29,7 +29,6 @@ func update(delta):
 			_state._jump_state = _state.ground_pound
 			_state.update_state("Jump")
 		return
-	
 	if _player.is_on_floor():
 		airdrifting = false
 		_state.snap_vector = Vector3.DOWN

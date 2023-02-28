@@ -1,3 +1,10 @@
+CollisionShape3D
+Area3D
+Node
+Node3D
+RayCast3D
+CSGBox3D
+CharacterBody3D
 ColorRect
 NinePatchRect
 Control
@@ -5,14 +12,9 @@ Panel
 MeshInstance3D
 BoneAttachment3D
 SoftBody3D
-Node
-RayCast3D
 CSGSphere3D
-CSGBox3D
 CSGCylinder3D
-CollisionShape3D
 RigidBody3D
-Node3D
 TBLoader
 DirectionalLight3D
 Decal

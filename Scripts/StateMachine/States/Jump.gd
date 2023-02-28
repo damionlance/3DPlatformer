@@ -17,7 +17,6 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	print("Starting Velocity: ", _player.velocity)
 	# Handle all state logic
 	if _state._jump_state == _state.ground_pound:
 		if ground_pound_finished:
@@ -72,7 +71,7 @@ func update(delta):
 func reset():
 	_player.anim_tree.travel("Jump")
 	match _state._jump_state:
-		_state.jump: 
+		_state.jump:
 			current_jump_gravity = _jump_gravity
 			current_jump_strength = _jump_strength
 			_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
@@ -123,6 +122,7 @@ func reset():
 	entering_jump_angle = _state._controller.movement_direction
 	_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = current_jump_strength
+	print(_state.velocity.y)
 	if _state.move_direction != Vector3.ZERO:
 		_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 	pass

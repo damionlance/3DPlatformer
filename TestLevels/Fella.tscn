@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://dt4rqk6tx2ccu"]
+[gd_scene load_steps=115 format=3 uid="uid://dt4rqk6tx2ccu"]
 
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Wall Slide.gd" id="1"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Floor Spin.gd" id="2"]
@@ -3529,6 +3529,9 @@ _data = {
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qx7cd"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_660a3"]
+radius = 0.0632737
+
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0956018, 0)
 collision_layer = 2
@@ -3948,6 +3951,12 @@ shape = SubResource("SphereShape3D_qx7cd")
 [node name="Ground Probe" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.140075, 0)
 target_position = Vector3(0, -0.3, 0)
+
+[node name="SoftSpot Detector" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SoftSpot Detector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0135072, 0)
+shape = SubResource("SphereShape3D_660a3")
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]

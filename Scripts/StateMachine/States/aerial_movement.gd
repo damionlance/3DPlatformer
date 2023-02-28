@@ -95,7 +95,11 @@ func wall_collision_check():
 	if _state._jump_state == _state.dive or _player.is_on_floor() or _state.consecutive_stationary_wall_jump == 1:
 		return wall_collision.noCollision
 	var ledgeGrabHit = false
-	
+	var collider = _player.get_last_slide_collision()
+	if collider:
+		if not collider.get_collider() is StaticBody3D:
+			return wall_collision.noCollision
+
 	if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
 		if abs(_state._raycast_left.get_collision_normal().y) <= .1 or abs(_state._raycast_right.get_collision_normal().y) <= .1:
 			if _player.is_on_wall() and _player.velocity.y < 0:

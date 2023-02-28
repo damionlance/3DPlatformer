@@ -33,7 +33,7 @@ func _ready():
 	set_floor_constant_speed_enabled(false)
 	set_floor_stop_on_slope_enabled(false)
 	set_floor_max_angle(1.309)
-	set_floor_snap_length(.2)
+	set_floor_snap_length(.1)
 	set_max_slides(6)
 	set_up_direction(Vector3.UP)
 

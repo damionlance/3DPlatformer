@@ -91,6 +91,7 @@ var ground_friction := 1.0
 @onready var _raycast_middle = _player.get_node("WallRayMiddle")
 @onready var _controller = $"../Controller"
 @onready var _skeleton = $"../lilfella/Armature/Skeleton3D"
+@onready var _softspot_detector = $"../SoftSpot Detector"
 
 #signals
 signal throw_fella
@@ -108,13 +109,17 @@ func _process(delta):
 	if _current_state == null:
 		_jump_state = jump
 		update_state("Falling")
-	print("input: ", _player.velocity)
+	
+	for area in _softspot_detector.get_overlapping_areas():
+		if area.name == "SoftSpot":
+			print(area.name)
+			current_jump = 1
+			_jump_state = 1
+			update_state("Jump")
+
 	input_handling()
-	print("State: ", _player.velocity)
 	_current_state.update(delta)
-	print("Update player: ", _player.velocity)
 	_player.update_physics_data(velocity, snap_vector)
-	print("Post: ", _player.velocity)
 
 func input_handling():
 	forwards = _camera.global_transform.basis.z

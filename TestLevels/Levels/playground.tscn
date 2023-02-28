@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://c3cceltkw0sfr"]
+[gd_scene load_steps=55 format=3 uid="uid://c3cceltkw0sfr"]
 
 [ext_resource type="Script" path="res://Scripts/OnLevelStart.gd" id="1_c5rs5"]
 [ext_resource type="PackedScene" uid="uid://dt4rqk6tx2ccu" path="res://TestLevels/Fella.tscn" id="3"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://Scripts/Tools/UnstablePlatform.gd" id="18"]
 [ext_resource type="Script" path="res://Scripts/Tools/RotatingPlatform.gd" id="18_ii47e"]
 [ext_resource type="Script" path="res://Scripts/Tools/GroundProperties.gd" id="20_jhsxj"]
+[ext_resource type="PackedScene" uid="uid://cxvv46b21b2o0" path="res://Enemies/blob.tscn" id="22_5d357"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5naoj"]
 albedo_texture = ExtResource("5")
@@ -467,5 +468,19 @@ collision_mask = 2
 [node name="entity_1_mesh_instance" type="MeshInstance3D" parent="DynamicObjects/UnstablePlatform"]
 mesh = SubResource("684")
 skeleton = NodePath("")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Bad Guy" parent="Enemies" instance=ExtResource("22_5d357")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.1766, 2.19692, -19.2109)
+
+[node name="Bad Guy2" parent="Enemies" instance=ExtResource("22_5d357")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5958, 2.19692, -19.2109)
+
+[node name="Bad Guy3" parent="Enemies" instance=ExtResource("22_5d357")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5958, 2.19692, -15.0865)
+
+[node name="Bad Guy4" parent="Enemies" instance=ExtResource("22_5d357")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8212, 2.19692, -15.0865)
 
 [connection signal="velocity_trigger_fired" from="DynamicObjects/VelocityTrigger" to="DynamicObjects/RigidBody Spawner" method="_on_velocity_trigger_velocity_trigger_fired"]
