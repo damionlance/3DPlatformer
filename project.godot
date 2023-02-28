@@ -21,6 +21,8 @@ Global="*res://Scripts/global.gd"
 
 [debug]
 
+gdscript/warnings/unused_variable=0
+gdscript/warnings/unused_private_class_variable=0
 settings/fps/force_fps=60
 
 [display]

@@ -17,6 +17,7 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
+	print("Starting Velocity: ", _player.velocity)
 	# Handle all state logic
 	if _state._jump_state == _state.ground_pound:
 		if ground_pound_finished:
@@ -32,7 +33,6 @@ func update(delta):
 			_state._jump_state = _state.ground_pound
 			_state.update_state("Jump")
 		return
-	
 	match wall_collision_check():
 		wall_collision.wallSlide:
 			_state.update_state("WallSlide")
@@ -40,13 +40,11 @@ func update(delta):
 		wall_collision.ledgeGrab:
 			_state.update_state("LedgeGrab")
 			return
-	
 	if _state._jump_state == _state.ground_pound:
 		if not _player.player_anim.is_playing():
 			_state.update_state("Falling")
 		else:
 			return
-	
 	if _state._controller._jump_state == _state._controller.jump_released and shorthop_timer == shorthop_buffer:
 		_state.velocity.y *= .6
 		_state.update_state("Falling")

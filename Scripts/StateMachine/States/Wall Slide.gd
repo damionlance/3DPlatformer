@@ -71,6 +71,8 @@ func directional_input_handling():
 func reset():
 	_player.player_anim_tree["parameters/Jump/playback"].travel("Wall Slide")
 	entering_angle = Vector3(_state.velocity.x,0, _state.velocity.z).normalized()
+	if entering_angle == Vector3.ZERO:
+		_state.consecutive_stationary_wall_jump += 1
 	wall_bounce_timer = 0
 	_state.velocity = Vector3.ZERO
 	surface_normal = _player.get_last_slide_collision().get_normal()

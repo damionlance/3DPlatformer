@@ -34,6 +34,8 @@ var _jump_buffer := 5
 var _jump_timer := 5
 var _dive_timer := 5
 
+var consecutive_stationary_wall_jump := 0
+
 @export var coyote_time := 10
 
 
@@ -106,10 +108,13 @@ func _process(delta):
 	if _current_state == null:
 		_jump_state = jump
 		update_state("Falling")
-	
+	print("input: ", _player.velocity)
 	input_handling()
+	print("State: ", _player.velocity)
 	_current_state.update(delta)
+	print("Update player: ", _player.velocity)
 	_player.update_physics_data(velocity, snap_vector)
+	print("Post: ", _player.velocity)
 
 func input_handling():
 	forwards = _camera.global_transform.basis.z
@@ -175,7 +180,11 @@ func update_state( new_state ):
 
 func calculate_velocity(gravity: float, delta) -> Vector3:
 	var horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
-	var new_velocity = horizontal_velocity.lerp(move_direction * current_speed, ground_friction)
+	var new_velocity := Vector3.ZERO
+	if horizontal_velocity.length() != 0:
+		new_velocity = horizontal_velocity.lerp(move_direction * current_speed, ground_friction)
+	else:
+		new_velocity = move_direction * current_speed
 	if gravity != 0:
 		var temp =  velocity.y + gravity * delta
 		new_velocity.y = temp if temp < terminal_velocity else terminal_velocity

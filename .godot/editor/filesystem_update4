@@ -6,20 +6,5 @@ res://Shaders/visibleThruObjectsJacket.tres
 res://Shaders/VisibleThruObjects.tres
 res://3D Assets/Animations/Material.material
 res://TestLevels/Levels/playground.tscn
-res://Scripts/Control Input and Processing.gd
-res://TestLevels/Levels/newPool.tscn
-res://Scripts/StateMachine/States/Dive Floor.gd
-res://Scripts/StateMachine/States/grounded_movement.gd
-res://Scripts/StateMachine/States/Running.gd
+res://Scripts/StateMachine/StateMachine.gd
 res://Scripts/StateMachine/States/aerial_movement.gd
-res://TestLevels/SwingFromFriendo.gd
-res://Scripts/StateMachine/States/ReelIn.gd
-res://Scripts/StateMachine/States/Friendo/Grappling.gd
-res://Scripts/StateMachine/States/Friendo/StuckToWall.gd
-res://Scripts/Player.gd
-res://Scripts/StateMachine/States/Floor Spin.gd
-res://Scripts/Tools/RigidBody Spawner.gd
-res://Scripts/Tools/temporary_object.gd
-res://fallTo.gd
-res://Scripts/Camera/States/Aim.gd
-res://Scripts/Camera/CameraRig.gd

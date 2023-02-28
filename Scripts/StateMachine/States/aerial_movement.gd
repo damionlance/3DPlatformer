@@ -92,7 +92,7 @@ enum wall_collision {
 }
 # Helper Functions
 func wall_collision_check():
-	if _state._jump_state == _state.dive or _player.is_on_floor():
+	if _state._jump_state == _state.dive or _player.is_on_floor() or _state.consecutive_stationary_wall_jump == 1:
 		return wall_collision.noCollision
 	var ledgeGrabHit = false
 	
@@ -138,7 +138,7 @@ func standard_aerial_drift():
 	elif relative_angle > -.5 and relative_angle < .5 and not airdrifting:
 		_state.current_speed += 3
 		airdrifting = true
-	if _player.is_on_wall():
+	if _player.is_on_wall() and not _player.is_on_ceiling():
 		var wall_normal = _player.get_last_slide_collision().get_normal()
 		var cross = wall_normal.cross(Vector3.UP)
 		_state.move_direction = _state.move_direction.project(cross)

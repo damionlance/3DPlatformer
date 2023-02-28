@@ -40,6 +40,8 @@ func lean_into_turns():
 	_player.rotation.z = lerp(_player.rotation.z, direction, .15)
 
 func grounded_movement_processing():
+	_state.consecutive_stationary_wall_jump = 0
+
 	if _player.get_floor_angle() > maximum_slope:
 		strength_of_slope += .001
 	else:
