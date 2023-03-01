@@ -122,7 +122,6 @@ func reset():
 	entering_jump_angle = _state._controller.movement_direction
 	_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = current_jump_strength
-	print(_state.velocity.y)
 	if _state.move_direction != Vector3.ZERO:
 		_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 	pass

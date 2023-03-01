@@ -96,6 +96,9 @@ var ground_friction := 1.0
 #signals
 signal throw_fella
 
+var enemyBounce := false
+var bounceTimer := 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	level_loaded = false
@@ -109,14 +112,12 @@ func _process(delta):
 	if _current_state == null:
 		_jump_state = jump
 		update_state("Falling")
-	
-	for area in _softspot_detector.get_overlapping_areas():
-		if area.name == "SoftSpot":
-			print(area.name)
-			current_jump = 1
-			_jump_state = 1
-			update_state("Jump")
-
+	if not enemyBounce:
+		for area in _softspot_detector.get_overlapping_areas():
+			if area.name == "SoftSpot":
+				current_jump = 1
+				_jump_state = 1
+				update_state("Jump")
 	input_handling()
 	_current_state.update(delta)
 	_player.update_physics_data(velocity, snap_vector)

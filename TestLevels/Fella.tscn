@@ -41,8 +41,8 @@
 [ext_resource type="Script" path="res://Scripts/Tools/ParticleHandler.gd" id="42"]
 
 [sub_resource type="CapsuleShape3D" id="147"]
-radius = 0.529122
-height = 2.0249
+radius = 0.408809
+height = 1.69265
 
 [sub_resource type="ShaderMaterial" id="93"]
 render_priority = 0
@@ -3953,9 +3953,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.140075, 0)
 target_position = Vector3(0, -0.3, 0)
 
 [node name="SoftSpot Detector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0536256, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SoftSpot Detector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0135072, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0765765, 0)
 shape = SubResource("SphereShape3D_660a3")
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]

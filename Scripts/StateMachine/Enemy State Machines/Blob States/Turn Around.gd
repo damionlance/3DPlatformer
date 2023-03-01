@@ -14,7 +14,6 @@ func update(delta):
 	_state.move_direction = _state.move_direction.rotated(Vector3.UP, PI/120)
 	_state.current_dir = _state.move_direction
 	_state.current_speed = lerp(_state.current_speed, .1, .15)
-	print(_state.move_direction)
 	if (_state.move_direction - goal_direction).length() < .1:
 		_state.update_state("Run")
 		return

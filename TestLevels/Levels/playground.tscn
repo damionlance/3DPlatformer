@@ -474,13 +474,4 @@ skeleton = NodePath("")
 [node name="Bad Guy" parent="Enemies" instance=ExtResource("22_5d357")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.1766, 2.19692, -19.2109)
 
-[node name="Bad Guy2" parent="Enemies" instance=ExtResource("22_5d357")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5958, 2.19692, -19.2109)
-
-[node name="Bad Guy3" parent="Enemies" instance=ExtResource("22_5d357")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5958, 2.19692, -15.0865)
-
-[node name="Bad Guy4" parent="Enemies" instance=ExtResource("22_5d357")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8212, 2.19692, -15.0865)
-
 [connection signal="velocity_trigger_fired" from="DynamicObjects/VelocityTrigger" to="DynamicObjects/RigidBody Spawner" method="_on_velocity_trigger_velocity_trigger_fired"]

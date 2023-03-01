@@ -1,10 +1,10 @@
 extends CharacterBody3D
 
-func _process(_delta):
-	for body in $SoftSpot.get_overlapping_bodies():
-		if body.velocity.y < -10:
-			queue_free()
+var causes_damage = true
 
-func _physics_process(delta):
+#func _process(_delta):
+func _physics_process(_delta):
+	for body in $SoftSpot.get_overlapping_bodies():
+		queue_free()
 	velocity = $StateMachine.velocity
 	move_and_slide()
