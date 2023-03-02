@@ -1,3 +1,5 @@
+res://Scripts/StateMachine
+res://Scripts/StateMachine/States
 res://Scripts/StateMachine/Enemy State Machines/Blob States
 res://Enemies
 res://Scripts/StateMachine/Enemy State Machines

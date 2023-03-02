@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://dt4rqk6tx2ccu"]
+[gd_scene load_steps=118 format=3 uid="uid://dt4rqk6tx2ccu"]
 
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Wall Slide.gd" id="1"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Floor Spin.gd" id="2"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://TestLevels/Floor Slide.gd" id="13"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Dive Floor.gd" id="14"]
 [ext_resource type="Material" uid="uid://bwyf813fo0jxj" path="res://3D Assets/Godot Worthy Models/Hat Shader.material" id="15"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/States/Damaged.gd" id="16_w6xjl"]
 [ext_resource type="PackedScene" path="res://Scripts/Controller.tscn" id="18"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/aerial_movement.gd" id="19"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/grounded_movement.gd" id="20"]
@@ -38,6 +39,7 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Friendo/ThrowOut.gd" id="39"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/LedgeGrab.gd" id="40"]
 [ext_resource type="Script" path="res://TestLevels/WallRayRight.gd" id="41"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/HazardDetector.gd" id="41_2dmwm"]
 [ext_resource type="Script" path="res://Scripts/Tools/ParticleHandler.gd" id="42"]
 
 [sub_resource type="CapsuleShape3D" id="147"]
@@ -3532,6 +3534,9 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_660a3"]
 radius = 0.0632737
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kjjxv"]
+radius = 0.432541
+
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0956018, 0)
 collision_layer = 2
@@ -3584,6 +3589,9 @@ script = ExtResource("13")
 
 [node name="Running" type="Node" parent="StateMachine/GroundedMovement"]
 script = ExtResource("7")
+
+[node name="Damaged" type="Node" parent="StateMachine"]
+script = ExtResource("16_w6xjl")
 
 [node name="State" type="Node" parent="StateMachine"]
 script = ExtResource("5")
@@ -3959,5 +3967,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0536256, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0765765, 0)
 shape = SubResource("SphereShape3D_660a3")
 
+[node name="HazardDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.993424, 0)
+collision_layer = 0
+collision_mask = 9
+script = ExtResource("41_2dmwm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HazardDetector"]
+shape = SubResource("CapsuleShape3D_kjjxv")
+
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]
+[connection signal="take_damage" from="HazardDetector" to="StateMachine" method="_on_hazard_detector_take_damage"]

@@ -213,3 +213,10 @@ func _on_Friendo_hit_wall(friendo_position):
 	grapple_position = friendo_position
 	update_state("SwingFromFriendo")
 	pass # Replace with function body.
+
+func _on_hazard_detector_take_damage(position):
+	if _current_state.name != "Damaged":
+		update_state("Damaged")
+		move_direction = -(position - _player.global_position).normalized()
+		current_speed = 10
+	pass # Replace with function body.

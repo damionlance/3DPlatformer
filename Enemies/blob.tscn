@@ -24,7 +24,7 @@ size = Vector3(0.774354, 0.0528721, 0.836497)
 [node name="Bad Guy" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 8
-collision_mask = 3
+collision_mask = 11
 script = ExtResource("1_ay2v2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
