@@ -92,6 +92,8 @@ enum wall_collision {
 }
 # Helper Functions
 func wall_collision_check():
+	print("Wall Collision Check")
+	print(_player.velocity)
 	if _state._jump_state == _state.dive or _player.is_on_floor() or _state.consecutive_stationary_wall_jump == 1:
 		return wall_collision.noCollision
 	var ledgeGrabHit = false
@@ -105,6 +107,7 @@ func wall_collision_check():
 			if _player.is_on_wall() and _player.velocity.y < 0:
 				var prev_horizontal_speed = _player.previous_horizontal_velocity.length()
 				if prev_horizontal_speed > 4 and not _player.grappling:
+					print(_player.velocity)
 					return wall_collision.wallSlide
 	
 	else:
@@ -129,10 +132,14 @@ func wall_collision_check():
 		_state._raycast_left.target_position *= -1
 		_state._raycast_right.target_position *= -1
 	
+	print(_player.velocity)
 	if ledgeGrabHit and not wallHit: return wall_collision.ledgeGrab
 	return wall_collision.noCollision
 
 func standard_aerial_drift():
+	print("Standard Aerial Drift")
+	print(_player.velocity)
+	print("Move Direction 1: ", _state.move_direction)
 	var relative_angle = entering_jump_angle.dot(_controller.movement_direction)
 	_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .03)
 	if _controller.movement_direction == Vector2.ZERO:
@@ -142,11 +149,13 @@ func standard_aerial_drift():
 	elif relative_angle > -.5 and relative_angle < .5 and not airdrifting:
 		_state.current_speed += 3
 		airdrifting = true
-	if _player.is_on_wall() and not _player.is_on_ceiling():
+	if _player.is_on_wall_only():
 		var wall_normal = _player.get_last_slide_collision().get_normal()
-		if abs(wall_normal.y).y > .1:
-			var cross = wall_normal.cross(Vector3.UP)
-			_state.move_direction = _state.move_direction.project(cross)
+		print("wall normal: ", wall_normal)
+		var cross = wall_normal.cross(Vector3.UP)
+		_state.move_direction = _state.move_direction.project(cross)
+		print("Move Direction 2: ", _state.move_direction)
+	print(_player.velocity)
 	pass
 
 func spin_jump_drift():
