@@ -144,8 +144,9 @@ func standard_aerial_drift():
 		airdrifting = true
 	if _player.is_on_wall() and not _player.is_on_ceiling():
 		var wall_normal = _player.get_last_slide_collision().get_normal()
-		var cross = wall_normal.cross(Vector3.UP)
-		_state.move_direction = _state.move_direction.project(cross)
+		if abs(wall_normal.y).y > .1:
+			var cross = wall_normal.cross(Vector3.UP)
+			_state.move_direction = _state.move_direction.project(cross)
 	pass
 
 func spin_jump_drift():
