@@ -44,7 +44,7 @@
 
 [sub_resource type="CapsuleShape3D" id="147"]
 radius = 0.408809
-height = 1.69265
+height = 1.94229
 
 [sub_resource type="ShaderMaterial" id="93"]
 render_priority = 0
@@ -3544,7 +3544,7 @@ collision_mask = 7
 script = ExtResource("3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10211, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.977835, 0)
 shape = SubResource("147")
 
 [node name="StateMachine" type="Node" parent="."]
