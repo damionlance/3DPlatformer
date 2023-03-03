@@ -79,7 +79,7 @@ func update(delta):
 			can_slide = false
 
 	#Process physics
-	_state.velocity = _state.calculate_velocity(-9.8, delta)
+	_state.velocity = _state.calculate_velocity(0, delta)
 	
 	pass
 

@@ -33,7 +33,7 @@ func _ready():
 	set_floor_constant_speed_enabled(false)
 	set_floor_stop_on_slope_enabled(false)
 	set_floor_max_angle(1.309)
-	set_floor_snap_length(.4)
+	set_floor_snap_length(.2)
 	set_max_slides(6)
 	set_up_direction(Vector3.UP)
 
@@ -45,6 +45,7 @@ func _process(_delta):
 	pass
 
 func _physics_process(_delta):
+	print("Player physics processing")
 	print(velocity)
 	if not is_on_wall():
 		previous_horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
@@ -64,6 +65,8 @@ func _physics_process(_delta):
 	if collision:
 		if collision.get_collider() is RigidBody3D:
 			collision.get_collider().apply_impulse(-collision.get_normal() * inertia, collision.get_position())
+	
+	print(velocity)
 
 func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
 	velocity = _velocity
