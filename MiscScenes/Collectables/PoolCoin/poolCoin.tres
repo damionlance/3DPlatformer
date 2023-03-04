@@ -4,5 +4,9 @@
 albedo_color = Color(0, 1, 0.87451, 1)
 metallic = 0.55
 metallic_specular = 0.64
+emission_enabled = true
+emission = Color(0, 0.882353, 0.756863, 1)
+emission_energy_multiplier = 0.5
 clearcoat_enabled = true
 clearcoat_roughness = 0.35
+backlight = Color(0, 1, 1, 1)

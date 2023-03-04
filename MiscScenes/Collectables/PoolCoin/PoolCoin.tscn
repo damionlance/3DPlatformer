@@ -119,4 +119,9 @@ libraries = {
 "": SubResource("AnimationLibrary_2a4lc")
 }
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Coin"]
+light_color = Color(0.647059, 1, 1, 1)
+light_energy = 0.05
+light_indirect_energy = 5.0
+
 [connection signal="body_entered" from="Coin" to="Coin" method="_on_body_entered"]
