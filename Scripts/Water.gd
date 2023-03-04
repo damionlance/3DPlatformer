@@ -17,5 +17,5 @@ func _ready():
 
 
 func _on_water_body_entered(body):
-	if body is preload("res://Scripts/Player.gd"):
+	if body.get_name() == "Player":
 		get_tree().reload_current_scene()

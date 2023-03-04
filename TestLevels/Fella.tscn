@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=3 uid="uid://dt4rqk6tx2ccu"]
+[gd_scene load_steps=117 format=3 uid="uid://dt4rqk6tx2ccu"]
 
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Wall Slide.gd" id="1"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Floor Spin.gd" id="2"]
@@ -18,8 +18,7 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/aerial_movement.gd" id="19"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/grounded_movement.gd" id="20"]
 [ext_resource type="Script" path="res://Scripts/shadow.gd" id="21"]
-[ext_resource type="Texture2D" uid="uid://45y5girgkimd" path="res://3D Assets/shadow.png" id="22"]
-[ext_resource type="AudioStream" uid="uid://b5t0jx421d1ad" path="res://Sounds/Player Sound Effects/151237__owlstorm__hard-female-footstep-3.wav" id="23"]
+[ext_resource type="Texture2D" uid="uid://cw6rsvrybik0s" path="res://3D Assets/shadow.png" id="22"]
 [ext_resource type="Material" uid="uid://bd1koj1ptobgv" path="res://3D Assets/Godot Worthy Models/Boot Shader.material" id="25"]
 [ext_resource type="Shader" path="res://3D Assets/Shaders/Toon Shader.gdshader" id="27"]
 [ext_resource type="Script" path="res://TestLevels/Friendo.gd" id="29"]
@@ -35,7 +34,7 @@
 [ext_resource type="Material" uid="uid://iu06w2tuy41m" path="res://Shaders/visibleThruObjectsJacket.tres" id="37_5pq8c"]
 [ext_resource type="Material" uid="uid://buau08b35sc28" path="res://Shaders/VisibleThruObjects.tres" id="37_8jqte"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/ReelIn.gd" id="38"]
-[ext_resource type="Material" uid="uid://d3q64hs24l1yx" path="res://3D Assets/Animations/Material.material" id="38_0y0om"]
+[ext_resource type="Material" uid="uid://bk81ltna21my5" path="res://3D Assets/Animations/Material.material" id="38_0y0om"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Friendo/ThrowOut.gd" id="39"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/LedgeGrab.gd" id="40"]
 [ext_resource type="Script" path="res://TestLevels/WallRayRight.gd" id="41"]
@@ -3639,9 +3638,6 @@ size = Vector3(1, 1, 1)
 texture_albedo = ExtResource("22")
 upper_fade = 1e-05
 lower_fade = 0.1
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("23")
 
 [node name="FriendoHomingNode" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67483, 0)
