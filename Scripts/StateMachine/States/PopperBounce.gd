@@ -44,7 +44,7 @@ func reset():
 	_player.anim_tree.travel("Jump")
 	_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
 	
-	entering_jump_angle = Vector2(_player.popperAngle.x, _player.popperAngle.z)
+	entering_jump_angle = Vector3(_player.popperAngle.x, 0, _player.popperAngle.z)
 	_state.move_direction = Vector3(_player.popperAngle.x, 0, _player.popperAngle.z)
 	_state.current_speed = wall_jump_speed * entering_jump_angle.length()
 	_state.snap_vector = Vector3.ZERO
