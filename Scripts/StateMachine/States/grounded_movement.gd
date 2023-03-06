@@ -40,9 +40,9 @@ func lean_into_turns():
 	_player.rotation.z = lerp(_player.rotation.z, direction, .15)
 
 func grounded_movement_processing():
-	print("Grounded Movement Processing")
-	print(_player.velocity)
-	print("Move Direction 1: ", _state.move_direction)
+	#print("Grounded Movement Processing")
+	#print(_player.velocity)
+	#print("Move Direction 1: ", _state.move_direction)
 	_state.consecutive_stationary_wall_jump = 0
 
 	if _player.get_floor_angle() > maximum_slope:
@@ -57,7 +57,7 @@ func grounded_movement_processing():
 		if previous_move_direction.length() <= _state.move_direction.length():
 			_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, floor_rotation_speed)
 			_state.current_speed = lerp(float(_state.current_speed), (max_speed * _controller.input_strength), _state.ground_friction)
-			print("Move Direction 2: ", _state.move_direction)
+			#print("Move Direction 2: ", _state.move_direction)
 	elif _state.current_speed < 1:
 		_state.current_speed = 0
 	else:
@@ -69,6 +69,6 @@ func grounded_movement_processing():
 			floor_normal = floor_normal.get_normal()
 			floor_normal.y = 0
 			_state.move_direction = _state.move_direction.lerp(Vector3(floor_normal.x, 0, floor_normal.z), strength_of_slope)	
-			print("Move Direction 3: ", _state.move_direction)
+			#print("Move Direction 3: ", _state.move_direction)
 	previous_move_direction = _state.move_direction
-	print(_player.velocity)
+	#print(_player.velocity)

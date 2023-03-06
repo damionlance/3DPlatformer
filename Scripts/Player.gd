@@ -16,7 +16,13 @@ var snap_vector := Vector3.ZERO
 var inertia := 1
 
 var coins = 0
+# levelCoins holds all level specific coins
+# 	0: pool
+var levelCoins = [0]
+
+#Deprecated
 var stars = 0
+
 var time_now = 0
 var shadow
 var tween
@@ -45,8 +51,8 @@ func _process(_delta):
 	pass
 
 func _physics_process(_delta):
-	print("Player physics processing")
-	print(velocity)
+	#print("Player physics processing")
+	#print(velocity)
 	if not is_on_wall():
 		previous_horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 	
@@ -66,7 +72,7 @@ func _physics_process(_delta):
 		if collision.get_collider() is RigidBody3D:
 			collision.get_collider().apply_impulse(-collision.get_normal() * inertia, collision.get_position())
 	
-	print(velocity)
+	#print(velocity)
 
 func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
 	velocity = _velocity
@@ -75,14 +81,23 @@ func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
 func add_coin():
 	coins += 1
 	print(coins, " coins")
+	return true
+	
+func add_levelcoin(level):
+	levelCoins[level] += 1
+	if level == 0:
+		print(levelCoins[level], " Pool coins")
+	else:
+		print(levelCoins[level], " other coins...")
+	return true
 	
 func add_star():
 	stars = 0
-	print(Global.stars)
+	#print(Global.stars)
 	for star in Global.stars.keys():
 		if Global.stars[star]:
 			stars += 1
-	print(stars, " stars")
+	#print(stars, " stars")
 	if stars == 3:
 		time_now = Time.get_unix_time_from_system()
-		print("You finished in: " + str(-1 * (Global.time_start - time_now)) + ". Good job!")
+		#print("You finished in: " + str(-1 * (Global.time_start - time_now)) + ". Good job!")

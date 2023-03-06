@@ -12,7 +12,7 @@ var double_jump_timer := 0
 var double_jump_buffer := 5
 
 # Jump Logic Variables
-var entering_jump_angle : Vector3
+var entering_jump_angle : Vector2
 
 # Air Physics Constants
 @onready var _jump_strength : float = (2.0 * jump_height) / jump_time_to_peak
@@ -92,8 +92,8 @@ enum wall_collision {
 }
 # Helper Functions
 func wall_collision_check():
-	print("Wall Collision Check")
-	print(_player.velocity)
+	#print("Wall Collision Check")
+	#print(_player.velocity)
 	if _state._jump_state == _state.dive or _player.is_on_floor() or _state.consecutive_stationary_wall_jump == 1:
 		return wall_collision.noCollision
 	var ledgeGrabHit = false
@@ -107,7 +107,7 @@ func wall_collision_check():
 			if _player.is_on_wall() and _player.velocity.y < 0:
 				var prev_horizontal_speed = _player.previous_horizontal_velocity.length()
 				if prev_horizontal_speed > 4 and not _player.grappling:
-					print(_player.velocity)
+					#print(_player.velocity)
 					return wall_collision.wallSlide
 	
 	else:
@@ -132,12 +132,15 @@ func wall_collision_check():
 		_state._raycast_left.target_position *= -1
 		_state._raycast_right.target_position *= -1
 	
-	print(_player.velocity)
+	#print(_player.velocity)
 	if ledgeGrabHit and not wallHit: return wall_collision.ledgeGrab
 	return wall_collision.noCollision
 
 func standard_aerial_drift():
-	var relative_angle = entering_jump_angle.dot(_state.camera_relative_movement)
+	#print("Standard Aerial Drift")
+	#print(_player.velocity)
+	#print("Move Direction 1: ", _state.move_direction)
+	var relative_angle = entering_jump_angle.dot(_controller.movement_direction)
 	_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .03)
 	if _controller.movement_direction == Vector2.ZERO:
 		_state.current_speed *= air_friction * .98
@@ -148,8 +151,11 @@ func standard_aerial_drift():
 		airdrifting = true
 	if _player.is_on_wall_only():
 		var wall_normal = _player.get_last_slide_collision().get_normal()
+		#print("wall normal: ", wall_normal)
 		var cross = wall_normal.cross(Vector3.UP)
 		_state.move_direction = _state.move_direction.project(cross)
+		#print("Move Direction 2: ", _state.move_direction)
+	#print(_player.velocity)
 	pass
 
 func spin_jump_drift():
