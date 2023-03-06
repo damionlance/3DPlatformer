@@ -1,6 +1,7 @@
-res://Scripts/StateMachine/States/Floor Spin.gd
-res://Scripts/StateMachine/States/Wall Slide.gd
+res://Scripts/StateMachine/Enemy State Machines/Blob States/Pursue.gd
 res://Scripts/StateMachine/StateMachine.gd
+res://Scripts/StateMachine/States/Jump.gd
+res://Scripts/StateMachine/States/Falling.gd
 res://TestLevels/Fella.tscn
 res://3D Assets/Godot Worthy Models/Hat Shader.material
 res://3D Assets/Godot Worthy Models/Boot Shader.material
@@ -11,6 +12,8 @@ res://3D Assets/Animations/Material.material
 res://TestLevels/Levels/playground.tscn
 res://Enemies/blob.tscn
 res://TestLevels/Levels/newerPool.tscn
-res://Scripts/StateMachine/States/grounded_movement.gd
-res://Scripts/Tools/GroundProperties.gd
+res://Scripts/StateMachine/Enemy State Machines/Blob States/Run.gd
+res://Scripts/StateMachine/States/Running.gd
+res://Scripts/StateMachine/States/Floor Spin.gd
 res://Scripts/StateMachine/States/aerial_movement.gd
+res://Scripts/StateMachine/States/PopperBounce.gd

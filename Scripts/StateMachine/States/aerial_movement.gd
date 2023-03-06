@@ -12,7 +12,7 @@ var double_jump_timer := 0
 var double_jump_buffer := 5
 
 # Jump Logic Variables
-var entering_jump_angle : Vector2
+var entering_jump_angle : Vector3
 
 # Air Physics Constants
 @onready var _jump_strength : float = (2.0 * jump_height) / jump_time_to_peak
@@ -137,10 +137,7 @@ func wall_collision_check():
 	return wall_collision.noCollision
 
 func standard_aerial_drift():
-	print("Standard Aerial Drift")
-	print(_player.velocity)
-	print("Move Direction 1: ", _state.move_direction)
-	var relative_angle = entering_jump_angle.dot(_controller.movement_direction)
+	var relative_angle = entering_jump_angle.dot(_state.camera_relative_movement)
 	_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .03)
 	if _controller.movement_direction == Vector2.ZERO:
 		_state.current_speed *= air_friction * .98
@@ -151,11 +148,8 @@ func standard_aerial_drift():
 		airdrifting = true
 	if _player.is_on_wall_only():
 		var wall_normal = _player.get_last_slide_collision().get_normal()
-		print("wall normal: ", wall_normal)
 		var cross = wall_normal.cross(Vector3.UP)
 		_state.move_direction = _state.move_direction.project(cross)
-		print("Move Direction 2: ", _state.move_direction)
-	print(_player.velocity)
 	pass
 
 func spin_jump_drift():
