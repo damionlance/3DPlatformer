@@ -46,7 +46,7 @@ func update(delta):
 		_state.velocity.y *= .6
 		_state.update_state("Falling")
 		return
-	if _state.velocity.y < 0:
+	if _state.velocity.y <= 0:
 		_state.update_state("Falling")
 		return
 	if _state.attempting_throw and _state._jump_state != _state.dive:
@@ -117,9 +117,10 @@ func reset():
 	
 	shorthop_timer = 0
 	ground_pound_finished = false
-	entering_jump_angle = _state._controller.movement_direction
+	entering_jump_angle = _state.current_dir
 	_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = current_jump_strength
+	_state._player.velocity.y = current_jump_strength
 	if _state.move_direction != Vector3.ZERO:
 		_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 	pass
