@@ -12,7 +12,7 @@ var double_jump_timer := 0
 var double_jump_buffer := 5
 
 # Jump Logic Variables
-var entering_jump_angle : Vector2
+var entering_jump_angle : Vector3
 
 # Air Physics Constants
 @onready var _jump_strength : float = (2.0 * jump_height) / jump_time_to_peak
@@ -140,7 +140,7 @@ func standard_aerial_drift():
 	#print("Standard Aerial Drift")
 	#print(_player.velocity)
 	#print("Move Direction 1: ", _state.move_direction)
-	var relative_angle = entering_jump_angle.dot(_controller.movement_direction)
+	var relative_angle = entering_jump_angle.dot(_state.camera_relative_movement)
 	_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .03)
 	if _controller.movement_direction == Vector2.ZERO:
 		_state.current_speed *= air_friction * .98
