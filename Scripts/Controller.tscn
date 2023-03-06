@@ -1,20 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Control Input and Processing.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/ControlStickInput.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/SpinAngleDisplay.gd" type="Script" id=3]
 
 [node name="Node" type="Node"]
 script = ExtResource( 1 )
 
 [node name="DebugDisplay" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="DebugDisplay"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 24.0
-margin_top = -2.0
-margin_right = 64.0
-margin_bottom = 38.0
-
-[node name="ControlStickInput" type="Node2D" parent="DebugDisplay/Control"]
+[node name="ControlStickInput" type="Node2D" parent="DebugDisplay"]
+position = Vector2( 57, 343 )
 script = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D" parent="DebugDisplay"]
+visible = false
+position = Vector2( 56, 274 )
+script = ExtResource( 3 )

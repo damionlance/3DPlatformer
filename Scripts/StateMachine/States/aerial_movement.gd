@@ -1,6 +1,8 @@
 extends Node
 
 class_name AerialMovement
+#warning-ignore:unused_private_class_variable
+var backwardsLedgeGrab := false
 
 # Aerial Tech Timers
 var shorthop_timer := 0
@@ -10,72 +12,150 @@ var double_jump_timer := 0
 var double_jump_buffer := 5
 
 # Jump Logic Variables
-var current_jump := 0
-var entering_jump_angle := Vector2.ZERO
+var entering_jump_angle : Vector2
 
 # Air Physics Constants
-onready var _jump_strength : float = (2.0 * jump_height) / jump_time_to_peak
-onready var _jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
-onready var _fall_gravity : float = (-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)
+@onready var _jump_strength : float = (2.0 * jump_height) / jump_time_to_peak
+@onready var _jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
+@onready var _fall_gravity : float = (-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)
 
-onready var _jump2_strength : float = (2.0 * jump2_height) / jump2_time_to_peak
-onready var _jump2_gravity : float = (-2.0 * jump2_height) / (jump2_time_to_peak * jump2_time_to_peak)
-onready var _fall2_gravity : float = (-2.0 * jump2_height) / (jump2_time_to_descent * jump2_time_to_descent)
+@onready var _jump2_strength : float = (2.0 * jump2_height) / jump2_time_to_peak
+@onready var _jump2_gravity : float = (-2.0 * jump2_height) / (jump2_time_to_peak * jump2_time_to_peak)
+@onready var _fall2_gravity : float = (-2.0 * jump2_height) / (jump2_time_to_descent * jump2_time_to_descent)
 
-onready var _spin_jump_strength : float = (2.0 * spin_jump_height) / spin_jump_time_to_peak
-onready var _spin_jump_gravity : float = (-2.0 * spin_jump_height) / (spin_jump_time_to_peak * spin_jump_time_to_peak)
-onready var _spin_fall_gravity : float = (-2.0 * spin_jump_height) / (spin_jump_time_to_descent * spin_jump_time_to_descent)
+@onready var _jump3_strength : float = (2.0 * jump3_height) / jump3_time_to_peak
+@onready var _jump3_gravity : float = (-2.0 * jump3_height) / (jump3_time_to_peak * jump3_time_to_peak)
+@onready var _fall3_gravity : float = (-2.0 * jump3_height) / (jump3_time_to_descent * jump3_time_to_descent)
 
-onready var _side_jump_strength : float = (2.0 * side_jump_height) / side_jump_time_to_peak
-onready var _side_jump_gravity : float = (-2.0 * side_jump_height) / (side_jump_time_to_peak * side_jump_time_to_peak)
-onready var _side_fall_gravity : float = (-2.0 * side_jump_height) / (side_jump_time_to_descent * side_jump_time_to_descent)
+@onready var _spin_jump_strength : float = (2.0 * spin_jump_height) / spin_jump_time_to_peak
+@onready var _spin_jump_gravity : float = (-2.0 * spin_jump_height) / (spin_jump_time_to_peak * spin_jump_time_to_peak)
+@onready var _spin_fall_gravity : float = (-2.0 * spin_jump_height) / (spin_jump_time_to_descent * spin_jump_time_to_descent)
 
-export var jump_height := 3.1
-export var jump_time_to_peak := 0.3
-export var jump_time_to_descent := 0.216
+@onready var _side_jump_strength : float = (2.0 * side_jump_height) / side_jump_time_to_peak
+@onready var _side_jump_gravity : float = (-2.0 * side_jump_height) / (side_jump_time_to_peak * side_jump_time_to_peak)
+@onready var _side_fall_gravity : float = (-2.0 * side_jump_height) / (side_jump_time_to_descent * side_jump_time_to_descent)
 
-export var jump2_height := 5.1
-export var jump2_time_to_peak := 0.35
-export var jump2_time_to_descent := 0.266
+@onready var _dive_jump_strength : float = (2.0 * dive_jump_height) / dive_jump_time_to_peak
+@onready var _dive_jump_gravity : float = (-2.0 * dive_jump_height) / (dive_jump_time_to_peak * dive_jump_time_to_peak)
+@onready var _dive_fall_gravity : float = (-2.0 * dive_jump_height) / (dive_jump_time_to_descent * dive_jump_time_to_descent)
 
-export var spin_jump_height := 5.1
-export var spin_jump_time_to_peak := .4
-export var spin_jump_time_to_descent := 1.0
+@onready var _rollout_jump_strength : float = (2.0 * rollout_jump_height) / rollout_jump_time_to_peak
+@onready var _rollout_jump_gravity : float = (-2.0 * rollout_jump_height) / (rollout_jump_time_to_peak * rollout_jump_time_to_peak)
+@onready var _rollout_fall_gravity : float = (-2.0 * rollout_jump_height) / (rollout_jump_time_to_descent * rollout_jump_time_to_descent)
 
-export var side_jump_height := 7.1
-export var side_jump_time_to_peak := .4
-export var side_jump_time_to_descent := .4
+@export var jump_height := 3.1
+@export var jump_time_to_peak := 0.3
+@export var jump_time_to_descent := 0.216
 
-export var air_friction := 0.99
-export var air_acceleration := 2.0
+@export var jump2_height := 5.1
+@export var jump2_time_to_peak := 0.3
+@export var jump2_time_to_descent := 0.266
+
+@export var jump3_height := 7.1
+@export var jump3_time_to_peak := 0.35
+@export var jump3_time_to_descent := 0.36
+
+@export var spin_jump_height := 5.1
+@export var spin_jump_time_to_peak := .2
+@export var spin_jump_time_to_descent := 1.2
+
+@export var side_jump_height := 6.1
+@export var side_jump_time_to_peak := .4
+@export var side_jump_time_to_descent := .4
+
+@export var dive_jump_height := 2.1
+@export var dive_jump_time_to_peak := 0.3
+@export var dive_jump_time_to_descent := 0.22
+
+@export var rollout_jump_height := 2.1
+@export var rollout_jump_time_to_peak := 0.3
+@export var rollout_jump_time_to_descent := 0.3
+
+@export var air_friction := 0.99
+@export var air_acceleration := 2.0
 
 var wall_jump_speed = 12.5
+var max_reel_in = 25.0
+var current_jump_gravity := 0.0
+var dive_speed := 2.0
+var spin_skip_strength := 0.7
+var airdrifting := false
 
-var dive_speed := 5
+@onready var _player = find_parent("Player")
+@onready var _state = find_parent("StateMachine")
+@onready var _controller = _player.find_child("Controller")
 
-onready var _state = get_parent()
-onready var _player = get_parent().get_parent()
-onready var _controller = get_parent().get_node("Controller")
-
+enum wall_collision {
+	noCollision,
+	wallSlide,
+	ledgeGrab
+}
 # Helper Functions
-func wall_jump_collision_check():
-	if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
-		if abs(_state._raycast_left.get_collision_normal().y) > 0 or abs(_state._raycast_right.get_collision_normal().y) > 0:
-			if _player.is_on_wall():
-				var horizontalVelocity = Vector3(_state.velocity.x, 0, _state.velocity.z)
-				if horizontalVelocity.length() > 1:
-					return true
-	return false
+func wall_collision_check():
+	#print("Wall Collision Check")
+	#print(_player.velocity)
+	if _state._jump_state == _state.dive or _player.is_on_floor() or _state.consecutive_stationary_wall_jump == 1:
+		return wall_collision.noCollision
+	var ledgeGrabHit = false
+	var collider = _player.get_last_slide_collision()
+	if collider:
+		if not collider.get_collider() is StaticBody3D:
+			return wall_collision.noCollision
 
-func _process(_delta):
-	if _state.just_landed:
-		double_jump_timer += 1
-		if double_jump_buffer == double_jump_timer:
-			double_jump_timer = 0
-			_state.just_landed = false
+	if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
+		if abs(_state._raycast_left.get_collision_normal().y) <= .1 or abs(_state._raycast_right.get_collision_normal().y) <= .1:
+			if _player.is_on_wall() and _player.velocity.y < 0:
+				var prev_horizontal_speed = _player.previous_horizontal_velocity.length()
+				if prev_horizontal_speed > 4 and not _player.grappling:
+					#print(_player.velocity)
+					return wall_collision.wallSlide
+	
+	else:
+		if _state._raycast_middle.is_colliding() and _state.velocity.y < 0:
+			ledgeGrabHit = true
+		_state._raycast_middle.target_position *= -1
+		_state._raycast_middle.force_raycast_update()
+		if _state._raycast_middle.is_colliding() and _state.velocity.y < 0:
+			ledgeGrabHit = true
+		_state._raycast_middle.target_position *= -1
+		_state._raycast_middle.force_raycast_update()
+	
+	var wallHit = false
+	
+	if ledgeGrabHit:
+		_state._raycast_left.target_position *= -1
+		_state._raycast_left.force_raycast_update()
+		_state._raycast_right.target_position *= -1
+		_state._raycast_right.force_raycast_update()
+		if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
+			wallHit = true
+		_state._raycast_left.target_position *= -1
+		_state._raycast_right.target_position *= -1
+	
+	#print(_player.velocity)
+	if ledgeGrabHit and not wallHit: return wall_collision.ledgeGrab
+	return wall_collision.noCollision
 
 func standard_aerial_drift():
-	
+	#print("Standard Aerial Drift")
+	#print(_player.velocity)
+	#print("Move Direction 1: ", _state.move_direction)
+	var relative_angle = entering_jump_angle.dot(_controller.movement_direction)
+	_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .03)
+	if _controller.movement_direction == Vector2.ZERO:
+		_state.current_speed *= air_friction * .98
+	elif relative_angle < -.5:
+		_state.current_speed *= air_friction
+	elif relative_angle > -.5 and relative_angle < .5 and not airdrifting:
+		_state.current_speed += 3
+		airdrifting = true
+	if _player.is_on_wall_only():
+		var wall_normal = _player.get_last_slide_collision().get_normal()
+		#print("wall normal: ", wall_normal)
+		var cross = wall_normal.cross(Vector3.UP)
+		_state.move_direction = _state.move_direction.project(cross)
+		#print("Move Direction 2: ", _state.move_direction)
+	#print(_player.velocity)
 	pass
 
 func spin_jump_drift():
@@ -84,4 +164,9 @@ func spin_jump_drift():
 		_state.current_speed *= air_friction
 	
 	_state.move_direction = _state.camera_relative_movement
+	
+	if _player.is_on_wall():
+		var position = _player.get_last_slide_collision().get_position() - _player.global_position
+		_state.move_direction = (_state.move_direction - (position.normalized() * spin_skip_strength)).normalized()
+	
 	pass

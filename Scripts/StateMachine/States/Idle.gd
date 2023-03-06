@@ -13,13 +13,6 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	# Handle animation Tree
-	_player.anim_tree.travel("Idle1")
-	# Process inputs
-	_state.current_speed *= floor_friction
-	
-	# Handle all relevant timers
-	
 	# Handle all states
 	if not _player.is_on_floor():
 		_state.update_state("Falling")
@@ -33,14 +26,20 @@ func update(delta):
 		_state.update_state("Jump")
 		return
 	
+	
+	# Handle animation Tree
+	_player.anim_tree.travel("Idle1")
+	# Process inputs
+	_state.current_speed *= floor_friction
+	
+	# Handle all relevant timers
+	
 	# Process physics
-	_state.velocity = _state.calculate_velocity(-1, delta)
+	_state.velocity = _state.calculate_velocity(0, delta)
 	pass
 
 func reset():
 	_state._air_drift_state = _state.not_air_drifting
+	_state.snap_vector = Vector3.DOWN
+	_state.velocity.y = 0
 	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

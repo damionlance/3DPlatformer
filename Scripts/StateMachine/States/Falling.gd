@@ -10,6 +10,7 @@ var motion_input : String
 #private variables
 var _state_name = "Falling"
 
+var current_fall_gravity
 #onready variables
 
 # Called when the node enters the scene tree for the first time.
@@ -18,35 +19,48 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
+	
+	# Handle state logic
+	if _state.attempting_dive and not (_state._jump_state == _state.dive or _state._jump_state == _state.rollout or _state._jump_state == _state.ground_pound):
+		if _state._controller.input_strength > .2:
+			_state._jump_state = _state.dive
+			_state.update_state("Jump")
+		else:
+			_state._jump_state = _state.ground_pound
+			_state.update_state("Jump")
+		return
+	if _player.is_on_floor():
+		airdrifting = false
+		_state.snap_vector = Vector3.DOWN
+		if _state._jump_state == _state.dive:
+			_state.update_state("Dive Floor")
+		else:
+			_state.update_state("Running")
+		_state.just_landed = true
+		return
+	match wall_collision_check():
+		wall_collision.wallSlide:
+			_state.update_state("WallSlide")
+			airdrifting = false
+			return
+		wall_collision.ledgeGrab:
+			_state.update_state("LedgeGrab")
+			airdrifting = false
+			return
+	if _state.attempting_throw and _state._jump_state != _state.dive:
+		_state._throw()
 	# Handle animation tree
-	_player.anim_tree.travel("Fall")
 	
 	# Process movements
-	standard_aerial_drift()
+	if _state._jump_state == _state.ground_pound:
+		pass
+	elif _state._jump_state == _state.spin_jump:
+		spin_jump_drift()
+	elif _state._jump_state != _state.dive:
+		standard_aerial_drift()
 	
 	# Update relevant counters
 	
-	# Handle state logic
-	if _state.attempting_dive:
-		_state.update_state("Dive")
-		return
-	if _player.is_on_floor():
-		if _state._controller.movement_direction:
-			_state.update_state("Running")
-			return
-		_state.snap_vector = Vector3.DOWN
-		_state.update_state("Idle")
-		_state.just_landed = true
-		return
-	if wall_jump_collision_check():
-		_state.update_state("WallSlide")
-		return
-	
-	var current_fall_gravity
-	match current_jump:
-		1: current_fall_gravity = _fall_gravity
-		2: current_fall_gravity = _fall2_gravity
-		_: current_fall_gravity = _fall_gravity
 	
 	# Process Physics
 	_state.velocity = _state.calculate_velocity(current_fall_gravity, delta)
@@ -54,5 +68,37 @@ func update(delta):
 	pass
 
 func reset():
+	entering_jump_angle = _state._controller.movement_direction
 	_state.snap_vector = Vector3.ZERO
+	match _state._jump_state:
+		_state.jump: 
+			current_fall_gravity = _fall_gravity
+			_player.anim_tree.travel("Fall")
+		_state.jump2: 
+			current_fall_gravity = _fall2_gravity
+		_state.jump3: 
+			current_fall_gravity = _fall3_gravity
+			_player.anim_tree.travel("Fall")
+		_state.spin_jump:
+			#animation doesn't change for spin jumps falling
+			current_fall_gravity = _spin_fall_gravity
+		_state.side_flip:
+			current_fall_gravity = _side_fall_gravity
+			_player.anim_tree.travel("Fall")
+		_state.dive:
+			#animation doesn't change for dives falling
+			current_fall_gravity = _dive_fall_gravity
+		_state.rollout:
+			#animation doesn't change for rollouts falling
+			current_fall_gravity = _rollout_fall_gravity
+		_state.popper_bounce:
+			_player.anim_tree.travel("Fall")
+			current_fall_gravity = _side_fall_gravity
+		_state.ground_pound:
+			current_fall_gravity = _fall_gravity
+			_state.velocity.y = -_state.terminal_velocity
+			_player.velocity.y = -_state.terminal_velocity
+		_: 
+			current_jump_gravity = _fall_gravity
+			_player.anim_tree.travel("Fall")
 	pass
