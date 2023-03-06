@@ -15,3 +15,8 @@ func _process(delta):
 func _on_button_body_entered(body):
 	if body.name == "Player":
 		anim.play("bridgeActivate")
+
+
+func _on_button_2_body_entered(body):
+	if body.name == "Player":
+		anim.play("bridgeActivate")
