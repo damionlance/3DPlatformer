@@ -19,5 +19,8 @@ func update(delta):
 	_state.velocity = _state.calculate_velocity(delta)
 
 func reset():
+	_state.move_direction = Vector3.ZERO
+	_state._raycast_middle.set_collision_mask_value(4, true)
+	_state._raycast_middle.target_position = _state._raycast_middle_default
 	_state._animation_tree["parameters/Idling/blend_amount"] = 0
 	time_til_running = (randi() % 8) * 60

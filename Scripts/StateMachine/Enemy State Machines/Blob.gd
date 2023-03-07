@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 var causes_damage = true
+var has_butt := true
 
 #func _process(_delta):
 func _physics_process(_delta):

@@ -307,7 +307,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray(0, 0, 0, 192, 0, 0, 0, 63, 0, 0, 0, 192, 255, 127, 255, 127, 255, 255, 128, 64, 0, 0, 0, 192, 0, 0, 0, 191, 0, 0, 0, 192, 255, 127, 255, 127, 255, 255, 128, 64, 0, 0, 0, 64, 0, 0, 0, 191, 0, 0, 0, 192, 255, 127, 255, 127, 255, 255, 128, 64, 0, 0, 0, 64, 0, 0, 0, 63, 0, 0, 0, 192, 255, 127, 255, 127, 255, 255, 128, 64, 0, 0, 0, 192, 0, 0, 0, 63, 0, 0, 0, 192, 1, 128, 0, 0, 255, 127, 126, 191, 0, 0, 0, 192, 0, 0, 0, 63, 0, 0, 0, 64, 1, 128, 0, 0, 255, 127, 126, 191, 0, 0, 0, 192, 0, 0, 0, 191, 0, 0, 0, 64, 1, 128, 0, 0, 255, 127, 126, 191, 0, 0, 0, 192, 0, 0, 0, 191, 0, 0, 0, 192, 1, 128, 0, 0, 255, 127, 126, 191, 0, 0, 0, 64, 0, 0, 0, 191, 0, 0, 0, 192, 0, 0, 1, 128, 255, 127, 128, 64, 0, 0, 0, 192, 0, 0, 0, 191, 0, 0, 0, 192, 0, 0, 1, 128, 255, 127, 128, 64, 0, 0, 0, 192, 0, 0, 0, 191, 0, 0, 0, 64, 0, 0, 1, 128, 255, 127, 128, 64, 0, 0, 0, 64, 0, 0, 0, 191, 0, 0, 0, 64, 0, 0, 1, 128, 255, 127, 128, 64, 0, 0, 0, 64, 0, 0, 0, 63, 0, 0, 0, 192, 0, 0, 255, 127, 255, 127, 126, 191, 0, 0, 0, 64, 0, 0, 0, 63, 0, 0, 0, 64, 0, 0, 255, 127, 255, 127, 126, 191, 0, 0, 0, 192, 0, 0, 0, 63, 0, 0, 0, 64, 0, 0, 255, 127, 255, 127, 126, 191, 0, 0, 0, 192, 0, 0, 0, 63, 0, 0, 0, 192, 0, 0, 255, 127, 255, 127, 126, 191, 0, 0, 0, 64, 0, 0, 0, 63, 0, 0, 0, 192, 255, 127, 0, 0, 255, 127, 128, 64, 0, 0, 0, 64, 0, 0, 0, 191, 0, 0, 0, 192, 255, 127, 0, 0, 255, 127, 128, 64, 0, 0, 0, 64, 0, 0, 0, 191, 0, 0, 0, 64, 255, 127, 0, 0, 255, 127, 128, 64, 0, 0, 0, 64, 0, 0, 0, 63, 0, 0, 0, 64, 255, 127, 0, 0, 255, 127, 128, 64, 0, 0, 0, 192, 0, 0, 0, 63, 0, 0, 0, 64, 0, 0, 0, 0, 255, 255, 126, 191, 0, 0, 0, 64, 0, 0, 0, 63, 0, 0, 0, 64, 0, 0, 0, 0, 255, 255, 126, 191, 0, 0, 0, 64, 0, 0, 0, 191, 0, 0, 0, 64, 0, 0, 0, 0, 255, 255, 126, 191, 0, 0, 0, 192, 0, 0, 0, 191, 0, 0, 0, 64, 0, 0, 0, 0, 255, 255, 126, 191)
 }]
 
-[node name="Node3D" type="Node3D"]
+[node name="Level" type="Node3D"]
 script = ExtResource("1_c5rs5")
 
 [node name="Player" parent="." instance=ExtResource("3")]
@@ -473,5 +473,26 @@ skeleton = NodePath("")
 
 [node name="Bad Guy" parent="Enemies" instance=ExtResource("22_dwtyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.541, 2.36571, -14.5909)
+
+[node name="Bad Guy2" parent="Enemies" instance=ExtResource("22_dwtyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9928, 2.36571, -14.5909)
+
+[node name="Bad Guy3" parent="Enemies" instance=ExtResource("22_dwtyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7443, 2.36571, -10.5336)
+
+[node name="Bad Guy4" parent="Enemies" instance=ExtResource("22_dwtyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.196, 2.36571, -10.5336)
+
+[node name="Bad Guy5" parent="Enemies" instance=ExtResource("22_dwtyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.541, 2.36571, -16.7151)
+
+[node name="Bad Guy6" parent="Enemies" instance=ExtResource("22_dwtyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9928, 2.36571, -16.7151)
+
+[node name="Bad Guy7" parent="Enemies" instance=ExtResource("22_dwtyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7443, 2.36571, -12.6578)
+
+[node name="Bad Guy8" parent="Enemies" instance=ExtResource("22_dwtyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.196, 2.36571, -12.6578)
 
 [connection signal="velocity_trigger_fired" from="DynamicObjects/VelocityTrigger" to="DynamicObjects/RigidBody Spawner" method="_on_velocity_trigger_velocity_trigger_fired"]
