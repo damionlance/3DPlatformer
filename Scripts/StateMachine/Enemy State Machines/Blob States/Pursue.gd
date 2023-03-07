@@ -12,7 +12,8 @@ var angle
 var max_angle = PI/180
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update(delta):
-
+	_state._animation_tree["parameters/Idling/blend_amount"] = 1
+	_state._animation_tree["parameters/Running/blend_amount"] = 0
 	var player_angle = _state._blob.global_position.direction_to(_state._player.global_position)
 	_state.move_direction = _state.move_direction.slerp(player_angle, .1).normalized()
 	_state.current_dir = _state.move_direction

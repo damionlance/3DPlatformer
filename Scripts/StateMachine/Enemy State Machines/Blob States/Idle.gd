@@ -19,4 +19,5 @@ func update(delta):
 	_state.velocity = _state.calculate_velocity(delta)
 
 func reset():
+	_state._animation_tree["parameters/Idling/blend_amount"] = 0
 	time_til_running = (randi() % 8) * 60

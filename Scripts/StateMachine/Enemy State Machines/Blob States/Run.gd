@@ -12,6 +12,8 @@ var angle
 var max_angle = PI/180
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update(delta):
+	_state._animation_tree["parameters/Idling/blend_amount"] = 1
+	_state._animation_tree["parameters/Running/blend_amount"] = 1
 	if time_til_stopping == 0:
 		_state.update_state("Idle")
 		return

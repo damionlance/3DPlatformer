@@ -39,6 +39,7 @@ var ground_friction := 1.0
 @onready var _raycast_right = _blob.get_node("Right Raycast")
 @onready var _raycast_middle = _blob.get_node("Front Raycast")
 @onready var _player = _blob.owner.find_child("Player")
+@onready var _animation_tree = $"../AnimationTree"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

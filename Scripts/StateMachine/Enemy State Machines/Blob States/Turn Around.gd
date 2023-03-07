@@ -11,6 +11,10 @@ var goal_direction
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update(delta):
+	
+	_state._animation_tree["parameters/Idling/blend_amount"] = 1
+	_state._animation_tree["parameters/Running/blend_amount"] = 1
+	
 	_state.move_direction = _state.move_direction.rotated(Vector3.UP, PI/120)
 	_state.current_dir = _state.move_direction
 	_state.current_speed = lerp(_state.current_speed, .1, .15)
