@@ -8,6 +8,7 @@ override.cfg
 
 # Godot-specific ignores
 .import/
+.godot/
 Export/
 *.import
 export.cfg
