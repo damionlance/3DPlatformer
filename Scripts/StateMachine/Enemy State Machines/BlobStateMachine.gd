@@ -33,15 +33,25 @@ var right := Vector3.ZERO
 
 var ground_friction := 1.0
 
+var target
+var home = null
+
 #onready variables
 @onready var _blob = get_parent()
 @onready var _raycast_left = _blob.get_node("Left Raycast")
 @onready var _raycast_right = _blob.get_node("Right Raycast")
 @onready var _raycast_middle = _blob.get_node("Front Raycast")
 @onready var _player = _blob.owner.find_child("Player")
+@onready var _animation_tree = $"../AnimationTree"
+@onready var _behavior_timer = $"../BehaviorTimer"
+
+var _raycast_middle_default
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_raycast_middle_default = _raycast_middle.target_position
+	if "spawn_point" in _blob.get_parent():
+		home = _blob.get_parent()
 	current_dir = _raycast_middle.target_position.normalized()
 	state_dictionary.is_empty()
 	pass # Replace with function body.
@@ -67,9 +77,48 @@ func process_interests():
 	if see_player():
 		update_state("Pursue")
 		return
+	if seek_home():
+		update_state("Sniff")
+		return
+	if _behavior_timer.time_left != 0:
+		return
+	if see_butt():
+		update_state("Sniff")
+		return
+
+func seek_home():
+	if home != null:
+		var horizontal_position = Vector3(_blob.global_position.x, 0, _blob.global_position.z)
+		var target_horizontal_position = Vector3(home.global_position.x, 0, home.global_position.z)
+		if (horizontal_position - target_horizontal_position).length() < 20:
+			return false
+		_raycast_middle.set_collision_mask_value(4, false)
+		_raycast_middle.target_position = _raycast_middle.to_local(home.global_position)
+		_raycast_middle.force_raycast_update()
+		_raycast_middle.target_position = _raycast_middle_default
+		_raycast_middle.set_collision_mask_value(4, true)
+		if not _raycast_middle.is_colliding():
+			target = home
+			return true
+	return false
+
+func see_butt():
+	var body = _raycast_middle.get_collider()
+	if body == null:
+		return false
+	if "has_butt" in body:
+		target = body
+		return true
+	return false
 
 func see_player() -> bool:
+	if abs(_player.global_position.y - _blob.global_position.y) > 10:
+		return false
 	var player_angle = _blob.global_position.direction_to(_player.global_position)
 	if player_angle.dot(current_dir) > .5:
-		return true
+		_raycast_middle.target_position = _raycast_middle.to_local(_player.global_position + Vector3(0,.5,0))
+		_raycast_middle.force_raycast_update()
+		_raycast_middle.target_position = _raycast_middle_default
+		if not _raycast_middle.is_colliding():
+			return true
 	return false

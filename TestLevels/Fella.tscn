@@ -117,7 +117,7 @@ filter_enabled = true
 filters = ["Armature/Skeleton3D:Left Upper Arm", "Armature/Skeleton3D:Right Upper Arm", "Armature/Skeleton3D:Spine1"]
 
 [sub_resource type="AnimationNodeBlendTree" id="112"]
-graph_offset = Vector2(-407.03, 127.152)
+graph_offset = Vector2(-629.03, -1.51467)
 nodes/Animation/node = SubResource("109")
 nodes/Animation/position = Vector2(-460, 160)
 "nodes/Animation 2/node" = SubResource("107")
