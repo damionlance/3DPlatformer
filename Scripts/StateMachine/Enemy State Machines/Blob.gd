@@ -1,7 +1,13 @@
 extends CharacterBody3D
 
-var causes_damage = true
-var has_butt := true
+var properties := ["causes_damage", "has_butt", "hydrophobic"]
+
+func _force_reset():
+		queue_free()
+
+func _ready():
+	for property in properties:
+		add_to_group(property)
 
 #func _process(_delta):
 func _physics_process(_delta):
