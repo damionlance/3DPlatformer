@@ -23,3 +23,5 @@ func _on_body_entered(body):
 		collected = true
 		Global.UPDATE_COLLECTIBLES(name, collected)
 		body.add_levelcoin(0)
+		_update_collectables(true)
+		queue_free()
