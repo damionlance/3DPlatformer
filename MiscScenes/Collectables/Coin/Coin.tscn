@@ -102,6 +102,8 @@ _data = {
 script = ExtResource("1_andm5")
 
 [node name="Coin" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="Cylinder" type="MeshInstance3D" parent="Coin"]
 transform = Transform3D(2.61184e-10, -0.0059752, -0.999982, -1, -4.37114e-08, 0, -4.37106e-08, 0.999982, -0.0059752, 0, 0.0996196, 0)
