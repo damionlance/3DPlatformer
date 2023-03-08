@@ -35,6 +35,8 @@ func update(delta):
 	var player_angle = _state._blob.global_position.direction_to(_state._player.global_position)
 	player_angle = player_angle.rotated(Vector3.UP, adjusted_angle)
 	_state.move_direction = _state.move_direction.slerp(player_angle, .1).normalized()
+	_state.move_direction.y = 0
+	_state.move_direction = _state.move_direction.normalized()
 	_state.current_dir = _state.move_direction
 
 	_state._raycast_middle.target_position = _state._raycast_middle.to_local(_state._player.global_position + Vector3(0,.5,0))
