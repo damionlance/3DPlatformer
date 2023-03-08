@@ -7,7 +7,6 @@ func _process(delta):
 
 func _on_coin_body_entered(body):
 	if body.get_name() == "Player":
-		collected = true
-		Global.UPDATE_COLLECTIBLES(name, collected)
+		_update_collectables(true)
 		if body.add_coin():
 			queue_free()
