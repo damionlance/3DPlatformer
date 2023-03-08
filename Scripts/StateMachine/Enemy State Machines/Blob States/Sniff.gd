@@ -30,7 +30,7 @@ func update(delta):
 			_state._behavior_timer.start(30)
 			_state.update_state("Idle")
 			return
-	elif (horizontal_position - target_horizontal_position).length() < 2 and not sniffed:
+	elif (horizontal_position - target_horizontal_position).length() < 2.5 and not sniffed:
 		_state.current_speed = 0.0
 		_state.move_direction = Vector3.ZERO
 		sniffed = true

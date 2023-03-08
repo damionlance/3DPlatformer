@@ -16,5 +16,5 @@ func _on_body_entered(body):
 		body._state.velocity.y = 100
 		body.velocity.y = 100
 		body._state.snap_vector = Vector3.ZERO
-		body._state.update_state("Jump")
+		body._state.update_state("Falling")
 		body._state._jump_state = body._state.spin_jump

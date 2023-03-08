@@ -72,10 +72,6 @@ func _physics_process(_delta):
 		set_velocity(velocity)
 		move_and_slide()
 	_state.velocity = velocity
-	var collision = get_last_slide_collision()
-	if collision:
-		if collision.get_collider() is RigidBody3D:
-			collision.get_collider().apply_impulse(-collision.get_normal() * inertia, collision.get_position())
 	
 	#print(velocity)
 

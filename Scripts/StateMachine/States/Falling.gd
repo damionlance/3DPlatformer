@@ -9,7 +9,7 @@ var motion_input : String
 
 #private variables
 var _state_name = "Falling"
-
+var entering_jump_button_state
 var current_fall_gravity
 #onready variables
 
@@ -55,6 +55,10 @@ func update(delta):
 	if _state._jump_state == _state.ground_pound:
 		pass
 	elif _state._jump_state == _state.spin_jump:
+		if entering_jump_button_state != _state._controller._jump_state:
+			_state._jump_state = _state.jump
+			_state.update_state("Falling")
+			return
 		spin_jump_drift()
 	elif _state._jump_state != _state.dive:
 		standard_aerial_drift()
@@ -68,6 +72,7 @@ func update(delta):
 	pass
 
 func reset():
+	entering_jump_button_state = _state._controller._jump_state
 	entering_jump_angle = _state.current_dir
 	_state.snap_vector = Vector3.ZERO
 	match _state._jump_state:
@@ -80,6 +85,7 @@ func reset():
 			current_fall_gravity = _fall3_gravity
 			_player.anim_tree.travel("Fall")
 		_state.spin_jump:
+			_player.anim_tree.travel("Spinning")
 			#animation doesn't change for spin jumps falling
 			current_fall_gravity = _spin_fall_gravity
 		_state.side_flip:

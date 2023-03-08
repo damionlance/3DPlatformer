@@ -82,6 +82,7 @@ func reset():
 			current_jump_strength = _jump3_strength
 			_player.player_anim_tree["parameters/Jump/playback"].start("Side Flip")
 		_state.spin_jump:
+			_player.anim_tree.travel("Spinning")
 			current_jump_gravity = _spin_jump_gravity
 			current_jump_strength = _spin_jump_strength
 		_state.side_flip:

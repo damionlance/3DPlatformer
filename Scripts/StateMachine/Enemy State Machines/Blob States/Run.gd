@@ -9,7 +9,7 @@ func _ready():
 
 var time_til_stopping
 var angle
-var max_angle = PI/180
+var max_angle = PI/60
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update(delta):
 	if time_til_stopping == 0:
