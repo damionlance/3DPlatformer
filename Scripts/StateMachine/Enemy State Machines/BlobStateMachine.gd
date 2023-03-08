@@ -74,7 +74,7 @@ func calculate_velocity(delta) -> Vector3:
 	return velocity
 
 func process_interests():
-	if see_player():
+	if seek_pleasant_smells():
 		update_state("Pursue")
 		return
 	if seek_home():
@@ -106,19 +106,20 @@ func see_butt():
 	var body = _raycast_middle.get_collider()
 	if body == null:
 		return false
-	if "has_butt" in body:
+	if body.is_in_group("has_butt"):
 		target = body
 		return true
 	return false
 
-func see_player() -> bool:
-	if abs(_player.global_position.y - _blob.global_position.y) > 10:
-		return false
-	var player_angle = _blob.global_position.direction_to(_player.global_position)
-	if player_angle.dot(current_dir) > .5:
-		_raycast_middle.target_position = _raycast_middle.to_local(_player.global_position + Vector3(0,.5,0))
-		_raycast_middle.force_raycast_update()
-		_raycast_middle.target_position = _raycast_middle_default
-		if not _raycast_middle.is_colliding():
-			return true
+func seek_pleasant_smells() -> bool:
+	for body in get_tree().get_nodes_in_group("pleasant_smelling"):
+		if (body.global_position - _blob.global_position).length() > 20:
+			continue
+		var player_angle = _blob.global_position.direction_to(body.global_position)
+		if player_angle.dot(current_dir) > .5:
+			_raycast_middle.target_position = _raycast_middle.to_local(body.global_position + Vector3(0,.5,0))
+			_raycast_middle.force_raycast_update()
+			_raycast_middle.target_position = _raycast_middle_default
+			if not _raycast_middle.is_colliding():
+				return true
 	return false

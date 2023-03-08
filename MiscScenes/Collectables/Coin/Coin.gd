@@ -21,3 +21,4 @@ func _on_coin_body_entered(body):
 		collected = true
 		Global.UPDATE_COLLECTIBLES(name, collected)
 		body.add_coin()
+		_update_collectables(true)

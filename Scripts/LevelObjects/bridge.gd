@@ -19,7 +19,7 @@ func _process(delta):
 
 func _on_button_body_entered(body):
 	if "collected" in get_parent():
-		get_parent().collected = true
+		get_parent()._update_collectables(true)
 	if not lowered:
 		if body.name == "Player":
 			anim.play("bridgeActivate")
