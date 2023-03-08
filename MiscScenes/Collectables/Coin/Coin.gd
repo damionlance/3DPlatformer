@@ -22,3 +22,4 @@ func _on_coin_body_entered(body):
 		Global.UPDATE_COLLECTIBLES(name, collected)
 		body.add_coin()
 		_update_collectables(true)
+		queue_free()
