@@ -24,6 +24,7 @@ var flashing := 0
 
 func update(delta):
 	if buffer == timer:
+		_player.remove_from_group("no_damage")
 		_player.visible = true
 		_state.update_state("Running")
 
@@ -52,6 +53,7 @@ func update(delta):
 	pass
 
 func reset():
+	_player.add_to_group("no_damage")
 	_player.anim_tree.travel("Jump")
 	current_jump_gravity = _jump_gravity
 	current_jump_strength = _jump_strength

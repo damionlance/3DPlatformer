@@ -36,6 +36,9 @@ func _force_reset():
 	get_tree().reload_current_scene()
 
 func _ready():
+	for property in properties:
+		add_to_group(property)
+	
 	set_motion_mode(CharacterBody3D.MOTION_MODE_GROUNDED)
 	grapple_slider.set_as_top_level(true)
 	set_floor_constant_speed_enabled(false)

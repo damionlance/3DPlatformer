@@ -10,6 +10,5 @@ signal take_damage(position)
 func _process(delta):
 	for body in get_overlapping_bodies():
 		if body.is_in_group("causes_damage"):
-			if body.causes_damage:
-				emit_signal("take_damage", body.global_position)
+			emit_signal("take_damage", body.global_position)
 	pass
