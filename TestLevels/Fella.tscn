@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/aerial_movement.gd" id="19"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/grounded_movement.gd" id="20"]
 [ext_resource type="Script" path="res://Scripts/shadow.gd" id="21"]
-[ext_resource type="Texture2D" uid="uid://45y5girgkimd" path="res://3D Assets/shadow.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://cw6rsvrybik0s" path="res://3D Assets/shadow.png" id="22"]
 [ext_resource type="Material" uid="uid://bd1koj1ptobgv" path="res://3D Assets/Godot Worthy Models/Boot Shader.material" id="25"]
 [ext_resource type="Shader" path="res://3D Assets/Shaders/Toon Shader.gdshader" id="27"]
 [ext_resource type="Script" path="res://TestLevels/Friendo.gd" id="29"]
@@ -34,7 +34,7 @@
 [ext_resource type="Material" uid="uid://iu06w2tuy41m" path="res://Shaders/visibleThruObjectsJacket.tres" id="37_5pq8c"]
 [ext_resource type="Material" uid="uid://buau08b35sc28" path="res://Shaders/VisibleThruObjects.tres" id="37_8jqte"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/ReelIn.gd" id="38"]
-[ext_resource type="Material" uid="uid://d3q64hs24l1yx" path="res://3D Assets/Animations/Material.material" id="38_0y0om"]
+[ext_resource type="Material" uid="uid://bk81ltna21my5" path="res://3D Assets/Animations/Material.material" id="38_0y0om"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Friendo/ThrowOut.gd" id="39"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/LedgeGrab.gd" id="40"]
 [ext_resource type="Script" path="res://TestLevels/WallRayRight.gd" id="41"]
@@ -3957,7 +3957,6 @@ target_position = Vector3(0, -0.3, 0)
 
 [node name="SoftSpot Detector" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0536256, 0)
-collision_mask = 33
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SoftSpot Detector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0765765, 0)
