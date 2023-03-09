@@ -17,6 +17,7 @@ func _process(delta):
 	pass
 	
 func _activate():
+	print(get_parent().get_parent().name)
 	$"../Button".get_active_material(0).set_shader_parameter("ColorParameter", Color(0,255,0))
 	emit_signal("activate")
 	activated = true

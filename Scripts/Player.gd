@@ -56,8 +56,6 @@ func _process(_delta):
 	pass
 
 func _physics_process(_delta):
-	#print("Player physics processing")
-	#print(velocity)
 	if not is_on_wall():
 		previous_horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 	

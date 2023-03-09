@@ -9,6 +9,7 @@ var no_wall_jump : bool
 
 #onready variables
 
+var entering_jump_button_state
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_state.state_dictionary[_state_name] = self
@@ -54,7 +55,7 @@ func update(delta):
 	# Handle animation tree
 	
 	# Process movements
-	if _state._jump_state == _state.spin_jump:
+	elif _state._jump_state == _state.spin_jump:
 		spin_jump_drift()
 	elif _state._jump_state != _state.dive:
 		standard_aerial_drift()
@@ -67,6 +68,7 @@ func update(delta):
 	pass
 
 func reset():
+	entering_jump_button_state = _state._controller._jump_state
 	_player.anim_tree.travel("Jump")
 	match _state._jump_state:
 		_state.jump:
@@ -82,6 +84,7 @@ func reset():
 			current_jump_strength = _jump3_strength
 			_player.player_anim_tree["parameters/Jump/playback"].start("Side Flip")
 		_state.spin_jump:
+			print("Here")
 			_player.anim_tree.travel("Spinning")
 			current_jump_gravity = _spin_jump_gravity
 			current_jump_strength = _spin_jump_strength
