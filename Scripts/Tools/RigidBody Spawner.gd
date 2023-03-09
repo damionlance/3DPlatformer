@@ -8,14 +8,18 @@ extends Node3D
 @export var time_between_launches := 1
 @export var spawned_object_lifetime := 1.0
 @export var enabled := false
+@export var should_disappear_on_touch := false
+@export var launch_varience: float = 0.2
+
 
 @onready var obj_template := $"object_to_launch"
 
 var timer := Timer.new()
+var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	timer.wait_time = time_between_launches
+	timer.wait_time = time_between_launches*rng.randf_range(1-launch_varience, 1+launch_varience)
 	timer.one_shot = true
 	timer.autostart = true
 	obj_template.visible = false
@@ -30,11 +34,14 @@ func _process(_delta):
 		if timer.time_left == 0:
 			timer.start(time_between_launches)
 			var new_child = $"object_to_launch".duplicate()
-			new_child.linear_velocity = spawn_velocity
+			var temp_velo = Vector3(spawn_velocity.x*rng.randf_range(1-launch_varience, 1+launch_varience), spawn_velocity.y*rng.randf_range(1-launch_varience, 1+launch_varience), spawn_velocity.z*rng.randf_range(1-launch_varience, 1+launch_varience))
+			new_child.linear_velocity = temp_velo
 			new_child.freeze = false
 			new_child.visible = true
 			new_child.collision_layer = 1
 			new_child.set_script(load("res://Scripts/Tools/temporary_object.gd"))
+			if should_disappear_on_touch:
+				new_child.disappear_on_touch = true
 			new_child.how_much = spawned_object_lifetime
 			new_child._ready()
 			add_child(new_child)

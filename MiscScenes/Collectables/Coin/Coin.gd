@@ -1,16 +1,25 @@
-extends Node
+extends Collectable
 
+const materials : Array = [
+	preload("res://MiscScenes/Collectables/Coin/coin.tres"),
+	preload("res://MiscScenes/Collectables/Coin/coinCollected.tres")
+]
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+@onready var coinMesh = $Coin/Cylinder
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if collected:
+		change_material(1)
+	else:
+		change_material(0)
 
+func change_material(newMaterialIndex):
+	coinMesh.set_surface_override_material(0, materials[newMaterialIndex])
 
 func _on_coin_body_entered(body):
 	if body.get_name() == "Player":
-		if body.add_coin():
-			queue_free()
+		collected = true
+		Global.UPDATE_COLLECTIBLES(name, collected)
+		body.add_coin()
+		_update_collectables(true)
+		queue_free()

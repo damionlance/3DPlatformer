@@ -164,6 +164,9 @@ func spin_jump_drift():
 		_state.current_speed *= air_friction
 	
 	_state.move_direction = _state.camera_relative_movement
+	if _state.move_direction != Vector3.ZERO:
+		if _state.current_speed < 5.0:
+			_state.current_speed = lerp(_state.current_speed, 5.0, .15)
 	
 	if _player.is_on_wall():
 		var position = _player.get_last_slide_collision().get_position() - _player.global_position

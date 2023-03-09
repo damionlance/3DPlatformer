@@ -7,10 +7,10 @@ extends CharacterBody3D
 @onready var camera = $CameraPivot/SpringArm3D/Camera3D
 @onready var _state = $StateMachine
 @onready var grapple_slider = $GrappleSlider
-
 @export var shadow_path : NodePath
-
 @onready var anim_tree = player_anim_tree["parameters/playback"]
+
+var properties := ["pleasant_smelling", "hydrophobic"]
 
 var snap_vector := Vector3.ZERO
 var inertia := 1
@@ -32,8 +32,13 @@ var popperAngle := Vector3.ZERO
 
 var previous_horizontal_velocity := Vector3.ZERO
 
+func _force_reset():
+	get_tree().reload_current_scene()
 
 func _ready():
+	for property in properties:
+		add_to_group(property)
+	
 	set_motion_mode(CharacterBody3D.MOTION_MODE_GROUNDED)
 	grapple_slider.set_as_top_level(true)
 	set_floor_constant_speed_enabled(false)
@@ -67,10 +72,6 @@ func _physics_process(_delta):
 		set_velocity(velocity)
 		move_and_slide()
 	_state.velocity = velocity
-	var collision = get_last_slide_collision()
-	if collision:
-		if collision.get_collider() is RigidBody3D:
-			collision.get_collider().apply_impulse(-collision.get_normal() * inertia, collision.get_position())
 	
 	#print(velocity)
 

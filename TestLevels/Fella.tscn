@@ -117,7 +117,7 @@ filter_enabled = true
 filters = ["Armature/Skeleton3D:Left Upper Arm", "Armature/Skeleton3D:Right Upper Arm", "Armature/Skeleton3D:Spine1"]
 
 [sub_resource type="AnimationNodeBlendTree" id="112"]
-graph_offset = Vector2(-407.03, 127.152)
+graph_offset = Vector2(-629.03, -1.51467)
 nodes/Animation/node = SubResource("109")
 nodes/Animation/position = Vector2(-460, 160)
 "nodes/Animation 2/node" = SubResource("107")
@@ -3539,7 +3539,7 @@ radius = 0.432541
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0956018, 0)
 collision_layer = 2
-collision_mask = 7
+collision_mask = 23
 script = ExtResource("3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -3601,15 +3601,14 @@ camera_sensitivity = Vector2(2, 2)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-collision_mask = 0
+collision_mask = 256
 spring_length = 9.0
 margin = 0.2
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.122316, 0.0393596)
-current = true
 fov = 80.0
-far = 200.0
+far = 500.0
 
 [node name="WallRayRight" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.82402, 0)

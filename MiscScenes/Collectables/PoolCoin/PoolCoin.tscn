@@ -99,9 +99,11 @@ _data = {
 }
 
 [node name="PoolCoin" type="Node3D"]
+script = ExtResource("1_2bxfx")
 
 [node name="Coin" type="Area3D" parent="."]
-script = ExtResource("1_2bxfx")
+collision_layer = 2
+collision_mask = 2
 
 [node name="Cylinder" type="MeshInstance3D" parent="Coin"]
 transform = Transform3D(2.61184e-10, -0.0059752, -0.999982, -1, -4.37114e-08, 0, -4.37106e-08, 0.999982, -0.0059752, 0, 0.0996196, 0)
@@ -124,4 +126,4 @@ light_color = Color(0.647059, 1, 1, 1)
 light_energy = 0.05
 light_indirect_energy = 5.0
 
-[connection signal="body_entered" from="Coin" to="Coin" method="_on_body_entered"]
+[connection signal="body_entered" from="Coin" to="." method="_on_body_entered"]

@@ -42,7 +42,7 @@ func update(delta):
 			_state._jump_state = _state.dive
 			_state.update_state("Jump")
 		return
-	if _state.attempting_jump:
+	if _state.attempting_jump and not _state.can_interact:
 		if _state.just_landed and _state.current_jump < 3:
 			_state.current_jump += 1
 		else:
