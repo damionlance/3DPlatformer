@@ -17,10 +17,10 @@ func _process(delta):
 	pass
 
 
-func _on_button_body_entered(body):
+func _on_area_3d_activate():
 	if "collected" in get_parent():
 		get_parent()._update_collectables(true)
 	if not lowered:
-		if body.name == "Player":
-			anim.play("bridgeActivate")
-			lowered = true
+		anim.play("bridgeActivate")
+		lowered = true
+	pass # Replace with function body.
