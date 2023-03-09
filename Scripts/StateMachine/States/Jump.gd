@@ -9,6 +9,7 @@ var no_wall_jump : bool
 
 #onready variables
 
+var entering_jump_button_state
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_state.state_dictionary[_state_name] = self
@@ -54,7 +55,11 @@ func update(delta):
 	# Handle animation tree
 	
 	# Process movements
-	if _state._jump_state == _state.spin_jump:
+	elif _state._jump_state == _state.spin_jump:
+		if entering_jump_button_state != _state._controller._jump_state:
+			_state._jump_state = _state.jump
+			_state.update_state("Falling")
+			return
 		spin_jump_drift()
 	elif _state._jump_state != _state.dive:
 		standard_aerial_drift()
@@ -67,6 +72,7 @@ func update(delta):
 	pass
 
 func reset():
+	entering_jump_button_state = _state._controller._jump_state
 	_player.anim_tree.travel("Jump")
 	match _state._jump_state:
 		_state.jump:

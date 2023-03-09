@@ -1,11 +1,12 @@
 extends RigidBody3D
 
-var time_to_live_timer := Timer.new()
+var time_to_live_timer : Timer
 var how_much := 0
 var disappear_on_touch := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	time_to_live_timer = Timer.new()
 	#self.body_entered.connect(_on_body_entered)
 	time_to_live_timer.wait_time = how_much
 	time_to_live_timer.autostart = true
