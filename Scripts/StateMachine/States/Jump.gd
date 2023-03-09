@@ -56,10 +56,6 @@ func update(delta):
 	
 	# Process movements
 	elif _state._jump_state == _state.spin_jump:
-		if entering_jump_button_state != _state._controller._jump_state:
-			_state._jump_state = _state.jump
-			_state.update_state("Falling")
-			return
 		spin_jump_drift()
 	elif _state._jump_state != _state.dive:
 		standard_aerial_drift()
@@ -88,6 +84,7 @@ func reset():
 			current_jump_strength = _jump3_strength
 			_player.player_anim_tree["parameters/Jump/playback"].start("Side Flip")
 		_state.spin_jump:
+			print("Here")
 			_player.anim_tree.travel("Spinning")
 			current_jump_gravity = _spin_jump_gravity
 			current_jump_strength = _spin_jump_strength

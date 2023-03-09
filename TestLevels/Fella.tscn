@@ -3957,6 +3957,7 @@ target_position = Vector3(0, -0.3, 0)
 
 [node name="SoftSpot Detector" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0536256, 0)
+collision_mask = 33
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SoftSpot Detector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0765765, 0)
