@@ -9,6 +9,7 @@ override.cfg
 # Godot-specific ignores
 .import/
 .godot/
+Sounds/
 Export/
 *.import
 export.cfg
