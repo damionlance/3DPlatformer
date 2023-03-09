@@ -12,7 +12,7 @@ var prev_velocity := Vector3.ZERO
 var snap_vector := Vector3.DOWN
 var grapple_position = Vector3.ZERO
 var current_jump := 0
-var terminal_velocity := 50
+var terminal_velocity := -50
 
 # Special inputs tracking
 var previous_angle := [0.0, 0.0]
@@ -202,7 +202,7 @@ func calculate_velocity(gravity: float, delta) -> Vector3:
 		#print("3", new_velocity)
 	if gravity != 0:
 		var temp =  velocity.y + gravity * delta
-		new_velocity.y = temp if temp < terminal_velocity else terminal_velocity
+		new_velocity.y = temp if temp > terminal_velocity else terminal_velocity
 	if _player.is_on_floor():
 		new_velocity.y = -1
 	prev_velocity = velocity

@@ -76,7 +76,7 @@ func reset():
 	entering_jump_angle = _state.current_dir
 	_state.snap_vector = Vector3.ZERO
 	match _state._jump_state:
-		_state.jump: 
+		_state.jump:
 			current_fall_gravity = _fall_gravity
 			_player.anim_tree.travel("Fall")
 		_state.jump2: 
@@ -86,7 +86,7 @@ func reset():
 			_player.anim_tree.travel("Fall")
 		_state.spin_jump:
 			_player.anim_tree.travel("Spinning")
-			#animation doesn't change for spin jumps falling
+			print("hello1")
 			current_fall_gravity = _spin_fall_gravity
 		_state.side_flip:
 			current_fall_gravity = _side_fall_gravity
