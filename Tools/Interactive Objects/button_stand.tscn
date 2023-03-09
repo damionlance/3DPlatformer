@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://g6qin1b8kg1e"]
 
 [ext_resource type="Script" path="res://Scripts/LevelObjects/button.gd" id="2_fcywt"]
-[ext_resource type="Shader" uid="uid://hn0h1h55h5ux" path="res://Shaders/buttonStand.tres" id="3_tnhjw"]
-[ext_resource type="Shader" uid="uid://cud1dkiqj2ek8" path="res://Shaders/buttonShader.tres" id="4_3iqsh"]
+[ext_resource type="Shader" uid="uid://dwypp2sb5dyav" path="res://Shaders/buttonStand.tres" id="3_tnhjw"]
+[ext_resource type="Shader" uid="uid://1qwnt3tq3g47" path="res://Shaders/buttonShader.tres" id="4_3iqsh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tcifj"]
 resource_name = "Material.002"
