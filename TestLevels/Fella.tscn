@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=3 uid="uid://dt4rqk6tx2ccu"]
+[gd_scene load_steps=117 format=3 uid="uid://dt4rqk6tx2ccu"]
 
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Wall Slide.gd" id="1"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Floor Spin.gd" id="2"]
@@ -16,10 +16,9 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Damaged.gd" id="16_w6xjl"]
 [ext_resource type="PackedScene" path="res://Scripts/Controller.tscn" id="18"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/aerial_movement.gd" id="19"]
-[ext_resource type="Shader" path="res://Shaders/depth_visualizer.gdshader" id="19_7pxql"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/grounded_movement.gd" id="20"]
 [ext_resource type="Script" path="res://Scripts/shadow.gd" id="21"]
-[ext_resource type="Texture2D" uid="uid://45y5girgkimd" path="res://3D Assets/shadow.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://cw6rsvrybik0s" path="res://3D Assets/shadow.png" id="22"]
 [ext_resource type="Material" uid="uid://bd1koj1ptobgv" path="res://3D Assets/Godot Worthy Models/Boot Shader.material" id="25"]
 [ext_resource type="Shader" path="res://3D Assets/Shaders/Toon Shader.gdshader" id="27"]
 [ext_resource type="Script" path="res://TestLevels/Friendo.gd" id="29"]
@@ -35,24 +34,16 @@
 [ext_resource type="Material" uid="uid://iu06w2tuy41m" path="res://Shaders/visibleThruObjectsJacket.tres" id="37_5pq8c"]
 [ext_resource type="Material" uid="uid://buau08b35sc28" path="res://Shaders/VisibleThruObjects.tres" id="37_8jqte"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/ReelIn.gd" id="38"]
-[ext_resource type="Material" uid="uid://d3q64hs24l1yx" path="res://3D Assets/Animations/Material.material" id="38_0y0om"]
+[ext_resource type="Material" uid="uid://bk81ltna21my5" path="res://3D Assets/Animations/Material.material" id="38_0y0om"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/Friendo/ThrowOut.gd" id="39"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/States/LedgeGrab.gd" id="40"]
 [ext_resource type="Script" path="res://TestLevels/WallRayRight.gd" id="41"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/HazardDetector.gd" id="41_2dmwm"]
-[ext_resource type="AudioStream" uid="uid://cl82iaj2hyaov" path="res://Sounds/Player Sound Effects/Concrete footsteps.mp3" id="41_kprf4"]
 [ext_resource type="Script" path="res://Scripts/Tools/ParticleHandler.gd" id="42"]
 
 [sub_resource type="CapsuleShape3D" id="147"]
 radius = 0.408809
 height = 1.94229
-
-[sub_resource type="QuadMesh" id="QuadMesh_05vfq"]
-size = Vector2(2, 2)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vclqj"]
-render_priority = 0
-shader = ExtResource("19_7pxql")
 
 [sub_resource type="ShaderMaterial" id="93"]
 render_priority = 0
@@ -1987,18 +1978,6 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../AudioStreamPlayer:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_qctu6"]
 resource_name = "Rollout"
@@ -2535,18 +2514,6 @@ tracks/36/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-0.294744, 0, -0.290773), Vector3(0.277202, 0, -0.290773)]
-}
-tracks/37/type = "value"
-tracks/37/imported = false
-tracks/37/enabled = true
-tracks/37/path = NodePath("../AudioStreamPlayer:playing")
-tracks/37/interp = 1
-tracks/37/loop_wrap = true
-tracks/37/keys = {
-"times": PackedFloat32Array(0, 0.33),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_uo3e3"]
@@ -3572,7 +3539,7 @@ radius = 0.432541
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0956018, 0)
 collision_layer = 2
-collision_mask = 7
+collision_mask = 23
 script = ExtResource("3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -3640,12 +3607,9 @@ margin = 0.2
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.122316, 0.0393596)
+current = true
 fov = 80.0
 far = 500.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraPivot/SpringArm3D/Camera3D"]
-mesh = SubResource("QuadMesh_05vfq")
-surface_material_override/0 = SubResource("ShaderMaterial_vclqj")
 
 [node name="WallRayRight" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.82402, 0)
@@ -3664,6 +3628,7 @@ script = ExtResource("41")
 
 [node name="ShadowRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211281, 0)
+visible = false
 target_position = Vector3(0, -20, 0)
 script = ExtResource("21")
 
@@ -4007,14 +3972,6 @@ script = ExtResource("41_2dmwm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HazardDetector"]
 shape = SubResource("CapsuleShape3D_kjjxv")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("41_kprf4")
-volume_db = -15.016
-pitch_scale = 3.58
-
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65827, 0)
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]
