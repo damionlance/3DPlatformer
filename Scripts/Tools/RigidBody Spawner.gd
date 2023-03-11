@@ -47,5 +47,11 @@ func _process(_delta):
 			add_child(new_child)
 	pass
 
+func get_enabled():
+	return enabled
+	
+func set_enabled(value):
+	enabled = value
+
 func _on_velocity_trigger_velocity_trigger_fired(_body):
 	enabled = true

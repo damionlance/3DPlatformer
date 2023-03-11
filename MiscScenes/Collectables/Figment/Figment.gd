@@ -1,5 +1,7 @@
 extends Collectable
 
+class_name Figment
+
 const materials : Array = [
 	preload("res://MiscScenes/Collectables/Figment/Figment.tres"),
 	preload("res://MiscScenes/Collectables/Figment/FigmentCollected.tres")
@@ -21,3 +23,4 @@ func _on_figment_body_entered(body):
 	if body.get_name() == "Player":
 		collected = true
 		Global.UPDATE_COLLECTIBLES(name, collected)
+		queue_free()
