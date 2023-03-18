@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://b5gckp4xyn8as"]
+[gd_scene load_steps=116 format=3 uid="uid://b5gckp4xyn8as"]
 
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Wall Slide.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Floor Spin.gd" id="2"]
@@ -35,6 +35,7 @@
 [ext_resource type="Script" path="res://scripts/state machine/states/player/ReelIn.gd" id="38"]
 [ext_resource type="Material" path="res://assets/models/animations/Material.material" id="38_0y0om"]
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/ThrowOut.gd" id="39"]
+[ext_resource type="AudioStream" uid="uid://bauhk8gpd342s" path="res://assets/sounds/actor noises/Concrete footsteps.mp3" id="39_cs2lg"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/LedgeGrab.gd" id="40"]
 [ext_resource type="Script" path="res://scripts/tools/HazardDetector.gd" id="41_2dmwm"]
 [ext_resource type="Script" path="res://scripts/tools/ParticleHandler.gd" id="42"]
@@ -689,6 +690,18 @@ tracks/34/path = NodePath("Armature/Skeleton3D:Glove.R")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = PackedFloat32Array(0, 1, -0.0813529, 0.00203768, -0.0249573, 0.996371)
+tracks/35/type = "value"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("../Sounds/AudioStreamPlayer:playing")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
 
 [sub_resource type="Animation" id="Animation_xr8n4"]
 resource_name = "EmptyAction006"
@@ -1974,6 +1987,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Sounds/AudioStreamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_qctu6"]
 resource_name = "Rollout"
@@ -2510,6 +2535,18 @@ tracks/36/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-0.294744, 0, -0.290773), Vector3(0.277202, 0, -0.290773)]
+}
+tracks/37/type = "value"
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/path = NodePath("../Sounds/AudioStreamPlayer:playing")
+tracks/37/interp = 1
+tracks/37/loop_wrap = true
+tracks/37/keys = {
+"times": PackedFloat32Array(0, 0.19, 0.33, 0.52),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_uo3e3"]
@@ -3965,6 +4002,13 @@ script = ExtResource("41_2dmwm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HazardDetector"]
 shape = SubResource("CapsuleShape3D_kjjxv")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("39_cs2lg")
+volume_db = -9.0
+pitch_scale = 2.0
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]

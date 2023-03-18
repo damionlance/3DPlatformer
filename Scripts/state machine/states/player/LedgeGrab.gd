@@ -42,7 +42,7 @@ func update(delta):
 	
 	var current_fall_gravity = 0
 	if not snapped_to_ledge:
-		if _state._raycast_left.colliding:
+		if _state._raycast_left.is_colliding():
 			
 			while _state._raycast_left.is_colliding():
 				_player.global_position.y += .1
