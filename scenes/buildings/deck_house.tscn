@@ -1,0 +1,15 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="PackedScene" uid="uid://bt84gewqv08al" path="res://assets/3Dmodels/Buildings/DeckHouse.glb" id="1_7xfdi"]
+[ext_resource type="Material" uid="uid://dhs7nuk04oybk" path="res://assets/materials/plaster_pink.tres" id="2_vwdkv"]
+[ext_resource type="Material" uid="uid://uu3ktchgqa1x" path="res://assets/materials/wood.tres" id="3_etomd"]
+[ext_resource type="Material" uid="uid://c4yivfw8qk43u" path="res://assets/materials/grass_roof.tres" id="4_qsj8c"]
+[ext_resource type="Material" uid="uid://cmx4nhjtffj85" path="res://assets/materials/wood_window.tres" id="5_rpsmh"]
+
+[node name="DeckHouse" instance=ExtResource("1_7xfdi")]
+
+[node name="DeckHouse" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_vwdkv")
+surface_material_override/1 = ExtResource("3_etomd")
+surface_material_override/2 = ExtResource("4_qsj8c")
+surface_material_override/3 = ExtResource("5_rpsmh")

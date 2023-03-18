@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" uid="uid://bi6jhcnm174q7" path="res://assets/3Dmodels/Buildings/SmallOneStoryHouse.glb" id="1_taags"]
+[ext_resource type="Material" uid="uid://cmx4nhjtffj85" path="res://assets/materials/wood_window.tres" id="2_8l0wn"]
+
+[node name="SmallOneStoryHouse" instance=ExtResource("1_taags")]
+
+[node name="SmallOneStoryHouse" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_8l0wn")

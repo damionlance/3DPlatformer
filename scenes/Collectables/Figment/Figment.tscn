@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scenes/Collectables/Figment/Figment.gd" id="1_8qckg"]
+[ext_resource type="Material" uid="uid://dgm2t21m1ckqh" path="res://scenes/Collectables/Figment/Figment.tres" id="2_pdr16"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_y817f"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dif6h"]
+radius = 0.559776
+height = 1.69494
+
+[sub_resource type="Animation" id="Animation_y74gq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jq1im"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0), Vector3(0, 3.14159, 0), Vector3(0, 4.71239, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2a4lc"]
+_data = {
+"RESET": SubResource("Animation_y74gq"),
+"idle": SubResource("Animation_jq1im")
+}
+
+[node name="Figment" type="Node3D"]
+script = ExtResource("1_8qckg")
+
+[node name="Figment" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="mesh" type="MeshInstance3D" parent="Figment"]
+transform = Transform3D(2.61184e-10, -0.0059752, -0.999982, -1, -4.37114e-08, 0, -4.37106e-08, 0.999982, -0.0059752, 0, 0.0996196, 0)
+layers = 2
+mesh = SubResource("SphereMesh_y817f")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_pdr16")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Figment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.141006, 0)
+shape = SubResource("CapsuleShape3D_dif6h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Figment"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_2a4lc")
+}
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Figment"]
+light_color = Color(0.431373, 0.105882, 0.360784, 1)
+light_energy = 0.05
+light_indirect_energy = 5.0
+
+[connection signal="body_entered" from="Figment" to="." method="_on_figment_body_entered"]
