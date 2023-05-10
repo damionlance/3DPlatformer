@@ -27,9 +27,9 @@ settings/fps/force_fps=60
 
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=720
 window/size/mode=2
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 
@@ -42,7 +42,11 @@ version_control_plugin_name="GitAPI"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/tbloader/plugin.cfg")
+enabled=PackedStringArray()
+
+[filesystem]
+
+import/fbx/enabled=false
 
 [gdnative]
 

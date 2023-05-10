@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=17 format=3 uid="uid://7ofpiekesj41"]
 
 [ext_resource type="Script" path="res://scripts/collectables/Coin.gd" id="1_andm5"]
-[ext_resource type="Material" uid="uid://seekw340bo3j" path="res://assetsmaterials/coin.tres" id="2_dpjd3"]
+[ext_resource type="Material" uid="uid://seekw340bo3j" path="res://assets/materials/coin.tres" id="2_dpjd3"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_46dje"]
 _surfaces = [{
@@ -38,30 +38,6 @@ height = 1.69494
 
 [sub_resource type="Animation" id="Animation_y74gq"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_jq1im"]
 resource_name = "idle"
@@ -92,21 +68,86 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0), Vector3(0, 3.14159, 0), Vector3(0, 4.71239, 0), Vector3(0, 6.28319, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_r8n5x"]
+resource_name = "pickup"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0), Vector3(0, 3.14159, 0), Vector3(0, 4.71239, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3up27"]
+resource_name = "jump"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.297301, 0.0473661),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2a4lc"]
 _data = {
 "RESET": SubResource("Animation_y74gq"),
-"idle": SubResource("Animation_jq1im")
+"idle": SubResource("Animation_jq1im"),
+"jump": SubResource("Animation_3up27"),
+"pickup": SubResource("Animation_r8n5x")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sk2ch"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y3qb7"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_k3rca"]
+filter_enabled = true
+filters = [".:position"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u74gw"]
+animation = &"pickup"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_sg1hf"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_satpe"]
+graph_offset = Vector2(-1039.92, -151.519)
+nodes/idle/node = SubResource("AnimationNodeAnimation_sk2ch")
+nodes/idle/position = Vector2(-386.667, 0)
+nodes/jump/node = SubResource("AnimationNodeAnimation_y3qb7")
+nodes/jump/position = Vector2(-609.379, 360.169)
+nodes/jumpFire/node = SubResource("AnimationNodeOneShot_k3rca")
+nodes/jumpFire/position = Vector2(-333.333, 200)
+nodes/pickup/node = SubResource("AnimationNodeAnimation_u74gw")
+nodes/pickup/position = Vector2(-626.667, 133.333)
+nodes/pickupBlend/node = SubResource("AnimationNodeBlend2_sg1hf")
+nodes/pickupBlend/position = Vector2(-120, 66.6667)
+node_connections = [&"output", 0, &"pickupBlend", &"pickupBlend", 0, &"idle", &"pickupBlend", 1, &"jumpFire", &"jumpFire", 0, &"pickup", &"jumpFire", 1, &"jump"]
 
 [node name="Coin" type="Node3D"]
 script = ExtResource("1_andm5")
 
 [node name="Coin" type="Area3D" parent="."]
+transform = Transform3D(-0.330805, 0, 0.943699, 0, 1, 0, -0.943699, 0, -0.330805, 0, -0.0785361, 0)
 collision_layer = 2
 collision_mask = 2
 
 [node name="Cylinder" type="MeshInstance3D" parent="Coin"]
-transform = Transform3D(2.61184e-10, -0.0059752, -0.999982, -1, -4.37114e-08, 0, -4.37106e-08, 0.999982, -0.0059752, 0, 0.0996196, 0)
+transform = Transform3D(2.61184e-10, -0.0059752, -0.999982, -1, -4.37114e-08, 0, -4.37106e-08, 0.999982, -0.0059752, 0, 0, 0)
 mesh = SubResource("ArrayMesh_0wgwl")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_dpjd3")
@@ -125,5 +166,13 @@ libraries = {
 light_color = Color(0.937255, 0.945098, 0.752941, 1)
 light_energy = 0.05
 light_indirect_energy = 5.0
+
+[node name="AnimationTree" type="AnimationTree" parent="Coin"]
+tree_root = SubResource("AnimationNodeBlendTree_satpe")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/jumpFire/active = false
+parameters/jumpFire/request = 0
+parameters/pickupBlend/blend_amount = 0.0
 
 [connection signal="body_entered" from="Coin" to="." method="_on_coin_body_entered"]

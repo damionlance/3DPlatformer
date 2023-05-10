@@ -19,6 +19,6 @@ func _process(_delta):
 	
 	if $Player.global_position.y < -10:
 		get_tree().reload_current_scene()
-	if randi()%10000 < 2:
-		audio_randomizer.play()
+#if randi()%10000 < 2:
+		#audio_randomizer.play()
 	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://b5gckp4xyn8as"]
+[gd_scene load_steps=114 format=3 uid="uid://b5gckp4xyn8as"]
 
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Wall Slide.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Floor Spin.gd" id="2"]
@@ -18,7 +18,6 @@
 [ext_resource type="Script" path="res://scripts/state machine/states/player/aerial_movement.gd" id="19"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/grounded_movement.gd" id="20"]
 [ext_resource type="Script" path="res://scripts/actors/player/shadow.gd" id="21"]
-[ext_resource type="Texture2D" uid="uid://bblng4d1bnspi" path="res://assets/textures/shadow.png" id="22"]
 [ext_resource type="Material" uid="uid://bd1koj1ptobgv" path="res://assets/materials/Boot Shader.material" id="25"]
 [ext_resource type="Script" path="res://scripts/actors/player/Friendo.gd" id="29"]
 [ext_resource type="PackedScene" path="res://scenes/tools/invertedSphereCollider.tscn" id="30"]
@@ -35,7 +34,6 @@
 [ext_resource type="Script" path="res://scripts/state machine/states/player/ReelIn.gd" id="38"]
 [ext_resource type="Material" path="res://assets/models/animations/Material.material" id="38_0y0om"]
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/ThrowOut.gd" id="39"]
-[ext_resource type="AudioStream" uid="uid://bauhk8gpd342s" path="res://assets/sounds/actor noises/Concrete footsteps.mp3" id="39_cs2lg"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/LedgeGrab.gd" id="40"]
 [ext_resource type="Script" path="res://scripts/tools/HazardDetector.gd" id="41_2dmwm"]
 [ext_resource type="Script" path="res://scripts/tools/ParticleHandler.gd" id="42"]
@@ -3665,7 +3663,6 @@ script = ExtResource("21")
 [node name="PlayerShadow" type="Decal" parent="ShadowRaycast"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.315203, 0)
 size = Vector3(1, 1, 1)
-texture_albedo = ExtResource("22")
 upper_fade = 1e-05
 lower_fade = 0.1
 
@@ -4006,7 +4003,6 @@ shape = SubResource("CapsuleShape3D_kjjxv")
 [node name="Sounds" type="Node" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("39_cs2lg")
 volume_db = -9.0
 pitch_scale = 2.0
 
