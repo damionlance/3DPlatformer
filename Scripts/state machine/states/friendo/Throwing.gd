@@ -1,5 +1,4 @@
 extends Node
-class_name FriendoThrowing
 
 #private variables
 var _state_name = "Throwing"

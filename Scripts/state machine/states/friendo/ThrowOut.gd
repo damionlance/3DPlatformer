@@ -1,5 +1,4 @@
 extends Node
-class_name FriendoThrowOut
 
 #private variables
 var _state_name = "ThrowOut"

@@ -1,6 +1,7 @@
 extends Node
 
 class_name AerialMovement
+
 #warning-ignore:unused_private_class_variable
 var backwardsLedgeGrab := false
 

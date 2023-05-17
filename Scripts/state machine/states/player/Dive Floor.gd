@@ -1,7 +1,5 @@
 extends GroundedMovement
 
-class_name DiveFloor
-
 
 # Declare member variables here. Examples:
 # var a = 2

@@ -1,7 +1,5 @@
 extends AerialMovement
 
-class_name WallSlide
-
 
 # Declare member variables here. Examples:
 # var a = 2

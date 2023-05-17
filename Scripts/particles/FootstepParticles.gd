@@ -1,5 +1,4 @@
 extends GPUParticles3D
-class_name FootstepParticles
 
 # Declare member variables here. Examples:
 # var a = 2

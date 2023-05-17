@@ -1,4 +1,4 @@
-extends Area3D
+extends Node3D
 
 
 # Declare member variables here. Examples:
@@ -16,5 +16,5 @@ func _ready():
 #	pass
 
 func _on_poolPartyPortal_body_entered(body):
-	if body is preload("res://Scripts/Player.gd"):
+	if body.name == "Player":
 		get_tree().change_scene_to_packed(load('res://TestLevels/Levels/poolparty.tscn'))

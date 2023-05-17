@@ -1,7 +1,5 @@
 extends GroundedMovement
 
-class_name FloorSlide
-
 
 # Declare member variables here. Examples:
 # var a = 2

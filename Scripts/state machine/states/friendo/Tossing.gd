@@ -1,5 +1,4 @@
 extends Node
-class_name FriendoTossing
 
 #private variables
 var _state_name = "Tossing"

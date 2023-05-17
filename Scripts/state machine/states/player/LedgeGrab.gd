@@ -1,6 +1,5 @@
 extends AerialMovement
 
-class_name LedgeGrab
 
 #public variables
 var cancellable = true

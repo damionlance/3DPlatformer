@@ -1,7 +1,5 @@
 extends AerialMovement
 
-class_name Falling
-
 #public variables
 var cancellable = true
 var breaks_momentum = false

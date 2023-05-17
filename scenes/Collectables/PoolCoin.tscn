@@ -1,7 +1,8 @@
 [gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://scripts/collectables/PoolCoin.gd" id="1_2bxfx"]
-[ext_resource type="Material" uid="uid://diohekcgekmrf" path="res://assets/materials/poolCoin.tres" id="2_35btk"]
+[ext_resource type="Material" uid="uid://diohekcgekmrf" path="res://assets/materials/PoolCoin.tres" id="2_35btk"]
+
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_frs6y"]
 _surfaces = [{

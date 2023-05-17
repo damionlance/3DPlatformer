@@ -1,5 +1,4 @@
 extends Node
-class_name FriendoIdle
 
 # Declare member variables here. Examples:
 # var a = 2

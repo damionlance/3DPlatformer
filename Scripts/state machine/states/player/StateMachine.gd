@@ -96,7 +96,6 @@ var ground_friction := 1.0
 #signals
 signal throw_fella
 
-
 var bounceTimer := 0
 var can_interact := false
 # Called when the node enters the scene tree for the first time.
@@ -127,6 +126,10 @@ func _process(delta):
 	_player.update_physics_data(velocity, snap_vector)
 
 func input_handling():
+	if Input.is_action_pressed("Pause"):
+		$"../".add_child(load("res://scenes/ui/pause screen.tscn").instantiate())
+		get_tree().paused = true
+	
 	forwards = _camera.global_transform.basis.z
 	forwards.y = 0
 	forwards = forwards.normalized()

@@ -49,6 +49,9 @@ func _ready():
 	set_up_direction(Vector3.UP)
 
 func _process(_delta):
+	if "is_level_preview" in get_parent():
+		if get_parent().is_level_preview:
+			queue_free()
 	if popperBounce:
 		$StateMachine._jump_state = $StateMachine.popper_bounce
 		$StateMachine.update_state("Jump")

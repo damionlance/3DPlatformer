@@ -1,7 +1,5 @@
 extends GroundedMovement
 
-class_name FloorSpin
-
 #private variables
 var _state_name = "Floor Spin"
 

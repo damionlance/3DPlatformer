@@ -1,5 +1,4 @@
 extends Node
-class_name FriendoStuck
 
 #private variables
 var _state_name = "StuckToWall"

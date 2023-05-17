@@ -1,6 +1,5 @@
 extends AerialMovement
 
-class_name ReelIn
 
 #private variables
 var _state_name = "ReelIn"

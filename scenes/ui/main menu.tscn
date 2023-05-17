@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://0wkxd4niio1d"]
+
+[ext_resource type="Script" path="res://scripts/gui/main menu/main menu.gd" id="1_mqdcr"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_mqdcr")
+
+[node name="Title Container" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 602.0
+offset_bottom = 327.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = 317.0
+offset_right = 371.0
+offset_bottom = 720.0
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+
+[node name="Main Menu" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Level Picker" type="Button" parent="MarginContainer/Main Menu"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Quit Game")
+focus_neighbor_bottom = NodePath("../New Game")
+text = "Level Picker"
+
+[node name="New Game" type="Button" parent="MarginContainer/Main Menu"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Level Picker")
+focus_neighbor_bottom = NodePath("../Load Game")
+text = "New Game
+"
+
+[node name="Load Game" type="Button" parent="MarginContainer/Main Menu"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../New Game")
+focus_neighbor_bottom = NodePath("../Options")
+text = "Load Game
+"
+
+[node name="Options" type="Button" parent="MarginContainer/Main Menu"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Load Game")
+focus_neighbor_bottom = NodePath("../Quit Game")
+text = "Options
+"
+
+[node name="Quit Game" type="Button" parent="MarginContainer/Main Menu"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Options")
+focus_neighbor_bottom = NodePath("../Level Picker")
+text = "Quit
+"

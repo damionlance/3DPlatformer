@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://ua214ey5it8w"]
+
+[ext_resource type="PackedScene" uid="uid://brjysk84hvidf" path="res://scenes/ui/menu gradient.tscn" id="1_gtb2g"]
+[ext_resource type="Script" path="res://scripts/gui/main menu/title screen.gd" id="1_yphg2"]
+[ext_resource type="PackedScene" uid="uid://0wkxd4niio1d" path="res://scenes/ui/main menu.tscn" id="2_vb133"]
+[ext_resource type="Texture2D" uid="uid://bv6ofyevcd2po" path="res://assets/textures/gui/Title Logo.png" id="4_ih5cg"]
+
+[node name="Title Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yphg2")
+
+[node name="Menu Gradient" parent="." instance=ExtResource("1_gtb2g")]
+clip_contents = true
+layout_mode = 1
+size_flags_horizontal = 0
+
+[node name="Control" parent="." instance=ExtResource("2_vb133")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title Container" parent="Control" index="0"]
+custom_minimum_size = Vector2(800, 300)
+layout_mode = 1
+offset_right = 20.0
+offset_bottom = 20.0
+scale = Vector2(0.84, 1)
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="TextureRect" type="TextureRect" parent="Control/Title Container" index="0"]
+layout_mode = 2
+texture = ExtResource("4_ih5cg")
+expand_mode = 3
+
+[node name="MarginContainer" parent="Control" index="1"]
+offset_top = -258.0
+offset_right = 380.0
+offset_bottom = 258.0
+
+[node name="Level Picker" parent="Control/MarginContainer/Main Menu" index="0"]
+custom_minimum_size = Vector2(300, 100)
+theme_override_font_sizes/font_size = 30
+
+[node name="New Game" parent="Control/MarginContainer/Main Menu" index="1"]
+custom_minimum_size = Vector2(300, 100)
+theme_override_font_sizes/font_size = 30
+
+[node name="Load Game" parent="Control/MarginContainer/Main Menu" index="2"]
+custom_minimum_size = Vector2(300, 100)
+theme_override_font_sizes/font_size = 30
+
+[node name="Options" parent="Control/MarginContainer/Main Menu" index="3"]
+custom_minimum_size = Vector2(300, 100)
+theme_override_font_sizes/font_size = 30
+
+[node name="Quit Game" parent="Control/MarginContainer/Main Menu" index="4"]
+custom_minimum_size = Vector2(300, 100)
+theme_override_font_sizes/font_size = 30
+
+[connection signal="pressed" from="Control/MarginContainer/Main Menu/Level Picker" to="." method="_on_level_picker_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/Main Menu/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/Main Menu/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/Main Menu/Quit Game" to="." method="_on_quit_game_pressed"]
+
+[editable path="Control"]

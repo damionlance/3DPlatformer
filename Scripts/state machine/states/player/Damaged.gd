@@ -1,7 +1,5 @@
 extends AerialMovement
 
-class_name Jump
-
 #private variables
 var _state_name = "Damaged"
 var current_jump_strength : float

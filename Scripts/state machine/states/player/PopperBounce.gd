@@ -1,6 +1,5 @@
 extends AerialMovement
 
-class_name PopperBounce
 
 #private variables
 var _state_name = "PopperBounce"
