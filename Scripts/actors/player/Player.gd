@@ -91,14 +91,11 @@ func add_coin(name):
 	
 func add_star():
 	stars = 0
-	#print(Global.stars)
 	for star in Global.stars.keys():
 		if Global.stars[star]:
 			stars += 1
-	#print(stars, " stars")
 	if stars == 3:
 		time_now = Time.get_unix_time_from_system()
-		#print("You finished in: " + str(-1 * (Global.time_start - time_now)) + ". Good job!")
 
 func _on_collectable_touched(name):
 	get_node("HUD/MarginContainer/counters/" + name)._enter_screen()

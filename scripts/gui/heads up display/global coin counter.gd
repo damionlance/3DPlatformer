@@ -14,8 +14,8 @@ var timer
 
 func _ready():
 	starting_position = $MarginContainer.position
-	if Global.WORLD_COLLECTIBLES.has(collectable_name):
-		number_of_coins = Global.WORLD_COLLECTIBLES[collectable_name]
+	if Global.WORLD_COLLECTIBLES.has(collectable_name.to_upper()):
+		number_of_coins = Global.WORLD_COLLECTIBLES[collectable_name.to_upper()]
 	label.text = "x " + str(number_of_coins)
 	timer = Timer.new()
 	add_child(timer)

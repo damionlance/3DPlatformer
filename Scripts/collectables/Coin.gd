@@ -1,7 +1,5 @@
 extends Collectable
 
-var materials
-
 @onready var coinMesh = $Coin/Cylinder
 @onready var coinAnimation = $Coin/AnimationTree
 @onready var coin = $Coin
@@ -13,39 +11,38 @@ var playerBody
 var speed = 0.0
 var oneshot = true
 var collectable = false
+var previously_collected = false
+var touched = false
 
 func _ready():
+	if Global.WORLD_COLLECTIBLES.has(name):
+		collected = Global.WORLD_COLLECTIBLES[name]
+	else:
+		Global.WORLD_COLLECTIBLES[name] = collected
+	
 	collectable_name = name.rstrip('1234567890')
-	materials = "res://assets/materials/" + collectable_name.to_lower() + ".tres"
 	add_to_group("coins")
 	if collected:
-		change_material(1)
+		coinMesh.set_surface_override_material(0, load("res://assets/materials/" + collectable_name.to_lower() + "_collected.tres"))
+	else:
+		coinMesh.set_surface_override_material(0, load("res://assets/materials/" + collectable_name.to_lower() + ".tres"))
 
 func _process(delta):
-	if collected:
-		if oneshot:
-			coinAnimation["parameters/jumpFire/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-			coinAnimation["parameters/pickupBlend/blend_amount"] = 1
-			oneshot = false
-		elif not collectable and not coinAnimation["parameters/jumpFire/active"]:
-			collectable = true
-			global_position = coin.global_position
-		if collectable:
-			if speed < 20:
-				speed += 1.0
-			var direction = (playerBody.global_position + Vector3.UP) - self.global_position
-			self.position += (direction.normalized() * speed * delta)
-			if direction.length() < 1 and collectable:
-				_update_collectables(true)
-				playerBody.add_coin(collectable_name.to_upper())
-				queue_free()
-
-func change_material(newMaterialIndex):
-	coinMesh.get_surface_override_material(0).albedo_color.a = .25
+	if touched:
+		if speed < 20:
+			speed += 1.0
+		var direction = (playerBody.global_position + Vector3.UP) - self.global_position
+		self.position += (direction.normalized() * speed * delta)
 
 func _on_coin_body_entered(body):
-	if body.get_name() == "Player":
-		collected = true
+	if body.get_name() == "Player" and not touched:
 		playerBody = body
 		emit_signal("collectable_touched", collectable_name.to_lower())
-	
+		var tween = create_tween()
+		tween.tween_property(self, "position", position + Vector3(0,3,0), .75).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+		touched = true
+	elif body.get_name() == "Player" and touched:
+		if not previously_collected:
+			_update_collectables(true)
+			playerBody.add_coin(collectable_name.to_upper())
+		queue_free()

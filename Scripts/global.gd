@@ -81,6 +81,7 @@ func UPDATE_COLLECTIBLES(name, value):
 func _delete_save():
 	if FileAccess.file_exists("user://temp_save.res"):
 		OS.move_to_trash("user://temp_save.res")
+	WORLD_COLLECTIBLES.clear()
 
 func _save_data():
 	while true:

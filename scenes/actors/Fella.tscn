@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://b5gckp4xyn8as"]
+[gd_scene load_steps=115 format=3 uid="uid://385mcfonrl8g"]
 
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Wall Slide.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Floor Spin.gd" id="2"]
@@ -33,7 +33,7 @@
 [ext_resource type="Material" path="res://assets/shaders/VisibleThruObjects.tres" id="37_8jqte"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/ReelIn.gd" id="38"]
 [ext_resource type="Material" path="res://assets/models/animations/Material.material" id="38_0y0om"]
-[ext_resource type="PackedScene" uid="uid://b307pwugmfuji" path="res://scenes/ui/global_coin_counter.tscn" id="38_jgc81"]
+[ext_resource type="PackedScene" uid="uid://b307pwugmfuji" path="res://scenes/ui/collectible_counter.tscn" id="38_jgc81"]
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/ThrowOut.gd" id="39"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/LedgeGrab.gd" id="40"]
 [ext_resource type="Script" path="res://scripts/tools/HazardDetector.gd" id="41_2dmwm"]
@@ -4051,17 +4051,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="counters" type="HFlowContainer" parent="HUD/MarginContainer"]
+[node name="counters" type="VBoxContainer" parent="HUD/MarginContainer"]
 layout_direction = 3
 layout_mode = 2
 size_flags_horizontal = 8
 
 [node name="coin" parent="HUD/MarginContainer/counters" instance=ExtResource("38_jgc81")]
-layout_direction = 2
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-collectable_name = "coin"
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]
