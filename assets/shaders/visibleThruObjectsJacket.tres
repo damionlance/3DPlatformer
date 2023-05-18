@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dy55tgyc75v0d"]
 
 [ext_resource type="Material" uid="uid://dakejtt3qtesy" path="res://assets/materials/Jacket Shader.material" id="1_2jpui"]
 [ext_resource type="Shader" path="res://assets/shaders/FellaShader.gdshader" id="2_hkvnq"]

@@ -9,6 +9,7 @@ func _ready():
 	ensure_collectable_exists("POOL COIN")
 	
 	$Player/StateMachine.level_loaded = true
+	
 	if "Figment_BombsAway" in Global.WORLD_COLLECTIBLES:
 		if Global.WORLD_COLLECTIBLES["Figment_BombsAway"] != true:
 			for cannon in cannons:

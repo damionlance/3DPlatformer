@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://7ofpiekesj41"]
+[gd_scene load_steps=17 format=3 uid="uid://vrrtvf58mtu6"]
 
 [ext_resource type="Script" path="res://scripts/collectables/Coin.gd" id="1_andm5"]
 [ext_resource type="Material" uid="uid://seekw340bo3j" path="res://assets/materials/coin.tres" id="2_dpjd3"]
@@ -142,7 +142,7 @@ node_connections = [&"output", 0, &"pickupBlend", &"jumpFire", 0, &"pickup", &"j
 script = ExtResource("1_andm5")
 
 [node name="Coin" type="Area3D" parent="."]
-transform = Transform3D(0.596778, 0, -0.802407, 0, 1, 0, 0.802407, 0, 0.596778, 0, 0.0592896, 0)
+transform = Transform3D(0.986549, 0, -0.163468, 0, 1, 0, 0.163468, 0, 0.986549, 0, 0.0104539, 0)
 collision_layer = 2
 collision_mask = 2
 

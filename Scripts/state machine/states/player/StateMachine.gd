@@ -13,6 +13,8 @@ var snap_vector := Vector3.DOWN
 var grapple_position = Vector3.ZERO
 var current_jump := 0
 var terminal_velocity := -50
+var slope_normal : Vector3 = Vector3.ZERO
+var slope_strength : float = 0.0
 
 # Special inputs tracking
 var previous_angle := [0.0, 0.0]
@@ -192,24 +194,20 @@ func update_state( new_state ):
 	_current_state.reset()
 
 func calculate_velocity(gravity: float, delta) -> Vector3:
-	#print("Calculate Velocity")
-	#print(_player.velocity)
 	var horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 	var new_velocity := Vector3.ZERO
-	#print("1", horizontal_velocity)
+	
+	
 	if horizontal_velocity.length() != 0:
-		new_velocity = horizontal_velocity.lerp(move_direction * current_speed, ground_friction)
-		#print("2", new_velocity)
+		new_velocity = horizontal_velocity.lerp(move_direction.lerp(slope_normal, slope_strength) * current_speed, ground_friction)
 	else:
 		new_velocity = move_direction * current_speed
-		#print("3", new_velocity)
 	if gravity != 0:
 		var temp =  velocity.y + gravity * delta
 		new_velocity.y = temp if temp > terminal_velocity else terminal_velocity
 	if _player.is_on_floor():
 		new_velocity.y = -1
 	prev_velocity = velocity
-	#print("4", new_velocity)
 	return new_velocity
 
 func grapple_velocity(gravity: float, delta) -> Vector3:

@@ -24,10 +24,13 @@ var strength_of_slope := 0.0
 var maximum_slope := PI/6
 
 func look_forward():
-	var lookdir = atan2(-_state.move_direction.x, -_state.move_direction.z)
+	var normalized_direction = -_state.move_direction.normalized()
+	var lookdir = atan2(normalized_direction.x, normalized_direction.z)
 	_player.rotation.y = lookdir
 
 func lean_into_turns():
+	if strength_of_slope != 0.0:
+		return
 	if _player.is_on_wall():
 		_player.rotation.z = 0
 		return
@@ -40,15 +43,14 @@ func lean_into_turns():
 	_player.rotation.z = lerp(_player.rotation.z, direction, .15)
 
 func grounded_movement_processing():
-	#print("Grounded Movement Processing")
-	#print(_player.velocity)
-	#print("Move Direction 1: ", _state.move_direction)
+	#Reset vertical wall jump tech limit
 	_state.consecutive_stationary_wall_jump = 0
-
+	
 	if _player.get_floor_angle() > maximum_slope:
-		strength_of_slope += .001
+		_state.slope_strength += .01
 	else:
-		strength_of_slope = 0.00
+		_state.slope_strength = 0.00
+	
 	var ground = ground_probe.get_collider()
 	if ground:
 		if ground.get("friction"):
@@ -57,18 +59,15 @@ func grounded_movement_processing():
 		if previous_move_direction.length() <= _state.move_direction.length():
 			_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, floor_rotation_speed)
 			_state.current_speed = lerp(float(_state.current_speed), (max_speed * _controller.input_strength), _state.ground_friction)
-			#print("Move Direction 2: ", _state.move_direction)
+	
 	elif _state.current_speed < 1:
 		_state.current_speed = 0
 	else:
 		_state.current_speed *= 1 - _state.ground_friction
 	
 	if _player.is_on_floor():
-		var floor_normal = _player.get_last_slide_collision()
-		if floor_normal:
-			floor_normal = floor_normal.get_normal()
-			floor_normal.y = 0
-			_state.move_direction = _state.move_direction.lerp(Vector3(floor_normal.x, 0, floor_normal.z), strength_of_slope)	
-			#print("Move Direction 3: ", _state.move_direction)
+		_state.slope_normal = Vector3.ZERO
+		if _player.get_last_slide_collision():
+			_state.slope_normal = _player.get_last_slide_collision().get_normal()
+			_state.slope_normal.y = 0
 	previous_move_direction = _state.move_direction
-	#print(_player.velocity)
