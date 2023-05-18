@@ -1,8 +1,36 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=9 format=3 uid="uid://e5q5xc3eatb7"]
 
-[ext_resource type="Script" path="res://scripts/collectables/PoolCoin.gd" id="1_2bxfx"]
-[ext_resource type="Material" uid="uid://diohekcgekmrf" path="res://assets/materials/PoolCoin.tres" id="2_35btk"]
+[ext_resource type="Material" uid="uid://diohekcgekmrf" path="res://assets/materials/pool coin.tres" id="2_v1xq7"]
 
+[sub_resource type="GDScript" id="GDScript_nudqy"]
+script/source = "extends Collectable
+
+
+const materials : Array = [
+	preload(\"res://assets/materials/PoolCoin.tres\"),
+	preload(\"res://assets/materials/PoolCoinCollected.tres\")
+]
+
+@onready var coinMesh = $Coin/Cylinder
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if collected:
+		change_material(1)
+	else:
+		change_material(0)
+
+func change_material(newMaterialIndex):
+	coinMesh.set_surface_override_material(0, materials[newMaterialIndex])
+
+func _on_body_entered(body):
+	if body.get_name() == \"Player\":
+		collected = true
+		Global.UPDATE_COLLECTIBLES(name, collected)
+		body.add_levelcoin(\"POOL COIN\")
+		_update_collectables(true)
+		queue_free()
+"
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_frs6y"]
 _surfaces = [{
@@ -100,7 +128,7 @@ _data = {
 }
 
 [node name="PoolCoin" type="Node3D"]
-script = ExtResource("1_2bxfx")
+script = SubResource("GDScript_nudqy")
 
 [node name="Coin" type="Area3D" parent="."]
 collision_layer = 2
@@ -110,7 +138,7 @@ collision_mask = 2
 transform = Transform3D(2.61184e-10, -0.0059752, -0.999982, -1, -4.37114e-08, 0, -4.37106e-08, 0.999982, -0.0059752, 0, 0.0996196, 0)
 mesh = SubResource("ArrayMesh_po5ea")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_35btk")
+surface_material_override/0 = ExtResource("2_v1xq7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Coin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.141006, 0)

@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://b307pwugmfuji"]
+
+[ext_resource type="Script" path="res://scripts/gui/heads up display/global coin counter.gd" id="1_nl3my"]
+[ext_resource type="Texture2D" uid="uid://dvfjut3tnvcja" path="res://assets/textures/coinsprite.png" id="2_xy6i6"]
+
+[node name="global coin counter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nl3my")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VSplitContainer" type="HSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="coin icon" type="TextureRect" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_xy6i6")
+stretch_mode = 4
+
+[node name="coin counter" type="Label" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 55
+text = "X"

@@ -1,13 +1,13 @@
 extends Collectable
 
-const materials : Array = [
-	preload("res://assets/materials/coin.tres"),
-	preload("res://assets/materials/coinCollected.tres")
-]
+var materials
 
 @onready var coinMesh = $Coin/Cylinder
 @onready var coinAnimation = $Coin/AnimationTree
 @onready var coin = $Coin
+
+var collectable_name : String
+
 var playerBody
 
 var speed = 0.0
@@ -15,10 +15,11 @@ var oneshot = true
 var collectable = false
 
 func _ready():
+	collectable_name = name.rstrip('1234567890')
+	materials = "res://assets/materials/" + collectable_name.to_lower() + ".tres"
+	add_to_group("coins")
 	if collected:
 		change_material(1)
-	else:
-		change_material(0)
 
 func _process(delta):
 	if collected:
@@ -35,15 +36,16 @@ func _process(delta):
 			var direction = (playerBody.global_position + Vector3.UP) - self.global_position
 			self.position += (direction.normalized() * speed * delta)
 			if direction.length() < 1 and collectable:
-				playerBody.add_coin()
+				_update_collectables(true)
+				playerBody.add_coin(collectable_name.to_upper())
 				queue_free()
 
 func change_material(newMaterialIndex):
-	coinMesh.set_surface_override_material(0, materials[newMaterialIndex])
+	coinMesh.get_surface_override_material(0).albedo_color.a = .25
 
 func _on_coin_body_entered(body):
 	if body.get_name() == "Player":
-		playerBody = body
 		collected = true
-		Global.UPDATE_COLLECTIBLES(name, collected)
-		_update_collectables(true)
+		playerBody = body
+		emit_signal("collectable_touched", collectable_name.to_lower())
+	

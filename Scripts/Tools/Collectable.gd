@@ -2,6 +2,8 @@ extends Node3D
 
 class_name Collectable
 
+signal collectable_touched(name)
+
 var collected := false
 
 func _ready():

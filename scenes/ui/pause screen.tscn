@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://nquht4adhhv6"]
+[gd_scene load_steps=7 format=3 uid="uid://btet040ih0fyq"]
 
-[ext_resource type="Script" path="res://scripts/gui/Pause Menu/pause menu.gd" id="1_jiv2l"]
+[ext_resource type="Script" path="res://scripts/gui/pause menu/pause menu.gd" id="1_xa030"]
 [ext_resource type="PackedScene" uid="uid://brjysk84hvidf" path="res://scenes/ui/menu gradient.tscn" id="2_k5e4t"]
 
 [sub_resource type="Animation" id="Animation_oqo6q"]
@@ -99,7 +99,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jiv2l")
+script = ExtResource("1_xa030")
 
 [node name="Menu Gradient" parent="." instance=ExtResource("2_k5e4t")]
 layout_mode = 1

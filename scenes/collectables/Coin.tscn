@@ -142,7 +142,7 @@ node_connections = [&"output", 0, &"pickupBlend", &"jumpFire", 0, &"pickup", &"j
 script = ExtResource("1_andm5")
 
 [node name="Coin" type="Area3D" parent="."]
-transform = Transform3D(-0.650672, 0, -0.759359, 0, 1, 0, 0.759359, 0, -0.650672, 0, 0.0548975, 0)
+transform = Transform3D(-0.887127, 0, -0.461525, 0, 1, 0, 0.461525, 0, -0.887127, 0, 0.0305396, 0)
 collision_layer = 2
 collision_mask = 2
 

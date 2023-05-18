@@ -71,6 +71,7 @@ func _ready():
 		if parse_result == OK:
 			WORLD_COLLECTIBLES = json.data
 
+
 func UPDATE_COLLECTIBLES(name, value):
 	mutex.lock()
 	WORLD_COLLECTIBLES[name] = value

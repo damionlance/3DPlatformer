@@ -15,11 +15,6 @@ var properties := ["pleasant_smelling", "hydrophobic"]
 var snap_vector := Vector3.ZERO
 var inertia := 1
 
-var coins = 0
-# levelCoins holds all level specific coins
-# 	0: pool
-var levelCoins = [0]
-
 #Deprecated
 var stars = 0
 
@@ -29,6 +24,8 @@ var tween
 var grappling := false
 var popperBounce := false
 var popperAngle := Vector3.ZERO
+
+var collectables_loaded = false
 
 var previous_horizontal_velocity := Vector3.ZERO
 
@@ -49,6 +46,13 @@ func _ready():
 	set_up_direction(Vector3.UP)
 
 func _process(_delta):
+	
+	if _state.level_loaded:
+		if not collectables_loaded:
+			collectables_loaded = true
+			for coin in get_tree().get_nodes_in_group("coins"):
+				coin.collectable_touched.connect(_on_collectable_touched)
+	
 	if "is_level_preview" in get_parent():
 		if get_parent().is_level_preview:
 			queue_free()
@@ -80,17 +84,9 @@ func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
 	velocity = _velocity
 	snap_vector = _snap_vector
 	
-func add_coin():
-	coins += 1
-	print(coins, " coins")
-	return true
-	
-func add_levelcoin(level):
-	levelCoins[level] += 1
-	if level == 0:
-		print(levelCoins[level], " Pool coins")
-	else:
-		print(levelCoins[level], " other coins...")
+func add_coin(name):
+	Global.UPDATE_COLLECTIBLES(name, Global.WORLD_COLLECTIBLES[name] + 1)
+	get_node("HUD/MarginContainer/counters/" + name.to_lower())._increase_coins()
 	return true
 	
 func add_star():
@@ -103,3 +99,6 @@ func add_star():
 	if stars == 3:
 		time_now = Time.get_unix_time_from_system()
 		#print("You finished in: " + str(-1 * (Global.time_start - time_now)) + ". Good job!")
+
+func _on_collectable_touched(name):
+	get_node("HUD/MarginContainer/counters/" + name)._enter_screen()
