@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://385mcfonrl8g"]
+[gd_scene load_steps=116 format=3 uid="uid://385mcfonrl8g"]
 
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Wall Slide.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Floor Spin.gd" id="2"]
@@ -42,6 +42,9 @@
 [sub_resource type="CapsuleShape3D" id="147"]
 radius = 0.408809
 height = 1.94229
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l8mw7"]
+radius = 0.1
 
 [sub_resource type="ShaderMaterial" id="93"]
 
@@ -3655,7 +3658,9 @@ script = ExtResource("16_w6xjl")
 [node name="State" type="Node" parent="StateMachine"]
 script = ExtResource("5")
 
-[node name="CameraPivot" type="Node3D" parent="."]
+[node name="CameraPivot" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77038, 0)
+collision_layer = 0
 script = ExtResource("4")
 camera_sensitivity = Vector2(2, 2)
 
@@ -3668,6 +3673,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.12232, 7.53115)
 current = true
 fov = 80.0
 far = 500.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraPivot"]
+shape = SubResource("SphereShape3D_l8mw7")
 
 [node name="WallRayRight" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.82402, 0)
@@ -3836,7 +3844,7 @@ bones/9/parent = 8
 bones/9/rest = Transform3D(0.991582, -0.129392, 0.00467491, 0.129443, 0.989862, -0.0584536, 0.00293591, 0.0585667, 0.998279, 0, 0.190561, -1.45732e-09)
 bones/9/enabled = true
 bones/9/position = Vector3(0, 0.190561, -1.45732e-09)
-bones/9/rotation = Quaternion(0.0293295, 0.000435856, 0.0648734, 0.997462)
+bones/9/rotation = Quaternion(0.0293295, 0.000435855, 0.0648734, 0.997462)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "Glove.R"
 bones/10/parent = 9
