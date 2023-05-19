@@ -1,4 +1,4 @@
-extends Node3D
+extends CharacterBody3D
 
 @export var camera_sensitivity := Vector2(0,0)
 @onready var _player := get_parent()
@@ -29,7 +29,7 @@ func _physics_process(_delta):
 		_camera.fov = lerp(_camera.fov, base_fov, .05)
 	var _parent_position = _player.global_position + Vector3.UP * 2
 	
-	var height_difference = abs(previous_camera_height - _parent_position.y)
+	var height_difference = previous_camera_height - _parent_position.y
 	var camera_horizontal_distance = Vector3(camera_tracking_position.x, 0, camera_tracking_position.z)
 	camera_horizontal_distance -= Vector3(_parent_position.x, 0, _parent_position.z)
 	
@@ -46,19 +46,25 @@ func _physics_process(_delta):
 	camera_tracking_position = _parent_position
 	camera_tracking_position.y = previous_camera_height
 	
-	
-	if _player.is_on_floor() or height_difference > 6:
-		previous_camera_height = _parent_position.y
-	else:
-		camera_tracking_position.y = previous_camera_height
-	
-	
-	
 	rotation_degrees.x -= Input.get_axis("CameraDown", "CameraUp") * camera_sensitivity.x
 	rotation_degrees.x = clamp(rotation_degrees.x, -80.0, 30.0)
 	rotation_degrees.y -= Input.get_axis("CameraRight", "CameraLeft") * camera_sensitivity.y
 	rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
 	
-	position = camera_tracking_position
+	var camera_velocity = lerp(velocity, get_parent().velocity, .9)
+	camera_velocity += (_parent_position - global_position)*10
+	
+	camera_velocity.y 
+	
+	if _player.is_on_floor() or abs(height_difference) > 6:
+		previous_camera_height = position.y
+	else:
+		camera_velocity.y = 0
+	
+	
+	set_velocity(camera_velocity)
+	move_and_slide()
+	
+	#position = camera_tracking_position
 	
 	pass
