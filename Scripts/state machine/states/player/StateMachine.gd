@@ -4,6 +4,8 @@ extends Node
 var state_dictionary : Dictionary
 var level_loaded : bool
 
+var respawn_point = null
+
 var halt_frames : Dictionary
 
 #Player Physics Variables
@@ -102,6 +104,9 @@ var bounceTimer := 0
 var can_interact := false
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	respawn_point = preload("res://scenes/tools/Dynamic Objects/respawn_point.tscn").instantiate()
+	add_child(respawn_point)
+	respawn_point.position = Vector3(0,-100, 0)
 	level_loaded = false
 	pivot_buffer.resize(pivot_buffer_size)
 	state_dictionary.is_empty()
@@ -131,6 +136,15 @@ func input_handling():
 	if Input.is_action_pressed("Pause"):
 		$"../".add_child(load("res://scenes/ui/pause screen.tscn").instantiate())
 		get_tree().paused = true
+	
+	if Input.is_action_just_pressed("Place Spawn"):
+		respawn_point.global_position = _player.global_position
+	elif Input.is_action_just_pressed("Respawn"):
+		if respawn_point == null:
+			print("No respawn point, maybe make a sound here or smth")
+		else:
+			_player.global_position = respawn_point.global_position + Vector3.UP
+			update_state("Falling")
 	
 	forwards = _camera.global_transform.basis.z
 	forwards.y = 0
