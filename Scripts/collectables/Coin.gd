@@ -24,6 +24,7 @@ func _ready():
 	add_to_group("coins")
 	if collected:
 		coinMesh.set_surface_override_material(0, load("res://assets/materials/" + collectable_name.to_lower() + "_collected.tres"))
+		previously_collected = true
 	else:
 		coinMesh.set_surface_override_material(0, load("res://assets/materials/" + collectable_name.to_lower() + ".tres"))
 

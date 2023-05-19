@@ -204,11 +204,17 @@ func apply_settings():
 	settings_file.set_value("Keybinds", "Keyboard Dive", settings["Keyboard Dive"])
 	settings_file.set_value("Keybinds", "Keyboard Throw", settings["Keyboard Throw"])
 	settings_file.set_value("Keybinds", "Keyboard Pause", settings["Keyboard Pause"])
+	settings_file.set_value("Keybinds", "Keyboard Place Spawn", settings["Keyboard Place Spawn"])
+	settings_file.set_value("Keybinds", "Keyboard Respawn", settings["Keyboard Respawn"])
+	settings_file.set_value("Keybinds", "Keyboard Camera Mode", settings["Keyboard Camera Mode"])
 	
 	settings_file.set_value("Keybinds", "Controller Jump", settings["Controller Jump"])
 	settings_file.set_value("Keybinds", "Controller Dive", settings["Controller Dive"])
 	settings_file.set_value("Keybinds", "Controller Throw", settings["Controller Throw"])
 	settings_file.set_value("Keybinds", "Controller Pause", settings["Controller Pause"])
+	settings_file.set_value("Keybinds", "Controller Place Spawn", settings["Controller Place Spawn"])
+	settings_file.set_value("Keybinds", "Controller Respawn", settings["Controller Respawn"])
+	settings_file.set_value("Keybinds", "Controller Camera Mode", settings["Controller Camera Mode"])
 	
 	settings_file.set_value("Keybinds", "SouthPawMode", settings["SouthPawMode"])
 	settings_file.set_value("Keybinds", "LeftStickInvertY", settings["LeftStickInvertY"])
@@ -244,17 +250,25 @@ func load_settings():
 	settings["Keyboard Dive"] = settings_file.get_value("Keybinds", "Keyboard Dive")
 	settings["Keyboard Throw"] = settings_file.get_value("Keybinds", "Keyboard Throw")
 	settings["Keyboard Pause"] = settings_file.get_value("Keybinds", "Keyboard Pause")
+	settings["Keyboard Place Spawn"] = settings_file.get_value("Keybinds", "Keyboard Place Spawn")
+	settings["Keyboard Respawn"] = settings_file.get_value("Keybinds", "Keyboard Respawn")
+	settings["Keyboard Camera Mode"] = settings_file.get_value("Keybinds", "Keyboard Camera Mode")
 	
 	settings["Controller Jump"] = settings_file.get_value("Keybinds", "Controller Jump")
 	settings["Controller Dive"] = settings_file.get_value("Keybinds", "Controller Dive")
 	settings["Controller Throw"] = settings_file.get_value("Keybinds", "Controller Throw")
 	settings["Controller Pause"] = settings_file.get_value("Keybinds", "Controller Pause")
+	settings["Controller Place Spawn"] = settings_file.get_value("Keybinds", "Controller Place Spawn")
+	settings["Controller Respawn"] = settings_file.get_value("Keybinds", "Controller Respawn")
+	settings["Controller Camera Mode"] = settings_file.get_value("Keybinds", "Controller Camera Mode")
 	
 	settings["SouthPawMode"] = settings_file.get_value("Keybinds", "SouthPawMode")
 	settings["LeftStickInvertY"] = settings_file.get_value("Keybinds", "LeftStickInvertY")
 	settings["LeftStickInvertX"] = settings_file.get_value("Keybinds", "LeftStickInvertX")
 	settings["RightStickInvertY"] = settings_file.get_value("Keybinds", "RightStickInvertY")
 	settings["RightStickInvertX"] = settings_file.get_value("Keybinds", "RightStickInvertX")
+	
+	settings["Camera Mode"] = settings_file.get_value("Keybinds", "Camera Mode")
 	
 
 func default_settings():
@@ -279,11 +293,17 @@ func default_settings():
 	settings_file.set_value("Keybinds", "Keyboard Dive", InputMap.action_get_events("DiveButton")[0])
 	settings_file.set_value("Keybinds", "Keyboard Throw", InputMap.action_get_events("Throw")[0])
 	settings_file.set_value("Keybinds", "Keyboard Pause", InputMap.action_get_events("Pause")[0])
+	settings_file.set_value("Keybinds", "Keyboard Place Spawn", InputMap.action_get_events("Place Spawn")[0])
+	settings_file.set_value("Keybinds", "Keyboard Respawn", InputMap.action_get_events("Respawn")[0])
+	settings_file.set_value("Keybinds", "Keyboard Camera Mode", InputMap.action_get_events("Camera Mode")[0])
 	
 	settings_file.set_value("Keybinds", "Controller Jump", InputMap.action_get_events("Jump")[1])
 	settings_file.set_value("Keybinds", "Controller Throw", InputMap.action_get_events("Throw")[1])
 	settings_file.set_value("Keybinds", "Controller Dive", InputMap.action_get_events("DiveButton")[1])
 	settings_file.set_value("Keybinds", "Controller Pause", InputMap.action_get_events("Pause")[1])
+	settings_file.set_value("Keybinds", "Controller Place Spawn", InputMap.action_get_events("Place Spawn")[1])
+	settings_file.set_value("Keybinds", "Controller Respawn", InputMap.action_get_events("Respawn")[1])
+	settings_file.set_value("Keybinds", "Controller Camera Mode", InputMap.action_get_events("Camera Mode")[1])
 	
 	settings_file.set_value("Keybinds", "SouthPawMode", false)
 	settings_file.set_value("Keybinds", "LeftStickInvertY", false)

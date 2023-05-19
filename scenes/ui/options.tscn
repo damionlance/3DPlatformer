@@ -472,6 +472,17 @@ focus_neighbor_bottom = NodePath("../../../../../../../../Back")
 action_mode = 0
 script = ExtResource("10_giuu8")
 
+[node name="Camera Mode" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Keyboard/ScrollContainer/MarginContainer/Settings"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Camera Mode"
+
+[node name="Keyboard Camera Mode" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Keyboard/ScrollContainer/MarginContainer/Settings"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_bottom = NodePath("../../../../../../../../Back")
+script = ExtResource("10_giuu8")
+
 [node name="Controller" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer"]
 visible = false
 layout_mode = 2
@@ -582,12 +593,23 @@ layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("10_giuu8")
 
-[node name="Dive2" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
+[node name="Respawn" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Respawn"
 
 [node name="Controller Respawn" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_bottom = NodePath("../../../../../../../../Back")
+script = ExtResource("10_giuu8")
+
+[node name="Camera Mode" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Camera Mode"
+
+[node name="Controller Camera Mode" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_bottom = NodePath("../../../../../../../../Back")

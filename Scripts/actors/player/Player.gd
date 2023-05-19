@@ -98,4 +98,6 @@ func add_star():
 		time_now = Time.get_unix_time_from_system()
 
 func _on_collectable_touched(name):
+	if name == "pool coin":
+		return
 	get_node("HUD/MarginContainer/counters/" + name)._enter_screen()
