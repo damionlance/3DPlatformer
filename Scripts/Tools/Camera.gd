@@ -12,6 +12,8 @@ var camera_tracking_position = Vector3.ZERO
 
 var chase_cam = true
 
+var match_height
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_as_top_level(true)
@@ -54,12 +56,21 @@ func _physics_process(_delta):
 	var camera_velocity = lerp(velocity, get_parent().velocity, .9)
 	camera_velocity += (_parent_position - global_position)*10
 	
-	camera_velocity.y 
-	
-	if _player.is_on_floor() or abs(height_difference) > 6:
+	if abs(height_difference) > 6:
+		match_height = true
+	elif _player.is_on_floor() or _player.is_on_wall():
+		if match_height:
+			var query = PhysicsRayQueryParameters3D.create(_parent_position, global_position)
+			var result = space_state.intersect_ray(query)
+			if result:
+				position.y = result.position.y
+			
+		match_height = false
 		previous_camera_height = position.y
 	else:
 		camera_velocity.y = 0
+	if match_height:
+		previous_camera_height = position.y
 	
 	
 	set_velocity(camera_velocity)
