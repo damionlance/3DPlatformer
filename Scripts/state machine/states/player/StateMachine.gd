@@ -210,9 +210,12 @@ func update_state( new_state ):
 func calculate_velocity(gravity: float, delta) -> Vector3:
 	var horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 	var new_velocity := Vector3.ZERO
-	
+	var slope_vector = (slope_normal * slope_strength)
+	if slope_vector.length() > 1:
+		slope_vector = slope_vector.normalized()
+	var adjusted_move_direction = move_direction + slope_vector
 	if horizontal_velocity.length() != 0:
-		new_velocity = horizontal_velocity.lerp(move_direction.lerp(slope_normal, slope_strength) * current_speed, ground_friction)
+		new_velocity = horizontal_velocity.lerp(adjusted_move_direction * current_speed, ground_friction)
 	else:
 		new_velocity = move_direction * current_speed
 	if gravity != 0:

@@ -11,7 +11,7 @@ script = ExtResource("1_dqton")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0629071, 0, -0.0146928)
 
 [node name="Player" parent="." instance=ExtResource("2_8fuo0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.6041, 33.6548, -358.034)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4351, 9.84755, -2.62151)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.576816, -0.776567, -0.253429, -0.65158, -0.624509, 0.430618, -0.492673, -0.0832579, -0.866223, 0, 17.9061, 0)
+transform = Transform3D(0.188382, 0.416478, 0.889415, -0.65145, -0.624718, 0.430511, 0.734932, -0.66051, 0.153628, 0, 17.9061, 0)

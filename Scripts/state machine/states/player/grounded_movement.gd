@@ -47,7 +47,7 @@ func grounded_movement_processing():
 	_state.consecutive_stationary_wall_jump = 0
 	
 	if _player.get_floor_angle() > maximum_slope:
-		_state.slope_strength += .01
+		_state.slope_strength += .05
 	else:
 		_state.slope_strength = 0.00
 	
