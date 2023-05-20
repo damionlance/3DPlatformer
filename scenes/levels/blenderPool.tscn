@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b30asjlyo3ts5"]
+[gd_scene load_steps=4 format=3 uid="uid://bjevshakglxd2"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_dqton"]
-[ext_resource type="PackedScene" uid="uid://mbfx374liqw" path="res://assets/models/levels/Pool/BlenderPool.glb" id="1_u0644"]
+[ext_resource type="PackedScene" uid="uid://bid2adoeprsdn" path="res://assets/models/levels/Pool/BlenderPool.glb" id="1_u0644"]
 [ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_8fuo0"]
 
 [node name="blenderPool" type="Node3D"]
