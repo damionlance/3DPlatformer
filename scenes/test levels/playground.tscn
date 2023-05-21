@@ -311,7 +311,7 @@ _surfaces = [{
 script = ExtResource("1_c5rs5")
 
 [node name="Player" parent="." instance=ExtResource("3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5125, 1.96208, 4.91573)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5125, 33.7541, 18.288)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.536652, 0.786261, -0.306266, 0.674972, -0.182185, 0.714998, 0.506378, -0.590425, -0.628474, 0, 48.6497, 0)
