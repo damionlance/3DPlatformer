@@ -55,7 +55,6 @@ func _physics_process(_delta):
 	
 	var camera_velocity = lerp(velocity, get_parent().velocity, .9)
 	camera_velocity += (_parent_position - global_position)*10
-	
 	if abs(height_difference) > 6:
 		match_height = true
 	elif _player.is_on_floor() or _player.is_on_wall():
@@ -67,9 +66,9 @@ func _physics_process(_delta):
 			
 		match_height = false
 		previous_camera_height = position.y
-	else:
+	elif not match_height:
 		camera_velocity.y = 0
-	if match_height:
+	else:
 		previous_camera_height = position.y
 	
 	
