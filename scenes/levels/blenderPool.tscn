@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddslpofgs6m6a"]
+
+[ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_dqton"]
+[ext_resource type="PackedScene" uid="uid://n73dacsg1o6p" path="res://assets/models/levels/Pool/BlenderPool.glb" id="1_u0644"]
+[ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_8fuo0"]
+
+[node name="blenderPool" type="Node3D"]
+script = ExtResource("1_dqton")
+
+[node name="BlenderPool" parent="." instance=ExtResource("1_u0644")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.178355, -0.0616455, -0.637526)
+
+[node name="Player" parent="." instance=ExtResource("2_8fuo0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -168.2, 18.4064, -93.889)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.188382, 0.416478, 0.889415, -0.65145, -0.624718, 0.430511, 0.734932, -0.66051, 0.153628, 0, 17.9061, 0)

@@ -21,7 +21,7 @@
 [ext_resource type="Script" path="res://scripts/tools/UnstablePlatform.gd" id="18"]
 [ext_resource type="Script" path="res://scripts/tools/RotatingPlatform.gd" id="18_ii47e"]
 [ext_resource type="Script" path="res://scripts/tools/GroundProperties.gd" id="20_jhsxj"]
-[ext_resource type="PackedScene" uid="uid://cxvv46b21b2o0" path="res://scenes/enemies/blob.tscn" id="22_dwtyh"]
+[ext_resource type="PackedScene" uid="uid://dpoxaxefpobiv" path="res://scenes/tools/Interactive Objects/climbable_zone.tscn" id="22_xu63l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5naoj"]
 albedo_texture = ExtResource("5")
@@ -307,7 +307,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray(0, 0, 0, 192, 0, 0, 0, 63, 0, 0, 0, 192, 255, 127, 255, 127, 255, 255, 128, 64, 0, 0, 0, 192, 0, 0, 0, 191, 0, 0, 0, 192, 255, 127, 255, 127, 255, 255, 128, 64, 0, 0, 0, 64, 0, 0, 0, 191, 0, 0, 0, 192, 255, 127, 255, 127, 255, 255, 128, 64, 0, 0, 0, 64, 0, 0, 0, 63, 0, 0, 0, 192, 255, 127, 255, 127, 255, 255, 128, 64, 0, 0, 0, 192, 0, 0, 0, 63, 0, 0, 0, 192, 1, 128, 0, 0, 255, 127, 126, 191, 0, 0, 0, 192, 0, 0, 0, 63, 0, 0, 0, 64, 1, 128, 0, 0, 255, 127, 126, 191, 0, 0, 0, 192, 0, 0, 0, 191, 0, 0, 0, 64, 1, 128, 0, 0, 255, 127, 126, 191, 0, 0, 0, 192, 0, 0, 0, 191, 0, 0, 0, 192, 1, 128, 0, 0, 255, 127, 126, 191, 0, 0, 0, 64, 0, 0, 0, 191, 0, 0, 0, 192, 0, 0, 1, 128, 255, 127, 128, 64, 0, 0, 0, 192, 0, 0, 0, 191, 0, 0, 0, 192, 0, 0, 1, 128, 255, 127, 128, 64, 0, 0, 0, 192, 0, 0, 0, 191, 0, 0, 0, 64, 0, 0, 1, 128, 255, 127, 128, 64, 0, 0, 0, 64, 0, 0, 0, 191, 0, 0, 0, 64, 0, 0, 1, 128, 255, 127, 128, 64, 0, 0, 0, 64, 0, 0, 0, 63, 0, 0, 0, 192, 0, 0, 255, 127, 255, 127, 126, 191, 0, 0, 0, 64, 0, 0, 0, 63, 0, 0, 0, 64, 0, 0, 255, 127, 255, 127, 126, 191, 0, 0, 0, 192, 0, 0, 0, 63, 0, 0, 0, 64, 0, 0, 255, 127, 255, 127, 126, 191, 0, 0, 0, 192, 0, 0, 0, 63, 0, 0, 0, 192, 0, 0, 255, 127, 255, 127, 126, 191, 0, 0, 0, 64, 0, 0, 0, 63, 0, 0, 0, 192, 255, 127, 0, 0, 255, 127, 128, 64, 0, 0, 0, 64, 0, 0, 0, 191, 0, 0, 0, 192, 255, 127, 0, 0, 255, 127, 128, 64, 0, 0, 0, 64, 0, 0, 0, 191, 0, 0, 0, 64, 255, 127, 0, 0, 255, 127, 128, 64, 0, 0, 0, 64, 0, 0, 0, 63, 0, 0, 0, 64, 255, 127, 0, 0, 255, 127, 128, 64, 0, 0, 0, 192, 0, 0, 0, 63, 0, 0, 0, 64, 0, 0, 0, 0, 255, 255, 126, 191, 0, 0, 0, 64, 0, 0, 0, 63, 0, 0, 0, 64, 0, 0, 0, 0, 255, 255, 126, 191, 0, 0, 0, 64, 0, 0, 0, 191, 0, 0, 0, 64, 0, 0, 0, 0, 255, 255, 126, 191, 0, 0, 0, 192, 0, 0, 0, 191, 0, 0, 0, 64, 0, 0, 0, 0, 255, 255, 126, 191)
 }]
 
-[node name="Level" type="Node3D"]
+[node name="Level2" type="Node3D"]
 script = ExtResource("1_c5rs5")
 
 [node name="Player" parent="." instance=ExtResource("3")]
@@ -475,30 +475,10 @@ collision_mask = 2
 mesh = SubResource("684")
 skeleton = NodePath("")
 
-[node name="Enemies" type="Node" parent="."]
+[node name="climbable zone" parent="DynamicObjects" instance=ExtResource("22_xu63l")]
+transform = Transform3D(-0.998051, 0, 0.0624074, 0, 1, 0, -0.0624074, 0, -0.998051, -34.98, 1.01716, 23.8623)
 
-[node name="Bad Guy" parent="Enemies" instance=ExtResource("22_dwtyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.541, 2.36571, -14.5909)
-
-[node name="Bad Guy2" parent="Enemies" instance=ExtResource("22_dwtyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9928, 2.36571, -14.5909)
-
-[node name="Bad Guy3" parent="Enemies" instance=ExtResource("22_dwtyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7443, 2.36571, -10.5336)
-
-[node name="Bad Guy4" parent="Enemies" instance=ExtResource("22_dwtyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.196, 2.36571, -10.5336)
-
-[node name="Bad Guy5" parent="Enemies" instance=ExtResource("22_dwtyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.541, 2.36571, -16.7151)
-
-[node name="Bad Guy6" parent="Enemies" instance=ExtResource("22_dwtyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9928, 2.36571, -16.7151)
-
-[node name="Bad Guy7" parent="Enemies" instance=ExtResource("22_dwtyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7443, 2.36571, -12.6578)
-
-[node name="Bad Guy8" parent="Enemies" instance=ExtResource("22_dwtyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.196, 2.36571, -12.6578)
+[node name="climbable zone2" parent="DynamicObjects" instance=ExtResource("22_xu63l")]
+transform = Transform3D(0.992211, 0, -0.124572, -0.0585135, 0.882816, -0.46606, 0.109974, 0.469718, 0.87594, -34.9847, 4.88504, 19.2143)
 
 [connection signal="velocity_trigger_fired" from="DynamicObjects/VelocityTrigger" to="DynamicObjects/RigidBody Spawner" method="_on_velocity_trigger_velocity_trigger_fired"]

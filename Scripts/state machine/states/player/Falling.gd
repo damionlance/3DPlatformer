@@ -45,6 +45,8 @@ func update(delta):
 			_state.update_state("LedgeGrab")
 			airdrifting = false
 			return
+		wall_collision.wallClimb:
+			_state.update_state("WallClimb")
 	if _state.attempting_throw and _state._jump_state != _state.dive:
 		_state._throw()
 	# Handle animation tree
