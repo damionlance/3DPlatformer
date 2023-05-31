@@ -476,9 +476,12 @@ mesh = SubResource("684")
 skeleton = NodePath("")
 
 [node name="climbable zone" parent="DynamicObjects" instance=ExtResource("22_xu63l")]
-transform = Transform3D(-0.998051, 0, 0.0624074, 0, 1, 0, -0.0624074, 0, -0.998051, -34.98, 1.01716, 23.8623)
+transform = Transform3D(-0.998051, 0, 0.0624074, 0, 1, 0, -0.0624074, 0, -0.998051, -34.98, 2.5131, 23.8623)
 
 [node name="climbable zone2" parent="DynamicObjects" instance=ExtResource("22_xu63l")]
-transform = Transform3D(0.992211, 0, -0.124572, -0.0585135, 0.882816, -0.46606, 0.109974, 0.469718, 0.87594, -34.9847, 4.88504, 19.2143)
+transform = Transform3D(-0.997678, -0.0680176, -0.00358158, -0.0585135, 0.882816, -0.46606, 0.0348624, -0.464767, -0.884746, -34.9847, 5.20665, 23.854)
+
+[node name="climbable zone2" parent="DynamicObjects/climbable zone2" instance=ExtResource("22_xu63l")]
+transform = Transform3D(0.0869795, 0.974798, -0.205442, -0.996127, 0.0878015, -0.00512794, 0.0130389, 0.205092, 0.978657, 0.897076, 3.87106, -0.0233936)
 
 [connection signal="velocity_trigger_fired" from="DynamicObjects/VelocityTrigger" to="DynamicObjects/RigidBody Spawner" method="_on_velocity_trigger_velocity_trigger_fired"]

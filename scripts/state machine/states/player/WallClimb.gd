@@ -19,8 +19,6 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	
-	
 	# Handle state logic
 	if _player.is_on_floor():
 		_state.update_state("Running")
@@ -36,19 +34,33 @@ func update(delta):
 		_state._jump_state = _state.jump
 		_state.update_state("Falling")
 	# Handle animation tree
-	
 	# Process movements
 	var input = Vector3(_state.camera_relative_movement.x, 0, _state.camera_relative_movement.z)
+	
 	var direction = input.signed_angle_to(_state.snap_vector, Vector3.UP)
 	
-	var wall_vector
+	var wall_vector = Vector3.ZERO
+	var lean_vector = Vector3.ZERO
+	var distance_to_wall = Vector3.ZERO
 	if _state._raycast_middle.get_collision_normal() != Vector3.UP:
 		wall_vector = _state._raycast_middle.get_collision_normal()
-	elif _state._raycast_right.get_collision_normal() != Vector3.UP:
-		wall_vector = _state._raycast_right.get_collision_normal()
-	else:
-		wall_vector = _state._raycast_left.get_collision_normal()
-		
+		distance_to_wall = _state._raycast_middle.get_collision_point() - _state._raycast_middle.global_position
+		lean_vector += wall_vector
+	if _state._raycast_right.get_collision_normal() != Vector3.UP:
+		if wall_vector != Vector3.ZERO and _controller.movement_direction.y > 0:
+			wall_vector = _state._raycast_right.get_collision_normal()
+			distance_to_wall = _state._raycast_right.get_collision_point() - _state._raycast_right.global_position
+		lean_vector += wall_vector
+	if _state._raycast_left.get_collision_normal() != Vector3.UP:
+		if wall_vector != Vector3.ZERO and _controller.movement_direction.y > 0:
+			wall_vector = _state._raycast_left.get_collision_normal()
+			distance_to_wall = _state._raycast_left.get_collision_point() - _state._raycast_left.global_position
+		lean_vector += wall_vector
+	if wall_vector == Vector3.ZERO:
+		return
+	
+	lean_vector = lean_vector.normalized()
+	
 	var wall_sideways = wall_vector.cross(Vector3.UP)
 	var wall_up = wall_vector.cross(wall_sideways)
 	
@@ -63,6 +75,7 @@ func update(delta):
 	_state.current_speed = 1
 	_state.move_direction -= wall_up * _state._controller.movement_direction.y
 	_state.move_direction += wall_sideways * _state._controller.movement_direction.x
+	_state.move_direction += distance_to_wall
 	
 	# Process Physics
 	_state.velocity = _state.calculate_velocity(0, delta)
@@ -74,7 +87,12 @@ func reset():
 	_state.velocity = Vector3(0, _state.velocity.y, 0)
 	_state.move_direction = Vector3.ZERO
 	_state.current_speed = 0
-	_state.snap_vector = -_state._raycast_middle.get_collision_normal()
+	if _state._raycast_middle.get_collision_normal() != Vector3.UP or _state._raycast_middle.get_collision_normal() != Vector3.ZERO:
+		_state.snap_vector = -_state._raycast_middle.get_collision_normal()
+	elif _state._raycast_right.get_collision_normal() != Vector3.UP or _state._raycast_right.get_collision_normal() != Vector3.ZERO:
+		_state.snap_vector = -_state._raycast_right.get_collision_normal()
+	elif _state._raycast_left.get_collision_normal() != Vector3.UP or _state._raycast_left.get_collision_normal() != Vector3.ZERO:
+		_state.snap_vector = -_state._raycast_left.get_collision_normal()
 	_state.snap_vector.y = 0
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.snap_vector, Vector3.UP)
 	if _player.anim_tree != null:

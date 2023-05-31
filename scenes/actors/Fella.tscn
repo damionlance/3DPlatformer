@@ -3601,29 +3601,6 @@ script = ExtResource("9")
 
 [node name="Wall Slide" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource("1")
-jump_height = null
-jump_time_to_peak = null
-jump_time_to_descent = null
-jump2_height = null
-jump2_time_to_peak = null
-jump2_time_to_descent = null
-jump3_height = null
-jump3_time_to_peak = null
-jump3_time_to_descent = null
-spin_jump_height = null
-spin_jump_time_to_peak = null
-spin_jump_time_to_descent = null
-side_jump_height = null
-side_jump_time_to_peak = null
-side_jump_time_to_descent = null
-dive_jump_height = null
-dive_jump_time_to_peak = null
-dive_jump_time_to_descent = null
-rollout_jump_height = null
-rollout_jump_time_to_peak = null
-rollout_jump_time_to_descent = null
-air_friction = null
-air_acceleration = null
 
 [node name="SwingFromFriendo" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource("8")
@@ -3683,15 +3660,15 @@ shape = SubResource("SphereShape3D_l8mw7")
 
 [node name="WallRayRight" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.82402, 0)
-target_position = Vector3(0, 0, -0.75)
+target_position = Vector3(0, 0, -1)
 
 [node name="WallRayLeft" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.82402, 0)
-target_position = Vector3(0, 0, -0.75)
+target_position = Vector3(0, 0, -1)
 
 [node name="WallRayMiddle" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-target_position = Vector3(0, 0, -0.75)
+target_position = Vector3(0, 0, -1)
 
 [node name="ShadowRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211281, 0)
