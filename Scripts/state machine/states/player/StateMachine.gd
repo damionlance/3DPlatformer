@@ -74,6 +74,7 @@ var spin_timer := 0
 var spin_buffer := 30
 var is_on_floor := false
 var attempting_throw := false
+var restricted_movement := false
 
 var camera_relative_movement := Vector3.ZERO
 var move_direction := Vector3.ZERO
@@ -96,6 +97,7 @@ var ground_friction := 1.0
 @onready var _controller = $"../Controller"
 @onready var _skeleton = $"../lilfella/Armature/Skeleton3D"
 @onready var _softspot_detector = $"../SoftSpot Detector"
+@onready var _holdable_object_node = $"../HoldableObjectNode"
 
 #signals
 signal throw_fella
@@ -187,7 +189,7 @@ func input_handling():
 		_jump_buffer += 1
 	else: 
 		attempting_jump = false
-	if _controller._dive_state == _controller.dive_pressed and allow_dive:
+	if _controller._dive_state == _controller.dive_pressed and allow_dive and not restricted_movement:
 		attempting_dive = true
 	else: 
 		attempting_dive = false
@@ -214,10 +216,14 @@ func calculate_velocity(gravity: float, delta) -> Vector3:
 	if slope_vector.length() > 1:
 		slope_vector = slope_vector.normalized()
 	var adjusted_move_direction = move_direction + slope_vector
+	
+	if adjusted_move_direction.length() > 1:
+		adjusted_move_direction = adjusted_move_direction.normalized()
 	if horizontal_velocity.length() != 0:
 		new_velocity = horizontal_velocity.lerp(adjusted_move_direction * current_speed, ground_friction)
 	else:
 		new_velocity = move_direction * current_speed
+	
 	if gravity != 0:
 		var temp =  velocity.y + gravity * delta
 		new_velocity.y = temp if temp > terminal_velocity else terminal_velocity
@@ -233,8 +239,14 @@ func grapple_velocity(gravity: float, delta) -> Vector3:
 
 func _throw():
 	_player.player_anim_tree.set("parameters/Run/OneShot/active", true)
-	emit_signal("throw_fella")
-
+	if _holdable_object_node.current_object == null:
+		emit_signal("throw_fella")
+	else:
+		var temp_object = _holdable_object_node.current_object
+		temp_object.velocity = velocity * 2
+		temp_object.velocity.y += 15
+		temp_object._throw(temp_object.velocity)
+		_holdable_object_node.drop_object()
 
 func _on_Friendo_hit_wall(friendo_position):
 	grapple_position = friendo_position

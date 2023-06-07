@@ -22,6 +22,7 @@ var _current_state = null
 
 var is_on_floor := false
 
+
 var move_direction := Vector3.ZERO
 var current_dir := Vector3.ZERO
 var desired_speed = 0.0
@@ -49,6 +50,8 @@ var _raycast_middle_default
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	gravity = 50
+	
 	_raycast_middle_default = _raycast_middle.target_position
 	if "spawn_point" in _blob.get_parent():
 		home = _blob.get_parent()
@@ -57,6 +60,10 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
+	if get_parent().get_parent().name == "HoldableObjectNode":
+		update_state("Idle")
+		return
+	
 	if _current_state == null:
 		update_state("Idle")
 	_current_state.update(delta)
@@ -69,7 +76,11 @@ func update_state( new_state ):
 	_current_state.reset()
 
 func calculate_velocity(delta) -> Vector3:
-	velocity = move_direction * current_speed
+	var temp = velocity.y
+	velocity.y = 0
+	if _blob.is_on_floor():
+		velocity = velocity.lerp(move_direction * current_speed, 0.15)
+	velocity.y = temp
 	velocity.y -= gravity * delta
 	return velocity
 

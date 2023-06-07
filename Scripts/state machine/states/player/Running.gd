@@ -27,20 +27,29 @@ func _ready():
 
 func update(delta):
 	# Handle all states
-	if _state._controller.spin_entered:
-		_state.update_state("Floor Spin")
-		return
-	if _state._controller.pivot_entered and can_slide:
-		_state.update_state("FloorSlide")
-		return
-	if _state.attempting_dive:
-		if _player.grappling:
-			_state.update_state("ReelIn")
-		else:
-			_state._jump_state = _state.dive
-			_state.update_state("Jump")
-		return
+	if not _state.restricted_movement:
+		if _state._controller.spin_entered:
+			_state.update_state("Floor Spin")
+			return
+		if _state._controller.pivot_entered and can_slide:
+			_state.update_state("FloorSlide")
+			return
+		if _state.attempting_dive:
+			if _player.grappling:
+				_state.update_state("ReelIn")
+			else:
+				_state._jump_state = _state.dive
+				_state.update_state("Jump")
+			return
 	if _state.attempting_jump and not _state.can_interact:
+		
+		if _state.current_speed < 5:
+			for body in get_tree().get_nodes_in_group("holdable"):
+				if (body.global_position - _player.global_position).length() < 2.5:
+					if previous_move_direction.dot((body.global_position - _player.global_position)) > .5:
+						_state._holdable_object_node.hold_object(body)
+						return
+		
 		if _state.just_landed and _state.current_jump < 3:
 			_state.current_jump += 1
 		else:

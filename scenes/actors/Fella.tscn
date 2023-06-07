@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://385mcfonrl8g"]
+[gd_scene load_steps=117 format=3 uid="uid://385mcfonrl8g"]
 
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Wall Slide.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Floor Spin.gd" id="2"]
@@ -35,6 +35,7 @@
 [ext_resource type="Material" uid="uid://ctf4mt1s2v78u" path="res://assets/models/animations/Material.material" id="38_0y0om"]
 [ext_resource type="PackedScene" uid="uid://b307pwugmfuji" path="res://scenes/ui/collectible_counter.tscn" id="38_jgc81"]
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/ThrowOut.gd" id="39"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/HoldableObjectNode.gd" id="39_islh0"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/LedgeGrab.gd" id="40"]
 [ext_resource type="Script" path="res://scripts/tools/HazardDetector.gd" id="41_2dmwm"]
 [ext_resource type="Script" path="res://scripts/tools/ParticleHandler.gd" id="42"]
@@ -3979,6 +3980,11 @@ mesh = SubResource("ArrayMesh_lsxjl")
 skin = SubResource("Skin_dhheg")
 surface_material_override/0 = SubResource("ShaderMaterial_judrs")
 
+[node name="RightHand" type="BoneAttachment3D" parent="lilfella/Armature/Skeleton3D"]
+transform = Transform3D(-1.08978e-07, 0.958647, 0.284598, 3.63035e-07, -0.284598, 0.958647, 1, 2.30935e-07, -3.14575e-07, 0.765936, 0.341674, 1.37836e-07)
+bone_name = "Glove.R"
+bone_idx = 10
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="lilfella"]
 libraries = {
 "": SubResource("AnimationLibrary_4o14t")
@@ -4044,6 +4050,10 @@ size_flags_horizontal = 8
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+
+[node name="HoldableObjectNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61372, -1.03171)
+script = ExtResource("39_islh0")
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]

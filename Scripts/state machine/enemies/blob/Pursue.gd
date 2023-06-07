@@ -46,6 +46,8 @@ func update(delta):
 
 
 func reset():
+	if not _state._blob.is_in_group("causes_damage"):
+		_state._blob.add_to_group("causes_damage")
 	_state._raycast_middle.set_collision_mask_value(4, false)
 	_state._animation_tree["parameters/Idling/blend_amount"] = 1
 	_state._animation_tree["parameters/Running/blend_amount"] = 0

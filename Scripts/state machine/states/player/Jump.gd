@@ -22,27 +22,27 @@ func update(delta):
 			_state.update_state("Falling")
 		else:
 			return
-	
-	if _state.attempting_dive and _state._jump_state != _state.dive:
-		if _state._controller.input_strength > .2:
-			_state._jump_state = _state.dive
-			_state.update_state("Jump")
-		else:
-			_state._jump_state = _state.ground_pound
-			_state.update_state("Jump")
-		return
-	match wall_collision_check():
-		wall_collision.wallSlide:
-			_state.update_state("WallSlide")
+	if not _state.restricted_movement:
+		if _state.attempting_dive and _state._jump_state != _state.dive:
+			if _state._controller.input_strength > .2:
+				_state._jump_state = _state.dive
+				_state.update_state("Jump")
+			else:
+				_state._jump_state = _state.ground_pound
+				_state.update_state("Jump")
 			return
-		wall_collision.ledgeGrab:
-			_state.update_state("LedgeGrab")
-			return
-	if _state._jump_state == _state.ground_pound:
-		if not _player.player_anim.is_playing():
-			_state.update_state("Falling")
-		else:
-			return
+		match wall_collision_check():
+			wall_collision.wallSlide:
+				_state.update_state("WallSlide")
+				return
+			wall_collision.ledgeGrab:
+				_state.update_state("LedgeGrab")
+				return
+		if _state._jump_state == _state.ground_pound:
+			if not _player.player_anim.is_playing():
+				_state.update_state("Falling")
+			else:
+				return
 	if _state._controller._jump_state == _state._controller.jump_released and shorthop_timer == shorthop_buffer:
 		_state.velocity.y *= .6
 		_state.update_state("Falling")

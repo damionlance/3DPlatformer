@@ -481,27 +481,6 @@ skeleton = NodePath("")
 [node name="Bad Guy" parent="Enemies" instance=ExtResource("22_dwtyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.541, 2.36571, -14.5909)
 
-[node name="Bad Guy2" parent="Enemies" instance=ExtResource("22_dwtyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9928, 2.36571, -14.5909)
-
-[node name="Bad Guy3" parent="Enemies" instance=ExtResource("22_dwtyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7443, 2.36571, -10.5336)
-
-[node name="Bad Guy4" parent="Enemies" instance=ExtResource("22_dwtyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.196, 2.36571, -10.5336)
-
-[node name="Bad Guy5" parent="Enemies" instance=ExtResource("22_dwtyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.541, 2.36571, -16.7151)
-
-[node name="Bad Guy6" parent="Enemies" instance=ExtResource("22_dwtyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9928, 2.36571, -16.7151)
-
-[node name="Bad Guy7" parent="Enemies" instance=ExtResource("22_dwtyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7443, 2.36571, -12.6578)
-
-[node name="Bad Guy8" parent="Enemies" instance=ExtResource("22_dwtyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.196, 2.36571, -12.6578)
-
 [node name="SpinButton" parent="." instance=ExtResource("23_n240k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.4525, 0.999978, -54.3725)
 
