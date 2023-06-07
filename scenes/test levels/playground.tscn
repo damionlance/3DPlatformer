@@ -1,27 +1,28 @@
-[gd_scene load_steps=55 format=3 uid="uid://d2rqv1fspr6ke"]
+[gd_scene load_steps=56 format=3 uid="uid://d2rqv1fspr6ke"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_c5rs5"]
 [ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="3"]
-[ext_resource type="Texture2D" uid="uid://rfx2cph0wrjp" path="res://assets/textures/playground/white.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://35ianqndvp58" path="res://assets/textures/playground/whitex.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://1oiux20p0jod" path="res://assets/textures/playground/white.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://co7kl4bkcra5x" path="res://assets/textures/playground/whitex.png" id="5"]
 [ext_resource type="Script" path="res://scripts/tools/RigidBody Spawner.gd" id="5_wocxe"]
-[ext_resource type="Texture2D" uid="uid://dj0md0gcp7mcp" path="res://assets/textures/playground/white8.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://clqodp15c1ly0" path="res://assets/textures/playground/white8.png" id="6"]
 [ext_resource type="Script" path="res://scripts/tools/VelocityTrigger.gd" id="6_txdej"]
-[ext_resource type="Texture2D" uid="uid://cy2gll58vq53o" path="res://assets/textures/playground/white1.png" id="7"]
-[ext_resource type="Texture2D" uid="uid://ggnwv7knhiy7" path="res://assets/textures/playground/white4.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://bugvwxpduf1k0" path="res://assets/textures/playground/white2.png" id="9"]
-[ext_resource type="Texture2D" uid="uid://cc36ylosxxf1p" path="res://assets/textures/playground/black.png" id="10"]
-[ext_resource type="Texture2D" uid="uid://oo7mdxdnxwub" path="res://assets/textures/playground/white6.png" id="11"]
-[ext_resource type="Texture2D" uid="uid://dj3std3afl6po" path="res://assets/textures/playground/white7.png" id="12"]
-[ext_resource type="Texture2D" uid="uid://b1rmgyyk2tmvu" path="res://assets/textures/playground/white3.png" id="13"]
-[ext_resource type="Texture2D" uid="uid://dptw3id1yuxpx" path="res://assets/textures/playground/white0.png" id="14"]
-[ext_resource type="Texture2D" uid="uid://hqin3xa2q80f" path="res://assets/textures/playground/white9.png" id="15"]
-[ext_resource type="Texture2D" uid="uid://bxvrc31vpsy2q" path="res://assets/textures/playground/white5.png" id="16"]
-[ext_resource type="Texture2D" uid="uid://dp1upg3dxjolf" path="res://assets/textures/playground/bars.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://bx0anaayvu1yf" path="res://assets/textures/playground/white1.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://vjwv5rpiuon2" path="res://assets/textures/playground/white4.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://badg30f44803e" path="res://assets/textures/playground/white2.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://dr1axqqp0vcc3" path="res://assets/textures/playground/black.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://dk0ce4s76npss" path="res://assets/textures/playground/white6.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://cdavic52urihh" path="res://assets/textures/playground/white7.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://vvfu5tjy0ioi" path="res://assets/textures/playground/white3.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://ddv1yyscrv4vp" path="res://assets/textures/playground/white0.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://bpdmu3e5i6nbc" path="res://assets/textures/playground/white9.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://dyccbudnr51hn" path="res://assets/textures/playground/white5.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://d0iqk6rgf155" path="res://assets/textures/playground/bars.png" id="17"]
 [ext_resource type="Script" path="res://scripts/tools/UnstablePlatform.gd" id="18"]
 [ext_resource type="Script" path="res://scripts/tools/RotatingPlatform.gd" id="18_ii47e"]
 [ext_resource type="Script" path="res://scripts/tools/GroundProperties.gd" id="20_jhsxj"]
 [ext_resource type="PackedScene" uid="uid://cxvv46b21b2o0" path="res://scenes/enemies/blob.tscn" id="22_dwtyh"]
+[ext_resource type="PackedScene" uid="uid://ba1v72qms0tr6" path="res://scenes/tools/Interactive Objects/spin_button.tscn" id="23_n240k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5naoj"]
 albedo_texture = ExtResource("5")
@@ -500,5 +501,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7443, 2.36571, -12.6578)
 
 [node name="Bad Guy8" parent="Enemies" instance=ExtResource("22_dwtyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.196, 2.36571, -12.6578)
+
+[node name="SpinButton" parent="." instance=ExtResource("23_n240k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.4525, 0.999978, -54.3725)
 
 [connection signal="velocity_trigger_fired" from="DynamicObjects/VelocityTrigger" to="DynamicObjects/RigidBody Spawner" method="_on_velocity_trigger_velocity_trigger_fired"]

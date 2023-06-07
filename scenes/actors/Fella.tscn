@@ -3600,29 +3600,6 @@ script = ExtResource("9")
 
 [node name="Wall Slide" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource("1")
-jump_height = null
-jump_time_to_peak = null
-jump_time_to_descent = null
-jump2_height = null
-jump2_time_to_peak = null
-jump2_time_to_descent = null
-jump3_height = null
-jump3_time_to_peak = null
-jump3_time_to_descent = null
-spin_jump_height = null
-spin_jump_time_to_peak = null
-spin_jump_time_to_descent = null
-side_jump_height = null
-side_jump_time_to_peak = null
-side_jump_time_to_descent = null
-dive_jump_height = null
-dive_jump_time_to_peak = null
-dive_jump_time_to_descent = null
-rollout_jump_height = null
-rollout_jump_time_to_peak = null
-rollout_jump_time_to_descent = null
-air_friction = null
-air_acceleration = null
 
 [node name="SwingFromFriendo" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource("8")
@@ -3641,10 +3618,6 @@ script = ExtResource("14")
 
 [node name="Floor Spin" type="Node" parent="StateMachine/GroundedMovement"]
 script = ExtResource("2")
-floor_acceleration = null
-max_speed = null
-floor_rotation_speed = null
-maximum_lean = null
 
 [node name="Floor Slide" type="Node" parent="StateMachine/GroundedMovement"]
 script = ExtResource("13")
@@ -3673,6 +3646,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.12232, 7.53115)
 current = true
 fov = 80.0
 far = 500.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CameraPivot/SpringArm3D/Camera3D"]
+light_energy = 16.0
+light_indirect_energy = 3.0
+omni_range = 61.2873
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraPivot"]
 shape = SubResource("SphereShape3D_l8mw7")
@@ -3844,7 +3822,7 @@ bones/9/parent = 8
 bones/9/rest = Transform3D(0.991582, -0.129392, 0.00467491, 0.129443, 0.989862, -0.0584536, 0.00293591, 0.0585667, 0.998279, 0, 0.190561, -1.45732e-09)
 bones/9/enabled = true
 bones/9/position = Vector3(0, 0.190561, -1.45732e-09)
-bones/9/rotation = Quaternion(0.0293295, 0.000435855, 0.0648734, 0.997462)
+bones/9/rotation = Quaternion(0.0293295, 0.000435856, 0.0648734, 0.997462)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "Glove.R"
 bones/10/parent = 9
