@@ -15,10 +15,4 @@ transform = Transform3D(0.188382, 0.416478, 0.889415, -0.65145, -0.624718, 0.430
 
 [node name="temple" parent="." instance=ExtResource("3_7675p")]
 
-[node name="Cube007" parent="temple" index="23"]
-visible = false
-
-[node name="ceiling" parent="temple" index="24"]
-visible = false
-
 [editable path="temple"]
