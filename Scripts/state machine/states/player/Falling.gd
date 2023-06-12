@@ -19,24 +19,14 @@ func _ready():
 func update(delta):
 	
 	# Handle state logic
-	if not _state.restricted_movement:
-		if _state.attempting_dive and not (_state._jump_state == _state.dive or _state._jump_state == _state.rollout or _state._jump_state == _state.ground_pound):
-			if _state._controller.input_strength > .2:
-				_state._jump_state = _state.dive
-				_state.update_state("Jump")
-			else:
-				_state._jump_state = _state.ground_pound
-				_state.update_state("Jump")
-			return
-		match wall_collision_check():
-			wall_collision.wallSlide:
-				_state.update_state("WallSlide")
-				airdrifting = false
-				return
-			wall_collision.ledgeGrab:
-				_state.update_state("LedgeGrab")
-				airdrifting = false
-				return
+	if _state.attempting_dive and not (_state._jump_state == _state.dive or _state._jump_state == _state.rollout or _state._jump_state == _state.ground_pound):
+		if _state._controller.input_strength > .2:
+			_state._jump_state = _state.dive
+			_state.update_state("Jump")
+		else:
+			_state._jump_state = _state.ground_pound
+			_state.update_state("Jump")
+		return
 	if _player.is_on_floor():
 		airdrifting = false
 		_state.snap_vector = Vector3.DOWN
@@ -46,6 +36,17 @@ func update(delta):
 			_state.update_state("Running")
 		_state.just_landed = true
 		return
+	match wall_collision_check():
+		wall_collision.wallSlide:
+			_state.update_state("WallSlide")
+			airdrifting = false
+			return
+		wall_collision.ledgeGrab:
+			_state.update_state("LedgeGrab")
+			airdrifting = false
+			return
+		wall_collision.wallClimb:
+			_state.update_state("WallClimb")
 	if _state.attempting_throw and _state._jump_state != _state.dive:
 		_state._throw()
 	# Handle animation tree

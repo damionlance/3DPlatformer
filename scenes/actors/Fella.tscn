@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/state machine/states/player/SwingFromFriendo.gd" id="8"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Falling.gd" id="9"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Jump.gd" id="10"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/WallClimb.gd" id="11_s1m3m"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Floor Slide.gd" id="13"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Dive Floor.gd" id="14"]
 [ext_resource type="Material" uid="uid://bwyf813fo0jxj" path="res://assets/materials/Hat Shader.material" id="15"]
@@ -3611,6 +3612,9 @@ script = ExtResource("37")
 [node name="ReelIn" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource("38")
 
+[node name="WallClimb" type="Node" parent="StateMachine/AerialMovement"]
+script = ExtResource("11_s1m3m")
+
 [node name="GroundedMovement" type="Node" parent="StateMachine"]
 script = ExtResource("20")
 
@@ -3658,15 +3662,15 @@ shape = SubResource("SphereShape3D_l8mw7")
 
 [node name="WallRayRight" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.82402, 0)
-target_position = Vector3(0, 0, -0.75)
+target_position = Vector3(0, 0, -1)
 
 [node name="WallRayLeft" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.82402, 0)
-target_position = Vector3(0, 0, -0.75)
+target_position = Vector3(0, 0, -1)
 
 [node name="WallRayMiddle" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-target_position = Vector3(0, 0, -0.75)
+target_position = Vector3(0, 0, -1)
 
 [node name="ShadowRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211281, 0)
