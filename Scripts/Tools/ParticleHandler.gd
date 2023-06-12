@@ -1,7 +1,7 @@
 extends Node
 
 #Instantiate particle scenes
-var footstepParticles = preload("res://MiscScenes/ParticleEffects/FootstepParticles.tscn")
+var footstepParticles = preload("res://scenes/particles/FootstepParticles.tscn")
 
 @export var footstep := false
 # Called when the node enters the scene tree for the first time.

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba1v72qms0tr6"]
+
+[ext_resource type="Script" path="res://scripts/tools/SpinButton.gd" id="1_fvh2u"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ovh3q"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 1.0
+radial_segments = 7
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pqx3f"]
+height = 0.219204
+radius = 1.00309
+
+[node name="SpinButton" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_fvh2u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.448906, 0)
+mesh = SubResource("CylinderMesh_ovh3q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0390331, 0)
+shape = SubResource("CylinderShape3D_pqx3f")
+
+[node name="PlayerPositionLock" type="Node3D" parent="."]

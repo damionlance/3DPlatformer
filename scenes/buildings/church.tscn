@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgki17ron1e67"]
+
+[ext_resource type="PackedScene" uid="uid://bg8yjvdwmb1bo" path="res://assets/3Dmodels/Buildings/Church.glb" id="1_fw6dw"]
+[ext_resource type="Material" uid="uid://c4yivfw8qk43u" path="res://assets/materials/grass_roof.tres" id="2_x4ig5"]
+[ext_resource type="Material" path="res://assets/materials/stone.tres" id="3_my5br"]
+[ext_resource type="Material" path="res://assets/materials/plaster_green.tres" id="4_rhgui"]
+
+[node name="Church" instance=ExtResource("1_fw6dw")]
+
+[node name="Church" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_x4ig5")
+surface_material_override/1 = ExtResource("3_my5br")
+surface_material_override/2 = ExtResource("4_rhgui")
