@@ -45,9 +45,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.1159, 12.2419, -21.8317)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27541, 26.2255, -43.9247)
 
 [node name="SpinButton3" parent="dynamicObj/spinbuttons" instance=ExtResource("5_ctflw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.2442, 27.1942, -21.9144)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.2442, 27.2678, -21.9144)
 
 [node name="temple" parent="." instance=ExtResource("4_466pc")]
+
+[node name="walls" parent="temple" index="23"]
+visible = false
 
 [node name="plat1" parent="temple" index="33"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.364, 19.1851, -41.9127)
@@ -76,6 +79,9 @@ script = ExtResource("7_03qiw")
 spinHeight = Vector3(0, 20, 0)
 risingSpeed = 3.0
 fallingSpeed = 1.5
+
+[node name="spinner3" parent="temple" index="43"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.179, 25.848, -21.8729)
 
 [node name="StaticBody3D" parent="temple/door2" index="0"]
 script = ExtResource("6_hnrrd")
