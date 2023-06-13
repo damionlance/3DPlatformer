@@ -106,10 +106,11 @@ func wall_collision_check():
 	if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
 		var bodies = []
 		if _state._raycast_left.is_colliding():
-			bodies.append(_state._raycast_left.get_collider().get_parent().get_parent())
+			bodies.append(_state._raycast_left.get_collider().get_parent())
 		if _state._raycast_right.is_colliding():
-			bodies.append(_state._raycast_right.get_collider().get_parent().get_parent())
+			bodies.append(_state._raycast_right.get_collider().get_parent())
 		
+		print(bodies)
 		if bodies[0].is_in_group("climbable zone") or (bodies.size() == 2 and bodies[1].is_in_group("climbable zone")):
 			return wall_collision.wallClimb
 		

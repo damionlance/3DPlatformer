@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3tj3j7rq6blp"]
-
-[ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_y4x3v"]
-[ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_daplj"]
+[gd_scene load_steps=10 format=3 uid="uid://d3tj3j7rq6blp"]
 [ext_resource type="PackedScene" uid="uid://dy3vthrjfory0" path="res://scenes/tools/Dynamic Objects/moving platform.tscn" id="3_nvps6"]
-[ext_resource type="PackedScene" uid="uid://bnklhtsh2y1pi" path="res://assets/models/levels/Pool/temple.glb" id="4_wg1m8"]
+[ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_8lprn"]
+[ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_cvl01"]
+[ext_resource type="PackedScene" uid="uid://cddmvrxke2acq" path="res://assets/models/levels/Pool/temple.glb" id="4_466pc"]
+[ext_resource type="PackedScene" uid="uid://g6qin1b8kg1e" path="res://scenes/tools/Interactive Objects/button_stand.tscn" id="4_andum"]
+[ext_resource type="PackedScene" uid="uid://ba1v72qms0tr6" path="res://scenes/tools/Interactive Objects/spin_button.tscn" id="5_ctflw"]
+[ext_resource type="Script" path="res://scripts/tools/climbable_zone.gd" id="5_japh5"]
+[ext_resource type="Script" path="res://scripts/level objects/door.gd" id="6_hnrrd"]
+[ext_resource type="Script" path="res://scripts/level objects/spinplat.gd" id="7_03qiw"]
+
 
 [node name="temple" type="Node3D"]
 script = ExtResource("1_y4x3v")
@@ -13,6 +18,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.89987, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.188382, 0.416478, 0.889415, -0.65145, -0.624718, 0.430511, 0.734932, -0.66051, 0.153628, 0, 17.9061, 0)
+
 
 [node name="Dynamic Objects" type="Node" parent="."]
 
@@ -74,4 +80,88 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.42852, 0, 0)
 [node name="slidingplat1" parent="temple" index="29"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85.4221, 16.4093, -14.9974)
 
+[node name="dynamicObj" type="Node3D" parent="."]
+
+
+[node name="vine" type="Area3D" parent="dynamicObj"]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("5_japh5")
+meshes = Array[NodePath]([NodePath("../../temple/vines1"), NodePath("../../temple/vines2"), NodePath("../../temple/vines3"), NodePath("../../temple/vines4"), NodePath("../../temple/vines5"), NodePath("../../temple/vines6"), NodePath("../../temple/vines7"), NodePath("../../temple/vines8"), NodePath("../../temple/vines9"), NodePath("../../temple/vines10"), NodePath("../../temple/vines11"), NodePath("../../temple/vines12"), NodePath("../../temple/vines13")])
+
+[node name="movingPlats" type="Node3D" parent="dynamicObj"]
+
+[node name="buttons" type="Node3D" parent="dynamicObj"]
+
+[node name="ButtonStand2" parent="dynamicObj/buttons" instance=ExtResource("4_andum")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -60.9351, 34.0076, -6.80772)
+
+[node name="ButtonStand1" parent="dynamicObj/buttons" instance=ExtResource("4_andum")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.0888, 1.95965, 16.2231)
+
+[node name="spinbuttons" type="Node3D" parent="dynamicObj"]
+
+[node name="SpinButton" parent="dynamicObj/spinbuttons" instance=ExtResource("5_ctflw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.1159, 12.2419, -21.8317)
+
+[node name="SpinButton2" parent="dynamicObj/spinbuttons" instance=ExtResource("5_ctflw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27541, 26.2255, -43.9247)
+
+[node name="SpinButton3" parent="dynamicObj/spinbuttons" instance=ExtResource("5_ctflw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.2442, 27.2678, -21.9144)
+
+[node name="temple" parent="." instance=ExtResource("4_466pc")]
+
+[node name="walls" parent="temple" index="23"]
+visible = false
+
+[node name="plat1" parent="temple" index="33"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.364, 19.1851, -41.9127)
+script = ExtResource("7_03qiw")
+spinHeight = Vector3(0, 12, 0)
+risingSpeed = 3.0
+fallingSpeed = 1.5
+
+[node name="plat1_2" parent="temple" index="34"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6615, 16.2201, -21.7863)
+script = ExtResource("7_03qiw")
+spinHeight = Vector3(0, 15, 0)
+risingSpeed = 3.0
+fallingSpeed = 1.0
+
+[node name="plat2" parent="temple" index="35"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5627, 14.5214, -36.9703)
+script = ExtResource("7_03qiw")
+spinHeight = Vector3(0, 12, 0)
+risingSpeed = 3.0
+fallingSpeed = 1.5
+
+[node name="plat3" parent="temple" index="36"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.4364, 31.6942, -15.006)
+script = ExtResource("7_03qiw")
+spinHeight = Vector3(0, 20, 0)
+risingSpeed = 3.0
+fallingSpeed = 1.5
+
+[node name="spinner3" parent="temple" index="43"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.179, 25.848, -21.8729)
+
+[node name="StaticBody3D" parent="temple/door2" index="0"]
+script = ExtResource("6_hnrrd")
+
+[node name="StaticBody3D" parent="temple/door1" index="0"]
+script = ExtResource("6_hnrrd")
+
+[connection signal="activate" from="dynamicObj/buttons/ButtonStand2/Area3D" to="temple/door2/StaticBody3D" method="_on_area_3d_activate"]
+[connection signal="activate" from="dynamicObj/buttons/ButtonStand1/Area3D" to="temple/door1/StaticBody3D" method="_on_area_3d_activate"]
+[connection signal="spinning" from="dynamicObj/spinbuttons/SpinButton" to="temple/plat1" method="_on_spin_button_spinning"]
+[connection signal="spinning" from="dynamicObj/spinbuttons/SpinButton" to="temple/plat1_2" method="_on_spin_button_spinning"]
+[connection signal="spinning" from="dynamicObj/spinbuttons/SpinButton2" to="temple/plat3" method="_on_spin_button_spinning"]
+[connection signal="spinning" from="dynamicObj/spinbuttons/SpinButton3" to="temple/plat2" method="_on_spin_button_spinning"]
+
+[editable path="dynamicObj/buttons/ButtonStand2"]
+[editable path="dynamicObj/buttons/ButtonStand1"]
+[editable path="dynamicObj/spinbuttons/SpinButton"]
+[editable path="dynamicObj/spinbuttons/SpinButton2"]
+[editable path="dynamicObj/spinbuttons/SpinButton3"]
 [editable path="temple"]

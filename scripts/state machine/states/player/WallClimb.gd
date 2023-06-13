@@ -29,8 +29,8 @@ func update(delta):
 		_state.current_speed = 10
 		_state.update_state("Jump")
 		return
-	if (_state._raycast_right.is_colliding() and not _state._raycast_left.get_collider().get_parent().get_parent().is_in_group("climbable zone")
-		and _state._raycast_left.is_colliding() and not _state._raycast_right.get_collider().get_parent().get_parent().is_in_group("climbable zone")):
+	if (_state._raycast_right.is_colliding() and not _state._raycast_left.get_collider().get_parent().is_in_group("climbable zone")
+		and _state._raycast_left.is_colliding() and not _state._raycast_right.get_collider().get_parent().is_in_group("climbable zone")):
 		_state._jump_state = _state.jump
 		_state.update_state("Falling")
 	# Handle animation tree
@@ -72,7 +72,7 @@ func update(delta):
 	_state.move_direction = Vector3.ZERO
 	
 	#Handle Up and Down Movement
-	_state.current_speed = 1
+	_state.current_speed = 5
 	_state.move_direction -= wall_up * _state._controller.movement_direction.y
 	_state.move_direction += wall_sideways * _state._controller.movement_direction.x
 	_state.move_direction += distance_to_wall
