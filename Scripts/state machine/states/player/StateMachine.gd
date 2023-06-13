@@ -228,6 +228,7 @@ func calculate_velocity(gravity: float, delta) -> Vector3:
 		var temp =  velocity.y + gravity * delta
 		new_velocity.y = temp if temp > terminal_velocity else terminal_velocity
 	if _player.is_on_floor() and velocity.y <= 0:
+		var bodies = $"../SoftSpot Detector".get_overlapping_bodies()
 		new_velocity.y = -1
 	prev_velocity = velocity
 	return new_velocity

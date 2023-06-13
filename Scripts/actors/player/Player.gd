@@ -46,7 +46,6 @@ func _ready():
 	set_up_direction(Vector3.UP)
 
 func _process(_delta):
-	
 	if _state.level_loaded:
 		if not collectables_loaded:
 			collectables_loaded = true
