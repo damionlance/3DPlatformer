@@ -9,7 +9,7 @@ height = 1.0
 radial_segments = 7
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pqx3f"]
-height = 0.219204
+height = 0.506588
 radius = 1.00309
 
 [node name="SpinButton" type="Area3D"]
