@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3tj3j7rq6blp"]
+[gd_scene load_steps=5 format=3 uid="uid://bjcvvjuxesol"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_8lprn"]
 [ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_cvl01"]
-[ext_resource type="PackedScene" uid="uid://cddmvrxke2acq" path="res://assets/models/levels/Pool/temple.glb" id="3_7675p"]
+[ext_resource type="PackedScene" uid="uid://cddmvrxke2acq" path="res://assets/models/levels/Pool/temple.glb" id="4_466pc"]
+[ext_resource type="Script" path="res://scripts/tools/climbable_zone.gd" id="5_japh5"]
 
 [node name="temple" type="Node3D"]
 script = ExtResource("1_8lprn")
@@ -13,6 +14,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.89987, 0)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.188382, 0.416478, 0.889415, -0.65145, -0.624718, 0.430511, 0.734932, -0.66051, 0.153628, 0, 17.9061, 0)
 
-[node name="temple" parent="." instance=ExtResource("3_7675p")]
+[node name="dynamicObj" type="Node3D" parent="."]
+
+[node name="vine" type="Area3D" parent="dynamicObj"]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("5_japh5")
+meshes = Array[NodePath]([NodePath("../../temple/vines1"), NodePath("../../temple/vines2"), NodePath("../../temple/vines3"), NodePath("../../temple/vines4"), NodePath("../../temple/vines5"), NodePath("../../temple/vines6"), NodePath("../../temple/vines7"), NodePath("../../temple/vines8"), NodePath("../../temple/vines9"), NodePath("../../temple/vines10"), NodePath("../../temple/vines11"), NodePath("../../temple/vines12"), NodePath("../../temple/vines13")])
+
+[node name="movingPlats" type="Node3D" parent="dynamicObj"]
+
+[node name="temple" parent="." instance=ExtResource("4_466pc")]
+
+[node name="walls" parent="temple" index="23"]
+visible = false
 
 [editable path="temple"]
