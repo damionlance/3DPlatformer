@@ -67,7 +67,7 @@ func _on_quit_game_pressed():
 
 func _on_new_game_pressed():
 	Global._delete_save()
-	get_tree().change_scene_to_packed(load("res://scenes/levels/newerPool.tscn"))
+	get_tree().change_scene_to_packed(load("res://scenes/levels/temple.tscn"))
 
 
 func _on_level_picker_pressed():

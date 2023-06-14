@@ -1,13 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://0wkxd4niio1d"]
 
-[ext_resource type="Script" path="res://scripts/gui/main menu/main menu.gd" id="1_mqdcr"]
+[ext_resource type="Script" path="res://scripts/gui/main menu/main menu.gd" id="1_yo8tv"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_mqdcr")
+script = ExtResource("1_yo8tv")
 
 [node name="Title Container" type="MarginContainer" parent="."]
 layout_mode = 0
