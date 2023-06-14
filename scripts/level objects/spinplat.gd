@@ -9,8 +9,9 @@ var localHeight
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	localHeight = global_position - spinHeight
-	global_position = localHeight
+	#localHeight = global_position - spinHeight
+	localHeight = global_position
+	#global_position = localHeight
 
 func _update_localHeight(valueToUpdate):
 	localHeight += valueToUpdate
@@ -18,8 +19,8 @@ func _update_localHeight(valueToUpdate):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Engine.is_editor_hint():
-		global_position = localHeight + spinHeight
-		print(global_position)
+		#global_position = localHeight + spinHeight
+		pass
 
 
 func _on_spin_button_spinning(isSpin):

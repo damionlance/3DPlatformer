@@ -1,45 +1,45 @@
 [gd_scene load_steps=116 format=3 uid="uid://385mcfonrl8g"]
 
-[ext_resource type="Script" path="res://scripts/actors/player/Player.gd" id="1_y24lw"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/StateMachine.gd" id="2_5gxtd"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/aerial_movement.gd" id="3_ew7e5"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/Jump.gd" id="4_ewaep"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/LedgeGrab.gd" id="5_5l88t"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/Falling.gd" id="6_0jkp5"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/Wall Slide.gd" id="7_vfh0h"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/SwingFromFriendo.gd" id="8_udjb3"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/PopperBounce.gd" id="9_hammn"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/ReelIn.gd" id="10_t8akp"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/WallClimb.gd" id="11_27wc1"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/grounded_movement.gd" id="12_ymmnt"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/Dive Floor.gd" id="13_wdrrr"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/Floor Spin.gd" id="14_chnep"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/Floor Slide.gd" id="15_1vuen"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/Running.gd" id="16_v4r7l"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/Damaged.gd" id="17_n2h8w"]
-[ext_resource type="Script" path="res://scripts/state machine/State.gd" id="18_wra1w"]
-[ext_resource type="Script" path="res://scripts/tools/Camera.gd" id="19_la686"]
-[ext_resource type="Script" path="res://scripts/actors/player/shadow.gd" id="20_pr6n6"]
-[ext_resource type="Script" path="res://scripts/actors/player/Friendo.gd" id="21_7ryev"]
-[ext_resource type="Script" path="res://scripts/state machine/states/friendo/FriendoStateMachine.gd" id="22_8546m"]
-[ext_resource type="Script" path="res://scripts/state machine/states/friendo/Idle.gd" id="23_bwh8m"]
-[ext_resource type="Script" path="res://scripts/state machine/states/friendo/Throwing.gd" id="24_cg8k5"]
-[ext_resource type="Script" path="res://scripts/state machine/states/friendo/Grappling.gd" id="25_mcmgd"]
-[ext_resource type="Script" path="res://scripts/state machine/states/friendo/Tossing.gd" id="26_r6qnm"]
-[ext_resource type="Script" path="res://scripts/state machine/states/friendo/StuckToWall.gd" id="27_v0678"]
-[ext_resource type="Script" path="res://scripts/state machine/states/friendo/ThrowOut.gd" id="28_luyis"]
-[ext_resource type="PackedScene" uid="uid://d2m40wko8hma1" path="res://scenes/tools/invertedSphereCollider.tscn" id="29_5wcp3"]
-[ext_resource type="PackedScene" path="res://scenes/tools/Controller.tscn" id="30_w5v08"]
-[ext_resource type="Script" path="res://scripts/tools/ParticleHandler.gd" id="31_cwao7"]
-[ext_resource type="Material" uid="uid://bwyf813fo0jxj" path="res://assets/materials/Hat Shader.material" id="32_uff4h"]
-[ext_resource type="Shader" path="res://assets/shaders/FellaShader.gdshader" id="33_1y4p5"]
-[ext_resource type="Material" uid="uid://bd1koj1ptobgv" path="res://assets/materials/Boot Shader.material" id="34_yhmpm"]
-[ext_resource type="Material" uid="uid://dy55tgyc75v0d" path="res://assets/shaders/visibleThruObjectsJacket.tres" id="35_rh5k1"]
-[ext_resource type="Material" uid="uid://dsvxf85mfnsul" path="res://assets/shaders/VisibleThruObjects.tres" id="36_uvo4r"]
-[ext_resource type="Material" uid="uid://ctf4mt1s2v78u" path="res://assets/models/animations/Material.material" id="37_ryb6f"]
-[ext_resource type="Script" path="res://scripts/tools/HazardDetector.gd" id="38_y1x7w"]
-[ext_resource type="PackedScene" uid="uid://b307pwugmfuji" path="res://scenes/ui/collectible_counter.tscn" id="39_xlsk5"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/HoldableObjectNode.gd" id="40_rvey4"]
+[ext_resource type="Script" path="res://scripts/actors/player/Player.gd" id="1_rg22h"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/StateMachine.gd" id="2_u4w71"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/aerial_movement.gd" id="3_yyi3f"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Jump.gd" id="4_d7bsn"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/LedgeGrab.gd" id="5_4j17h"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Falling.gd" id="6_e5wwp"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Wall Slide.gd" id="7_bpodl"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/SwingFromFriendo.gd" id="8_6tklg"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/PopperBounce.gd" id="9_0ge3d"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/ReelIn.gd" id="10_tvxhv"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/WallClimb.gd" id="11_7qydo"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/grounded_movement.gd" id="12_ldays"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Dive Floor.gd" id="13_860n0"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Floor Spin.gd" id="14_l0xuh"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Floor Slide.gd" id="15_26ti0"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Running.gd" id="16_8hgi3"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Damaged.gd" id="17_ix4te"]
+[ext_resource type="Script" path="res://scripts/state machine/State.gd" id="18_tulto"]
+[ext_resource type="Script" path="res://scripts/tools/Camera.gd" id="19_se8sq"]
+[ext_resource type="Script" path="res://scripts/actors/player/shadow.gd" id="20_ryrbs"]
+[ext_resource type="Script" path="res://scripts/actors/player/Friendo.gd" id="21_l21hx"]
+[ext_resource type="Script" path="res://scripts/state machine/states/friendo/FriendoStateMachine.gd" id="22_h1yd5"]
+[ext_resource type="Script" path="res://scripts/state machine/states/friendo/Idle.gd" id="23_28ejj"]
+[ext_resource type="Script" path="res://scripts/state machine/states/friendo/Throwing.gd" id="24_ksv6y"]
+[ext_resource type="Script" path="res://scripts/state machine/states/friendo/Grappling.gd" id="25_3c8mk"]
+[ext_resource type="Script" path="res://scripts/state machine/states/friendo/Tossing.gd" id="26_fue0v"]
+[ext_resource type="Script" path="res://scripts/state machine/states/friendo/StuckToWall.gd" id="27_2uavo"]
+[ext_resource type="Script" path="res://scripts/state machine/states/friendo/ThrowOut.gd" id="28_8t3s8"]
+[ext_resource type="PackedScene" uid="uid://d2m40wko8hma1" path="res://scenes/tools/invertedSphereCollider.tscn" id="29_oou66"]
+[ext_resource type="PackedScene" path="res://scenes/tools/Controller.tscn" id="30_6cpjk"]
+[ext_resource type="Script" path="res://scripts/tools/ParticleHandler.gd" id="31_y4ya4"]
+[ext_resource type="Material" uid="uid://bwyf813fo0jxj" path="res://assets/materials/Hat Shader.material" id="32_5acnd"]
+[ext_resource type="Shader" path="res://assets/shaders/FellaShader.gdshader" id="33_dm8px"]
+[ext_resource type="Material" uid="uid://bd1koj1ptobgv" path="res://assets/materials/Boot Shader.material" id="34_hripr"]
+[ext_resource type="Material" uid="uid://dy55tgyc75v0d" path="res://assets/shaders/visibleThruObjectsJacket.tres" id="35_yusuq"]
+[ext_resource type="Material" uid="uid://dsvxf85mfnsul" path="res://assets/shaders/VisibleThruObjects.tres" id="36_u0dih"]
+[ext_resource type="Material" uid="uid://ctf4mt1s2v78u" path="res://assets/models/animations/Material.material" id="37_2ewt0"]
+[ext_resource type="Script" path="res://scripts/tools/HazardDetector.gd" id="38_63n1s"]
+[ext_resource type="PackedScene" uid="uid://b307pwugmfuji" path="res://scenes/ui/collectible_counter.tscn" id="39_b1ari"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/HoldableObjectNode.gd" id="40_58sxi"]
 
 [sub_resource type="CapsuleShape3D" id="147"]
 radius = 0.408809
@@ -281,8 +281,8 @@ bind/24/pose = Transform3D(-0.992116, 0.12532, 0, 0, 0, 1, 0.12532, 0.992116, 0,
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gkdnd"]
 render_priority = 0
-next_pass = ExtResource("32_uff4h")
-shader = ExtResource("33_1y4p5")
+next_pass = ExtResource("32_5acnd")
+shader = ExtResource("33_dm8px")
 shader_parameter/height_scale = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptam0"]
@@ -306,8 +306,8 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e60q8"]
 render_priority = 0
-next_pass = ExtResource("34_yhmpm")
-shader = ExtResource("33_1y4p5")
+next_pass = ExtResource("34_hripr")
+shader = ExtResource("33_dm8px")
 shader_parameter/height_scale = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_do37s"]
@@ -393,8 +393,8 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qrc4t"]
 render_priority = 0
-next_pass = ExtResource("37_ryb6f")
-shader = ExtResource("33_1y4p5")
+next_pass = ExtResource("37_2ewt0")
+shader = ExtResource("33_dm8px")
 shader_parameter/height_scale = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ob03"]
@@ -438,8 +438,8 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_judrs"]
 render_priority = 0
-next_pass = ExtResource("32_uff4h")
-shader = ExtResource("33_1y4p5")
+next_pass = ExtResource("32_5acnd")
+shader = ExtResource("33_dm8px")
 shader_parameter/height_scale = 0.5
 
 [sub_resource type="Animation" id="Animation_w1h7x"]
@@ -3574,68 +3574,68 @@ process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0956018, 0)
 collision_layer = 2
 collision_mask = 279
-script = ExtResource("1_y24lw")
+script = ExtResource("1_rg22h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.977835, 0)
 shape = SubResource("147")
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource("2_5gxtd")
+script = ExtResource("2_u4w71")
 
 [node name="AerialMovement" type="Node" parent="StateMachine"]
-script = ExtResource("3_ew7e5")
+script = ExtResource("3_yyi3f")
 
 [node name="Jump" type="Node" parent="StateMachine/AerialMovement"]
-script = ExtResource("4_ewaep")
+script = ExtResource("4_d7bsn")
 ground_pound_finished = true
 
 [node name="LedgeGrab" type="Node" parent="StateMachine/AerialMovement"]
-script = ExtResource("5_5l88t")
+script = ExtResource("5_4j17h")
 
 [node name="Falling" type="Node" parent="StateMachine/AerialMovement"]
-script = ExtResource("6_0jkp5")
+script = ExtResource("6_e5wwp")
 
 [node name="Wall Slide" type="Node" parent="StateMachine/AerialMovement"]
-script = ExtResource("7_vfh0h")
+script = ExtResource("7_bpodl")
 
 [node name="SwingFromFriendo" type="Node" parent="StateMachine/AerialMovement"]
-script = ExtResource("8_udjb3")
+script = ExtResource("8_6tklg")
 
 [node name="PopperBounce" type="Node" parent="StateMachine/AerialMovement"]
-script = ExtResource("9_hammn")
+script = ExtResource("9_0ge3d")
 
 [node name="ReelIn" type="Node" parent="StateMachine/AerialMovement"]
-script = ExtResource("10_t8akp")
+script = ExtResource("10_tvxhv")
 
 [node name="WallClimb" type="Node" parent="StateMachine/AerialMovement"]
-script = ExtResource("11_27wc1")
+script = ExtResource("11_7qydo")
 
 [node name="GroundedMovement" type="Node" parent="StateMachine"]
-script = ExtResource("12_ymmnt")
+script = ExtResource("12_ldays")
 
 [node name="Dive Floor" type="Node" parent="StateMachine/GroundedMovement"]
-script = ExtResource("13_wdrrr")
+script = ExtResource("13_860n0")
 
 [node name="Floor Spin" type="Node" parent="StateMachine/GroundedMovement"]
-script = ExtResource("14_chnep")
+script = ExtResource("14_l0xuh")
 
 [node name="Floor Slide" type="Node" parent="StateMachine/GroundedMovement"]
-script = ExtResource("15_1vuen")
+script = ExtResource("15_26ti0")
 
 [node name="Running" type="Node" parent="StateMachine/GroundedMovement"]
-script = ExtResource("16_v4r7l")
+script = ExtResource("16_8hgi3")
 
 [node name="Damaged" type="Node" parent="StateMachine"]
-script = ExtResource("17_n2h8w")
+script = ExtResource("17_ix4te")
 
 [node name="State" type="Node" parent="StateMachine"]
-script = ExtResource("18_wra1w")
+script = ExtResource("18_tulto")
 
 [node name="CameraPivot" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77038, 0)
 collision_layer = 0
-script = ExtResource("19_la686")
+script = ExtResource("19_se8sq")
 camera_sensitivity = Vector2(2, 2)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
@@ -3672,7 +3672,7 @@ target_position = Vector3(0, 0, -1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211281, 0)
 visible = false
 target_position = Vector3(0, -20, 0)
-script = ExtResource("20_pr6n6")
+script = ExtResource("20_ryrbs")
 
 [node name="PlayerShadow" type="Decal" parent="ShadowRaycast"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.315203, 0)
@@ -3686,7 +3686,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67483, 0)
 [node name="Friendo" type="CharacterBody3D" parent="FriendoHomingNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.559247, -0.571541, 0.503783)
 collision_layer = 8
-script = ExtResource("21_7ryev")
+script = ExtResource("21_l21hx")
 toss_friendo = true
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="FriendoHomingNode/Friendo"]
@@ -3697,27 +3697,27 @@ material = SubResource("93")
 shape = SubResource("86")
 
 [node name="StateMachine" type="Node" parent="FriendoHomingNode/Friendo"]
-script = ExtResource("22_8546m")
+script = ExtResource("22_h1yd5")
 
 [node name="Idle" type="Node" parent="FriendoHomingNode/Friendo/StateMachine"]
-script = ExtResource("23_bwh8m")
+script = ExtResource("23_28ejj")
 
 [node name="Throwing" type="Node" parent="FriendoHomingNode/Friendo/StateMachine"]
-script = ExtResource("24_cg8k5")
+script = ExtResource("24_ksv6y")
 
 [node name="Grappling" type="Node" parent="FriendoHomingNode/Friendo/StateMachine"]
-script = ExtResource("25_mcmgd")
+script = ExtResource("25_3c8mk")
 
 [node name="Tossing" type="Node" parent="FriendoHomingNode/Friendo/StateMachine"]
-script = ExtResource("26_r6qnm")
+script = ExtResource("26_fue0v")
 
 [node name="StuckToWall" type="Node" parent="FriendoHomingNode/Friendo/StateMachine"]
-script = ExtResource("27_v0678")
+script = ExtResource("27_2uavo")
 
 [node name="ThrowOut" type="Node" parent="FriendoHomingNode/Friendo/StateMachine"]
-script = ExtResource("28_luyis")
+script = ExtResource("28_8t3s8")
 
-[node name="Grapple" parent="FriendoHomingNode/Friendo" instance=ExtResource("29_5wcp3")]
+[node name="Grapple" parent="FriendoHomingNode/Friendo" instance=ExtResource("29_oou66")]
 
 [node name="PopperBounceArea" type="Area3D" parent="FriendoHomingNode/Friendo"]
 collision_layer = 0
@@ -3735,14 +3735,14 @@ parameters/Run/OneShot/active = false
 parameters/Run/OneShot/internal_active = false
 parameters/Run/OneShot/request = 0
 
-[node name="Controller" parent="." instance=ExtResource("30_w5v08")]
+[node name="Controller" parent="." instance=ExtResource("30_6cpjk")]
 
 [node name="GrappleRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 0)
 
 [node name="ParticleHandler" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.294744, 0, -0.290773)
-script = ExtResource("31_cwao7")
+script = ExtResource("31_y4ya4")
 footstep = true
 
 [node name="lilfella" type="Node3D" parent="."]
@@ -3946,19 +3946,19 @@ surface_material_override/0 = SubResource("ShaderMaterial_e60q8")
 gi_mode = 0
 mesh = SubResource("ArrayMesh_w2daf")
 skin = SubResource("Skin_dhheg")
-surface_material_override/0 = ExtResource("35_rh5k1")
+surface_material_override/0 = ExtResource("35_yusuq")
 
 [node name="Gloves" type="MeshInstance3D" parent="lilfella/Armature/Skeleton3D"]
 gi_mode = 0
 mesh = SubResource("ArrayMesh_atogl")
 skin = SubResource("Skin_dhheg")
-surface_material_override/0 = ExtResource("32_uff4h")
+surface_material_override/0 = ExtResource("32_5acnd")
 
 [node name="NeckScarf" type="MeshInstance3D" parent="lilfella/Armature/Skeleton3D"]
 gi_mode = 0
 mesh = SubResource("ArrayMesh_7gtlx")
 skin = SubResource("Skin_dhheg")
-surface_material_override/0 = ExtResource("36_uvo4r")
+surface_material_override/0 = ExtResource("36_u0dih")
 
 [node name="Skull" type="MeshInstance3D" parent="lilfella/Armature/Skeleton3D"]
 gi_mode = 0
@@ -3970,7 +3970,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_qrc4t")
 gi_mode = 0
 mesh = SubResource("ArrayMesh_4mffc")
 skin = SubResource("Skin_dhheg")
-surface_material_override/0 = ExtResource("35_rh5k1")
+surface_material_override/0 = ExtResource("35_yusuq")
 
 [node name="FloppyHat" type="MeshInstance3D" parent="lilfella/Armature/Skeleton3D"]
 transform = Transform3D(1, 0, 2.09548e-09, 0, 1, -6.30334e-08, -1.04774e-09, 2.63335e-08, 1, -2.09548e-09, 1.19209e-07, 2.58806e-08)
@@ -4013,7 +4013,7 @@ shape = SubResource("SphereShape3D_660a3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.993424, 0)
 collision_layer = 0
 collision_mask = 9
-script = ExtResource("38_y1x7w")
+script = ExtResource("38_63n1s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HazardDetector"]
 shape = SubResource("CapsuleShape3D_kjjxv")
@@ -4045,14 +4045,14 @@ layout_direction = 3
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="coin" parent="HUD/MarginContainer/counters" instance=ExtResource("39_xlsk5")]
+[node name="coin" parent="HUD/MarginContainer/counters" instance=ExtResource("39_b1ari")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="HoldableObjectNode" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61372, -1.03171)
-script = ExtResource("40_rvey4")
+script = ExtResource("40_58sxi")
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]
