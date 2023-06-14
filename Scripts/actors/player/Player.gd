@@ -76,8 +76,6 @@ func _physics_process(_delta):
 		set_velocity(velocity)
 		move_and_slide()
 	_state.velocity = velocity
-	
-	#print(velocity)
 
 func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
 	velocity = _velocity

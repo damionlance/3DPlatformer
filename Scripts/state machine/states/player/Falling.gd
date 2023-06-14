@@ -86,7 +86,6 @@ func reset():
 			_player.anim_tree.travel("Fall")
 		_state.spin_jump:
 			_player.anim_tree.travel("Spinning")
-			print("hello1")
 			current_fall_gravity = _spin_fall_gravity
 		_state.side_flip:
 			current_fall_gravity = _side_fall_gravity

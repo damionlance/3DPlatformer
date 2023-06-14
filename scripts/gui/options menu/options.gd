@@ -47,7 +47,6 @@ func _process(delta):
 			input_occurred = true
 		elif Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_down"):
 			get_node(keybinds_tabs[keybinds_tab]+"/ScrollContainer/MarginContainer/Settings").get_child(1).grab_focus()
-			print(get_node(keybinds_tabs[keybinds_tab]+"/ScrollContainer/MarginContainer/Settings").get_child(1).name)
 		if input_occurred:
 			keybinds_tab = 1 - keybinds_tab
 			$"MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer".current_tab = keybinds_tab
@@ -58,7 +57,6 @@ func apply_settings():
 	Global.apply_settings()
 
 func _on_back_pressed():
-	print(new_settings)
 	if new_settings.size() == 0:
 		get_parent()._back()
 	else:

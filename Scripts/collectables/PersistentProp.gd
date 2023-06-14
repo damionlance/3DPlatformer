@@ -8,7 +8,6 @@ var was_collected := false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if collected and not was_collected:
-		print("Hello")
 		was_collected = true
 		Global.UPDATE_COLLECTIBLES(name, collected)
 	pass

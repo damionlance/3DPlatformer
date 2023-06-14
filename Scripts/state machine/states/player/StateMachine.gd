@@ -154,7 +154,6 @@ func input_handling():
 	forwards *= _controller.movement_direction.y
 	right = _camera.global_transform.basis.x * _controller.movement_direction.x
 	camera_relative_movement = -forwards + -right
-	
 	var resetting_collision = false
 	var jump_released_since_jump = false
 	if _player.is_on_floor() or _player.is_on_wall():

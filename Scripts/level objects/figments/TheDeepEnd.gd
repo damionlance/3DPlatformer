@@ -27,4 +27,3 @@ func _process(delta):
 func _on_fig_frag_body_entered(body):
 	if body.get_name() == "Player":
 		fragmentsCollected += 1
-		print(fragmentsCollected)

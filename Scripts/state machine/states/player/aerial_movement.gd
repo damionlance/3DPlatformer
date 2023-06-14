@@ -110,7 +110,6 @@ func wall_collision_check():
 		if _state._raycast_right.is_colliding():
 			bodies.append(_state._raycast_right.get_collider().get_parent())
 		
-		print(bodies)
 		if bodies[0].is_in_group("climbable zone") or (bodies.size() == 2 and bodies[1].is_in_group("climbable zone")):
 			return wall_collision.wallClimb
 		
@@ -142,7 +141,6 @@ func wall_collision_check():
 		_state._raycast_left.target_position *= -1
 		_state._raycast_right.target_position *= -1
 	
-	#print(_player.velocity)
 	if ledgeGrabHit and not wallHit: return wall_collision.ledgeGrab
 	return wall_collision.noCollision
 
@@ -158,7 +156,6 @@ func standard_aerial_drift():
 		airdrifting = true
 	if _player.is_on_wall_only():
 		var wall_normal = _player.get_last_slide_collision().get_normal()
-		#print("wall normal: ", wall_normal)
 		var cross = wall_normal.cross(Vector3.UP)
 		_state.move_direction = _state.move_direction.project(cross)
 	pass

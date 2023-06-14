@@ -59,7 +59,6 @@ func grounded_movement_processing():
 		if previous_move_direction.length() <= _state.move_direction.length():
 			_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, floor_rotation_speed)
 			_state.current_speed = lerp(float(_state.current_speed), (max_speed * _controller.input_strength), _state.ground_friction)
-	
 	elif _state.current_speed < 1:
 		_state.current_speed = 0
 	else:

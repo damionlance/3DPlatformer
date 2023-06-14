@@ -11,10 +11,6 @@ func _ready():
 	$"MarginContainer/Main Menu/Resume".grab_focus()
 	pass # Replace with function body.
 
-func _process(delta):
-	if $"AnimationPlayer".current_animation == "menu slide out":
-		print($"AnimationPlayer".current_animation_position)
-
 func _on_options_pressed():
 	last_active_menu_nodepath = current_active_menu_nodepath
 	current_active_menu_nodepath = "res://scenes/ui/options.tscn"

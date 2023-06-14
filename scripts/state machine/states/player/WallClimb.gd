@@ -12,34 +12,14 @@ var snapped_to_ledge = false
 
 var height_of_platform := 0
 #onready variables
-
+var wall_vector = Vector3.ZERO
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_state.state_dictionary[_state_name] = self
 	pass # Replace with function body.
 
 func update(delta):
-	# Handle state logic
-	if _player.is_on_floor():
-		_state.update_state("Running")
-		return
-	if _state.attempting_jump:
-		_state._jump_state = _state.jump
-		_state.move_direction = _state.camera_relative_movement
-		_state.current_speed = 10
-		_state.update_state("Jump")
-		return
-	if (_state._raycast_right.is_colliding() and not _state._raycast_left.get_collider().get_parent().is_in_group("climbable zone")
-		and _state._raycast_left.is_colliding() and not _state._raycast_right.get_collider().get_parent().is_in_group("climbable zone")):
-		_state._jump_state = _state.jump
-		_state.update_state("Falling")
-	# Handle animation tree
-	# Process movements
-	var input = Vector3(_state.camera_relative_movement.x, 0, _state.camera_relative_movement.z)
-	
-	var direction = input.signed_angle_to(_state.snap_vector, Vector3.UP)
-	
-	var wall_vector = Vector3.ZERO
+	wall_vector = Vector3.ZERO
 	var lean_vector = Vector3.ZERO
 	var distance_to_wall = Vector3.ZERO
 	if _state._raycast_middle.get_collision_normal() != Vector3.UP:
@@ -58,6 +38,29 @@ func update(delta):
 		lean_vector += wall_vector
 	if wall_vector == Vector3.ZERO:
 		return
+	
+	# Handle state logic
+	if _player.is_on_floor():
+		_state.update_state("Running")
+		return
+	if _state.attempting_jump:
+		_state._jump_state = _state.jump
+		directional_input_handling()
+		_state.current_speed = 10
+		_player.global_position += wall_vector*.5
+		_state.update_state("Jump")
+		return
+	if (_state._raycast_right.is_colliding() and not _state._raycast_left.get_collider().get_parent().is_in_group("climbable zone")
+		and _state._raycast_left.is_colliding() and not _state._raycast_right.get_collider().get_parent().is_in_group("climbable zone")):
+		_state._jump_state = _state.jump
+		_state.update_state("Falling")
+	# Handle animation tree
+	# Process movements
+	var input = Vector3(_state.camera_relative_movement.x, 0, _state.camera_relative_movement.z)
+	
+	var direction = input.signed_angle_to(_state.snap_vector, Vector3.UP)
+	
+	
 	
 	lean_vector = lean_vector.normalized()
 	
@@ -81,6 +84,15 @@ func update(delta):
 	_state.velocity = _state.calculate_velocity(0, delta)
 	
 	pass
+
+func directional_input_handling():
+	var dir = _state.camera_relative_movement.normalized()
+	if _state._controller.input_strength == 0:
+		_state.move_direction = wall_vector
+	elif dir.dot(wall_vector) < 0:
+		_state.move_direction = dir.bounce(wall_vector)
+	else:
+		_state.move_direction = dir
 
 func reset():
 	snapped_to_ledge = false

@@ -7,22 +7,21 @@ var localHeight
 @export var risingSpeed : float
 @export var fallingSpeed : float
 @export var mesh : MeshInstance3D
+@export var reset_position : bool = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	if Engine.is_editor_hint():
 		global_position = mesh.global_position
 	else:
 		mesh.global_position = global_position
-		localHeight = global_position
-
-func _update_localHeight(valueToUpdate):
-	localHeight += valueToUpdate
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Engine.is_editor_hint():
-		mesh.global_position = global_position + spinHeight
+		if reset_position:
+			global_position = mesh.global_position
+		else:
+			mesh.global_position = global_position + spinHeight
 
 
 func _on_spin_button_spinning(isSpin):
