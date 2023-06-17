@@ -29,6 +29,7 @@ func _ready():
 		get_tree().quit()
 	
 	current_level = load(levels[randi()%levels.size()-1])
+	current_level = load("res://scenes/levels/newerPool.tscn")
 	current_level = current_level.instantiate()
 	add_child(current_level)
 	current_level.is_level_preview = true
@@ -41,7 +42,7 @@ func _ready():
 
 func _process(delta):
 	if camera_change_timer.is_stopped():
-		main_menu_cameras[randi()%main_menu_cameras.size()].make_current()
+		#main_menu_cameras[randi()%main_menu_cameras.size()].make_current()
 		camera_change_timer.start()
 
 func _on_options_pressed():

@@ -98,3 +98,14 @@ func _on_collectable_touched(name):
 	if name == "pool coin":
 		return
 	get_node("HUD/MarginContainer/counters/" + name)._enter_screen()
+
+func add_body(body, string):
+	$"HUD/MarginContainer".add_body(body, string)
+	pass
+
+func remove_body(body):
+	$"HUD/MarginContainer".remove_body(body)
+	pass
+
+func activate_dialogue_box(dialogue_path, body):
+	$"HUD/MarginContainer".start_dialogue(dialogue_path, body)

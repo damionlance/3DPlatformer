@@ -41,10 +41,12 @@ func _process(delta):
 		pass
 
 func editor_processes():
+	if not mesh:
+		mesh = get_tree().get_edited_scene_root().get_child(4).find_child(name)
+	else:
+		global_position = mesh.global_position
 	if position_in_path > platform_path.size():
 		position_in_path = 0
-	if mesh != null:
-		global_position = mesh.global_position
 	if platform_path.size() != platform_path_length:
 		setup_array()
 	draw_lines()

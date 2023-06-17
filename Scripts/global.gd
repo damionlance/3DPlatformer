@@ -2,8 +2,12 @@ extends Node
 
 var settings = Dictionary()
 
+var BUTTON_NAMES : Dictionary
+
 var stars = {"Atop the Mountain": false, "Down the Lazy River": false, "Pipes!": false}
 var time_start
+
+var last_input_device := "controller"
 
 var WORLD_COLLECTIBLES : Dictionary
 var has_saved := false
@@ -24,6 +28,7 @@ var right_stick_x_right = InputEventJoypadMotion.new()
 
 var callable
 # Called when the node enters the scene tree for the first time.
+
 func _ready():
 	
 	left_stick_y_down.axis = JOY_AXIS_LEFT_Y
@@ -56,6 +61,8 @@ func _ready():
 		default_settings()
 	load_settings()
 	apply_settings()
+	
+	setup_input_images("Xbox")
 	
 	mutex = Mutex.new()
 	save_semaphore = Semaphore.new()
@@ -312,3 +319,21 @@ func default_settings():
 	settings_file.set_value("Keybinds", "RightStickInvertX", false)
 	
 	settings_file.save("user://settings.cfg")
+
+func setup_input_images(device):
+	var dir = DirAccess.open("res://assets/textures/input prompts")
+	var image_names
+	var apath = "res://assets/textures/input prompts/active input/"
+	match device:
+		"Keyboard":
+			pass
+		"Xbox":
+			var xpath = "res://assets/textures/input prompts/Xbox/"
+			dir.copy(xpath + InputMap.action_get_events("Jump")[1].as_text() + ".png", apath + "Jump.png")
+			dir.copy(xpath + InputMap.action_get_events("Throw")[1].as_text() + ".png", apath + "Throw.png")
+			dir.copy(xpath + InputMap.action_get_events("DiveButton")[1].as_text() + ".png", apath + "Dive.png")
+			dir.copy(xpath + InputMap.action_get_events("Pause")[1].as_text() + ".png", apath + "Pause.png")
+			dir.copy(xpath + InputMap.action_get_events("Place Spawn")[1].as_text() + ".png", apath + "Place Spawn.png")
+			dir.copy(xpath + InputMap.action_get_events("Respawn")[1].as_text() + ".png", apath + "Respawn.png")
+			dir.copy(xpath + InputMap.action_get_events("Camera Mode")[1].as_text() + ".png", apath + "Camera Mode.png")
+	

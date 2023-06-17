@@ -108,7 +108,7 @@ var can_interact := false
 func _ready():
 	respawn_point = preload("res://scenes/tools/Dynamic Objects/respawn_point.tscn").instantiate()
 	add_child(respawn_point)
-	respawn_point.position = Vector3(0,-100, 0)
+	respawn_point.position = Vector3(0,-1000000, 0)
 	level_loaded = false
 	pivot_buffer.resize(pivot_buffer_size)
 	state_dictionary.is_empty()
@@ -120,6 +120,7 @@ func _process(delta):
 	if _current_state == null:
 		_jump_state = jump
 		update_state("Falling")
+	
 	can_interact = false
 	for area in _softspot_detector.get_overlapping_areas():
 		if area.is_in_group("interactable"):
@@ -142,11 +143,10 @@ func input_handling():
 	if Input.is_action_just_pressed("Place Spawn"):
 		respawn_point.global_position = _player.global_position
 	elif Input.is_action_just_pressed("Respawn"):
-		if respawn_point == null:
-			print("No respawn point, maybe make a sound here or smth")
-		else:
-			_player.global_position = respawn_point.global_position + Vector3.UP
-			update_state("Falling")
+		if respawn_point.global_position.y > -100000.0:
+			pass
+			#_player.global_position = respawn_point.global_position + Vector3.UP
+			#update_state("Falling")
 	
 	forwards = _camera.global_transform.basis.z
 	forwards.y = 0

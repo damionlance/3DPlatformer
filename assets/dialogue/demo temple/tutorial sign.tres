@@ -1,0 +1,14 @@
+[gd_resource type="JSON" format=3 uid="uid://dj8o3qmiprqar"]
+
+[resource]
+data = {
+"0": {
+"text": "Hello and welcome to the [color=red]Temple![/color]!"
+},
+"1": {
+"text": "Experiment with the following puzzles to escape!"
+},
+"2": {
+"text": "Find the [color=gold]Three Golden Skulls[/color] to open the final door!"
+}
+}

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3ejfrmj2okk1"]
+
+[ext_resource type="Script" path="res://scripts/level objects/Signpost.gd" id="1_vumex"]
+[ext_resource type="PackedScene" uid="uid://dm5f66gaf8p7t" path="res://assets/models/props/Signpost.glb" id="2_jwpl2"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kqkim"]
+height = 1.05399
+radius = 1.06464
+
+[node name="Signpost" type="Area3D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_vumex")
+dialogue_file = "res://assets/dialogue/demo temple/tutorial sign.tres"
+
+[node name="Signpost" parent="." instance=ExtResource("2_jwpl2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0335585, 0, 0.0813003)
+
+[node name="Detection Zone" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.775668)
+shape = SubResource("CylinderShape3D_kqkim")

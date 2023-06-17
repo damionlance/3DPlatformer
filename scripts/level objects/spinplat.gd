@@ -18,6 +18,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Engine.is_editor_hint():
+		if mesh == null:
+			mesh = get_tree().get_edited_scene_root().get_child(4).find_child(name)
 		if reset_position:
 			global_position = mesh.global_position
 		else:

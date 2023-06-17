@@ -12,14 +12,17 @@ var camera_tracking_position = Vector3.ZERO
 
 var chase_cam = true
 
+var halt_input := false
+
 var match_height
+
+var target_body
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_as_top_level(true)
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	
 	var space_state = get_world_3d().direct_space_state
@@ -47,12 +50,11 @@ func _physics_process(_delta):
 	
 	camera_tracking_position = _parent_position
 	camera_tracking_position.y = previous_camera_height
-	
-	rotation_degrees.x -= Input.get_axis("CameraDown", "CameraUp") * camera_sensitivity.x
-	rotation_degrees.x = clamp(rotation_degrees.x, -80.0, 30.0)
-	rotation_degrees.y -= Input.get_axis("CameraRight", "CameraLeft") * camera_sensitivity.y
-	rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
-	
+	if not halt_input:
+		rotation_degrees.x -= Input.get_axis("CameraDown", "CameraUp") * camera_sensitivity.x
+		rotation_degrees.x = clamp(rotation_degrees.x, -80.0, 30.0)
+		rotation_degrees.y -= Input.get_axis("CameraRight", "CameraLeft") * camera_sensitivity.y
+		rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
 	var camera_velocity = lerp(velocity, get_parent().velocity, .9)
 	camera_velocity += (_parent_position - global_position)*10
 	if abs(height_difference) > 6:
@@ -78,3 +80,6 @@ func _physics_process(_delta):
 	#position = camera_tracking_position
 	
 	pass
+
+func set_target_body(body):
+	target_body = body

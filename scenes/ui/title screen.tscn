@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://ua214ey5it8w"]
 
-[ext_resource type="Script" path="res://scripts/gui/main menu/title screen.gd" id="1_5nqwh"]
-[ext_resource type="PackedScene" uid="uid://brjysk84hvidf" path="res://scenes/ui/menu gradient.tscn" id="2_pswbx"]
-[ext_resource type="PackedScene" uid="uid://0wkxd4niio1d" path="res://scenes/ui/main menu.tscn" id="3_bqfrj"]
-[ext_resource type="Texture2D" uid="uid://bv6ofyevcd2po" path="res://assets/textures/gui/Title Logo.png" id="4_yuwv8"]
+[ext_resource type="Script" path="res://scripts/gui/main menu/title screen.gd" id="1_hbus3"]
+[ext_resource type="PackedScene" uid="uid://brjysk84hvidf" path="res://scenes/ui/menu gradient.tscn" id="2_4mflr"]
+[ext_resource type="PackedScene" uid="uid://0wkxd4niio1d" path="res://scenes/ui/main menu.tscn" id="3_i0nio"]
+[ext_resource type="Texture2D" uid="uid://bv6ofyevcd2po" path="res://assets/textures/gui/Title Logo.png" id="4_x7cbs"]
 
 [node name="Title Screen" type="Control"]
 layout_mode = 3
@@ -12,14 +12,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_5nqwh")
+script = ExtResource("1_hbus3")
 
-[node name="Menu Gradient" parent="." instance=ExtResource("2_pswbx")]
+[node name="Menu Gradient" parent="." instance=ExtResource("2_4mflr")]
 clip_contents = true
 layout_mode = 1
 size_flags_horizontal = 0
 
-[node name="Control" parent="." instance=ExtResource("3_bqfrj")]
+[node name="Control" parent="." instance=ExtResource("3_i0nio")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,7 +40,7 @@ theme_override_constants/margin_top = 20
 
 [node name="TextureRect" type="TextureRect" parent="Control/Title Container" index="0"]
 layout_mode = 2
-texture = ExtResource("4_yuwv8")
+texture = ExtResource("4_x7cbs")
 expand_mode = 3
 
 [node name="MarginContainer" parent="Control" index="1"]

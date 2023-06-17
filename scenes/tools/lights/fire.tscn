@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgpdulba1eqfl"]
+
+[ext_resource type="Script" path="res://scripts/level objects/lights/fire.gd" id="1_muccl"]
+
+[node name="fire" type="OmniLight3D"]
+light_color = Color(1, 0.784314, 0, 1)
+light_size = 1.0
+shadow_enabled = true
+shadow_bias = 1.023
+shadow_opacity = 0.54
+shadow_blur = 5.185
+omni_range = 30.0
+omni_attenuation = 0.34151
+script = ExtResource("1_muccl")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://g6qin1b8kg1e"]
 
-[ext_resource type="Shader" uid="uid://dwypp2sb5dyav" path="res://assets/shaders/buttonStand.tres" id="1_df3eg"]
-[ext_resource type="Shader" uid="uid://1qwnt3tq3g47" path="res://assets/shaders/buttonShader.tres" id="2_lxras"]
-[ext_resource type="Script" path="res://scripts/level objects/button.gd" id="3_1fqnp"]
+[ext_resource type="Shader" uid="uid://dwypp2sb5dyav" path="res://assets/shaders/buttonStand.tres" id="1_afxpj"]
+[ext_resource type="Shader" uid="uid://1qwnt3tq3g47" path="res://assets/shaders/buttonShader.tres" id="2_xpq6e"]
+[ext_resource type="Script" path="res://scripts/level objects/button.gd" id="3_venwo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tcifj"]
 resource_name = "Material.002"
@@ -45,7 +45,7 @@ shadow_mesh = SubResource("ArrayMesh_fxb86")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gn64u"]
 render_priority = 0
-shader = ExtResource("1_df3eg")
+shader = ExtResource("1_afxpj")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7drne"]
 
@@ -79,7 +79,7 @@ shadow_mesh = SubResource("ArrayMesh_8ihy6")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_royb5"]
 render_priority = 0
-shader = ExtResource("2_lxras")
+shader = ExtResource("2_xpq6e")
 shader_parameter/ColorParameter = null
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_njkio"]
@@ -104,8 +104,8 @@ surface_material_override/0 = SubResource("ShaderMaterial_royb5")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 32
-collision_mask = 0
-script = ExtResource("3_1fqnp")
+collision_mask = 2
+script = ExtResource("3_venwo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.752402, 0.122621, 0)
@@ -114,3 +114,6 @@ shape = SubResource("CylinderShape3D_njkio")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00808018, 0.686621, 0.00409079)
 shape = SubResource("BoxShape3D_itrr7")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]
