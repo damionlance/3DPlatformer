@@ -21,7 +21,7 @@ var turning := 0
 var rotation_scale = 1
 var previous_move_direction := Vector3.ZERO
 var strength_of_slope := 0.0
-var maximum_slope := PI/6
+var maximum_slope := deg_to_rad(50)
 
 func look_forward():
 	var normalized_direction = -_state.move_direction.normalized()

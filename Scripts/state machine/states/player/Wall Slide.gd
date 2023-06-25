@@ -34,14 +34,13 @@ func update(delta):
 	if _player.is_on_floor():
 		_state.update_state("Running")
 		return
-	if wall_collision_check() == wall_collision.noCollision:
+	if not _state._raycast_middle.is_colliding():
 		_state._jump_state = _state.jump
 		_state.update_state("Falling")
 		return
 	if wall_collision_check() == wall_collision.wallClimb:
 		_state.update_state("WallClimb")
 		return
-	
 	if wall_bounce_timer < wall_bounce_buffer:
 		if  _state.attempting_jump and _state._controller._jump_state:
 			_state.move_direction = _state.camera_relative_movement.normalized().bounce(surface_normal)

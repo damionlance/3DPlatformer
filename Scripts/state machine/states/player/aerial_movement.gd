@@ -115,7 +115,7 @@ func wall_collision_check():
 			return wall_collision.wallClimb
 		
 		if abs(_state._raycast_left.get_collision_normal().y) <= .1 or abs(_state._raycast_right.get_collision_normal().y) <= .1:
-			if _player.is_on_wall() and _player.velocity.y < 0:
+			if (_player.is_on_wall()) and _player.velocity.y < 0:
 				var prev_horizontal_speed = _player.previous_horizontal_velocity.length()
 				if prev_horizontal_speed > 4 and not _player.grappling:
 					return wall_collision.wallSlide
