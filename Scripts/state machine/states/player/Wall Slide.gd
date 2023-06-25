@@ -34,9 +34,12 @@ func update(delta):
 	if _player.is_on_floor():
 		_state.update_state("Running")
 		return
-	if not _state._raycast_middle.is_colliding():
+	if wall_collision_check() == wall_collision.noCollision:
 		_state._jump_state = _state.jump
 		_state.update_state("Falling")
+		return
+	if wall_collision_check() == wall_collision.wallClimb:
+		_state.update_state("WallClimb")
 		return
 	
 	if wall_bounce_timer < wall_bounce_buffer:

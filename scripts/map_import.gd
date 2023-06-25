@@ -18,6 +18,8 @@ func iterate(node):
 			node = set_up_sliding_platform(node)
 		if "-risingplat" in node.name:
 			set_up_rising_platform(node)
+		if "-fallingplat" in node.name:
+			node = set_up_falling_platform(node)
 		if "-spinbutton" in node.name:
 			node = set_up_spin_button(node)
 		if "-risingdoor" in node.name:
@@ -51,6 +53,10 @@ func set_up_rising_platform(platform):
 	platform.set_script(load("res://scripts/level objects/spinplat.gd"))
 	platform.initial_position = platform.position
 	print(platform.initial_position)
+
+func set_up_falling_platform(node):
+	
+	pass
 
 func set_up_spin_button(button) -> Node:
 	var spin_button = load("res://scenes/tools/Interactive Objects/spin_button.tscn").instantiate()
