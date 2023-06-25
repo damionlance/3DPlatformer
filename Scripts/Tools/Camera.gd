@@ -69,7 +69,10 @@ func _physics_process(_delta):
 		match_height = false
 		previous_camera_height = position.y
 	elif not match_height:
-		camera_velocity.y = 0
+		if is_on_wall():
+			camera_velocity.y = 10
+		else:
+			camera_velocity.y = 0
 	else:
 		previous_camera_height = position.y
 	

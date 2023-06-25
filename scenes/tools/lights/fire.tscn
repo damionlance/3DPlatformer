@@ -1,6 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgpdulba1eqfl"]
+[gd_scene load_steps=9 format=3 uid="uid://bgpdulba1eqfl"]
 
 [ext_resource type="Script" path="res://scripts/level objects/lights/fire.gd" id="1_muccl"]
+
+[sub_resource type="Gradient" id="Gradient_1kj6i"]
+colors = PackedColorArray(1, 0, 0, 1, 0.822767, 0.820695, 1.15514e-06, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3wspp"]
+gradient = SubResource("Gradient_1kj6i")
+
+[sub_resource type="Curve" id="Curve_2qgpc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0274443, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qmgp4"]
+curve = SubResource("Curve_2qgpc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8455v"]
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 2, 0)
+initial_velocity_max = 1.0
+angle_min = -190.5
+angle_max = -190.5
+scale_min = 0.0
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_qmgp4")
+color_ramp = SubResource("GradientTexture1D_3wspp")
+turbulence_enabled = true
+turbulence_noise_scale = 0.13
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wojoe"]
+vertex_color_use_as_albedo = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_byffx"]
+material = SubResource("StandardMaterial3D_wojoe")
 
 [node name="fire" type="OmniLight3D"]
 light_color = Color(1, 0.784314, 0, 1)
@@ -12,3 +50,9 @@ shadow_blur = 5.185
 omni_range = 30.0
 omni_attenuation = 0.34151
 script = ExtResource("1_muccl")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 50
+visibility_aabb = AABB(-1.39955, -1.00001, -1.31372, 2.7276, 2.77992, 2.31594)
+process_material = SubResource("ParticleProcessMaterial_8455v")
+draw_pass_1 = SubResource("QuadMesh_byffx")

@@ -1,12 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3tj3j7rq6blp"]
+[gd_scene load_steps=8 format=3 uid="uid://d3tj3j7rq6blp"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/temple.gd" id="1_sd0wa"]
 [ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_r0hrm"]
-[ext_resource type="PackedScene" uid="uid://dy3vthrjfory0" path="res://scenes/tools/Dynamic Objects/moving platform.tscn" id="3_dxlwt"]
-[ext_resource type="PackedScene" uid="uid://cidp2f3wpxk7c" path="res://scenes/tools/Dynamic Objects/rising_platform.tscn" id="4_3fo1c"]
 [ext_resource type="Script" path="res://scripts/tools/climbable_zone.gd" id="5_wfvvu"]
 [ext_resource type="PackedScene" uid="uid://g6qin1b8kg1e" path="res://scenes/tools/Interactive Objects/button_stand.tscn" id="6_gyy0o"]
-[ext_resource type="PackedScene" uid="uid://ba1v72qms0tr6" path="res://scenes/tools/Interactive Objects/spin_button.tscn" id="7_iuk00"]
 [ext_resource type="PackedScene" uid="uid://bnklhtsh2y1pi" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
 
@@ -18,93 +15,7 @@ ambient_light_energy = 0.9
 script = ExtResource("1_sd0wa")
 
 [node name="Player" parent="." instance=ExtResource("2_r0hrm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.89987, 0)
-
-[node name="Dynamic Objects" type="Node" parent="."]
-
-[node name="Sliding Platform Puzzle" type="Node3D" parent="Dynamic Objects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.5449, 18.1911, 0.181276)
-
-[node name="slidingplat1" parent="Dynamic Objects/Sliding Platform Puzzle" node_paths=PackedStringArray("mesh", "platform_path") instance=ExtResource("3_dxlwt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68, -1.78181, -15.1786)
-mesh = NodePath("../../../temple/slidingplat1")
-platform_path = [NodePath("Point"), NodePath("Point2")]
-speed = 7.0
-
-[node name="Point" type="Node3D" parent="Dynamic Objects/Sliding Platform Puzzle/slidingplat1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.08356, 0, 0)
-
-[node name="Point2" type="Node3D" parent="Dynamic Objects/Sliding Platform Puzzle/slidingplat1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7586, 0, 0)
-
-[node name="slidingplat2" parent="Dynamic Objects/Sliding Platform Puzzle" node_paths=PackedStringArray("mesh", "platform_path") instance=ExtResource("3_dxlwt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68, -1.78181, -8.17865)
-mesh = NodePath("../../../temple/slidingplat2")
-platform_path = [NodePath("Point"), NodePath("Point2")]
-speed = 5.0
-delay_at_points = 0.25
-
-[node name="Point" type="Node3D" parent="Dynamic Objects/Sliding Platform Puzzle/slidingplat2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6739, 0, 0)
-
-[node name="Point2" type="Node3D" parent="Dynamic Objects/Sliding Platform Puzzle/slidingplat2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.26586, 0, 0)
-
-[node name="slidingplat3" parent="Dynamic Objects/Sliding Platform Puzzle" node_paths=PackedStringArray("mesh", "platform_path") instance=ExtResource("3_dxlwt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68, -1.78181, -1.17865)
-mesh = NodePath("../../../temple/slidingplat3")
-platform_path = [NodePath("Point"), NodePath("Point2")]
-speed = 3.0
-position_in_path = 1
-
-[node name="Point" type="Node3D" parent="Dynamic Objects/Sliding Platform Puzzle/slidingplat3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5291, 0, 0)
-
-[node name="Point2" type="Node3D" parent="Dynamic Objects/Sliding Platform Puzzle/slidingplat3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.54759, 0, 0)
-
-[node name="slidingplat4" parent="Dynamic Objects/Sliding Platform Puzzle" node_paths=PackedStringArray("mesh", "platform_path") instance=ExtResource("3_dxlwt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68, -1.78181, 5.82135)
-mesh = NodePath("../../../temple/slidingplat4")
-platform_path = [NodePath("Point"), NodePath("Point2")]
-speed = 5.0
-delay_at_points = 0.5
-
-[node name="Point" type="Node3D" parent="Dynamic Objects/Sliding Platform Puzzle/slidingplat4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0553, 0, 0)
-
-[node name="Point2" type="Node3D" parent="Dynamic Objects/Sliding Platform Puzzle/slidingplat4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.42852, 0, 0)
-
-[node name="Spinning Puzzle" type="Node3D" parent="Dynamic Objects"]
-
-[node name="spinplat1" parent="Dynamic Objects/Spinning Puzzle" node_paths=PackedStringArray("mesh") instance=ExtResource("4_3fo1c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -153.01, 44.8864, -1.81362)
-spinHeight = Vector3(0, 4, 0)
-risingSpeed = 2.0
-fallingSpeed = 0.1
-mesh = NodePath("../../../temple/spinplat1")
-
-[node name="spinplat2" parent="Dynamic Objects/Spinning Puzzle" node_paths=PackedStringArray("mesh") instance=ExtResource("4_3fo1c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.993, 114.886, 27.9867)
-spinHeight = Vector3(0, 9, 0)
-risingSpeed = 2.0
-fallingSpeed = 0.05
-mesh = NodePath("../../../temple/spinplat2")
-
-[node name="spinplat3" parent="Dynamic Objects/Spinning Puzzle" node_paths=PackedStringArray("mesh") instance=ExtResource("4_3fo1c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5811, 117.011, -12.5671)
-spinHeight = Vector3(0, 10, 0)
-risingSpeed = 3.0
-fallingSpeed = 0.1
-mesh = NodePath("../../../temple/spinplat3")
-
-[node name="spinplat4" parent="Dynamic Objects/Spinning Puzzle" node_paths=PackedStringArray("mesh") instance=ExtResource("4_3fo1c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.7309, 213.236, -22.9866)
-spinHeight = Vector3(0, 18, 0)
-risingSpeed = 3.0
-fallingSpeed = 0.1
-mesh = NodePath("../../../temple/spinplat4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.19495, 4.41053, -0.529297)
 
 [node name="dynamicObj" type="Node3D" parent="."]
 
@@ -112,9 +23,7 @@ mesh = NodePath("../../../temple/spinplat4")
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_wfvvu")
-meshes = Array[NodePath]([NodePath("../../temple/vines1"), NodePath("../../temple/vines2"), NodePath("../../temple/vines3"), NodePath("../../temple/vines4"), NodePath("../../temple/vines5"), NodePath("../../temple/vines6"), NodePath("../../temple/vines7"), NodePath("../../temple/vines8"), NodePath("../../temple/vines9"), NodePath("../../temple/vines10"), NodePath("../../temple/vines11"), NodePath("../../temple/vines12"), NodePath("../../temple/vines13")])
-
-[node name="movingPlats" type="Node3D" parent="dynamicObj"]
+meshes = Array[NodePath]([NodePath("../../temple/entry vines 1"), NodePath("../../temple/entry vines 2"), NodePath("../../temple/vines1"), NodePath("../../temple/vines2"), NodePath("../../temple/vines3"), NodePath("../../temple/vines5"), NodePath("../../temple/vines7"), NodePath("../../temple/vines8"), NodePath("../../temple/vines9"), NodePath("../../temple/vines10"), NodePath("../../temple/vines11"), NodePath("../../temple/vines12"), NodePath("../../temple/vines13")])
 
 [node name="buttons" type="Node3D" parent="dynamicObj"]
 
@@ -124,33 +33,47 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -60.93
 [node name="ButtonStand1" parent="dynamicObj/buttons" instance=ExtResource("6_gyy0o")]
 transform = Transform3D(-0.806795, 0, 0.590831, 0, 1, 0, -0.590831, 0, -0.806795, -97.8118, 20.1979, 19.3834)
 
-[node name="spinbuttons" type="Node3D" parent="dynamicObj"]
-
-[node name="SpinButton" parent="dynamicObj/spinbuttons" instance=ExtResource("7_iuk00")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.1159, 12.2419, -21.8317)
-
-[node name="SpinButton2" parent="dynamicObj/spinbuttons" instance=ExtResource("7_iuk00")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27541, 26.2255, -43.9247)
-
-[node name="SpinButton3" parent="dynamicObj/spinbuttons" instance=ExtResource("7_iuk00")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.2442, 27.2678, -21.9144)
-
 [node name="temple" parent="." instance=ExtResource("8_pfxv6")]
 
-[node name="fire" parent="temple/Torch_001" index="3"]
-light_energy = 16.0
+[node name="spinplat1-risingplat" parent="temple" index="41"]
+transform = Transform3D(0.999991, 0, 0.00427604, 0, 1, 0, -0.00427604, 0, 0.999991, -31.364, 20.2, -41.9127)
+button = NodePath("../spin button 1-spinbutton/SpinButton")
+spinHeight = Vector3(0, 9.2, 0)
+risingSpeed = 5.0
+fallingSpeed = 0.25
 
-[node name="spinplat4" parent="temple" index="40"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.7309, 231.236, -22.9866)
+[node name="spinplat3-risingplat" parent="temple" index="42"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 23.57, -34)
+button = NodePath("../spin button 2-spinbutton/SpinButton")
+spinHeight = Vector3(0, 12.57, 0)
+risingSpeed = 5.0
+fallingSpeed = 0.25
 
-[node name="spinplat3" parent="temple" index="51"]
-transform = Transform3D(0.978239, 0, 0.20748, 0, 1, 0, -0.20748, 0, 0.978239, -10.5811, 127.011, -12.5671)
+[node name="spinplat4-risingplat" parent="temple" index="43"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 29.795, -22)
+button = NodePath("../spin button 3-spinbutton/SpinButton")
+spinHeight = Vector3(0, 18.795, 0)
+risingSpeed = 5.0
+fallingSpeed = 0.25
 
-[node name="spinplat2" parent="temple" index="52"]
-transform = Transform3D(-0.699468, 0, -0.714664, 0, 1, 0, 0.714664, 0, -0.699468, -109.993, 123.886, 27.9867)
+[node name="SpinButton" parent="temple/spin button 1-spinbutton" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.998012, -0.063017, 0, 0.063017, 0.998012, 0, 0, 0)
 
-[node name="spinplat1" parent="temple" index="53"]
-transform = Transform3D(-0.189645, 0, -0.981853, 0, 1, 0, 0.981853, 0, -0.189645, -153.01, 48.8864, -1.81362)
+[node name="CollisionShape3D" parent="temple/spin button 2-spinbutton/StaticBody3D" index="0"]
+transform = Transform3D(0.999963, 0, -0.00862182, 0, 1, 0, 0.00862182, 0, 0.999963, 0, 0, 0)
+
+[node name="spinplat2-risingplat" parent="temple" index="47"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 23.45, -22)
+button = NodePath("../spin button 1-spinbutton/SpinButton")
+spinHeight = Vector3(0, 12.45, 0)
+risingSpeed = 5.0
+fallingSpeed = 0.25
+
+[node name="slidingplat2-slidingplat" parent="temple" index="75"]
+speed = 10.0
+
+[node name="slidingplat3-slidingplat" parent="temple" index="76"]
+speed = 7.0
 
 [node name="Signpost" parent="." instance=ExtResource("10_ik8nu")]
 transform = Transform3D(0.139363, 0, 0.990241, 0, 1, 0, -0.990241, 0, 0.139363, -35.1918, 2, -0.113437)
@@ -158,14 +81,11 @@ transform = Transform3D(0.139363, 0, 0.990241, 0, 1, 0, -0.990241, 0, 0.139363, 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanr4")
 
-[connection signal="spinning" from="dynamicObj/spinbuttons/SpinButton" to="Dynamic Objects/Spinning Puzzle/spinplat1" method="_on_spin_button_spinning"]
-[connection signal="spinning" from="dynamicObj/spinbuttons/SpinButton" to="Dynamic Objects/Spinning Puzzle/spinplat2" method="_on_spin_button_spinning"]
-[connection signal="spinning" from="dynamicObj/spinbuttons/SpinButton2" to="Dynamic Objects/Spinning Puzzle/spinplat4" method="_on_spin_button_spinning"]
-[connection signal="spinning" from="dynamicObj/spinbuttons/SpinButton3" to="Dynamic Objects/Spinning Puzzle/spinplat3" method="_on_spin_button_spinning"]
+[connection signal="activate" from="dynamicObj/buttons/ButtonStand2/Area3D" to="temple/door2-risingdoor" method="_on_area_3d_activate"]
+[connection signal="activate" from="dynamicObj/buttons/ButtonStand1/Area3D" to="temple/door1-risingdoor" method="_on_area_3d_activate"]
 
 [editable path="dynamicObj/buttons/ButtonStand2"]
 [editable path="dynamicObj/buttons/ButtonStand1"]
-[editable path="dynamicObj/spinbuttons/SpinButton"]
-[editable path="dynamicObj/spinbuttons/SpinButton2"]
-[editable path="dynamicObj/spinbuttons/SpinButton3"]
 [editable path="temple"]
+[editable path="temple/Torch/1-fire/fire"]
+[editable path="temple/Torch_001/1-fire2/fire"]
