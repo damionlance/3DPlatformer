@@ -81,6 +81,17 @@ transform = Transform3D(0.139363, 0, 0.990241, 0, 1, 0, -0.990241, 0, 0.139363, 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanr4")
 
+[node name="Cinematic Cameras" type="Node" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Cinematic Cameras"]
+transform = Transform3D(-0.811727, -0.285106, 0.509719, 0, 0.872752, 0.488164, -0.584037, 0.396256, -0.708436, -66.7372, 33.9436, -19.8977)
+
+[node name="Camera3D2" type="Camera3D" parent="Cinematic Cameras"]
+transform = Transform3D(0.608917, -0.544419, 0.576912, 0.175847, 0.801841, 0.571077, -0.773497, -0.24629, 0.583989, -62.6095, 39.0638, 12.7572)
+
+[node name="Camera3D3" type="Camera3D" parent="Cinematic Cameras"]
+transform = Transform3D(0.420011, -0.585777, 0.69315, 0.175847, 0.801841, 0.571077, -0.89032, -0.11797, 0.439789, -15.4559, 39.0638, 8.06724)
+
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand2/Area3D" to="temple/door2-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand1/Area3D" to="temple/door1-risingdoor" method="_on_area_3d_activate"]
 

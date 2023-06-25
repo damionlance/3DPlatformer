@@ -50,10 +50,22 @@ func update(delta):
 		_player.global_position += wall_vector*.5
 		_state.update_state("Jump")
 		return
-	if (_state._raycast_right.is_colliding() and not _state._raycast_left.get_collider().get_parent().is_in_group("climbable zone")
-		and _state._raycast_left.is_colliding() and not _state._raycast_right.get_collider().get_parent().is_in_group("climbable zone")):
+	var right_collide = _state._raycast_right.is_colliding()
+	var left_collide = _state._raycast_left.is_colliding()
+	var right_collider = _state._raycast_right.get_collider()
+	var left_collider = _state._raycast_left.get_collider()
+	if right_collider is StaticBody3D:
+		right_collider = right_collider.get_parent().is_in_group("climbable zone")
+	if left_collider is StaticBody3D:
+		left_collider = left_collider.get_parent().is_in_group("climbable zone")
+	if not right_collide and not left_collide:
 		_state._jump_state = _state.jump
 		_state.update_state("Falling")
+	elif right_collider != null and left_collider != null:
+		if (right_collide and not right_collider
+			or left_collide and not left_collider):
+			_state._jump_state = _state.jump
+			_state.update_state("Falling")
 	# Handle animation tree
 	# Process movements
 	var input = Vector3(_state.camera_relative_movement.x, 0, _state.camera_relative_movement.z)
