@@ -94,7 +94,8 @@ enum wall_collision {
 }
 # Helper Functions
 func wall_collision_check():
-	
+	if _state._jump_state == _state.spin_jump:
+		return
 	if _state._jump_state == _state.dive or _player.is_on_floor() or _state.consecutive_stationary_wall_jump == 1:
 		return wall_collision.noCollision
 	var ledgeGrabHit = false
@@ -168,7 +169,7 @@ func spin_jump_drift():
 	_state.move_direction = _state.camera_relative_movement
 	if _state.move_direction != Vector3.ZERO:
 		if _state.current_speed < 5.0:
-			_state.current_speed = lerp(_state.current_speed, 5.0, .15)
+			_state.current_speed = lerp(float(_state.current_speed), 5.0, .15)
 	
 	if _player.is_on_wall():
 		var position = _player.get_last_slide_collision().get_position() - _player.global_position

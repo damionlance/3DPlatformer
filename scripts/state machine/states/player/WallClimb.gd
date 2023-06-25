@@ -89,8 +89,8 @@ func directional_input_handling():
 	var dir = _state.camera_relative_movement.normalized()
 	if _state._controller.input_strength == 0:
 		_state.move_direction = wall_vector
-	elif dir.dot(wall_vector) < 0:
-		_state.move_direction = dir.bounce(wall_vector)
+	#elif dir.dot(wall_vector) < 0:
+	#	_state.move_direction = dir.bounce(wall_vector)
 	else:
 		_state.move_direction = dir
 
