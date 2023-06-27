@@ -3985,7 +3985,7 @@ skin = SubResource("Skin_dhheg")
 surface_material_override/0 = SubResource("ShaderMaterial_judrs")
 
 [node name="RightHand" type="BoneAttachment3D" parent="lilfella/Armature/Skeleton3D"]
-transform = Transform3D(-1.08978e-07, 0.958647, 0.284598, 3.63035e-07, -0.284598, 0.958647, 1, 2.30935e-07, -3.14575e-07, 0.765936, 0.341674, 1.37836e-07)
+transform = Transform3D(-8.16151e-09, 0.958647, 0.284598, 3.61623e-07, -0.284598, 0.958647, 1, 1.19174e-07, -3.34114e-07, 0.765936, 0.341674, 5.30854e-08)
 bone_name = "Glove.R"
 bone_idx = 10
 
