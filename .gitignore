@@ -24,3 +24,4 @@ TestLevels/Maps/
 # Mono-specific ignores
 .mono/
 data_*/
+*.png

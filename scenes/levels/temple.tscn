@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_r0hrm"]
 [ext_resource type="Script" path="res://scripts/tools/climbable_zone.gd" id="5_wfvvu"]
 [ext_resource type="PackedScene" uid="uid://g6qin1b8kg1e" path="res://scenes/tools/Interactive Objects/button_stand.tscn" id="6_gyy0o"]
-[ext_resource type="PackedScene" uid="uid://cddmvrxke2acq" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
+[ext_resource type="PackedScene" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
 
 [sub_resource type="Environment" id="Environment_yanr4"]
@@ -37,28 +37,15 @@ transform = Transform3D(-0.806795, 0, 0.590831, 0, 1, 0, -0.590831, 0, -0.806795
 
 [node name="spinplat1-risingplat" parent="temple" index="57"]
 transform = Transform3D(0.999991, 0, 0.00427604, 0, 1, 0, -0.00427604, 0, 0.999991, -31.364, 11, -41.9127)
-button = NodePath("../spin button 1-spinbutton/SpinButton")
-
-[node name="spinplat3-risingplat" parent="temple" index="58"]
-button = NodePath("../spin button 2-spinbutton/SpinButton")
-
-[node name="spinplat4-risingplat" parent="temple" index="59"]
-button = NodePath("../spin button 3-spinbutton/SpinButton")
 
 [node name="CollisionShape3D" parent="temple/spin button 2-spinbutton/StaticBody3D" index="0"]
 transform = Transform3D(0.999963, 0, -0.00862182, 0, 1, 0, 0.00862182, 0, 0.999963, 0, 0, 0)
-
-[node name="spinplat2-risingplat" parent="temple" index="63"]
-button = NodePath("../spin button 1-spinbutton/SpinButton")
 
 [node name="Signpost" parent="." instance=ExtResource("10_ik8nu")]
 transform = Transform3D(0.139363, 0, 0.990241, 0, 1, 0, -0.990241, 0, 0.139363, -35.1918, 2, -0.113437)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanr4")
-
-[connection signal="activate" from="dynamicObj/buttons/ButtonStand2/Area3D" to="temple/door2-risingdoor" method="_on_area_3d_activate"]
-[connection signal="activate" from="dynamicObj/buttons/ButtonStand1/Area3D" to="temple/door1-risingdoor" method="_on_area_3d_activate"]
 
 [editable path="dynamicObj/buttons/ButtonStand2"]
 [editable path="dynamicObj/buttons/ButtonStand1"]
