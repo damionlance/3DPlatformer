@@ -25,6 +25,10 @@ func iterate(node):
 			node = set_up_spin_button(node)
 		if "-risingdoor" in node.name:
 			node = set_up_rising_door(node)
+		if "-coin" in node.name:
+			set_up_coin(node)
+		if "-levelcoin" in node.name:
+			set_up_level_coin(node)
 		for child in node.get_children():
 			iterate(child)
 
@@ -58,6 +62,18 @@ func set_up_rising_platform(platform):
 func set_up_falling_platform(node):
 	
 	pass
+
+func set_up_coin(node):
+	var new_coin = load("res://scenes/Collectables/Coin.tscn").instantiate()
+	new_coin.reparent(node.get_parent())
+	new_coin.name = "TempleCoin"
+	node.queue_free()
+	
+func set_up_level_coin(node):
+	var new_coin = load("res://scenes/Collectables/PoolCoin.tscn").instantiate()
+	new_coin.reparent(node.get_parent())
+	new_coin.name = "TempleLevelCoin"
+	node.queue_free()
 
 func set_up_spin_button(button) -> Node:
 	var spin_button = load("res://scenes/tools/Interactive Objects/spin_button.tscn").instantiate()
