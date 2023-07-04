@@ -11,6 +11,7 @@ extends CharacterBody3D
 @onready var anim_tree = player_anim_tree["parameters/playback"]
 
 var properties := ["pleasant_smelling", "hydrophobic"]
+var has_fella := false
 
 var snap_vector := Vector3.ZERO
 var inertia := 1
@@ -33,6 +34,10 @@ func _force_reset():
 	get_tree().reload_current_scene()
 
 func _ready():
+	
+	if not has_fella:
+		$FriendoHomingNode.queue_free()
+	
 	for property in properties:
 		add_to_group(property)
 	

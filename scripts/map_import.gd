@@ -60,8 +60,10 @@ func set_up_rising_platform(platform):
 	
 
 func set_up_falling_platform(node):
-	
-	pass
+	var new_plat = load("res://scripts")
+	node.get_parent().add_child(new_plat)
+	new_plat.set_owner(main_scene)
+	node.reparent(new_plat)
 
 func set_up_passthru_walls(node):
 	node.create_convex_collision()
@@ -73,15 +75,15 @@ func set_up_coin(node):
 	new_coin.set_owner(main_scene)
 	new_coin.name = "TempleCoin"
 	new_coin.position = node.position + Vector3.UP
-	node.queue_free()
-	
+	node = new_coin
+
 func set_up_level_coin(node):
 	var new_coin = load("res://scenes/Collectables/Coin.tscn").instantiate()
 	node.get_parent().add_child(new_coin)
 	new_coin.set_owner(main_scene)
 	new_coin.name = "TempleLevelCoin"
 	new_coin.position = node.position + Vector3.UP
-	node.queue_free()
+	node = new_coin
 
 func set_up_spin_button(button) -> Node:
 	var spin_button = load("res://scenes/tools/Interactive Objects/spin_button.tscn").instantiate()
