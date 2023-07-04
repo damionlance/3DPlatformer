@@ -21,7 +21,7 @@ func _ready():
 		collected = Global.WORLD_COLLECTIBLES[name]
 	else:
 		Global.WORLD_COLLECTIBLES[name] = collected
-	if special_coin:
+	if "LevelCoin" in name:
 		collectable_name = "level coin"
 	else:
 		collectable_name = "coin"

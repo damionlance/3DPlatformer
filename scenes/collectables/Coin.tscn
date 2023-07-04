@@ -143,7 +143,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_andm5")
 
 [node name="Coin" type="Area3D" parent="."]
-transform = Transform3D(0.851, 0, 0.525167, 0, 1, 0, -0.525167, 0, 0.851, 0, -0.0351993, 0)
+transform = Transform3D(-0.348274, 0, 0.937393, 0, 1, 0, -0.937393, 0, -0.348274, 0, -0.0773537, 0)
 collision_layer = 2
 collision_mask = 2
 

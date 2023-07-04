@@ -77,7 +77,6 @@ func set_up_level_coin(node):
 	new_coin.set_owner(main_scene)
 	new_coin.name = "TempleLevelCoin"
 	new_coin.position = node.position + Vector3.UP
-	new_coin.special_coin = true
 	node.queue_free()
 
 func set_up_spin_button(button) -> Node:
