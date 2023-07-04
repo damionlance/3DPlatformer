@@ -20,7 +20,7 @@ func iterate(node):
 		if "-risingplat" in node.name:
 			set_up_rising_platform(node)
 		if "-fallingplat" in node.name:
-			node = set_up_falling_platform(node)
+			set_up_falling_platform(node)
 		if "-spinbutton" in node.name:
 			node = set_up_spin_button(node)
 		if "-risingdoor" in node.name:
@@ -60,10 +60,13 @@ func set_up_rising_platform(platform):
 	
 
 func set_up_falling_platform(node):
-	var new_plat = load("res://scripts")
+	var new_plat = load("res://scenes/tools/Dynamic Objects/UnstablePlatform.tscn").instantiate()
 	node.get_parent().add_child(new_plat)
+	new_plat.position = node.position
 	new_plat.set_owner(main_scene)
 	node.reparent(new_plat)
+	node.create_convex_collision()
+	node.get_child(0).set_parent(new_plat)
 
 func set_up_passthru_walls(node):
 	node.create_convex_collision()

@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-@onready var collision_shape = $CollisionShape3D
+@onready var collision_shape
 @onready var timer = $Timer
 @onready var area = $Area3D
 
@@ -21,6 +21,7 @@ enum {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	collision_shape = find_child("CollisionShape3D")
 	self.freeze = true
 	timer.one_shot = true
 	original_position = self.global_position
