@@ -154,8 +154,8 @@ func input_handling():
 	elif Input.is_action_just_pressed("Respawn"):
 		if respawn_point.global_position.y > -100000.0:
 			pass
-			#_player.global_position = respawn_point.global_position + Vector3.UP
-			#update_state("Falling")
+			_player.global_position = respawn_point.global_position + Vector3.UP
+			update_state("Falling")
 	
 	forwards = _camera.global_transform.basis.z
 	forwards.y = 0
