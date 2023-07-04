@@ -21,7 +21,7 @@ var turning := 0
 var rotation_scale = 1
 var previous_move_direction := Vector3.ZERO
 var strength_of_slope := 0.0
-var maximum_slope := PI/6
+var maximum_slope := deg_to_rad(50)
 
 func look_forward():
 	var normalized_direction = -_state.move_direction.normalized()
@@ -60,7 +60,7 @@ func grounded_movement_processing():
 			_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, floor_rotation_speed)
 			_state.current_speed = lerp(float(_state.current_speed), (max_speed * _controller.input_strength), _state.ground_friction)
 	elif _state.current_speed < 1:
-		_state.current_speed = 0
+		_state.current_speed = 0.0
 	else:
 		_state.current_speed *= 1 - _state.ground_friction
 	

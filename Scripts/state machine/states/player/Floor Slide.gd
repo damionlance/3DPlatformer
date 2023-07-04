@@ -37,8 +37,7 @@ func update(delta):
 	pass
 
 func reset():
-	if _player.anim_tree != null:
-		_player.anim_tree.travel("Skid")
+	_state.anim_tree[_state.is_stopping] = true
 	_state.velocity.y = 0
 	_state.move_direction = -(_state.camera_relative_movement)
 	_state.current_speed = max_speed

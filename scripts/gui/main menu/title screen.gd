@@ -29,7 +29,7 @@ func _ready():
 		get_tree().quit()
 	
 	current_level = load(levels[randi()%levels.size()-1])
-	current_level = load("res://scenes/levels/newerPool.tscn")
+	current_level = load("res://scenes/levels/temple.tscn")
 	current_level = current_level.instantiate()
 	add_child(current_level)
 	current_level.is_level_preview = true

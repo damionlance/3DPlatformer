@@ -5,6 +5,7 @@ class_name AerialMovement
 #warning-ignore:unused_private_class_variable
 var backwardsLedgeGrab := false
 
+
 # Aerial Tech Timers
 var shorthop_timer := 0
 var shorthop_buffer := 7
@@ -94,7 +95,8 @@ enum wall_collision {
 }
 # Helper Functions
 func wall_collision_check():
-	
+	if _state._jump_state == _state.spin_jump:
+		return
 	if _state._jump_state == _state.dive or _player.is_on_floor() or _state.consecutive_stationary_wall_jump == 1:
 		return wall_collision.noCollision
 	var ledgeGrabHit = false
@@ -114,7 +116,7 @@ func wall_collision_check():
 			return wall_collision.wallClimb
 		
 		if abs(_state._raycast_left.get_collision_normal().y) <= .1 or abs(_state._raycast_right.get_collision_normal().y) <= .1:
-			if _player.is_on_wall() and _player.velocity.y < 0:
+			if (_player.is_on_wall()) and _player.velocity.y < 0:
 				var prev_horizontal_speed = _player.previous_horizontal_velocity.length()
 				if prev_horizontal_speed > 4 and not _player.grappling:
 					return wall_collision.wallSlide
@@ -168,7 +170,7 @@ func spin_jump_drift():
 	_state.move_direction = _state.camera_relative_movement
 	if _state.move_direction != Vector3.ZERO:
 		if _state.current_speed < 5.0:
-			_state.current_speed = lerp(_state.current_speed, 5.0, .15)
+			_state.current_speed = lerp(float(_state.current_speed), 5.0, .15)
 	
 	if _player.is_on_wall():
 		var position = _player.get_last_slide_collision().get_position() - _player.global_position

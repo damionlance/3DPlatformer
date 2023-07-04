@@ -38,7 +38,7 @@ func update(delta):
 	
 	
 	# Update relevant counters
-	
+	var left_or_right = 0
 	var current_fall_gravity = 0
 	if not snapped_to_ledge:
 		if _state._raycast_left.is_colliding():
@@ -62,10 +62,12 @@ func update(delta):
 			_state.move_direction = _state.snap_vector
 			_state.current_speed = 10
 			_state._jump_state = _state.jump
+			_state.anim_tree["parameters/conditions/ledge hang"] = false
 			_state.update_state("Jump")
 			return
 		elif dot < -.9:
 			_state._jump_state = _state.jump
+			_state.anim_tree["parameters/conditions/ledge hang"] = false
 			_state.update_state("Falling")
 			return
 		else:
@@ -73,6 +75,7 @@ func update(delta):
 			var wall_vector = _state.snap_vector.cross(Vector3.UP)
 			var desired_movement = _state.camera_relative_movement.project(wall_vector)
 			if desired_movement.dot(wall_vector) > 0:
+				left_or_right = 1
 				if _state._raycast_right.is_colliding():
 					_state._raycast_right.position.y += .2
 					_state._raycast_right.force_raycast_update()
@@ -80,6 +83,7 @@ func update(delta):
 						continue_sliding = false
 					_state._raycast_right.position.y -= .2
 			else:
+				left_or_right = -1
 				if _state._raycast_left.is_colliding():
 					_state._raycast_left.position.y += .2
 					_state._raycast_left.force_raycast_update()
@@ -89,6 +93,7 @@ func update(delta):
 			if continue_sliding:
 				_state.move_direction = desired_movement
 				_state.current_speed = 1 * _state._controller.input_strength
+	_state.anim_tree["parameters/ledge hang/blend_position"] = _state.current_speed * left_or_right
 	# Process Physics
 	_state.velocity = _state.calculate_velocity(current_fall_gravity, delta)
 	
@@ -96,13 +101,15 @@ func update(delta):
 
 func reset():
 	snapped_to_ledge = false
+	_state._reset_animation_parameters()
+	_state.anim_tree["parameters/conditions/ledge hang"] = true
 	_state.velocity = Vector3(0, _state.velocity.y, 0)
 	_state.move_direction = Vector3.ZERO
 	_state.current_speed = 0
 	_state.snap_vector = -_state._raycast_middle.get_collision_normal()
 	_state.snap_vector.y = 0
+	if _state.snap_vector == Vector3.ZERO:
+		_state.update_state("Falling")
+		return
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.snap_vector, Vector3.UP)
-	if _player.anim_tree != null:
-		_player.anim_tree.travel("Run")
-		_player.player_anim_tree["parameters/Run/Blend/blend_amount"] = 0
 	pass

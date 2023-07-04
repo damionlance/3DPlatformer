@@ -8,6 +8,15 @@ var respawn_point = null
 
 var halt_frames : Dictionary
 
+@onready var anim_tree = $"../AnimationTree"
+var is_jumping = "parameters/conditions/jump"
+var is_ledge_hang = "parameters/conditions/ledge_hang"
+var is_wall_hang = "parameters/conditions/wall_hang"
+var is_moving = "parameters/conditions/running"
+var is_idling = "parameters/conditions/idling"
+var is_dashing = "parameters/conditions/dash"
+var is_stopping = "parameters/conditions/stop"
+
 #Player Physics Variables
 var velocity :=  Vector3.ZERO
 var prev_velocity := Vector3.ZERO
@@ -86,7 +95,7 @@ var current_speed = 0.0
 var forwards := Vector3.ZERO
 var right := Vector3.ZERO
 
-var ground_friction := 1.0
+var ground_friction := 0.8
 
 #onready variables
 @onready var _player = get_parent()
@@ -259,3 +268,10 @@ func _on_hazard_detector_take_damage(position):
 		move_direction = -(position - _player.global_position).normalized()
 		current_speed = 10
 	pass # Replace with function body.
+
+func _reset_animation_parameters():
+	anim_tree[is_idling] = false
+	anim_tree[is_moving] = false
+	anim_tree[is_dashing] = false
+	anim_tree[is_stopping] = false
+	anim_tree[is_jumping] = false
