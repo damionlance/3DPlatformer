@@ -20,6 +20,7 @@ var base_rotation = 0
 var can_slide := false
 var can_slide_timer := 0
 var can_slide_buffer := 5
+var previous_speed := 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_state.state_dictionary[_state_name] = self
@@ -66,14 +67,33 @@ func update(delta):
 	else:
 		_fall_timer = 0
 	# Handle Animation Tree
-	_player.player_anim_tree["parameters/Run/Blend/blend_amount"] = _state.current_speed / max_speed
 	if _state.attempting_throw:
 		_state._throw()
 	
 	# Process all inputs
+	
+	previous_speed = _state.current_speed
 	lean_into_turns()
 	grounded_movement_processing()
 	look_forward()
+	var speed_difference = previous_speed - _state.current_speed
+	
+	if speed_difference < -5:
+		_state.anim_tree[_state.is_dashing] = true
+		_state.anim_tree[_state.is_stopping] = false
+	if speed_difference > 1:
+		_state.anim_tree[_state.is_dashing] = false
+		_state.anim_tree[_state.is_stopping] = true
+	else:
+		_state.anim_tree[_state.is_dashing] = false
+		_state.anim_tree[_state.is_stopping] = false
+	
+	if _state.current_speed == 0:
+		_state.anim_tree[_state.is_moving] = false
+		_state.anim_tree[_state.is_idling] = true
+	else:
+		_state.anim_tree[_state.is_moving] = true
+		_state.anim_tree[_state.is_idling] = false
 	
 	# Process all relevant timers
 	if _state.current_speed > max_speed * .9:
@@ -91,6 +111,8 @@ func update(delta):
 	pass
 
 func reset():
+	_state._reset_animation_parameters()
+	
 	_state._air_drift_state = _state.not_air_drifting
 	var collision = _player.get_last_slide_collision()
 	if collision:
@@ -98,7 +120,6 @@ func reset():
 	else:
 		_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = 0
-	_player.anim_tree.travel("Run")
 	can_slide = false
 	can_slide_timer = 0
 	_player.rotation.z = 0

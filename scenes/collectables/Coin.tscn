@@ -172,6 +172,7 @@ tree_root = SubResource("AnimationNodeBlendTree_satpe")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/jumpFire/active = false
+parameters/jumpFire/internal_active = false
 parameters/jumpFire/request = 0
 parameters/pickupBlend/blend_amount = 0.0
 

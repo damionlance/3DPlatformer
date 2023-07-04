@@ -41,9 +41,11 @@ func update(delta):
 	
 	# Handle state logic
 	if _player.is_on_floor():
+		_state.anim_tree["parameters/conditions/wall climb"] = false
 		_state.update_state("Running")
 		return
 	if _state.attempting_jump:
+		_state.anim_tree["parameters/conditions/wall climb"] = false
 		_state._jump_state = _state.jump
 		directional_input_handling()
 		_state.current_speed = 10
@@ -91,6 +93,7 @@ func update(delta):
 	_state.move_direction -= wall_up * _state._controller.movement_direction.y
 	_state.move_direction += wall_sideways * _state._controller.movement_direction.x
 	_state.move_direction += distance_to_wall
+	_state.anim_tree["parameters/wall climb/blend_position"] = Vector2(0.0, _state.move_direction.length())
 	
 	# Process Physics
 	_state.velocity = _state.calculate_velocity(0, delta)
@@ -107,19 +110,23 @@ func directional_input_handling():
 		_state.move_direction = dir
 
 func reset():
+	_state._reset_animation_parameters()
+	_state.anim_tree["parameters/conditions/wall climb"] = true
 	snapped_to_ledge = false
 	_state.velocity = Vector3(0, _state.velocity.y, 0)
 	_state.move_direction = Vector3.ZERO
 	_state.current_speed = 0
-	if _state._raycast_middle.get_collision_normal() != Vector3.UP or _state._raycast_middle.get_collision_normal() != Vector3.ZERO:
+	if _state._raycast_right.get_collision_normal() != Vector3.UP or _state._raycast_right.get_collision_normal() != Vector3.ZERO:
 		_state.snap_vector = -_state._raycast_middle.get_collision_normal()
-	elif _state._raycast_right.get_collision_normal() != Vector3.UP or _state._raycast_right.get_collision_normal() != Vector3.ZERO:
-		_state.snap_vector = -_state._raycast_right.get_collision_normal()
-	elif _state._raycast_left.get_collision_normal() != Vector3.UP or _state._raycast_left.get_collision_normal() != Vector3.ZERO:
-		_state.snap_vector = -_state._raycast_left.get_collision_normal()
+	if _state._raycast_left.get_collision_normal() != Vector3.UP or _state._raycast_left.get_collision_normal() != Vector3.ZERO:
+		_state.snap_vector = -_state._raycast_middle.get_collision_normal()
+		
+	else:
+		_state.update_state("Falling")
+		return
 	_state.snap_vector.y = 0
+	if _state.snap_vector == Vector3.ZERO:
+		_state.update_state("Falling")
+		return
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.snap_vector, Vector3.UP)
-	if _player.anim_tree != null:
-		_player.anim_tree.travel("Run")
-		_player.player_anim_tree["parameters/Run/Blend/blend_amount"] = 0
 	pass

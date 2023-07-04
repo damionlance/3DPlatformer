@@ -69,54 +69,61 @@ func update(delta):
 
 func reset():
 	entering_jump_button_state = _state._controller._jump_state
-	_player.anim_tree.travel("Jump")
+	_state.anim_tree["parameters/conditions/jump"] = true
+	_state.anim_tree["parameters/conditions/landed"] = false
+	_state.anim_tree["parameters/Jump/conditions/dive"] = false
+	_state.anim_tree["parameters/Jump/conditions/roll out"] = false
+	_state.anim_tree["parameters/Jump/conditions/jump 1"] = false
+	_state.anim_tree["parameters/Jump/conditions/jump 2"] = false
+	_state.anim_tree["parameters/Jump/conditions/jump 3"] = false
 	match _state._jump_state:
 		_state.jump:
 			current_jump_gravity = _jump_gravity
 			current_jump_strength = _jump_strength
-			_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
+			_state.anim_tree["parameters/Jump/conditions/jump 1"] = true
 		_state.jump2: 
 			current_jump_gravity = _jump2_gravity
 			current_jump_strength = _jump2_strength
-			_player.player_anim_tree["parameters/Jump/playback"].start("Jump2")
+			_state.anim_tree["parameters/Jump/conditions/jump 2"] = true
 		_state.jump3: 
 			current_jump_gravity = _jump3_gravity
 			current_jump_strength = _jump3_strength
-			_player.player_anim_tree["parameters/Jump/playback"].start("Side Flip")
+			_state.anim_tree["parameters/Jump/conditions/jump 3"] = true
 		_state.spin_jump:
 			_player.anim_tree.travel("Spinning")
 			current_jump_gravity = _spin_jump_gravity
 			current_jump_strength = _spin_jump_strength
+			_state.anim_tree["parameters/Jump/conditions/jump 3"] = true
 		_state.side_flip:
 			current_jump_gravity = _side_jump_gravity
 			current_jump_strength = _side_jump_strength
-			_player.player_anim_tree["parameters/Jump/playback"].start("Side Flip")
+			_state.anim_tree["parameters/Jump/conditions/jump 3"] = true
 		_state.dive:
 			current_jump_gravity = _dive_jump_gravity
 			current_jump_strength = _dive_jump_strength
 			_state.current_speed += dive_speed
 			_state.move_direction = _state.camera_relative_movement
-			_player.player_anim_tree["parameters/Jump/playback"].start("Dive")
+			_state.anim_tree["parameters/Jump/conditions/dive"] = true
 		_state.rollout:
 			_state.current_jump = 0
 			current_jump_gravity = _dive_jump_gravity
 			current_jump_strength = _dive_jump_strength
-			_player.player_anim_tree["parameters/Jump/playback"].start("Rollout")
+			_state.anim_tree["parameters/Jump/conditions/roll out"] = true
 		_state.popper_bounce:
 			current_jump_gravity = _side_jump_gravity
 			current_jump_strength = _side_jump_strength
-			_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
+			_state.anim_tree["parameters/Jump/conditions/jump 1"] = true
 		_state.ground_pound:
 			current_jump_gravity = 0
 			current_jump_strength = 0
 			_player.velocity = Vector3.ZERO
 			_state.velocity = Vector3.ZERO
 			_state.current_speed = 0.0
-			_player.player_anim_tree["parameters/Jump/playback"].start("Rollout")
+			_state.anim_tree["parameters/Jump/conditions/roll out"] = true
 		_: 
 			current_jump_gravity = _jump_gravity
 			current_jump_strength = _jump_strength
-			_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
+			_state.anim_tree["parameters/Jump/conditions/jump 1"] = true
 	
 	shorthop_timer = 0
 	ground_pound_finished = false

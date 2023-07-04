@@ -5,6 +5,7 @@ class_name AerialMovement
 #warning-ignore:unused_private_class_variable
 var backwardsLedgeGrab := false
 
+
 # Aerial Tech Timers
 var shorthop_timer := 0
 var shorthop_buffer := 7

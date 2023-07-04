@@ -2,6 +2,7 @@ extends interactive_button
 
 @export_file var dialogue_file
 @onready var dialogue_box = self.get_owner().find_child("Player")
+
 func _activate():
 	if not inactive:
 		_on_body_exited(_player)

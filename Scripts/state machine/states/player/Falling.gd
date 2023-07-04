@@ -17,7 +17,6 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	
 	# Handle state logic
 	if _state.attempting_dive and not (_state._jump_state == _state.dive or _state._jump_state == _state.rollout or _state._jump_state == _state.ground_pound):
 		if _state._controller.input_strength > .2:
@@ -33,6 +32,7 @@ func update(delta):
 		if _state._jump_state == _state.dive:
 			_state.update_state("Dive Floor")
 		else:
+			_state.anim_tree["parameters/conditions/landed"] = true
 			_state.update_state("Running")
 		_state.just_landed = true
 		return
@@ -78,18 +78,14 @@ func reset():
 	match _state._jump_state:
 		_state.jump:
 			current_fall_gravity = _fall_gravity
-			_player.anim_tree.travel("Fall")
 		_state.jump2: 
 			current_fall_gravity = _fall2_gravity
 		_state.jump3: 
 			current_fall_gravity = _fall3_gravity
-			_player.anim_tree.travel("Fall")
 		_state.spin_jump:
-			_player.anim_tree.travel("Spinning")
 			current_fall_gravity = _spin_fall_gravity
 		_state.side_flip:
 			current_fall_gravity = _side_fall_gravity
-			_player.anim_tree.travel("Fall")
 		_state.dive:
 			#animation doesn't change for dives falling
 			current_fall_gravity = _dive_fall_gravity
@@ -97,7 +93,6 @@ func reset():
 			#animation doesn't change for rollouts falling
 			current_fall_gravity = _rollout_fall_gravity
 		_state.popper_bounce:
-			_player.anim_tree.travel("Fall")
 			current_fall_gravity = _side_fall_gravity
 		_state.ground_pound:
 			current_fall_gravity = _fall_gravity
@@ -105,5 +100,4 @@ func reset():
 			_player.velocity.y = -_state.terminal_velocity
 		_: 
 			current_jump_gravity = _fall_gravity
-			_player.anim_tree.travel("Fall")
 	pass

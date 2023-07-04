@@ -5,6 +5,7 @@ var property_dictionary = Dictionary()
 
 # Called when the node enters the scene tree for the first time.
 var main_scene
+
 func _post_import(scene):
 	main_scene = scene
 	iterate(scene)

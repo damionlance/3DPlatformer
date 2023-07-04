@@ -32,6 +32,7 @@ func update(delta):
 	wall_bounce_timer += 1
 	
 	if _player.is_on_floor():
+		_state.anim_tree["parameters/conditions/wall slide"] = false
 		_state.update_state("Running")
 		return
 	if not _state._raycast_middle.is_colliding():
@@ -49,12 +50,14 @@ func update(delta):
 			else:
 				_state.current_speed = 12.5
 			_state._jump_state = _state.jump
+			_state.anim_tree["parameters/conditions/wall slide"] = false
 			_state.update_state("Jump")
 	else:
 		if  _state.attempting_jump:
 			directional_input_handling()
 			_state.current_speed = 10
 			_state._jump_state = _state.jump
+			_state.anim_tree["parameters/conditions/wall slide"] = false
 			_state.update_state("Jump")
 	_state.velocity = _state.calculate_velocity(-10, delta)
 	pass
@@ -69,7 +72,8 @@ func directional_input_handling():
 		_state.move_direction = dir
 
 func reset():
-	_player.player_anim_tree["parameters/Jump/playback"].travel("Wall Slide")
+	_state._reset_animation_parameters()
+	_state.anim_tree["parameters/conditions/wall slide"] = true
 	entering_angle = Vector3(_state.velocity.x,0, _state.velocity.z).normalized()
 	if entering_angle == Vector3.ZERO:
 		_state.consecutive_stationary_wall_jump += 1
