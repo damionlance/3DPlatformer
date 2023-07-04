@@ -14,13 +14,17 @@ var collectable = false
 var previously_collected = false
 var touched = false
 
+var special_coin = false
+
 func _ready():
 	if Global.WORLD_COLLECTIBLES.has(name):
 		collected = Global.WORLD_COLLECTIBLES[name]
 	else:
 		Global.WORLD_COLLECTIBLES[name] = collected
-	
-	collectable_name = name.rstrip('1234567890')
+	if special_coin:
+		collectable_name = "level coin"
+	else:
+		collectable_name = "coin"
 	add_to_group("coins")
 	if collected:
 		coinMesh.set_surface_override_material(0, load("res://assets/materials/" + collectable_name.to_lower() + "_collected.tres"))

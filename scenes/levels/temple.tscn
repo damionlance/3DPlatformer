@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_r0hrm"]
 [ext_resource type="Script" path="res://scripts/tools/climbable_zone.gd" id="5_wfvvu"]
 [ext_resource type="PackedScene" uid="uid://g6qin1b8kg1e" path="res://scenes/tools/Interactive Objects/button_stand.tscn" id="6_gyy0o"]
-[ext_resource type="PackedScene" uid="uid://d4l56vt7hqoj2" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
+[ext_resource type="PackedScene" uid="uid://bnklhtsh2y1pi" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
 
 [sub_resource type="Environment" id="Environment_yanr4"]
@@ -98,10 +98,6 @@ transform = Transform3D(0.420011, -0.585777, 0.69315, 0.175847, 0.801841, 0.5710
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand2/Area3D" to="temple/door2-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand1/Area3D" to="temple/door1-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand3/Area3D" to="temple/entry-risingdoor" method="_on_area_3d_activate"]
-[connection signal="spinning" from="temple/spin button 1-spinbutton/SpinButton" to="temple/spinplat1-risingplat" method="_on_spin_button_spinning"]
-[connection signal="spinning" from="temple/spin button 1-spinbutton/SpinButton" to="temple/spinplat2-risingplat" method="_on_spin_button_spinning"]
-[connection signal="spinning" from="temple/spin button 2-spinbutton/SpinButton" to="temple/spinplat4-risingplat" method="_on_spin_button_spinning"]
-[connection signal="spinning" from="temple/spin button 3-spinbutton/SpinButton" to="temple/spinplat3-risingplat" method="_on_spin_button_spinning"]
 
 [editable path="dynamicObj/buttons/ButtonStand2"]
 [editable path="dynamicObj/buttons/ButtonStand1"]

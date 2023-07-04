@@ -65,14 +65,18 @@ func set_up_falling_platform(node):
 
 func set_up_coin(node):
 	var new_coin = load("res://scenes/Collectables/Coin.tscn").instantiate()
-	new_coin.reparent(node.get_parent())
+	node.get_parent().add_child(new_coin)
+	new_coin.set_owner(main_scene)
 	new_coin.name = "TempleCoin"
+	new_coin.position = node.position + Vector3.UP
 	node.queue_free()
 	
 func set_up_level_coin(node):
-	var new_coin = load("res://scenes/Collectables/PoolCoin.tscn").instantiate()
-	new_coin.reparent(node.get_parent())
+	var new_coin = load("res://scenes/Collectables/Coin.tscn").instantiate()
+	node.get_parent().add_child(new_coin)
+	new_coin.set_owner(main_scene)
 	new_coin.name = "TempleLevelCoin"
+	new_coin.position = node.position + Vector3.UP
 	node.queue_free()
 
 func set_up_spin_button(button) -> Node:
