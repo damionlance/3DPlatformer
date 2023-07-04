@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://385mcfonrl8g"]
+[gd_scene load_steps=113 format=3 uid="uid://385mcfonrl8g"]
 
 [ext_resource type="Script" path="res://scripts/actors/player/Player.gd" id="1_vh0xg"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/StateMachine.gd" id="2_k8mag"]
@@ -33,10 +33,8 @@
 [ext_resource type="Script" path="res://scripts/tools/ParticleHandler.gd" id="31_fsbxi"]
 [ext_resource type="PackedScene" uid="uid://4qxng68u15ow" path="res://assets/models/actors/FinalFellaRig.glb" id="38_2k1xl"]
 [ext_resource type="Script" path="res://scripts/tools/HazardDetector.gd" id="38_wtey0"]
-[ext_resource type="PackedScene" uid="uid://b67v0l11qnqrn" path="res://assets/models/actors/Fella Eyes.glb" id="39_fddtb"]
 [ext_resource type="Script" path="res://scripts/gui/heads up display/HUD Manager.gd" id="39_jqfmn"]
 [ext_resource type="PackedScene" uid="uid://b307pwugmfuji" path="res://scenes/ui/collectible_counter.tscn" id="40_0cooe"]
-[ext_resource type="Script" path="res://scripts/actors/player/Eyes.gd" id="40_b0636"]
 [ext_resource type="PackedScene" uid="uid://d3msswd4ciyt3" path="res://scenes/ui/dialogue prompt.tscn" id="41_mysnv"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/HoldableObjectNode.gd" id="42_083u5"]
 [ext_resource type="PackedScene" uid="uid://b6n1a3115odny" path="res://scenes/ui/dialogue box.tscn" id="42_xi1wd"]
@@ -471,6 +469,11 @@ shape = SubResource("SphereShape3D_l8mw7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.82402, 0)
 target_position = Vector3(0, 0, -1)
 
+[node name="lilfella@Body Armature@Skeleton3D@Skull Point" type="BoneAttachment3D" parent="."]
+transform = Transform3D(0.420305, 0.0420589, 0.906408, -0.111495, 0.993749, 0.00558885, -0.900507, -0.103409, 0.422367, 0.0693955, 0.978865, -0.110476)
+bone_name = "Skull"
+bone_idx = 5
+
 [node name="WallRayLeft" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.82402, 0)
 target_position = Vector3(0, 0, -1)
@@ -657,57 +660,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61372, -1.03171)
 script = ExtResource("42_083u5")
 
 [node name="lilfella" parent="." instance=ExtResource("38_2k1xl")]
-
-[node name="Skeleton3D" parent="lilfella/Body Armature" index="0"]
-bones/0/position = Vector3(0.0304653, 0.369019, -0.0565783)
-bones/0/rotation = Quaternion(-0.0428643, 0.30424, -0.0361504, 0.950944)
-bones/1/rotation = Quaternion(0.0275647, 0.0641028, -0.00679088, 0.997539)
-bones/2/rotation = Quaternion(-0.929244, -0.17416, 0.265554, 0.188826)
-bones/3/rotation = Quaternion(0.00190262, -0.000436964, -0.00420839, 0.999989)
-bones/5/rotation = Quaternion(-0.0285999, 0.192104, -0.000227914, 0.980958)
-bones/7/rotation = Quaternion(2.31818e-07, 9.87893e-08, -0.565101, 0.825022)
-bones/8/rotation = Quaternion(0.240459, 0.186889, 0.95161, 0.0411094)
-bones/9/rotation = Quaternion(0.00189763, 0.000436966, 0.00419731, 0.999989)
-bones/11/rotation = Quaternion(0.896778, 0.222644, -0.0966117, -0.36998)
-bones/12/rotation = Quaternion(-0.0587241, 0.00010339, 0.258347, 0.964266)
-bones/13/rotation = Quaternion(-0.23868, 0.264636, 0.933902, -0.0287365)
-bones/14/rotation = Quaternion(-0.0411259, -0.000105662, -0.180926, 0.982636)
-bones/15/position = Vector3(0.213496, 0.421953, -0.644549)
-bones/15/rotation = Quaternion(-0.513862, -0.486137, 0.499454, 0.500162)
-bones/16/position = Vector3(-0.248175, -7.45058e-09, -0.495927)
-bones/16/rotation = Quaternion(0.504482, -0.495477, -0.504482, 0.495477)
-bones/17/position = Vector3(-1.02959e-09, -6.31669e-08, -3.01835e-07)
-bones/18/position = Vector3(-0.157914, 0.973642, 0.0671401)
-bones/18/rotation = Quaternion(-0.0757342, 0.705327, 0.703039, -0.0501359)
-bones/19/position = Vector3(-0.185348, 0.536762, -0.469095)
-bones/19/rotation = Quaternion(-0.044395, 0.705712, 0.705712, -0.0443949)
-bones/20/position = Vector3(0.610006, 0.646101, -0.064463)
-bones/20/rotation = Quaternion(-0.513862, 0.486137, -0.499454, 0.500162)
-bones/21/position = Vector3(0.191426, -7.45058e-09, 0.389152)
-bones/21/rotation = Quaternion(-0.0842859, 0.0553, 0.729517, 0.676494)
-bones/22/position = Vector3(-9.91799e-08, -9.40986e-07, 4.05744e-07)
-bones/23/position = Vector3(0.161377, 0.706165, 0.519814)
-bones/23/rotation = Quaternion(0.0757342, 0.705327, 0.703039, 0.0501359)
-bones/24/position = Vector3(0.30112, 0.528934, 0.203817)
-bones/24/rotation = Quaternion(0.044395, 0.705712, 0.705712, 0.0443949)
-
-[node name="Skull Point" type="BoneAttachment3D" parent="lilfella/Body Armature/Skeleton3D" index="4"]
-transform = Transform3D(0.420305, 0.0420589, 0.906408, -0.111495, 0.993749, 0.00558885, -0.900507, -0.103409, 0.422367, 0.0693955, 0.978865, -0.110476)
-bone_name = "Skull"
-bone_idx = 5
-
-[node name="Fella Eyes" parent="." instance=ExtResource("39_fddtb")]
-transform = Transform3D(0.420304, 0.0420589, 0.906408, -0.111495, 0.993749, 0.00558885, -0.900507, -0.103409, 0.422367, 0.0693955, 0.984675, -0.110476)
-script = ExtResource("40_b0636")
-
-[node name="Skeleton3D" parent="Fella Eyes/Eye_R" index="0"]
-bones/0/position = Vector3(0.200545, -0.19544, 0.000736773)
-bones/0/rotation = Quaternion(-0.0494609, -0.400841, -0.0264162, 0.91443)
-bones/1/position = Vector3(4.24916e-09, 0.000724595, -1.81317e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]
 [connection signal="take_damage" from="HazardDetector" to="StateMachine" method="_on_hazard_detector_take_damage"]
 
 [editable path="lilfella"]
-[editable path="Fella Eyes"]
