@@ -36,6 +36,7 @@ func _ready():
 func _activate():
 	$"../Button".get_active_material(0)["shader_parameter/ColorParameter"] = Color(0, 255, 0)
 	emit_signal("activate")
+	collected = true
 	Global.UPDATE_COLLECTIBLES(get_parent().name, collected)
 	activated = true
 

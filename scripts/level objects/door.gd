@@ -15,4 +15,6 @@ func _process(delta):
 
 func _on_area_3d_activate():
 	downTween = create_tween()
+	if doorHeight == null:
+		doorHeight = get_aabb().size.y
 	downTween.tween_property(self, "position", Vector3(0, -1 * doorHeight,0), 5.0).as_relative()
