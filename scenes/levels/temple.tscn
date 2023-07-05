@@ -95,6 +95,8 @@ transform = Transform3D(0.608917, -0.544419, 0.576912, 0.175847, 0.801841, 0.571
 [node name="Camera3D3" type="Camera3D" parent="Cinematic Cameras"]
 transform = Transform3D(0.420011, -0.585777, 0.69315, 0.175847, 0.801841, 0.571077, -0.89032, -0.11797, 0.439789, -15.4559, 39.0638, 8.06724)
 
+[connection signal="activate" from="dynamicObj/buttons/ButtonStand2/Area3D" to="temple/door2-risingdoor" method="_on_area_3d_activate"]
+[connection signal="activate" from="dynamicObj/buttons/ButtonStand1/Area3D" to="temple/door2-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand3/Area3D" to="temple/entry-risingdoor" method="_on_area_3d_activate"]
 
 [editable path="dynamicObj/buttons/ButtonStand2"]

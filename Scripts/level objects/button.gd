@@ -10,20 +10,33 @@ var inactive = false
 signal add_body
 signal remove_body
 signal activate
+
+var collected := false
+var material
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	material = $"../Button".get_active_material(0).duplicate()
+	$"../Button".set_surface_override_material(0, material)
 	_player = get_tree().current_scene.find_child("Player")
 	for property in properties:
 		add_to_group(property)
-	$"../Button".get_active_material(0).set_shader_parameter("ColorParameter", Color(255,0,0))
+	if Global.WORLD_COLLECTIBLES.has(get_parent().name):
+		collected = Global.WORLD_COLLECTIBLES[get_parent().name]
+	
+	if collected:
+		_activate()
+	else:
+		$"../Button".get_active_material(0)["shader_parameter/ColorParameter"] = Color(255,0,0)
+	
 	
 	connect("body_entered", _on_body_entered)
 	connect("body_exited", _on_body_exited)
 	pass # Replace with function body.
 
 func _activate():
-	$"../Button".get_active_material(0).set_shader_parameter("ColorParameter", Color(0,255,0))
+	$"../Button".get_active_material(0)["shader_parameter/ColorParameter"] = Color(0, 255, 0)
 	emit_signal("activate")
+	Global.UPDATE_COLLECTIBLES(get_parent().name, collected)
 	activated = true
 
 func _on_body_exited(body):
