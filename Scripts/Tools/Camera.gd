@@ -61,7 +61,7 @@ func _physics_process(_delta):
 		match_height = true
 	elif _player.is_on_floor() or _player.is_on_wall():
 		if match_height:
-			var query = PhysicsRayQueryParameters3D.create(_parent_position, global_position)
+			var query = PhysicsRayQueryParameters3D.create(_parent_position, position)
 			var result = space_state.intersect_ray(query)
 			if result:
 				position.y = result.position.y
