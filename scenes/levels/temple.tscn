@@ -15,7 +15,7 @@ ambient_light_energy = 0.9
 script = ExtResource("1_sd0wa")
 
 [node name="Player" parent="." instance=ExtResource("2_r0hrm")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.01126, 3.3435, -0.469791)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.48119, 3.3435, -0.27728)
 
 [node name="dynamicObj" type="Node3D" parent="."]
 
@@ -97,7 +97,7 @@ risingSpeed = 4.0
 fallingSpeed = 0.15
 
 [node name="Signpost" parent="." instance=ExtResource("10_ik8nu")]
-transform = Transform3D(0.139363, 0, 0.990241, 0, 1, 0, -0.990241, 0, 0.139363, -35.1918, 2, -0.113437)
+transform = Transform3D(-0.582194, 0, 0.81305, 0, 1, 0, -0.81305, 0, -0.582194, -13.9425, 2.48965, 2.788)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanr4")
