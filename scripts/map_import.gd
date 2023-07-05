@@ -41,6 +41,7 @@ func set_up_fire(fire) -> Node:
 
 func set_up_sliding_platform(platform) -> Node:
 	var mesh = main_scene.find_child(platform.name.trim_suffix("-slidingplat") + "-path")
+	mesh.hide()
 	if mesh:
 		
 		platform.set_script(load("res://scripts/tools/Moving Platform.gd"))
@@ -78,7 +79,7 @@ func set_up_coin(node):
 	new_coin.set_owner(main_scene)
 	new_coin.name = "TempleCoin"
 	new_coin.position = node.position + Vector3.UP
-	node = new_coin
+	node.hide()
 
 func set_up_level_coin(node):
 	var new_coin = load("res://scenes/Collectables/Coin.tscn").instantiate()
@@ -86,7 +87,7 @@ func set_up_level_coin(node):
 	new_coin.set_owner(main_scene)
 	new_coin.name = "TempleLevelCoin"
 	new_coin.position = node.position + Vector3.UP
-	node = new_coin
+	node.hide()
 
 func set_up_spin_button(button) -> Node:
 	var spin_button = load("res://scenes/tools/Interactive Objects/spin_button.tscn").instantiate()
