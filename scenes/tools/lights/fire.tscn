@@ -42,6 +42,7 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_wojoe")
 
 [node name="fire" type="OmniLight3D"]
+process_mode = 3
 light_color = Color(1, 0.784314, 0, 1)
 light_size = 1.0
 shadow_enabled = true
