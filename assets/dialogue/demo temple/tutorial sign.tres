@@ -3,12 +3,9 @@
 [resource]
 data = {
 "0": {
-"text": "Hello and welcome to the [color=red]Temple![/color]!"
+"text": "Welcome to the [color=red]Fella's Forgotten Figments[/color] demo!"
 },
 "1": {
-"text": "Experiment with the following puzzles to escape!"
-},
-"2": {
-"text": "Find the [color=gold]Three Golden Skulls[/color] to open the final door!"
+"text": "Explore the challenges of the Temple and find the [color=gold]Three Golden Skulls[/color] to escape!"
 }
 }
