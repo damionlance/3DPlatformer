@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://vrrtvf58mtu6"]
+[gd_scene load_steps=18 format=3 uid="uid://vrrtvf58mtu6"]
 
 [ext_resource type="Script" path="res://scripts/collectables/Coin.gd" id="1_andm5"]
 [ext_resource type="Material" uid="uid://seekw340bo3j" path="res://assets/materials/coin.tres" id="2_dpjd3"]
+[ext_resource type="AudioStream" uid="uid://cbbwhdvw3l1pw" path="res://assets/sounds/activated noises/Coin touched.mp3" id="3_b2wmd"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_46dje"]
 _surfaces = [{
@@ -144,7 +145,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_andm5")
 
 [node name="Coin" type="Area3D" parent="."]
-transform = Transform3D(0.131211, 0, -0.991355, 0, 1, 0, 0.991355, 0, 0.131211, 0, 0.0916228, 0)
+transform = Transform3D(1, 0, 0.00115401, 0, 1, 0, -0.00115401, 0, 1, 0, -7.34667e-05, 0)
 collision_layer = 2
 collision_mask = 2
 
@@ -177,5 +178,9 @@ parameters/jumpFire/active = false
 parameters/jumpFire/internal_active = false
 parameters/jumpFire/request = 0
 parameters/pickupBlend/blend_amount = 0.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_b2wmd")
+volume_db = -12.431
 
 [connection signal="body_entered" from="Coin" to="." method="_on_coin_body_entered"]

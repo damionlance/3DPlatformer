@@ -10,12 +10,13 @@ extends CharacterBody3D
 @export var shadow_path : NodePath
 @onready var anim_tree = player_anim_tree["parameters/playback"]
 
+@onready var coin_sounds = $"Sounds/Coin Collected"
+
 var properties := ["pleasant_smelling", "hydrophobic"]
 var has_fella := false
 
 var snap_vector := Vector3.ZERO
 var inertia := 1
-
 #Deprecated
 var stars = 0
 
@@ -90,6 +91,8 @@ func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
 func add_coin(name):
 	Global.UPDATE_COLLECTIBLES(name, Global.WORLD_COLLECTIBLES[name] + 1)
 	get_node("HUD/MarginContainer/counters/" + name.to_lower())._increase_coins()
+	coin_sounds.pitch_scale = randf() + .7
+	coin_sounds.play()
 	return true
 	
 func add_star():
@@ -115,3 +118,12 @@ func remove_body(body):
 
 func activate_dialogue_box(dialogue_path, body):
 	$"HUD/MarginContainer".start_dialogue(dialogue_path, body)
+
+func get_current_held_object() -> Object:
+	return $HoldableObjectNode.current_object
+
+func drop_current_held_object():
+	$HoldableObjectNode.drop_object()
+
+func release_current_held_object():
+	$HoldableObjectNode.release_object()

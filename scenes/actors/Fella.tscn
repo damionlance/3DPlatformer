@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://385mcfonrl8g"]
+[gd_scene load_steps=116 format=3 uid="uid://385mcfonrl8g"]
 
 [ext_resource type="Script" path="res://scripts/actors/player/Player.gd" id="1_vh0xg"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/StateMachine.gd" id="2_k8mag"]
@@ -32,6 +32,8 @@
 [ext_resource type="PackedScene" path="res://scenes/tools/Controller.tscn" id="30_icjaf"]
 [ext_resource type="Script" path="res://scripts/tools/ParticleHandler.gd" id="31_fsbxi"]
 [ext_resource type="AudioStream" uid="uid://fvy6x7e5c155" path="res://assets/sounds/actor noises/Concrete footsteps.mp3" id="33_24ps2"]
+[ext_resource type="Script" path="res://scripts/tools/Footsteps test.gd" id="34_3mtxq"]
+[ext_resource type="AudioStream" uid="uid://v16707j2o45t" path="res://assets/sounds/activated noises/Coin collected.mp3" id="34_s1mpd"]
 [ext_resource type="PackedScene" uid="uid://4qxng68u15ow" path="res://assets/models/actors/FinalFellaRig.glb" id="38_2k1xl"]
 [ext_resource type="Script" path="res://scripts/tools/HazardDetector.gd" id="38_wtey0"]
 [ext_resource type="Script" path="res://scripts/gui/heads up display/HUD Manager.gd" id="39_jqfmn"]
@@ -607,7 +609,12 @@ shape = SubResource("CapsuleShape3D_kjjxv")
 [node name="Footsteps" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("33_24ps2")
 volume_db = -9.0
-pitch_scale = 2.0
+bus = &"Sound Effects"
+script = ExtResource("34_3mtxq")
+
+[node name="Coin Collected" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("34_s1mpd")
+volume_db = -12.0
 bus = &"Sound Effects"
 
 [node name="HUD" type="Control" parent="."]
@@ -661,30 +668,30 @@ layout_mode = 2
 size_flags_vertical = 8
 
 [node name="HoldableObjectNode" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61372, -1.03171)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08362, -1.10161)
 script = ExtResource("42_083u5")
 
 [node name="lilfella" parent="." instance=ExtResource("38_2k1xl")]
 
 [node name="Skeleton3D" parent="lilfella/Body Armature" index="0"]
-bones/0/position = Vector3(0.0304653, 0.35792, -0.0565783)
+bones/0/position = Vector3(0.0304653, 0.401953, -0.0565783)
 bones/0/rotation = Quaternion(-0.0428643, 0.30424, -0.0361504, 0.950944)
 bones/1/rotation = Quaternion(0.0275647, 0.0641028, -0.00679088, 0.997539)
-bones/2/rotation = Quaternion(-0.929834, -0.175386, 0.258046, 0.195093)
+bones/2/rotation = Quaternion(-0.927546, -0.17009, 0.284861, 0.171996)
 bones/3/rotation = Quaternion(0.00190262, -0.000436964, -0.00420839, 0.999989)
 bones/5/rotation = Quaternion(-0.0285999, 0.192104, -0.000227914, 0.980958)
 bones/7/rotation = Quaternion(2.31818e-07, 9.87893e-08, -0.565101, 0.825022)
-bones/8/rotation = Quaternion(0.240717, 0.190988, 0.950624, 0.0435011)
+bones/8/rotation = Quaternion(0.239603, 0.175684, 0.954216, 0.0345977)
 bones/9/rotation = Quaternion(0.00189763, 0.000436966, 0.00419731, 0.999989)
-bones/11/rotation = Quaternion(0.883905, 0.24934, -0.091986, -0.384812)
-bones/12/rotation = Quaternion(-0.072454, 0.000101293, 0.318749, 0.945066)
-bones/13/rotation = Quaternion(-0.237974, 0.289357, 0.925049, -0.0626481)
-bones/14/rotation = Quaternion(-0.0605978, -0.000103465, -0.266589, 0.961903)
+bones/11/rotation = Quaternion(0.934625, 0.112717, -0.117866, -0.316036)
+bones/12/rotation = Quaternion(-0.000560908, 0.000107291, 0.00246738, 0.999997)
+bones/13/rotation = Quaternion(-0.229925, 0.210064, 0.949331, 0.0421721)
+bones/14/rotation = Quaternion(-0.000561924, -0.000107513, -0.00247201, 0.999997)
 bones/15/position = Vector3(0.213496, 0.421953, -0.644549)
 bones/15/rotation = Quaternion(-0.513862, -0.486137, 0.499454, 0.500162)
 bones/16/position = Vector3(-0.248175, -7.45058e-09, -0.495927)
 bones/16/rotation = Quaternion(0.504482, -0.495477, -0.504482, 0.495477)
-bones/17/position = Vector3(-3.6839e-09, 8.41457e-08, -3.75452e-07)
+bones/17/position = Vector3(-0.00814346, 0.00473277, -0.0027799)
 bones/18/position = Vector3(-0.157914, 0.973642, 0.0671401)
 bones/18/rotation = Quaternion(-0.0757342, 0.705327, 0.703039, -0.0501359)
 bones/19/position = Vector3(-0.185348, 0.536762, -0.469095)
@@ -693,7 +700,7 @@ bones/20/position = Vector3(0.610006, 0.646101, -0.064463)
 bones/20/rotation = Quaternion(-0.513862, 0.486137, -0.499454, 0.500162)
 bones/21/position = Vector3(0.191426, -7.45058e-09, 0.389152)
 bones/21/rotation = Quaternion(-0.0842859, 0.0553, 0.729517, 0.676494)
-bones/22/position = Vector3(-1.82199e-07, -9.7966e-07, 7.50149e-07)
+bones/22/position = Vector3(0.0186359, -0.000305893, -0.00636797)
 bones/23/position = Vector3(0.161377, 0.706165, 0.519814)
 bones/23/rotation = Quaternion(0.0757342, 0.705327, 0.703039, 0.0501359)
 bones/24/position = Vector3(0.30112, 0.528934, 0.203817)
@@ -702,5 +709,6 @@ bones/24/rotation = Quaternion(0.044395, 0.705712, 0.705712, 0.0443949)
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]
 [connection signal="take_damage" from="HazardDetector" to="StateMachine" method="_on_hazard_detector_take_damage"]
+[connection signal="finished" from="Sounds/Footsteps" to="Sounds/Footsteps" method="_on_finished"]
 
 [editable path="lilfella"]

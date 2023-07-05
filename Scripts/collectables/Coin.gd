@@ -41,6 +41,8 @@ func _process(delta):
 
 func _on_coin_body_entered(body):
 	if body.get_name() == "Player" and not touched:
+		$AudioStreamPlayer.pitch_scale = randf() + 1.0
+		$AudioStreamPlayer.play(0)
 		playerBody = body
 		emit_signal("collectable_touched", collectable_name.to_lower())
 		var tween = create_tween()

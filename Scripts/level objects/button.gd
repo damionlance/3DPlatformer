@@ -15,6 +15,9 @@ var collected := false
 var material
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if get_tree().get_current_scene() is Control:
+		return
+	await get_tree().get_current_scene().level_loaded
 	material = $"../Button".get_active_material(0).duplicate()
 	$"../Button".set_surface_override_material(0, material)
 	_player = get_tree().current_scene.find_child("Player")
@@ -24,6 +27,7 @@ func _ready():
 		collected = Global.WORLD_COLLECTIBLES[get_parent().name]
 	
 	if collected:
+		emit_signal("activate")
 		_activate()
 	else:
 		$"../Button".get_active_material(0)["shader_parameter/ColorParameter"] = Color(255,0,0)
@@ -31,10 +35,12 @@ func _ready():
 	
 	connect("body_entered", _on_body_entered)
 	connect("body_exited", _on_body_exited)
-	pass # Replace with function body.
 
 func _activate():
 	$"../Button".get_active_material(0)["shader_parameter/ColorParameter"] = Color(0, 255, 0)
+	$"../AudioStreamPlayer3D".play()
+	if collected:
+		return
 	emit_signal("activate")
 	collected = true
 	Global.UPDATE_COLLECTIBLES(get_parent().name, collected)
