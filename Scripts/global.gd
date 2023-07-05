@@ -144,6 +144,7 @@ func apply_settings():
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -100+settings["Music Volume"])
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Ambient Sounds"), -100+settings["Ambience Volume"])
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sound Effects"), -100+settings["SFX Volume"])
+	print(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Sound Effects")))
 	
 	# Input Resets
 	InputMap.action_erase_events("Forward")
