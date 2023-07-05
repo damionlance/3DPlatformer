@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_r0hrm"]
 [ext_resource type="Script" path="res://scripts/tools/climbable_zone.gd" id="5_wfvvu"]
 [ext_resource type="PackedScene" uid="uid://g6qin1b8kg1e" path="res://scenes/tools/Interactive Objects/button_stand.tscn" id="6_gyy0o"]
-[ext_resource type="PackedScene" uid="uid://d4l56vt7hqoj2" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
+[ext_resource type="PackedScene" uid="uid://bnklhtsh2y1pi" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
 
 [sub_resource type="Environment" id="Environment_yanr4"]
@@ -30,11 +30,29 @@ meshes = Array[NodePath]([NodePath("../../temple/entry vines 1"), NodePath("../.
 [node name="ButtonStand2" parent="dynamicObj/buttons" instance=ExtResource("6_gyy0o")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -60.9351, 34.0076, -6.80772)
 
+[node name="Stand" parent="dynamicObj/buttons/ButtonStand2" index="0"]
+surface_material_override/0 = null
+
+[node name="Button" parent="dynamicObj/buttons/ButtonStand2" index="1"]
+surface_material_override/0 = null
+
 [node name="ButtonStand1" parent="dynamicObj/buttons" instance=ExtResource("6_gyy0o")]
 transform = Transform3D(-0.806795, 0, 0.590831, 0, 1, 0, -0.590831, 0, -0.806795, -97.8118, 20.1979, 19.3834)
 
+[node name="Stand" parent="dynamicObj/buttons/ButtonStand1" index="0"]
+surface_material_override/0 = null
+
+[node name="Button" parent="dynamicObj/buttons/ButtonStand1" index="1"]
+surface_material_override/0 = null
+
 [node name="ButtonStand3" parent="dynamicObj/buttons" instance=ExtResource("6_gyy0o")]
 transform = Transform3D(-0.596295, 0, 0.802765, 0, 1, 0, -0.802765, 0, -0.596295, -11.5914, 22.0776, 11.6985)
+
+[node name="Stand" parent="dynamicObj/buttons/ButtonStand3" index="0"]
+surface_material_override/0 = null
+
+[node name="Button" parent="dynamicObj/buttons/ButtonStand3" index="1"]
+surface_material_override/0 = null
 
 [node name="temple" parent="." instance=ExtResource("8_pfxv6")]
 

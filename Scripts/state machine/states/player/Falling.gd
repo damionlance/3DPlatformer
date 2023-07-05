@@ -83,6 +83,7 @@ func reset():
 		_state.jump3: 
 			current_fall_gravity = _fall3_gravity
 		_state.spin_jump:
+			_state.velocity.y = 0
 			current_fall_gravity = _spin_fall_gravity
 		_state.side_flip:
 			current_fall_gravity = _side_fall_gravity
