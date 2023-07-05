@@ -1,0 +1,11 @@
+[gd_resource type="JSON" format=3 uid=""]
+
+[resource]
+data = {
+"0": {
+"text": "Interact with these pedestals while holding one of the [color=gold]Three Golden Skulls[/color] to set it atop the pedestal."
+},
+"1": {
+"text": "Bring back all three to complete the challenge!"
+}
+}

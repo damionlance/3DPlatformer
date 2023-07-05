@@ -1,0 +1,8 @@
+[gd_resource type="JSON" format=3 uid=""]
+
+[resource]
+data = {
+"0": {
+"text": "Careful! These platforms look like they could fall at any moment!"
+}
+}
