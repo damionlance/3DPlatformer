@@ -67,8 +67,6 @@ func _process(_delta):
 	pass
 
 func _physics_process(_delta):
-	if not is_on_wall():
-		previous_horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 	
 	if grappling:
 		grapple_slider.freeze = false
@@ -80,6 +78,9 @@ func _physics_process(_delta):
 		grapple_slider.global_position.y += 0.5
 		set_velocity(velocity)
 		move_and_slide()
+		velocity = get_real_velocity()
+	if not is_on_wall():
+		previous_horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 	_state.velocity = velocity
 
 func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):

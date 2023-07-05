@@ -30,7 +30,6 @@ func _ready():
 
 func update(delta):
 	wall_bounce_timer += 1
-	
 	if _player.is_on_floor():
 		_state.anim_tree["parameters/conditions/wall slide"] = false
 		_state.update_state("Running")
