@@ -71,6 +71,7 @@ theme_override_font_sizes/font_size = 30
 
 [connection signal="pressed" from="Control/MarginContainer/Main Menu/Level Picker" to="." method="_on_level_picker_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/Main Menu/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/Main Menu/Load Game" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/Main Menu/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/Main Menu/Quit Game" to="." method="_on_quit_game_pressed"]
 

@@ -77,3 +77,7 @@ func _on_level_picker_pressed():
 	current_active_menu_nodepath = "res://scenes/ui/level_select.tscn"
 	current_active_menu = load(current_active_menu_nodepath).instantiate()
 	add_child(current_active_menu)
+
+
+func _on_load_game_pressed():
+	get_tree().change_scene_to_packed(load("res://scenes/levels/temple.tscn"))
