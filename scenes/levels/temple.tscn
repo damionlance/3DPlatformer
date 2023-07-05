@@ -56,21 +56,21 @@ surface_material_override/0 = null
 
 [node name="temple" parent="." instance=ExtResource("8_pfxv6")]
 
-[node name="spinplat1-risingplat" parent="temple" index="65"]
+[node name="spinplat1-risingplat" parent="temple" index="62"]
 transform = Transform3D(0.999991, 0, 0.00427604, 0, 1, 0, -0.00427604, 0, 0.999991, -31.364, 20, -41.9127)
 button = NodePath("../spin button 1-spinbutton/SpinButton")
 spinHeight = Vector3(0, 9, 0)
 risingSpeed = 5.0
 fallingSpeed = 0.2
 
-[node name="spinplat3-risingplat" parent="temple" index="66"]
+[node name="spinplat3-risingplat" parent="temple" index="63"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 23.57, -34)
 button = NodePath("../spin button 3-spinbutton/SpinButton")
 spinHeight = Vector3(0, 12.57, 0)
 risingSpeed = 5.0
 fallingSpeed = 0.25
 
-[node name="spinplat4-risingplat" parent="temple" index="67"]
+[node name="spinplat4-risingplat" parent="temple" index="64"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 29.795, -22)
 button = NodePath("../spin button 2-spinbutton/SpinButton")
 spinHeight = Vector3(0, 18.795, 0)
@@ -89,7 +89,7 @@ transform = Transform3D(0.999963, 0, -0.00862182, 0, 1, 0, 0.00862182, 0, 0.9999
 [node name="SpinButton" parent="temple/spin button 3-spinbutton" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.97443)
 
-[node name="spinplat2-risingplat" parent="temple" index="71"]
+[node name="spinplat2-risingplat" parent="temple" index="68"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 29, -22)
 button = NodePath("../spin button 1-spinbutton/SpinButton")
 spinHeight = Vector3(0, 18, 0)
