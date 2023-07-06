@@ -123,7 +123,7 @@ func _ready():
 	pivot_buffer.resize(pivot_buffer_size)
 	state_dictionary.is_empty()
 	
-	move_direction = Vector3.FORWARD.rotated(Vector3.UP, _player.rotation.y)
+	#move_direction = Vector3.FORWARD.rotated(Vector3.UP, _player.rotation.y)
 	
 	current_speed = 0
 	
