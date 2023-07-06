@@ -4,6 +4,8 @@ var lock := false
 var player_camera
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if get_tree().get_current_scene().find_child("Player") == null:
+		return
 	player_camera = get_tree().get_current_scene().find_child("Player").find_child("CameraPivot")
 
 func _process(_delta):

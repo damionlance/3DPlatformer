@@ -21,7 +21,7 @@ script = ExtResource("1_sd0wa")
 [node name="Camera Lock Zones" type="Node" parent="."]
 
 [node name="Maze Camera Lock" type="Area3D" parent="Camera Lock Zones"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -224.807, 0, 0.718582)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182.327, 34.8598, 0.718582)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("2_rq7k1")
