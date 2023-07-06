@@ -15,7 +15,8 @@ func _ready():
 	current_active_menu = $"Control"
 	current_active_menu_nodepath = "res://scenes/ui/main menu.tscn"
 	
-	
+	current_active_menu = load(current_active_menu_nodepath).instantiate()
+	add_child(current_active_menu)
 	var dir = DirAccess.open("res://scenes/levels")
 	if dir:
 		dir.list_dir_begin()
@@ -62,6 +63,7 @@ func _back():
 	current_active_menu.queue_free()
 	current_active_menu = load(str(current_active_menu_nodepath)).instantiate()
 	add_child(current_active_menu)
+	current_active_menu._ready()
 
 func _on_quit_game_pressed():
 	get_tree().quit()
