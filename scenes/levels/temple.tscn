@@ -15,7 +15,7 @@ ambient_light_energy = 0.9
 script = ExtResource("1_sd0wa")
 
 [node name="Player" parent="." instance=ExtResource("2_r0hrm")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.48119, 3.3435, -0.27728)
+transform = Transform3D(-0.0137529, 0, 0.999905, 0, 1, 0, -0.999905, 0, -0.0137529, 2.48119, 2.3435, -0.27728)
 
 [node name="dynamicObj" type="Node3D" parent="."]
 

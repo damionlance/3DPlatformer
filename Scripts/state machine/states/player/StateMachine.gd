@@ -16,6 +16,7 @@ var is_moving = "parameters/conditions/running"
 var is_idling = "parameters/conditions/idling"
 var is_dashing = "parameters/conditions/dash"
 var is_stopping = "parameters/conditions/stop"
+var is_falling = "parameters/conditions/fall"
 
 #Player Physics Variables
 var velocity :=  Vector3.ZERO
@@ -121,6 +122,11 @@ func _ready():
 	level_loaded = false
 	pivot_buffer.resize(pivot_buffer_size)
 	state_dictionary.is_empty()
+	
+	move_direction = Vector3.FORWARD.rotated(Vector3.UP, _player.rotation.y)
+	
+	current_speed = 0
+	
 	pass # Replace with function body.
 
 func _process(delta):
@@ -275,3 +281,4 @@ func _reset_animation_parameters():
 	anim_tree[is_dashing] = false
 	anim_tree[is_stopping] = false
 	anim_tree[is_jumping] = false
+	anim_tree[is_falling] = false

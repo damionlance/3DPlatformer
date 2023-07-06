@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://385mcfonrl8g"]
+[gd_scene load_steps=118 format=3 uid="uid://385mcfonrl8g"]
 
 [ext_resource type="Script" path="res://scripts/actors/player/Player.gd" id="1_vh0xg"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/StateMachine.gd" id="2_k8mag"]
@@ -345,18 +345,26 @@ advance_condition = &"jump"
 advance_mode = 2
 advance_condition = &"wall climb"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tif1t"]
+advance_mode = 2
+advance_condition = &"wall slide"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ttgjr"]
+advance_mode = 2
+advance_condition = &"ledge hang"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_num38"]
 states/Jump/node = SubResource("AnimationNodeStateMachine_njf4v")
 states/Jump/position = Vector2(251.852, -166.741)
 states/Start/position = Vector2(-244.667, 99.187)
 states/fall/node = SubResource("AnimationNodeAnimation_pjjgv")
-states/fall/position = Vector2(391.333, -199.177)
+states/fall/position = Vector2(420, -231.844)
 states/idle/node = SubResource("AnimationNodeStateMachine_ai4tn")
 states/idle/position = Vector2(-31.6667, 70.7919)
 states/land/node = SubResource("AnimationNodeAnimation_io6bu")
 states/land/position = Vector2(340.667, -10.6667)
 "states/ledge hang/node" = SubResource("AnimationNodeBlendSpace1D_631oc")
-"states/ledge hang/position" = Vector2(251.778, -335.333)
+"states/ledge hang/position" = Vector2(318.445, -356.666)
 states/running/node = SubResource("AnimationNodeBlendTree_2t6qc")
 states/running/position = Vector2(253.343, 71.0004)
 "states/start jumping/node" = SubResource("AnimationNodeAnimation_aiq4s")
@@ -369,8 +377,8 @@ states/running/position = Vector2(253.343, 71.0004)
 "states/wall climb/position" = Vector2(64.6667, -356.333)
 "states/wall slide/node" = SubResource("AnimationNodeAnimation_w5ks4")
 "states/wall slide/position" = Vector2(-146, -175.565)
-transitions = ["running", "stop running", SubResource("AnimationNodeStateMachineTransition_1xmfq"), "running", "start running", SubResource("AnimationNodeStateMachineTransition_vhum3"), "start running", "running", SubResource("AnimationNodeStateMachineTransition_gn6lv"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_klhxs"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_nw8r3"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_neth8"), "stop running", "idle", SubResource("AnimationNodeStateMachineTransition_kxy37"), "start running", "stop running", SubResource("AnimationNodeStateMachineTransition_likll"), "idle", "start running", SubResource("AnimationNodeStateMachineTransition_5edhs"), "idle", "start jumping", SubResource("AnimationNodeStateMachineTransition_0homr"), "start jumping", "Jump", SubResource("AnimationNodeStateMachineTransition_gc6ex"), "land", "running", SubResource("AnimationNodeStateMachineTransition_f5ee6"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_a32rx"), "running", "start jumping", SubResource("AnimationNodeStateMachineTransition_881fx"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_1pt78"), "land", "start jumping", SubResource("AnimationNodeStateMachineTransition_pongi"), "fall", "idle", SubResource("AnimationNodeStateMachineTransition_k0rb4"), "Jump", "wall slide", SubResource("AnimationNodeStateMachineTransition_y2j8y"), "wall slide", "start jumping", SubResource("AnimationNodeStateMachineTransition_jk32a"), "fall", "wall slide", SubResource("AnimationNodeStateMachineTransition_ooovh"), "wall slide", "fall", SubResource("AnimationNodeStateMachineTransition_424dw"), "Jump", "land", SubResource("AnimationNodeStateMachineTransition_5rp6i"), "running", "fall", SubResource("AnimationNodeStateMachineTransition_1jqft"), "Jump", "ledge hang", SubResource("AnimationNodeStateMachineTransition_0x2up"), "fall", "ledge hang", SubResource("AnimationNodeStateMachineTransition_ekayw"), "ledge hang", "Jump", SubResource("AnimationNodeStateMachineTransition_vfjty"), "ledge hang", "fall", SubResource("AnimationNodeStateMachineTransition_xo4tn"), "wall slide", "running", SubResource("AnimationNodeStateMachineTransition_aybet"), "stop running", "start jumping", SubResource("AnimationNodeStateMachineTransition_xq8c1"), "Jump", "wall climb", SubResource("AnimationNodeStateMachineTransition_un7dc"), "wall slide", "wall climb", SubResource("AnimationNodeStateMachineTransition_cecq5"), "wall climb", "running", SubResource("AnimationNodeStateMachineTransition_ixl3b"), "wall climb", "fall", SubResource("AnimationNodeStateMachineTransition_en5dd"), "wall climb", "start jumping", SubResource("AnimationNodeStateMachineTransition_l477u"), "fall", "wall climb", SubResource("AnimationNodeStateMachineTransition_idwwm")]
-graph_offset = Vector2(-480, -68)
+transitions = ["running", "stop running", SubResource("AnimationNodeStateMachineTransition_1xmfq"), "running", "start running", SubResource("AnimationNodeStateMachineTransition_vhum3"), "start running", "running", SubResource("AnimationNodeStateMachineTransition_gn6lv"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_klhxs"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_nw8r3"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_neth8"), "stop running", "idle", SubResource("AnimationNodeStateMachineTransition_kxy37"), "start running", "stop running", SubResource("AnimationNodeStateMachineTransition_likll"), "idle", "start running", SubResource("AnimationNodeStateMachineTransition_5edhs"), "idle", "start jumping", SubResource("AnimationNodeStateMachineTransition_0homr"), "start jumping", "Jump", SubResource("AnimationNodeStateMachineTransition_gc6ex"), "land", "running", SubResource("AnimationNodeStateMachineTransition_f5ee6"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_a32rx"), "running", "start jumping", SubResource("AnimationNodeStateMachineTransition_881fx"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_1pt78"), "land", "start jumping", SubResource("AnimationNodeStateMachineTransition_pongi"), "fall", "idle", SubResource("AnimationNodeStateMachineTransition_k0rb4"), "Jump", "wall slide", SubResource("AnimationNodeStateMachineTransition_y2j8y"), "wall slide", "start jumping", SubResource("AnimationNodeStateMachineTransition_jk32a"), "fall", "wall slide", SubResource("AnimationNodeStateMachineTransition_ooovh"), "wall slide", "fall", SubResource("AnimationNodeStateMachineTransition_424dw"), "Jump", "land", SubResource("AnimationNodeStateMachineTransition_5rp6i"), "running", "fall", SubResource("AnimationNodeStateMachineTransition_1jqft"), "Jump", "ledge hang", SubResource("AnimationNodeStateMachineTransition_0x2up"), "fall", "ledge hang", SubResource("AnimationNodeStateMachineTransition_ekayw"), "ledge hang", "Jump", SubResource("AnimationNodeStateMachineTransition_vfjty"), "ledge hang", "fall", SubResource("AnimationNodeStateMachineTransition_xo4tn"), "wall slide", "running", SubResource("AnimationNodeStateMachineTransition_aybet"), "stop running", "start jumping", SubResource("AnimationNodeStateMachineTransition_xq8c1"), "Jump", "wall climb", SubResource("AnimationNodeStateMachineTransition_un7dc"), "wall slide", "wall climb", SubResource("AnimationNodeStateMachineTransition_cecq5"), "wall climb", "running", SubResource("AnimationNodeStateMachineTransition_ixl3b"), "wall climb", "fall", SubResource("AnimationNodeStateMachineTransition_en5dd"), "wall climb", "start jumping", SubResource("AnimationNodeStateMachineTransition_l477u"), "fall", "wall climb", SubResource("AnimationNodeStateMachineTransition_idwwm"), "ledge hang", "wall slide", SubResource("AnimationNodeStateMachineTransition_tif1t"), "wall slide", "ledge hang", SubResource("AnimationNodeStateMachineTransition_ttgjr")]
+graph_offset = Vector2(-502, -387)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qx7cd"]
 

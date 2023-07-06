@@ -72,6 +72,7 @@ func update(delta):
 	pass
 
 func reset():
+	_state.anim_tree["parameters/conditions/fall"] = true
 	entering_jump_button_state = _state._controller._jump_state
 	entering_jump_angle = _state.current_dir
 	_state.snap_vector = Vector3.ZERO
