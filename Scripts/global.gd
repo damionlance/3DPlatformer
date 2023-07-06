@@ -120,16 +120,6 @@ func _exit_tree():
 func apply_settings():
 	
 	var settings_file = ConfigFile.new()
-	match settings["Window Mode"]:
-		"Windowed":
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
-		"Borderless Fullscreen":
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
-		"Fullscreen":
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 	match settings["Resolution"]:
 		"1280x720":
 			DisplayServer.window_set_size(Vector2i(1280,720))
@@ -139,6 +129,18 @@ func apply_settings():
 			DisplayServer.window_set_size(Vector2i(2560,1440))
 		"3840x2160":
 			DisplayServer.window_set_size(Vector2i(3840,2160))
+	match settings["Window Mode"]:
+		"Windowed":
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+		"Borderless Fullscreen":
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+			DisplayServer.window_set_size(DisplayServer.window_get_max_size())
+		"Fullscreen":
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+			DisplayServer.window_set_size(DisplayServer.window_get_max_size())
 	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), -100+settings["Master Volume"])
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -100+settings["Music Volume"])
