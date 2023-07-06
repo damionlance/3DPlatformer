@@ -107,12 +107,17 @@ func wall_collision_check():
 	
 	if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
 		var bodies = []
+		var collision_normals = []
 		if _state._raycast_left.is_colliding():
 			bodies.append(_state._raycast_left.get_collider().get_parent())
+			collision_normals.append(_state._raycast_left.get_collision_normal())
 		if _state._raycast_right.is_colliding():
 			bodies.append(_state._raycast_right.get_collider().get_parent())
+			collision_normals.append(_state._raycast_right.get_collision_normal())
 		if bodies[0].is_in_group("climbable zone") or (bodies.size() == 2 and bodies[1].is_in_group("climbable zone")):
-			return wall_collision.wallClimb
+			for normal in collision_normals:
+				if (_state._raycast_middle.get_collision_normal() - normal).length() <= .1:
+					return wall_collision.wallClimb
 		if abs(_state._raycast_left.get_collision_normal().y) <= .1 or abs(_state._raycast_right.get_collision_normal().y) <= .1:
 			if (_player.is_on_wall()) and _player.velocity.y < 0:
 				var prev_horizontal_speed = _player.previous_horizontal_velocity.length()
