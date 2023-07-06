@@ -124,6 +124,7 @@ focus_neighbor_bottom = NodePath(".")
 focus_mode = 2
 
 [node name="Video" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -319,7 +320,6 @@ rounded = true
 script = ExtResource("9_8iswk")
 
 [node name="Keybinds" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -335,6 +335,7 @@ focus_neighbor_bottom = NodePath(".")
 focus_mode = 2
 
 [node name="Keyboard" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Keyboard"]
@@ -455,7 +456,7 @@ text = "Place Spawn"
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../Keyboard Throw")
-focus_neighbor_bottom = NodePath("../../../../../../../../Back")
+focus_neighbor_bottom = NodePath("../Keyboard Respawn")
 action_mode = 0
 script = ExtResource("10_giuu8")
 
@@ -480,11 +481,11 @@ text = "Camera Mode"
 [node name="Keyboard Camera Mode" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Keyboard/ScrollContainer/MarginContainer/Settings"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../Keyboard Respawn")
 focus_neighbor_bottom = NodePath("../../../../../../../../Back")
 script = ExtResource("10_giuu8")
 
 [node name="Controller" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller"]
@@ -559,6 +560,8 @@ text = "Jump
 [node name="Controller Jump" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../RightStickInvertY")
+focus_neighbor_bottom = NodePath("../Controller Throw")
 script = ExtResource("10_giuu8")
 
 [node name="Throw" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
@@ -569,18 +572,20 @@ text = "Throw"
 [node name="Controller Throw" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../Controller Jump")
+focus_neighbor_bottom = NodePath("../Controller Dive")
 script = ExtResource("10_giuu8")
 
 [node name="Dive" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Forward
-"
+text = "Dive"
 
 [node name="Controller Dive" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_bottom = NodePath("../../../../../../../../Back")
+focus_neighbor_top = NodePath("../Controller Throw")
+focus_neighbor_bottom = NodePath("../Controller Place Spawn")
 script = ExtResource("10_giuu8")
 
 [node name="Place Spawn" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
@@ -591,6 +596,8 @@ text = "Place Spawn"
 [node name="Controller Place Spawn" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../Controller Dive")
+focus_neighbor_bottom = NodePath("../Controller Respawn")
 script = ExtResource("10_giuu8")
 
 [node name="Respawn" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
@@ -601,7 +608,8 @@ text = "Respawn"
 [node name="Controller Respawn" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_bottom = NodePath("../../../../../../../../Back")
+focus_neighbor_top = NodePath("../Controller Place Spawn")
+focus_neighbor_bottom = NodePath("../Controller Camera Mode")
 script = ExtResource("10_giuu8")
 
 [node name="Camera Mode" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
@@ -612,6 +620,7 @@ text = "Camera Mode"
 [node name="Controller Camera Mode" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller/ScrollContainer/MarginContainer/Settings"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../Controller Respawn")
 focus_neighbor_bottom = NodePath("../../../../../../../../Back")
 script = ExtResource("10_giuu8")
 
