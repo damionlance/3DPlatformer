@@ -7,12 +7,14 @@ var on_screen = false
 
 @onready var label = $"MarginContainer/VSplitContainer/coin counter"
 @export var collectable_name : String
+@export var image_path : String
 
 var starting_position
 
 var timer
 
 func _ready():
+	$"MarginContainer/VSplitContainer/coin icon".texture = load(image_path)
 	starting_position = $MarginContainer.position
 	if Global.WORLD_COLLECTIBLES.has(collectable_name.to_upper()):
 		number_of_coins = Global.WORLD_COLLECTIBLES[collectable_name.to_upper()]

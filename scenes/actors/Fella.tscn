@@ -652,9 +652,11 @@ size_flags_horizontal = 8
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+image_path = "res://assets/textures/coinsprite.png"
 
 [node name="level coin" parent="HUD/MarginContainer/counters" instance=ExtResource("40_0cooe")]
 layout_mode = 2
+image_path = "res://assets/textures/levelcoinsprite.png"
 
 [node name="Dialogue Prompt" parent="HUD/MarginContainer" instance=ExtResource("41_mysnv")]
 layout_mode = 2
