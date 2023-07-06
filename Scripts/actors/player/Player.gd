@@ -82,7 +82,7 @@ func _physics_process(_delta):
 		velocity = get_real_velocity()
 	if not is_on_wall():
 		previous_horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
-	_state.velocity = velocity
+	#_state.velocity = velocity
 
 func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
 	velocity = _velocity
