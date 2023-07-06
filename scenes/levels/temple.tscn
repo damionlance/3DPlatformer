@@ -25,11 +25,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -224.807, 0, 0.718582)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("2_rq7k1")
-camera_direction = Vector3(0, -90, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Camera Lock Zones/Maze Camera Lock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.3064, 59.1811, -2.36719)
 shape = SubResource("BoxShape3D_5rlw6")
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera Lock Zones/Maze Camera Lock"]
+target_position = Vector3(-1, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_r0hrm")]
 transform = Transform3D(-0.0137529, 0, 0.999905, 0, 1, 0, -0.999905, 0, -0.0137529, 2.48119, 2.3435, -0.27728)

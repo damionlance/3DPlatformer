@@ -25,6 +25,8 @@ func iterate(node):
 			node = set_up_spin_button(node)
 		if "-risingdoor" in node.name:
 			node = set_up_rising_door(node)
+		if "-passthru" in node.name:
+			set_up_passthru_walls(node)
 		if "-coin" in node.name:
 			set_up_coin(node)
 		if "-levelcoin" in node.name:
