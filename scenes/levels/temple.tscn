@@ -1,11 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3tj3j7rq6blp"]
+[gd_scene load_steps=10 format=3 uid="uid://d3tj3j7rq6blp"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/temple.gd" id="1_sd0wa"]
 [ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_r0hrm"]
+[ext_resource type="Script" path="res://scripts/level objects/camera lock zone.gd" id="2_rq7k1"]
 [ext_resource type="Script" path="res://scripts/tools/climbable_zone.gd" id="5_wfvvu"]
 [ext_resource type="PackedScene" uid="uid://g6qin1b8kg1e" path="res://scenes/tools/Interactive Objects/button_stand.tscn" id="6_gyy0o"]
 [ext_resource type="PackedScene" uid="uid://bnklhtsh2y1pi" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5rlw6"]
+size = Vector3(6.94052, 52.2508, 49.5163)
 
 [sub_resource type="Environment" id="Environment_yanr4"]
 background_energy_multiplier = 0.8
@@ -13,6 +17,19 @@ ambient_light_energy = 0.9
 
 [node name="temple" type="Node3D"]
 script = ExtResource("1_sd0wa")
+
+[node name="Camera Lock Zones" type="Node" parent="."]
+
+[node name="Maze Camera Lock" type="Area3D" parent="Camera Lock Zones"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -224.807, 0, 0.718582)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_rq7k1")
+camera_direction = Vector3(0, 90, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera Lock Zones/Maze Camera Lock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.3064, 59.1811, -2.36719)
+shape = SubResource("BoxShape3D_5rlw6")
 
 [node name="Player" parent="." instance=ExtResource("2_r0hrm")]
 transform = Transform3D(-0.0137529, 0, 0.999905, 0, 1, 0, -0.999905, 0, -0.0137529, 2.48119, 2.3435, -0.27728)
@@ -125,6 +142,8 @@ transform = Transform3D(0.608917, -0.544419, 0.576912, 0.175847, 0.801841, 0.571
 [node name="Camera3D3" type="Camera3D" parent="Cinematic Cameras"]
 transform = Transform3D(0.420011, -0.585777, 0.69315, 0.175847, 0.801841, 0.571077, -0.89032, -0.11797, 0.439789, -15.4559, 39.0638, 8.06724)
 
+[connection signal="body_entered" from="Camera Lock Zones/Maze Camera Lock" to="Camera Lock Zones/Maze Camera Lock" method="_on_body_entered"]
+[connection signal="body_exited" from="Camera Lock Zones/Maze Camera Lock" to="Camera Lock Zones/Maze Camera Lock" method="_on_body_exited"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand2/Area3D" to="temple/door2-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand1/Area3D" to="temple/door1-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand3/Area3D" to="temple/entry-risingdoor" method="_on_area_3d_activate"]
