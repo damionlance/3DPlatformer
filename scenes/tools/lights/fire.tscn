@@ -43,9 +43,12 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_wojoe")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65913, 2.64185, 0)
+aabb = AABB(-4.38566, -4.55889, -5.06405, 8.77132, 9.11779, 10.1281)
 
 [node name="fire" type="OmniLight3D" parent="."]
 process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60036, -2.3803, 0)
 light_color = Color(1, 0.784314, 0, 1)
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
@@ -54,8 +57,8 @@ light_cull_mask = 4293918723
 shadow_bias = 1.023
 shadow_opacity = 0.54
 shadow_blur = 5.185
-distance_fade_enabled = true
-omni_attenuation = 0.0262781
+omni_range = 10.0
+omni_attenuation = 0.176777
 omni_shadow_mode = 0
 script = ExtResource("1_muccl")
 
