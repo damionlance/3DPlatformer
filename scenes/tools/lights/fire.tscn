@@ -57,7 +57,7 @@ light_cull_mask = 4293918723
 shadow_bias = 1.023
 shadow_opacity = 0.54
 shadow_blur = 5.185
-omni_range = 30.0
+omni_range = 20.0
 omni_shadow_mode = 0
 script = ExtResource("1_muccl")
 

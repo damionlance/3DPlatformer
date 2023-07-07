@@ -1,8 +1,10 @@
 extends Collectable
 
-@onready var coinMesh = $Coin/Cylinder
-@onready var coinAnimation = $Coin/AnimationTree
+@onready var root = get_tree().get_current_scene()
 @onready var coin = $Coin
+
+@export var bounce_height : float = 0.0
+var multimesh
 
 var collectable_name : String
 
@@ -13,10 +15,26 @@ var oneshot = true
 var collectable = false
 var previously_collected = false
 var touched = false
+var hide = false
+var instance_id : int
+
+var tween
+
+var spin_tween
+var bob_tween
+var new_pos
+var bounce_position
+var rotation_speed = (randf()/8.0)+.1
 
 var special_coin = false
 
 func _ready():
+	$AnimationPlayer.seek(randf()/2.0)
+	if root is Control:
+		queue_free()
+		return
+	await root.level_loaded
+	
 	if Global.WORLD_COLLECTIBLES.has(name):
 		collected = Global.WORLD_COLLECTIBLES[name]
 	else:
@@ -26,18 +44,42 @@ func _ready():
 	else:
 		collectable_name = "coin"
 	add_to_group("coins")
+	basis = Basis().rotated(Vector3.LEFT, deg_to_rad(90.0))
+	root.coins_id_tracker += 1
+	multimesh = root.coins.multimesh
+	instance_id = root.coins_id_tracker
 	if collected:
-		coinMesh.set_surface_override_material(0, load("res://assets/materials/" + collectable_name.to_lower() + "_collected.tres"))
+		if "LevelCoin" in name:
+			multimesh.set_instance_color(instance_id, Color.STEEL_BLUE)
+		else:
+			multimesh.set_instance_color(instance_id, Color.DARK_GOLDENROD)
 		previously_collected = true
 	else:
-		coinMesh.set_surface_override_material(0, load("res://assets/materials/" + collectable_name.to_lower() + ".tres"))
+		if "LevelCoin" in name:
+			multimesh.set_instance_color(instance_id, Color.TURQUOISE)
+		else:
+			multimesh.set_instance_color(instance_id, Color.GOLD)
+			
+	
+	new_pos = global_position
+	multimesh.set_instance_transform(instance_id, Transform3D(basis, new_pos))
 
 func _process(delta):
+	if hide:
+		return
+	basis = basis.rotated(Vector3.UP, rotation_speed)
 	if touched:
+		if collected:
+			hide_coin()
+			return
 		if speed < 20:
 			speed += 1.0
 		var direction = (playerBody.global_position + Vector3.UP) - self.global_position
 		self.position += (direction.normalized() * speed * delta)
+		multimesh.set_instance_transform(instance_id, Transform3D(basis, self.global_position - root.coins.global_position))
+	else:
+		bounce_position = new_pos + Vector3(0, bounce_height,0)
+		multimesh.set_instance_transform(abs(instance_id), Transform3D(basis, bounce_position))
 
 func _on_coin_body_entered(body):
 	if body.get_name() == "Player" and not touched:
@@ -46,14 +88,17 @@ func _on_coin_body_entered(body):
 		playerBody = body
 		if not collected:
 			emit_signal("collectable_touched", collectable_name.to_lower())
-		var tween = create_tween()
+		tween = create_tween()
 		tween.tween_property(self, "position", position + Vector3(0,3,0), .75).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
-		await tween.finished
-		if collected:
-			queue_free()
 		touched = true
 	elif body.get_name() == "Player" and touched:
+		collected = true
 		if not previously_collected:
 			_update_collectables(true)
 			playerBody.add_coin(collectable_name.to_upper())
-		queue_free()
+		hide_coin()
+
+func hide_coin():
+	hide = true
+	tween.stop()
+	multimesh.set_instance_transform(instance_id, Transform3D(basis, -Vector3.UP*1000))
