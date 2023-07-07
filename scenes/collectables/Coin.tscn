@@ -145,7 +145,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_andm5")
 
 [node name="Coin" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0.00115401, 0, 1, 0, -0.00115401, 0, 1, 0, -7.34667e-05, 0)
+transform = Transform3D(0.701032, 0, 0.713131, 0, 1, 0, -0.713131, 0, 0.701032, 0, -0.0505445, 0)
 collision_layer = 2
 collision_mask = 2
 
@@ -164,11 +164,6 @@ autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_2a4lc")
 }
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Coin"]
-light_color = Color(0.937255, 0.945098, 0.752941, 1)
-light_energy = 0.05
-light_indirect_energy = 5.0
 
 [node name="AnimationTree" type="AnimationTree" parent="Coin"]
 tree_root = SubResource("AnimationNodeBlendTree_satpe")
