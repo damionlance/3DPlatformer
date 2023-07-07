@@ -12,6 +12,7 @@
 size = Vector3(6.94052, 52.2508, 49.5163)
 
 [sub_resource type="Environment" id="Environment_yanr4"]
+background_mode = 1
 background_energy_multiplier = 0.8
 ambient_light_source = 2
 ambient_light_color = Color(0.94902, 0.627451, 0.458824, 1)
