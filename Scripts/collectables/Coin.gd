@@ -44,9 +44,13 @@ func _on_coin_body_entered(body):
 		$AudioStreamPlayer.pitch_scale = randf() + 1.0
 		$AudioStreamPlayer.play(0)
 		playerBody = body
-		emit_signal("collectable_touched", collectable_name.to_lower())
+		if not collected:
+			emit_signal("collectable_touched", collectable_name.to_lower())
 		var tween = create_tween()
 		tween.tween_property(self, "position", position + Vector3(0,3,0), .75).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+		await tween.finished
+		if collected:
+			queue_free()
 		touched = true
 	elif body.get_name() == "Player" and touched:
 		if not previously_collected:

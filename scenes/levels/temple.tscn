@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/level objects/camera lock zone.gd" id="2_rq7k1"]
 [ext_resource type="Script" path="res://scripts/tools/climbable_zone.gd" id="5_wfvvu"]
 [ext_resource type="PackedScene" uid="uid://g6qin1b8kg1e" path="res://scenes/tools/Interactive Objects/button_stand.tscn" id="6_gyy0o"]
-[ext_resource type="PackedScene" uid="uid://d4l56vt7hqoj2" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
+[ext_resource type="PackedScene" uid="uid://bnklhtsh2y1pi" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5rlw6"]
