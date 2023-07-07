@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3tj3j7rq6blp"]
+[gd_scene load_steps=14 format=3 uid="uid://d3tj3j7rq6blp"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/temple.gd" id="1_sd0wa"]
 [ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_r0hrm"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c10w4o64wxvmy" path="res://assets/textures/starDecal.png" id="8_ox8da"]
 [ext_resource type="PackedScene" uid="uid://d4l56vt7hqoj2" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
+[ext_resource type="AudioStream" uid="uid://bt5jej61igjnj" path="res://assets/sounds/mixkit-light-rain-atmosphere-2474.mp3" id="11_5xxea"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5rlw6"]
 size = Vector3(6.94052, 52.2508, 49.5163)
@@ -202,6 +203,12 @@ transform = Transform3D(0.608917, -0.544419, 0.576912, 0.175847, 0.801841, 0.571
 
 [node name="Camera3D3" type="Camera3D" parent="Cinematic Cameras"]
 transform = Transform3D(0.420011, -0.585777, 0.69315, 0.175847, 0.801841, 0.571077, -0.89032, -0.11797, 0.439789, -15.4559, 39.0638, 8.06724)
+
+[node name="ambient sounds" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ambient sounds"]
+stream = ExtResource("11_5xxea")
+autoplay = true
 
 [connection signal="body_entered" from="Camera Lock Zones/Maze Camera Lock" to="Camera Lock Zones/Maze Camera Lock" method="_on_body_entered"]
 [connection signal="body_exited" from="Camera Lock Zones/Maze Camera Lock" to="Camera Lock Zones/Maze Camera Lock" method="_on_body_exited"]
