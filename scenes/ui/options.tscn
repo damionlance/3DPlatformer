@@ -124,7 +124,6 @@ focus_neighbor_bottom = NodePath(".")
 focus_mode = 2
 
 [node name="Video" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -320,6 +319,7 @@ rounded = true
 script = ExtResource("9_8iswk")
 
 [node name="Keybinds" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -335,7 +335,6 @@ focus_neighbor_bottom = NodePath(".")
 focus_mode = 2
 
 [node name="Keyboard" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Keyboard"]
@@ -486,6 +485,7 @@ focus_neighbor_bottom = NodePath("../../../../../../../../Back")
 script = ExtResource("10_giuu8")
 
 [node name="Controller" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/TabContainer/Controller"]

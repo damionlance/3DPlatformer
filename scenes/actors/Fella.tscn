@@ -469,11 +469,6 @@ current = true
 fov = 80.0
 far = 500.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="CameraPivot/SpringArm3D/Camera3D"]
-light_energy = 5.0
-light_indirect_energy = 3.0
-omni_range = 61.2873
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraPivot"]
 shape = SubResource("SphereShape3D_l8mw7")
 

@@ -1,11 +1,24 @@
 extends OmniLight3D
 
 var rng = RandomNumberGenerator.new()
+var _player
+var space_state
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _ready():
+	space_state = get_world_3d().direct_space_state
+	_player = get_tree().get_current_scene().find_child("Player")
 	light_energy = 1
 	
 
 func _process(delta):
 	var green = rng.randf_range(0.0, 0.78)
 	light_color = lerp(light_color, Color(1.0, green, 0.0, 1.0), 0.15)
+	light_color = Color.RED
+
+
+func _on_visible_on_screen_notifier_3d_screen_entered():
+	visible = true
+
+
+func _on_visible_on_screen_notifier_3d_screen_exited():
+	visible = false
