@@ -34,7 +34,7 @@
 [ext_resource type="AudioStream" uid="uid://fvy6x7e5c155" path="res://assets/sounds/actor noises/Concrete footsteps.mp3" id="33_24ps2"]
 [ext_resource type="Script" path="res://scripts/tools/Footsteps test.gd" id="34_3mtxq"]
 [ext_resource type="AudioStream" uid="uid://v16707j2o45t" path="res://assets/sounds/activated noises/Coin collected.mp3" id="34_s1mpd"]
-[ext_resource type="PackedScene" uid="uid://ch2gexjyqsdk" path="res://assets/models/actors/FinalFellaRig.glb" id="38_2k1xl"]
+[ext_resource type="PackedScene" uid="uid://4qxng68u15ow" path="res://assets/models/actors/FinalFellaRig.glb" id="38_2k1xl"]
 [ext_resource type="Script" path="res://scripts/tools/HazardDetector.gd" id="38_wtey0"]
 [ext_resource type="Script" path="res://scripts/gui/heads up display/HUD Manager.gd" id="39_jqfmn"]
 [ext_resource type="PackedScene" uid="uid://b307pwugmfuji" path="res://scenes/ui/collectible_counter.tscn" id="40_0cooe"]

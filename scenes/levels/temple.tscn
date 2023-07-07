@@ -142,7 +142,7 @@ fallingSpeed = 0.15
 [node name="pedestal" parent="temple" index="80"]
 visible = false
 
-[node name="TempleCoin76" parent="temple" index="337"]
+[node name="TempleCoin76" parent="temple" index="379"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Signpost" parent="." instance=ExtResource("10_ik8nu")]
