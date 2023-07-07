@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3tj3j7rq6blp"]
+[gd_scene load_steps=13 format=3 uid="uid://d3tj3j7rq6blp"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/temple.gd" id="1_sd0wa"]
 [ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_r0hrm"]
 [ext_resource type="Script" path="res://scripts/level objects/camera lock zone.gd" id="2_rq7k1"]
 [ext_resource type="Script" path="res://scripts/tools/climbable_zone.gd" id="5_wfvvu"]
 [ext_resource type="PackedScene" uid="uid://g6qin1b8kg1e" path="res://scenes/tools/Interactive Objects/button_stand.tscn" id="6_gyy0o"]
+[ext_resource type="Texture2D" uid="uid://usl4wihkgt6e" path="res://assets/textures/circleDecal.png" id="6_xx7le"]
+[ext_resource type="Texture2D" uid="uid://d2lusaymxkopy" path="res://assets/textures/crossDecal.png" id="7_p6dj2"]
+[ext_resource type="Texture2D" uid="uid://c10w4o64wxvmy" path="res://assets/textures/starDecal.png" id="8_ox8da"]
 [ext_resource type="PackedScene" uid="uid://d4l56vt7hqoj2" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
 
@@ -75,6 +78,59 @@ surface_material_override/0 = null
 
 [node name="Button" parent="dynamicObj/buttons/ButtonStand3" index="1"]
 surface_material_override/0 = null
+
+[node name="spinPlatDecals" type="Node" parent="dynamicObj"]
+
+[node name="plat1decal" type="Decal" parent="dynamicObj/spinPlatDecals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5845, 18.933, -41.958)
+size = Vector3(2, 14.7589, 2)
+texture_albedo = ExtResource("6_xx7le")
+upper_fade = 5.00261e-05
+lower_fade = 1e-05
+cull_mask = 1048063
+
+[node name="plat2decal" type="Decal" parent="dynamicObj/spinPlatDecals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4485, 22.8288, -22.0627)
+size = Vector3(2, 22.093, 2)
+texture_albedo = ExtResource("6_xx7le")
+upper_fade = 1e-05
+lower_fade = 1e-05
+cull_mask = 1048063
+
+[node name="button1decal" type="Decal" parent="dynamicObj/spinPlatDecals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.16, 12.4509, -21.9457)
+size = Vector3(2, 1.39965, 2)
+texture_albedo = ExtResource("6_xx7le")
+upper_fade = 1e-05
+lower_fade = 1e-05
+cull_mask = 1
+
+[node name="plat3decal" type="Decal" parent="dynamicObj/spinPlatDecals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.87165, 18.9935, -34.1594)
+size = Vector3(2, 15.2369, 2)
+texture_albedo = ExtResource("7_p6dj2")
+upper_fade = 4.35502e-05
+lower_fade = 1e-05
+cull_mask = 1048063
+
+[node name="button2decal" type="Decal" parent="dynamicObj/spinPlatDecals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.1746, 27.4993, -26.858)
+size = Vector3(2, 1.22046, 2)
+texture_albedo = ExtResource("7_p6dj2")
+cull_mask = 1048063
+
+[node name="plat4decal" type="Decal" parent="dynamicObj/spinPlatDecals"]
+transform = Transform3D(1.21437, 0, 0, 0, 1, 0, 0, 0, 1.20572, -38.9366, 28.1842, -21.8475)
+size = Vector3(2, 32.2588, 2)
+texture_albedo = ExtResource("8_ox8da")
+upper_fade = 6.37609e-05
+lower_fade = 0.000492713
+cull_mask = 1048063
+
+[node name="button3decal" type="Decal" parent="dynamicObj/spinPlatDecals"]
+transform = Transform3D(1.20989, 0, 0, 0, 1, 0, 0, 0, 1.22141, -1.20465, 26.2599, -47.0124)
+texture_albedo = ExtResource("8_ox8da")
+cull_mask = 1048063
 
 [node name="temple" parent="." instance=ExtResource("8_pfxv6")]
 

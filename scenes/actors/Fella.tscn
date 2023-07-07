@@ -34,7 +34,7 @@
 [ext_resource type="AudioStream" uid="uid://fvy6x7e5c155" path="res://assets/sounds/actor noises/Concrete footsteps.mp3" id="33_24ps2"]
 [ext_resource type="Script" path="res://scripts/tools/Footsteps test.gd" id="34_3mtxq"]
 [ext_resource type="AudioStream" uid="uid://v16707j2o45t" path="res://assets/sounds/activated noises/Coin collected.mp3" id="34_s1mpd"]
-[ext_resource type="PackedScene" uid="uid://4qxng68u15ow" path="res://assets/models/actors/FinalFellaRig.glb" id="38_2k1xl"]
+[ext_resource type="PackedScene" uid="uid://ch2gexjyqsdk" path="res://assets/models/actors/FinalFellaRig.glb" id="38_2k1xl"]
 [ext_resource type="Script" path="res://scripts/tools/HazardDetector.gd" id="38_wtey0"]
 [ext_resource type="Script" path="res://scripts/gui/heads up display/HUD Manager.gd" id="39_jqfmn"]
 [ext_resource type="PackedScene" uid="uid://b307pwugmfuji" path="res://scenes/ui/collectible_counter.tscn" id="40_0cooe"]
@@ -679,24 +679,24 @@ script = ExtResource("42_083u5")
 [node name="lilfella" parent="." instance=ExtResource("38_2k1xl")]
 
 [node name="Skeleton3D" parent="lilfella/Body Armature" index="0"]
-bones/0/position = Vector3(0.0304653, 0.401953, -0.0565783)
+bones/0/position = Vector3(0.0304653, 0.370224, -0.0565783)
 bones/0/rotation = Quaternion(-0.0428643, 0.30424, -0.0361504, 0.950944)
 bones/1/rotation = Quaternion(0.0275647, 0.0641028, -0.00679088, 0.997539)
-bones/2/rotation = Quaternion(-0.927546, -0.17009, 0.284861, 0.171996)
+bones/2/rotation = Quaternion(-0.929192, -0.174012, 0.266269, 0.188209)
 bones/3/rotation = Quaternion(0.00190262, -0.000436964, -0.00420839, 0.999989)
 bones/5/rotation = Quaternion(-0.0285999, 0.192104, -0.000227914, 0.980958)
 bones/7/rotation = Quaternion(2.31818e-07, 9.87893e-08, -0.565101, 0.825022)
-bones/8/rotation = Quaternion(0.239603, 0.175684, 0.954216, 0.0345977)
+bones/8/rotation = Quaternion(0.240428, 0.186477, 0.951709, 0.0408698)
 bones/9/rotation = Quaternion(0.00189763, 0.000436966, 0.00419731, 0.999989)
-bones/11/rotation = Quaternion(0.934625, 0.112717, -0.117866, -0.316036)
-bones/12/rotation = Quaternion(-0.000560908, 0.000107291, 0.00246738, 0.999997)
-bones/13/rotation = Quaternion(-0.229925, 0.210064, 0.949331, 0.0421721)
-bones/14/rotation = Quaternion(-0.000561924, -0.000107513, -0.00247201, 0.999997)
+bones/11/rotation = Quaternion(0.898797, 0.217633, -0.0978003, -0.367743)
+bones/12/rotation = Quaternion(-0.0560481, 0.000103735, 0.246574, 0.967502)
+bones/13/rotation = Quaternion(-0.239341, 0.260975, 0.93493, -0.0226842)
+bones/14/rotation = Quaternion(-0.0376929, -0.000105964, -0.165823, 0.985435)
 bones/15/position = Vector3(0.213496, 0.421953, -0.644549)
 bones/15/rotation = Quaternion(-0.513862, -0.486137, 0.499454, 0.500162)
 bones/16/position = Vector3(-0.248175, -7.45058e-09, -0.495927)
 bones/16/rotation = Quaternion(0.504482, -0.495477, -0.504482, 0.495477)
-bones/17/position = Vector3(-0.00814346, 0.00473277, -0.0027799)
+bones/17/position = Vector3(-9.50256e-09, 4.07077e-07, -5.3683e-07)
 bones/18/position = Vector3(-0.157914, 0.973642, 0.0671401)
 bones/18/rotation = Quaternion(-0.0757342, 0.705327, 0.703039, -0.0501359)
 bones/19/position = Vector3(-0.185348, 0.536762, -0.469095)
@@ -705,11 +705,23 @@ bones/20/position = Vector3(0.610006, 0.646101, -0.064463)
 bones/20/rotation = Quaternion(-0.513862, 0.486137, -0.499454, 0.500162)
 bones/21/position = Vector3(0.191426, -7.45058e-09, 0.389152)
 bones/21/rotation = Quaternion(-0.0842859, 0.0553, 0.729517, 0.676494)
-bones/22/position = Vector3(0.0186359, -0.000305893, -0.00636797)
+bones/22/position = Vector3(0.000611631, -9.51091e-06, -0.000220501)
 bones/23/position = Vector3(0.161377, 0.706165, 0.519814)
 bones/23/rotation = Quaternion(0.0757342, 0.705327, 0.703039, 0.0501359)
 bones/24/position = Vector3(0.30112, 0.528934, 0.203817)
 bones/24/rotation = Quaternion(0.044395, 0.705712, 0.705712, 0.0443949)
+
+[node name="Boots_002" parent="lilfella/Body Armature/Skeleton3D" index="0"]
+layers = 512
+
+[node name="Gloves_001" parent="lilfella/Body Armature/Skeleton3D" index="1"]
+layers = 512
+
+[node name="Head" parent="lilfella/Body Armature/Skeleton3D" index="2"]
+layers = 512
+
+[node name="jacket" parent="lilfella/Body Armature/Skeleton3D" index="3"]
+layers = 512
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]
