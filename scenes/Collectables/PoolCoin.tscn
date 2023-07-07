@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://e5q5xc3eatb7"]
 
-[ext_resource type="Material" path="res://assets/materials/level coin.tres" id="1_rcxln"]
+[ext_resource type="Material" uid="uid://dl063y7bjhmjd" path="res://assets/materials/level coin.tres" id="1_rcxln"]
 
 [sub_resource type="GDScript" id="GDScript_nudqy"]
 script/source = "extends Collectable

@@ -179,6 +179,8 @@ Pause={
 
 [layer_names]
 
+3d_render/layer_10="fella"
+3d_render/layer_20="decals"
 3d_physics/layer_1="World"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Dynamic Objects"
