@@ -72,8 +72,8 @@ func set_up_falling_platform(node):
 	node.get_child(0).set_parent(new_plat)
 
 func set_up_passthru_walls(node):
-	node.create_convex_collision()
-	node.get_child(0).set_collision_layer(16)
+	node.create_trimesh_collision()
+	node.get_child(0).set_collision_layer(8)
 
 func set_up_coin(node):
 	var new_coin = load("res://scenes/Collectables/Coin.tscn").instantiate()
