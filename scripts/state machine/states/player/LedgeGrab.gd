@@ -27,6 +27,7 @@ func update(delta):
 		return
 	if _state.attempting_jump:
 		_state._jump_state = _state.jump
+		_state.anim_tree["parameters/conditions/ledge hang"] = false
 		_state.update_state("Jump")
 		return
 	# Handle animation tree
