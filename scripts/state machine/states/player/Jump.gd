@@ -105,6 +105,7 @@ func reset():
 			_state.current_speed += dive_speed
 			_state.move_direction = _state.camera_relative_movement
 			_state.anim_tree["parameters/Jump/conditions/dive"] = true
+			print("hello")
 		_state.rollout:
 			_state.current_jump = 0
 			current_jump_gravity = _dive_jump_gravity
