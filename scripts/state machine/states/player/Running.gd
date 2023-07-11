@@ -70,6 +70,7 @@ func update(delta):
 	if _state.attempting_throw:
 		_state._throw()
 	
+	_state.anim_tree["parameters/running/BlendSpace1D/blend_position"] = _state.current_speed/max_speed
 	# Process all inputs
 	
 	previous_speed = _state.current_speed

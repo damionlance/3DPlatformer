@@ -18,10 +18,8 @@ func _ready():
 func update(delta):
 	# Handle all state logic
 	if _state._jump_state == _state.ground_pound:
-		if ground_pound_finished:
-			_state.update_state("Falling")
-		else:
-			return
+		await _state.anim_tree.animation_finished
+		_state.update_state("Falling")
 	if not _state.restricted_movement:
 		if _state.attempting_dive and _state._jump_state != _state.dive:
 			if _state._controller.input_strength > .2:
@@ -37,11 +35,6 @@ func update(delta):
 				return
 			wall_collision.ledgeGrab:
 				_state.update_state("LedgeGrab")
-				return
-		if _state._jump_state == _state.ground_pound:
-			if not _player.player_anim.is_playing():
-				_state.update_state("Falling")
-			else:
 				return
 	if _state._controller._jump_state == _state._controller.jump_released and shorthop_timer == shorthop_buffer:
 		_state.velocity.y *= .6
@@ -68,6 +61,7 @@ func update(delta):
 	pass
 
 func reset():
+	ground_pound_finished = false
 	entering_jump_button_state = _state._controller._jump_state
 	_state.anim_tree["parameters/conditions/jump"] = true
 	_state.anim_tree["parameters/conditions/running"] = false
@@ -105,7 +99,6 @@ func reset():
 			_state.current_speed += dive_speed
 			_state.move_direction = _state.camera_relative_movement
 			_state.anim_tree["parameters/Jump/conditions/dive"] = true
-			print("hello")
 		_state.rollout:
 			_state.current_jump = 0
 			current_jump_gravity = _dive_jump_gravity
@@ -121,14 +114,13 @@ func reset():
 			_player.velocity = Vector3.ZERO
 			_state.velocity = Vector3.ZERO
 			_state.current_speed = 0.0
-			_state.anim_tree["parameters/Jump/conditions/roll out"] = true
+			_state.anim_tree["parameters/conditions/ground pound"] = true
 		_: 
 			current_jump_gravity = _jump_gravity
 			current_jump_strength = _jump_strength
 			_state.anim_tree["parameters/Jump/conditions/jump 1"] = true
 	
 	shorthop_timer = 0
-	ground_pound_finished = false
 	entering_jump_angle = _state.current_dir
 	_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = current_jump_strength

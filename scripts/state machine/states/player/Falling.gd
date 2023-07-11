@@ -33,6 +33,8 @@ func update(delta):
 			_state.update_state("Dive Floor")
 		else:
 			_state.anim_tree["parameters/conditions/landed"] = true
+			_state.anim_tree["parameters/conditions/running"] = true
+			_state.anim_tree["parameters/conditions/ground pound"] = false
 			_state.update_state("Running")
 		_state.just_landed = true
 		return
@@ -72,13 +74,13 @@ func update(delta):
 	pass
 
 func reset():
-	_state.anim_tree["parameters/conditions/fall"] = true
 	entering_jump_button_state = _state._controller._jump_state
 	entering_jump_angle = _state.current_dir
 	_state.snap_vector = Vector3.ZERO
 	match _state._jump_state:
 		_state.jump:
 			current_fall_gravity = _fall_gravity
+			_state.anim_tree["parameters/conditions/fall"] = true
 		_state.jump2: 
 			current_fall_gravity = _fall2_gravity
 		_state.jump3: 
@@ -86,6 +88,7 @@ func reset():
 		_state.spin_jump:
 			_state.velocity.y = 0
 			current_fall_gravity = _spin_fall_gravity
+			_state.anim_tree["parameters/conditions/fall"] = true
 		_state.side_flip:
 			current_fall_gravity = _side_fall_gravity
 		_state.dive:
@@ -96,10 +99,11 @@ func reset():
 			current_fall_gravity = _rollout_fall_gravity
 		_state.popper_bounce:
 			current_fall_gravity = _side_fall_gravity
+			_state.anim_tree["parameters/conditions/fall"] = true
 		_state.ground_pound:
 			current_fall_gravity = _fall_gravity
-			_state.velocity.y = -_state.terminal_velocity
-			_player.velocity.y = -_state.terminal_velocity
+			_state.velocity.y = _state.terminal_velocity
+			_player.velocity.y = _state.terminal_velocity
 		_: 
 			current_jump_gravity = _fall_gravity
 	pass

@@ -45,7 +45,7 @@ func _ready():
 	set_motion_mode(CharacterBody3D.MOTION_MODE_GROUNDED)
 	grapple_slider.set_as_top_level(true)
 	set_floor_constant_speed_enabled(false)
-	set_floor_stop_on_slope_enabled(false)
+	set_floor_stop_on_slope_enabled(true)
 	set_floor_max_angle(deg_to_rad(60))
 	set_floor_snap_length(.5)
 	set_max_slides(6)

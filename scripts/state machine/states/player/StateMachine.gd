@@ -289,3 +289,4 @@ func _reset_animation_parameters():
 	anim_tree["parameters/conditions/wall slide"] = false
 	anim_tree["parameters/conditions/ledge hang"] = false
 	anim_tree["parameters/conditions/wall climb"] = false
+	anim_tree["parameters/conditions/ground pound"] = false
