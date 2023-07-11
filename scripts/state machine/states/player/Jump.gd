@@ -7,11 +7,17 @@ var current_jump_strength : float
 var no_wall_jump : bool
 @export var ground_pound_finished := false
 
+var sound_player = AudioStreamPlayer.new()
 #onready variables
 
 var entering_jump_button_state
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	sound_player.bus = "Sound Effects"
+	sound_player.set_mix_target(AudioStreamPlayer.MIX_TARGET_CENTER)
+	sound_player.volume_db = -9
+	add_child(sound_player)
+	
 	_state.state_dictionary[_state_name] = self
 	pass # Replace with function body.
 
@@ -76,14 +82,20 @@ func reset():
 			current_jump_gravity = _jump_gravity
 			current_jump_strength = _jump_strength
 			_state.anim_tree["parameters/Jump/conditions/jump 1"] = true
+			sound_player.set_stream(load("res://assets/sounds/actor noises/Jump 1.mp3"))
+			sound_player.play()
 		_state.jump2: 
 			current_jump_gravity = _jump2_gravity
 			current_jump_strength = _jump2_strength
 			_state.anim_tree["parameters/Jump/conditions/jump 2"] = true
+			sound_player.set_stream(load("res://assets/sounds/actor noises/Jump 2.mp3"))
+			sound_player.play()
 		_state.jump3: 
 			current_jump_gravity = _jump3_gravity
 			current_jump_strength = _jump3_strength
 			_state.anim_tree["parameters/Jump/conditions/jump 3"] = true
+			sound_player.set_stream(load("res://assets/sounds/actor noises/Jump 3.mp3"))
+			sound_player.play()
 		_state.spin_jump:
 			_player.anim_tree.travel("Spinning")
 			current_jump_gravity = _spin_jump_gravity
@@ -93,17 +105,23 @@ func reset():
 			current_jump_gravity = _side_jump_gravity
 			current_jump_strength = _side_jump_strength
 			_state.anim_tree["parameters/Jump/conditions/jump 3"] = true
+			sound_player.set_stream(load("res://assets/sounds/actor noises/Jump 3.mp3"))
+			sound_player.play()
 		_state.dive:
 			current_jump_gravity = _dive_jump_gravity
 			current_jump_strength = _dive_jump_strength
 			_state.current_speed += dive_speed
 			_state.move_direction = _state.camera_relative_movement
 			_state.anim_tree["parameters/Jump/conditions/dive"] = true
+			sound_player.set_stream(load("res://assets/sounds/actor noises/Dive.mp3"))
+			sound_player.play()
 		_state.rollout:
 			_state.current_jump = 0
 			current_jump_gravity = _dive_jump_gravity
 			current_jump_strength = _dive_jump_strength
 			_state.anim_tree["parameters/Jump/conditions/roll out"] = true
+			sound_player.set_stream(load("res://assets/sounds/actor noises/Side Flip.mp3"))
+			sound_player.play()
 		_state.popper_bounce:
 			current_jump_gravity = _side_jump_gravity
 			current_jump_strength = _side_jump_strength
@@ -115,6 +133,8 @@ func reset():
 			_state.velocity = Vector3.ZERO
 			_state.current_speed = 0.0
 			_state.anim_tree["parameters/conditions/ground pound"] = true
+			sound_player.set_stream(load("res://assets/sounds/actor noises/Side Flip.mp3"))
+			sound_player.play()
 		_: 
 			current_jump_gravity = _jump_gravity
 			current_jump_strength = _jump_strength

@@ -13,8 +13,13 @@ var motion_input : String
 #private variables
 var _state_name = "Dive Floor"
 
+var sound_player = AudioStreamPlayer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	sound_player.bus = "Sound Effects"
+	sound_player.set_mix_target(AudioStreamPlayer.MIX_TARGET_CENTER)
+	sound_player.volume_db = -9
+	add_child(sound_player)
 	_state.state_dictionary[_state_name] = self
 	pass # Replace with function body.
 
@@ -49,6 +54,8 @@ func update(delta):
 	pass
 
 func reset():
+	sound_player.set_stream(load("res://assets/sounds/actor noises/Jump Land.mp3"))
+	sound_player.play()
 	_state.snap_vector = Vector3.DOWN
 	pass
 

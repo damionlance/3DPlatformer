@@ -67,14 +67,14 @@ func _physics_process(_delta):
 						_player_state._current_state._state_name == "Running")
 	if abs(height_difference) > 6 and not tracking:
 		tracking = true
-	elif match_states:
+	elif match_states or _player.is_on_floor():
 		if match_height:
 			var query = PhysicsRayQueryParameters3D.create(_parent_position, position)
 			var result = space_state.intersect_ray(query)
 			if result:
 				position.y = _parent_position.y
-			match_height = true
-			tracking = false
+		match_height = true
+		tracking = false
 		previous_camera_height = position.y
 	else:
 		match_height = tracking

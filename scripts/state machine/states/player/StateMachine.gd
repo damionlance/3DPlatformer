@@ -281,6 +281,7 @@ func _reset_animation_parameters():
 	anim_tree[is_stopping] = false
 	anim_tree[is_jumping] = false
 	anim_tree[is_falling] = false
+	anim_tree["parameters/conditions/skid"] = false
 	anim_tree["parameters/Jump/conditions/jump 1"] = false
 	anim_tree["parameters/Jump/conditions/jump 2"] = false
 	anim_tree["parameters/Jump/conditions/jump 3"] = false

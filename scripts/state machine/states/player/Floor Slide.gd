@@ -29,15 +29,15 @@ func update(delta):
 		_state._jump_state = _state.side_flip
 		_state.update_state("Jump")
 		return
-	
 	_state._air_drift_state = _state.not_air_drifting
-	_state.current_speed *= .85
+	_state.current_speed *= .91
 	
 	_state.velocity = _state.calculate_velocity(0, delta)
 	pass
 
 func reset():
-	_state.anim_tree[_state.is_stopping] = true
+	_state._reset_animation_parameters()
+	_state.anim_tree["parameters/conditions/skid"] = true
 	_state.velocity.y = 0
 	_state.move_direction = -(_state.camera_relative_movement)
 	_state.current_speed = max_speed
