@@ -8,6 +8,8 @@ extends RigidBody3D
 @export var stableTime := 1.0
 @export var resetTime := 1.0
 
+var main_collision_layer = collision_layer
+
 var state := 0
 var original_position
 var collided := false
@@ -41,6 +43,7 @@ func _process(delta):
 					timer.start(stableTime)
 		begin:
 			if timer.is_stopped():
+				collision_layer = 0
 				self.freeze = false
 				state = fall
 				timer.start(resetTime)
@@ -53,6 +56,7 @@ func _process(delta):
 	pass
 
 func _reset():
+	collision_layer = main_collision_layer
 	state = wait
 	self.global_position = original_position
 	self.freeze = true
