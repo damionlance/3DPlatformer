@@ -16,6 +16,7 @@ var chase_cam = true
 var halt_input := false
 
 var match_height
+var tracking = false
 
 var target_body
 
@@ -58,23 +59,26 @@ func _physics_process(_delta):
 		rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
 	var camera_velocity = lerp(velocity, get_parent().velocity, .9)
 	camera_velocity += (_parent_position - global_position)*10
-	var wall_state = false
+	var match_states = false
 	if _player_state._current_state != null:
-		wall_state = (	_player_state._current_state._state_name == "WallSlide" or 
+		match_states = (	_player_state._current_state._state_name == "WallSlide" or 
 						_player_state._current_state._state_name == "WallClimb" or
-						_player_state._current_state._state_name == "LedgeGrab")
-	if abs(height_difference) > 6:
-		match_height = true
-	elif _player.is_on_floor() or wall_state:
+						_player_state._current_state._state_name == "LedgeGrab" or
+						_player_state._current_state._state_name == "Running")
+	if abs(height_difference) > 6 and not tracking:
+		tracking = true
+	elif match_states:
 		if match_height:
 			var query = PhysicsRayQueryParameters3D.create(_parent_position, position)
 			var result = space_state.intersect_ray(query)
 			if result:
 				position.y = result.position.y
-			
-		match_height = false
+			match_height = true
+			tracking = false
 		previous_camera_height = position.y
-	elif not match_height:
+	else:
+		match_height = tracking
+	if not match_height:
 		if is_on_wall():
 			camera_velocity.y = 10
 		else:
