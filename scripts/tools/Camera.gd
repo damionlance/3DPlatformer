@@ -72,7 +72,7 @@ func _physics_process(_delta):
 			var query = PhysicsRayQueryParameters3D.create(_parent_position, position)
 			var result = space_state.intersect_ray(query)
 			if result:
-				position.y = result.position.y
+				position.y = _parent_position.y
 			match_height = true
 			tracking = false
 		previous_camera_height = position.y
