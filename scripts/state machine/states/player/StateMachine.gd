@@ -278,7 +278,14 @@ func _on_hazard_detector_take_damage(position):
 func _reset_animation_parameters():
 	anim_tree[is_idling] = false
 	anim_tree[is_moving] = false
-	anim_tree[is_dashing] = false
 	anim_tree[is_stopping] = false
 	anim_tree[is_jumping] = false
 	anim_tree[is_falling] = false
+	anim_tree["parameters/Jump/conditions/jump 1"] = false
+	anim_tree["parameters/Jump/conditions/jump 2"] = false
+	anim_tree["parameters/Jump/conditions/jump 3"] = false
+	anim_tree["parameters/Jump/conditions/dive"] = false
+	anim_tree["parameters/Jump/conditions/roll out"] = false
+	anim_tree["parameters/conditions/wall slide"] = false
+	anim_tree["parameters/conditions/ledge hang"] = false
+	anim_tree["parameters/conditions/wall climb"] = false

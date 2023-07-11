@@ -93,7 +93,9 @@ func update(delta):
 	_state.move_direction -= wall_up * _state._controller.movement_direction.y
 	_state.move_direction += wall_sideways * _state._controller.movement_direction.x
 	_state.move_direction += distance_to_wall
-	_state.anim_tree["parameters/wall climb/blend_position"] = Vector2(0.0, _state.move_direction.length())
+	var aligned_direction = _state.move_direction
+	
+	_state.anim_tree["parameters/wall climb/blend_position"] = Vector2(abs(Vector2(aligned_direction.x, aligned_direction.z).length()),abs(aligned_direction.y))
 	
 	# Process Physics
 	_state.velocity = _state.calculate_velocity(0, delta)

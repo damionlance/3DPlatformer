@@ -79,13 +79,10 @@ func update(delta):
 	var speed_difference = previous_speed - _state.current_speed
 	
 	if speed_difference < -5:
-		_state.anim_tree[_state.is_dashing] = true
 		_state.anim_tree[_state.is_stopping] = false
 	if speed_difference > 1:
-		_state.anim_tree[_state.is_dashing] = false
 		_state.anim_tree[_state.is_stopping] = true
 	else:
-		_state.anim_tree[_state.is_dashing] = false
 		_state.anim_tree[_state.is_stopping] = false
 	
 	if _state.current_speed == 0:

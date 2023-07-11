@@ -70,6 +70,7 @@ func update(delta):
 func reset():
 	entering_jump_button_state = _state._controller._jump_state
 	_state.anim_tree["parameters/conditions/jump"] = true
+	_state.anim_tree["parameters/conditions/running"] = false
 	_state.anim_tree["parameters/conditions/landed"] = false
 	_state.anim_tree["parameters/Jump/conditions/dive"] = false
 	_state.anim_tree["parameters/Jump/conditions/roll out"] = false
