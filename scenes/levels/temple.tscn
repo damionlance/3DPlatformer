@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bgpdulba1eqfl" path="res://scenes/tools/lights/fire.tscn" id="3_1m8ga"]
 [ext_resource type="Script" path="res://scripts/tools/climbable_zone.gd" id="5_wfvvu"]
 [ext_resource type="PackedScene" uid="uid://g6qin1b8kg1e" path="res://scenes/tools/Interactive Objects/button_stand.tscn" id="6_gyy0o"]
-[ext_resource type="PackedScene" uid="uid://d4l56vt7hqoj2" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
-[ext_resource type="AudioStream" uid="uid://bt5jej61igjnj" path="res://assets/sounds/mixkit-light-rain-atmosphere-2474.mp3" id="9_5f0wq"]
+[ext_resource type="PackedScene" uid="uid://bnklhtsh2y1pi" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
+[ext_resource type="AudioStream" uid="uid://dmyfuyqfotjxy" path="res://assets/sounds/mixkit-light-rain-atmosphere-2474.mp3" id="9_5f0wq"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
 [ext_resource type="Script" path="res://scripts/level objects/Water.gd" id="11_8rfn6"]
 [ext_resource type="PackedScene" uid="uid://r0aa7hjyoq0r" path="res://scenes/ui/demo_complete.tscn" id="12_vr65w"]
@@ -132,38 +132,10 @@ surface_material_override/0 = null
 script = ExtResource("11_8rfn6")
 
 [node name="spinplat1-risingplat" parent="temple" index="65"]
-transform = Transform3D(0.999991, 0, 0.00427604, 0, 1, 0, -0.00427604, 0, 0.999991, -31.364, 20, -41.9127)
-button = NodePath("../spin button 1-spinbutton/SpinButton")
-spinHeight = Vector3(0, 9, 0)
-risingSpeed = 5.0
-fallingSpeed = 0.2
-
-[node name="spinplat3-risingplat" parent="temple" index="66"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 23.57, -34)
-button = NodePath("../spin button 3-spinbutton/SpinButton")
-spinHeight = Vector3(0, 12.57, 0)
-risingSpeed = 5.0
-fallingSpeed = 0.25
-
-[node name="spinplat4-risingplat" parent="temple" index="67"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 29.795, -22)
-button = NodePath("../spin button 2-spinbutton/SpinButton")
-spinHeight = Vector3(0, 18.795, 0)
-risingSpeed = 5.0
-fallingSpeed = 0.25
-
-[node name="spinplat2-risingplat" parent="temple" index="71"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 29, -22)
-button = NodePath("../spin button 1-spinbutton/SpinButton")
-spinHeight = Vector3(0, 18, 0)
-risingSpeed = 4.0
-fallingSpeed = 0.15
+transform = Transform3D(0.999991, 0, 0.00427604, 0, 1, 0, -0.00427604, 0, 0.999991, -31.364, 11, -41.9127)
 
 [node name="pedestal" parent="temple" index="80"]
 visible = false
-
-[node name="TempleCoin76" parent="temple" index="378"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Signpost" parent="." instance=ExtResource("10_ik8nu")]
 transform = Transform3D(-0.445526, 0, 0.895269, 0, 1, 0, -0.895269, 0, -0.445526, -13.0228, 1.96233, 2.16712)
@@ -225,3 +197,4 @@ shape = SubResource("BoxShape3D_rldos")
 [editable path="dynamicObj/buttons/ButtonStand3"]
 [editable path="dynamicObj/buttons/ButtonStand4"]
 [editable path="temple"]
+[editable path="temple/spin button 1-stompbutton/StompButton"]

@@ -6,8 +6,15 @@ signal velocity_trigger_fired(body)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	pass # Replace with function body.
+	if $CollisionShape3D.shape == null:
+		var mdt = MeshDataTool.new()
+		mdt.create_from_surface(get_parent().mesh, 0)
+		var verts = []
+		for i in mdt.get_vertex_count():
+			verts.append(mdt.get_vertex(i))
+		var collisionshape = ConvexPolygonShape3D.new()
+		collisionshape.points = PackedVector3Array(verts)
+		$CollisionShape3D.shape = collisionshape
 
 func _process(_delta):
 	for body in get_overlapping_bodies():
