@@ -21,6 +21,7 @@ func _process(_delta):
 		if body is CharacterBody3D:
 			if body.velocity.length() >= requiredSpeed:
 				emit_signal("velocity_trigger_fired",body)
+				print("did it")
 		if body is RigidBody3D:
 			if body.linear_velocity.length() >= requiredSpeed:
 				emit_signal("velocity_trigger_fired",body)
