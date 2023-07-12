@@ -70,3 +70,4 @@ libraries = {
 }
 
 [connection signal="body_entered" from="Coin" to="." method="_on_coin_body_entered"]
+[connection signal="body_exited" from="Coin" to="." method="_on_coin_body_exited"]

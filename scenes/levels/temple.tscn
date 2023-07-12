@@ -1,14 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3tj3j7rq6blp"]
+[gd_scene load_steps=19 format=3 uid="uid://d3tj3j7rq6blp"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/temple.gd" id="1_sd0wa"]
+[ext_resource type="Script" path="res://scripts/level objects/Goal Torch Handler.gd" id="2_313a1"]
 [ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_r0hrm"]
 [ext_resource type="Script" path="res://scripts/level objects/camera lock zone.gd" id="2_rq7k1"]
+[ext_resource type="PackedScene" uid="uid://bgpdulba1eqfl" path="res://scenes/tools/lights/fire.tscn" id="3_1m8ga"]
 [ext_resource type="Script" path="res://scripts/tools/climbable_zone.gd" id="5_wfvvu"]
 [ext_resource type="PackedScene" uid="uid://g6qin1b8kg1e" path="res://scenes/tools/Interactive Objects/button_stand.tscn" id="6_gyy0o"]
 [ext_resource type="PackedScene" uid="uid://bnklhtsh2y1pi" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
 [ext_resource type="AudioStream" uid="uid://dmyfuyqfotjxy" path="res://assets/sounds/mixkit-light-rain-atmosphere-2474.mp3" id="9_5f0wq"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
 [ext_resource type="Script" path="res://scripts/level objects/Water.gd" id="11_8rfn6"]
+[ext_resource type="PackedScene" uid="uid://r0aa7hjyoq0r" path="res://scenes/ui/demo_complete.tscn" id="12_vr65w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k57rh"]
 shading_mode = 0
@@ -34,8 +37,27 @@ ambient_light_source = 2
 ambient_light_color = Color(0.94902, 0.627451, 0.458824, 1)
 ambient_light_energy = 0.7
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_rldos"]
+size = Vector3(5, 5, 1)
+
 [node name="temple" type="Node3D"]
 script = ExtResource("1_sd0wa")
+
+[node name="Goal Torch Handler" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.1658, 6.39139, -17.7689)
+script = ExtResource("2_313a1")
+
+[node name="Fire 1" parent="Goal Torch Handler" instance=ExtResource("3_1m8ga")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.93344, 1.35949, -7.42877)
+visible = false
+
+[node name="Fire 2" parent="Goal Torch Handler" instance=ExtResource("3_1m8ga")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.00082, 1.35949, -7.42877)
+visible = false
+
+[node name="Fire 3" parent="Goal Torch Handler" instance=ExtResource("3_1m8ga")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.367447, 1.35949, -3.07719)
+visible = false
 
 [node name="Coin Meshes" type="Node" parent="."]
 
@@ -95,6 +117,15 @@ transform = Transform3D(-0.596295, 0, 0.802765, 0, 1, 0, -0.802765, 0, -0.596295
 surface_material_override/0 = null
 
 [node name="Button" parent="dynamicObj/buttons/ButtonStand3" index="1"]
+surface_material_override/0 = null
+
+[node name="ButtonStand4" parent="dynamicObj/buttons" instance=ExtResource("6_gyy0o")]
+transform = Transform3D(-0.596295, 0, 0.802765, 0, 1, 0, -0.802765, 0, -0.596295, -169.528, 66.1979, -1.04269)
+
+[node name="Stand" parent="dynamicObj/buttons/ButtonStand4" index="0"]
+surface_material_override/0 = null
+
+[node name="Button" parent="dynamicObj/buttons/ButtonStand4" index="1"]
 surface_material_override/0 = null
 
 [node name="temple" parent="." instance=ExtResource("8_pfxv6")]
@@ -183,13 +214,26 @@ volume_db = -12.0
 autoplay = true
 bus = &"Music"
 
+[node name="Game End Zone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.4938, 4.66395, -21.3999)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game End Zone"]
+shape = SubResource("BoxShape3D_rldos")
+
+[node name="Demo Complete" parent="Game End Zone" instance=ExtResource("12_vr65w")]
+
 [connection signal="body_entered" from="Camera Lock Zones/Maze Camera Lock" to="Camera Lock Zones/Maze Camera Lock" method="_on_body_entered"]
 [connection signal="body_exited" from="Camera Lock Zones/Maze Camera Lock" to="Camera Lock Zones/Maze Camera Lock" method="_on_body_exited"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand2/Area3D" to="temple/door2-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand1/Area3D" to="temple/door1-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand3/Area3D" to="temple/entry-risingdoor" method="_on_area_3d_activate"]
+[connection signal="activate" from="dynamicObj/buttons/ButtonStand4/Area3D" to="temple/entry-risingdoor" method="_on_area_3d_activate"]
+[connection signal="body_entered" from="Game End Zone" to="Game End Zone/Demo Complete" method="_on_game_end_zone_body_entered"]
 
 [editable path="dynamicObj/buttons/ButtonStand2"]
 [editable path="dynamicObj/buttons/ButtonStand1"]
 [editable path="dynamicObj/buttons/ButtonStand3"]
+[editable path="dynamicObj/buttons/ButtonStand4"]
 [editable path="temple"]

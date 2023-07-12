@@ -77,6 +77,14 @@ func _process(delta):
 		var direction = (playerBody.global_position + Vector3.UP) - self.global_position
 		self.position += (direction.normalized() * speed * delta)
 		multimesh.set_instance_transform(instance_id, Transform3D(basis, self.global_position - root.coins.global_position))
+		if collectable:
+			for body in $Coin.get_overlapping_bodies():
+				if body.name == "Player":
+					collected = true
+					if not previously_collected:
+						_update_collectables(true)
+						playerBody.add_coin(collectable_name.to_upper())
+					hide_coin()
 	else:
 		bounce_position = new_pos + Vector3(0, bounce_height,0)
 		multimesh.set_instance_transform(abs(instance_id), Transform3D(basis, bounce_position))
@@ -85,18 +93,17 @@ func _on_coin_body_entered(body):
 	if body.get_name() == "Player" and not touched:
 		$AudioStreamPlayer.pitch_scale = randf() + 1.0
 		$AudioStreamPlayer.play(0)
+		process_mode = Node.PROCESS_MODE_PAUSABLE
 		playerBody = body
 		if not collected:
 			emit_signal("collectable_touched", collectable_name.to_lower())
 		tween = create_tween()
 		tween.tween_property(self, "position", position + Vector3(0,3,0), .75).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+		tween.tween_callback(_allow_collect)
 		touched = true
-	elif body.get_name() == "Player" and touched:
-		collected = true
-		if not previously_collected:
-			_update_collectables(true)
-			playerBody.add_coin(collectable_name.to_upper())
-		hide_coin()
+
+func _allow_collect():
+	collectable = true
 
 func hide_coin():
 	hide = true
