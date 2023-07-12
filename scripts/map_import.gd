@@ -23,6 +23,8 @@ func iterate(node):
 			set_up_falling_platform(node)
 		if "-spinbutton" in node.name:
 			node = set_up_spin_button(node)
+		if "-stompbutton" in node.name:
+			node = set_up_stomp_button(node)
 		if "-risingdoor" in node.name:
 			node = set_up_rising_door(node)
 		if "-passthru" in node.name:
@@ -99,6 +101,14 @@ func set_up_spin_button(button) -> Node:
 	spin_button.position = button.position + Vector3.UP
 	return button
 
+func set_up_stomp_button(button) -> Node:
+	var stomp_button = load("res://scenes/tools/Interactive Objects/stomp_button.tscn").instantiate()
+	button.add_child(stomp_button)
+	stomp_button.set_owner(main_scene)
+	stomp_button.find_child("CollisionShape3D").set_shape(button.mesh)
+	stomp_button.position = button.position + Vector3.UP
+	return button
+	
 func set_up_rising_door(door) -> Node:
 	door.set_script(load("res://scripts/level objects/door.gd"))
 	return door

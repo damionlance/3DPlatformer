@@ -10,7 +10,7 @@ var tween : Tween
 
 func _ready():
 	global_position = initial_position
-	get_node(button).spinning.connect(_on_spin_button_spinning)
+	#get_node(button).spinning.connect(_on_spin_button_spinning)
 
 func _process(delta):
 	if Engine.is_editor_hint():
