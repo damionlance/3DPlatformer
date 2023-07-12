@@ -25,3 +25,11 @@ func _on_spin_button_spinning(isSpin):
 	else:
 		distance = (global_position - initial_position).length()
 		tween.tween_property(self, "global_position", initial_position, distance/fallingSpeed)
+
+
+func _on_stomp_button_velocity_trigger_fired(body):
+	tween = create_tween()
+	var distance = (global_position - (initial_position + spinHeight)).length()
+	tween.tween_property(self, "global_position", initial_position + spinHeight, distance/risingSpeed)
+	var downDistance = (global_position - initial_position).length()
+	tween.tween_property(self, "global_position", initial_position, downDistance/fallingSpeed)	
