@@ -205,6 +205,7 @@ shape = SubResource("BoxShape3D_rldos")
 
 [node name="Demo Complete" parent="Game End Zone" instance=ExtResource("12_vr65w")]
 
+[connection signal="completed" from="Goal Torch Handler" to="temple/door3-risingdoor" method="_on_goal_torch_handler_completed"]
 [connection signal="body_entered" from="Camera Lock Zones/Maze Camera Lock" to="Camera Lock Zones/Maze Camera Lock" method="_on_body_entered"]
 [connection signal="body_exited" from="Camera Lock Zones/Maze Camera Lock" to="Camera Lock Zones/Maze Camera Lock" method="_on_body_exited"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand2/Area3D" to="temple/door2-risingdoor" method="_on_area_3d_activate"]
