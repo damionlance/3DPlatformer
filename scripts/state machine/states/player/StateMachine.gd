@@ -24,7 +24,7 @@ var prev_velocity := Vector3.ZERO
 var snap_vector := Vector3.DOWN
 var grapple_position = Vector3.ZERO
 var current_jump := 0
-var terminal_velocity := -50
+var terminal_velocity := -25
 var slope_normal : Vector3 = Vector3.ZERO
 var slope_strength : float = 0.0
 

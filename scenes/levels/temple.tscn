@@ -149,6 +149,15 @@ spinHeight = Vector3(0, 22, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.4
 
+[node name="StompButton" parent="temple/spin button 1-stompbutton" index="1"]
+requiredSpeed = -23.0
+
+[node name="StompButton" parent="temple/spin button 2-stompbutton" index="1"]
+requiredSpeed = -23.0
+
+[node name="StompButton" parent="temple/spin button 3-stompbutton" index="1"]
+requiredSpeed = -23.0
+
 [node name="spinplat2-risingplat" parent="temple" index="71"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 25, -22)
 spinHeight = Vector3(0, 14, 0)
@@ -222,6 +231,3 @@ shape = SubResource("BoxShape3D_rldos")
 [editable path="dynamicObj/buttons/ButtonStand3"]
 [editable path="dynamicObj/buttons/ButtonStand4"]
 [editable path="temple"]
-[editable path="temple/spin button 1-stompbutton/StompButton"]
-[editable path="temple/spin button 2-stompbutton/StompButton"]
-[editable path="temple/spin button 3-stompbutton/StompButton"]

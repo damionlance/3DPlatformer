@@ -108,8 +108,6 @@ func set_up_stomp_button(button):
 	print(button.mesh)
 	stomp_button.find_child("CollisionShape3D").set_shape(button.mesh)
 	stomp_button.position = Vector3.UP
-	print(stomp_button.position)
-	print(button.position)
 	
 func set_up_rising_door(door) -> Node:
 	door.set_script(load("res://scripts/level objects/door.gd"))

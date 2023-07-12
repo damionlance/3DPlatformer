@@ -109,3 +109,4 @@ func hide_coin():
 	hide = true
 	tween.stop()
 	multimesh.set_instance_transform(instance_id, Transform3D(basis, -Vector3.UP*1000))
+	global_position = -Vector3.UP*1000
