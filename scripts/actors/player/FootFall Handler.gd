@@ -18,3 +18,4 @@ func fire_footstep():
 			var floor_material = body.get_parent().mesh["surface_0/material"]
 			new_particle.draw_pass_1.material = floor_material.duplicate()
 			new_particle.draw_pass_1.material["shading_mode"] = 0
+			break

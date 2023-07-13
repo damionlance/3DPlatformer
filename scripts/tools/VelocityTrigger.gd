@@ -16,11 +16,11 @@ func _ready():
 		collisionshape.points = PackedVector3Array(verts)
 		$CollisionShape3D.shape = collisionshape
 
-func _process(_delta):
-	for body in get_overlapping_bodies():
-		if body is CharacterBody3D:
-			if body.velocity.y < requiredSpeed:
-				emit_signal("velocity_trigger_fired",body)
-		if body is RigidBody3D:
-			if body.linear_velocity.y < requiredSpeed:
-				emit_signal("velocity_trigger_fired",body)
+func _on_body_entered(body):
+	print(body.velocity.y)
+	if body is CharacterBody3D:
+		if body.velocity.y < requiredSpeed:
+			emit_signal("velocity_trigger_fired",body)
+	if body is RigidBody3D:
+		if body.linear_velocity.y < requiredSpeed:
+			emit_signal("velocity_trigger_fired", body)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d3tj3j7rq6blp"]
+[gd_scene load_steps=21 format=3 uid="uid://d3tj3j7rq6blp"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/temple.gd" id="1_sd0wa"]
 [ext_resource type="Script" path="res://scripts/level objects/Goal Torch Handler.gd" id="2_313a1"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bgpdulba1eqfl" path="res://scenes/tools/lights/fire.tscn" id="3_1m8ga"]
 [ext_resource type="Script" path="res://scripts/tools/climbable_zone.gd" id="5_wfvvu"]
 [ext_resource type="PackedScene" uid="uid://g6qin1b8kg1e" path="res://scenes/tools/Interactive Objects/button_stand.tscn" id="6_gyy0o"]
-[ext_resource type="PackedScene" uid="uid://bnklhtsh2y1pi" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
+[ext_resource type="PackedScene" uid="uid://be3kuw0kv4rqi" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
 [ext_resource type="AudioStream" uid="uid://dmyfuyqfotjxy" path="res://assets/sounds/mixkit-light-rain-atmosphere-2474.mp3" id="9_5f0wq"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
 [ext_resource type="Script" path="res://scripts/level objects/Water.gd" id="11_8rfn6"]
@@ -31,11 +31,23 @@ buffer = PackedFloat32Array(0, 0.6, 0.566667, 0, 0, 0, 696.05, 0.0333333, 0, 0, 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5rlw6"]
 size = Vector3(6.941, 52.251, 48)
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mi4jf"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.172549, 0.00392157, 0.294118, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+sun_angle_max = 7.74
+
+[sub_resource type="Sky" id="Sky_j57wk"]
+sky_material = SubResource("ProceduralSkyMaterial_mi4jf")
+
 [sub_resource type="Environment" id="Environment_yanr4"]
+background_mode = 2
 background_energy_multiplier = 0.8
+sky = SubResource("Sky_j57wk")
 ambient_light_source = 2
-ambient_light_color = Color(0.94902, 0.627451, 0.458824, 1)
-ambient_light_energy = 0.7
+ambient_light_color = Color(0.027451, 0.0627451, 0.164706, 1)
+ambient_light_energy = 7.97
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rldos"]
 size = Vector3(5, 5, 1)
@@ -102,7 +114,7 @@ surface_material_override/0 = null
 surface_material_override/0 = null
 
 [node name="ButtonStand1" parent="dynamicObj/buttons" instance=ExtResource("6_gyy0o")]
-transform = Transform3D(-0.806795, 0, 0.590831, 0, 1, 0, -0.590831, 0, -0.806795, -97.8118, 20.1979, 19.3834)
+transform = Transform3D(-0.863131, 0, -0.504979, 0, 1, 0, 0.504979, 0, -0.863131, -99.0581, 20.1979, 14.3811)
 
 [node name="Stand" parent="dynamicObj/buttons/ButtonStand1" index="0"]
 surface_material_override/0 = null
@@ -131,23 +143,24 @@ surface_material_override/0 = null
 [node name="temple" parent="." instance=ExtResource("8_pfxv6")]
 script = ExtResource("11_8rfn6")
 
-[node name="spinplat1-risingplat" parent="temple" index="65"]
+[node name="spinplat1-risingplat" parent="temple" index="139"]
 transform = Transform3D(0.999991, 0, 0.00427604, 0, 1, 0, -0.00427604, 0, 0.999991, -31.364, 19, -41.9127)
 spinHeight = Vector3(0, 8, 0)
 risingSpeed = 10.0
-fallingSpeed = 0.5
+fallingSpeed = 0.25
 
-[node name="spinplat3-risingplat" parent="temple" index="66"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 24, -34)
+[node name="spinplat3-risingplat" parent="temple" index="140"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 22, -34)
+initial_position = Vector3(-5, 9, -34)
 spinHeight = Vector3(0, 13, 0)
 risingSpeed = 10.0
-fallingSpeed = 0.5
+fallingSpeed = 0.25
 
-[node name="spinplat4-risingplat" parent="temple" index="67"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 33, -22)
-spinHeight = Vector3(0, 22, 0)
+[node name="spinplat4-risingplat" parent="temple" index="141"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 30, -22)
+spinHeight = Vector3(0, 19, 0)
 risingSpeed = 10.0
-fallingSpeed = 0.4
+fallingSpeed = 0.25
 
 [node name="StompButton" parent="temple/spin button 1-stompbutton" index="1"]
 requiredSpeed = -23.0
@@ -158,13 +171,13 @@ requiredSpeed = -23.0
 [node name="StompButton" parent="temple/spin button 3-stompbutton" index="1"]
 requiredSpeed = -23.0
 
-[node name="spinplat2-risingplat" parent="temple" index="71"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 25, -22)
-spinHeight = Vector3(0, 14, 0)
+[node name="spinplat2-risingplat" parent="temple" index="145"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 24, -22)
+spinHeight = Vector3(0, 13, 0)
 risingSpeed = 10.0
-fallingSpeed = 0.3
+fallingSpeed = 0.25
 
-[node name="pedestal" parent="temple" index="80"]
+[node name="pedestal" parent="temple" index="157"]
 visible = false
 
 [node name="Signpost" parent="." instance=ExtResource("10_ik8nu")]
@@ -213,6 +226,12 @@ collision_mask = 2
 shape = SubResource("BoxShape3D_rldos")
 
 [node name="Demo Complete" parent="Game End Zone" instance=ExtResource("12_vr65w")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.578379, -0.736884, -0.349972, 0.375302, -0.140553, 0.916184, -0.724311, -0.661247, 0.195261, -39.9303, 5.51301, 1.4965)
+light_color = Color(0.6, 0.678431, 1, 1)
+light_energy = 0.868
+shadow_enabled = true
 
 [connection signal="completed" from="Goal Torch Handler" to="temple/door3-risingdoor" method="_on_goal_torch_handler_completed"]
 [connection signal="body_entered" from="Camera Lock Zones/Maze Camera Lock" to="Camera Lock Zones/Maze Camera Lock" method="_on_body_entered"]
