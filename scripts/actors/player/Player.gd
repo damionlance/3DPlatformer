@@ -89,7 +89,10 @@ func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
 	snap_vector = _snap_vector
 	
 func add_coin(name):
-	Global.UPDATE_COLLECTIBLES(name, Global.WORLD_COLLECTIBLES[name] + 1)
+	if not name.contains("LEVELCOIN"):
+		Global.UPDATE_COLLECTIBLES("COIN", Global.WORLD_COLLECTIBLES["COIN"] + 1)
+	else:
+		Global.UPDATE_COLLECTIBLES("LEVEL COIN", Global.WORLD_COLLECTIBLES["LEVEL COIN"] + 1)
 	get_node("HUD/MarginContainer/counters/" + name.to_lower())._increase_coins()
 	coin_sounds.pitch_scale = randf() + .7
 	coin_sounds.play()
