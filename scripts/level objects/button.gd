@@ -30,14 +30,14 @@ func _ready():
 		emit_signal("activate")
 		_activate()
 	else:
-		$"../Button".get_active_material(0)["shader_parameter/ColorParameter"] = Color(255,0,0)
+		$"../Button".get_active_material(0).albedo_color = Color(255,0,0)
 	
 	
 	connect("body_entered", _on_body_entered)
 	connect("body_exited", _on_body_exited)
 
 func _activate():
-	$"../Button".get_active_material(0)["shader_parameter/ColorParameter"] = Color(0, 255, 0)
+	$"../Button".get_active_material(0).albedo_color = Color(0,255,0)
 	$"../AudioStreamPlayer3D".play()
 	if collected:
 		return

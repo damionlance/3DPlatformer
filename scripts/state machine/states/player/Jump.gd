@@ -22,6 +22,7 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
+	print(_state.velocity.y)
 	# Handle all state logic
 	if _state._jump_state == _state.ground_pound:
 		await _state.anim_tree.animation_finished

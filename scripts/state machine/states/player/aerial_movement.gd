@@ -57,8 +57,8 @@ var entering_jump_angle : Vector3
 @export var jump3_time_to_peak := 0.35
 @export var jump3_time_to_descent := 0.36
 
-@export var spin_jump_height := 5.1
-@export var spin_jump_time_to_peak := .2
+@export var spin_jump_height := 5.5
+@export var spin_jump_time_to_peak := .7
 @export var spin_jump_time_to_descent := 1.2
 
 @export var side_jump_height := 6.1
