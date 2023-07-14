@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bgpdulba1eqfl" path="res://scenes/tools/lights/fire.tscn" id="3_1m8ga"]
 [ext_resource type="Script" path="res://scripts/tools/climbable_zone.gd" id="5_wfvvu"]
 [ext_resource type="PackedScene" uid="uid://g6qin1b8kg1e" path="res://scenes/tools/Interactive Objects/button_stand.tscn" id="6_gyy0o"]
-[ext_resource type="PackedScene" uid="uid://be3kuw0kv4rqi" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
+[ext_resource type="PackedScene" uid="uid://d4l56vt7hqoj2" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
 [ext_resource type="AudioStream" uid="uid://dmyfuyqfotjxy" path="res://assets/sounds/mixkit-light-rain-atmosphere-2474.mp3" id="9_5f0wq"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
 [ext_resource type="Script" path="res://scripts/level objects/Water.gd" id="11_8rfn6"]
@@ -100,7 +100,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.0506
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_wfvvu")
-meshes = Array[NodePath]([NodePath("../../temple/entry vines 1"), NodePath("../../temple/entry vines 2"), NodePath("../../temple/vines1"), NodePath("../../temple/vines2"), NodePath("../../temple/vines3"), NodePath("../../temple/vines5"), NodePath("../../temple/vines7"), NodePath("../../temple/vines8"), NodePath("../../temple/vines9"), NodePath("../../temple/vines10"), NodePath("../../temple/vines11"), NodePath("../../temple/vines12"), NodePath("../../temple/vines13"), NodePath("../../temple/vines14"), NodePath("../../temple/vines6")])
+meshes = Array[NodePath]([NodePath("../../temple/entry vines 1"), NodePath("../../temple/entry vines 2"), NodePath("../../temple/vines1"), NodePath("../../temple/vines2"), NodePath("../../temple/vines3"), NodePath("../../temple/vines5"), NodePath("../../temple/vines7"), NodePath("../../temple/vines8"), NodePath("../../temple/vines9"), NodePath("../../temple/vines10"), NodePath("../../temple/vines11"), NodePath("../../temple/vines12"), NodePath("../../temple/vines13"), NodePath("../../temple/vines14"), NodePath("../../temple/vines6"), NodePath("../../temple/maze vine1"), NodePath("../../temple/maze vine2"), NodePath("../../temple/maze vine3"), NodePath("../../temple/maze vine4"), NodePath("../../temple/maze vine5"), NodePath("../../temple/maze vine6")])
 
 [node name="buttons" type="Node3D" parent="dynamicObj"]
 
@@ -143,20 +143,45 @@ surface_material_override/0 = null
 [node name="temple" parent="." instance=ExtResource("8_pfxv6")]
 script = ExtResource("11_8rfn6")
 
-[node name="spinplat1-risingplat" parent="temple" index="139"]
+[node name="StompButton" parent="temple/maze button-stompbutton" index="1"]
+requiredSpeed = -1.0
+
+[node name="maze slideplat1-slidingplat" parent="temple" index="14"]
+isOff = null
+
+[node name="maze slideplat2-slidingplat" parent="temple" index="15"]
+isOff = null
+
+[node name="maze slideplat3-slidingplat" parent="temple" index="16"]
+isOff = null
+
+[node name="maze slideplat4-slidingplat" parent="temple" index="17"]
+isOff = true
+speed = 3.0
+
+[node name="slidingplat1-slidingplat" parent="temple" index="106"]
+isOff = null
+
+[node name="slidingplat2-slidingplat" parent="temple" index="107"]
+isOff = null
+
+[node name="slidingplat3-slidingplat" parent="temple" index="108"]
+isOff = null
+
+[node name="spinplat1-risingplat" parent="temple" index="152"]
 transform = Transform3D(0.999991, 0, 0.00427604, 0, 1, 0, -0.00427604, 0, 0.999991, -31.364, 19, -41.9127)
 spinHeight = Vector3(0, 8, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.25
 
-[node name="spinplat3-risingplat" parent="temple" index="140"]
+[node name="spinplat3-risingplat" parent="temple" index="153"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 22, -34)
 initial_position = Vector3(-5, 9, -34)
 spinHeight = Vector3(0, 13, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.25
 
-[node name="spinplat4-risingplat" parent="temple" index="141"]
+[node name="spinplat4-risingplat" parent="temple" index="154"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 30, -22)
 spinHeight = Vector3(0, 19, 0)
 risingSpeed = 10.0
@@ -171,14 +196,11 @@ requiredSpeed = -23.0
 [node name="StompButton" parent="temple/spin button 3-stompbutton" index="1"]
 requiredSpeed = -23.0
 
-[node name="spinplat2-risingplat" parent="temple" index="145"]
+[node name="spinplat2-risingplat" parent="temple" index="158"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 24, -22)
 spinHeight = Vector3(0, 13, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.25
-
-[node name="pedestal" parent="temple" index="157"]
-visible = false
 
 [node name="Signpost" parent="." instance=ExtResource("10_ik8nu")]
 transform = Transform3D(-0.445526, 0, 0.895269, 0, 1, 0, -0.895269, 0, -0.445526, -13.0228, 1.96233, 2.16712)
@@ -240,10 +262,7 @@ shadow_enabled = true
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand1/Area3D" to="temple/door1-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand3/Area3D" to="temple/entry-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand4/Area3D" to="temple/entry-risingdoor" method="_on_area_3d_activate"]
-[connection signal="velocity_trigger_fired" from="temple/spin button 1-stompbutton/StompButton" to="temple/spinplat1-risingplat" method="_on_stomp_button_velocity_trigger_fired"]
-[connection signal="velocity_trigger_fired" from="temple/spin button 1-stompbutton/StompButton" to="temple/spinplat2-risingplat" method="_on_stomp_button_velocity_trigger_fired"]
-[connection signal="velocity_trigger_fired" from="temple/spin button 2-stompbutton/StompButton" to="temple/spinplat4-risingplat" method="_on_stomp_button_velocity_trigger_fired"]
-[connection signal="velocity_trigger_fired" from="temple/spin button 3-stompbutton/StompButton" to="temple/spinplat3-risingplat" method="_on_stomp_button_velocity_trigger_fired"]
+[connection signal="velocity_trigger_fired" from="temple/maze button-stompbutton/StompButton" to="temple/maze slideplat4-slidingplat" method="_on_stomp_button_velocity_trigger_fired"]
 [connection signal="body_entered" from="Game End Zone" to="Game End Zone/Demo Complete" method="_on_game_end_zone_body_entered"]
 
 [editable path="dynamicObj/buttons/ButtonStand2"]

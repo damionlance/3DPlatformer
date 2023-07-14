@@ -2,6 +2,8 @@
 extends Node3D
 class_name moving_platform
 
+@export var isOff = false
+
 @export var speed : float = 5.0
 @export var delay_at_points : float = 0.0
 @export var position_in_path : int = 0
@@ -16,15 +18,16 @@ var lines : Array[MeshInstance3D]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if not Engine.is_editor_hint():
-		tween = create_tween().bind_node(self)
-		tween.connect("finished", tween_finished)
-		var direction = (path_positions[position_in_path] - global_position)
-		var distance = direction.length()
-		direction = direction.normalized()
-		collider.constant_linear_velocity = direction*speed
-		var time = (distance/speed)
-		tween.tween_property(self, "global_position", path_positions[position_in_path], time).set_delay(delay_at_points)
+	if not isOff:
+		if not Engine.is_editor_hint():
+			tween = create_tween().bind_node(self)
+			tween.connect("finished", tween_finished)
+			var direction = (path_positions[position_in_path] - global_position)
+			var distance = direction.length()
+			direction = direction.normalized()
+			collider.constant_linear_velocity = direction*speed
+			var time = (distance/speed)
+			tween.tween_property(self, "global_position", path_positions[position_in_path], time).set_delay(delay_at_points)
 
 	
 
@@ -70,3 +73,16 @@ func tween_finished():
 	tween = create_tween()
 	tween.connect("finished", tween_finished)
 	tween.tween_property(self, "global_position", path_positions[position_in_path], time).set_delay(delay_at_points)
+
+
+func _on_stomp_button_velocity_trigger_fired(body):
+	isOff = false
+	tween = create_tween().bind_node(self)
+	tween.connect("finished", tween_finished)
+	var direction = (path_positions[position_in_path] - global_position)
+	var distance = direction.length()
+	direction = direction.normalized()
+	collider.constant_linear_velocity = direction*speed
+	var time = (distance/speed)
+	tween.tween_property(self, "global_position", path_positions[position_in_path], time).set_delay(delay_at_points)
+
