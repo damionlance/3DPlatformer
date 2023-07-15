@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://b307pwugmfuji"]
+[gd_scene load_steps=5 format=3 uid="uid://b307pwugmfuji"]
 
+[ext_resource type="FontFile" uid="uid://wu0d1gp4v18f" path="res://assets/fonts/ADLaMDisplay-Regular.ttf" id="1_hao71"]
 [ext_resource type="Script" path="res://scripts/gui/heads up display/global coin counter.gd" id="1_nl3my"]
 [ext_resource type="Texture2D" uid="uid://dvfjut3tnvcja" path="res://assets/textures/coinsprite.png" id="2_xy6i6"]
+
+[sub_resource type="Theme" id="Theme_tux47"]
+default_font = ExtResource("1_hao71")
+default_font_size = 0
 
 [node name="global coin counter" type="Control"]
 custom_minimum_size = Vector2(0, 100)
@@ -12,6 +17,7 @@ offset_right = 400.0
 offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_tux47")
 script = ExtResource("1_nl3my")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

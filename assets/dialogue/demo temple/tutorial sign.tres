@@ -6,6 +6,7 @@ data = {
 "text": "Welcome to the [color=red]Fella's Forgotten Figments[/color] demo!"
 },
 "1": {
-"text": "Explore the challenges of the Temple and find the [color=gold]Three Golden Skulls[/color] to escape!"
+"text": "Explore the challenges of the Temple and 
+find the [color=gold]Three Golden Skulls[/color] to escape!"
 }
 }
