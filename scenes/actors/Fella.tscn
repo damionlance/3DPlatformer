@@ -20,7 +20,7 @@
 [ext_resource type="Script" path="res://scripts/state machine/State.gd" id="18_oduss"]
 [ext_resource type="Script" path="res://scripts/tools/Camera.gd" id="19_fx30m"]
 [ext_resource type="Script" path="res://scripts/actors/player/shadow.gd" id="20_47ecb"]
-[ext_resource type="Texture2D" uid="uid://c52bihrts8irm" path="res://assets/models/shadow.png" id="21_1rscf"]
+[ext_resource type="Texture2D" uid="uid://bygxnovpkegta" path="res://assets/models/shadow.png" id="21_1rscf"]
 [ext_resource type="Script" path="res://scripts/actors/player/Friendo.gd" id="21_cgka8"]
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/FriendoStateMachine.gd" id="22_065we"]
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/Idle.gd" id="23_sua4n"]
@@ -39,7 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://b307pwugmfuji" path="res://scenes/ui/collectible_counter.tscn" id="40_0cooe"]
 [ext_resource type="Script" path="res://scripts/actors/player/FootFall Handler.gd" id="41_8nayu"]
 [ext_resource type="PackedScene" uid="uid://d3msswd4ciyt3" path="res://scenes/ui/dialogue prompt.tscn" id="41_mysnv"]
-[ext_resource type="PackedScene" uid="uid://4vh2f3m2n7bn" path="res://assets/models/actors/Fella/possible final fella.glb" id="41_tlfky"]
+[ext_resource type="PackedScene" uid="uid://odosxa5uw3jo" path="res://assets/models/actors/Fella/possible final fella.glb" id="41_tlfky"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/HoldableObjectNode.gd" id="42_083u5"]
 [ext_resource type="PackedScene" uid="uid://b6n1a3115odny" path="res://scenes/ui/dialogue box.tscn" id="42_xi1wd"]
 

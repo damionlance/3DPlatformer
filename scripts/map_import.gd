@@ -33,6 +33,8 @@ func iterate(node):
 			set_up_coin(node)
 		if "-levelcoin" in node.name:
 			set_up_level_coin(node)
+		if "-climbable" in node.name:
+			set_up_climable_surface(node)
 		for child in node.get_children():
 			iterate(child)
 
@@ -112,3 +114,7 @@ func set_up_stomp_button(button):
 func set_up_rising_door(door) -> Node:
 	door.set_script(load("res://scripts/level objects/door.gd"))
 	return door
+
+func set_up_climable_surface(plane) -> Node:
+	plane.set_script(load("res://scripts/tools/climbable_zone.gd"))
+	return plane
