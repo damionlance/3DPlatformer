@@ -27,7 +27,6 @@ func _process(delta):
 
 func _ground_pound_test(body):
 	if body.name == "Player":
-		print(body._state._current_state.name)
 		if body._state._jump_state ==  body._state.ground_pound:
 			emit_signal("activate", body)
 

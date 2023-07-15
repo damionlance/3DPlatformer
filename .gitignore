@@ -9,17 +9,15 @@ override.cfg
 # Godot-specific ignores
 .import/
 .godot/
-Sounds/
 Export/
 *.import
 export.cfg
 export_presets.cfg
 project.godot
+textures/
+sounds/
 addons/
 funding.yml
-3D Assets/
-textures/
-TestLevels/Maps/
 
 # Mono-specific ignores
 .mono/
