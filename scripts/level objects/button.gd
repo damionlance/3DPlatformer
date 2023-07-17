@@ -5,6 +5,7 @@ class_name interactive_button
 var properties = ["interactable"]
 var activated := false
 var _player
+@export var split_name : String
 
 var inactive = false
 signal add_body

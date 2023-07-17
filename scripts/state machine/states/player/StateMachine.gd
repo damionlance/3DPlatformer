@@ -142,6 +142,8 @@ func _process(delta):
 			can_interact = true
 			if _controller._jump_state == 1:
 				area._activate()
+				if "split_name" in area:
+					_player._add_split(area.split_name)
 		if area.name == "SoftSpot":
 			current_jump = 1
 			_jump_state = 1

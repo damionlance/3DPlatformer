@@ -1,24 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6n1a3115odny"]
+[gd_scene load_steps=3 format=3 uid="uid://b6n1a3115odny"]
 
 [ext_resource type="Script" path="res://scripts/gui/heads up display/dialogue box.gd" id="1_7eh7l"]
-[ext_resource type="FontFile" uid="uid://wu0d1gp4v18f" path="res://assets/fonts/ADLaMDisplay-Regular.ttf" id="1_kwqrs"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mlco2"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 150
-corner_radius_top_right = 150
-corner_radius_bottom_right = 150
-corner_radius_bottom_left = 150
-corner_detail = 5
-
-[sub_resource type="Theme" id="Theme_6c5j4"]
-default_font = ExtResource("1_kwqrs")
-default_font_size = 30
-Panel/styles/panel = SubResource("StyleBoxFlat_mlco2")
+[ext_resource type="Theme" uid="uid://dh1dehixsqaqc" path="res://assets/UI Themes/default dialogue theme.tres" id="1_dudfo"]
 
 [node name="Dialogue Box" type="Panel"]
 process_mode = 3
@@ -36,7 +19,7 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_6c5j4")
+theme = ExtResource("1_dudfo")
 script = ExtResource("1_7eh7l")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

@@ -22,4 +22,5 @@ func _pause_game():
 func _on_game_end_zone_body_entered(body):
 	if body.name == "Player":
 		visible = true
+		body._add_split("Game Over")
 		$"ColorRect/AnimationPlayer".play("Fade to Black")

@@ -52,6 +52,10 @@ func _ready():
 	set_up_direction(Vector3.UP)
 
 func _process(_delta):
+	
+	if Input.is_key_pressed(KEY_1):
+		player_anim.play("pinegrove shuffle")
+	
 	if _state.level_loaded:
 		if not collectables_loaded:
 			collectables_loaded = true
@@ -130,3 +134,6 @@ func drop_current_held_object():
 
 func release_current_held_object():
 	$HoldableObjectNode.release_object()
+
+func _add_split(split_name):
+	$"HUD/MarginContainer/Run Time Timers"._add_split(split_name)
