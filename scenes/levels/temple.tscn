@@ -90,6 +90,9 @@ shape = SubResource("BoxShape3D_5rlw6")
 [node name="RayCast3D" type="RayCast3D" parent="Camera Lock Zones/Maze Camera Lock"]
 target_position = Vector3(-1, 0, 0)
 
+[node name="RayCast3D2" type="RayCast3D" parent="Camera Lock Zones/Maze Camera Lock"]
+target_position = Vector3(15, 0, 0)
+
 [node name="Player" parent="." instance=ExtResource("2_r0hrm")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.0506, 6.07195, -0.27728)
 
@@ -140,51 +143,50 @@ script = ExtResource("11_8rfn6")
 requiredSpeed = -1.0
 
 [node name="maze slideplat1-slidingplat" parent="temple" index="15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134.885, 12.1621, 23.3393)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.715, 12.1621, 28.9275)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/maze slideplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(3.86979, 0, -3.16619)
+constant_linear_velocity = Vector3(-3.86979, 0, 3.16619)
 
 [node name="maze slideplat2-slidingplat" parent="temple" index="16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 21.7952)
-position_in_path = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 14.0753)
 
 [node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 0, -5)
-
-[node name="maze slideplat3-slidingplat" parent="temple" index="17"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -23.615)
-
-[node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
 constant_linear_velocity = Vector3(0, 0, 5)
 
-[node name="maze slideplat4-slidingplat" parent="temple" index="18"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 11.9019, -32.3373)
-speed = 3.0
+[node name="maze slideplat3-slidingplat" parent="temple" index="17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -13.8952)
 position_in_path = 1
+
+[node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, 0, -5)
+
+[node name="maze slideplat4-slidingplat" parent="temple" index="18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 17.5838, -32.3373)
+speed = 3.0
 button = NodePath("../maze button-stompbutton/StompButton")
 
 [node name="StaticBody3D" parent="temple/maze slideplat4-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 3, 0)
+constant_linear_velocity = Vector3(0, -3, 0)
 
 [node name="slidingplat1-slidingplat" parent="temple" index="99"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -74.5661, 16.8772, -10.4825)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -91.3775, 16.9594, -10.5207)
 
 [node name="StaticBody3D" parent="temple/slidingplat1-slidingplat" index="0"]
 constant_linear_velocity = Vector3(-4.99993, 0.0244635, -0.0113727)
 
 [node name="slidingplat2-slidingplat" parent="temple" index="100"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -87.0301, 16.9093, -0.49737)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -70.3851, 16.9093, -0.49737)
 
 [node name="StaticBody3D" parent="temple/slidingplat2-slidingplat" index="0"]
 constant_linear_velocity = Vector3(5, 0, 0)
 
 [node name="slidingplat3-slidingplat" parent="temple" index="101"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -89.7327, 16.9093, 9.50263)
-position_in_path = 1
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -81.3851, 16.9093, 9.50263)
 
 [node name="StaticBody3D" parent="temple/slidingplat3-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-5, 0, 0)
+constant_linear_velocity = Vector3(5, 0, 0)
 
 [node name="spinplat1-risingplat" parent="temple" index="147"]
 transform = Transform3D(0.999991, 0, 0.00427604, 0, 1, 0, -0.00427604, 0, 0.999991, -31.364, 19, -41.9127)
@@ -251,7 +253,7 @@ transform = Transform3D(-0.811727, -0.285106, 0.509719, 0, 0.872752, 0.488164, -
 transform = Transform3D(0.608917, -0.544419, 0.576912, 0.175847, 0.801841, 0.571077, -0.773497, -0.24629, 0.583989, -62.6095, 39.0638, 12.7572)
 
 [node name="Camera3D3" type="Camera3D" parent="Cinematic Cameras"]
-transform = Transform3D(0.420011, -0.585777, 0.69315, 0.175847, 0.801841, 0.571077, -0.89032, -0.11797, 0.439789, -15.4559, 39.0638, 8.06724)
+transform = Transform3D(0.420011, -0.585777, 0.69315, 0.175847, 0.801841, 0.571077, -0.89032, -0.11797, 0.439789, -15.4559, 31.7437, 8.06724)
 
 [node name="Ambience" type="Node" parent="."]
 

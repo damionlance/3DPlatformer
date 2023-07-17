@@ -11,6 +11,7 @@ func _ready():
 func _process(_delta):
 	if lock:
 		player_camera.look_at(player_camera.global_position + $"RayCast3D".target_position)
+		player_camera.global_position.x = $RayCast3D2.global_position.x + $RayCast3D2.target_position.x
 
 func _on_body_entered(body):
 	if body.name == "Player":
