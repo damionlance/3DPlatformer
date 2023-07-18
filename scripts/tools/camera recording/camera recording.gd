@@ -2,6 +2,8 @@ extends SubViewport
 
 var screenshots = []
 
+@export var enable := false
+
 var allow_break = false
 var thread
 
@@ -11,6 +13,8 @@ var number_of_cameras = 0
 
 
 func _ready():
+	if not enable:
+		get_parent().queue_free()
 	number_of_cameras = get_child_count()
 	get_child(0).current = true
 

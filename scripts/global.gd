@@ -3,6 +3,7 @@ extends Node
 var settings = Dictionary()
 
 var BUTTON_NAMES : Dictionary
+var SPEEDRUN_SPLITS : Dictionary
 
 var stars = {"Atop the Mountain": false, "Down the Lazy River": false, "Pipes!": false}
 var time_start
@@ -62,6 +63,16 @@ func _ready():
 	load_settings()
 	apply_settings()
 	
+	if FileAccess.file_exists("user://speedrun_splits.res"):
+		var data = FileAccess.open("user://speedrun_splits.res", FileAccess.READ)
+		var json = JSON.new()
+		var parse_result = json.parse(data.get_line())
+		if parse_result == OK:
+			SPEEDRUN_SPLITS = json.data
+	else:
+		SPEEDRUN_SPLITS["BEST INDIVIDUAL SPLITS"] = Dictionary()
+		SPEEDRUN_SPLITS["BEST RUN"] = Dictionary()
+	
 	setup_input_images("Xbox")
 	
 	mutex = Mutex.new()
@@ -110,6 +121,12 @@ func _save_data():
 		mutex.unlock()
 
 func _exit_tree():
+	
+	var save_game = FileAccess.open("user://speedrun_splits.res", FileAccess.WRITE)
+	var json = JSON.stringify(SPEEDRUN_SPLITS)
+	save_game.store_line(json)
+	
+	
 	mutex.lock()
 	exit_thread = true
 	mutex.unlock()
