@@ -79,31 +79,31 @@ func reset():
 	_state.snap_vector = Vector3.ZERO
 	match _state._jump_state:
 		_state.jump:
-			current_fall_gravity = _fall_gravity
+			current_fall_gravity = constants._fall_gravity
 			_state.anim_tree["parameters/conditions/fall"] = true
 		_state.jump2: 
-			current_fall_gravity = _fall2_gravity
+			current_fall_gravity = constants._fall2_gravity
 		_state.jump3: 
-			current_fall_gravity = _fall3_gravity
+			current_fall_gravity = constants._fall3_gravity
 		_state.spin_jump:
 			_state.velocity.y = 0
-			current_fall_gravity = _spin_fall_gravity
+			current_fall_gravity = constants._spin_fall_gravity
 			_state.anim_tree["parameters/conditions/fall"] = true
 		_state.side_flip:
-			current_fall_gravity = _side_fall_gravity
+			current_fall_gravity = constants._side_fall_gravity
 		_state.dive:
 			#animation doesn't change for dives falling
-			current_fall_gravity = _dive_fall_gravity
+			current_fall_gravity = constants._dive_fall_gravity
 		_state.rollout:
 			#animation doesn't change for rollouts falling
-			current_fall_gravity = _rollout_fall_gravity
+			current_fall_gravity = constants._rollout_fall_gravity
 		_state.popper_bounce:
-			current_fall_gravity = _side_fall_gravity
+			current_fall_gravity = constants._side_fall_gravity
 			_state.anim_tree["parameters/conditions/fall"] = true
 		_state.ground_pound:
-			current_fall_gravity = _fall_gravity
+			current_fall_gravity = constants._fall_gravity
 			_state.velocity.y = _state.terminal_velocity
 			_player.velocity.y = _state.terminal_velocity
 		_: 
-			current_jump_gravity = _fall_gravity
+			current_fall_gravity = constants._fall_gravity
 	pass

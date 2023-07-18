@@ -54,7 +54,7 @@ func update(delta):
 			_state.current_speed = 0
 			snapped_to_ledge = true
 		else:
-			current_fall_gravity = _fall_gravity
+			constants.current_fall_gravity = constants._fall_gravity
 	else:
 		var dot = _state.camera_relative_movement.dot(_state.snap_vector)
 		_state.current_speed = 0

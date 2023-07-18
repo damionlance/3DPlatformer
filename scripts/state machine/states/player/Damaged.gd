@@ -3,6 +3,7 @@ extends AerialMovement
 #private variables
 var _state_name = "Damaged"
 var current_jump_strength : float
+var current_jump_gravity : float
 
 var no_wall_jump : bool
 @export var ground_pound_finished := false
@@ -53,8 +54,8 @@ func update(delta):
 func reset():
 	_player.add_to_group("no_damage")
 	_player.anim_tree.travel("Jump")
-	current_jump_gravity = _jump_gravity
-	current_jump_strength = _jump_strength
+	current_jump_gravity = constants._jump_gravity
+	current_jump_strength = constants._jump_strength
 	_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
 	flashing = 0
 	buffer = 0

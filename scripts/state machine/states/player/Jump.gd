@@ -3,6 +3,7 @@ extends AerialMovement
 #private variables
 var _state_name = "Jump"
 var current_jump_strength : float
+var current_jump_gravity := 0.0
 
 var no_wall_jump : bool
 @export var ground_pound_finished := false
@@ -42,7 +43,7 @@ func update(delta):
 			wall_collision.ledgeGrab:
 				_state.update_state("LedgeGrab")
 				return
-	if _state._controller._jump_state == _state._controller.jump_released and shorthop_timer == shorthop_buffer:
+	if _state._controller._jump_state == _state._controller.jump_released and constants.shorthop_timer == constants.shorthop_buffer:
 		_state.velocity.y *= .6
 		_state.update_state("Falling")
 		return
@@ -60,7 +61,7 @@ func update(delta):
 		standard_aerial_drift()
 	
 	# Update all relevant counters
-	shorthop_timer += 1
+	constants.shorthop_timer += 1
 		
 	# Process physics
 	_state.velocity = _state.calculate_velocity(current_jump_gravity, delta)
@@ -79,52 +80,52 @@ func reset():
 	_state.anim_tree["parameters/Jump/conditions/jump 3"] = false
 	match _state._jump_state:
 		_state.jump:
-			current_jump_gravity = _jump_gravity
-			current_jump_strength = _jump_strength
+			current_jump_gravity = constants._jump_gravity
+			current_jump_strength = constants._jump_strength
 			_state.anim_tree["parameters/Jump/conditions/jump 1"] = true
 			sound_player.set_stream(load("res://assets/sounds/actor noises/Jump 1.mp3"))
 			sound_player.play()
 		_state.jump2: 
-			current_jump_gravity = _jump2_gravity
-			current_jump_strength = _jump2_strength
+			current_jump_gravity = constants._jump2_gravity
+			current_jump_strength = constants._jump2_strength
 			_state.anim_tree["parameters/Jump/conditions/jump 2"] = true
 			sound_player.set_stream(load("res://assets/sounds/actor noises/Jump 2.mp3"))
 			sound_player.play()
 		_state.jump3: 
-			current_jump_gravity = _jump3_gravity
-			current_jump_strength = _jump3_strength
+			current_jump_gravity = constants._jump3_gravity
+			current_jump_strength = constants._jump3_strength
 			_state.anim_tree["parameters/Jump/conditions/jump 3"] = true
 			sound_player.set_stream(load("res://assets/sounds/actor noises/Jump 3.mp3"))
 			sound_player.play()
 		_state.spin_jump:
 			_player.anim_tree.travel("Spinning")
-			current_jump_gravity = _spin_jump_gravity
-			current_jump_strength = _spin_jump_strength
+			current_jump_gravity = constants._spin_jump_gravity
+			current_jump_strength = constants._spin_jump_strength
 			_state.anim_tree["parameters/Jump/conditions/jump 3"] = true
 		_state.side_flip:
-			current_jump_gravity = _side_jump_gravity
-			current_jump_strength = _side_jump_strength
+			current_jump_gravity = constants._side_jump_gravity
+			current_jump_strength = constants._side_jump_strength
 			_state.anim_tree["parameters/Jump/conditions/jump 3"] = true
 			sound_player.set_stream(load("res://assets/sounds/actor noises/Jump 3.mp3"))
 			sound_player.play()
 		_state.dive:
-			current_jump_gravity = _dive_jump_gravity
-			current_jump_strength = _dive_jump_strength
-			_state.current_speed += dive_speed
+			current_jump_gravity = constants._dive_jump_gravity
+			current_jump_strength = constants._dive_jump_strength
+			_state.current_speed += constants.dive_speed
 			_state.move_direction = _state.camera_relative_movement
 			_state.anim_tree["parameters/Jump/conditions/dive"] = true
 			sound_player.set_stream(load("res://assets/sounds/actor noises/Dive.mp3"))
 			sound_player.play()
 		_state.rollout:
 			_state.current_jump = 0
-			current_jump_gravity = _dive_jump_gravity
-			current_jump_strength = _dive_jump_strength
+			current_jump_gravity = constants._dive_jump_gravity
+			current_jump_strength = constants._dive_jump_strength
 			_state.anim_tree["parameters/Jump/conditions/roll out"] = true
 			sound_player.set_stream(load("res://assets/sounds/actor noises/Side Flip.mp3"))
 			sound_player.play()
 		_state.popper_bounce:
-			current_jump_gravity = _side_jump_gravity
-			current_jump_strength = _side_jump_strength
+			current_jump_gravity = constants._side_jump_gravity
+			current_jump_strength = constants._side_jump_strength
 			_state.anim_tree["parameters/Jump/conditions/jump 1"] = true
 		_state.ground_pound:
 			current_jump_gravity = 0
@@ -136,11 +137,11 @@ func reset():
 			sound_player.set_stream(load("res://assets/sounds/actor noises/Side Flip.mp3"))
 			sound_player.play()
 		_: 
-			current_jump_gravity = _jump_gravity
-			current_jump_strength = _jump_strength
+			current_jump_gravity = constants._jump_gravity
+			current_jump_strength = constants._jump_strength
 			_state.anim_tree["parameters/Jump/conditions/jump 1"] = true
 	
-	shorthop_timer = 0
+	constants.shorthop_timer = 0
 	entering_jump_angle = _state.current_dir
 	_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = current_jump_strength

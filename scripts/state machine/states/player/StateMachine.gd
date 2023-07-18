@@ -2,7 +2,8 @@ extends Node
 
 #public variables
 var state_dictionary : Dictionary
-var level_loaded : bool
+
+var level_loaded = false
 
 var respawn_point = null
 
@@ -116,10 +117,14 @@ var bounceTimer := 0
 var can_interact := false
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if not "level_loaded" in get_tree().get_current_scene():
+		queue_free()
+		return
+	await get_tree().get_current_scene().level_loaded
+	level_loaded = true
 	respawn_point = preload("res://scenes/tools/Dynamic Objects/respawn_point.tscn").instantiate()
 	add_child(respawn_point)
 	respawn_point.position = Vector3(0,-1000000, 0)
-	level_loaded = false
 	pivot_buffer.resize(pivot_buffer_size)
 	state_dictionary.is_empty()
 	
@@ -130,7 +135,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	if not level_loaded:
+	if level_loaded != true:
 		return
 	if _current_state == null:
 		_jump_state = jump

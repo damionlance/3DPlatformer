@@ -44,7 +44,7 @@ func update(delta):
 	
 	# Process physics
 	_state.move_direction = diff.normalized()
-	_state.current_speed += 1.5 if _state.current_speed < max_reel_in else 0.0
+	_state.current_speed += 1.5 if _state.current_speed < constants.max_reel_in else 0.0
 	_state.velocity = _state.calculate_velocity(0, delta)
 	
 	pass
@@ -53,6 +53,6 @@ func reset():
 	_player.grappling = false
 	altered = _friendo.global_position
 	altered.y -= 1.25
-	shorthop_timer = 0
+	constants.shorthop_timer = 0
 	_state.snap_vector = Vector3.ZERO
 	pass

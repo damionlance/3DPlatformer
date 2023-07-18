@@ -35,6 +35,9 @@ func _force_reset():
 	get_tree().reload_current_scene()
 
 func _ready():
+	if not "level_loaded" in get_tree().get_current_scene():
+		queue_free()
+		return
 	
 	if not has_fella:
 		$FriendoHomingNode.queue_free()
@@ -52,7 +55,6 @@ func _ready():
 	set_up_direction(Vector3.UP)
 
 func _process(_delta):
-	
 	if Input.is_key_pressed(KEY_1):
 		player_anim.play("pinegrove shuffle")
 	

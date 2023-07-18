@@ -36,17 +36,17 @@ func update(delta):
 	# Update all relevant counters
 	
 	# Process physics
-	_state.velocity = _state.calculate_velocity(_side_jump_gravity, delta)
+	_state.velocity = _state.calculate_velocity(constants._side_jump_gravity, delta)
 	pass
 
 func reset():
 	_player.anim_tree.travel("Jump")
 	_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
 	
-	entering_jump_angle = Vector3(_player.popperAngle.x, 0, _player.popperAngle.z)
+	constants.entering_jump_angle = Vector3(_player.popperAngle.x, 0, _player.popperAngle.z)
 	_state.move_direction = Vector3(_player.popperAngle.x, 0, _player.popperAngle.z)
-	_state.current_speed = wall_jump_speed * entering_jump_angle.length()
+	_state.current_speed = constants.wall_jump_speed * constants.entering_jump_angle.length()
 	_state.snap_vector = Vector3.ZERO
-	_state.velocity.y = _side_jump_strength
+	_state.velocity.y = constants._side_jump_strength
 	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 	pass

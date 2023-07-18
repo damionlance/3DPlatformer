@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="aerial_physics_constants" load_steps=2 format=3 uid="uid://cef7sn2wkn2bq"]
+
+[ext_resource type="Script" path="res://scripts/resources/aerial physics constants.gd" id="1_v3whg"]
+
+[resource]
+script = ExtResource("1_v3whg")
+jump_height = 3.1
+jump_time_to_peak = 0.3
+jump_time_to_descent = 0.216
+jump2_height = 5.1
+jump2_time_to_peak = 0.3
+jump2_time_to_descent = 0.266
+jump3_height = 7.1
+jump3_time_to_peak = 0.35
+jump3_time_to_descent = 0.36
+spin_jump_height = 5.5
+spin_jump_time_to_peak = 0.7
+spin_jump_time_to_descent = 1.2
+side_jump_height = 6.1
+side_jump_time_to_peak = 0.4
+side_jump_time_to_descent = 0.4
+dive_jump_height = 2.1
+dive_jump_time_to_peak = 0.3
+dive_jump_time_to_descent = 0.22
+rollout_jump_height = 2.1
+rollout_jump_time_to_peak = 0.3
+rollout_jump_time_to_descent = 0.3
+air_friction = 0.99
+air_acceleration = 2.0

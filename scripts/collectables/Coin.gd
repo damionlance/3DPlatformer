@@ -34,7 +34,6 @@ func _ready():
 		queue_free()
 		return
 	await root.level_loaded
-	
 	if Global.WORLD_COLLECTIBLES.has(name):
 		collected = Global.WORLD_COLLECTIBLES[name]
 	else:
