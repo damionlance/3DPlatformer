@@ -10,6 +10,7 @@ var cancellable = true
 var breaks_momentum = false
 var motion_input : String
 
+@onready var landing_particles = "res://scenes/particles/landing particles.tscn"
 #private variables
 var _state_name = "Dive Floor"
 
@@ -54,6 +55,9 @@ func update(delta):
 	pass
 
 func reset():
+	var instance = load(landing_particles).instantiate()
+	add_child(instance)
+	instance.global_position = _state._player.global_position
 	sound_player.set_stream(load("res://assets/sounds/actor noises/Jump Land.mp3"))
 	sound_player.play()
 	_state.snap_vector = Vector3.DOWN

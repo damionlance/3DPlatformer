@@ -10,6 +10,7 @@ var motion_input : String
 var _state_name = "LedgeGrab"
 var snapped_to_ledge = false
 
+
 var height_of_platform := 0
 #onready variables
 
@@ -19,7 +20,6 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	
 	
 	# Handle state logic
 	if _player.is_on_floor():
@@ -41,6 +41,7 @@ func update(delta):
 	# Update relevant counters
 	var left_or_right = 0
 	var current_fall_gravity = 0
+	_state.current_speed = 2
 	if not snapped_to_ledge:
 		if _state._raycast_left.is_colliding():
 			
@@ -51,13 +52,11 @@ func update(delta):
 			_state.velocity = Vector3.ZERO
 			_state._player.velocity = Vector3.ZERO
 			_state.move_direction = Vector3.ZERO
-			_state.current_speed = 0
 			snapped_to_ledge = true
 		else:
-			constants.current_fall_gravity = constants._fall_gravity
+			current_fall_gravity = constants._fall_gravity
 	else:
 		var dot = _state.camera_relative_movement.dot(_state.snap_vector)
-		_state.current_speed = 0
 		_state.move_direction = Vector3.ZERO
 		if dot > .9:
 			_state.move_direction = _state.snap_vector
@@ -93,7 +92,7 @@ func update(delta):
 					_state._raycast_left.position.y -= .2
 			if continue_sliding:
 				_state.move_direction = desired_movement
-				_state.current_speed = 1 * _state._controller.input_strength
+				_state.current_speed = 2 * _state._controller.input_strength
 	_state.anim_tree["parameters/ledge hang/blend_position"] = _state.current_speed * left_or_right
 	# Process Physics
 	_state.velocity = _state.calculate_velocity(current_fall_gravity, delta)
@@ -108,6 +107,9 @@ func reset():
 	_state.move_direction = Vector3.ZERO
 	_state.current_speed = 0
 	_state.snap_vector = -_state._raycast_middle.get_collision_normal()
+	var distance = abs((_state._raycast_middle.get_collision_point() - _state._raycast_middle.global_position) *  .577)
+	print(_state.snap_vector * distance)
+	_player.global_position += _state.snap_vector * distance
 	_state.snap_vector.y = 0
 	if _state.snap_vector == Vector3.ZERO:
 		_state.update_state("Falling")

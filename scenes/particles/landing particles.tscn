@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://bhdnyn4uex7nm"]
+
+[ext_resource type="Script" path="res://scripts/particles/landing particles.gd" id="1_y6d06"]
+
+[sub_resource type="Gradient" id="Gradient_1bxrn"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hyepo"]
+gradient = SubResource("Gradient_1bxrn")
+
+[sub_resource type="Curve" id="Curve_na8v5"]
+_data = [Vector2(0, 1), 0.0, -3.63078, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_od0uo"]
+curve = SubResource("Curve_na8v5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vwmuj"]
+direction = Vector3(0, 0, 0)
+spread = 180.0
+flatness = 0.5
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 7.0
+damping_min = 15.0
+damping_max = 20.0
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_od0uo")
+color_ramp = SubResource("GradientTexture1D_hyepo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oex65"]
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_tcwv3"]
+material = SubResource("StandardMaterial3D_oex65")
+radius = 1.0
+height = 2.0
+
+[node name="landing particles" type="GPUParticles3D"]
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_vwmuj")
+draw_pass_1 = SubResource("SphereMesh_tcwv3")
+script = ExtResource("1_y6d06")

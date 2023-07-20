@@ -62,7 +62,6 @@ func start_dialogue(dialogue_path, body):
 
 func dialogue():
 	if dialogue_box.display_dialogue() == true:
-		print("Hello!")
 		dialogue_box.reset()
 		get_tree().paused = false
 		dialogue_box.visible = false

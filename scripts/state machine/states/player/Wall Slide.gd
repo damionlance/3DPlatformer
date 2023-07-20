@@ -22,7 +22,7 @@ var forwards
 var right
 
 #onready variables
-
+@onready var landing_particles = "res://scenes/particles/landing particles.tscn"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_state.state_dictionary[_state_name] = self
@@ -36,6 +36,7 @@ func update(delta):
 		return
 	if not _state._raycast_middle.is_colliding():
 		_state._jump_state = _state.jump
+		_state.move_direction = -_state.move_direction
 		_state.update_state("Falling")
 		return
 	if wall_collision_check() == wall_collision.wallClimb:
@@ -68,13 +69,23 @@ func directional_input_handling():
 	elif dir.dot(surface_normal) < 0:
 		_state.move_direction = dir.bounce(surface_normal)
 	else:
-		_state.move_direction = dir
+		var angle = surface_normal.signed_angle_to(dir, Vector3.UP)
+		if angle < -deg_to_rad(40):
+			angle = -deg_to_rad(40)
+		elif angle > deg_to_rad(40):
+			angle = deg_to_rad(40)
+		_state.move_direction = dir.rotated(Vector3.UP, angle)
 
 func reset():
+	var instance = load(landing_particles).instantiate()
+	add_child(instance)
+	instance.global_position = _state._player.global_position
 	_state._reset_animation_parameters()
 	_state.anim_tree["parameters/conditions/wall slide"] = true
-	entering_angle = Vector3(_state.velocity.x,0, _state.velocity.z).normalized()
-	if entering_angle == Vector3.ZERO:
+	entering_angle = Vector3(_state.velocity.x,0, _state.velocity.z)
+	var horizontal_strength = entering_angle.length()
+	entering_angle = entering_angle.normalized()
+	if horizontal_strength < .1:
 		_state.consecutive_stationary_wall_jump += 1
 	wall_bounce_timer = 0
 	_state.velocity = Vector3.ZERO

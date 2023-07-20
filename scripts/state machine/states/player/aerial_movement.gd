@@ -24,14 +24,13 @@ enum wall_collision {
 func wall_collision_check():
 	if _state._jump_state == _state.spin_jump:
 		return
-	if _state._jump_state == _state.dive or _player.is_on_floor() or _state.consecutive_stationary_wall_jump == 1:
+	if _state._jump_state == _state.dive or _player.is_on_floor() or _state.consecutive_stationary_wall_jump >= 2:
 		return wall_collision.noCollision
 	var ledgeGrabHit = false
 	var collider = _player.get_last_slide_collision()
 	if collider:
 		if not collider.get_collider() is StaticBody3D:
 			return wall_collision.noCollision
-	
 	if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
 		var bodies = []
 		var collision_normals = []
@@ -50,13 +49,14 @@ func wall_collision_check():
 				var prev_horizontal_speed = _player.previous_horizontal_velocity.length()
 				if prev_horizontal_speed > 2 and not _player.grappling:
 					return wall_collision.wallSlide
-	
 	else:
 		if _state._raycast_middle.is_colliding() and _state.velocity.y < 0:
+			print("Front worked")
 			ledgeGrabHit = true
 		_state._raycast_middle.target_position *= -1
 		_state._raycast_middle.force_raycast_update()
 		if _state._raycast_middle.is_colliding() and _state.velocity.y < 0:
+			print("Back worked")
 			ledgeGrabHit = true
 		_state._raycast_middle.target_position *= -1
 		_state._raycast_middle.force_raycast_update()

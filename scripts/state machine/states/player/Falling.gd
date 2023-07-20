@@ -10,6 +10,7 @@ var _state_name = "Falling"
 var entering_jump_button_state
 var current_fall_gravity
 #onready variables
+@onready var landing_particles = "res://scenes/particles/landing particles.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,11 +28,15 @@ func update(delta):
 			_state.update_state("Jump")
 		return
 	if _player.is_on_floor():
+		_state.consecutive_stationary_wall_jump = 0
 		airdrifting = false
 		_state.snap_vector = Vector3.DOWN
 		if _state._jump_state == _state.dive:
 			_state.update_state("Dive Floor")
 		else:
+			var instance = load(landing_particles).instantiate()
+			add_child(instance)
+			instance.global_position = _state._player.global_position
 			_state.anim_tree["parameters/conditions/landed"] = true
 			_state.anim_tree["parameters/conditions/running"] = true
 			_state.anim_tree["parameters/conditions/ground pound"] = false
