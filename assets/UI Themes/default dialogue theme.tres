@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://dh1dehixsqaqc"]
 
-[ext_resource type="FontFile" uid="uid://wu0d1gp4v18f" path="res://assets/fonts/ADLaMDisplay-Regular.ttf" id="1_36owt"]
+[ext_resource type="FontFile" uid="uid://cipdp4xifgfhl" path="res://assets/fonts/ADLaMDisplay-Regular.ttf" id="1_36owt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mlco2"]
 content_margin_left = 0.0
