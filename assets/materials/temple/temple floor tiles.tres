@@ -1,7 +1,7 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dtlwgy1ji6qtl"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b1xvhyiou0vsm"]
 
 [ext_resource type="Shader" path="res://assets/shaders/blend from vertex color.gdshader" id="1_a7gfd"]
-[ext_resource type="Texture2D" uid="uid://ci2wn32l6jwrg" path="res://assets/models/levels/Pool/temple_Tiled Floor.png" id="2_1y8s3"]
+[ext_resource type="Texture2D" uid="uid://b8gbteht3uiht" path="res://assets/models/levels/Pool/temple_Tiled Floor.png" id="2_1y8s3"]
 
 [resource]
 render_priority = 0

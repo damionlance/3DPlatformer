@@ -66,15 +66,16 @@ func directional_input_handling():
 	var dir = _state.camera_relative_movement.normalized()
 	if _state._controller.input_strength == 0:
 		_state.move_direction = surface_normal
-	elif dir.dot(surface_normal) < 0:
-		_state.move_direction = dir.bounce(surface_normal)
-	else:
-		var angle = surface_normal.signed_angle_to(dir, Vector3.UP)
-		if angle < -deg_to_rad(40):
-			angle = -deg_to_rad(40)
-		elif angle > deg_to_rad(40):
-			angle = deg_to_rad(40)
-		_state.move_direction = dir.rotated(Vector3.UP, angle)
+		return
+	if dir.dot(surface_normal) < 0:
+		print("Hello")
+		dir = dir.bounce(surface_normal)
+	var angle = surface_normal.signed_angle_to(dir, Vector3.UP)
+	if angle < -deg_to_rad(40):
+		angle = deg_to_rad(40)
+	elif angle > deg_to_rad(40):
+		angle = -deg_to_rad(40)
+	_state.move_direction = dir.rotated(Vector3.UP, angle)
 
 func reset():
 	var instance = load(landing_particles).instantiate()
