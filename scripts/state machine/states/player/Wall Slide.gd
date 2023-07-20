@@ -68,7 +68,6 @@ func directional_input_handling():
 		_state.move_direction = surface_normal
 		return
 	if dir.dot(surface_normal) < 0:
-		print("Hello")
 		dir = dir.bounce(surface_normal)
 	var angle = surface_normal.signed_angle_to(dir, Vector3.UP)
 	if angle < -deg_to_rad(40):

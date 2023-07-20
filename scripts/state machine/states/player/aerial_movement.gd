@@ -83,7 +83,7 @@ func standard_aerial_drift():
 		_state.current_speed *= constants.air_friction * .98
 	elif relative_angle < -.5:
 		_state.current_speed *= constants.air_friction
-	elif relative_angle > -.5 and relative_angle < .5 and not airdrifting:
+	elif relative_angle > -.5 and not airdrifting:
 		_state.current_speed += 3
 		airdrifting = true
 	if _player.is_on_wall_only():

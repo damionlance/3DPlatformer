@@ -77,6 +77,7 @@ func update(delta):
 	lean_into_turns()
 	grounded_movement_processing()
 	look_forward()
+	_state.current_dir = _state.move_direction
 	var speed_difference = previous_speed - _state.current_speed
 	
 	if speed_difference < -5:

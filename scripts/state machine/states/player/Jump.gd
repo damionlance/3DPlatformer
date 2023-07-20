@@ -52,9 +52,6 @@ func update(delta):
 		return
 	if _state.attempting_throw and _state._jump_state != _state.dive:
 		_state._throw()
-	# Handle animation tree
-	
-	# Process movements
 	elif _state._jump_state == _state.spin_jump:
 		spin_jump_drift()
 	elif _state._jump_state != _state.dive:
@@ -68,6 +65,7 @@ func update(delta):
 	pass
 
 func reset():
+	airdrifting = false
 	ground_pound_finished = false
 	entering_jump_button_state = _state._controller._jump_state
 	_state.anim_tree["parameters/conditions/jump"] = true
@@ -142,7 +140,7 @@ func reset():
 			_state.anim_tree["parameters/Jump/conditions/jump 1"] = true
 	
 	constants.shorthop_timer = 0
-	entering_jump_angle = _state.current_dir
+	entering_jump_angle = _state.camera_relative_movement
 	_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = current_jump_strength
 	_state._player.velocity.y = current_jump_strength
