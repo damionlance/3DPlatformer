@@ -40,6 +40,7 @@ func update(delta):
 			_state.anim_tree["parameters/conditions/landed"] = true
 			_state.anim_tree["parameters/conditions/running"] = true
 			_state.anim_tree["parameters/conditions/ground pound"] = false
+			_state._jump_state = _state.no_jump
 			_state.update_state("Running")
 		_state.just_landed = true
 		return
