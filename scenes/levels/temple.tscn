@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/level objects/camera lock zone.gd" id="2_rq7k1"]
 [ext_resource type="PackedScene" uid="uid://bgpdulba1eqfl" path="res://scenes/tools/lights/fire.tscn" id="3_1m8ga"]
 [ext_resource type="PackedScene" uid="uid://g6qin1b8kg1e" path="res://scenes/tools/Interactive Objects/button_stand.tscn" id="6_gyy0o"]
-[ext_resource type="PackedScene" uid="uid://k4a1bwuijry0" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
+[ext_resource type="PackedScene" uid="uid://be3kuw0kv4rqi" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
 [ext_resource type="AudioStream" uid="uid://dmyfuyqfotjxy" path="res://assets/sounds/mixkit-light-rain-atmosphere-2474.mp3" id="9_5f0wq"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
 [ext_resource type="Script" path="res://scripts/level objects/Water.gd" id="11_8rfn6"]
@@ -164,65 +164,59 @@ script = ExtResource("11_8rfn6")
 [node name="StompButton" parent="temple/maze button-stompbutton" index="1"]
 requiredSpeed = -1.0
 
-[node name="maze slideplat1-slidingplat" parent="temple" index="12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.106, 12.1621, 28.4294)
-position_in_path = 1
+[node name="maze slideplat1-slidingplat" parent="temple/maze slideplat1-path" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8144, -1.17834, -2.85396)
 
-[node name="StaticBody3D" parent="temple/maze slideplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-3.86979, 0, 3.16619)
+[node name="StaticBody3D" parent="temple/maze slideplat1-path/maze slideplat1-slidingplat" index="0"]
+constant_linear_velocity = Vector3(4.8796, -0.416219, -1.0081)
 
-[node name="maze slideplat2-slidingplat" parent="temple" index="13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 17.6841)
-position_in_path = 1
+[node name="maze slideplat2-slidingplat" parent="temple/maze slideplat2-path" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0953, -1.13639, -0.633324)
 
-[node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 0, -5)
+[node name="StaticBody3D" parent="temple/maze slideplat2-path/maze slideplat2-slidingplat" index="0"]
+constant_linear_velocity = Vector3(4.97884, -0.401403, -0.223707)
 
-[node name="maze slideplat3-slidingplat" parent="temple" index="14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -11.1919)
-position_in_path = 1
+[node name="maze slideplat3-slidingplat" parent="temple/maze slideplat3-path" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9267, -1.1228, 2.27085)
 
-[node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 0, -5)
+[node name="StaticBody3D" parent="temple/maze slideplat3-path/maze slideplat3-slidingplat" index="0"]
+constant_linear_velocity = Vector3(4.91928, -0.396601, 0.802126)
 
-[node name="maze slideplat4-slidingplat" parent="temple" index="15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.9057, -32.3373)
-speed = 3.0
-button = NodePath("../maze button-stompbutton/StompButton")
+[node name="maze slideplat4-slidingplat" parent="temple/maze slideplat4-path" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7907, -1.20325, 2.9562)
 
-[node name="StaticBody3D" parent="temple/maze slideplat4-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, -3, 0)
+[node name="StaticBody3D" parent="temple/maze slideplat4-path/maze slideplat4-slidingplat" index="0"]
+constant_linear_velocity = Vector3(4.87124, -0.425019, 1.04421)
 
-[node name="slidingplat1-slidingplat" parent="temple" index="104"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -73.0078, 16.8695, -10.4789)
+[node name="slidingplat3-slidingplat" parent="temple/slidingplat3-path" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7891, -2.78842, -1.56703)
 
-[node name="StaticBody3D" parent="temple/slidingplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-4.99993, 0.0244635, -0.0113727)
+[node name="StaticBody3D" parent="temple/slidingplat3-path/slidingplat3-slidingplat" index="0"]
+constant_linear_velocity = Vector3(4.87068, -0.984944, -0.553516)
 
-[node name="slidingplat2-slidingplat" parent="temple" index="105"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -88.5884, 16.9093, -0.49737)
+[node name="slidingplat2-slidingplat" parent="temple/slidingplat2-path" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8742, -2.80562, 0.0825245)
 
-[node name="StaticBody3D" parent="temple/slidingplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(5, 0, 0)
+[node name="StaticBody3D" parent="temple/slidingplat2-path/slidingplat2-slidingplat" index="0"]
+constant_linear_velocity = Vector3(4.90072, -0.991019, 0.0291498)
 
-[node name="slidingplat3-slidingplat" parent="temple" index="106"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -88.1739, 16.9093, 9.50263)
-position_in_path = 1
+[node name="slidingplat1-slidingplat" parent="temple/slidingplat1-path" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6053, -3.31865, 2.06205)
 
-[node name="StaticBody3D" parent="temple/slidingplat3-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-5, 0, 0)
+[node name="StaticBody3D" parent="temple/slidingplat1-path/slidingplat1-slidingplat" index="0"]
+constant_linear_velocity = Vector3(4.80576, -1.17223, 0.728371)
 
-[node name="spin slope" parent="temple" index="151"]
+[node name="spin slope" parent="temple" index="144"]
 visible = false
 
-[node name="spinplat1-risingplat" parent="temple" index="155"]
+[node name="spinplat1-risingplat" parent="temple" index="148"]
 transform = Transform3D(0.999991, 0, 0.00427604, 0, 1, 0, -0.00427604, 0, 0.999991, -31.964, 19, -46.3127)
 button = NodePath("../spin button 1-stompbutton/StompButton")
 spinHeight = Vector3(0, 8, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.25
 
-[node name="spinplat3-risingplat" parent="temple" index="156"]
+[node name="spinplat3-risingplat" parent="temple" index="149"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 22, -34)
 button = NodePath("../spin button 3-stompbutton/StompButton")
 initial_position = Vector3(-5, 9, -34)
@@ -230,7 +224,7 @@ spinHeight = Vector3(0, 13, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.25
 
-[node name="spinplat4-risingplat" parent="temple" index="157"]
+[node name="spinplat4-risingplat" parent="temple" index="150"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 30, -22)
 button = NodePath("../spin button 2-stompbutton/StompButton")
 spinHeight = Vector3(0, 19, 0)
@@ -246,7 +240,7 @@ requiredSpeed = -23.0
 [node name="StompButton" parent="temple/spin button 3-stompbutton" index="1"]
 requiredSpeed = -23.0
 
-[node name="spinplat2-risingplat" parent="temple" index="161"]
+[node name="spinplat2-risingplat" parent="temple" index="154"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 24, -22)
 button = NodePath("../spin button 1-stompbutton/StompButton")
 spinHeight = Vector3(0, 13, 0)
