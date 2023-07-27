@@ -57,6 +57,8 @@ func _ready():
 func _process(_delta):
 	if Input.is_key_pressed(KEY_1):
 		player_anim.play("pinegrove shuffle")
+	if Input.is_key_pressed(KEY_2):
+		player_anim.play("wave")
 	
 	if _state.level_loaded:
 		if not collectables_loaded:
