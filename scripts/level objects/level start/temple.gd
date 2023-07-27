@@ -1,7 +1,5 @@
 extends LevelStart
 
-signal level_loaded
-
 @export var number_of_coins := 400
 @export var number_of_level_coins := 400
 
@@ -16,6 +14,5 @@ func _ready():
 	ensure_collectable_exists("COIN")
 	ensure_collectable_exists("LEVEL COIN")
 	emit_signal("level_loaded")
-	print("Signal emitted")
 	for i in 200:
 		coins.multimesh.set_instance_transform(i,Transform3D(Basis(), Vector3.ZERO))

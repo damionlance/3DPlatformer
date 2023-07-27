@@ -531,7 +531,7 @@ margin = 0.223
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.12232, 7.53115)
 current = true
 fov = 80.0
-far = 500.0
+far = 1500.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraPivot"]
 shape = SubResource("SphereShape3D_l8mw7")

@@ -1,0 +1,135 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlc5u4t3au41d"]
+
+[ext_resource type="PackedScene" uid="uid://djixjb8eyamhs" path="res://assets/models/levels/Pool/Island.glb" id="1_ejj4f"]
+[ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_hsxvc"]
+[ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_yaa41"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_573ro"]
+
+[sub_resource type="Sky" id="Sky_hsml3"]
+sky_material = SubResource("ProceduralSkyMaterial_573ro")
+
+[sub_resource type="Environment" id="Environment_dyxfe"]
+sky = SubResource("Sky_hsml3")
+ambient_light_source = 3
+ambient_light_color = Color(0.65098, 0, 0.666667, 1)
+ambient_light_energy = 9.88
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_hsxvc")
+
+[node name="Island" parent="." instance=ExtResource("1_ejj4f")]
+transform = Transform3D(0.999995, -0.00176682, -0.00243486, 0.00176917, 0.999998, 0.000961859, 0.00243315, -0.000966177, 0.999997, 0, 0, 0)
+
+[node name="Cube_008" parent="Island" index="7"]
+transform = Transform3D(0, 1, -2.84217e-11, 1.74623e-10, -4.6839e-11, -1, -1, -6.98492e-10, -1.74623e-10, -3.5, 15.5, -9.5)
+
+[node name="Cube 1-path" parent="Island" index="80"]
+visible = true
+
+[node name="Cube 1-slidingplat" parent="Island/Cube 1-path" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7394, 4.65376, 11.4554)
+position_in_path = 1
+
+[node name="StaticBody3D" parent="Island/Cube 1-path/Cube 1-slidingplat" index="0"]
+constant_linear_velocity = Vector3(3.27874, 1.42079, 3.49732)
+
+[node name="Cube 2-path" parent="Island" index="81"]
+visible = true
+
+[node name="Cube 2-slidingplat" parent="Island/Cube 2-path" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.13572, -0.545241, 0.203584)
+position_in_path = 1
+
+[node name="StaticBody3D" parent="Island/Cube 2-path/Cube 2-slidingplat" index="0"]
+constant_linear_velocity = Vector3(2.72727, -0.909091, 4.09091)
+
+[node name="Cube 3-path" parent="Island" index="82"]
+visible = true
+
+[node name="Cube 3-slidingplat" parent="Island/Cube 3-path" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.06409, 0.325909, -1.62955)
+
+[node name="StaticBody3D" parent="Island/Cube 3-path/Cube 3-slidingplat" index="0"]
+constant_linear_velocity = Vector3(3.89462, -0.61494, 3.0747)
+
+[node name="Cube_151" parent="Island" index="153"]
+visible = false
+
+[node name="Cube_159" parent="Island" index="161"]
+visible = false
+
+[node name="cliff plat 1-path" parent="Island" index="174"]
+visible = true
+
+[node name="cliff plat 1-slidingplat" parent="Island/cliff plat 1-path" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.64489)
+position_in_path = 1
+
+[node name="StaticBody3D" parent="Island/cliff plat 1-path/cliff plat 1-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, 0, 5)
+
+[node name="cliff plat 2-path" parent="Island" index="175"]
+visible = true
+
+[node name="cliff plat 2-slidingplat" parent="Island/cliff plat 2-path" index="0"]
+transform = Transform3D(1, 2.81943e-11, 0, -4.6839e-11, 1, -5.82077e-11, -2.32831e-10, 5.82077e-11, 1, 0, 0, 1.69405)
+position_in_path = 1
+
+[node name="StaticBody3D" parent="Island/cliff plat 2-path/cliff plat 2-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, 0, 5)
+
+[node name="cliff plat 3-path" parent="Island" index="176"]
+visible = true
+
+[node name="cliff plat 3-slidingplat" parent="Island/cliff plat 3-path" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.43508e-07, 0, -1.69405)
+position_in_path = 1
+
+[node name="StaticBody3D" parent="Island/cliff plat 3-path/cliff plat 3-slidingplat" index="0"]
+constant_linear_velocity = Vector3(-2.50343e-06, 0, -5)
+
+[node name="cliff plat 4-path" parent="Island" index="177"]
+visible = true
+
+[node name="cliff plat 4-slidingplat" parent="Island/cliff plat 4-path" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.65362, 0)
+
+[node name="StaticBody3D" parent="Island/cliff plat 4-path/cliff plat 4-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, -5, 0)
+
+[node name="cliff sliding wall 1-path" parent="Island" index="179"]
+visible = true
+
+[node name="cliff sliding wall 1-slidingplat" parent="Island/cliff sliding wall 1-path" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.88928, 0)
+
+[node name="StaticBody3D" parent="Island/cliff sliding wall 1-path/cliff sliding wall 1-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, -5, 0)
+
+[node name="cliff sliding wall 2-path" parent="Island" index="180"]
+visible = true
+
+[node name="cliff sliding wall 2-slidingplat" parent="Island/cliff sliding wall 2-path" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.19978, 0)
+position_in_path = 1
+
+[node name="StaticBody3D" parent="Island/cliff sliding wall 2-path/cliff sliding wall 2-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, 5, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_yaa41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07607, 0.999996, 1.73963)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.996069, -6.33153e-08, -0.0885812, 0.06054, 0.730007, 0.680753, 0.0646649, -0.683439, 0.727138, 0, 41.3616, 0)
+shadow_enabled = true
+directional_shadow_split_1 = 0.226
+directional_shadow_split_2 = 0.317
+directional_shadow_split_3 = 0.611
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 1017.7
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dyxfe")
+
+[editable path="Island"]

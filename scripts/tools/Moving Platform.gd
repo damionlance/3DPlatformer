@@ -19,25 +19,27 @@ var lines : Array[MeshInstance3D]
 func _ready():
 	if not Engine.is_editor_hint():
 		if button == NodePath(""):
-			var direction = (path_positions[position_in_path] - global_position)
+			var direction = (path_positions[position_in_path] - position)
 			var distance = direction.length()
 			direction = direction.normalized()
-			collider.constant_linear_velocity = direction*speed
+			if collider:
+				collider.constant_linear_velocity = direction*speed
 			var time = (distance/speed)
 			tween = create_tween().bind_node(self)
 			tween.connect("finished", tween_finished)
-			tween.tween_property(self, "global_position", path_positions[position_in_path], time).set_delay(delay_at_points)
+			tween.tween_property(self, "position", path_positions[position_in_path], time).set_delay(delay_at_points)
 		else:
 			get_node(button).activate.connect(_on_stomp_button_velocity_trigger_fired)
 	else:
-		var direction = (path_positions[position_in_path] - global_position)
+		var direction = (path_positions[position_in_path] - position)
 		var distance = direction.length()
 		direction = direction.normalized()
-		collider.constant_linear_velocity = direction*speed
+		if collider:
+			collider.constant_linear_velocity = direction*speed
 		var time = (distance/speed)
 		tween = create_tween().bind_node(self)
 		tween.connect("finished", tween_finished)
-		tween.tween_property(self, "global_position", path_positions[position_in_path], time).set_delay(delay_at_points)
+		tween.tween_property(self, "position", path_positions[position_in_path], time).set_delay(delay_at_points)
 
 func tween_finished():
 	if loop:
@@ -53,23 +55,25 @@ func tween_finished():
 			position_in_path -= 1
 			if position_in_path == 0:
 				forwards = true
-	var direction = (path_positions[position_in_path] - global_position)
+	var direction = (path_positions[position_in_path] - position)
 	var distance = direction.length()
 	direction = direction.normalized()
 	var time = (distance/speed)
-	collider.constant_linear_velocity = direction*speed
+	if collider:
+		collider.constant_linear_velocity = direction*speed
 	tween = create_tween()
 	tween.connect("finished", tween_finished)
-	tween.tween_property(self, "global_position", path_positions[position_in_path], time).set_delay(delay_at_points)
+	tween.tween_property(self, "position", path_positions[position_in_path], time).set_delay(delay_at_points)
 
 
 func _on_stomp_button_velocity_trigger_fired(body):
 	tween = create_tween().bind_node(self)
 	tween.connect("finished", tween_finished)
-	var direction = (path_positions[position_in_path] - global_position)
+	var direction = (path_positions[position_in_path] - position)
 	var distance = direction.length()
 	direction = direction.normalized()
-	collider.constant_linear_velocity = direction*speed
+	if collider:
+		collider.constant_linear_velocity = direction*speed
 	var time = (distance/speed)
-	tween.tween_property(self, "global_position", path_positions[position_in_path], time).set_delay(delay_at_points)
+	tween.tween_property(self, "position", path_positions[position_in_path], time).set_delay(delay_at_points)
 

@@ -2,9 +2,7 @@ extends Node3D
 
 class_name LevelStart
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+signal level_loaded
 
 var is_level_preview = false
 
@@ -14,7 +12,7 @@ var cinematic_cameras
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Player/StateMachine.level_loaded = true
+	emit_signal("level_loaded")
 
 func ensure_collectable_exists(name):
 	if not Global.WORLD_COLLECTIBLES.has(name):

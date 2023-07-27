@@ -47,16 +47,15 @@ func wall_collision_check():
 		if abs(_state._raycast_left.get_collision_normal().y) <= .1 or abs(_state._raycast_right.get_collision_normal().y) <= .1:
 			if (_player.is_on_wall()) and _player.velocity.y < 0:
 				var prev_horizontal_speed = _player.previous_horizontal_velocity.length()
+				print(prev_horizontal_speed)
 				if prev_horizontal_speed > 2 and not _player.grappling:
 					return wall_collision.wallSlide
 	else:
 		if _state._raycast_middle.is_colliding() and _state.velocity.y < 0:
-			print("Front worked")
 			ledgeGrabHit = true
 		_state._raycast_middle.target_position *= -1
 		_state._raycast_middle.force_raycast_update()
 		if _state._raycast_middle.is_colliding() and _state.velocity.y < 0:
-			print("Back worked")
 			ledgeGrabHit = true
 		_state._raycast_middle.target_position *= -1
 		_state._raycast_middle.force_raycast_update()
@@ -84,7 +83,8 @@ func standard_aerial_drift():
 	elif relative_angle < -.5:
 		_state.current_speed *= constants.air_friction
 	elif relative_angle > -.5 and not airdrifting:
-		_state.current_speed += 3
+		if _state.current_speed < 12:
+			_state.current_speed += 3
 		airdrifting = true
 	if _player.is_on_wall_only():
 		var wall_normal = _player.get_last_slide_collision().get_normal()

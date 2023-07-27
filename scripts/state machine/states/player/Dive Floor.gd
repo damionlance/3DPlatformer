@@ -14,6 +14,9 @@ var motion_input : String
 #private variables
 var _state_name = "Dive Floor"
 
+const slide_limit := 5
+var slide_time := 0
+
 var sound_player = AudioStreamPlayer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,10 +33,11 @@ func update(delta):
 		_state.update_state("Running")
 		return
 	if (_player.is_on_floor()):
-		if _state.ground_friction == 1:
+		if _state.ground_friction == 1 and slide_time > slide_limit:
 			_state.current_speed *= .95
-		else:
+		elif slide_time > slide_limit:
 			_state.current_speed *= _state.ground_friction
+		slide_time += 1
 		if _state.attempting_jump:
 			_state._jump_state = _state.rollout
 			_state.update_state("Jump")
@@ -55,6 +59,7 @@ func update(delta):
 	pass
 
 func reset():
+	slide_time = 0
 	var instance = load(landing_particles).instantiate()
 	add_child(instance)
 	instance.global_position = _state._player.global_position

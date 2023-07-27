@@ -106,7 +106,6 @@ var ground_friction := 0.8
 @onready var _raycast_right = _player.get_node("WallRayRight")
 @onready var _raycast_middle = _player.get_node("WallRayMiddle")
 @onready var _controller = $"../Controller"
-@onready var _skeleton = $"../lilfella/Armature/Skeleton3D"
 @onready var _softspot_detector = $"../SoftSpot Detector"
 @onready var _holdable_object_node = $"../HoldableObjectNode"
 
