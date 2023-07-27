@@ -25,6 +25,8 @@ func update(delta):
 		_spinning_buffer = 0
 	_spinning_buffer += 1
 	if _spinning_buffer == _spinning_timer:
+		_state.anim_tree["parameters/conditions/running"] = true
+		_state.anim_tree["parameters/conditions/spinning"] = false
 		_state.update_state("Running")
 	
 	# Handle Animation Tree
@@ -40,8 +42,9 @@ func update(delta):
 	pass
 
 func reset():
+	_state.anim_tree["parameters/conditions/running"] = false
+	_state.anim_tree["parameters/conditions/spinning"] = true
 	_player.rotation.z = 0
-	_player.anim_tree.travel("Spinning")
 	_state.snap_vector = Vector3.DOWN
 	_spinning_buffer = 0
 	pass

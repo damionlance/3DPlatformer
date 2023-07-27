@@ -37,6 +37,8 @@ func update(delta):
 			var instance = load(landing_particles).instantiate()
 			add_child(instance)
 			instance.global_position = _state._player.global_position
+			
+			_state.anim_tree["parameters/conditions/spinning"] = false
 			_state.anim_tree["parameters/conditions/landed"] = true
 			_state.anim_tree["parameters/conditions/running"] = true
 			_state.anim_tree["parameters/conditions/ground pound"] = false
