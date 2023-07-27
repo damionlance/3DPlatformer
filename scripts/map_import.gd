@@ -35,6 +35,8 @@ func iterate(node):
 			set_up_level_coin(node)
 		if "-climbable" in node.name:
 			set_up_climable_surface(node)
+		#if "-leafemit" in node.name:
+		#	set_up_leaf_emitter(node)
 		for child in node.get_children():
 			iterate(child)
 
@@ -118,3 +120,10 @@ func set_up_rising_door(door) -> Node:
 func set_up_climable_surface(plane) -> Node:
 	plane.set_script(load("res://scripts/tools/climbable_zone.gd"))
 	return plane
+	
+func set_up_leaf_emitter(leaf) -> Node:
+	var new_leaf = load("res://scenes/particles/ambientLeafParticles.tscn")
+	new_leaf = new_leaf.instantiate()
+	leaf.add_child(new_leaf)
+	new_leaf.set_owner(main_scene)
+	return leaf

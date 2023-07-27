@@ -6,13 +6,15 @@ data = {
 "text": "Here's a few basic movement tips:"
 },
 "1": {
-"text": "Use (control stick) to move [color=blue]Fella[/color] around.
- And with (cstick), you can look around."
+"text": "Practice moving [color=blue]Fella[/color] around!
+ Make sure to get comfortable moving the camera around too."
 },
 "2": {
-"text": "Press (jump) to jump, and (dive) to make [color=blue]Fella[/color] dive forward with a burst of speed."
+"text": "Press [img]res://assets/textures/input prompts/active input/Jump.png[/img] to jump.
+[img]res://assets/textures/input prompts/active input/Dive.png[/img] will make [color=blue]Fella[/color] dive forward with a burst of speed!"
 },
 "3": {
-"text": "But those are just the basics! Experiment with different movement options to speed through different challenges!"
+"text": "But those are just the basics! Experiment with 
+different movement options to speed through any challenge!"
 }
 }
