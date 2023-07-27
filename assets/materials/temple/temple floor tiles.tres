@@ -1,11 +1,11 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://b1xvhyiou0vsm"]
 
 [ext_resource type="Shader" path="res://assets/shaders/blend from vertex color.gdshader" id="1_a7gfd"]
-[ext_resource type="Texture2D" uid="uid://bu3yyu0iumjiv" path="res://assets/textures/pool/Tiled_Floor.png" id="2_rkvwr"]
-[ext_resource type="Texture2D" uid="uid://bw75532fnrr1q" path="res://assets/textures/pool/Tiled_Floor_Dirty.png" id="3_iumf6"]
+[ext_resource type="Texture2D" uid="uid://coexykqlibf84" path="res://assets/textures/pool/Tiled Floor.png" id="2_1uplv"]
+[ext_resource type="Texture2D" uid="uid://b7ax14aewimw2" path="res://assets/textures/pool/Tiled Floor Dirty.png" id="3_pqwgq"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_a7gfd")
-shader_parameter/tex_1_albedo = ExtResource("2_rkvwr")
-shader_parameter/tex_2_albedo = ExtResource("3_iumf6")
+shader_parameter/tex_1_albedo = ExtResource("2_1uplv")
+shader_parameter/tex_2_albedo = ExtResource("3_pqwgq")
