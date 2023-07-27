@@ -47,6 +47,8 @@ func update(delta):
 			_state.move_direction = _state.camera_relative_movement.normalized()
 			if _state.move_direction.dot(surface_normal) < 0:
 				_state.move_direction = _state.move_direction.bounce(surface_normal)
+			if _state.move_direction == Vector3.ZERO:
+				_state.move_direction == surface_normal
 			if _state.current_speed + 0.25 > 12.5:
 				_state.current_speed += 0.25
 			else:

@@ -86,7 +86,6 @@ func _physics_process(_delta):
 		set_velocity(velocity)
 		move_and_slide()
 		velocity = get_real_velocity()
-	print(is_on_wall())
 	if not is_on_wall():
 		previous_horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 	#_state.velocity = velocity
