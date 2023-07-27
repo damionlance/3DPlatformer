@@ -40,6 +40,8 @@ func _ready():
 		tween.tween_property(self, "global_position", path_positions[position_in_path], time).set_delay(delay_at_points)
 
 func tween_finished():
+	if tween != null and tween.is_running():
+		tween.stop()
 	if loop:
 		position_in_path += 1
 		if position_in_path == path_positions.size():
