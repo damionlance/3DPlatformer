@@ -35,10 +35,17 @@ func iterate(node):
 			set_up_level_coin(node)
 		if "-climbable" in node.name:
 			set_up_climable_surface(node)
+		if "-hazard" in node.name:
+			node = set_up_hazard(node)
 		#if "-leafemit" in node.name:
 		#	set_up_leaf_emitter(node)
 		for child in node.get_children():
 			iterate(child)
+
+func set_up_hazard(node) -> Node:
+	node.create_convex_collision()
+	node.set_script(load("res://scripts/tools/hazard.gd"))
+	return node
 
 func set_up_fire(fire) -> Node:
 	var new_fire = load("res://scenes/tools/lights/fire.tscn")
