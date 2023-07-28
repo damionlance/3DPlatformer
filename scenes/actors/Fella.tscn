@@ -20,7 +20,7 @@
 [ext_resource type="Script" path="res://scripts/state machine/State.gd" id="18_oduss"]
 [ext_resource type="Script" path="res://scripts/tools/Camera.gd" id="19_fx30m"]
 [ext_resource type="Script" path="res://scripts/actors/player/shadow.gd" id="20_47ecb"]
-[ext_resource type="Texture2D" uid="uid://fg8embymhiw0" path="res://assets/models/shadow.png" id="21_1rscf"]
+[ext_resource type="Texture2D" uid="uid://c52bihrts8irm" path="res://assets/models/shadow.png" id="21_1rscf"]
 [ext_resource type="Script" path="res://scripts/actors/player/Friendo.gd" id="21_cgka8"]
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/FriendoStateMachine.gd" id="22_065we"]
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/Idle.gd" id="23_sua4n"]
