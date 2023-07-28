@@ -141,7 +141,6 @@ func activate_dialogue_box(dialogue_path, body):
 	if _state.current_speed > 5:
 		player_anim_tree[_state.is_stopping] = true
 	player_anim_tree[_state.is_moving] = false
-	player_anim_tree[_state.is_idling] = true
 	_state.current_speed = 0
 	_state.move_direction = Vector3.ZERO
 
