@@ -20,7 +20,7 @@
 [ext_resource type="Script" path="res://scripts/state machine/State.gd" id="18_oduss"]
 [ext_resource type="Script" path="res://scripts/tools/Camera.gd" id="19_fx30m"]
 [ext_resource type="Script" path="res://scripts/actors/player/shadow.gd" id="20_47ecb"]
-[ext_resource type="Texture2D" uid="uid://c52bihrts8irm" path="res://assets/models/shadow.png" id="21_1rscf"]
+[ext_resource type="Texture2D" uid="uid://fg8embymhiw0" path="res://assets/models/shadow.png" id="21_1rscf"]
 [ext_resource type="Script" path="res://scripts/actors/player/Friendo.gd" id="21_cgka8"]
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/FriendoStateMachine.gd" id="22_065we"]
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/Idle.gd" id="23_sua4n"]
@@ -780,8 +780,6 @@ bones/28/scale = Vector3(1, 1, 0.999993)
 bones/29/rotation = Quaternion(1.59543e-08, 0.995194, -0.0979265, 3.12408e-07)
 bones/33/scale = Vector3(1, 1, 1)
 bones/35/scale = Vector3(1, 1, 0.999996)
-bones/37/scale = Vector3(1, 1, 1)
-bones/38/scale = Vector3(1, 1, 1)
 bones/40/rotation = Quaternion(0.987333, 1.938e-08, -1.16472e-07, 0.15866)
 bones/40/scale = Vector3(1, 1, 1)
 bones/41/rotation = Quaternion(0.171006, 1.14365e-14, -4.07711e-08, 0.98527)
@@ -790,8 +788,6 @@ bones/42/rotation = Quaternion(-0.694189, -1.07908e-07, 2.79554e-07, 0.719792)
 bones/42/scale = Vector3(1, 1, 0.999993)
 bones/47/scale = Vector3(1, 1, 1)
 bones/49/scale = Vector3(1, 1, 0.999997)
-bones/51/scale = Vector3(1, 1, 1)
-bones/52/scale = Vector3(1, 1, 1)
 bones/62/rotation = Quaternion(-0.704406, 8.46145e-08, -8.39717e-08, 0.709797)
 bones/63/rotation = Quaternion(-0.0955386, -3.66042e-09, 1.536e-08, 0.995426)
 bones/63/scale = Vector3(1, 1, 1)
