@@ -29,6 +29,8 @@ var popperAngle := Vector3.ZERO
 
 var collectables_loaded = false
 
+var last_safe_transform : Transform3D
+
 var previous_horizontal_velocity := Vector3.ZERO
 
 func _force_reset():
@@ -88,6 +90,13 @@ func _physics_process(_delta):
 		set_velocity(velocity)
 		move_and_slide()
 		velocity = get_real_velocity()
+	if is_on_floor():
+		if get_last_slide_collision() == null:
+			return
+		elif get_last_slide_collision().get_collider().is_in_group("hazard"):
+			transform = last_safe_transform
+		elif get_last_slide_collision().get_collider() is StaticBody3D and get_last_slide_collision().get_collider().constant_linear_velocity == Vector3.ZERO and get_last_slide_collision().get_collider().constant_angular_velocity == Vector3.ZERO:
+			last_safe_transform = transform
 	if not is_on_wall():
 		previous_horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 	#_state.velocity = velocity
