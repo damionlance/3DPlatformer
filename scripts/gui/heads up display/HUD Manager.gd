@@ -39,6 +39,8 @@ func add_body(body, string):
 			prompt.get_node("RichTextLabel").add_new_text(string)
 			talking_bodies[i] = body
 			prompt.visible = true
+			var screen_position = camera.unproject_position(talking_bodies[i].global_position)
+			prompt.position = screen_position
 		return
 		i += 1
 

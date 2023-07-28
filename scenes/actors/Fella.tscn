@@ -459,10 +459,10 @@ radius = 0.370219
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kjjxv"]
 radius = 0.432541
 
-[sub_resource type="GDScript" id="GDScript_ywicr"]
-
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_nr26o"]
 length = 0.2
+
+[sub_resource type="GDScript" id="GDScript_ywicr"]
 
 [node name="Player" type="CharacterBody3D"]
 process_mode = 1
@@ -694,20 +694,14 @@ stream = ExtResource("34_s1mpd")
 volume_db = -12.0
 bus = &"Sound Effects"
 
-[node name="HUD" type="Control" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 process_mode = 3
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 488.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("39_jqfmn")
@@ -726,30 +720,6 @@ image_path = "res://assets/textures/coinsprite.png"
 [node name="level coin" parent="HUD/MarginContainer/counters" instance=ExtResource("40_0cooe")]
 layout_mode = 2
 image_path = "res://assets/textures/levelcoinsprite.png"
-
-[node name="Run Time Timers" type="MarginContainer" parent="HUD/MarginContainer"]
-layout_mode = 2
-script = ExtResource("37_jaawb")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/Run Time Timers"]
-layout_mode = 2
-
-[node name="Splits" type="VBoxContainer" parent="HUD/MarginContainer/Run Time Timers/VBoxContainer"]
-layout_mode = 2
-
-[node name="Current Time" type="RichTextLabel" parent="HUD/MarginContainer/Run Time Timers/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("38_pydrr")
-text = "Test Text"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-script = SubResource("GDScript_ywicr")
-
-[node name="Run Timer" type="Node" parent="HUD/MarginContainer/Run Time Timers"]
-process_mode = 1
-script = ExtResource("40_efptr")
 
 [node name="Dialogue Prompt" parent="HUD/MarginContainer" instance=ExtResource("41_mysnv")]
 layout_mode = 2
@@ -808,6 +778,8 @@ bones/28/scale = Vector3(1, 1, 0.999993)
 bones/29/rotation = Quaternion(1.59543e-08, 0.995194, -0.0979265, 3.12408e-07)
 bones/33/scale = Vector3(1, 1, 1)
 bones/35/scale = Vector3(1, 1, 0.999996)
+bones/37/scale = Vector3(1, 1, 1)
+bones/38/scale = Vector3(1, 1, 1)
 bones/40/rotation = Quaternion(0.987333, 1.938e-08, -1.16472e-07, 0.15866)
 bones/40/scale = Vector3(1, 1, 1)
 bones/41/rotation = Quaternion(0.171006, 1.14365e-14, -4.07711e-08, 0.98527)
@@ -816,6 +788,8 @@ bones/42/rotation = Quaternion(-0.694189, -1.07908e-07, 2.79554e-07, 0.719792)
 bones/42/scale = Vector3(1, 1, 0.999993)
 bones/47/scale = Vector3(1, 1, 1)
 bones/49/scale = Vector3(1, 1, 0.999997)
+bones/51/scale = Vector3(1, 1, 1)
+bones/52/scale = Vector3(1, 1, 1)
 bones/62/rotation = Quaternion(-0.704406, 8.46145e-08, -8.39717e-08, 0.709797)
 bones/63/rotation = Quaternion(-0.0955386, -3.66042e-09, 1.536e-08, 0.995426)
 bones/63/scale = Vector3(1, 1, 1)
@@ -929,6 +903,39 @@ collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FootFall Handler/Footstep Particles"]
 shape = SubResource("SeparationRayShape3D_nr26o")
+
+[node name="splits" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="splits"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Run Time Timers" type="MarginContainer" parent="splits/MarginContainer"]
+layout_mode = 2
+script = ExtResource("37_jaawb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="splits/MarginContainer/Run Time Timers"]
+layout_mode = 2
+
+[node name="Splits" type="VBoxContainer" parent="splits/MarginContainer/Run Time Timers/VBoxContainer"]
+layout_mode = 2
+
+[node name="Current Time" type="RichTextLabel" parent="splits/MarginContainer/Run Time Timers/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("38_pydrr")
+text = "Test Text"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = SubResource("GDScript_ywicr")
+
+[node name="Run Timer" type="Node" parent="splits/MarginContainer/Run Time Timers"]
+process_mode = 1
+script = ExtResource("40_efptr")
 
 [connection signal="throw_fella" from="StateMachine" to="FriendoHomingNode/Friendo" method="_on_StateMachine_throw_fella"]
 [connection signal="hit_wall" from="FriendoHomingNode/Friendo" to="StateMachine" method="_on_Friendo_hit_wall"]

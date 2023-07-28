@@ -140,4 +140,4 @@ func release_current_held_object():
 	$HoldableObjectNode.release_object()
 
 func _add_split(split_name):
-	$"HUD/MarginContainer/Run Time Timers"._add_split(split_name)
+	$"splits/MarginContainer/Run Time Timers"._add_split(split_name)
