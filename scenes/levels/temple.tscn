@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d3tj3j7rq6blp"]
+[gd_scene load_steps=25 format=3 uid="uid://d3tj3j7rq6blp"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/temple.gd" id="1_sd0wa"]
 [ext_resource type="Script" path="res://scripts/level objects/Goal Torch Handler.gd" id="2_313a1"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dmyfuyqfotjxy" path="res://assets/sounds/mixkit-light-rain-atmosphere-2474.mp3" id="9_5f0wq"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
 [ext_resource type="Script" path="res://scripts/level objects/Water.gd" id="11_8rfn6"]
+[ext_resource type="AudioStream" uid="uid://lswc4akoxo7s" path="res://assets/sounds/music/TempleTheme.wav" id="11_swj5e"]
 [ext_resource type="Script" path="res://scripts/tools/camera recording/camera recording.gd" id="12_8db8s"]
 [ext_resource type="PackedScene" uid="uid://r0aa7hjyoq0r" path="res://scenes/ui/demo_complete.tscn" id="12_vr65w"]
 [ext_resource type="Script" path="res://scripts/tools/camera recording/watch_player.gd" id="13_pc4qg"]
@@ -165,27 +166,27 @@ script = ExtResource("11_8rfn6")
 requiredSpeed = -1.0
 
 [node name="maze slideplat1-slidingplat" parent="temple" index="12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.098, 12.1621, 28.4226)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.223, 12.1621, 26.0707)
 position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/maze slideplat1-slidingplat" index="0"]
 constant_linear_velocity = Vector3(-3.86979, 0, 3.16619)
 
 [node name="maze slideplat2-slidingplat" parent="temple" index="13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 11.0281)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 17.5639)
 
 [node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
 constant_linear_velocity = Vector3(0, 0, 5)
 
 [node name="maze slideplat3-slidingplat" parent="temple" index="14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -6.73735)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -13.4671)
 position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
 constant_linear_velocity = Vector3(0, 0, -5)
 
 [node name="maze slideplat4-slidingplat" parent="temple" index="15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 14.0621, -32.3373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 14.2406, -32.3373)
 speed = 3.0
 button = NodePath("../maze button-stompbutton/StompButton")
 
@@ -193,19 +194,19 @@ button = NodePath("../maze button-stompbutton/StompButton")
 constant_linear_velocity = Vector3(0, -3, 0)
 
 [node name="slidingplat1-slidingplat" parent="temple" index="104"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -84.8303, 16.9274, -10.5058)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -82.8652, 16.9178, -10.5013)
 
 [node name="StaticBody3D" parent="temple/slidingplat1-slidingplat" index="0"]
 constant_linear_velocity = Vector3(-4.99993, 0.0244635, -0.0113727)
 
 [node name="slidingplat2-slidingplat" parent="temple" index="105"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -75.5157, 16.9093, -0.49737)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -78.3975, 16.9093, -0.49737)
 
 [node name="StaticBody3D" parent="temple/slidingplat2-slidingplat" index="0"]
 constant_linear_velocity = Vector3(5, 0, 0)
 
 [node name="slidingplat3-slidingplat" parent="temple" index="106"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -85.5991, 16.9093, 9.50263)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -86.8966, 16.9093, 9.50263)
 
 [node name="StaticBody3D" parent="temple/slidingplat3-slidingplat" index="0"]
 constant_linear_velocity = Vector3(5, 0, 0)
@@ -277,6 +278,11 @@ stream = ExtResource("9_5f0wq")
 volume_db = -12.0
 autoplay = true
 bus = &"Music"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Ambience"]
+stream = ExtResource("11_swj5e")
+volume_db = -5.0
+autoplay = true
 
 [node name="Game End Zone" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.4938, 4.66395, -25.6462)
