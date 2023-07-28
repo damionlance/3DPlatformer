@@ -159,6 +159,7 @@ func _process(delta):
 
 func input_handling():
 	if Input.is_action_pressed("Pause"):
+		_camera.halt_input = true
 		$"../".add_child(load("res://scenes/ui/pause screen.tscn").instantiate())
 		get_tree().paused = true
 	

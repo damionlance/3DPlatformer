@@ -33,6 +33,7 @@ func _on_quit_game_pressed():
 func _on_resume_pressed():
 	if $"AnimationPlayer".current_animation != "menu slide out":
 		$"AnimationPlayer".play("menu slide out")
+	get_parent().find_child("CameraPivot").halt_input = false
 	get_tree().paused = false
 	get_viewport().gui_get_focus_owner().release_focus()
 
