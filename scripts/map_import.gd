@@ -80,9 +80,12 @@ func set_up_falling_platform(node):
 	node.get_parent().add_child(new_plat)
 	new_plat.position = node.position
 	new_plat.set_owner(main_scene)
+	new_plat.name = "UnstablePlatform"
 	node.reparent(new_plat)
-	node.create_convex_collision()
-	node.get_child(0).set_parent(new_plat)
+	node.name = "Mesh"
+	if node.find_child("StaticBody3D") != null:
+		node.find_child("StaticBody3D").find_child("CollisionShape3D").reparent(node.get_parent())
+		node.find_child("StaticBody3D").queue_free()
 
 func set_up_passthru_walls(node):
 	node.create_trimesh_collision()
