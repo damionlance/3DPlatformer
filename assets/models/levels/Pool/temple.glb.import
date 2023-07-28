@@ -37,6 +37,10 @@ _subresources={
 "Tiled Floor": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/materials/temple/temple floor tiles.tres"
+},
+"lava": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/temple/magma.tres"
 }
 }
 }
