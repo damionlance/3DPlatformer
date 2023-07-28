@@ -145,5 +145,7 @@ func reset():
 	_state.velocity.y = current_jump_strength
 	_state._player.velocity.y = current_jump_strength
 	if _state.move_direction != Vector3.ZERO:
-		_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
+		var temp = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
+		if temp != Transform3D():
+			_player.transform = temp
 	pass

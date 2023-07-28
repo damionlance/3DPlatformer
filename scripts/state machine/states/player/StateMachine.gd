@@ -228,7 +228,6 @@ func input_handling():
 			_jump_buffer = 0
 
 func update_state( new_state ):
-	print(new_state)
 	_current_state = state_dictionary[new_state]
 	_current_state.reset()
 
