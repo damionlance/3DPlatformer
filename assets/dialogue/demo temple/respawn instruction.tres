@@ -1,0 +1,15 @@
+[gd_resource type="JSON" format=3 uid="uid://bmflw8li570aq"]
+
+[resource]
+data = {
+"0": {
+"text": "You can press [img]res://assets/textures/input prompts/active input/Place Spawn.png[/img]" to leave behind a checkpoint.
+},
+"1": {
+"text": "Pressing [img]res://assets/textures/input prompts/active input/Respawn.png[/img] will teleport[color=blue]Fella[/color] back to your checkpoint!"
+},
+"2": {
+"text": "You might want to test out checkpoints
+before some of these treacherous jumps..."
+}
+}
