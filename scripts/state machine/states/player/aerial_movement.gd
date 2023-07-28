@@ -77,6 +77,7 @@ func wall_collision_check():
 	return wall_collision.noCollision
 
 func standard_aerial_drift():
+	print(airdrifting)
 	var relative_angle = entering_jump_angle.dot(_state.camera_relative_movement)
 	_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .03)
 	if _controller.movement_direction == Vector2.ZERO:
