@@ -7,8 +7,10 @@ extends AudioStreamPlayer
 func _ready():
 	connect("finished", updateSong)
 	stream = intro
+	volume_db = -5
 	play()
 
 func updateSong():
 	stream = song
+	volume_db = -10
 	play()
