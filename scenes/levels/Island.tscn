@@ -21,99 +21,85 @@ script = ExtResource("1_hsxvc")
 [node name="Island" parent="." instance=ExtResource("1_ejj4f")]
 transform = Transform3D(0.999995, -0.00176682, -0.00243486, 0.00176917, 0.999998, 0.000961859, 0.00243315, -0.000966177, 0.999997, 0, 0, 0)
 
-[node name="Cube_008" parent="Island" index="7"]
-transform = Transform3D(0, 1, -2.84217e-11, 1.74623e-10, -4.6839e-11, -1, -1, -6.98492e-10, -1.74623e-10, -3.5, 15.5, -9.5)
-
-[node name="Cube 1-path" parent="Island" index="80"]
-visible = true
-
-[node name="Cube 1-slidingplat" parent="Island/Cube 1-path" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.39773, 2.33902, 5.75758)
-
-[node name="StaticBody3D" parent="Island/Cube 1-path/Cube 1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-3.27874, -1.42079, -3.49732)
-
-[node name="Cube 2-path" parent="Island" index="81"]
-visible = true
-
-[node name="Cube 2-slidingplat" parent="Island/Cube 2-path" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.66697, -2.38899, 8.50046)
+[node name="Cube 3-slidingplat" parent="Island" index="65"]
+transform = Transform3D(1.00247, 6.46507e-07, -2.2212e-07, -3.23495e-06, 1, -9.25502e-08, -4.01144e-06, 1.20309e-06, 1, -1.71443, 22.3618, -50.5251)
 position_in_path = 1
 
-[node name="StaticBody3D" parent="Island/Cube 2-path/Cube 2-slidingplat" index="0"]
+[node name="StaticBody3D" parent="Island/Cube 3-slidingplat" index="0"]
+constant_linear_velocity = Vector3(-3.89462, 0.61494, -3.0747)
+
+[node name="Cube_108" parent="Island" index="96"]
+transform = Transform3D(1, 3.18323e-11, 0, -1.58934e-10, 1, -5.82077e-11, -2.32831e-10, 5.82077e-11, 1, -12, 24.5, -114)
+
+[node name="Cube 1-slidingplat" parent="Island" index="101"]
+transform = Transform3D(1.00247, 6.46507e-07, -2.2212e-07, -3.23495e-06, 1, -9.25502e-08, -4.01144e-06, 1.20309e-06, 1, -36.3655, 21.719, -80.7782)
+position_in_path = 1
+
+[node name="StaticBody3D" parent="Island/Cube 1-slidingplat" index="0"]
+constant_linear_velocity = Vector3(3.27874, 1.42079, 3.49732)
+
+[node name="Cube 2-slidingplat" parent="Island" index="102"]
+transform = Transform3D(1.00247, 6.46507e-07, -2.2212e-07, -3.23495e-06, 1, -9.25502e-08, -4.01144e-06, 1.20309e-06, 1, -12.5147, 23.8837, -61.5572)
+position_in_path = 1
+
+[node name="StaticBody3D" parent="Island/Cube 2-slidingplat" index="0"]
 constant_linear_velocity = Vector3(2.72727, -0.909091, 4.09091)
 
-[node name="Cube 3-path" parent="Island" index="82"]
-visible = true
-
-[node name="Cube 3-slidingplat" parent="Island/Cube 3-path" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92669, 0.304214, -1.52107)
-
-[node name="StaticBody3D" parent="Island/Cube 3-path/Cube 3-slidingplat" index="0"]
-constant_linear_velocity = Vector3(3.89462, -0.61494, 3.0747)
-
-[node name="Cube_151" parent="Island" index="153"]
+[node name="Cube_151" parent="Island" index="176"]
 visible = false
 
-[node name="Cube_159" parent="Island" index="161"]
+[node name="Cube_159" parent="Island" index="184"]
 visible = false
 
-[node name="cliff plat 1-path" parent="Island" index="174"]
-visible = true
-
-[node name="cliff plat 1-slidingplat" parent="Island/cliff plat 1-path" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.80642)
-
-[node name="StaticBody3D" parent="Island/cliff plat 1-path/cliff plat 1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 0, -5)
-
-[node name="cliff plat 2-path" parent="Island" index="175"]
-visible = true
-
-[node name="cliff plat 2-slidingplat" parent="Island/cliff plat 2-path" index="0"]
-transform = Transform3D(1, 2.81943e-11, 0, -4.6839e-11, 1, -5.82077e-11, -2.32831e-10, 5.82077e-11, 1, 0, 0, 0.958818)
+[node name="cliff plat 1-slidingplat" parent="Island" index="188"]
+transform = Transform3D(1.00247, 6.46507e-07, -2.2212e-07, -3.23495e-06, 1, -9.25502e-08, -4.01144e-06, 1.20309e-06, 1, 12.6503, 38.6428, -171.685)
 position_in_path = 1
 
-[node name="StaticBody3D" parent="Island/cliff plat 2-path/cliff plat 2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 0, 5)
+[node name="StaticBody3D" parent="Island/cliff plat 1-slidingplat" index="0"]
+constant_linear_velocity = Vector3(-1.19209e-06, 0, 5)
 
-[node name="cliff plat 3-path" parent="Island" index="176"]
-visible = true
-
-[node name="cliff plat 3-slidingplat" parent="Island/cliff plat 3-path" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.75388e-07, 0, -0.958818)
+[node name="cliff plat 2-slidingplat" parent="Island" index="196"]
+transform = Transform3D(1.00247, 6.46507e-07, -2.2212e-07, -3.23495e-06, 1, -9.25502e-08, -4.01144e-06, 1.20309e-06, 1, -23.8478, 39.7073, -171.595)
 position_in_path = 1
 
-[node name="StaticBody3D" parent="Island/cliff plat 3-path/cliff plat 3-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-2.50343e-06, 0, -5)
+[node name="StaticBody3D" parent="Island/cliff plat 2-slidingplat" index="0"]
+constant_linear_velocity = Vector3(2.11928e-06, -2.11928e-06, 5)
 
-[node name="cliff plat 4-path" parent="Island" index="177"]
-visible = true
-
-[node name="cliff plat 4-slidingplat" parent="Island/cliff plat 4-path" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47722, 0)
-
-[node name="StaticBody3D" parent="Island/cliff plat 4-path/cliff plat 4-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, -5, 0)
-
-[node name="cliff sliding wall 1-path" parent="Island" index="179"]
-visible = true
-
-[node name="cliff sliding wall 1-slidingplat" parent="Island/cliff sliding wall 1-path" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.03021, 0)
+[node name="cliff plat 3-slidingplat" parent="Island" index="197"]
+transform = Transform3D(1.00247, 6.46507e-07, -2.2212e-07, -3.23495e-06, 1, -9.25502e-08, -4.01144e-06, 1.20309e-06, 1, -29.9596, 39.7228, -176.444)
 position_in_path = 1
 
-[node name="StaticBody3D" parent="Island/cliff sliding wall 1-path/cliff sliding wall 1-slidingplat" index="0"]
+[node name="StaticBody3D" parent="Island/cliff plat 3-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, -4.23857e-06, -5)
+
+[node name="cliff plat 4-slidingplat" parent="Island" index="200"]
+transform = Transform3D(1.00247, 6.46507e-07, -2.2212e-07, -3.23495e-06, 1, -9.25502e-08, -4.01144e-06, 1.20309e-06, 1, -35.8332, 46.3145, -170.369)
+position_in_path = 1
+
+[node name="StaticBody3D" parent="Island/cliff plat 4-slidingplat" index="0"]
 constant_linear_velocity = Vector3(0, 5, 0)
 
-[node name="cliff sliding wall 2-path" parent="Island" index="180"]
-visible = true
+[node name="cliff sliding wall 1-slidingplat" parent="Island" index="205"]
+transform = Transform3D(1.00247, 6.46507e-07, -2.2212e-07, -3.23495e-06, 1, -9.25502e-08, -4.01144e-06, 1.20309e-06, 1, -21.8207, 61.6521, -176.388)
 
-[node name="cliff sliding wall 2-slidingplat" parent="Island/cliff sliding wall 2-path" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.63984, 0)
+[node name="StaticBody3D" parent="Island/cliff sliding wall 1-slidingplat" index="0"]
+constant_linear_velocity = Vector3(3.81469e-06, -5, 1.52588e-05)
 
-[node name="StaticBody3D" parent="Island/cliff sliding wall 2-path/cliff sliding wall 2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, -5, 0)
+[node name="cliff sliding wall 2-slidingplat" parent="Island" index="206"]
+transform = Transform3D(1.00247, 6.46507e-07, -2.2212e-07, -3.23495e-06, 1, -9.25502e-08, -4.01144e-06, 1.20309e-06, 1, -16.8093, 66.0073, -174.896)
+position_in_path = 1
+
+[node name="StaticBody3D" parent="Island/cliff sliding wall 2-slidingplat" index="0"]
+constant_linear_velocity = Vector3(8.29282e-07, 5, 0)
+
+[node name="Cube_008" parent="Island" index="228"]
+transform = Transform3D(0, 1, -2.84217e-11, 1.74623e-10, -4.6839e-11, -1, -1, -6.98492e-10, -1.74623e-10, -3.5, 15.5, -9.5)
+
+[node name="CollisionShape3D" parent="Island/UnstablePlatform2" index="3"]
+transform = Transform3D(0.999987, 3.18323e-11, 0.00506143, -2.37378e-10, 1, -5.82077e-11, -0.00506143, 5.82077e-11, 0.999987, 0, 0, 0)
+
+[node name="CollisionShape3D" parent="Island/UnstablePlatform3" index="3"]
+transform = Transform3D(1, 3.18323e-11, 0, -1.58934e-10, 1, -5.82077e-11, -2.32831e-10, 5.82077e-11, 1, 0, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_yaa41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07607, 0.999996, 1.73963)

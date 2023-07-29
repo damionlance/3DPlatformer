@@ -85,7 +85,6 @@ func set_up_falling_platform(node):
 	node.name = "Mesh"
 	if node.find_child("StaticBody3D") != null:
 		node.find_child("StaticBody3D").find_child("CollisionShape3D").reparent(node.get_parent())
-		node.find_child("StaticBody3D").queue_free()
 
 func set_up_passthru_walls(node):
 	node.create_trimesh_collision()
