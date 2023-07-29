@@ -16,11 +16,3 @@ func _process(delta):
 	light_color = Color.CORAL
 	if _player != null and (_player.global_position - global_position).length() < 30:
 		visible = true
-
-
-func _on_visible_on_screen_notifier_3d_screen_entered():
-	visible = true
-
-
-func _on_visible_on_screen_notifier_3d_screen_exited():
-	visible = false

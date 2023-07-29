@@ -13,7 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://b7f4nnakkbdl6" path="res://assets/sounds/music/TempleTheme.wav" id="11_swj5e"]
 [ext_resource type="Script" path="res://scripts/tools/camera recording/camera recording.gd" id="12_8db8s"]
 [ext_resource type="PackedScene" uid="uid://r0aa7hjyoq0r" path="res://scenes/ui/demo_complete.tscn" id="12_vr65w"]
-[ext_resource type="Script" path="res://scripts/tools/camera recording/dolly camera.gd" id="13_atbyq"]
 [ext_resource type="Script" path="res://scripts/tools/Audio/SongPlayer.gd" id="15_dtxpn"]
 [ext_resource type="AudioStream" uid="uid://do6j8w12soc4j" path="res://assets/sounds/music/Temple Theme Intro.wav" id="16_rwtym"]
 
@@ -55,7 +54,27 @@ background_energy_multiplier = 0.8
 sky = SubResource("Sky_j57wk")
 ambient_light_source = 2
 ambient_light_color = Color(0.027451, 0.0627451, 0.164706, 1)
-ambient_light_energy = 7.97
+ambient_light_energy = 12.48
+reflected_light_source = 2
+tonemap_mode = 2
+ssao_radius = 6.67
+ssao_intensity = 5.38
+ssil_enabled = true
+sdfgi_enabled = true
+glow_strength = 1.38
+glow_bloom = 0.21
+fog_light_color = Color(0, 0, 0, 1)
+fog_light_energy = 0.2
+fog_density = 0.0695
+volumetric_fog_albedo = Color(0.0980392, 0.0980392, 0.0980392, 1)
+volumetric_fog_ambient_inject = 16.0
+adjustment_brightness = 1.93
+adjustment_contrast = 0.99
+adjustment_saturation = 1.15
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_as7e6"]
+frustum_focus_distance = 30.0
+frustum_focal_length = 104.16
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rldos"]
 size = Vector3(5, 5, 1)
@@ -164,27 +183,26 @@ script = ExtResource("11_8rfn6")
 requiredSpeed = -1.0
 
 [node name="maze slideplat1-slidingplat" parent="temple" index="12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -140.569, 12.1621, 27.9903)
-position_in_path = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -133.301, 12.1621, 22.0436)
 
 [node name="StaticBody3D" parent="temple/maze slideplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-3.86979, 0, 3.16619)
+constant_linear_velocity = Vector3(3.86979, 0, -3.16619)
 
 [node name="maze slideplat2-slidingplat" parent="temple" index="13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 8.6331)
-
-[node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 0, 5)
-
-[node name="maze slideplat3-slidingplat" parent="temple" index="14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -7.4529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 14.663)
 position_in_path = 1
 
-[node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
+[node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
 constant_linear_velocity = Vector3(0, 0, -5)
 
+[node name="maze slideplat3-slidingplat" parent="temple" index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -14.8161)
+
+[node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, 0, 5)
+
 [node name="maze slideplat4-slidingplat" parent="temple" index="15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.3218, -32.3373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 11.3431, -32.3373)
 speed = 3.0
 button = NodePath("../maze button-stompbutton/StompButton")
 
@@ -192,19 +210,21 @@ button = NodePath("../maze button-stompbutton/StompButton")
 constant_linear_velocity = Vector3(0, -3, 0)
 
 [node name="slidingplat1-slidingplat" parent="temple" index="104"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -69.9356, 16.8545, -10.4719)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -70.4841, 16.8572, -10.4732)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/slidingplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-4.99993, 0.0244635, -0.0113727)
+constant_linear_velocity = Vector3(4.99993, -0.0244635, 0.0113727)
 
 [node name="slidingplat2-slidingplat" parent="temple" index="105"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -92.3274, 16.9093, -0.49737)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -92.4455, 16.9093, -0.49737)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/slidingplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(5, 0, 0)
+constant_linear_velocity = Vector3(-5, 0, 0)
 
 [node name="slidingplat3-slidingplat" parent="temple" index="106"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -84.0643, 16.9093, 9.50263)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -82.7788, 16.9093, 9.50263)
 position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/slidingplat3-slidingplat" index="0"]
@@ -238,9 +258,6 @@ spinHeight = Vector3(0, 20, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.25
 
-[node name="VisibleOnScreenNotifier3D" parent="temple/2-fire3" index="0"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.153717, 2.64185, -4.31055)
-
 [node name="Signpost" parent="." instance=ExtResource("10_ik8nu")]
 transform = Transform3D(-0.445526, 0, 0.895269, 0, 1, 0, -0.895269, 0, -0.445526, -13.0228, 1.96233, 2.16712)
 
@@ -262,6 +279,7 @@ dialogue_file = "res://assets/dialogue/demo temple/respawn instruction.tres"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanr4")
+camera_attributes = SubResource("CameraAttributesPhysical_as7e6")
 
 [node name="Cinematic Cameras" type="Node" parent="."]
 
@@ -315,49 +333,6 @@ handle_input_locally = false
 size = Vector2i(500, 300)
 render_target_update_mode = 0
 script = ExtResource("12_8db8s")
-enable = true
-
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.726611, 0.354833, -0.588329, -1.49012e-08, 0.856312, 0.516459, 0.687049, -0.375264, 0.622206, -93.5539, 24.8886, 16.5694)
-
-[node name="Camera3D9" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -76.1346, 7.79253, -19.9202)
-script = ExtResource("13_atbyq")
-move_direction = Vector3(-1, 0, 0)
-speed = 0.01
-
-[node name="Camera3D2" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.399341, -0.47349, 0.785069, -5.2713e-08, 0.856312, 0.516459, -0.916802, -0.206243, 0.341961, -10.3679, 38.3095, -25.4391)
-
-[node name="Camera3D3" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -81.2051, 25.4187, 17.3165)
-script = ExtResource("13_atbyq")
-move_direction = Vector3(0, 0, 1)
-speed = 0.01
-
-[node name="Camera3D7" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-1, 0, -8.74228e-08, -8.73908e-08, 0.0270493, 0.999634, 2.36473e-09, 0.999634, -0.0270493, -81.2051, 39.9327, -17.2152)
-script = ExtResource("13_atbyq")
-move_direction = Vector3(0, 0, 1)
-speed = 0.03
-
-[node name="Camera3D8" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-1, 0, -8.74228e-08, -8.73908e-08, 0.0270493, 0.999634, 2.36473e-09, 0.999634, -0.0270493, -112.952, -11.317, 29.7555)
-script = ExtResource("13_atbyq")
-move_direction = Vector3(0, 0, 1)
-speed = 0.01
-
-[node name="Camera3D4" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -159.777, 31.3977, -2.79132)
-script = ExtResource("13_atbyq")
-move_direction = Vector3(0, 1, 0)
-speed = 0.05
-
-[node name="Camera3D5" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.638862, 0.262732, 0.723068, 3.72529e-09, 0.939878, -0.341512, -0.769322, 0.218179, 0.600452, -138.457, -41.1924, 15.4117)
-
-[node name="Camera3D6" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -50.3944, 5.27958, -5.63116)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.0121995, -0.999926, 0, 0.999926, -0.0121995, -150.099, -89.9718, -2.31849)

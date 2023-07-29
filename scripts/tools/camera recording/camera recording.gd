@@ -15,8 +15,9 @@ var number_of_cameras = 0
 func _ready():
 	if not enable:
 		get_parent().queue_free()
-	number_of_cameras = get_child_count()
-	get_child(0).current = true
+	else:
+		number_of_cameras = get_child_count()
+		get_child(0).current = true
 
 func _process(delta):
 	if not allow_break and not Input.is_joy_button_pressed(0,JOY_BUTTON_RIGHT_SHOULDER) and not Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_LEFT) and Input.get_joy_axis(0, JOY_AXIS_TRIGGER_RIGHT) < .2 and not Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_RIGHT):
