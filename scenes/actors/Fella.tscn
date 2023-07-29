@@ -1,4 +1,4 @@
-[gd_scene load_steps=142 format=3 uid="uid://385mcfonrl8g"]
+[gd_scene load_steps=143 format=3 uid="uid://385mcfonrl8g"]
 
 [ext_resource type="Script" path="res://scripts/actors/player/Player.gd" id="1_vh0xg"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/StateMachine.gd" id="2_k8mag"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Damaged.gd" id="17_bpou6"]
 [ext_resource type="Script" path="res://scripts/state machine/State.gd" id="18_oduss"]
 [ext_resource type="Script" path="res://scripts/tools/Camera.gd" id="19_fx30m"]
+[ext_resource type="Shader" path="res://assets/shaders/C64 Dither.gdshader" id="20_3sq3i"]
 [ext_resource type="Script" path="res://scripts/actors/player/shadow.gd" id="20_47ecb"]
 [ext_resource type="Texture2D" uid="uid://c52bihrts8irm" path="res://assets/models/shadow.png" id="21_1rscf"]
 [ext_resource type="Script" path="res://scripts/actors/player/Friendo.gd" id="21_cgka8"]
@@ -51,6 +52,27 @@ radius = 0.408809
 height = 1.94229
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5i2iq"]
+shader = ExtResource("20_3sq3i")
+shader_parameter/dither = 1
+shader_parameter/distanceParam = 0.4
+shader_parameter/palette_choice = 0
+shader_parameter/DownScale = 1.0
+shader_parameter/palette_vector1 = Color(0, 0, 0, 1)
+shader_parameter/palette_vector2 = Color(1, 1, 1, 1)
+shader_parameter/palette_vector3 = Color(0.968627, 0.537255, 0.411765, 1)
+shader_parameter/palette_vector4 = Color(0, 1, 0, 1)
+shader_parameter/palette_vector5 = Color(0, 0, 1, 1)
+shader_parameter/palette_vector6 = Color(0.607843, 0.584314, 0, 1)
+shader_parameter/palette_vector7 = Color(1, 0, 1, 1)
+shader_parameter/palette_vector8 = Color(0.478431, 0.243137, 0, 1)
+shader_parameter/palette_vector9 = Color(0.419608, 0, 0.0705882, 1)
+shader_parameter/palette_vector10 = Color(0, 0, 0, 1)
+shader_parameter/palette_vector11 = Color(0, 0, 0, 1)
+shader_parameter/palette_vector12 = Color(0, 0, 0, 1)
+shader_parameter/palette_vector13 = Color(0, 0, 0, 1)
+shader_parameter/palette_vector14 = Color(0, 0, 0, 1)
+shader_parameter/palette_vector15 = Color(0, 0, 0, 1)
+shader_parameter/palette_vector16 = Color(0, 0, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_l8mw7"]
 radius = 0.222704
