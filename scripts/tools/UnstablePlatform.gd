@@ -6,8 +6,8 @@ extends StaticBody3D
 
 @export var stable_time := 1.0
 @export var distance_to_fall := 30
-@export var fall_time := 1.5
-@export var reset_time := 1.0
+@export var fall_time := 2.5
+@export var reset_time := 0.0
 
 var previous_location
 
@@ -31,7 +31,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	constant_linear_velocity = global_position - previous_location
-	print(constant_linear_velocity)
 	previous_location = global_position
 	if not detected:
 		for body in area.get_overlapping_bodies():
@@ -49,6 +48,6 @@ func _reset():
 	if tween.is_running():
 		tween.stop()
 	tween = create_tween()
-	tween.tween_property(self, "global_position", original_position, fall_time).set_delay(reset_time)
+	tween.tween_property(self, "global_position", original_position, reset_time).set_delay(reset_time)
 	await tween.finished
 	detected = false

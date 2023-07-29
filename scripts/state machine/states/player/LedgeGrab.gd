@@ -108,7 +108,6 @@ func reset():
 	_state.current_speed = 0
 	_state.snap_vector = -_state._raycast_middle.get_collision_normal()
 	var distance = abs((_state._raycast_middle.get_collision_point() - _state._raycast_middle.global_position) *  .577)
-	print(_state.snap_vector * distance)
 	_player.global_position += _state.snap_vector * distance
 	_state.snap_vector.y = 0
 	if _state.snap_vector == Vector3.ZERO:

@@ -51,12 +51,10 @@ func wall_collision_check():
 					return wall_collision.wallSlide
 	else:
 		if _state._raycast_middle.is_colliding() and _state.velocity.y < 0:
-			print("Front worked")
 			ledgeGrabHit = true
 		_state._raycast_middle.target_position *= -1
 		_state._raycast_middle.force_raycast_update()
 		if _state._raycast_middle.is_colliding() and _state.velocity.y < 0:
-			print("Back worked")
 			ledgeGrabHit = true
 		_state._raycast_middle.target_position *= -1
 		_state._raycast_middle.force_raycast_update()
@@ -77,7 +75,6 @@ func wall_collision_check():
 	return wall_collision.noCollision
 
 func standard_aerial_drift():
-	print(airdrifting)
 	var relative_angle = entering_jump_angle.dot(_state.camera_relative_movement)
 	_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, .03)
 	if _controller.movement_direction == Vector2.ZERO:

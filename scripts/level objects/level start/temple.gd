@@ -16,6 +16,5 @@ func _ready():
 	ensure_collectable_exists("COIN")
 	ensure_collectable_exists("LEVEL COIN")
 	emit_signal("level_loaded")
-	print("Signal emitted")
 	for i in 200:
 		coins.multimesh.set_instance_transform(i,Transform3D(Basis(), Vector3.ZERO))

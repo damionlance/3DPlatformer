@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d3tj3j7rq6blp"]
+[gd_scene load_steps=25 format=3 uid="uid://d3tj3j7rq6blp"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/temple.gd" id="1_sd0wa"]
 [ext_resource type="Script" path="res://scripts/level objects/Goal Torch Handler.gd" id="2_313a1"]
@@ -13,8 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://b7f4nnakkbdl6" path="res://assets/sounds/music/TempleTheme.wav" id="11_swj5e"]
 [ext_resource type="Script" path="res://scripts/tools/camera recording/camera recording.gd" id="12_8db8s"]
 [ext_resource type="PackedScene" uid="uid://r0aa7hjyoq0r" path="res://scenes/ui/demo_complete.tscn" id="12_vr65w"]
-[ext_resource type="Script" path="res://scripts/tools/camera recording/watch_player.gd" id="13_pc4qg"]
-[ext_resource type="Script" path="res://scripts/tools/camera recording/activate camera.gd" id="14_5qoau"]
+[ext_resource type="Script" path="res://scripts/tools/camera recording/dolly camera.gd" id="13_atbyq"]
 [ext_resource type="Script" path="res://scripts/tools/Audio/SongPlayer.gd" id="15_dtxpn"]
 [ext_resource type="AudioStream" uid="uid://do6j8w12soc4j" path="res://assets/sounds/music/Temple Theme Intro.wav" id="16_rwtym"]
 
@@ -61,9 +60,6 @@ ambient_light_energy = 7.97
 [sub_resource type="BoxShape3D" id="BoxShape3D_rldos"]
 size = Vector3(5, 5, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vy74g"]
-size = Vector3(6.63087, 2, 7.35461)
-
 [node name="temple" type="Node3D"]
 script = ExtResource("1_sd0wa")
 
@@ -107,7 +103,7 @@ target_position = Vector3(-1, 0, 0)
 target_position = Vector3(15, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_r0hrm")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.0506, 6.07195, -0.27728)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.85533, 5.88813, -0.27728)
 
 [node name="dynamicObj" type="Node3D" parent="."]
 
@@ -168,53 +164,51 @@ script = ExtResource("11_8rfn6")
 requiredSpeed = -1.0
 
 [node name="maze slideplat1-slidingplat" parent="temple" index="12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.601, 12.1621, 28.8345)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -140.569, 12.1621, 27.9903)
 position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/maze slideplat1-slidingplat" index="0"]
 constant_linear_velocity = Vector3(-3.86979, 0, 3.16619)
 
 [node name="maze slideplat2-slidingplat" parent="temple" index="13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 19.2943)
-position_in_path = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 8.6331)
 
 [node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 0, -5)
-
-[node name="maze slideplat3-slidingplat" parent="temple" index="14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -18.1141)
-
-[node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
 constant_linear_velocity = Vector3(0, 0, 5)
 
-[node name="maze slideplat4-slidingplat" parent="temple" index="15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 14.8024, -32.3373)
-speed = 3.0
+[node name="maze slideplat3-slidingplat" parent="temple" index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -7.4529)
 position_in_path = 1
+
+[node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, 0, -5)
+
+[node name="maze slideplat4-slidingplat" parent="temple" index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.3218, -32.3373)
+speed = 3.0
 button = NodePath("../maze button-stompbutton/StompButton")
 
 [node name="StaticBody3D" parent="temple/maze slideplat4-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 3, 0)
+constant_linear_velocity = Vector3(0, -3, 0)
 
 [node name="slidingplat1-slidingplat" parent="temple" index="104"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -91.3652, 16.9594, -10.5207)
-position_in_path = 1
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -69.9356, 16.8545, -10.4719)
 
 [node name="StaticBody3D" parent="temple/slidingplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(4.99993, -0.0244635, 0.0113727)
+constant_linear_velocity = Vector3(-4.99993, 0.0244635, -0.0113727)
 
 [node name="slidingplat2-slidingplat" parent="temple" index="105"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -70.8975, 16.9093, -0.49737)
-position_in_path = 1
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -92.3274, 16.9093, -0.49737)
 
 [node name="StaticBody3D" parent="temple/slidingplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-5, 0, 0)
+constant_linear_velocity = Vector3(5, 0, 0)
 
 [node name="slidingplat3-slidingplat" parent="temple" index="106"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -77.3651, 16.9093, 9.50263)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -84.0643, 16.9093, 9.50263)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/slidingplat3-slidingplat" index="0"]
-constant_linear_velocity = Vector3(5, 0, 0)
+constant_linear_velocity = Vector3(-5, 0, 0)
 
 [node name="spinplat1-risingplat" parent="temple" index="155"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.964, 19, -46.3127)
@@ -306,6 +300,7 @@ shadow_enabled = true
 directional_shadow_max_distance = 1000.0
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+visible = false
 custom_minimum_size = Vector2(500, 300)
 anchors_preset = 2
 anchor_top = 1.0
@@ -318,106 +313,51 @@ grow_vertical = 0
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(500, 300)
-render_target_update_mode = 4
+render_target_update_mode = 0
 script = ExtResource("12_8db8s")
+enable = true
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.452979, 0, -0.891521, 0, 1, 0, 0.891521, 0, 0.452979, -47.9242, 8.51754, 7.18197)
+transform = Transform3D(0.726611, 0.354833, -0.588329, -1.49012e-08, 0.856312, 0.516459, 0.687049, -0.375264, 0.622206, -93.5539, 24.8886, 16.5694)
+
+[node name="Camera3D9" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -76.1346, 7.79253, -19.9202)
+script = ExtResource("13_atbyq")
+move_direction = Vector3(-1, 0, 0)
+speed = 0.01
 
 [node name="Camera3D2" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.466649, 0, -0.884443, 0, 1, 0, 0.884443, 0, -0.466649, -39.0385, 17.3416, -8.26417)
-script = ExtResource("13_pc4qg")
+transform = Transform3D(0.399341, -0.47349, 0.785069, -5.2713e-08, 0.856312, 0.516459, -0.916802, -0.206243, 0.341961, -10.3679, 38.3095, -25.4391)
 
 [node name="Camera3D3" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.638042, 0, -0.770001, 0, 1, 0, 0.770001, 0, -0.638042, -91.4892, 34.6833, -18.417)
-script = ExtResource("13_pc4qg")
-
-[node name="Camera3D4" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.691715, 0, 0.722171, 0, 1, 0, -0.722171, 0, -0.691715, -76.9995, 22.101, 18.8335)
-
-[node name="Camera3D5" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.638042, 0, -0.770001, 0, 1, 0, 0.770001, 0, -0.638042, -77.9844, 26.584, 57.4015)
-script = ExtResource("13_pc4qg")
-
-[node name="Camera3D6" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.638042, 0, -0.770001, 0, 1, 0, 0.770001, 0, -0.638042, -114.447, 22.1608, 15.6614)
-script = ExtResource("13_pc4qg")
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -81.2051, 25.4187, 17.3165)
+script = ExtResource("13_atbyq")
+move_direction = Vector3(0, 0, 1)
+speed = 0.01
 
 [node name="Camera3D7" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.638042, 0, -0.770001, 0, 1, 0, 0.770001, 0, -0.638042, -84.0284, 22.1608, 19.2815)
-script = ExtResource("13_pc4qg")
+transform = Transform3D(-1, 0, -8.74228e-08, -8.73908e-08, 0.0270493, 0.999634, 2.36473e-09, 0.999634, -0.0270493, -81.2051, 39.9327, -17.2152)
+script = ExtResource("13_atbyq")
+move_direction = Vector3(0, 0, 1)
+speed = 0.03
 
-[node name="Area3D" type="Area3D" parent="SubViewportContainer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56109, 3.41735, 0)
-collision_layer = 2
-collision_mask = 2
+[node name="Camera3D8" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, -8.73908e-08, 0.0270493, 0.999634, 2.36473e-09, 0.999634, -0.0270493, -112.952, -11.317, 29.7555)
+script = ExtResource("13_atbyq")
+move_direction = Vector3(0, 0, 1)
+speed = 0.01
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/Area3D"]
-shape = SubResource("BoxShape3D_vy74g")
+[node name="Camera3D4" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -159.777, 31.3977, -2.79132)
+script = ExtResource("13_atbyq")
+move_direction = Vector3(0, 1, 0)
+speed = 0.05
 
-[node name="Area3D2" type="Area3D" parent="SubViewportContainer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7554, 8.00951, -8.69579)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("14_5qoau")
-camera_nodepath = NodePath("../SubViewport/Camera3D2")
+[node name="Camera3D5" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.638862, 0.262732, 0.723068, 3.72529e-09, 0.939878, -0.341512, -0.769322, 0.218179, 0.600452, -138.457, -41.1924, 15.4117)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/Area3D2"]
-shape = SubResource("BoxShape3D_vy74g")
-
-[node name="Area3D3" type="Area3D" parent="SubViewportContainer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.8705, 12.0448, -0.870679)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("14_5qoau")
-camera_nodepath = NodePath("../SubViewport/Camera3D3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/Area3D3"]
-shape = SubResource("BoxShape3D_vy74g")
-
-[node name="Area3D4" type="Area3D" parent="SubViewportContainer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.9618, 18.8801, 27.9682)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("14_5qoau")
-camera_nodepath = NodePath("../SubViewport/Camera3D4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/Area3D4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43241, 2.19298, -3.49046)
-shape = SubResource("BoxShape3D_vy74g")
-
-[node name="Area3D5" type="Area3D" parent="SubViewportContainer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.2179, 18.8801, 57.2904)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("14_5qoau")
-camera_nodepath = NodePath("../SubViewport/Camera3D5")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/Area3D5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43241, 2.19298, -3.49046)
-shape = SubResource("BoxShape3D_vy74g")
-
-[node name="Area3D6" type="Area3D" parent="SubViewportContainer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.731, 18.8801, 58.1993)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("14_5qoau")
-camera_nodepath = NodePath("../SubViewport/Camera3D6")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/Area3D6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43241, 2.19298, -3.49046)
-shape = SubResource("BoxShape3D_vy74g")
-
-[node name="Area3D7" type="Area3D" parent="SubViewportContainer"]
-transform = Transform3D(0.00624827, 0.99998, 0, -0.99998, 0.00624827, 0, 0, 0, 1, -92.1527, 20.6193, 21.1203)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("14_5qoau")
-camera_nodepath = NodePath("../SubViewport/Camera3D7")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/Area3D7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43241, 2.19298, -3.49046)
-shape = SubResource("BoxShape3D_vy74g")
+[node name="Camera3D6" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -50.3944, 5.27958, -5.63116)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.0121995, -0.999926, 0, 0.999926, -0.0121995, -150.099, -89.9718, -2.31849)
@@ -456,11 +396,9 @@ song = ExtResource("11_swj5e")
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand3/Area3D" to="temple/entry-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand4/Area3D" to="temple/door3-risingdoor" method="_on_area_3d_activate"]
 [connection signal="body_entered" from="Game End Zone" to="Game End Zone/Demo Complete" method="_on_game_end_zone_body_entered"]
-[connection signal="body_entered" from="SubViewportContainer/Area3D" to="SubViewportContainer/Area3D" method="_on_body_entered"]
 
 [editable path="dynamicObj/buttons/ButtonStand2"]
 [editable path="dynamicObj/buttons/ButtonStand1"]
 [editable path="dynamicObj/buttons/ButtonStand3"]
 [editable path="dynamicObj/buttons/ButtonStand4"]
 [editable path="temple"]
-[editable path="temple/UnstablePlatform3"]
