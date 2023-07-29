@@ -23,6 +23,9 @@ var previous_move_direction := Vector3.ZERO
 var strength_of_slope := 0.0
 var maximum_slope := deg_to_rad(50)
 
+var slow_down_timer := 0
+var slow_down_buffer := 5
+
 func look_forward():
 	var normalized_direction = -_state.move_direction.normalized()
 	var lookdir = atan2(normalized_direction.x, normalized_direction.z)

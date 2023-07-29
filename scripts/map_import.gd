@@ -35,8 +35,17 @@ func iterate(node):
 			set_up_level_coin(node)
 		if "-climbable" in node.name:
 			set_up_climable_surface(node)
+		if "-hazard" in node.name:
+			node = set_up_hazard(node)
+		#if "-leafemit" in node.name:
+		#	set_up_leaf_emitter(node)
 		for child in node.get_children():
 			iterate(child)
+
+func set_up_hazard(node) -> Node:
+	node.create_convex_collision()
+	node.set_script(load("res://scripts/tools/hazard.gd"))
+	return node
 
 func set_up_fire(fire) -> Node:
 	var new_fire = load("res://scenes/tools/lights/fire.tscn")
@@ -46,13 +55,7 @@ func set_up_fire(fire) -> Node:
 	return fire
 
 func set_up_sliding_platform(platform) -> Node:
-	var trimmed_name = platform.name
-	trimmed_name = trimmed_name.trim_suffix("-slidingplat")
-	var mesh
-	if "-path" in trimmed_name:
-		mesh = main_scene.find_child(trimmed_name)
-	else:
-		mesh = main_scene.find_child(trimmed_name + "-path")
+	var mesh = main_scene.find_child(platform.name.trim_suffix("-slidingplat") + "-path")
 	mesh.hide()
 	if mesh:
 		
@@ -63,11 +66,8 @@ func set_up_sliding_platform(platform) -> Node:
 		for i in 6:
 			new_vert.append(vertex_array[i])
 			if (i + 1)%3 == 0:
-				platform.path_positions.append(Vector3(new_vert[0],new_vert[1],new_vert[2]))
+				platform.path_positions.append(Vector3(new_vert[0],new_vert[1],new_vert[2]) + mesh.position)
 				new_vert.clear()
-		platform.reparent(mesh)
-		platform.position = Vector3.ZERO
-		platform.transform = Transform3D(Basis(), Vector3.ZERO)
 	return platform
 
 func set_up_rising_platform(platform):
@@ -80,10 +80,12 @@ func set_up_falling_platform(node):
 	node.get_parent().add_child(new_plat)
 	new_plat.position = node.position
 	new_plat.set_owner(main_scene)
+	new_plat.name = "UnstablePlatform"
 	node.reparent(new_plat)
-	node.create_convex_collision()
-	node.get_child(0).set_parent(new_plat)
-	node.transform = Transform3D(Basis(), Vector3.ZERO)
+	node.name = "Mesh"
+	if node.find_child("StaticBody3D") != null:
+		node.find_child("StaticBody3D").find_child("CollisionShape3D").reparent(node.get_parent())
+		node.find_child("StaticBody3D").queue_free()
 
 func set_up_passthru_walls(node):
 	node.create_trimesh_collision()
@@ -117,7 +119,6 @@ func set_up_stomp_button(button):
 	var stomp_button = load("res://scenes/tools/Interactive Objects/stomp_button.tscn").instantiate()
 	button.add_child(stomp_button)
 	stomp_button.set_owner(main_scene)
-	print(button.mesh)
 	stomp_button.find_child("CollisionShape3D").set_shape(button.mesh)
 	stomp_button.position = Vector3.UP
 	
@@ -128,3 +129,10 @@ func set_up_rising_door(door) -> Node:
 func set_up_climable_surface(plane) -> Node:
 	plane.set_script(load("res://scripts/tools/climbable_zone.gd"))
 	return plane
+	
+func set_up_leaf_emitter(leaf) -> Node:
+	var new_leaf = load("res://scenes/particles/ambientLeafParticles.tscn")
+	new_leaf = new_leaf.instantiate()
+	leaf.add_child(new_leaf)
+	new_leaf.set_owner(main_scene)
+	return leaf

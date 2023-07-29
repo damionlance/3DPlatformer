@@ -66,7 +66,6 @@ func _add_split(split_name):
 			var text = sign
 			minutes = abs(temp / 60)
 			if minutes >= 1:
-				print(minutes)
 				text += "%02d:" % [minutes]
 			seconds = abs(fmod(temp, 60))
 			if seconds >= 1:

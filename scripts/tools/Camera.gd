@@ -50,45 +50,45 @@ func _physics_process(_delta):
 			
 			rotation_degrees.y -= rad_to_deg(angle)
 	
-	camera_tracking_position = _parent_position
-	camera_tracking_position.y = previous_camera_height
 	if not halt_input:
 		rotation_degrees.x -= Input.get_axis("CameraDown", "CameraUp") * camera_sensitivity.x
 		rotation_degrees.x = clamp(rotation_degrees.x, -80.0, 30.0)
 		rotation_degrees.y -= Input.get_axis("CameraRight", "CameraLeft") * camera_sensitivity.y
 		rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
-	var camera_velocity = lerp(velocity, get_parent().velocity, .9)
-	camera_velocity += (_parent_position - global_position)*10
-	var match_states = false
-	if _player_state._current_state != null:
-		match_states = (	_player_state._current_state._state_name == "WallSlide" or 
-						_player_state._current_state._state_name == "WallClimb" or
-						_player_state._current_state._state_name == "LedgeGrab" or
-						_player_state._current_state._state_name == "Running")
-	if abs(height_difference) > 6 and not tracking:
-		tracking = true
-	elif match_states or _player.is_on_floor():
-		if match_height:
-			var query = PhysicsRayQueryParameters3D.create(_parent_position, position)
-			var result = space_state.intersect_ray(query)
-			if result:
-				position = _parent_position
-		match_height = true
-		tracking = false
-		previous_camera_height = position.y
-	else:
-		match_height = tracking
-	if not match_height:
-		if is_on_wall():
-			camera_velocity.y = 10
+		camera_tracking_position = _parent_position
+		camera_tracking_position.y = previous_camera_height
+		var camera_velocity = lerp(velocity, get_parent().velocity, .9)
+		camera_velocity += (_parent_position - global_position)*10
+		var match_states = false
+		if _player_state._current_state != null:
+			match_states = (	_player_state._current_state._state_name == "WallSlide" or 
+							_player_state._current_state._state_name == "WallClimb" or
+							_player_state._current_state._state_name == "LedgeGrab" or
+							_player_state._current_state._state_name == "Running")
+		if abs(height_difference) > 6 and not tracking:
+			tracking = true
+		elif match_states or _player.is_on_floor():
+			if match_height:
+				var query = PhysicsRayQueryParameters3D.create(_parent_position, position)
+				var result = space_state.intersect_ray(query)
+				if result:
+					position = _parent_position
+			match_height = true
+			tracking = false
+			previous_camera_height = position.y
 		else:
-			camera_velocity.y = 0
-	else:
-		previous_camera_height = position.y
-	
-	
-	set_velocity(camera_velocity)
-	move_and_slide()
+			match_height = tracking
+		if not match_height:
+			if is_on_wall():
+				camera_velocity.y = 10
+			else:
+				camera_velocity.y = 0
+		else:
+			previous_camera_height = position.y
+		
+		
+		set_velocity(camera_velocity)
+		move_and_slide()
 	
 	#position = camera_tracking_position
 	

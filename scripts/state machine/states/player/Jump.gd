@@ -5,6 +5,8 @@ var _state_name = "Jump"
 var current_jump_strength : float
 var current_jump_gravity := 0.0
 
+var dive_speed = 3
+
 var no_wall_jump : bool
 @export var ground_pound_finished := false
 
@@ -65,7 +67,6 @@ func update(delta):
 	pass
 
 func reset():
-	airdrifting = false
 	ground_pound_finished = false
 	entering_jump_button_state = _state._controller._jump_state
 	_state.anim_tree["parameters/conditions/jump"] = true
@@ -109,7 +110,7 @@ func reset():
 		_state.dive:
 			current_jump_gravity = constants._dive_jump_gravity
 			current_jump_strength = constants._dive_jump_strength
-			_state.current_speed += constants.dive_speed
+			_state.current_speed += dive_speed
 			_state.move_direction = _state.camera_relative_movement
 			_state.anim_tree["parameters/Jump/conditions/dive"] = true
 			sound_player.set_stream(load("res://assets/sounds/actor noises/Dive.mp3"))
@@ -145,5 +146,7 @@ func reset():
 	_state.velocity.y = current_jump_strength
 	_state._player.velocity.y = current_jump_strength
 	if _state.move_direction != Vector3.ZERO:
-		_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
+		var temp = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
+		if temp != Transform3D():
+			_player.transform = temp
 	pass

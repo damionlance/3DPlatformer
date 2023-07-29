@@ -29,6 +29,8 @@ var popperAngle := Vector3.ZERO
 
 var collectables_loaded = false
 
+var last_safe_transform : Transform3D
+
 var previous_horizontal_velocity := Vector3.ZERO
 
 func _force_reset():
@@ -50,13 +52,15 @@ func _ready():
 	set_floor_constant_speed_enabled(false)
 	set_floor_stop_on_slope_enabled(true)
 	set_floor_max_angle(deg_to_rad(60))
-	set_floor_snap_length(.5)
+	set_floor_snap_length(1.0)
 	set_max_slides(6)
 	set_up_direction(Vector3.UP)
 
 func _process(_delta):
 	if Input.is_key_pressed(KEY_1):
 		player_anim.play("pinegrove shuffle")
+	if Input.is_key_pressed(KEY_2):
+		player_anim.play("wave")
 	
 	if _state.level_loaded:
 		if not collectables_loaded:
@@ -86,6 +90,13 @@ func _physics_process(_delta):
 		set_velocity(velocity)
 		move_and_slide()
 		velocity = get_real_velocity()
+	if is_on_floor():
+		if get_last_slide_collision() == null:
+			return
+		elif get_last_slide_collision().get_collider().is_in_group("hazard"):
+			transform = last_safe_transform
+		elif get_last_slide_collision().get_collider() is StaticBody3D and get_last_slide_collision().get_collider().constant_linear_velocity == Vector3.ZERO and get_last_slide_collision().get_collider().constant_angular_velocity == Vector3.ZERO:
+			last_safe_transform = transform
 	if not is_on_wall():
 		previous_horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 	#_state.velocity = velocity
@@ -127,6 +138,11 @@ func remove_body(body):
 
 func activate_dialogue_box(dialogue_path, body):
 	$"HUD/MarginContainer".start_dialogue(dialogue_path, body)
+	if _state.current_speed > 5:
+		player_anim_tree[_state.is_stopping] = true
+	player_anim_tree[_state.is_moving] = false
+	_state.current_speed = 0
+	_state.move_direction = Vector3.ZERO
 
 func get_current_held_object() -> Object:
 	return $HoldableObjectNode.current_object
@@ -138,4 +154,4 @@ func release_current_held_object():
 	$HoldableObjectNode.release_object()
 
 func _add_split(split_name):
-	$"HUD/MarginContainer/Run Time Timers"._add_split(split_name)
+	$"splits/MarginContainer/Run Time Timers"._add_split(split_name)

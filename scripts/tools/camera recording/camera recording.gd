@@ -38,7 +38,7 @@ func _process(delta):
 	elif Input.is_joy_button_pressed(0,JOY_BUTTON_RIGHT_SHOULDER) and not recording and allow_break:
 		allow_break = false
 		recording = true
-		get_parent().position.y = 1920
+		#get_parent().position.y = 1920
 		size = Vector2(1920, 1080)
 		thread = Thread.new()
 		thread.start(record_screen)
@@ -48,7 +48,7 @@ func record_screen():
 	while true:
 		if allow_break and Input.is_joy_button_pressed(0,JOY_BUTTON_RIGHT_SHOULDER):
 			print("stop")
-			get_parent().position.y = 0
+			#get_parent().position.y = 0
 			size = Vector2(500, 300)
 			allow_break = false
 			recording = false

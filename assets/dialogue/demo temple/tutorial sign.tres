@@ -3,10 +3,10 @@
 [resource]
 data = {
 "0": {
-"text": "Welcome to the [color=red]Fella's Forgotten Figments[/color] demo!"
+"text": "Welcome to the [color=red]Fella's Figments[/color] demo!"
 },
 "1": {
 "text": "Explore the challenges of the Temple and 
-find the [color=gold]Three Golden Skulls[/color] to escape!"
+light the three pedestals to escape!"
 }
 }

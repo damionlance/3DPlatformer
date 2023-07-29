@@ -3,9 +3,10 @@
 [resource]
 data = {
 "0": {
-"text": "Interact with these pedestals while holding one of the [color=gold]Three Golden Skulls[/color] to set it atop the pedestal."
+"text": "There should be 3 buttons scattered throughout
+this temple..."
 },
 "1": {
-"text": "Bring back all three to complete the challenge!"
+"text": "I bet you can escape if you press all three!"
 }
 }

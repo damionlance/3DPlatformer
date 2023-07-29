@@ -37,6 +37,7 @@ func update(delta):
 	if not _state._raycast_middle.is_colliding():
 		_state._jump_state = _state.jump
 		_state.move_direction = -_state.move_direction
+		_state.anim_tree["parameters/conditions/wall slide"] = false
 		_state.update_state("Falling")
 		return
 	if wall_collision_check() == wall_collision.wallClimb:
