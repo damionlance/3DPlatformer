@@ -196,4 +196,7 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+anti_aliasing/quality/msaa_3d=3
+anti_aliasing/quality/use_taa=true
+anti_aliasing/quality/use_debanding=true
 environment/default_environment="res://default_env.tres"
