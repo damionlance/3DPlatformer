@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://btpbfxgikn1pk"]
+
+[ext_resource type="PackedScene" uid="uid://dr6i0yihb5jyr" path="res://assets/models/props/Palm Tree.glb" id="1_d4r7t"]
+
+[node name="Palm Tree" type="Node3D"]
+
+[node name="Palm Tree" parent="." instance=ExtResource("1_d4r7t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.388044, 0, -0.612969)
+
+[editable path="Palm Tree"]

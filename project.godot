@@ -44,7 +44,7 @@ version_control_plugin_name="GitAPI"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg")
 
 [filesystem]
 

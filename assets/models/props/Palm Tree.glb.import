@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cbu8jw1lecywg"
-path="res://.godot/imported/Beach Grass.glb-864ebf1b854decd195f9f60375011968.scn"
+uid="uid://dr6i0yihb5jyr"
+path="res://.godot/imported/Palm Tree.glb-917ccaabe732d51055e59d8bb3df1bda.scn"
 
 [deps]
 
-source_file="res://assets/models/props/Beach Grass.glb"
-dest_files=["res://.godot/imported/Beach Grass.glb-864ebf1b854decd195f9f60375011968.scn"]
+source_file="res://assets/models/props/Palm Tree.glb"
+dest_files=["res://.godot/imported/Palm Tree.glb-917ccaabe732d51055e59d8bb3df1bda.scn"]
 
 [params]
 
@@ -30,9 +30,9 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "materials": {
-"@MATERIAL:0": {
+"Leaf": {
 "use_external/enabled": true,
-"use_external/path": "res://addons/proton_scatter/demos/assets/materials/m_grass.tres"
+"use_external/path": "res://assets/materials/Island/Leaves.tres"
 }
 }
 }
