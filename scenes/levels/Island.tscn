@@ -29,11 +29,11 @@ noise = SubResource("FastNoiseLite_kjur5")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rnnef"]
 sky_top_color = Color(0.141176, 0.180392, 0.403922, 1)
-sky_horizon_color = Color(0.568627, 0.184314, 0.164706, 1)
+sky_horizon_color = Color(0.486275, 0.27451, 0.0313726, 1)
 sky_cover = SubResource("NoiseTexture2D_faovp")
-ground_bottom_color = Color(0.0823529, 0, 0.380392, 1)
-ground_horizon_color = Color(0.45098, 0, 0.435294, 1)
-ground_curve = 0.0263902
+ground_bottom_color = Color(0.0627451, 0, 0.313726, 1)
+ground_horizon_color = Color(0.490196, 0.0745098, 0.172549, 1)
+ground_curve = 0.00933031
 sun_angle_max = 360.0
 sun_curve = 0.023898
 
@@ -44,7 +44,7 @@ sky_material = SubResource("ProceduralSkyMaterial_rnnef")
 background_mode = 2
 sky = SubResource("Sky_ooyn5")
 ambient_light_source = 3
-ambient_light_color = Color(0.65098, 0, 0.666667, 1)
+ambient_light_sky_contribution = 0.44
 reflected_light_source = 2
 ssao_enabled = true
 ssao_radius = 2.76
@@ -54,7 +54,7 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.0023
 volumetric_fog_length = 66.57
 
-[sub_resource type="Resource" id="Resource_48sn6"]
+[sub_resource type="Resource" id="Resource_t4dmd"]
 script = ExtResource("6_3du1e")
 radius = 1.0
 samples_before_rejection = 15
@@ -64,7 +64,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_1vjlk"]
+[sub_resource type="Resource" id="Resource_4shrg"]
 script = ExtResource("7_b7bu6")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -75,7 +75,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_vq3a3"]
+[sub_resource type="Resource" id="Resource_qsiyk"]
 script = ExtResource("8_tm66g")
 iterations = 3
 offset_step = 0.2
@@ -87,7 +87,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_t6jdj"]
+[sub_resource type="Resource" id="Resource_m1jcr"]
 script = ExtResource("9_ijwpb")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -103,9 +103,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_3l1k2"]
+[sub_resource type="Resource" id="Resource_r712x"]
 script = ExtResource("5_igj3r")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_48sn6"), SubResource("Resource_1vjlk"), SubResource("Resource_vq3a3"), SubResource("Resource_t6jdj")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_t4dmd"), SubResource("Resource_4shrg"), SubResource("Resource_qsiyk"), SubResource("Resource_m1jcr")])
 
 [sub_resource type="Curve3D" id="Curve3D_3tr68"]
 _data = {
@@ -120,7 +120,7 @@ closed = true
 thickness = 0.0
 curve = SubResource("Curve3D_3tr68")
 
-[sub_resource type="Resource" id="Resource_qiq7v"]
+[sub_resource type="Resource" id="Resource_d64g0"]
 script = ExtResource("6_jdw2t")
 amount = 10
 enabled = true
@@ -129,7 +129,7 @@ custom_seed = 7
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_ujcxw"]
+[sub_resource type="Resource" id="Resource_g627h"]
 script = ExtResource("7_b7bu6")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -140,7 +140,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_vkrlj"]
+[sub_resource type="Resource" id="Resource_0o5a1"]
 script = ExtResource("8_tm66g")
 iterations = 10
 offset_step = 0.2
@@ -152,7 +152,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_eial2"]
+[sub_resource type="Resource" id="Resource_1667l"]
 script = ExtResource("9_ijwpb")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -168,9 +168,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_m7vki"]
+[sub_resource type="Resource" id="Resource_02oov"]
 script = ExtResource("5_igj3r")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_qiq7v"), SubResource("Resource_ujcxw"), SubResource("Resource_vkrlj"), SubResource("Resource_eial2")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_d64g0"), SubResource("Resource_g627h"), SubResource("Resource_0o5a1"), SubResource("Resource_1667l")])
 
 [sub_resource type="Curve3D" id="Curve3D_sbyc8"]
 _data = {
@@ -185,7 +185,7 @@ closed = true
 thickness = 0.0
 curve = SubResource("Curve3D_sbyc8")
 
-[sub_resource type="Resource" id="Resource_vl4u8"]
+[sub_resource type="Resource" id="Resource_4yihq"]
 script = ExtResource("6_jdw2t")
 amount = 700
 enabled = true
@@ -194,7 +194,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_rlndd"]
+[sub_resource type="Resource" id="Resource_rlm7b"]
 script = ExtResource("7_b7bu6")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -205,7 +205,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_7173b"]
+[sub_resource type="Resource" id="Resource_dnc8r"]
 script = ExtResource("8_tm66g")
 iterations = 3
 offset_step = 0.2
@@ -217,7 +217,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_r8aaq"]
+[sub_resource type="Resource" id="Resource_k6ybv"]
 script = ExtResource("9_ijwpb")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 2.0
@@ -233,9 +233,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_0ld1s"]
+[sub_resource type="Resource" id="Resource_vjs5b"]
 script = ExtResource("5_igj3r")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_vl4u8"), SubResource("Resource_rlndd"), SubResource("Resource_7173b"), SubResource("Resource_r8aaq")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_4yihq"), SubResource("Resource_rlm7b"), SubResource("Resource_dnc8r"), SubResource("Resource_k6ybv")])
 
 [sub_resource type="Curve3D" id="Curve3D_yot21"]
 _data = {
@@ -259,74 +259,78 @@ transform = Transform3D(0.999995, -0.00176682, -0.00243486, 0.00176917, 0.999998
 [node name="CollisionShape3D" parent="Island/Cube_022/StaticBody3D" index="0"]
 transform = Transform3D(1, 3.18323e-11, 0, -1.58934e-10, 1, -5.82077e-11, -2.32831e-10, 5.82077e-11, 1, 0, 0, 0)
 
-[node name="Cube 3-slidingplat" parent="Island" index="39"]
-transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42128e-05, 1, -9.25502e-08, -1.85159e-05, 1.24929e-05, 1, 2.39066, 21.7043, -47.3001)
+[node name="Cube 3-slidingplat" parent="Island" index="31"]
+transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42185e-05, 1, -9.25502e-08, -1.85233e-05, 1.24929e-05, 1, 1.74135, 21.8083, -47.8102)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="Island/Cube 3-slidingplat" index="0"]
-constant_linear_velocity = Vector3(3.89462, -0.614941, 3.0747)
+constant_linear_velocity = Vector3(-3.89462, 0.61494, -3.0747)
 
-[node name="Cube_108" parent="Island" index="69"]
+[node name="Cube_108" parent="Island" index="56"]
 transform = Transform3D(1, 3.18323e-11, 0, -1.58934e-10, 1, -5.82077e-11, -2.32831e-10, 5.82077e-11, 1, -12, 24.5, -114)
 
-[node name="Cube 1-slidingplat" parent="Island" index="74"]
-transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42128e-05, 1, -9.25502e-08, -1.85159e-05, 1.24929e-05, 1, -38.2463, 20.912, -82.7739)
+[node name="Cube 1-slidingplat" parent="Island" index="61"]
+transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42185e-05, 1, -9.25502e-08, -1.85233e-05, 1.24929e-05, 1, -39.7549, 20.2647, -84.3746)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="Island/Cube 1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-3.27874, -1.42079, -3.49732)
+constant_linear_velocity = Vector3(3.27874, 1.42079, 3.49732)
 
-[node name="Cube 2-slidingplat" parent="Island" index="75"]
-transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42128e-05, 1, -9.25502e-08, -1.85159e-05, 1.24929e-05, 1, -11.6802, 23.6037, -60.3114)
+[node name="Cube 2-slidingplat" parent="Island" index="62"]
+transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42185e-05, 1, -9.25502e-08, -1.85233e-05, 1.24929e-05, 1, -6.55897, 24.9085, -64.0947)
 
 [node name="StaticBody3D" parent="Island/Cube 2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-2.72727, 0.909091, -4.09091)
+constant_linear_velocity = Vector3(-2.72727, 0.90909, -4.09091)
 
-[node name="Cube_151" parent="Island" index="149"]
+[node name="Cube_151" parent="Island" index="132"]
 visible = false
 
-[node name="Cube_159" parent="Island" index="157"]
+[node name="Cube_159" parent="Island" index="140"]
 visible = false
 
-[node name="cliff plat 1-slidingplat" parent="Island" index="161"]
-transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42128e-05, 1, -9.25502e-08, -1.85159e-05, 1.24929e-05, 1, 12.6517, 38.6423, -171.107)
+[node name="cliff plat 1-slidingplat" parent="Island" index="144"]
+transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42185e-05, 1, -9.25502e-08, -1.85233e-05, 1.24929e-05, 1, 12.6394, 38.6472, -176.173)
 position_in_path = 1
 
 [node name="StaticBody3D" parent="Island/cliff plat 1-slidingplat" index="0"]
 constant_linear_velocity = Vector3(-1.19209e-06, 0, 5)
 
-[node name="cliff plat 2-slidingplat" parent="Island" index="169"]
-transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42128e-05, 1, -9.25502e-08, -1.85159e-05, 1.24929e-05, 1, -23.8556, 39.7104, -174.792)
+[node name="cliff plat 2-slidingplat" parent="Island" index="152"]
+transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42185e-05, 1, -9.25502e-08, -1.85233e-05, 1.24929e-05, 1, -23.8587, 39.7117, -176.083)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="Island/cliff plat 2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(2.11928e-06, -2.11928e-06, -5)
+constant_linear_velocity = Vector3(2.11928e-06, -2.11928e-06, 5)
 
-[node name="cliff plat 3-slidingplat" parent="Island" index="170"]
-transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42128e-05, 1, -9.25502e-08, -1.85159e-05, 1.24929e-05, 1, -29.9543, 39.7207, -174.277)
+[node name="cliff plat 3-slidingplat" parent="Island" index="153"]
+transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42185e-05, 1, -9.25502e-08, -1.85233e-05, 1.24929e-05, 1, -29.9484, 39.7184, -171.849)
 position_in_path = 1
 
 [node name="StaticBody3D" parent="Island/cliff plat 3-slidingplat" index="0"]
 constant_linear_velocity = Vector3(0, -4.23857e-06, -5)
 
-[node name="cliff plat 4-slidingplat" parent="Island" index="173"]
-transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42128e-05, 1, -9.25502e-08, -1.85159e-05, 1.24929e-05, 1, -35.8425, 41.0566, -170.374)
+[node name="cliff plat 4-slidingplat" parent="Island" index="156"]
+transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42185e-05, 1, -9.25502e-08, -1.85233e-05, 1.24929e-05, 1, -35.841, 41.8852, -170.373)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="Island/cliff plat 4-slidingplat" index="0"]
-constant_linear_velocity = Vector3(1.5634e-06, -5, 0)
+constant_linear_velocity = Vector3(0, 5, 0)
 
-[node name="cliff sliding wall 1-slidingplat" parent="Island" index="178"]
-transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42128e-05, 1, -9.25502e-08, -1.85159e-05, 1.24929e-05, 1, -21.8209, 61.5125, -176.388)
+[node name="cliff sliding wall 1-slidingplat" parent="Island" index="161"]
+transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42185e-05, 1, -9.25502e-08, -1.85233e-05, 1.24929e-05, 1, -21.8218, 61.0293, -176.388)
 position_in_path = 1
 
 [node name="StaticBody3D" parent="Island/cliff sliding wall 1-slidingplat" index="0"]
 constant_linear_velocity = Vector3(5.72205e-06, 5, 1.52588e-05)
 
-[node name="cliff sliding wall 2-slidingplat" parent="Island" index="179"]
-transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42128e-05, 1, -9.25502e-08, -1.85159e-05, 1.24929e-05, 1, -16.8039, 69.0852, -174.893)
+[node name="cliff sliding wall 2-slidingplat" parent="Island" index="162"]
+transform = Transform3D(1.0119, 4.0526e-06, -2.2212e-07, -1.42185e-05, 1, -9.25502e-08, -1.85233e-05, 1.24929e-05, 1, -16.8173, 61.519, -174.9)
 position_in_path = 1
 
 [node name="StaticBody3D" parent="Island/cliff sliding wall 2-slidingplat" index="0"]
 constant_linear_velocity = Vector3(8.29282e-07, 5, 0)
 
-[node name="Cube_008" parent="Island" index="201"]
+[node name="Cube_008" parent="Island" index="184"]
 transform = Transform3D(0, 1, -2.84217e-11, 1.74623e-10, -4.6839e-11, -1, -1, -6.98492e-10, -1.74623e-10, -3.5, 15.5, -9.5)
 
 [node name="CollisionShape3D" parent="Island/UnstablePlatform2" index="3"]
@@ -340,7 +344,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07607, 0.999996, 1.73963)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.8916, -0.0278191, -0.451969, 0.0223138, 0.999598, -0.0175079, 0.452274, 0.00552489, 0.891862, 0, 41.3616, 0)
-light_color = Color(1, 0.282353, 0.223529, 1)
+light_color = Color(0.905882, 0.419608, 0.0156863, 1)
 light_angular_distance = 1.34
 shadow_enabled = true
 shadow_bias = 0.0
@@ -359,7 +363,7 @@ environment = SubResource("Environment_dyxfe")
 [node name="ProtonScatter" type="Node3D" parent="Foliage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.97497, 0)
 script = ExtResource("4_3gppd")
-modifier_stack = SubResource("Resource_3l1k2")
+modifier_stack = SubResource("Resource_r712x")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -375,7 +379,7 @@ shape = SubResource("Resource_rue04")
 [node name="ProtonScatter2" type="Node3D" parent="Foliage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.97497, 0)
 script = ExtResource("4_3gppd")
-modifier_stack = SubResource("Resource_m7vki")
+modifier_stack = SubResource("Resource_02oov")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -394,7 +398,7 @@ shape = SubResource("Resource_6i0rm")
 [node name="ProtonScatter3" type="Node3D" parent="Foliage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -49.498)
 script = ExtResource("4_3gppd")
-modifier_stack = SubResource("Resource_0ld1s")
+modifier_stack = SubResource("Resource_vjs5b")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
