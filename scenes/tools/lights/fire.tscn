@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgpdulba1eqfl"]
+[gd_scene load_steps=10 format=3 uid="uid://bgpdulba1eqfl"]
 
 [ext_resource type="Script" path="res://scripts/level objects/lights/fire.gd" id="1_muccl"]
+[ext_resource type="AudioStream" uid="uid://0phd3mpfqb0f" path="res://assets/sounds/ambient noises/fire.wav" id="2_w8mo1"]
 
 [sub_resource type="Gradient" id="Gradient_1kj6i"]
 colors = PackedColorArray(1, 0, 0, 1, 0.822767, 0.820695, 1.15514e-06, 1)
@@ -61,3 +62,9 @@ amount = 50
 visibility_aabb = AABB(-1.53077, -1.00001, -1.79319, 3.09956, 4.49844, 3.42189)
 process_material = SubResource("ParticleProcessMaterial_8455v")
 draw_pass_1 = SubResource("QuadMesh_byffx")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_w8mo1")
+max_db = -1.0
+autoplay = true
+max_distance = 30.0
