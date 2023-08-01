@@ -11,6 +11,9 @@ var tween : Tween
 func _ready():
 	global_position = initial_position
 	get_node(button).activate.connect(_on_stomp_button_velocity_trigger_fired)
+	
+	var size
+	
 
 func _process(delta):
 	if Engine.is_editor_hint():

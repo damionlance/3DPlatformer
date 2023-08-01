@@ -20,7 +20,6 @@ var base_rotation = 0
 var can_slide := false
 var can_slide_timer := 0
 var can_slide_buffer := 5
-var previous_speed := 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_state.state_dictionary[_state_name] = self
@@ -63,6 +62,7 @@ func update(delta):
 		if _fall_timer > _state.coyote_time:
 			_state._jump_state = _state.jump
 			_state.update_state("Falling")
+			_state.anim_tree["parameters/conditions/fall"] = true
 			return
 	else:
 		_fall_timer = 0
@@ -78,7 +78,7 @@ func update(delta):
 	grounded_movement_processing()
 	look_forward()
 	_state.current_dir = _state.move_direction
-	var speed_difference = previous_speed - _state.current_speed
+	var speed_difference = get_parent().previous_speed - _state.current_speed
 	
 	if speed_difference < -5:
 		_state.anim_tree[_state.is_stopping] = false
@@ -111,7 +111,7 @@ func update(delta):
 
 func reset():
 	_state._reset_animation_parameters()
-	
+	get_parent().dashing = false
 	_state._air_drift_state = _state.not_air_drifting
 	var collision = _player.get_last_slide_collision()
 	if collision:

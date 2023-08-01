@@ -97,10 +97,9 @@ func reset():
 			sound_player.set_stream(load("res://assets/sounds/actor noises/Jump 3.mp3"))
 			sound_player.play()
 		_state.spin_jump:
-			_player.anim_tree.travel("Spinning")
 			current_jump_gravity = constants._spin_jump_gravity
 			current_jump_strength = constants._spin_jump_strength
-			_state.anim_tree["parameters/Jump/conditions/jump 3"] = true
+			_state.anim_tree["parameters/conditions/jump"] = false
 		_state.side_flip:
 			current_jump_gravity = constants._side_jump_gravity
 			current_jump_strength = constants._side_jump_strength
