@@ -9,7 +9,7 @@ var motion_input : String
 #private variables
 var _state_name = "LedgeGrab"
 var snapped_to_ledge = false
-
+var ready_to_move = false
 
 var height_of_platform := 0
 #onready variables
@@ -36,7 +36,8 @@ func update(delta):
 	var input = Vector3(_state.camera_relative_movement.x, 0, _state.camera_relative_movement.z)
 	var direction = input.signed_angle_to(_state.snap_vector, Vector3.UP)
 	
-	
+	if not ready_to_move and input == Vector3.ZERO:
+		ready_to_move = true
 	
 	# Update relevant counters
 	var left_or_right = 0
@@ -58,6 +59,8 @@ func update(delta):
 	else:
 		var dot = _state.camera_relative_movement.dot(_state.snap_vector)
 		_state.move_direction = Vector3.ZERO
+		if not ready_to_move:
+			return
 		if dot > .9:
 			_state.move_direction = _state.snap_vector
 			_state.current_speed = 10
@@ -100,6 +103,7 @@ func update(delta):
 	pass
 
 func reset():
+	ready_to_move = false
 	snapped_to_ledge = false
 	_state._reset_animation_parameters()
 	_state.anim_tree["parameters/conditions/ledge hang"] = true
