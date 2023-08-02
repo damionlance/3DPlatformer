@@ -734,7 +734,6 @@ shape = SubResource("CapsuleShape3D_kjjxv")
 
 [node name="Coin Collected" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("34_s1mpd")
-volume_db = -12.0
 bus = &"Sound Effects"
 
 [node name="HUD" type="Control" parent="."]
