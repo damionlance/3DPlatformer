@@ -90,9 +90,9 @@ func _ready():
 			WORLD_COLLECTIBLES = json.data
 
 
-func UPDATE_COLLECTIBLES(name, value):
+func UPDATE_COLLECTIBLES(collectable_name, value):
 	mutex.lock()
-	WORLD_COLLECTIBLES[name] = value
+	WORLD_COLLECTIBLES[collectable_name] = value
 	mutex.unlock()
 	save_semaphore.post()
 
@@ -293,9 +293,6 @@ func load_settings():
 	settings["LeftStickInvertX"] = settings_file.get_value("Keybinds", "LeftStickInvertX")
 	settings["RightStickInvertY"] = settings_file.get_value("Keybinds", "RightStickInvertY")
 	settings["RightStickInvertX"] = settings_file.get_value("Keybinds", "RightStickInvertX")
-	
-	settings["Camera Mode"] = settings_file.get_value("Keybinds", "Camera Mode")
-	
 
 func default_settings():
 	var settings_file = ConfigFile.new()

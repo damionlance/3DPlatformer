@@ -120,6 +120,3 @@ shape = SubResource("BoxShape3D_itrr7")
 stream = ExtResource("4_jypm8")
 max_distance = 30.0
 bus = &"Ambient Sounds"
-
-[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
-[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

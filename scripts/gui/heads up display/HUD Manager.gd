@@ -22,7 +22,7 @@ func _ready():
 	dialogue_box.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var i = 0
 	for prompt in dialogue_prompts:
 		if prompt.visible == true:
@@ -41,13 +41,13 @@ func add_body(body, string):
 			prompt.visible = true
 			var screen_position = camera.unproject_position(talking_bodies[i].global_position)
 			prompt.position = screen_position
-		return
+			return
 		i += 1
 
-func remove_body(remove_body):
+func remove_body(removed_body):
 	var i = 0
 	for body in talking_bodies:
-		if body == remove_body:
+		if body == removed_body:
 			dialogue_prompts[i].get_node("RichTextLabel").text = ""
 			dialogue_prompts[i].visible = false
 			body = null

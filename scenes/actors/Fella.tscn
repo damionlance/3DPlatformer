@@ -888,6 +888,11 @@ bones/204/rotation = Quaternion(0.995194, -2.33469e-08, 2.3727e-07, 0.0979268)
 bones/206/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/220/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 
+[node name="RightHand" type="BoneAttachment3D" parent="lilfella/rig/Skeleton3D" index="4"]
+transform = Transform3D(-0.582413, -0.77182, 0.255126, 0.731592, -0.634492, -0.249385, 0.354356, 0.0414031, 0.934194, -0.753535, 0.945035, -0.0384001)
+bone_name = "DEF-hand.R"
+bone_idx = 174
+
 [node name="Sound Player" type="AudioStreamPlayer" parent="."]
 bus = &"Sound Effects"
 script = ExtResource("34_3mtxq")

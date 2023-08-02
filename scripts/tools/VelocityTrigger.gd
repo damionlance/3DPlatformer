@@ -32,7 +32,7 @@ func _ready():
 	audio_player.volume_db = -8
 	add_child(audio_player)
 
-func _process(delta):
+func _process(_delta):
 	force_shapecast_update()
 	var bodies = get_collision_count()
 	if active and bodies == 0:
@@ -65,13 +65,13 @@ func _velocity_test(body):
 
 func _reset():
 	if tween != null and tween.is_running():
-		tween.stop
+		tween.stop()
 	tween = create_tween()
 	tween.tween_property(get_parent(), "global_position", original_position, 1)
 
 func _slam_down():
 	if tween != null and tween.is_running():
-		tween.stop
+		tween.stop()
 	particles.emitting = true
 	audio_player.play()
 	tween = create_tween()

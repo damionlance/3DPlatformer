@@ -10,12 +10,13 @@ var tween : Tween
 
 func _ready():
 	global_position = initial_position
+	await get_node(button).ready
 	get_node(button).activate.connect(_on_stomp_button_velocity_trigger_fired)
 	
 	var size
 	
 
-func _process(delta):
+func _process(_delta):
 	if Engine.is_editor_hint():
 		global_position = initial_position + spinHeight
 
@@ -32,7 +33,7 @@ func _on_spin_button_spinning(isSpin):
 		tween.tween_property(self, "global_position", initial_position, distance/fallingSpeed)
 
 
-func _on_stomp_button_velocity_trigger_fired(body):
+func _on_stomp_button_velocity_trigger_fired(_body):
 	if tween != null and tween.is_running():
 		tween.stop()
 	tween = create_tween()

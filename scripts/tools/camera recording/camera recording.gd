@@ -19,7 +19,7 @@ func _ready():
 		number_of_cameras = get_child_count()
 		get_child(0).current = true
 
-func _process(delta):
+func _process(_delta):
 	if not allow_break and not Input.is_joy_button_pressed(0,JOY_BUTTON_RIGHT_SHOULDER) and not Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_LEFT) and Input.get_joy_axis(0, JOY_AXIS_TRIGGER_RIGHT) < .2 and not Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_RIGHT):
 		allow_break = true
 	elif (Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_RIGHT) or Input.get_joy_axis(0, JOY_AXIS_TRIGGER_RIGHT) > .5) and allow_break:
@@ -76,4 +76,4 @@ func _save_picture(start):
 		if start + (4 * i) > screenshots.size() - 1:
 			return
 		screenshots[start + (4 * i)].save_png("user://recording/" + str(start + (4 * i)) + ".png")
-		print(( i / (screenshots.size() - 1)) * 100, "%")
+		print((i / screenshots.size() - 1) * 100, "%")

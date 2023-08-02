@@ -1,12 +1,12 @@
 extends Node3D
 
 var current_object = null
-@onready var one_handed_position = $lilfella/Armature/Skeleton3D/RightHand
+@onready var one_handed_position = $"../lilfella/rig/Skeleton3D/RightHand"
 @onready var _state = $"../StateMachine"
 
 var object_original_collision_layer
 
-func _process(delta):
+func _process(_delta):
 	if current_object == null: 
 		_state.restricted_movement = false
 		return

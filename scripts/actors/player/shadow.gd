@@ -6,7 +6,7 @@ extends RayCast3D
 func _ready():
 	set_as_top_level(true)
 
-func _process(delta):
+func _process(_delta):
 	
 	if is_colliding():
 		shadow.global_position = get_collision_point()

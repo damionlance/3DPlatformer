@@ -105,12 +105,12 @@ func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
 	velocity = _velocity
 	snap_vector = _snap_vector
 	
-func add_coin(name):
-	if not name.contains("LEVELCOIN"):
+func add_coin(coin_name):
+	if not coin_name.contains("LEVELCOIN"):
 		Global.UPDATE_COLLECTIBLES("COIN", Global.WORLD_COLLECTIBLES["COIN"] + 1)
 	else:
 		Global.UPDATE_COLLECTIBLES("LEVEL COIN", Global.WORLD_COLLECTIBLES["LEVEL COIN"] + 1)
-	get_node("HUD/MarginContainer/counters/" + name.to_lower())._increase_coins()
+	get_node("HUD/MarginContainer/counters/" + coin_name.to_lower())._increase_coins()
 	coin_sounds.pitch_scale = randf() + .7
 	coin_sounds.play()
 	return true
@@ -123,10 +123,10 @@ func add_star():
 	if stars == 3:
 		time_now = Time.get_unix_time_from_system()
 
-func _on_collectable_touched(name):
-	if name == "pool coin":
+func _on_collectable_touched(collectable_name):
+	if collectable_name == "pool coin":
 		return
-	get_node("HUD/MarginContainer/counters/" + name)._enter_screen()
+	get_node("HUD/MarginContainer/counters/" + collectable_name)._enter_screen()
 
 func add_body(body, string):
 	$"HUD/MarginContainer".add_body(body, string)

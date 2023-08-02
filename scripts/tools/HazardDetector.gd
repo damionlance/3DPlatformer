@@ -7,7 +7,7 @@ func _ready():
 
 signal take_damage(position)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	for body in get_overlapping_bodies():
 		if body.get_parent().name != "HoldableObjectNode":
 			if body.is_in_group("causes_damage"):

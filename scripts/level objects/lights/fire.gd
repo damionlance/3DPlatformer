@@ -10,7 +10,7 @@ func _ready():
 	light_energy = 1
 	
 
-func _process(delta):
+func _process(_delta):
 	var green = rng.randf_range(0.0, 0.78)
 	light_color = lerp(light_color, Color(1.0, green, 0.0, 1.0), 0.15)
 	light_color = Color.CORAL

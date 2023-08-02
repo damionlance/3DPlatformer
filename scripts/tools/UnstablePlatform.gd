@@ -29,7 +29,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	constant_linear_velocity = global_position - previous_location
 	previous_location = global_position
 	if not detected:

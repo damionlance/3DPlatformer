@@ -21,7 +21,7 @@ func update(delta):
 		if _grapple_raycast.is_colliding():
 			_friendo.position = _grapple_raycast.get_collision_point()
 		_state.update_state("StuckToWall")
-		_grapple_raycast.enabled
+		_grapple_raycast.enabled()
 		return
 	
 	if _state._controller._dive_state == 1:

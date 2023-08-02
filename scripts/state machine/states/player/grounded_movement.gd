@@ -9,7 +9,7 @@ class_name GroundedMovement
 # Floor Physics Constants
 @export var floor_acceleration := 0.3
 @export var max_speed := 11.5
-@export var dash_speed := 17
+@export var dash_speed := 17.0
 @export var floor_rotation_speed :=  .2
 @export var maximum_lean := PI/6
 

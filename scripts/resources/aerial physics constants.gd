@@ -72,11 +72,3 @@ var wall_jump_speed = 12.5
 var max_reel_in = 25.0
 var dive_speed := 2.0
 var spin_skip_strength := 0.7
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

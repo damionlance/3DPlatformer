@@ -2,13 +2,6 @@ extends Node3D
 
 @onready var _particles = preload("res://scenes/particles/FootstepParticles.tscn")
 
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func fire_footstep():
 	var new_particle = _particles.instantiate()
 	add_child(new_particle)
