@@ -81,18 +81,18 @@ func update(delta):
 	var speed_difference = get_parent().previous_speed - _state.current_speed
 	
 	if speed_difference < -5:
-		_state.anim_tree[_state.is_stopping] = false
+		_state.anim_tree["parameters/conditions/stop"] = false
 	if speed_difference > 1:
-		_state.anim_tree[_state.is_stopping] = true
+		_state.anim_tree["parameters/conditions/stop"] = true
 	else:
-		_state.anim_tree[_state.is_stopping] = false
+		_state.anim_tree["parameters/conditions/stop"] = false
 	
 	if _state.current_speed == 0:
-		_state.anim_tree[_state.is_moving] = false
-		_state.anim_tree[_state.is_idling] = true
+		_state.anim_tree["parameters/conditions/running"] = false
+		_state.anim_tree["parameters/conditions/idling"]= true
 	else:
-		_state.anim_tree[_state.is_moving] = true
-		_state.anim_tree[_state.is_idling] = false
+		_state.anim_tree["parameters/conditions/running"] = true
+		_state.anim_tree["parameters/conditions/idling"]= false
 	
 	# Process all relevant timers
 	if _state.current_speed > max_speed * .9:
@@ -111,6 +111,7 @@ func update(delta):
 
 func reset():
 	_state._reset_animation_parameters()
+	_state.anim_tree["parameters/conditions/running"] = true
 	get_parent().dashing = false
 	_state._air_drift_state = _state.not_air_drifting
 	var collision = _player.get_last_slide_collision()

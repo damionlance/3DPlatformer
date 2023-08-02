@@ -55,6 +55,7 @@ func update(delta):
 	pass
 
 func reset():
+	_state._reset_animation_parameters()
 	var instance = load(landing_particles).instantiate()
 	add_child(instance)
 	instance.global_position = _state._player.global_position

@@ -42,7 +42,7 @@ func update(delta):
 	pass
 
 func reset():
-	_state.anim_tree["parameters/conditions/running"] = false
+	_state._reset_animation_parameters()
 	_state.anim_tree["parameters/conditions/spinning"] = true
 	_player.rotation.z = 0
 	_state.snap_vector = Vector3.DOWN

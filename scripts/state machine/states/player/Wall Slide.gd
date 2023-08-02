@@ -78,11 +78,11 @@ func directional_input_handling():
 	_state.move_direction = dir.rotated(Vector3.UP, angle)
 
 func reset():
+	_state._reset_animation_parameters()
+	_state.anim_tree["parameters/conditions/wall slide"] = true
 	var instance = load(landing_particles).instantiate()
 	add_child(instance)
 	instance.global_position = _state._player.global_position
-	_state._reset_animation_parameters()
-	_state.anim_tree["parameters/conditions/wall slide"] = true
 	entering_angle = Vector3(_state.velocity.x,0, _state.velocity.z)
 	var horizontal_strength = entering_angle.length()
 	entering_angle = entering_angle.normalized()

@@ -83,8 +83,6 @@ func update(delta):
 
 func reset():
 	_state._reset_animation_parameters()
-	_state.anim_tree["parameters/conditions/running"] = false
-	_state.anim_tree["parameters/conditions/landed"] = false
 	entering_jump_button_state = _state._controller._jump_state
 	entering_jump_angle = _state.current_dir
 	_state.snap_vector = Vector3.ZERO

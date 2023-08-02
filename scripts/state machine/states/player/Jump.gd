@@ -69,14 +69,8 @@ func update(delta):
 func reset():
 	ground_pound_finished = false
 	entering_jump_button_state = _state._controller._jump_state
+	_state._reset_animation_parameters()
 	_state.anim_tree["parameters/conditions/jump"] = true
-	_state.anim_tree["parameters/conditions/running"] = false
-	_state.anim_tree["parameters/conditions/landed"] = false
-	_state.anim_tree["parameters/Jump/conditions/dive"] = false
-	_state.anim_tree["parameters/Jump/conditions/roll out"] = false
-	_state.anim_tree["parameters/Jump/conditions/jump 1"] = false
-	_state.anim_tree["parameters/Jump/conditions/jump 2"] = false
-	_state.anim_tree["parameters/Jump/conditions/jump 3"] = false
 	match _state._jump_state:
 		_state.jump:
 			current_jump_gravity = constants._jump_gravity

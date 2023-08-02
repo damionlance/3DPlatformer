@@ -10,14 +10,6 @@ var respawn_point = null
 var halt_frames : Dictionary
 
 @onready var anim_tree = $"../AnimationTree"
-var is_jumping = "parameters/conditions/jump"
-var is_ledge_hang = "parameters/conditions/ledge_hang"
-var is_wall_hang = "parameters/conditions/wall_hang"
-var is_moving = "parameters/conditions/running"
-var is_idling = "parameters/conditions/idling"
-var is_dashing = "parameters/conditions/dash"
-var is_stopping = "parameters/conditions/stop"
-var is_falling = "parameters/conditions/fall"
 
 #Player Physics Variables
 var velocity :=  Vector3.ZERO
@@ -284,18 +276,22 @@ func _on_hazard_detector_take_damage(position):
 	pass # Replace with function body.
 
 func _reset_animation_parameters():
-	anim_tree[is_idling] = false
-	anim_tree[is_moving] = false
-	anim_tree[is_stopping] = false
-	anim_tree[is_jumping] = false
-	anim_tree[is_falling] = false
+	anim_tree["parameters/conditions/fall"] = false
+	anim_tree["parameters/conditions/ground pound"] = false
+	anim_tree["parameters/conditions/idling"] = false
+	anim_tree["parameters/conditions/jump"] = false
+	anim_tree["parameters/conditions/landed"] = false
+	anim_tree["parameters/conditions/ledge hang"] = false
+	anim_tree["parameters/conditions/running"] = false
 	anim_tree["parameters/conditions/skid"] = false
+	anim_tree["parameters/conditions/spinning"] = false
+	anim_tree["parameters/conditions/stop"] = false
+	anim_tree["parameters/conditions/wall climb"] = false
+	anim_tree["parameters/conditions/wall slide"] = false
+	
+	#JUMP PARAMETERS
 	anim_tree["parameters/Jump/conditions/jump 1"] = false
 	anim_tree["parameters/Jump/conditions/jump 2"] = false
 	anim_tree["parameters/Jump/conditions/jump 3"] = false
 	anim_tree["parameters/Jump/conditions/dive"] = false
 	anim_tree["parameters/Jump/conditions/roll out"] = false
-	anim_tree["parameters/conditions/wall slide"] = false
-	anim_tree["parameters/conditions/ledge hang"] = false
-	anim_tree["parameters/conditions/wall climb"] = false
-	anim_tree["parameters/conditions/ground pound"] = false

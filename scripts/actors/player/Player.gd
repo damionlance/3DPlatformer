@@ -139,8 +139,8 @@ func remove_body(body):
 func activate_dialogue_box(dialogue_path, body):
 	$"HUD/MarginContainer".start_dialogue(dialogue_path, body)
 	if _state.current_speed > 5:
-		player_anim_tree[_state.is_stopping] = true
-	player_anim_tree[_state.is_moving] = false
+		player_anim_tree["parameters/conditions/stop"] = false
+	player_anim_tree["parameters/conditions/running"] = false
 	_state.current_speed = 0
 	_state.move_direction = Vector3.ZERO
 
