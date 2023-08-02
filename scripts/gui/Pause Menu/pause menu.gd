@@ -34,6 +34,7 @@ func _on_resume_pressed():
 	if $"AnimationPlayer".current_animation != "menu slide out":
 		$"AnimationPlayer".play("menu slide out")
 	get_parent().find_child("CameraPivot").halt_input = false
+	get_parent().find_child("HUD").get_child(0)._unpause_coins()
 	get_tree().paused = false
 	get_viewport().gui_get_focus_owner().release_focus()
 

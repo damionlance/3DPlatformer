@@ -32,6 +32,14 @@ func _increase_coins():
 	bounce_tween.tween_property($MarginContainer, "position", $MarginContainer.position + Vector2(0,10), .1).set_trans(Tween.TRANS_ELASTIC)
 	bounce_tween.tween_property($MarginContainer, "position", Vector2($MarginContainer.position.x, starting_position.y), .1).set_trans(Tween.TRANS_ELASTIC)
 
+func _pause_enter():
+	if horizontal_tween != null and horizontal_tween.is_running():
+		horizontal_tween.stop()
+	if not on_screen:
+		horizontal_tween = create_tween()
+		on_screen = true
+		horizontal_tween.tween_property($MarginContainer, "position", starting_position - Vector2(450,0), .5).set_trans(Tween.TRANS_BOUNCE)
+
 func _enter_screen():
 	if horizontal_tween != null and horizontal_tween.is_running():
 		horizontal_tween.stop()

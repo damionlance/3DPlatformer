@@ -62,6 +62,14 @@ func start_dialogue(dialogue_path, body):
 	get_tree().paused = true
 	having_dialogue = true
 
+func _pause_enter():
+	$"counters/coin"._pause_enter()
+	$"counters/level coin"._pause_enter()
+
+func _unpause_coins():
+	$"counters/coin"._leave_screen()
+	$"counters/level coin"._leave_screen()
+
 func dialogue():
 	if dialogue_box.display_dialogue() == true:
 		dialogue_box.reset()

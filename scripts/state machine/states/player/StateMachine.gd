@@ -153,6 +153,7 @@ func input_handling():
 	if Input.is_action_pressed("Pause"):
 		_camera.halt_input = true
 		$"../".add_child(load("res://scenes/ui/pause screen.tscn").instantiate())
+		$"../HUD/MarginContainer"._pause_enter()
 		get_tree().paused = true
 	
 	if Input.is_action_just_pressed("Place Spawn"):
