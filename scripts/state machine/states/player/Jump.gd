@@ -27,8 +27,8 @@ func _ready():
 func update(delta):
 	# Handle all state logic
 	if _state._jump_state == _state.ground_pound:
-		await _state.anim_tree.animation_finished
-		_state.update_state("Falling")
+		if ground_pound_finished:
+			_state.update_state("Falling")
 	if not _state.restricted_movement:
 		if _state.attempting_dive and _state._jump_state != _state.dive:
 			if _state._controller.input_strength > .2:
@@ -46,10 +46,8 @@ func update(delta):
 				_state.update_state("LedgeGrab")
 				return
 	if _state._controller._jump_state == _state._controller.jump_released and constants.shorthop_timer == constants.shorthop_buffer:
-		_state.velocity.y *= .6
-		_state.update_state("Falling")
-		return
-	if _state.velocity.y <= 0:
+		_state.velocity.y *= .5
+	if _state.velocity.y < 0:
 		_state.update_state("Falling")
 		return
 	if _state.attempting_throw and _state._jump_state != _state.dive:

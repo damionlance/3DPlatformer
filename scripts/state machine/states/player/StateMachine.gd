@@ -280,7 +280,6 @@ func _reset_animation_parameters():
 	anim_tree["parameters/conditions/ground pound"] = false
 	anim_tree["parameters/conditions/idling"] = false
 	anim_tree["parameters/conditions/jump"] = false
-	anim_tree["parameters/conditions/landed"] = false
 	anim_tree["parameters/conditions/ledge hang"] = false
 	anim_tree["parameters/conditions/running"] = false
 	anim_tree["parameters/conditions/skid"] = false

@@ -39,7 +39,6 @@ func update(delta):
 			instance.global_position = _state._player.global_position
 			
 			_state.anim_tree["parameters/conditions/spinning"] = false
-			_state.anim_tree["parameters/conditions/landed"] = true
 			_state.anim_tree["parameters/conditions/running"] = true
 			_state.anim_tree["parameters/conditions/ground pound"] = false
 			_state._jump_state = _state.no_jump

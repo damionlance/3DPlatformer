@@ -40,7 +40,7 @@ func wall_collision_check():
 		if _state._raycast_right.is_colliding():
 			bodies.append(_state._raycast_right.get_collider().get_parent())
 			collision_normals.append(_state._raycast_right.get_collision_normal())
-		if bodies[0].is_in_group("climbable zone") or (bodies.size() == 2 and bodies[1].is_in_group("climbable zone")):
+		if bodies[0].is_in_group("climbable zone") or (bodies.size() == 2 and bodies[0].is_in_group("climbable zone") and bodies[1].is_in_group("climbable zone")):
 			for normal in collision_normals:
 				if (_state._raycast_middle.get_collision_normal() - normal).length() <= .1:
 					return wall_collision.wallClimb
