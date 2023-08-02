@@ -118,17 +118,24 @@ func reset():
 	_state.velocity = Vector3(0, _state.velocity.y, 0)
 	_state.move_direction = Vector3.ZERO
 	_state.current_speed = 0
-	if _state._raycast_right.get_collision_normal() != Vector3.UP or _state._raycast_right.get_collision_normal() != Vector3.ZERO:
-		_state.snap_vector = -_state._raycast_middle.get_collision_normal()
-	if _state._raycast_left.get_collision_normal() != Vector3.UP or _state._raycast_left.get_collision_normal() != Vector3.ZERO:
-		_state.snap_vector = -_state._raycast_middle.get_collision_normal()
-		
-	else:
-		_state.update_state("Falling")
-		return
-	_state.snap_vector.y = 0
+	_state.snap_vector = Vector3.ZERO
+	
+	for i in 5:
+		if _state._raycast_right.get_collision_normal() != Vector3.UP or _state._raycast_right.get_collision_normal() != Vector3.ZERO:
+			_state.snap_vector = -_state._raycast_middle.get_collision_normal()
+		if _state._raycast_left.get_collision_normal() != Vector3.UP or _state._raycast_left.get_collision_normal() != Vector3.ZERO:
+			_state.snap_vector = -_state._raycast_middle.get_collision_normal()
+		_state.snap_vector.y = 0
+		if _state.snap_vector != Vector3.ZERO:
+			break
+		_state._raycast_right.force_raycast_update()
+		_state._raycast_left.force_raycast_update()
+	
 	if _state.snap_vector == Vector3.ZERO:
 		_state.update_state("Falling")
 		return
-	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.snap_vector, Vector3.UP)
+	
+	var temp = _player.transform.looking_at(_player.global_transform.origin + _state.snap_vector, Vector3.UP)
+	if temp != Transform3D():
+		_player.transform = temp
 	pass

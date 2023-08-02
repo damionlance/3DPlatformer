@@ -117,5 +117,8 @@ func reset():
 	if _state.snap_vector == Vector3.ZERO:
 		_state.update_state("Falling")
 		return
-	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.snap_vector, Vector3.UP)
+	if _state.move_direction != Vector3.ZERO:
+		var temp = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
+		if temp != Transform3D():
+			_player.transform = temp
 	pass

@@ -94,5 +94,8 @@ func reset():
 	surface_normal.y = 0
 	_state.move_direction = -surface_normal
 	_state.snap_vector = -surface_normal
-	_player.transform = _player.transform.looking_at(_player.global_position - surface_normal, Vector3.UP)
+	if _state.move_direction != Vector3.ZERO:
+		var temp = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
+		if temp != Transform3D():
+			_player.transform = temp
 	return
