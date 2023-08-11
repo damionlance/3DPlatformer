@@ -14,6 +14,7 @@ var levels = []
 var current_level
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.apply_settings()
 	current_active_menu = $"Control"
 	current_active_menu_nodepath = "res://scenes/ui/main menu.tscn"
 	

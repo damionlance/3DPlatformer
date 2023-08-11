@@ -39,7 +39,9 @@ func _on_stomp_button_velocity_trigger_fired(_body):
 	tween = create_tween()
 	var distance = (global_position - (initial_position + spinHeight)).length()
 	tween.tween_property(self, "global_position", initial_position + spinHeight, distance/risingSpeed)
+	get_child(0).constant_linear_velocity = global_position - (initial_position + spinHeight).normalized() * risingSpeed
 	await tween.finished
 	tween = create_tween()
 	var downDistance = (global_position - initial_position).length()
-	tween.tween_property(self, "global_position", initial_position, downDistance/fallingSpeed)	
+	tween.tween_property(self, "global_position", initial_position, downDistance/fallingSpeed)
+	get_child(0).constant_linear_velocity = global_position - (initial_position + global_position).normalized() * fallingSpeed

@@ -8,6 +8,10 @@ func _ready():
 	space_state = get_world_3d().direct_space_state
 	_player = get_tree().get_current_scene().find_child("Player")
 	light_energy = 1
+	if Global.settings["Omni Light Shadows"] == "Disabled" or Global.settings["Shadow Mode"] == "Disabled":
+		shadow_enabled = false
+	else:
+		shadow_enabled = true
 	
 
 func _process(_delta):

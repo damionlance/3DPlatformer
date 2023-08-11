@@ -18,6 +18,7 @@ func _ready():
 func _process(delta):
 	if starting_position == Vector2(-500,-500):
 		starting_position = position
+
 func _on_focus_entered():
 	audio_player.play()
 	move_tween()

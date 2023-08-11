@@ -97,7 +97,9 @@ func _process(delta):
 
 func _on_coin_body_entered(body):
 	if body.get_name() == "Player" and not touched:
-		sound_player.pitch_scale = randf() + 1.0
+		sound_player.pitch_scale = Global.current_collectable_frequency_scale
+		Global.current_collectable_frequency_scale += Global.collectable_frequency_scale
+		Global.collectable_frequency_timer = 60
 		if "LevelCoin" in name:
 			sound_player.set_stream(special_coin_sound)
 		else:

@@ -18,6 +18,8 @@ var mutex
 var thread
 var exit_thread
 
+var device := "default"
+
 var left_stick_y_up = InputEventJoypadMotion.new()
 var left_stick_y_down = InputEventJoypadMotion.new()
 var left_stick_x_left = InputEventJoypadMotion.new()
@@ -27,10 +29,29 @@ var right_stick_y_down = InputEventJoypadMotion.new()
 var right_stick_x_left = InputEventJoypadMotion.new()
 var right_stick_x_right = InputEventJoypadMotion.new()
 
+var current_collectable_frequency_scale := 1.0
+var collectable_frequency_scale := 1.0/12.0
+var collectable_frequency_timer = 60
+
 var callable
 # Called when the node enters the scene tree for the first time.
 
+func _process(delta):
+	if collectable_frequency_timer != 0:
+		collectable_frequency_timer -= 1
+	else:
+		current_collectable_frequency_scale = 1.0
+
 func _ready():
+	
+	var gamepad_name = Input.get_joy_name(0)
+	print(gamepad_name)
+	if "Nintendo" in gamepad_name:
+		device = "Nintendo"
+	elif "Playstation" in gamepad_name or "PS" in gamepad_name:
+		device = "Playstation"
+	else:
+		device = "default"
 	
 	left_stick_y_down.axis = JOY_AXIS_LEFT_Y
 	left_stick_y_down.device = 0
@@ -73,7 +94,6 @@ func _ready():
 		SPEEDRUN_SPLITS["BEST INDIVIDUAL SPLITS"] = Dictionary()
 		SPEEDRUN_SPLITS["BEST RUN"] = Dictionary()
 	
-	setup_input_images("Xbox")
 	
 	mutex = Mutex.new()
 	save_semaphore = Semaphore.new()
@@ -158,6 +178,24 @@ func apply_settings():
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 			DisplayServer.window_set_size(DisplayServer.window_get_max_size())
+	match settings["Window Mode"]:
+		"Disabled":
+			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_HARD)
+		"Super Low":
+			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_HARD)
+		"Low":
+			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_VERY_LOW)
+		"Medium":
+			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_LOW)
+		"Medium High":
+			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_MEDIUM)
+		"High":
+			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_HIGH)
+		"Maximum Supreme":
+			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_ULTRA)
+	RenderingServer.directional_shadow_atlas_set_size(pow(2, settings["Directional Shadow Resolution"]), false)
+	get_viewport().positional_shadow_atlas_16_bits = true
+	get_viewport().positional_shadow_atlas_size = pow(2, settings["Positional Shadow Resolution"])
 	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), -100+settings["Master Volume"])
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -100+settings["Music Volume"])
@@ -214,6 +252,13 @@ func apply_settings():
 	settings_file.set_value("Video", "Window Mode", settings["Window Mode"])
 	settings_file.set_value("Video", "Resolution", settings["Resolution"])
 	settings_file.set_value("Video", "VSync", settings["VSync"])
+	settings_file.set_value("Video", "MSAA", settings["MSAA"])
+	settings_file.set_value("Video", "FXAA", settings["FXAA"])
+	settings_file.set_value("Video", "TAA", settings["TAA"])
+	settings_file.set_value("Video", "Shadow Mode", settings["Shadow Mode"])
+	settings_file.set_value("Video", "Omni Light Shadows", settings["Omni Light Shadows"])
+	settings_file.set_value("Video", "Directional Shadow Resolution", settings["Directional Shadow Resolution"])
+	settings_file.set_value("Video", "Positional Shadow Resolution", settings["Positional Shadow Resolution"])
 	
 	settings_file.set_value("Audio", "Master Volume", settings["Master Volume"])
 	settings_file.set_value("Audio", "Music Volume", settings["Music Volume"])
@@ -248,6 +293,7 @@ func apply_settings():
 	settings_file.set_value("Keybinds", "RightStickInvertY", settings["RightStickInvertY"])
 	settings_file.set_value("Keybinds", "RightStickInvertX", settings["RightStickInvertX"])
 	
+	setup_input_images()
 	settings_file.save("user://settings.cfg")
  
 func load_settings():
@@ -260,6 +306,13 @@ func load_settings():
 	settings["Window Mode"] = settings_file.get_value("Video", "Window Mode")
 	settings["Resolution"] = settings_file.get_value("Video", "Resolution")
 	settings["VSync"] = settings_file.get_value("Video", "VSync")
+	settings["MSAA"] = settings_file.get_value("Video", "MSAA")
+	settings["FXAA"] = settings_file.get_value("Video", "FXAA")
+	settings["TAA"] = settings_file.get_value("Video", "TAA")
+	settings["Shadow Mode"] = settings_file.get_value("Video", "Shadow Mode")
+	settings["Omni Light Shadows"] = settings_file.get_value("Video", "Omni Light Shadows")
+	settings["Directional Shadow Resolution"] = settings_file.get_value("Video", "Directional Shadow Resolution")
+	settings["Positional Shadow Resolution"] = settings_file.get_value("Video", "Positional Shadow Resolution")
 	
 	settings["Master Volume"] = settings_file.get_value("Audio", "Master Volume")
 	settings["Music Volume"] = settings_file.get_value("Audio", "Music Volume")
@@ -300,6 +353,13 @@ func default_settings():
 	settings_file.set_value("Video", "Window Mode", "Windowed")
 	settings_file.set_value("Video", "Resolution", "1280x720")
 	settings_file.set_value("Video", "VSync", false)
+	settings_file.set_value("Video", "MSAA", "Disabled")
+	settings_file.set_value("Video", "FXAA", "Disabled")
+	settings_file.set_value("Video", "TAA", "Disabled")
+	settings_file.set_value("Video", "Shadow Mode", "Disabled")
+	settings_file.set_value("Video", "Omni Light Shadows", "Disabled")
+	settings_file.set_value("Video", "Directional Shadow Resolution", 8)
+	settings_file.set_value("Video", "Positional Shadow Resolution", 8)
 	
 	settings_file.set_value("Audio", "Master Volume", 100)
 	settings_file.set_value("Audio", "Music Volume", 100)
@@ -336,20 +396,22 @@ func default_settings():
 	
 	settings_file.save("user://settings.cfg")
 
-func setup_input_images(device):
+func setup_input_images():
 	var dir = DirAccess.open("res://assets/textures/input prompts")
 	var image_names
 	var apath = "res://assets/textures/input prompts/active input/"
-	match device:
-		"Keyboard":
-			pass
-		"Xbox":
-			var xpath = "res://assets/textures/input prompts/Xbox/"
-			dir.copy(xpath + InputMap.action_get_events("Jump")[1].as_text() + ".png", apath + "Jump.png")
-			dir.copy(xpath + InputMap.action_get_events("Throw")[1].as_text() + ".png", apath + "Throw.png")
-			dir.copy(xpath + InputMap.action_get_events("DiveButton")[1].as_text() + ".png", apath + "Dive.png")
-			dir.copy(xpath + InputMap.action_get_events("Pause")[1].as_text() + ".png", apath + "Pause.png")
-			dir.copy(xpath + InputMap.action_get_events("Place Spawn")[1].as_text() + ".png", apath + "Place Spawn.png")
-			dir.copy(xpath + InputMap.action_get_events("Respawn")[1].as_text() + ".png", apath + "Respawn.png")
-			dir.copy(xpath + InputMap.action_get_events("Camera Mode")[1].as_text() + ".png", apath + "Camera Mode.png")
-	
+	var xpath = "res://assets/textures/input prompts/" + device + "/"
+	dir.copy(xpath + InputMap.action_get_events("Jump")[1].as_text() + ".png", apath + "Jump.png")
+	dir.copy(xpath + InputMap.action_get_events("Throw")[1].as_text() + ".png", apath + "Throw.png")
+	dir.copy(xpath + InputMap.action_get_events("DiveButton")[1].as_text() + ".png", apath + "Dive.png")
+	dir.copy(xpath + InputMap.action_get_events("Pause")[1].as_text() + ".png", apath + "Pause.png")
+	dir.copy(xpath + InputMap.action_get_events("Place Spawn")[1].as_text() + ".png", apath + "Place Spawn.png")
+	dir.copy(xpath + InputMap.action_get_events("Respawn")[1].as_text() + ".png", apath + "Respawn.png")
+	dir.copy(xpath + InputMap.action_get_events("Camera Mode")[1].as_text().replace("/","") + ".png", apath + "Camera Mode.png")
+	ResourceLoader.load(apath + "Jump.png")
+	ResourceLoader.load(apath + "Throw.png")
+	ResourceLoader.load(apath + "Dive.png")
+	ResourceLoader.load(apath + "Pause.png")
+	ResourceLoader.load(apath + "Place Spawn.png")
+	ResourceLoader.load(apath + "Respawn.png")
+	ResourceLoader.load(apath + "Camera Mode.png")

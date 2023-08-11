@@ -11,8 +11,8 @@ void fragment() {
 	float tex_4_blend_weight = COLOR.b;
 	vec4 albedo1 = texture(tex_1_albedo, UV);
 	vec4 albedo2 = texture(tex_2_albedo, UV);
-	vec4 albedo3 = texture(tex_1_albedo, UV);
-	vec4 albedo4 = texture(tex_2_albedo, UV);
+	vec4 albedo3 = texture(tex_3_albedo, UV);
+	vec4 albedo4 = texture(tex_4_albedo, UV);
 	
 	vec4 color = clamp(mix(albedo1, albedo2, tex_2_blend_weight), vec4(0.0), vec4(1.0));
 	color = clamp(mix(color, albedo3, tex_3_blend_weight), vec4(0.0), vec4(1.0));

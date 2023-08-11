@@ -95,7 +95,9 @@ func _physics_process(_delta):
 			return
 		elif get_last_slide_collision().get_collider().is_in_group("hazard"):
 			transform = last_safe_transform
-		elif get_last_slide_collision().get_collider() is StaticBody3D and get_last_slide_collision().get_collider().constant_linear_velocity == Vector3.ZERO and get_last_slide_collision().get_collider().constant_angular_velocity == Vector3.ZERO:
+		elif (get_last_slide_collision().get_collider() is StaticBody3D and 
+		get_last_slide_collision().get_collider().constant_linear_velocity == Vector3.ZERO and get_last_slide_collision().get_collider().constant_angular_velocity == Vector3.ZERO and 
+		get_last_slide_collision().get_normal() == Vector3.UP):
 			last_safe_transform = transform
 	if not is_on_wall():
 		previous_horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
