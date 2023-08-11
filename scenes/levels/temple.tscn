@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d3tj3j7rq6blp"]
+[gd_scene load_steps=27 format=3 uid="uid://d3tj3j7rq6blp"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/temple.gd" id="1_sd0wa"]
 [ext_resource type="Script" path="res://scripts/level objects/Goal Torch Handler.gd" id="2_313a1"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dmyfuyqfotjxy" path="res://assets/sounds/mixkit-light-rain-atmosphere-2474.mp3" id="9_5f0wq"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
 [ext_resource type="Script" path="res://scripts/level objects/Water.gd" id="11_8rfn6"]
+[ext_resource type="Script" path="res://scripts/gui/heads up display/Game End Zone.gd" id="11_k76jp"]
 [ext_resource type="AudioStream" uid="uid://b7f4nnakkbdl6" path="res://assets/sounds/music/TempleTheme.wav" id="11_swj5e"]
 [ext_resource type="Script" path="res://scripts/tools/camera recording/camera recording.gd" id="12_8db8s"]
 [ext_resource type="Script" path="res://scripts/level objects/lights/Directional Lights.gd" id="12_i67a2"]
@@ -85,15 +86,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.1658, 6.39139, -17.7689)
 script = ExtResource("2_313a1")
 
 [node name="Fire 1" parent="Goal Torch Handler" instance=ExtResource("3_1m8ga")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.93344, 1.35949, -7.42877)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.93344, -0.774729, -2.81792)
 visible = false
 
 [node name="Fire 2" parent="Goal Torch Handler" instance=ExtResource("3_1m8ga")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.00082, 1.35949, -7.42877)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.00082, -0.774729, -2.81792)
 visible = false
 
 [node name="Fire 3" parent="Goal Torch Handler" instance=ExtResource("3_1m8ga")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.367447, 1.35949, -3.07719)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.367447, -0.774729, 1.39532)
 visible = false
 
 [node name="Coin Meshes" type="Node" parent="."]
@@ -181,26 +182,27 @@ script = ExtResource("11_8rfn6")
 requiredSpeed = -1.0
 
 [node name="maze slideplat1-slidingplat" parent="temple" index="12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -137.519, 12.1621, 25.4943)
-
-[node name="StaticBody3D" parent="temple/maze slideplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(3.86978, 0, -3.16619)
-
-[node name="maze slideplat2-slidingplat" parent="temple" index="13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 20.3618)
-
-[node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 0, 5)
-
-[node name="maze slideplat3-slidingplat" parent="temple" index="14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -17.7649)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -142.228, 12.1621, 29.3475)
 position_in_path = 1
 
-[node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
+[node name="StaticBody3D" parent="temple/maze slideplat1-slidingplat" index="0"]
+constant_linear_velocity = Vector3(-3.86979, 0, 3.16619)
+
+[node name="maze slideplat2-slidingplat" parent="temple" index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 17.4009)
+position_in_path = 1
+
+[node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
 constant_linear_velocity = Vector3(0, 0, -5)
 
+[node name="maze slideplat3-slidingplat" parent="temple" index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -16.6373)
+
+[node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, 0, 5)
+
 [node name="maze slideplat4-slidingplat" parent="temple" index="15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.8699, -32.3373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 20.0385, -32.3373)
 speed = 3.0
 position_in_path = 1
 button = NodePath("../maze button-stompbutton/StompButton")
@@ -209,19 +211,19 @@ button = NodePath("../maze button-stompbutton/StompButton")
 constant_linear_velocity = Vector3(0, 3, 0)
 
 [node name="slidingplat1-slidingplat" parent="temple" index="138"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -91.8311, 16.9616, -10.5217)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -81.4576, 16.9109, -10.4981)
 
 [node name="StaticBody3D" parent="temple/slidingplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-4.99993, 0.0244636, -0.0113728)
+constant_linear_velocity = Vector3(-4.99993, 0.0244635, -0.0113727)
 
 [node name="slidingplat2-slidingplat" parent="temple" index="139"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -69.4315, 16.9093, -0.49737)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -78.8052, 16.9093, -0.49737)
 
 [node name="StaticBody3D" parent="temple/slidingplat2-slidingplat" index="0"]
 constant_linear_velocity = Vector3(5, 0, 0)
 
 [node name="slidingplat3-slidingplat" parent="temple" index="140"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -79.2654, 16.9093, 9.50263)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -89.3052, 16.9093, 9.50263)
 
 [node name="StaticBody3D" parent="temple/slidingplat3-slidingplat" index="0"]
 constant_linear_velocity = Vector3(5, 0, 0)
@@ -300,6 +302,7 @@ bus = &"Music"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.4938, 4.66395, -25.6462)
 collision_layer = 0
 collision_mask = 2
+script = ExtResource("11_k76jp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Game End Zone"]
 shape = SubResource("BoxShape3D_rldos")
@@ -373,6 +376,7 @@ song = ExtResource("11_swj5e")
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand1/Area3D" to="temple/door1-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand3/Area3D" to="temple/entry-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand4/Area3D" to="temple/door3-risingdoor" method="_on_area_3d_activate"]
+[connection signal="body_entered" from="Game End Zone" to="Game End Zone" method="_on_body_entered"]
 [connection signal="body_entered" from="Game End Zone" to="Game End Zone/Demo Complete" method="_on_game_end_zone_body_entered"]
 
 [editable path="dynamicObj/buttons/ButtonStand2"]

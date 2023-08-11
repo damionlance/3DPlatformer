@@ -76,7 +76,6 @@ func _physics_process(_delta):
 				var result = space_state.intersect_ray(query)
 				if result:
 					position = _parent_position
-					print("Hello")
 		else:
 			match_height = tracking
 		if not match_height:

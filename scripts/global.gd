@@ -45,7 +45,6 @@ func _process(delta):
 func _ready():
 	
 	var gamepad_name = Input.get_joy_name(0)
-	print(gamepad_name)
 	if "Nintendo" in gamepad_name:
 		device = "Nintendo"
 	elif "Playstation" in gamepad_name or "PS" in gamepad_name:
