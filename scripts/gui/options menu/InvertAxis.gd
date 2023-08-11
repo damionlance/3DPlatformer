@@ -6,4 +6,4 @@ func _ready():
 	button_pressed = Global.settings[name]
 
 func _pressed():
-	$"../../../../../../../".new_settings[name] = button_pressed
+	$"../../../../../../../../".new_settings[name] = button_pressed

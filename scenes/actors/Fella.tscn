@@ -800,6 +800,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 bones/1/rotation = Quaternion(0.753165, 0, 0, 0.657832)
 bones/2/rotation = Quaternion(-0.0374373, 1.19126e-07, -4.46287e-09, 0.999299)
 bones/3/rotation = Quaternion(-0.0399615, -1.19114e-07, -4.76378e-09, 0.999201)
+bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(0.00125846, 1.07237e-18, -8.52408e-16, 0.999999)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(-0.266093, 8.0438e-07, -2.85487e-07, 0.963947)
@@ -859,6 +860,7 @@ bones/140/scale = Vector3(1, 1, 1)
 bones/142/rotation = Quaternion(0.15382, 1.06036e-09, -1.58347e-07, 0.988099)
 bones/143/rotation = Quaternion(-5.21541e-08, -5.58793e-08, -2.8871e-08, 1)
 bones/144/rotation = Quaternion(-0.0137172, -0.000808021, -0.0588157, 0.998174)
+bones/144/scale = Vector3(1, 1, 1)
 bones/146/rotation = Quaternion(-0.0130863, 0.833835, -0.279125, -0.476064)
 bones/146/scale = Vector3(1, 1, 1)
 bones/147/rotation = Quaternion(0.15382, 3.68769e-08, 4.7127e-08, 0.988099)
@@ -875,6 +877,7 @@ bones/170/scale = Vector3(1, 1, 1)
 bones/172/rotation = Quaternion(0.15382, -1.06036e-09, 1.58347e-07, 0.988099)
 bones/173/rotation = Quaternion(-5.21541e-08, 5.58793e-08, 2.8871e-08, 1)
 bones/174/rotation = Quaternion(-0.0137172, 0.000808021, 0.0588157, 0.998174)
+bones/174/scale = Vector3(1, 1, 1)
 bones/184/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/185/rotation = Quaternion(0.420825, 0.669028, -0.586181, 0.178044)
 bones/187/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
@@ -886,7 +889,7 @@ bones/206/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/220/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 
 [node name="RightHand" type="BoneAttachment3D" parent="lilfella/rig/Skeleton3D" index="4"]
-transform = Transform3D(-0.582413, -0.77182, 0.255125, 0.731592, -0.634492, -0.249386, 0.354356, 0.0414021, 0.934194, -0.753536, 0.945035, -0.0384005)
+transform = Transform3D(-0.582413, -0.77182, 0.255126, 0.731592, -0.634492, -0.249385, 0.354356, 0.0414031, 0.934194, -0.753535, 0.945035, -0.0384001)
 bone_name = "DEF-hand.R"
 bone_idx = 174
 
