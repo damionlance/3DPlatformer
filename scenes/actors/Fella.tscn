@@ -141,7 +141,7 @@ states/dive/position = Vector2(519.556, 45.3334)
 "states/roll out/node" = SubResource("AnimationNodeAnimation_l5r04")
 "states/roll out/position" = Vector2(528, -118.667)
 transitions = ["Start", "jump 1", SubResource("AnimationNodeStateMachineTransition_rlspf"), "Start", "jump 2", SubResource("AnimationNodeStateMachineTransition_o1gcv"), "Start", "jump 3", SubResource("AnimationNodeStateMachineTransition_jdm53"), "Start", "dive", SubResource("AnimationNodeStateMachineTransition_o5hga"), "Start", "roll out", SubResource("AnimationNodeStateMachineTransition_pf6wr"), "dive", "roll out", SubResource("AnimationNodeStateMachineTransition_uj6pr"), "jump 1", "dive", SubResource("AnimationNodeStateMachineTransition_hnvlk"), "jump 2", "dive", SubResource("AnimationNodeStateMachineTransition_uxboe"), "jump 3", "dive", SubResource("AnimationNodeStateMachineTransition_ibg68"), "jump 1", "jump 2", SubResource("AnimationNodeStateMachineTransition_bbrgm"), "jump 2", "jump 3", SubResource("AnimationNodeStateMachineTransition_yb5ic")]
-graph_offset = Vector2(-265, -75)
+graph_offset = Vector2(-295, 126)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q00o0"]
 animation = &"Skid"

@@ -42,25 +42,30 @@ size = Vector3(6.941, 52.251, 48)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mi4jf"]
 sky_top_color = Color(0, 0, 0, 1)
-sky_horizon_color = Color(0.282353, 0.00784314, 0.329412, 1)
+sky_horizon_color = Color(0, 0, 0.0313726, 1)
+sky_curve = 0.0157668
+sky_energy_multiplier = 3.7
 ground_bottom_color = Color(0, 0, 0, 1)
 ground_horizon_color = Color(0, 0, 0, 1)
+ground_curve = 0.0649802
+ground_energy_multiplier = 13.4
 sun_angle_max = 7.74
+use_debanding = false
 
 [sub_resource type="Sky" id="Sky_j57wk"]
 sky_material = SubResource("ProceduralSkyMaterial_mi4jf")
 
 [sub_resource type="Environment" id="Environment_yanr4"]
 background_mode = 2
-background_energy_multiplier = 0.8
+background_energy_multiplier = 16.0
 sky = SubResource("Sky_j57wk")
 ambient_light_source = 2
-ambient_light_color = Color(0.027451, 0.0627451, 0.164706, 1)
-ambient_light_energy = 12.48
-reflected_light_source = 2
+ambient_light_color = Color(0.141176, 0.184314, 0.372549, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.8
+reflected_light_source = 1
 tonemap_mode = 2
 ssao_enabled = true
-sdfgi_enabled = true
 sdfgi_use_occlusion = true
 glow_strength = 1.38
 glow_bloom = 0.21
@@ -182,51 +187,52 @@ script = ExtResource("11_8rfn6")
 requiredSpeed = -1.0
 
 [node name="maze slideplat1-slidingplat" parent="temple" index="12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -142.228, 12.1621, 29.3475)
-position_in_path = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134.025, 12.1621, 22.636)
 
 [node name="StaticBody3D" parent="temple/maze slideplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-3.86979, 0, 3.16619)
+constant_linear_velocity = Vector3(3.86979, 0, -3.16619)
 
 [node name="maze slideplat2-slidingplat" parent="temple" index="13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 17.4009)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 23.8487)
 position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
 constant_linear_velocity = Vector3(0, 0, -5)
 
 [node name="maze slideplat3-slidingplat" parent="temple" index="14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -16.6373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -24.7063)
 
 [node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
 constant_linear_velocity = Vector3(0, 0, 5)
 
 [node name="maze slideplat4-slidingplat" parent="temple" index="15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 20.0385, -32.3373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 19.1545, -32.3373)
 speed = 3.0
-position_in_path = 1
 button = NodePath("../maze button-stompbutton/StompButton")
 
 [node name="StaticBody3D" parent="temple/maze slideplat4-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 3, 0)
+constant_linear_velocity = Vector3(0, -3, 0)
 
 [node name="slidingplat1-slidingplat" parent="temple" index="138"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -81.4576, 16.9109, -10.4981)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -84.5861, 16.9262, -10.5053)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/slidingplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-4.99993, 0.0244635, -0.0113727)
+constant_linear_velocity = Vector3(4.99993, -0.0244635, 0.0113727)
 
 [node name="slidingplat2-slidingplat" parent="temple" index="139"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -78.8052, 16.9093, -0.49737)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -80.1767, 16.9093, -0.49737)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/slidingplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(5, 0, 0)
+constant_linear_velocity = Vector3(-5, 0, 0)
 
 [node name="slidingplat3-slidingplat" parent="temple" index="140"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -89.3052, 16.9093, 9.50263)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -71.5931, 16.9093, 9.50263)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/slidingplat3-slidingplat" index="0"]
-constant_linear_velocity = Vector3(5, 0, 0)
+constant_linear_velocity = Vector3(-5, 0, 0)
 
 [node name="spinplat1-risingplat" parent="temple" index="226"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.964, 19, -46.3127)
