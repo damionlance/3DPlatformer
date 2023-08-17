@@ -29,6 +29,11 @@ func update(delta):
 	if _state._jump_state == _state.ground_pound:
 		if ground_pound_finished:
 			_state.update_state("Falling")
+	if _state._jump_state == _state.dive:
+		if _player.is_on_wall():
+			_state._jump_state = _state.bonk
+			_state.update_state("Jump")
+			return
 	if not _state.restricted_movement:
 		if _state.attempting_dive and _state._jump_state != _state.dive:
 			if _state._controller.input_strength > .2:
@@ -124,6 +129,15 @@ func reset():
 			_state.velocity = Vector3.ZERO
 			_state.current_speed = 0.0
 			_state.anim_tree["parameters/conditions/ground pound"] = true
+			sound_player.set_stream(load("res://assets/sounds/actor noises/Side Flip.mp3"))
+			sound_player.play()
+		_state.bonk:
+			current_jump_gravity = constants._jump_gravity
+			current_jump_strength = constants._jump_strength
+			_state.move_direction = -_state.move_direction
+			_state.velocity = -_state.velocity
+			_state.current_speed = 12.5
+			_state.anim_tree["parameters/Jump/conditions/bonk"] = true
 			sound_player.set_stream(load("res://assets/sounds/actor noises/Side Flip.mp3"))
 			sound_player.play()
 		_: 

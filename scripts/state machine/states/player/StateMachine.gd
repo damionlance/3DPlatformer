@@ -47,6 +47,7 @@ var consecutive_stationary_wall_jump := 0
 
 
 var _current_state = null
+var _previous_state = null
 
 var _air_drift_state
 enum {
@@ -65,7 +66,8 @@ enum {
 	rollout,
 	popper_bounce,
 	ground_pound,
-	quick_getup
+	quick_getup,
+	bonk
 }
 
 var attempting_jump := false
@@ -220,6 +222,7 @@ func input_handling():
 			_jump_buffer = 0
 
 func update_state( new_state ):
+	_previous_state = _current_state
 	_current_state = state_dictionary[new_state]
 	_current_state.reset()
 
@@ -292,5 +295,6 @@ func _reset_animation_parameters():
 	anim_tree["parameters/Jump/conditions/jump 1"] = false
 	anim_tree["parameters/Jump/conditions/jump 2"] = false
 	anim_tree["parameters/Jump/conditions/jump 3"] = false
+	anim_tree["parameters/Jump/conditions/bonk"] = false
 	anim_tree["parameters/Jump/conditions/dive"] = false
 	anim_tree["parameters/Jump/conditions/roll out"] = false

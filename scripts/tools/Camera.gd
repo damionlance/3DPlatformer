@@ -34,14 +34,16 @@ func _physics_process(_delta):
 		_camera.fov = lerp(_camera.fov, base_fov + (change_in_fov * (horizontal_speed/12)), .05)
 	else:
 		_camera.fov = lerp(_camera.fov, base_fov, .05)
-	var _parent_position = _player.global_position + (Vector3.UP * 2)
+	var _parent_position = _player.global_position + (Vector3.UP * 4)
 	
 	var height_difference = previous_camera_height - _parent_position.y
 	var camera_horizontal_distance = Vector3(camera_tracking_position.x, 0, camera_tracking_position.z)
 	camera_horizontal_distance -= Vector3(_parent_position.x, 0, _parent_position.z)
 	
 	if Input.is_action_just_pressed("Camera Mode"): chase_cam = bool(1 - int(chase_cam))
-	
+	if Input.is_action_just_pressed("Reset Camera"):
+		rotation = Vector3.ZERO
+		rotation.y = _player.rotation.y
 	if chase_cam:
 		if camera_horizontal_distance.length() != 0:
 			var p1 = camera_tracking_position - _camera.global_position
@@ -51,9 +53,9 @@ func _physics_process(_delta):
 			rotation_degrees.y -= rad_to_deg(angle)
 	
 	if not halt_input:
-		rotation_degrees.x -= Input.get_axis("CameraDown", "CameraUp") * camera_sensitivity.x
+		rotation_degrees.x -= Input.get_axis("CameraDown", "CameraUp") * Global.settings["Look Sensitivity"]
 		rotation_degrees.x = clamp(rotation_degrees.x, -80.0, 30.0)
-		rotation_degrees.y -= Input.get_axis("CameraRight", "CameraLeft") * camera_sensitivity.y
+		rotation_degrees.y -= Input.get_axis("CameraRight", "CameraLeft") * Global.settings["Look Sensitivity"]
 		rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
 		camera_tracking_position = _parent_position
 		camera_tracking_position.y = previous_camera_height

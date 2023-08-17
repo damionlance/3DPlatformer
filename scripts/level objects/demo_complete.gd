@@ -8,7 +8,7 @@ func _ready():
 	$RichTextLabel["theme_override_colors/default_color"] = Color(255,255,255,0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if game_paused:
 		get_tree().paused = true
 		if Input.is_action_just_pressed("Jump"):

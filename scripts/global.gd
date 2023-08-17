@@ -1,6 +1,7 @@
 extends Node
 
 var settings = Dictionary()
+var settings_version = 1.0
 
 var BUTTON_NAMES : Dictionary
 var SPEEDRUN_SPLITS : Dictionary
@@ -41,8 +42,20 @@ func _process(delta):
 		collectable_frequency_timer -= 1
 	else:
 		current_collectable_frequency_scale = 1.0
+	
+	if Input.is_action_just_pressed("FORCECLOSE"):
+		get_tree().quit()
+	if Input.is_action_just_pressed("TOGGLEFULLSCREEN"):
+		match settings["Window Mode"]:
+			"Fullscreen":
+				settings["Window Mode"] = "Windowed"
+			_:
+				settings["Window Mode"] = "Fullscreen"
+		apply_settings()
 
 func _ready():
+	
+	Engine.max_fps = 60
 	
 	var gamepad_name = Input.get_joy_name(0)
 	if "Nintendo" in gamepad_name:
@@ -214,6 +227,7 @@ func apply_settings():
 	InputMap.action_erase_events("Throw")
 	InputMap.action_erase_events("Jump")
 	InputMap.action_erase_events("Pause")
+	InputMap.action_erase_events("Reset Camera")
 	
 	# Keyboard Movement Inputs
 	InputMap.action_add_event("Forward", settings["Keyboard Forward"])
@@ -248,6 +262,10 @@ func apply_settings():
 	InputMap.action_add_event("Pause", settings["Keyboard Pause"])
 	InputMap.action_add_event("Pause", settings["Controller Pause"])
 	
+	#Camera Inputs
+	InputMap.action_add_event("Reset Camera", settings["Keyboard Reset Camera"])
+	InputMap.action_add_event("Reset Camera", settings["Controller Reset Camera"])
+	
 	settings_file.set_value("Video", "Window Mode", settings["Window Mode"])
 	settings_file.set_value("Video", "Resolution", settings["Resolution"])
 	settings_file.set_value("Video", "VSync", settings["VSync"])
@@ -277,6 +295,7 @@ func apply_settings():
 	settings_file.set_value("Keybinds", "Keyboard Place Spawn", settings["Keyboard Place Spawn"])
 	settings_file.set_value("Keybinds", "Keyboard Respawn", settings["Keyboard Respawn"])
 	settings_file.set_value("Keybinds", "Keyboard Camera Mode", settings["Keyboard Camera Mode"])
+	settings_file.set_value("Keybinds", "Keyboard Reset Camera", settings["Keyboard Reset Camera"])
 	
 	settings_file.set_value("Keybinds", "Controller Jump", settings["Controller Jump"])
 	settings_file.set_value("Keybinds", "Controller Dive", settings["Controller Dive"])
@@ -285,6 +304,7 @@ func apply_settings():
 	settings_file.set_value("Keybinds", "Controller Place Spawn", settings["Controller Place Spawn"])
 	settings_file.set_value("Keybinds", "Controller Respawn", settings["Controller Respawn"])
 	settings_file.set_value("Keybinds", "Controller Camera Mode", settings["Controller Camera Mode"])
+	settings_file.set_value("Keybinds", "Controller Reset Camera", settings["Controller Reset Camera"])
 	
 	settings_file.set_value("Keybinds", "SouthPawMode", settings["SouthPawMode"])
 	settings_file.set_value("Keybinds", "LeftStickInvertY", settings["LeftStickInvertY"])
@@ -292,12 +312,17 @@ func apply_settings():
 	settings_file.set_value("Keybinds", "RightStickInvertY", settings["RightStickInvertY"])
 	settings_file.set_value("Keybinds", "RightStickInvertX", settings["RightStickInvertX"])
 	
+	settings_file.set_value("Keybinds", "Look Sensitivity", settings["Look Sensitivity"])
+	
 	setup_input_images()
 	settings_file.save("user://settings.cfg")
  
 func load_settings():
 	var settings_file = ConfigFile.new()
 	var err = settings_file.load("user://settings.cfg")
+	
+	if settings_file.get_value("Global", "Settings Version") != settings_version:
+		default_settings()
 	
 	if err != OK:
 		return
@@ -331,6 +356,7 @@ func load_settings():
 	settings["Keyboard Place Spawn"] = settings_file.get_value("Keybinds", "Keyboard Place Spawn")
 	settings["Keyboard Respawn"] = settings_file.get_value("Keybinds", "Keyboard Respawn")
 	settings["Keyboard Camera Mode"] = settings_file.get_value("Keybinds", "Keyboard Camera Mode")
+	settings["Keyboard Reset Camera"] = settings_file.get_value("Keybinds", "Keyboard Reset Camera")
 	
 	settings["Controller Jump"] = settings_file.get_value("Keybinds", "Controller Jump")
 	settings["Controller Dive"] = settings_file.get_value("Keybinds", "Controller Dive")
@@ -339,15 +365,20 @@ func load_settings():
 	settings["Controller Place Spawn"] = settings_file.get_value("Keybinds", "Controller Place Spawn")
 	settings["Controller Respawn"] = settings_file.get_value("Keybinds", "Controller Respawn")
 	settings["Controller Camera Mode"] = settings_file.get_value("Keybinds", "Controller Camera Mode")
+	settings["Controller Reset Camera"] = settings_file.get_value("Keybinds", "Controller Reset Camera")
 	
 	settings["SouthPawMode"] = settings_file.get_value("Keybinds", "SouthPawMode")
 	settings["LeftStickInvertY"] = settings_file.get_value("Keybinds", "LeftStickInvertY")
 	settings["LeftStickInvertX"] = settings_file.get_value("Keybinds", "LeftStickInvertX")
 	settings["RightStickInvertY"] = settings_file.get_value("Keybinds", "RightStickInvertY")
 	settings["RightStickInvertX"] = settings_file.get_value("Keybinds", "RightStickInvertX")
+	
+	settings["Look Sensitivity"] = settings_file.get_value("Keybinds", "Look Sensitivity")
 
 func default_settings():
 	var settings_file = ConfigFile.new()
+	
+	settings_file.set_value("Global", "Settings Version", settings_version)
 	
 	settings_file.set_value("Video", "Window Mode", "Windowed")
 	settings_file.set_value("Video", "Resolution", "1280x720")
@@ -378,6 +409,7 @@ func default_settings():
 	settings_file.set_value("Keybinds", "Keyboard Place Spawn", InputMap.action_get_events("Place Spawn")[0])
 	settings_file.set_value("Keybinds", "Keyboard Respawn", InputMap.action_get_events("Respawn")[0])
 	settings_file.set_value("Keybinds", "Keyboard Camera Mode", InputMap.action_get_events("Camera Mode")[0])
+	settings_file.set_value("Keybinds", "Keyboard Reset Camera", InputMap.action_get_events("Reset Camera")[0])
 	
 	settings_file.set_value("Keybinds", "Controller Jump", InputMap.action_get_events("Jump")[1])
 	settings_file.set_value("Keybinds", "Controller Throw", InputMap.action_get_events("Throw")[1])
@@ -392,6 +424,9 @@ func default_settings():
 	settings_file.set_value("Keybinds", "LeftStickInvertX", false)
 	settings_file.set_value("Keybinds", "RightStickInvertY", false)
 	settings_file.set_value("Keybinds", "RightStickInvertX", false)
+	settings_file.set_value("Keybinds", "Controller Reset Camera", InputMap.action_get_events("Reset Camera")[1])
+	
+	settings_file.set_value("Keybinds", "Look Sensitivity", 0.0)
 	
 	settings_file.save("user://settings.cfg")
 

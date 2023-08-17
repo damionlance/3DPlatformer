@@ -58,12 +58,10 @@ func update(delta):
 		_state.update_state("Jump")
 		return
 	if not _player.is_on_floor():
-		_fall_timer += 1
-		if _fall_timer > _state.coyote_time:
-			_state._jump_state = _state.jump
-			_state.update_state("Falling")
-			_state.anim_tree["parameters/conditions/fall"] = true
-			return
+		_state._jump_state = _state.jump
+		_state.update_state("Falling")
+		_state.anim_tree["parameters/conditions/fall"] = true
+		return
 	else:
 		_fall_timer = 0
 	# Handle Animation Tree

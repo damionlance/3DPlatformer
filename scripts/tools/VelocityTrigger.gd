@@ -29,7 +29,7 @@ func _ready():
 	position = Vector3.UP
 	audio_player.bus = "Ambient Sounds"
 	audio_player.set_stream(audio_stream)
-	audio_player.volume_db = -8
+	audio_player.volume_db = -14
 	add_child(audio_player)
 
 func _process(_delta):
