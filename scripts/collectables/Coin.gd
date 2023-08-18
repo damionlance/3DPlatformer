@@ -34,6 +34,9 @@ var special_coin = false
 
 func _ready():
 	$AnimationPlayer.seek(randf()/2.0)
+	sound_player.bus = "Sound Effects"
+	sound_player.volume_db = -5
+	add_child(sound_player)
 	if root is Control:
 		queue_free()
 		return
@@ -62,10 +65,6 @@ func _ready():
 			multimesh.set_instance_color(instance_id, Color.TURQUOISE)
 		else:
 			multimesh.set_instance_color(instance_id, Color.GOLD)
-	
-	sound_player.bus = "Sound Effects"
-	sound_player.volume_db = -5
-	add_child(sound_player)
 	
 	new_pos = global_position
 	multimesh.set_instance_transform(instance_id, Transform3D(basis, new_pos))

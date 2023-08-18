@@ -55,6 +55,13 @@ func update(delta):
 			_state.update_state("Jump")
 	else:
 		if  _state.attempting_jump:
+			if _state.spin_allowed:
+				_state.move_direction = surface_normal
+				_state.velocity = surface_normal * 12.5
+				_state.current_speed = 12.5
+				_state._jump_state = _state.wall_spin
+				_state.update_state("Jump")
+				return
 			directional_input_handling()
 			_state.current_speed = 10
 			_state._jump_state = _state.jump

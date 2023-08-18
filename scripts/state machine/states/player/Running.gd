@@ -52,6 +52,12 @@ func update(delta):
 		
 		if _state.just_landed and _state.current_jump < 3:
 			_state.current_jump += 1
+		elif _state._controller.spin_entered:
+			_state.move_direction = -_state.move_direction
+			_state.current_speed = 8
+			_state._jump_state = _state.side_flip
+			_state.update_state("Jump")
+			return
 		else:
 			_state.current_jump = 1
 		_state._jump_state = _state.current_jump
@@ -104,7 +110,6 @@ func update(delta):
 
 	#Process physics
 	_state.velocity = _state.calculate_velocity(0, delta)
-	
 	pass
 
 func reset():

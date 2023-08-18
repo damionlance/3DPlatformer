@@ -78,7 +78,6 @@ func _process(_delta):
 	pass
 
 func _physics_process(_delta):
-	
 	if grappling:
 		grapple_slider.freeze = false
 		global_position = grapple_slider.global_position

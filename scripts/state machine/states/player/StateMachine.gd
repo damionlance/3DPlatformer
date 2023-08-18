@@ -61,6 +61,7 @@ enum {
 	jump2,
 	jump3,
 	spin_jump,
+	wall_spin,
 	side_flip,
 	dive,
 	rollout,

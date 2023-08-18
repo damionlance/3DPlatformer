@@ -103,7 +103,6 @@ func update(delta):
 	pass
 
 func reset():
-	ready_to_move = false
 	snapped_to_ledge = false
 	_state._reset_animation_parameters()
 	_state.anim_tree["parameters/conditions/ledge hang"] = true

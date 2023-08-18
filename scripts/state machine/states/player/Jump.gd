@@ -29,13 +29,15 @@ func update(delta):
 	if _state._jump_state == _state.ground_pound:
 		if ground_pound_finished:
 			_state.update_state("Falling")
+			print("Hello")
+			return
 	if _state._jump_state == _state.dive:
 		if _player.is_on_wall():
 			_state._jump_state = _state.bonk
 			_state.update_state("Jump")
 			return
 	if not _state.restricted_movement:
-		if _state.attempting_dive and _state._jump_state != _state.dive:
+		if _state.attempting_dive and _state._jump_state != _state.dive and _state._jump_state != _state.bonk:
 			if _state._controller.input_strength > .2:
 				_state._jump_state = _state.dive
 				_state.update_state("Jump")
@@ -96,6 +98,11 @@ func reset():
 		_state.spin_jump:
 			current_jump_gravity = constants._spin_jump_gravity
 			current_jump_strength = constants._spin_jump_strength
+			_state.anim_tree["parameters/conditions/jump"] = false
+		_state.wall_spin:
+			current_jump_gravity = constants._spin_fall_gravity
+			current_jump_strength = constants._spin_jump_strength/3
+			_state.anim_tree["parameters/conditions/spinning"] = true
 			_state.anim_tree["parameters/conditions/jump"] = false
 		_state.side_flip:
 			current_jump_gravity = constants._side_jump_gravity

@@ -24,7 +24,7 @@ func _ready():
 
 func update(delta):
 	# Handle state logic
-	if _state.attempting_dive and not (_state._jump_state == _state.dive or _state._jump_state == _state.rollout or _state._jump_state == _state.ground_pound):
+	if _state.attempting_dive and not (_state._jump_state == _state.dive or _state._jump_state == _state.rollout or _state._jump_state == _state.ground_pound or _state._jump_state == _state.bonk):
 		if _state._controller.input_strength > .2:
 			_state._jump_state = _state.dive
 			_state.update_state("Jump")
@@ -115,6 +115,10 @@ func reset():
 		_state.jump3: 
 			current_fall_gravity = constants._fall3_gravity
 		_state.spin_jump:
+			_state.velocity.y = 0
+			current_fall_gravity = constants._spin_fall_gravity
+			_state.anim_tree["parameters/conditions/fall"] = true
+		_state.wall_spin:
 			_state.velocity.y = 0
 			current_fall_gravity = constants._spin_fall_gravity
 			_state.anim_tree["parameters/conditions/fall"] = true

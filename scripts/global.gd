@@ -1,7 +1,7 @@
 extends Node
 
 var settings = Dictionary()
-var settings_version = 1.0
+var settings_version = 1.01
 
 var BUTTON_NAMES : Dictionary
 var SPEEDRUN_SPLITS : Dictionary
