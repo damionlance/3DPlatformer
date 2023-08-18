@@ -39,7 +39,6 @@ func update(delta):
 			_state.current_speed *= _state.ground_friction
 		if _state.attempting_jump:
 			if _state.spin_allowed:
-				_state.current_speed += 0.6
 				_state._jump_state = _state.wall_spin
 				_state.update_state("Jump")
 				return

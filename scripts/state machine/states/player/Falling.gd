@@ -114,6 +114,8 @@ func reset():
 			current_fall_gravity = constants._fall2_gravity
 		_state.jump3: 
 			current_fall_gravity = constants._fall3_gravity
+		_state.long_jump: 
+			current_fall_gravity = constants._fall2_gravity/2
 		_state.spin_jump:
 			_state.velocity.y = 0
 			current_fall_gravity = constants._spin_fall_gravity

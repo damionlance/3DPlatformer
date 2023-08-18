@@ -60,6 +60,7 @@ enum {
 	jump,
 	jump2,
 	jump3,
+	long_jump,
 	spin_jump,
 	wall_spin,
 	side_flip,
@@ -291,6 +292,7 @@ func _reset_animation_parameters():
 	anim_tree["parameters/conditions/stop"] = false
 	anim_tree["parameters/conditions/wall climb"] = false
 	anim_tree["parameters/conditions/wall slide"] = false
+	anim_tree["parameters/conditions/crouching"] = false
 	
 	#JUMP PARAMETERS
 	anim_tree["parameters/Jump/conditions/jump 1"] = false
