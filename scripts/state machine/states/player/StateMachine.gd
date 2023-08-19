@@ -29,8 +29,6 @@ var _wall_jump_buffer := 5
 var _wall_jump_timer := 0
 @export var _shorthop_buffer := 0
 var _shorthop_timer := 7
-var pivot_buffer = []
-var pivot_buffer_size := 10
 
 var just_landed = false
 
@@ -77,8 +75,11 @@ var allow_jump := false
 var attempting_dive := false
 var allow_dive := true
 var spin_allowed := false
+var pivot_allowed := false
 var spin_timer := 0
 var spin_buffer := 30
+var pivot_timer := 0
+var pivot_buffer := 30
 var is_on_floor := false
 var attempting_throw := false
 var restricted_movement := false
@@ -120,7 +121,6 @@ func _ready():
 	respawn_point = preload("res://scenes/tools/Dynamic Objects/respawn_point.tscn").instantiate()
 	add_child(respawn_point)
 	respawn_point.position = Vector3(0,-1000000, 0)
-	pivot_buffer.resize(pivot_buffer_size)
 	state_dictionary.is_empty()
 	
 	#move_direction = Vector3.FORWARD.rotated(Vector3.UP, _player.rotation.y)
@@ -199,6 +199,13 @@ func input_handling():
 		if spin_timer == spin_buffer:
 			spin_allowed = false
 			spin_timer = 0
+	if _controller.pivot_entered:
+		pivot_allowed = true
+	if pivot_allowed:
+		pivot_timer += 1
+		if pivot_timer == pivot_buffer:
+			pivot_allowed = false
+			pivot_timer = 0
 	
 	if _controller._jump_state == _controller.jump_pressed and allow_jump:
 		attempting_jump = true

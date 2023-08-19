@@ -33,6 +33,8 @@ func update(delta):
 		_state.update_state("Running")
 		return
 	if (_player.is_on_floor()):
+		if _state.pivot_allowed:
+			_state.update_state("FloorSlide")
 		if _state.ground_friction == 1 and frictionless_timer > frictionless_time:
 			_state.current_speed *= .95
 		elif frictionless_timer > frictionless_time:

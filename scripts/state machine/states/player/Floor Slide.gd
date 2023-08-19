@@ -18,6 +18,9 @@ func update(delta):
 	if _state.current_speed < .1:
 		_state.update_state("Running")
 		return
+	if Input.is_action_pressed("DiveButton"):
+		_state.update_state("Crouching")
+		return
 	
 	if  _state.attempting_jump:
 		_state.move_direction = -_state.move_direction
