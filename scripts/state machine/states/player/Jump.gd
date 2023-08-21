@@ -148,7 +148,6 @@ func reset():
 		_state.bonk:
 			current_jump_gravity = constants._jump_gravity
 			current_jump_strength = constants._jump_strength
-			_state.move_direction = -_state.move_direction
 			_state.velocity = -_state.velocity
 			_state.current_speed = 12.5
 			_state.anim_tree["parameters/Jump/conditions/bonk"] = true

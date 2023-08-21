@@ -80,7 +80,7 @@ func set_up_falling_platform(node):
 	node.get_parent().add_child(new_plat)
 	new_plat.position = node.position
 	new_plat.set_owner(main_scene)
-	new_plat.name = "UnstablePlatform"
+	new_plat.name = "UnstablePlatform-fallingplat"
 	node.reparent(new_plat)
 	node.name = "Mesh"
 	if node.find_child("StaticBody3D") != null:
