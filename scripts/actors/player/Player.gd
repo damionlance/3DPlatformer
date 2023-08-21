@@ -99,6 +99,7 @@ func _physics_process(_delta):
 		get_last_slide_collision().get_normal() == Vector3.UP):
 			if not "-" in get_last_slide_collision().get_collider().name:
 				last_safe_transform = transform
+				velocity = Vector3.ZERO
 	if not is_on_wall():
 		previous_horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 	#_state.velocity = velocity
