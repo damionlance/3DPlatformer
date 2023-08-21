@@ -205,9 +205,9 @@ func apply_settings():
 			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_HIGH)
 		"Maximum Supreme":
 			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_ULTRA)
-	RenderingServer.directional_shadow_atlas_set_size(pow(2, settings["Directional Shadow Resolution"]), false)
+	#RenderingServer.directional_shadow_atlas_set_size(pow(2, settings["Directional Shadow Resolution"]), false)
 	get_viewport().positional_shadow_atlas_16_bits = true
-	get_viewport().positional_shadow_atlas_size = pow(2, settings["Positional Shadow Resolution"])
+	#get_viewport().positional_shadow_atlas_size = pow(2, settings["Positional Shadow Resolution"])
 	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), -100+settings["Master Volume"])
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -100+settings["Music Volume"])
