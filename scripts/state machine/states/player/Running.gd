@@ -29,9 +29,8 @@ func update(delta):
 	# Handle all states
 	if not _state.restricted_movement:
 		if Input.is_action_pressed("DiveButton"):
-			if _state._controller.input_strength < .1:
-				_state.update_state("Crouching")
-				return
+			_state.update_state("Crouching")
+			return
 		if _state._controller.spin_entered:
 			_state.update_state("Floor Spin")
 			return
@@ -41,10 +40,6 @@ func update(delta):
 		if _state.attempting_dive:
 			if _player.grappling:
 				_state.update_state("ReelIn")
-			else:
-				_state._jump_state = _state.dive
-				_state.update_state("Jump")
-			return
 	if _state.attempting_jump and not _state.can_interact:
 		
 		if _state.current_speed < 5:
