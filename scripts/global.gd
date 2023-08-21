@@ -426,7 +426,7 @@ func default_settings():
 	settings_file.set_value("Keybinds", "RightStickInvertX", false)
 	settings_file.set_value("Keybinds", "Controller Reset Camera", InputMap.action_get_events("Reset Camera")[1])
 	
-	settings_file.set_value("Keybinds", "Look Sensitivity", 0.0)
+	settings_file.set_value("Keybinds", "Look Sensitivity", 1.0)
 	
 	settings_file.save("user://settings.cfg")
 
