@@ -65,7 +65,7 @@ func main_menu_signals():
 	$"Control/MarginContainer/Main Menu/Quit Game".pressed.connect(_on_quit_game_pressed)
 	$"Control/MarginContainer/Main Menu/Options".pressed.connect(_on_options_pressed)
 	$"Control/MarginContainer/Main Menu/New Game".pressed.connect(_on_new_game_pressed)
-	$"Control/MarginContainer/Main Menu/New Game".pressed.connect(_on_load_game_pressed)
+	$"Control/MarginContainer/Main Menu/Load Game".pressed.connect(_on_load_game_pressed)
 
 func _back():
 	audio_player.play()
