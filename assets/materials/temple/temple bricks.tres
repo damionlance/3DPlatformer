@@ -1,15 +1,15 @@
 [gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://bg3evq54gqm3h"]
 
 [ext_resource type="Shader" path="res://assets/shaders/blend from vertex color.gdshader" id="1_o6lny"]
-[ext_resource type="Texture2D" uid="uid://biplubuhx4nwb" path="res://assets/textures/pool/Temple Walls.png" id="2_a4m7r"]
-[ext_resource type="Texture2D" uid="uid://xve1tcxgd8h3" path="res://assets/textures/pool/Temple Mossy Bricks.png" id="3_afxlk"]
-[ext_resource type="Texture2D" uid="uid://crux3nkhi7wur" path="res://assets/textures/pool/Temple Cracked Bricks.png" id="4_rp05l"]
-[ext_resource type="Texture2D" uid="uid://bcuii5yncfbjl" path="res://assets/textures/pool/Temple Mortar.png" id="5_w8ssl"]
+[ext_resource type="Texture2D" uid="uid://b72wja67p3r7a" path="res://assets/textures/pool/Temple Bricks.png" id="2_e6fm7"]
+[ext_resource type="Texture2D" uid="uid://dmdpbiobwgyhn" path="res://assets/textures/pool/Temple Mossy Bricks.png" id="3_afxlk"]
+[ext_resource type="Texture2D" uid="uid://d0kmyxn1kucyr" path="res://assets/textures/pool/Temple Cracked Bricks.png" id="4_rp05l"]
+[ext_resource type="Texture2D" uid="uid://cy30qpgpdlrbw" path="res://assets/textures/pool/Temple Mortar.png" id="5_w8ssl"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_o6lny")
-shader_parameter/tex_1_albedo = ExtResource("2_a4m7r")
+shader_parameter/tex_1_albedo = ExtResource("2_e6fm7")
 shader_parameter/tex_2_albedo = ExtResource("3_afxlk")
 shader_parameter/tex_3_albedo = ExtResource("4_rp05l")
 shader_parameter/tex_4_albedo = ExtResource("5_w8ssl")
