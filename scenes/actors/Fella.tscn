@@ -22,7 +22,7 @@
 [ext_resource type="Script" path="res://scripts/tools/Camera.gd" id="19_fx30m"]
 [ext_resource type="Shader" path="res://assets/shaders/C64 Dither.gdshader" id="20_3sq3i"]
 [ext_resource type="Script" path="res://scripts/actors/player/shadow.gd" id="20_47ecb"]
-[ext_resource type="Texture2D" uid="uid://c52bihrts8irm" path="res://assets/models/shadow.png" id="21_1rscf"]
+[ext_resource type="Texture2D" uid="uid://bl443oe8bfjft" path="res://assets/models/shadow.png" id="21_1rscf"]
 [ext_resource type="Script" path="res://scripts/actors/player/Friendo.gd" id="21_cgka8"]
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/FriendoStateMachine.gd" id="22_065we"]
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/Idle.gd" id="23_sua4n"]
@@ -43,10 +43,10 @@
 [ext_resource type="PackedScene" uid="uid://b307pwugmfuji" path="res://scenes/ui/collectible_counter.tscn" id="40_0cooe"]
 [ext_resource type="Script" path="res://scripts/tools/Run Timer.gd" id="40_efptr"]
 [ext_resource type="Script" path="res://scripts/actors/player/FootFall Handler.gd" id="41_8nayu"]
-[ext_resource type="PackedScene" uid="uid://d3msswd4ciyt3" path="res://scenes/ui/dialogue prompt.tscn" id="41_mysnv"]
+[ext_resource type="PackedScene" path="res://scenes/ui/dialogue prompt.tscn" id="41_mysnv"]
 [ext_resource type="PackedScene" uid="uid://4vh2f3m2n7bn" path="res://assets/models/actors/Fella/possible final fella.glb" id="41_tlfky"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/HoldableObjectNode.gd" id="42_083u5"]
-[ext_resource type="PackedScene" uid="uid://b6n1a3115odny" path="res://scenes/ui/dialogue box.tscn" id="42_xi1wd"]
+[ext_resource type="PackedScene" path="res://scenes/ui/dialogue box.tscn" id="42_xi1wd"]
 
 [sub_resource type="CapsuleShape3D" id="147"]
 radius = 0.408809
@@ -1034,7 +1034,7 @@ bones/220/position = Vector3(-0.286895, 1.33268, -0.860922)
 bones/220/rotation = Quaternion(0.371435, -2.34716e-14, -1.99303e-14, 0.928459)
 
 [node name="RightHand" type="BoneAttachment3D" parent="lilfella/rig/Skeleton3D" index="4"]
-transform = Transform3D(0.127301, -0.76404, 0.632145, -0.301562, -0.637256, -0.709406, 0.944983, -0.100248, -0.311613, -0.753767, 0.752873, -0.0156011)
+transform = Transform3D(0.1273, -0.764037, 0.632143, -0.301563, -0.637253, -0.709406, 0.944984, -0.100247, -0.311609, -0.753767, 0.752874, -0.015601)
 bone_name = "DEF-hand.R"
 bone_idx = 174
 
