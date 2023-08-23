@@ -77,10 +77,11 @@ func update(delta):
 	# Process all inputs
 	
 	previous_speed = _state.current_speed
+	if _state.move_direction != Vector3.ZERO:
+		_state.current_dir = _state.move_direction
 	lean_into_turns()
 	grounded_movement_processing()
 	look_forward()
-	_state.current_dir = _state.move_direction
 	var speed_difference = get_parent().previous_speed - _state.current_speed
 	
 	if speed_difference < -5:
@@ -112,6 +113,8 @@ func update(delta):
 	pass
 
 func reset():
+	if _state.current_dir != _state.move_direction:
+		_state.move_direction = _state.current_dir
 	_state._reset_animation_parameters()
 	_state.anim_tree["parameters/conditions/running"] = true
 	_state._air_drift_state = _state.not_air_drifting

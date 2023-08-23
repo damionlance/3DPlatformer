@@ -27,12 +27,12 @@ func update(delta):
 		distance_to_wall = _state._raycast_middle.get_collision_point() - _state._raycast_middle.global_position
 		lean_vector += wall_vector
 	if _state._raycast_right.get_collision_normal() != Vector3.UP:
-		if wall_vector != Vector3.ZERO and _controller.movement_direction.y > 0:
+		if wall_vector == Vector3.ZERO and _controller.movement_direction.y > 0:
 			wall_vector = _state._raycast_right.get_collision_normal()
 			distance_to_wall = _state._raycast_right.get_collision_point() - _state._raycast_right.global_position
 		lean_vector += wall_vector
 	if _state._raycast_left.get_collision_normal() != Vector3.UP:
-		if wall_vector != Vector3.ZERO and _controller.movement_direction.y > 0:
+		if wall_vector == Vector3.ZERO and _controller.movement_direction.y > 0:
 			wall_vector = _state._raycast_left.get_collision_normal()
 			distance_to_wall = _state._raycast_left.get_collision_point() - _state._raycast_left.global_position
 		lean_vector += wall_vector

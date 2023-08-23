@@ -60,6 +60,7 @@ func set_up_sliding_platform(platform) -> Node:
 	if mesh:
 		
 		platform.set_script(load("res://scripts/tools/Moving Platform.gd"))
+		platform.get_child(0).collision_layer = 4
 		platform.path_positions.clear()
 		var vertex_array = mesh.mesh._surfaces[Mesh.ARRAY_VERTEX]["vertex_data"].to_float32_array()
 		var new_vert : Array[float]
@@ -79,6 +80,7 @@ func set_up_falling_platform(node):
 	var new_plat = load("res://scenes/tools/Dynamic Objects/UnstablePlatform.tscn").instantiate()
 	node.get_parent().add_child(new_plat)
 	new_plat.position = node.position
+	new_plat.collision_layer = 4
 	new_plat.set_owner(main_scene)
 	new_plat.name = "UnstablePlatform-fallingplat"
 	node.reparent(new_plat)

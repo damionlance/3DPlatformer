@@ -36,7 +36,7 @@ var current_max_speed = max_speed
 var dashing := false
 
 func look_forward():
-	var normalized_direction = -_state.move_direction.normalized()
+	var normalized_direction = -_state.current_dir.normalized()
 	var lookdir = atan2(normalized_direction.x, normalized_direction.z)
 	_player.rotation.y = lookdir
 

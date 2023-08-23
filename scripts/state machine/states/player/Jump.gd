@@ -148,7 +148,9 @@ func reset():
 		_state.bonk:
 			current_jump_gravity = constants._jump_gravity
 			current_jump_strength = constants._jump_strength
-			_state.velocity = -_state.velocity
+			_state.move_direction = -_state.move_direction
+			_state.velocity = _state.move_direction * 5
+			_state.current_dir = -_state.current_dir
 			_state.current_speed = 12.5
 			_state.anim_tree["parameters/Jump/conditions/bonk"] = true
 			sound_player.set_stream(load("res://assets/sounds/actor noises/Side Flip.mp3"))
@@ -158,13 +160,15 @@ func reset():
 			current_jump_strength = constants._jump_strength
 			_state.anim_tree["parameters/Jump/conditions/jump 1"] = true
 	
+	if _state.move_direction != Vector3.ZERO:
+		_state.current_dir = _state.move_direction
 	constants.shorthop_timer = 0
 	entering_jump_angle = _state.camera_relative_movement
 	_state.snap_vector = Vector3.ZERO
 	_state.velocity.y = current_jump_strength
 	_state._player.velocity.y = current_jump_strength
-	if _state.move_direction != Vector3.ZERO:
-		var temp = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
+	if _state.current_dir != Vector3.ZERO:
+		var temp = _player.transform.looking_at(_player.global_transform.origin + _state.current_dir, Vector3.UP)
 		if temp != Transform3D():
 			_player.transform = temp
 	pass
