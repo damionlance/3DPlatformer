@@ -144,6 +144,7 @@ func _process(delta):
 				area._activate()
 				if "split_name" in area and area.split_name != "":
 					_player._add_split(area.split_name)
+					area.split_name = ""
 		if area.name == "SoftSpot":
 			current_jump = 1
 			_jump_state = 1

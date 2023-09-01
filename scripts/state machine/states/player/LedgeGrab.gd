@@ -104,6 +104,7 @@ func update(delta):
 
 func reset():
 	snapped_to_ledge = false
+	ready_to_move = false
 	_state._reset_animation_parameters()
 	_state.anim_tree["parameters/conditions/ledge hang"] = true
 	_state.velocity = Vector3(0, _state.velocity.y, 0)

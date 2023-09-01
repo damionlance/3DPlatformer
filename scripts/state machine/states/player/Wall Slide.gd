@@ -97,7 +97,7 @@ func reset():
 		_state.consecutive_stationary_wall_jump += 1
 	wall_bounce_timer = 0
 	_state.velocity = Vector3.ZERO
-	surface_normal = _player.get_last_slide_collision().get_normal()
+	surface_normal = _state._raycast_middle.get_collision_normal()
 	surface_normal.y = 0
 	_state.move_direction = -surface_normal
 	_state.snap_vector = -surface_normal
