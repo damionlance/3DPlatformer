@@ -113,8 +113,6 @@ func update(delta):
 	pass
 
 func reset():
-	if _state.current_dir != _state.move_direction:
-		_state.move_direction = _state.current_dir
 	_state._reset_animation_parameters()
 	_state.anim_tree["parameters/conditions/running"] = true
 	_state._air_drift_state = _state.not_air_drifting
