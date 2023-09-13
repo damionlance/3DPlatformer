@@ -81,4 +81,4 @@ func _save_picture(start):
 		if start + (4 * i) > screenshots.size() - 1:
 			return
 		screenshots[start + (4 * i)].save_png("user://recording/" + str(start + (4 * i)) + ".png")
-		print((i / screenshots.size() - 1) * 100, "%")
+		print((i / (screenshots.size() - 1)) * 100, "%")
