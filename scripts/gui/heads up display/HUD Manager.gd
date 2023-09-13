@@ -3,6 +3,8 @@ extends MarginContainer
 @onready var camera = $"../../CameraPivot/SpringArm3D/Camera3D"
 @onready var camera_pivot = $"../../CameraPivot"
 @onready var dialogue_box = $"Dialogue Box"
+@onready var audio_stream = AudioStreamPlayer.new()
+@onready var audio_effect = load("res://assets/sounds/UI Noises/input prompt.ogg")
 
 var dialogue_prompts : Array
 var talking_bodies : Array
@@ -11,6 +13,10 @@ var having_dialogue := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_child(audio_stream)
+	audio_stream.bus = "Sound Effect"
+	audio_stream.set_stream(audio_effect)
+	audio_stream.volume_db = -5
 	dialogue_prompts.append($"Dialogue Prompt")
 	dialogue_prompts.append($"Dialogue Prompt2")
 	dialogue_prompts.append($"Dialogue Prompt3")
@@ -36,6 +42,7 @@ func add_body(body, string):
 	var i = 0
 	for prompt in dialogue_prompts:
 		if prompt.get_node("RichTextLabel").text == "":
+			audio_stream.play()
 			prompt.get_node("RichTextLabel").add_new_text(string)
 			talking_bodies[i] = body
 			prompt.visible = true
@@ -57,7 +64,8 @@ func remove_body(removed_body):
 func start_dialogue(dialogue_path, body):
 	dialogue_box.dialogue = load(dialogue_path).data
 	camera_pivot.halt_input = true
-	camera_pivot.target_body = body
+	if body != null:
+		camera_pivot.target_body = body
 	dialogue_box.visible = true
 	get_tree().paused = true
 	having_dialogue = true

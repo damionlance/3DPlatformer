@@ -93,8 +93,6 @@ func _physics_process(_delta):
 		set_velocity(camera_velocity)
 		move_and_slide()
 	
-	#position = camera_tracking_position
-	
 	pass
 
 func set_target_body(body):

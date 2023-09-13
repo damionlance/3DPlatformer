@@ -645,6 +645,7 @@ script = ExtResource("18_oduss")
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.95581, 0)
 collision_layer = 0
+collision_mask = 141
 script = ExtResource("19_fx30m")
 camera_sensitivity = Vector2(2, 2)
 
@@ -1036,7 +1037,7 @@ bones/220/position = Vector3(-0.286896, 0.118866, 0.278486)
 bones/220/rotation = Quaternion(-0.5591, -4.42868e-14, 6.91517e-15, 0.8291)
 
 [node name="RightHand" type="BoneAttachment3D" parent="lilfella/rig/Skeleton3D" index="4"]
-transform = Transform3D(0.767354, -0.637948, -0.0768126, 0.537171, 0.57215, 0.620913, -0.352619, -0.514257, 0.779801, -0.632779, 1.38221, -0.287036)
+transform = Transform3D(0.767347, -0.637949, -0.0768104, 0.537168, 0.572148, 0.620911, -0.352617, -0.514259, 0.779797, -0.632779, 1.38221, -0.287037)
 bone_name = "DEF-hand.R"
 bone_idx = 174
 
