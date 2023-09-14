@@ -61,11 +61,18 @@ func update(delta):
 	if left_collider is StaticBody3D:
 		left_collider = left_collider.get_parent().is_in_group("climbable zone")
 	if not right_collide and not left_collide:
+		if _state._raycast_middle.is_colliding():
+			_state.update_state("LedgeGrab")
+			return
 		_state._jump_state = _state.jump
 		_state.update_state("Falling")
+		return
 	elif right_collider != null and left_collider != null:
 		if (right_collide and not right_collider
 			or left_collide and not left_collider):
+			if _state._raycast_middle.is_colliding():
+				_state.update_state("LedgeGrab")
+				return
 			_state._jump_state = _state.jump
 			_state.update_state("Falling")
 	# Handle animation tree
