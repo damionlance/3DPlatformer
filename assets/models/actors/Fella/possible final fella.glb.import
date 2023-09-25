@@ -36013,8 +36013,8 @@ _subresources={
 "bonk": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": true,
-"save_to_file/path": "",
-"settings/loop_mode": 0,
+"save_to_file/path": "res://assets/models/actors/Fella/bonk.res",
+"settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
 "slice_1/name": "",
@@ -37812,7 +37812,7 @@ _subresources={
 "crouch": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": true,
-"save_to_file/path": "",
+"save_to_file/path": "res://assets/models/actors/Fella/crouch.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -39611,8 +39611,8 @@ _subresources={
 "crouch walk": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": true,
-"save_to_file/path": "",
-"settings/loop_mode": 0,
+"save_to_file/path": "res://assets/models/actors/Fella/crouch walk.res",
+"settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
 "slice_1/name": "",
@@ -43209,8 +43209,8 @@ _subresources={
 "spinning": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": true,
-"save_to_file/path": "",
-"settings/loop_mode": 0,
+"save_to_file/path": "spinning.res",
+"settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
 "slice_1/name": "",
