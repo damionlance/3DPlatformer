@@ -11,13 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
 [ext_resource type="Script" path="res://scripts/level objects/Water.gd" id="11_8rfn6"]
 [ext_resource type="Script" path="res://scripts/gui/heads up display/Game End Zone.gd" id="11_k76jp"]
-[ext_resource type="AudioStream" uid="uid://ms1chlhufu01" path="res://assets/sounds/music/TempleTheme.wav" id="11_swj5e"]
+[ext_resource type="AudioStream" uid="uid://b7f4nnakkbdl6" path="res://assets/sounds/music/TempleTheme.wav" id="11_swj5e"]
 [ext_resource type="Script" path="res://scripts/tools/camera recording/camera recording.gd" id="12_8db8s"]
 [ext_resource type="Script" path="res://scripts/level objects/lights/Directional Lights.gd" id="12_i67a2"]
-[ext_resource type="PackedScene" path="res://scenes/ui/demo_complete.tscn" id="12_vr65w"]
+[ext_resource type="PackedScene" uid="uid://r0aa7hjyoq0r" path="res://scenes/ui/demo_complete.tscn" id="12_vr65w"]
 [ext_resource type="Script" path="res://scripts/tools/Audio/SongPlayer.gd" id="15_dtxpn"]
 [ext_resource type="Script" path="res://scripts/tools/camera recording/dolly camera.gd" id="15_qk8d4"]
-[ext_resource type="AudioStream" uid="uid://7ko8lsubynbn" path="res://assets/sounds/music/Temple Theme Intro.wav" id="16_rwtym"]
+[ext_resource type="AudioStream" uid="uid://do6j8w12soc4j" path="res://assets/sounds/music/Temple Theme Intro.wav" id="16_rwtym"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k57rh"]
 shading_mode = 2
@@ -66,13 +66,21 @@ ambient_light_sky_contribution = 0.0
 ambient_light_energy = 0.8
 reflected_light_source = 1
 tonemap_mode = 2
+ssr_enabled = true
 ssao_enabled = true
+ssil_radius = 2.59
 sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 0.72
+sdfgi_cascades = 6
+sdfgi_max_distance = 819.2
+sdfgi_y_scale = 0
+sdfgi_energy = 3.495
 glow_strength = 1.38
 glow_bloom = 0.21
 fog_light_color = Color(0, 0, 0, 1)
-fog_light_energy = 0.2
-fog_density = 0.0695
+fog_density = 0.0032
+fog_aerial_perspective = 0.524
+volumetric_fog_density = 0.0259
 volumetric_fog_albedo = Color(0.0980392, 0.0980392, 0.0980392, 1)
 volumetric_fog_ambient_inject = 16.0
 adjustment_saturation = 1.35
@@ -189,50 +197,53 @@ script = ExtResource("11_8rfn6")
 requiredSpeed = -1.0
 
 [node name="maze slideplat1-slidingplat" parent="temple" index="13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -139.955, 12.1621, 27.4875)
-position_in_path = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -133.73, 12.1621, 22.3944)
 
 [node name="StaticBody3D" parent="temple/maze slideplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-3.86979, 0, 3.16619)
+constant_linear_velocity = Vector3(3.86979, 0, -3.16619)
 
 [node name="maze slideplat2-slidingplat" parent="temple" index="14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 11.5514)
-
-[node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 0, 5)
-
-[node name="maze slideplat3-slidingplat" parent="temple" index="15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -10.3712)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 13.5504)
 position_in_path = 1
 
-[node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
+[node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
 constant_linear_velocity = Vector3(0, 0, -5)
 
+[node name="maze slideplat3-slidingplat" parent="temple" index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -12.3702)
+
+[node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, 0, 5)
+
 [node name="maze slideplat4-slidingplat" parent="temple" index="16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 17.9483, -32.3373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 25.3313, -32.3373)
 speed = 3.0
+position_in_path = 1
 button = NodePath("../maze button-stompbutton/StompButton")
 
 [node name="StaticBody3D" parent="temple/maze slideplat4-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, -3, 0)
+constant_linear_velocity = Vector3(0, 3, 0)
 
 [node name="slidingplat1-slidingplat" parent="temple" index="134"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -86.3534, 16.9348, -10.5093)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -75.6505, 16.8825, -10.4849)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/slidingplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-4.99993, 0.0244635, -0.0113727)
+constant_linear_velocity = Vector3(4.99993, -0.0244635, 0.0113727)
 
 [node name="slidingplat2-slidingplat" parent="temple" index="135"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -75.9093, 16.9093, -0.49737)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -86.6124, 16.9093, -0.49737)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/slidingplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(5, 0, 0)
+constant_linear_velocity = Vector3(-5, 0, 0)
 
 [node name="slidingplat3-slidingplat" parent="temple" index="136"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -80.3257, 16.9093, 9.50263)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -78.0581, 16.9093, 9.50263)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/slidingplat3-slidingplat" index="0"]
-constant_linear_velocity = Vector3(5, 0, 0)
+constant_linear_velocity = Vector3(-5, 0, 0)
 
 [node name="spinplat1-risingplat" parent="temple" index="222"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.964, 19, -46.3127)

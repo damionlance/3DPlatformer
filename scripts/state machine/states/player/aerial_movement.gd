@@ -23,7 +23,7 @@ enum wall_collision {
 # Helper Functions
 func wall_collision_check():
 	if _state._jump_state == _state.spin_jump or _state._jump_state == _state.bonk:
-		return
+		return wall_collision.noCollision
 	if _state._jump_state == _state.dive or _player.is_on_floor() or _state.consecutive_stationary_wall_jump >= 2:
 		return wall_collision.noCollision
 	var ledgeGrabHit = false

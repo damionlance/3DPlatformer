@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://0wkxd4niio1d"]
 
 [ext_resource type="Script" path="res://scripts/gui/main menu/main menu.gd" id="1_yo8tv"]
-[ext_resource type="Texture2D" uid="uid://bv6ofyevcd2po" path="res://assets/textures/gui/Title Logo.png" id="2_rhyja"]
+[ext_resource type="Texture2D" uid="uid://dpvkqji0vi70i" path="res://assets/textures/gui/2fellas_figments_1.png" id="2_c5ot2"]
 [ext_resource type="Theme" uid="uid://dh1dehixsqaqc" path="res://assets/UI Themes/default dialogue theme.tres" id="3_1r6it"]
 [ext_resource type="Script" path="res://scripts/gui/main menu/button_hover.gd" id="4_qwmue"]
 
@@ -17,16 +17,18 @@ script = ExtResource("1_yo8tv")
 [node name="Title Container" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(800, 300)
 layout_mode = 0
-offset_right = 20.0
-offset_bottom = 20.0
-scale = Vector2(0.84, 1)
+offset_left = -66.775
+offset_top = 3.75
+offset_right = 733.225
+offset_bottom = 523.75
+rotation = -0.0680678
+scale = Vector2(1.275, 1.275)
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
 [node name="TextureRect2" type="TextureRect" parent="Title Container"]
 layout_mode = 2
-texture = ExtResource("2_rhyja")
-expand_mode = 3
+texture = ExtResource("2_c5ot2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

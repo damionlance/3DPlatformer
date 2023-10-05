@@ -209,10 +209,14 @@ func apply_settings():
 	get_viewport().positional_shadow_atlas_16_bits = true
 	#get_viewport().positional_shadow_atlas_size = pow(2, settings["Positional Shadow Resolution"])
 	
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), -100+settings["Master Volume"])
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -100+settings["Music Volume"])
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Ambient Sounds"), -100+settings["Ambience Volume"])
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sound Effects"), -100+settings["SFX Volume"])
+	var volume = -100 if settings["Master Volume"] == 0 else -20 + settings["Master Volume"]
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), volume)
+	volume = -100 if settings["Music Volume"] == 0 else -20 + settings["Music Volume"]
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), volume)
+	volume = -100 if settings["Ambience Volume"] == 0 else -20 + settings["Ambience Volume"]
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Ambient Sounds"), volume)
+	volume = -100 if settings["SFX Volume"] == 0 else -20 + settings["SFX Volume"]
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sound Effects"), volume)
 	
 	# Input Resets
 	InputMap.action_erase_events("Forward")
@@ -391,10 +395,10 @@ func default_settings():
 	settings_file.set_value("Video", "Directional Shadow Resolution", 8)
 	settings_file.set_value("Video", "Positional Shadow Resolution", 8)
 	
-	settings_file.set_value("Audio", "Master Volume", 100)
-	settings_file.set_value("Audio", "Music Volume", 100)
-	settings_file.set_value("Audio", "Ambience Volume", 100)
-	settings_file.set_value("Audio", "SFX Volume", 100)
+	settings_file.set_value("Audio", "Master Volume", 20)
+	settings_file.set_value("Audio", "Music Volume", 20)
+	settings_file.set_value("Audio", "Ambience Volume", 20)
+	settings_file.set_value("Audio", "SFX Volume", 20)
 	
 	settings_file.set_value("Gameplay", "Difficulty", 2)
 	

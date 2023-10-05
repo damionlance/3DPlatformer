@@ -53,16 +53,16 @@ func _on_v_sync_button_toggled(button_pressed):
 	new_settings["VSync"] = $"options container/Panel/MarginContainer/Video/GridContainer/Vsync Button".button_pressed
 
 func _on_master_slider_value_changed(value):
-	new_settings["Master Volume"] = $"options container/Panel/MarginContainer/Audio/GridContainer/Master Volume Setter".value
+	new_settings["Master Volume"] = $"options container/Panel/MarginContainer/Audio/GridContainer/Master Volume".value
 
 func _on_music_slider_value_changed(value):
-	new_settings["Music Volume"] = $"options container/Panel/MarginContainer/Audio/GridContainer/Music Volume Setter".value
+	new_settings["Music Volume"] = $"options container/Panel/MarginContainer/Audio/GridContainer/Music Volume".value
 
 func _on_ambience_slider_value_changed(value):
-	new_settings["Ambience Volume"] = $"options container/Panel/MarginContainer/Audio/GridContainer/Ambient Volume Setter".value
+	new_settings["Ambience Volume"] = $"options container/Panel/MarginContainer/Audio/GridContainer/Ambience Volume".value
 
 func _on_sfx_slider_value_changed(value):
-	new_settings["SFX Volume"] = $"options container/Panel/MarginContainer/Audio/GridContainer/Sound Effect Volume Setter".value
+	new_settings["SFX Volume"] = $"options container/Panel/MarginContainer/Audio/GridContainer/SFX Volume".value
 
 
 func _on_video_pressed():

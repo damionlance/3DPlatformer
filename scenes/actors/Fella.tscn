@@ -32,7 +32,7 @@
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/StuckToWall.gd" id="27_vhyfb"]
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/ThrowOut.gd" id="28_spekg"]
 [ext_resource type="PackedScene" uid="uid://d2m40wko8hma1" path="res://scenes/tools/invertedSphereCollider.tscn" id="29_ur6n4"]
-[ext_resource type="PackedScene" uid="uid://bu8g6ln6c3iun" path="res://scenes/tools/Controller.tscn" id="30_icjaf"]
+[ext_resource type="PackedScene" path="res://scenes/tools/Controller.tscn" id="30_icjaf"]
 [ext_resource type="Script" path="res://scripts/tools/ParticleHandler.gd" id="31_fsbxi"]
 [ext_resource type="Script" path="res://scripts/tools/Footsteps test.gd" id="34_3mtxq"]
 [ext_resource type="AudioStream" uid="uid://v16707j2o45t" path="res://assets/sounds/activated noises/Coin collected.mp3" id="34_s1mpd"]
