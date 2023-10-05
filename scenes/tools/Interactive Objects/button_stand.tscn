@@ -85,6 +85,7 @@ shader_parameter/ColorParameter = null
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_njkio"]
 height = 0.64103
+radius = 2.533
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_itrr7"]
 size = Vector3(0.566699, 1.37409, 0.511865)
@@ -109,7 +110,7 @@ collision_mask = 2
 script = ExtResource("3_venwo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.752402, 0.122621, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.96744, 0.122621, 0)
 shape = SubResource("CylinderShape3D_njkio")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -120,6 +121,3 @@ shape = SubResource("BoxShape3D_itrr7")
 stream = ExtResource("4_jypm8")
 max_distance = 30.0
 bus = &"Ambient Sounds"
-
-[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
-[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

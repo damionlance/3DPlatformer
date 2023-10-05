@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://0wkxd4niio1d"]
+[gd_scene load_steps=5 format=3 uid="uid://0wkxd4niio1d"]
 
 [ext_resource type="Script" path="res://scripts/gui/main menu/main menu.gd" id="1_yo8tv"]
-[ext_resource type="Texture2D" uid="uid://bv6ofyevcd2po" path="res://assets/textures/gui/Title Logo.png" id="2_rhyja"]
+[ext_resource type="Texture2D" uid="uid://dpvkqji0vi70i" path="res://assets/textures/gui/2fellas_figments_1.png" id="2_c5ot2"]
+[ext_resource type="Theme" uid="uid://dh1dehixsqaqc" path="res://assets/UI Themes/default dialogue theme.tres" id="3_1r6it"]
+[ext_resource type="Script" path="res://scripts/gui/main menu/button_hover.gd" id="4_qwmue"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -15,16 +17,18 @@ script = ExtResource("1_yo8tv")
 [node name="Title Container" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(800, 300)
 layout_mode = 0
-offset_right = 20.0
-offset_bottom = 20.0
-scale = Vector2(0.84, 1)
+offset_left = -66.775
+offset_top = 3.75
+offset_right = 733.225
+offset_bottom = 523.75
+rotation = -0.0680678
+scale = Vector2(1.275, 1.275)
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
 [node name="TextureRect2" type="TextureRect" parent="Title Container"]
 layout_mode = 2
-texture = ExtResource("2_rhyja")
-expand_mode = 3
+texture = ExtResource("2_c5ot2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -35,6 +39,8 @@ offset_top = -258.0
 offset_right = 380.0
 offset_bottom = 258.0
 grow_vertical = 2
+rotation = -0.0436332
+theme = ExtResource("3_1r6it")
 theme_override_constants/margin_left = 80
 
 [node name="Main Menu" type="VBoxContainer" parent="MarginContainer"]
@@ -52,13 +58,32 @@ theme_override_font_sizes/font_size = 30
 text = "Level Picker"
 
 [node name="New Game" type="Button" parent="MarginContainer/Main Menu"]
-custom_minimum_size = Vector2(300, 100)
+custom_minimum_size = Vector2(448.41, 100)
 layout_mode = 2
 focus_neighbor_top = NodePath("../Level Picker")
 focus_neighbor_bottom = NodePath("../Load Game")
 theme_override_font_sizes/font_size = 30
-text = "New Game
+text = "
 "
+alignment = 0
+script = ExtResource("4_qwmue")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Main Menu/New Game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 27
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Main Menu/New Game/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "New Game"
+scroll_active = false
+autowrap_mode = 2
 
 [node name="Load Game" type="Button" parent="MarginContainer/Main Menu"]
 custom_minimum_size = Vector2(300, 100)
@@ -66,8 +91,25 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../New Game")
 focus_neighbor_bottom = NodePath("../Options")
 theme_override_font_sizes/font_size = 30
-text = "Load Game
-"
+alignment = 0
+script = ExtResource("4_qwmue")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Main Menu/Load Game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 27
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Main Menu/Load Game/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Load Game"
+scroll_active = false
+autowrap_mode = 2
 
 [node name="Options" type="Button" parent="MarginContainer/Main Menu"]
 custom_minimum_size = Vector2(300, 100)
@@ -75,8 +117,24 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../Load Game")
 focus_neighbor_bottom = NodePath("../Quit Game")
 theme_override_font_sizes/font_size = 30
-text = "Options
-"
+script = ExtResource("4_qwmue")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Main Menu/Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 27
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Main Menu/Options/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Options"
+scroll_active = false
+autowrap_mode = 2
 
 [node name="Quit Game" type="Button" parent="MarginContainer/Main Menu"]
 custom_minimum_size = Vector2(300, 100)
@@ -84,5 +142,21 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../Options")
 focus_neighbor_bottom = NodePath("../Level Picker")
 theme_override_font_sizes/font_size = 30
-text = "Quit
-"
+script = ExtResource("4_qwmue")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Main Menu/Quit Game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 27
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Main Menu/Quit Game/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Quit"
+scroll_active = false
+autowrap_mode = 2

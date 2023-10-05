@@ -25,6 +25,7 @@ func _on_area_3d_activate():
 	downTween.tween_property(self, "position", Vector3(0, -1 * doorHeight - .2,0), 5.0).as_relative()
 	await downTween.finished
 	sound.stop()
+	queue_free()
 
 
 func _on_goal_torch_handler_completed():

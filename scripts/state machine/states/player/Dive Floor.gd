@@ -14,10 +14,10 @@ var motion_input : String
 #private variables
 var _state_name = "Dive Floor"
 
-const slide_limit := 5
-var slide_time := 0
-
 var sound_player = AudioStreamPlayer.new()
+
+var frictionless_time := 5
+var frictionless_timer := 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sound_player.bus = "Sound Effects"
@@ -33,12 +33,18 @@ func update(delta):
 		_state.update_state("Running")
 		return
 	if (_player.is_on_floor()):
-		if _state.ground_friction == 1 and slide_time > slide_limit:
+		if _state.pivot_allowed:
+			_state.update_state("FloorSlide")
+		if _state.ground_friction == 1 and frictionless_timer > frictionless_time:
 			_state.current_speed *= .95
-		elif slide_time > slide_limit:
+		elif frictionless_timer > frictionless_time:
 			_state.current_speed *= _state.ground_friction
-		slide_time += 1
 		if _state.attempting_jump:
+			if _state.spin_allowed:
+				print(_state.move_direction)
+				_state._jump_state = _state.wall_spin
+				_state.update_state("Jump")
+				return
 			_state._jump_state = _state.rollout
 			_state.update_state("Jump")
 			return
@@ -47,7 +53,7 @@ func update(delta):
 	else:
 		_state._jump_state = _state.jump
 		_state.update_state("Falling")
-	
+	frictionless_timer += 1
 	# Handle animation tree
 	
 	# Process relevant timers
@@ -59,7 +65,8 @@ func update(delta):
 	pass
 
 func reset():
-	slide_time = 0
+	frictionless_timer = 0
+	_state._reset_animation_parameters()
 	var instance = load(landing_particles).instantiate()
 	add_child(instance)
 	instance.global_position = _state._player.global_position

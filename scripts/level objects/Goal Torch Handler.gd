@@ -4,7 +4,7 @@ signal completed
 
 var complete = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if complete:
 		completed.emit()
 	if Global.WORLD_COLLECTIBLES.has("ButtonStand1") and Global.WORLD_COLLECTIBLES["ButtonStand1"] == true:

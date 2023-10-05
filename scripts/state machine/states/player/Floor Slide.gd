@@ -18,16 +18,19 @@ func update(delta):
 	if _state.current_speed < .1:
 		_state.update_state("Running")
 		return
-	
-	if not _player.is_on_floor():
-		_state._jump_state = _state.jump
-		_state.update_state("Falling")
+	if Input.is_action_pressed("DiveButton"):
+		_state.update_state("Crouching")
 		return
+	
 	if  _state.attempting_jump:
 		_state.move_direction = -_state.move_direction
 		_state.current_speed = 8
 		_state._jump_state = _state.side_flip
 		_state.update_state("Jump")
+		return
+	if not _player.is_on_floor():
+		_state._jump_state = _state.jump
+		_state.update_state("Falling")
 		return
 	_state._air_drift_state = _state.not_air_drifting
 	_state.current_speed *= .91

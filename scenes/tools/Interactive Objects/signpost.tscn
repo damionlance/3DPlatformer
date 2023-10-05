@@ -5,7 +5,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_kqkim"]
 height = 1.05399
-radius = 1.06464
+radius = 2.11659
 
 [node name="Signpost" type="Area3D"]
 collision_layer = 32
@@ -17,5 +17,5 @@ dialogue_file = "res://assets/dialogue/demo temple/tutorial sign.tres"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0335585, 0, 0.0813003)
 
 [node name="Detection Zone" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.775668)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.50307)
 shape = SubResource("CylinderShape3D_kqkim")

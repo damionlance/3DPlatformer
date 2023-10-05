@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgpdulba1eqfl"]
+[gd_scene load_steps=10 format=3 uid="uid://bgpdulba1eqfl"]
 
 [ext_resource type="Script" path="res://scripts/level objects/lights/fire.gd" id="1_muccl"]
+[ext_resource type="AudioStream" uid="uid://0phd3mpfqb0f" path="res://assets/sounds/ambient noises/fire.wav" id="2_w8mo1"]
 
 [sub_resource type="Gradient" id="Gradient_1kj6i"]
 colors = PackedColorArray(1, 0, 0, 1, 0.822767, 0.820695, 1.15514e-06, 1)
@@ -33,6 +34,7 @@ turbulence_noise_scale = 0.13
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wojoe"]
 shading_mode = 0
 vertex_color_use_as_albedo = true
+disable_receive_shadows = true
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -42,13 +44,8 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_byffx"]
 material = SubResource("StandardMaterial3D_wojoe")
 
-[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.153718, 2.64185, -4.31055)
-aabb = AABB(-4.38566, -4.55889, -5.06405, 8.77132, 9.11779, 10.1281)
-
-[node name="fire" type="OmniLight3D" parent="."]
+[node name="fire" type="OmniLight3D"]
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.51082, -2.3803, 0)
 light_color = Color(1, 0.784314, 0, 1)
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
@@ -61,11 +58,15 @@ omni_range = 40.0
 omni_shadow_mode = 0
 script = ExtResource("1_muccl")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="fire"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+layers = 2
 amount = 50
 visibility_aabb = AABB(-1.53077, -1.00001, -1.79319, 3.09956, 4.49844, 3.42189)
 process_material = SubResource("ParticleProcessMaterial_8455v")
 draw_pass_1 = SubResource("QuadMesh_byffx")
 
-[connection signal="screen_entered" from="." to="fire" method="_on_visible_on_screen_notifier_3d_screen_entered"]
-[connection signal="screen_exited" from="." to="fire" method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_w8mo1")
+max_db = -1.0
+autoplay = true
+max_distance = 30.0

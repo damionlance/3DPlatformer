@@ -27,12 +27,12 @@ func update(delta):
 		distance_to_wall = _state._raycast_middle.get_collision_point() - _state._raycast_middle.global_position
 		lean_vector += wall_vector
 	if _state._raycast_right.get_collision_normal() != Vector3.UP:
-		if wall_vector != Vector3.ZERO and _controller.movement_direction.y > 0:
+		if wall_vector == Vector3.ZERO and _controller.movement_direction.y > 0:
 			wall_vector = _state._raycast_right.get_collision_normal()
 			distance_to_wall = _state._raycast_right.get_collision_point() - _state._raycast_right.global_position
 		lean_vector += wall_vector
 	if _state._raycast_left.get_collision_normal() != Vector3.UP:
-		if wall_vector != Vector3.ZERO and _controller.movement_direction.y > 0:
+		if wall_vector == Vector3.ZERO and _controller.movement_direction.y > 0:
 			wall_vector = _state._raycast_left.get_collision_normal()
 			distance_to_wall = _state._raycast_left.get_collision_point() - _state._raycast_left.global_position
 		lean_vector += wall_vector
@@ -61,11 +61,18 @@ func update(delta):
 	if left_collider is StaticBody3D:
 		left_collider = left_collider.get_parent().is_in_group("climbable zone")
 	if not right_collide and not left_collide:
+		if _state._raycast_middle.is_colliding():
+			_state.update_state("LedgeGrab")
+			return
 		_state._jump_state = _state.jump
 		_state.update_state("Falling")
+		return
 	elif right_collider != null and left_collider != null:
 		if (right_collide and not right_collider
 			or left_collide and not left_collider):
+			if _state._raycast_middle.is_colliding():
+				_state.update_state("LedgeGrab")
+				return
 			_state._jump_state = _state.jump
 			_state.update_state("Falling")
 	# Handle animation tree
@@ -118,17 +125,24 @@ func reset():
 	_state.velocity = Vector3(0, _state.velocity.y, 0)
 	_state.move_direction = Vector3.ZERO
 	_state.current_speed = 0
-	if _state._raycast_right.get_collision_normal() != Vector3.UP or _state._raycast_right.get_collision_normal() != Vector3.ZERO:
-		_state.snap_vector = -_state._raycast_middle.get_collision_normal()
-	if _state._raycast_left.get_collision_normal() != Vector3.UP or _state._raycast_left.get_collision_normal() != Vector3.ZERO:
-		_state.snap_vector = -_state._raycast_middle.get_collision_normal()
-		
-	else:
-		_state.update_state("Falling")
-		return
-	_state.snap_vector.y = 0
+	_state.snap_vector = Vector3.ZERO
+	
+	for i in 5:
+		if _state._raycast_right.get_collision_normal() != Vector3.UP or _state._raycast_right.get_collision_normal() != Vector3.ZERO:
+			_state.snap_vector = -_state._raycast_middle.get_collision_normal()
+		if _state._raycast_left.get_collision_normal() != Vector3.UP or _state._raycast_left.get_collision_normal() != Vector3.ZERO:
+			_state.snap_vector = -_state._raycast_middle.get_collision_normal()
+		_state.snap_vector.y = 0
+		if _state.snap_vector != Vector3.ZERO:
+			break
+		_state._raycast_right.force_raycast_update()
+		_state._raycast_left.force_raycast_update()
+	
 	if _state.snap_vector == Vector3.ZERO:
 		_state.update_state("Falling")
 		return
-	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.snap_vector, Vector3.UP)
+	
+	var temp = _player.transform.looking_at(_player.global_transform.origin + _state.snap_vector, Vector3.UP)
+	if temp != Transform3D():
+		_player.transform = temp
 	pass

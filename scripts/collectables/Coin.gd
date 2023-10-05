@@ -3,6 +3,10 @@ extends Collectable
 @onready var root = get_tree().get_current_scene()
 @onready var coin = $Coin
 
+@onready var sound_player := AudioStreamPlayer.new()
+@onready var coin_sound := load("res://assets/sounds/activated noises/retro_coin_01.ogg")
+@onready var special_coin_sound := load("res://assets/sounds/activated noises/retro_coin_02.ogg")
+
 @export var bounce_height : float = 0.0
 var multimesh
 
@@ -30,6 +34,9 @@ var special_coin = false
 
 func _ready():
 	$AnimationPlayer.seek(randf()/2.0)
+	sound_player.bus = "Sound Effects"
+	sound_player.volume_db = -5
+	add_child(sound_player)
 	if root is Control:
 		queue_free()
 		return
@@ -58,7 +65,6 @@ func _ready():
 			multimesh.set_instance_color(instance_id, Color.TURQUOISE)
 		else:
 			multimesh.set_instance_color(instance_id, Color.GOLD)
-			
 	
 	new_pos = global_position
 	multimesh.set_instance_transform(instance_id, Transform3D(basis, new_pos))
@@ -90,8 +96,14 @@ func _process(delta):
 
 func _on_coin_body_entered(body):
 	if body.get_name() == "Player" and not touched:
-		$AudioStreamPlayer.pitch_scale = randf() + 1.0
-		$AudioStreamPlayer.play(0)
+		sound_player.pitch_scale = Global.current_collectable_frequency_scale
+		Global.current_collectable_frequency_scale += Global.collectable_frequency_scale
+		Global.collectable_frequency_timer = 60
+		if "LevelCoin" in name:
+			sound_player.set_stream(special_coin_sound)
+		else:
+			sound_player.set_stream(coin_sound)
+		sound_player.play()
 		process_mode = Node.PROCESS_MODE_PAUSABLE
 		playerBody = body
 		if not collected:

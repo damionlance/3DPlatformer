@@ -9,6 +9,7 @@ class_name GroundedMovement
 # Floor Physics Constants
 @export var floor_acceleration := 0.3
 @export var max_speed := 11.5
+@export var crouch_walk := 4.0
 @export var floor_rotation_speed :=  .2
 @export var maximum_lean := PI/6
 
@@ -25,6 +26,14 @@ var maximum_slope := deg_to_rad(50)
 
 var slow_down_timer := 0
 var slow_down_buffer := 5
+
+var dash_timer := 0
+var dash_buffer := 30
+
+var previous_speed := 0.0
+
+var current_max_speed = max_speed
+var dashing := false
 
 func look_forward():
 	var normalized_direction = -_state.move_direction.normalized()
@@ -49,6 +58,14 @@ func grounded_movement_processing():
 	#Reset vertical wall jump tech limit
 	_state.consecutive_stationary_wall_jump = 0
 	
+	if dashing:
+		if dash_timer > dash_buffer:
+			dashing = false
+		else:
+			dash_timer += 1
+	else:
+		dash_timer = 0
+	
 	if _player.get_floor_angle() > maximum_slope:
 		_state.slope_strength += .05
 	else:
@@ -66,6 +83,47 @@ func grounded_movement_processing():
 		_state.current_speed = 0.0
 	else:
 		_state.current_speed *= 1 - _state.ground_friction
+	
+	previous_speed = _state.current_speed
+	
+	if _player.is_on_floor():
+		_state.slope_normal = Vector3.ZERO
+		if _player.get_last_slide_collision():
+			_state.slope_normal = _player.get_last_slide_collision().get_normal()
+			_state.slope_normal.y = 0
+	previous_move_direction = _state.move_direction
+
+func crouched_movement_processing():
+	#Reset vertical wall jump tech limit
+	_state.consecutive_stationary_wall_jump = 0
+	
+	if dashing:
+		if dash_timer > dash_buffer:
+			dashing = false
+		else:
+			dash_timer += 1
+	else:
+		dash_timer = 0
+	
+	if _player.get_floor_angle() > maximum_slope:
+		_state.slope_strength += .05
+	else:
+		_state.slope_strength = 0.00
+	
+	var ground = ground_probe.get_collider()
+	if ground:
+		if ground.get("friction"):
+			_state.ground_friction = ground.friction
+	if _controller.movement_direction:
+		if previous_move_direction.length() <= _state.move_direction.length():
+			_state.move_direction = lerp(_state.move_direction, _state.camera_relative_movement, floor_rotation_speed)
+			_state.current_speed = lerp(float(_state.current_speed), (crouch_walk * _controller.input_strength), _state.ground_friction)
+	elif _state.current_speed < 1:
+		_state.current_speed = 0.0
+	else:
+		_state.current_speed *= 1 - _state.ground_friction
+	
+	previous_speed = _state.current_speed
 	
 	if _player.is_on_floor():
 		_state.slope_normal = Vector3.ZERO

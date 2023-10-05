@@ -117,7 +117,7 @@ func check_for_spin():
 				spin_jump_sign = sign(angle[0]-angle[1])
 		else:
 			spin_jump_angle += angle[0] - angle[1]
-			if abs(spin_jump_angle) >= deg_to_rad(540):
+			if abs(spin_jump_angle) >= deg_to_rad(450):
 				spin_entered = true
 		previous_direction = movement_direction
 

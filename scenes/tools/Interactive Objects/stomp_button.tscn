@@ -1,6 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgak63awfwuts"]
+[gd_scene load_steps=9 format=3 uid="uid://cgak63awfwuts"]
 
 [ext_resource type="Script" path="res://scripts/tools/VelocityTrigger.gd" id="1_rm1df"]
+
+[sub_resource type="Gradient" id="Gradient_vewuk"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w5rj6"]
+gradient = SubResource("Gradient_vewuk")
+
+[sub_resource type="Curve" id="Curve_gb2ic"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x7sqn"]
+curve = SubResource("Curve_gb2ic")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p010g"]
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 5, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = -98.53
+angular_velocity_max = 87.16
+tangential_accel_min = -28.94
+tangential_accel_max = 24.74
+damping_min = 15.264
+damping_max = 61.58
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_x7sqn")
+color_ramp = SubResource("GradientTexture1D_w5rj6")
+turbulence_enabled = true
+turbulence_noise_strength = 4.21
+turbulence_noise_scale = 3.55
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xadax"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_dyyvj"]
+material = SubResource("StandardMaterial3D_xadax")
+radius = 1.0
+height = 2.0
 
 [node name="StompButton" type="ShapeCast3D"]
 target_position = Vector3(0, 0.5, 0)
@@ -8,3 +48,12 @@ max_results = 2
 collision_mask = 2
 script = ExtResource("1_rm1df")
 requiredSpeed = -50.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+randomness = 0.35
+process_material = SubResource("ParticleProcessMaterial_p010g")
+draw_pass_1 = SubResource("SphereMesh_dyyvj")

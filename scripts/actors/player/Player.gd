@@ -78,7 +78,6 @@ func _process(_delta):
 	pass
 
 func _physics_process(_delta):
-	
 	if grappling:
 		grapple_slider.freeze = false
 		global_position = grapple_slider.global_position
@@ -95,8 +94,12 @@ func _physics_process(_delta):
 			return
 		elif get_last_slide_collision().get_collider().is_in_group("hazard"):
 			transform = last_safe_transform
-		elif get_last_slide_collision().get_collider() is StaticBody3D and get_last_slide_collision().get_collider().constant_linear_velocity == Vector3.ZERO and get_last_slide_collision().get_collider().constant_angular_velocity == Vector3.ZERO:
-			last_safe_transform = transform
+		elif (get_last_slide_collision().get_collider() is StaticBody3D and 
+		get_last_slide_collision().get_collider().constant_linear_velocity == Vector3.ZERO and get_last_slide_collision().get_collider().constant_angular_velocity == Vector3.ZERO and 
+		get_last_slide_collision().get_normal() == Vector3.UP):
+			if not "-" in get_last_slide_collision().get_collider().name:
+				last_safe_transform = transform
+				velocity = Vector3.ZERO
 	if not is_on_wall():
 		previous_horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 	#_state.velocity = velocity
@@ -105,12 +108,12 @@ func update_physics_data(_velocity: Vector3, _snap_vector: Vector3):
 	velocity = _velocity
 	snap_vector = _snap_vector
 	
-func add_coin(name):
-	if not name.contains("LEVELCOIN"):
+func add_coin(coin_name):
+	if not coin_name.contains("LEVELCOIN"):
 		Global.UPDATE_COLLECTIBLES("COIN", Global.WORLD_COLLECTIBLES["COIN"] + 1)
 	else:
 		Global.UPDATE_COLLECTIBLES("LEVEL COIN", Global.WORLD_COLLECTIBLES["LEVEL COIN"] + 1)
-	get_node("HUD/MarginContainer/counters/" + name.to_lower())._increase_coins()
+	get_node("HUD/MarginContainer/counters/" + coin_name.to_lower())._increase_coins()
 	coin_sounds.pitch_scale = randf() + .7
 	coin_sounds.play()
 	return true
@@ -123,10 +126,10 @@ func add_star():
 	if stars == 3:
 		time_now = Time.get_unix_time_from_system()
 
-func _on_collectable_touched(name):
-	if name == "pool coin":
+func _on_collectable_touched(collectable_name):
+	if collectable_name == "pool coin":
 		return
-	get_node("HUD/MarginContainer/counters/" + name)._enter_screen()
+	get_node("HUD/MarginContainer/counters/" + collectable_name)._enter_screen()
 
 func add_body(body, string):
 	$"HUD/MarginContainer".add_body(body, string)
@@ -139,8 +142,8 @@ func remove_body(body):
 func activate_dialogue_box(dialogue_path, body):
 	$"HUD/MarginContainer".start_dialogue(dialogue_path, body)
 	if _state.current_speed > 5:
-		player_anim_tree[_state.is_stopping] = true
-	player_anim_tree[_state.is_moving] = false
+		player_anim_tree["parameters/conditions/stop"] = false
+	player_anim_tree["parameters/conditions/running"] = false
 	_state.current_speed = 0
 	_state.move_direction = Vector3.ZERO
 

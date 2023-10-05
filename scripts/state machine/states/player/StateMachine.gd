@@ -10,14 +10,6 @@ var respawn_point = null
 var halt_frames : Dictionary
 
 @onready var anim_tree = $"../AnimationTree"
-var is_jumping = "parameters/conditions/jump"
-var is_ledge_hang = "parameters/conditions/ledge_hang"
-var is_wall_hang = "parameters/conditions/wall_hang"
-var is_moving = "parameters/conditions/running"
-var is_idling = "parameters/conditions/idling"
-var is_dashing = "parameters/conditions/dash"
-var is_stopping = "parameters/conditions/stop"
-var is_falling = "parameters/conditions/fall"
 
 #Player Physics Variables
 var velocity :=  Vector3.ZERO
@@ -37,8 +29,6 @@ var _wall_jump_buffer := 5
 var _wall_jump_timer := 0
 @export var _shorthop_buffer := 0
 var _shorthop_timer := 7
-var pivot_buffer = []
-var pivot_buffer_size := 10
 
 var just_landed = false
 
@@ -55,6 +45,7 @@ var consecutive_stationary_wall_jump := 0
 
 
 var _current_state = null
+var _previous_state = null
 
 var _air_drift_state
 enum {
@@ -67,13 +58,16 @@ enum {
 	jump,
 	jump2,
 	jump3,
+	long_jump,
 	spin_jump,
+	wall_spin,
 	side_flip,
 	dive,
 	rollout,
 	popper_bounce,
 	ground_pound,
-	quick_getup
+	quick_getup,
+	bonk
 }
 
 var attempting_jump := false
@@ -81,8 +75,11 @@ var allow_jump := false
 var attempting_dive := false
 var allow_dive := true
 var spin_allowed := false
+var pivot_allowed := false
 var spin_timer := 0
 var spin_buffer := 30
+var pivot_timer := 0
+var pivot_buffer := 30
 var is_on_floor := false
 var attempting_throw := false
 var restricted_movement := false
@@ -124,7 +121,6 @@ func _ready():
 	respawn_point = preload("res://scenes/tools/Dynamic Objects/respawn_point.tscn").instantiate()
 	add_child(respawn_point)
 	respawn_point.position = Vector3(0,-1000000, 0)
-	pivot_buffer.resize(pivot_buffer_size)
 	state_dictionary.is_empty()
 	
 	#move_direction = Vector3.FORWARD.rotated(Vector3.UP, _player.rotation.y)
@@ -148,6 +144,7 @@ func _process(delta):
 				area._activate()
 				if "split_name" in area and area.split_name != "":
 					_player._add_split(area.split_name)
+					area.split_name = ""
 		if area.name == "SoftSpot":
 			current_jump = 1
 			_jump_state = 1
@@ -160,6 +157,7 @@ func input_handling():
 	if Input.is_action_pressed("Pause"):
 		_camera.halt_input = true
 		$"../".add_child(load("res://scenes/ui/pause screen.tscn").instantiate())
+		$"../HUD/MarginContainer"._pause_enter()
 		get_tree().paused = true
 	
 	if Input.is_action_just_pressed("Place Spawn"):
@@ -202,6 +200,13 @@ func input_handling():
 		if spin_timer == spin_buffer:
 			spin_allowed = false
 			spin_timer = 0
+	if _controller.pivot_entered:
+		pivot_allowed = true
+	if pivot_allowed:
+		pivot_timer += 1
+		if pivot_timer == pivot_buffer:
+			pivot_allowed = false
+			pivot_timer = 0
 	
 	if _controller._jump_state == _controller.jump_pressed and allow_jump:
 		attempting_jump = true
@@ -227,6 +232,7 @@ func input_handling():
 			_jump_buffer = 0
 
 func update_state( new_state ):
+	_previous_state = _current_state
 	_current_state = state_dictionary[new_state]
 	_current_state.reset()
 
@@ -283,18 +289,23 @@ func _on_hazard_detector_take_damage(position):
 	pass # Replace with function body.
 
 func _reset_animation_parameters():
-	anim_tree[is_idling] = false
-	anim_tree[is_moving] = false
-	anim_tree[is_stopping] = false
-	anim_tree[is_jumping] = false
-	anim_tree[is_falling] = false
+	anim_tree["parameters/conditions/fall"] = false
+	anim_tree["parameters/conditions/ground pound"] = false
+	anim_tree["parameters/conditions/idling"] = false
+	anim_tree["parameters/conditions/jump"] = false
+	anim_tree["parameters/conditions/ledge hang"] = false
+	anim_tree["parameters/conditions/running"] = false
 	anim_tree["parameters/conditions/skid"] = false
+	anim_tree["parameters/conditions/spinning"] = false
+	anim_tree["parameters/conditions/stop"] = false
+	anim_tree["parameters/conditions/wall climb"] = false
+	anim_tree["parameters/conditions/wall slide"] = false
+	anim_tree["parameters/conditions/crouching"] = false
+	
+	#JUMP PARAMETERS
 	anim_tree["parameters/Jump/conditions/jump 1"] = false
 	anim_tree["parameters/Jump/conditions/jump 2"] = false
 	anim_tree["parameters/Jump/conditions/jump 3"] = false
+	anim_tree["parameters/Jump/conditions/bonk"] = false
 	anim_tree["parameters/Jump/conditions/dive"] = false
 	anim_tree["parameters/Jump/conditions/roll out"] = false
-	anim_tree["parameters/conditions/wall slide"] = false
-	anim_tree["parameters/conditions/ledge hang"] = false
-	anim_tree["parameters/conditions/wall climb"] = false
-	anim_tree["parameters/conditions/ground pound"] = false

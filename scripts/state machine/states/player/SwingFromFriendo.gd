@@ -29,6 +29,7 @@ func update(_delta):
 	pass
 
 func reset():
+	_state._reset_animation_parameters()
 	_player.grappling = true
 	_player.grapple_slider.linear_velocity = _player.velocity
 	_state.velocity.y = 0

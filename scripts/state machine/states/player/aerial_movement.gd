@@ -22,8 +22,8 @@ enum wall_collision {
 }
 # Helper Functions
 func wall_collision_check():
-	if _state._jump_state == _state.spin_jump:
-		return
+	if _state._jump_state == _state.spin_jump or _state._jump_state == _state.bonk:
+		return wall_collision.noCollision
 	if _state._jump_state == _state.dive or _player.is_on_floor() or _state.consecutive_stationary_wall_jump >= 2:
 		return wall_collision.noCollision
 	var ledgeGrabHit = false
@@ -40,12 +40,12 @@ func wall_collision_check():
 		if _state._raycast_right.is_colliding():
 			bodies.append(_state._raycast_right.get_collider().get_parent())
 			collision_normals.append(_state._raycast_right.get_collision_normal())
-		if bodies[0].is_in_group("climbable zone") or (bodies.size() == 2 and bodies[1].is_in_group("climbable zone")):
+		if bodies[0].is_in_group("climbable zone") or (bodies.size() == 2 and bodies[0].is_in_group("climbable zone") and bodies[1].is_in_group("climbable zone")):
 			for normal in collision_normals:
 				if (_state._raycast_middle.get_collision_normal() - normal).length() <= .1:
 					return wall_collision.wallClimb
 		if abs(_state._raycast_left.get_collision_normal().y) <= .1 or abs(_state._raycast_right.get_collision_normal().y) <= .1:
-			if (_player.is_on_wall() and _state._raycast_middle.is_colliding()) and _player.velocity.y < 0:
+			if (_state._raycast_middle.is_colliding()) and _player.velocity.y < 0:
 				var prev_horizontal_speed = _player.previous_horizontal_velocity.length()
 				if prev_horizontal_speed > 2 and not _player.grappling:
 					return wall_collision.wallSlide

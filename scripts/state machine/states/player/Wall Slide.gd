@@ -59,6 +59,13 @@ func update(delta):
 			_state.update_state("Jump")
 	else:
 		if  _state.attempting_jump:
+			if _state.spin_allowed:
+				_state.move_direction = surface_normal
+				_state.velocity = surface_normal * 12.5
+				_state.current_speed = 12.5
+				_state._jump_state = _state.wall_spin
+				_state.update_state("Jump")
+				return
 			directional_input_handling()
 			_state.current_speed = 10
 			_state._jump_state = _state.jump
@@ -82,11 +89,11 @@ func directional_input_handling():
 	_state.move_direction = dir.rotated(Vector3.UP, angle)
 
 func reset():
+	_state._reset_animation_parameters()
+	_state.anim_tree["parameters/conditions/wall slide"] = true
 	var instance = load(landing_particles).instantiate()
 	add_child(instance)
 	instance.global_position = _state._player.global_position
-	_state._reset_animation_parameters()
-	_state.anim_tree["parameters/conditions/wall slide"] = true
 	entering_angle = Vector3(_state.velocity.x,0, _state.velocity.z)
 	var horizontal_strength = entering_angle.length()
 	entering_angle = entering_angle.normalized()
@@ -94,9 +101,12 @@ func reset():
 		_state.consecutive_stationary_wall_jump += 1
 	wall_bounce_timer = 0
 	_state.velocity = Vector3.ZERO
-	surface_normal = _player.get_last_slide_collision().get_normal()
+	surface_normal = _state._raycast_middle.get_collision_normal()
 	surface_normal.y = 0
 	_state.move_direction = -surface_normal
 	_state.snap_vector = -surface_normal
-	_player.transform = _player.transform.looking_at(_player.global_position - surface_normal, Vector3.UP)
+	if _state.move_direction != Vector3.ZERO:
+		var temp = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
+		if temp != Transform3D():
+			_player.transform = temp
 	return

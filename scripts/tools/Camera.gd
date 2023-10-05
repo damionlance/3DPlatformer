@@ -34,14 +34,16 @@ func _physics_process(_delta):
 		_camera.fov = lerp(_camera.fov, base_fov + (change_in_fov * (horizontal_speed/12)), .05)
 	else:
 		_camera.fov = lerp(_camera.fov, base_fov, .05)
-	var _parent_position = _player.global_position + Vector3.UP * 2
+	var _parent_position = _player.global_position + (Vector3.UP * 4)
 	
 	var height_difference = previous_camera_height - _parent_position.y
 	var camera_horizontal_distance = Vector3(camera_tracking_position.x, 0, camera_tracking_position.z)
 	camera_horizontal_distance -= Vector3(_parent_position.x, 0, _parent_position.z)
 	
 	if Input.is_action_just_pressed("Camera Mode"): chase_cam = bool(1 - int(chase_cam))
-	
+	if Input.is_action_just_pressed("Reset Camera"):
+		rotation = Vector3.ZERO
+		rotation.y = _player.rotation.y
 	if chase_cam:
 		if camera_horizontal_distance.length() != 0:
 			var p1 = camera_tracking_position - _camera.global_position
@@ -51,14 +53,14 @@ func _physics_process(_delta):
 			rotation_degrees.y -= rad_to_deg(angle)
 	
 	if not halt_input:
-		rotation_degrees.x -= Input.get_axis("CameraDown", "CameraUp") * camera_sensitivity.x
+		rotation_degrees.x -= Input.get_axis("CameraDown", "CameraUp") * Global.settings["Look Sensitivity"]
 		rotation_degrees.x = clamp(rotation_degrees.x, -80.0, 30.0)
-		rotation_degrees.y -= Input.get_axis("CameraRight", "CameraLeft") * camera_sensitivity.y
+		rotation_degrees.y -= Input.get_axis("CameraRight", "CameraLeft") * Global.settings["Look Sensitivity"]
 		rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
 		camera_tracking_position = _parent_position
 		camera_tracking_position.y = previous_camera_height
-		var camera_velocity = lerp(velocity, get_parent().velocity, .9)
-		camera_velocity += (_parent_position - global_position)*10
+		var camera_velocity = lerp(velocity, get_parent().velocity, .5)
+		camera_velocity += (_parent_position - global_position)*2
 		var match_states = false
 		if _player_state._current_state != null:
 			match_states = (	_player_state._current_state._state_name == "WallSlide" or 
@@ -68,14 +70,15 @@ func _physics_process(_delta):
 		if abs(height_difference) > 6 and not tracking:
 			tracking = true
 		elif match_states or _player.is_on_floor():
-			if match_height:
-				var query = PhysicsRayQueryParameters3D.create(_parent_position, position)
-				var result = space_state.intersect_ray(query)
-				if result:
-					position = _parent_position
 			match_height = true
 			tracking = false
 			previous_camera_height = position.y
+			if match_height:
+				var query = PhysicsRayQueryParameters3D.create(_parent_position, _camera.global_position)
+				query.collision_mask = 1
+				var result = space_state.intersect_ray(query)
+				if result:
+					position = _parent_position
 		else:
 			match_height = tracking
 		if not match_height:
@@ -89,8 +92,6 @@ func _physics_process(_delta):
 		
 		set_velocity(camera_velocity)
 		move_and_slide()
-	
-	#position = camera_tracking_position
 	
 	pass
 

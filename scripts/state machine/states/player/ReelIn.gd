@@ -50,6 +50,7 @@ func update(delta):
 	pass
 
 func reset():
+	_state._reset_animation_parameters()
 	_player.grappling = false
 	altered = _friendo.global_position
 	altered.y -= 1.25

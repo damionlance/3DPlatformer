@@ -3,7 +3,7 @@ extends MarginContainer
 var current_run = Dictionary()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	$"VBoxContainer/Current Time".text = $"Run Timer"._get_current_time()
 
 func _add_split(split_name):
@@ -29,8 +29,8 @@ func _add_split(split_name):
 	if Global.SPEEDRUN_SPLITS["BEST RUN"].has(split_name):
 		if Global.SPEEDRUN_SPLITS["BEST RUN"][split_name + "_time"] > time:
 			var temp = Global.SPEEDRUN_SPLITS["BEST RUN"][split_name + "_time"] - time
-			var sign = "+" if temp > 0 else "-"
-			var text = sign
+			var var_sign = "+" if temp > 0 else "-"
+			var text = var_sign
 			minutes = abs(temp / 60)
 			if minutes >= 1:
 				text += "%02d:" % [minutes]
@@ -45,8 +45,8 @@ func _add_split(split_name):
 	if Global.SPEEDRUN_SPLITS["BEST INDIVIDUAL SPLITS"].has(split_name):
 		if Global.SPEEDRUN_SPLITS["BEST INDIVIDUAL SPLITS"][split_name + "_time"] > time:
 			var temp = Global.SPEEDRUN_SPLITS["BEST INDIVIDUAL SPLITS"][split_name + "_time"] - time
-			var sign = "+" if temp > 0 else "-"
-			var text = sign
+			var var_sign = "+" if temp > 0 else "-"
+			var text = var_sign
 			minutes = abs(temp / 60)
 			if minutes >= 1:
 				text += "%02d:" % [minutes]
@@ -62,8 +62,8 @@ func _add_split(split_name):
 			Global.SPEEDRUN_SPLITS["BEST INDIVIDUAL SPLITS"][split_name + "_time"] = time
 		elif new_split.text == "":
 			var temp = Global.SPEEDRUN_SPLITS["BEST INDIVIDUAL SPLITS"][split_name + "_time"] - time
-			var sign = "+" if temp > 0 else "-"
-			var text = sign
+			var var_sign = "+" if temp > 0 else "-"
+			var text = var_sign
 			minutes = abs(temp / 60)
 			if minutes >= 1:
 				text += "%02d:" % [minutes]

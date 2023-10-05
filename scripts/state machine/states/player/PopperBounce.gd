@@ -40,8 +40,8 @@ func update(delta):
 	pass
 
 func reset():
-	_player.anim_tree.travel("Jump")
-	_player.player_anim_tree["parameters/Jump/playback"].start("Jump")
+	_state._reset_animation_parameters()
+	_state.anim_tree["parameters/conditions/jump"] = true
 	
 	constants.entering_jump_angle = Vector3(_player.popperAngle.x, 0, _player.popperAngle.z)
 	_state.move_direction = Vector3(_player.popperAngle.x, 0, _player.popperAngle.z)

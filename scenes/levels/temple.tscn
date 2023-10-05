@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d3tj3j7rq6blp"]
+[gd_scene load_steps=28 format=3 uid="uid://d3tj3j7rq6blp"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/temple.gd" id="1_sd0wa"]
 [ext_resource type="Script" path="res://scripts/level objects/Goal Torch Handler.gd" id="2_313a1"]
@@ -10,11 +10,13 @@
 [ext_resource type="AudioStream" uid="uid://dmyfuyqfotjxy" path="res://assets/sounds/mixkit-light-rain-atmosphere-2474.mp3" id="9_5f0wq"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
 [ext_resource type="Script" path="res://scripts/level objects/Water.gd" id="11_8rfn6"]
+[ext_resource type="Script" path="res://scripts/gui/heads up display/Game End Zone.gd" id="11_k76jp"]
 [ext_resource type="AudioStream" uid="uid://b7f4nnakkbdl6" path="res://assets/sounds/music/TempleTheme.wav" id="11_swj5e"]
 [ext_resource type="Script" path="res://scripts/tools/camera recording/camera recording.gd" id="12_8db8s"]
+[ext_resource type="Script" path="res://scripts/level objects/lights/Directional Lights.gd" id="12_i67a2"]
 [ext_resource type="PackedScene" uid="uid://r0aa7hjyoq0r" path="res://scenes/ui/demo_complete.tscn" id="12_vr65w"]
-[ext_resource type="Script" path="res://scripts/tools/camera recording/dolly camera.gd" id="13_atbyq"]
 [ext_resource type="Script" path="res://scripts/tools/Audio/SongPlayer.gd" id="15_dtxpn"]
+[ext_resource type="Script" path="res://scripts/tools/camera recording/dolly camera.gd" id="15_qk8d4"]
 [ext_resource type="AudioStream" uid="uid://do6j8w12soc4j" path="res://assets/sounds/music/Temple Theme Intro.wav" id="16_rwtym"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k57rh"]
@@ -41,21 +43,51 @@ size = Vector3(6.941, 52.251, 48)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mi4jf"]
 sky_top_color = Color(0, 0, 0, 1)
-sky_horizon_color = Color(0.282353, 0.00784314, 0.329412, 1)
+sky_horizon_color = Color(0, 0, 0.0313726, 1)
+sky_curve = 0.0157668
+sky_energy_multiplier = 3.7
 ground_bottom_color = Color(0, 0, 0, 1)
 ground_horizon_color = Color(0, 0, 0, 1)
+ground_curve = 0.0649802
+ground_energy_multiplier = 13.4
 sun_angle_max = 7.74
+use_debanding = false
 
 [sub_resource type="Sky" id="Sky_j57wk"]
 sky_material = SubResource("ProceduralSkyMaterial_mi4jf")
 
 [sub_resource type="Environment" id="Environment_yanr4"]
 background_mode = 2
-background_energy_multiplier = 0.8
+background_energy_multiplier = 16.0
 sky = SubResource("Sky_j57wk")
 ambient_light_source = 2
-ambient_light_color = Color(0.027451, 0.0627451, 0.164706, 1)
-ambient_light_energy = 7.97
+ambient_light_color = Color(0.141176, 0.184314, 0.372549, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.8
+reflected_light_source = 1
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_radius = 2.59
+sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 0.72
+sdfgi_cascades = 6
+sdfgi_max_distance = 819.2
+sdfgi_y_scale = 0
+sdfgi_energy = 3.495
+glow_strength = 1.38
+glow_bloom = 0.21
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.0032
+fog_aerial_perspective = 0.524
+volumetric_fog_density = 0.0259
+volumetric_fog_albedo = Color(0.0980392, 0.0980392, 0.0980392, 1)
+volumetric_fog_ambient_inject = 16.0
+adjustment_saturation = 1.35
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_as7e6"]
+frustum_focal_length = 117.47
+auto_exposure_max_exposure_value = 1.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rldos"]
 size = Vector3(5, 5, 1)
@@ -65,18 +97,19 @@ script = ExtResource("1_sd0wa")
 
 [node name="Goal Torch Handler" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.1658, 6.39139, -17.7689)
+visible = false
 script = ExtResource("2_313a1")
 
 [node name="Fire 1" parent="Goal Torch Handler" instance=ExtResource("3_1m8ga")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.93344, 1.35949, -7.42877)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.93344, -0.774729, -2.81792)
 visible = false
 
 [node name="Fire 2" parent="Goal Torch Handler" instance=ExtResource("3_1m8ga")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.00082, 1.35949, -7.42877)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.00082, -0.774729, -2.81792)
 visible = false
 
 [node name="Fire 3" parent="Goal Torch Handler" instance=ExtResource("3_1m8ga")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.367447, 1.35949, -3.07719)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.367447, -0.774729, 1.39532)
 visible = false
 
 [node name="Coin Meshes" type="Node" parent="."]
@@ -103,7 +136,7 @@ target_position = Vector3(-1, 0, 0)
 target_position = Vector3(15, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_r0hrm")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.85533, 5.88813, -0.27728)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.476111, 5.88813, -0.27728)
 
 [node name="dynamicObj" type="Node3D" parent="."]
 
@@ -163,72 +196,78 @@ script = ExtResource("11_8rfn6")
 [node name="StompButton" parent="temple/maze button-stompbutton" index="1"]
 requiredSpeed = -1.0
 
-[node name="maze slideplat1-slidingplat" parent="temple" index="12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -142.162, 12.1621, 29.2932)
+[node name="maze slideplat1-slidingplat" parent="temple" index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -133.73, 12.1621, 22.3944)
 
 [node name="StaticBody3D" parent="temple/maze slideplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(3.86983, 1.00184e-05, -3.16614)
+constant_linear_velocity = Vector3(3.86979, 0, -3.16619)
 
-[node name="maze slideplat2-slidingplat" parent="temple" index="13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 12.5281)
-
-[node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 8.70019e-06, 5)
-
-[node name="maze slideplat3-slidingplat" parent="temple" index="14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -11.3479)
+[node name="maze slideplat2-slidingplat" parent="temple" index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 13.5504)
 position_in_path = 1
 
-[node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 8.70019e-06, -5)
+[node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, 0, -5)
 
-[node name="maze slideplat4-slidingplat" parent="temple" index="15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 18.4621, -32.3373)
+[node name="maze slideplat3-slidingplat" parent="temple" index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -12.3702)
+
+[node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, 0, 5)
+
+[node name="maze slideplat4-slidingplat" parent="temple" index="16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 25.3313, -32.3373)
 speed = 3.0
+position_in_path = 1
 button = NodePath("../maze button-stompbutton/StompButton")
 
 [node name="StaticBody3D" parent="temple/maze slideplat4-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, -3, 0)
+constant_linear_velocity = Vector3(0, 3, 0)
 
-[node name="slidingplat1-slidingplat" parent="temple" index="104"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -84.849, 16.9275, -10.5059)
+[node name="slidingplat1-slidingplat" parent="temple" index="134"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -75.6505, 16.8825, -10.4849)
 position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/slidingplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(4.99993, -0.0244704, 0.0113867)
+constant_linear_velocity = Vector3(4.99993, -0.0244635, 0.0113727)
 
-[node name="slidingplat2-slidingplat" parent="temple" index="105"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -77.4137, 16.9093, -0.49737)
+[node name="slidingplat2-slidingplat" parent="temple" index="135"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -86.6124, 16.9093, -0.49737)
 position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/slidingplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-5, -3.62874e-06, 7.55987e-08)
+constant_linear_velocity = Vector3(-5, 0, 0)
 
-[node name="slidingplat3-slidingplat" parent="temple" index="106"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -71.3092, 16.9093, 9.50263)
+[node name="slidingplat3-slidingplat" parent="temple" index="136"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -78.0581, 16.9093, 9.50263)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/slidingplat3-slidingplat" index="0"]
-constant_linear_velocity = Vector3(5, -2.56732e-05, 0)
+constant_linear_velocity = Vector3(-5, 0, 0)
 
-[node name="spinplat1-risingplat" parent="temple" index="155"]
+[node name="spinplat1-risingplat" parent="temple" index="222"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.964, 19, -46.3127)
 button = NodePath("../spin button 1-stompbutton/StompButton")
 spinHeight = Vector3(0, 8, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.25
 
-[node name="spinplat3-risingplat" parent="temple" index="156"]
+[node name="spinplat3-risingplat" parent="temple" index="223"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6, 21, -32)
 button = NodePath("../spin button 3-stompbutton/StompButton")
 spinHeight = Vector3(0, 10, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.25
 
-[node name="spinplat4-risingplat" parent="temple" index="157"]
+[node name="spinplat4-risingplat" parent="temple" index="224"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 31, -22)
 button = NodePath("../spin button 2-stompbutton/StompButton")
 spinHeight = Vector3(0, 20, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.25
 
-[node name="spinplat2-risingplat" parent="temple" index="161"]
+[node name="spinplat2-risingplat" parent="temple" index="228"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 31, -22)
 button = NodePath("../spin button 1-stompbutton/StompButton")
 spinHeight = Vector3(0, 20, 0)
 risingSpeed = 10.0
@@ -246,7 +285,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.2168, 2, -14.3514)
 dialogue_file = "res://assets/dialogue/demo temple/pedestal instruction.tres"
 
 [node name="Signpost4" parent="." instance=ExtResource("10_ik8nu")]
-transform = Transform3D(-0.495762, 0, 0.868458, 0, 1, 0, -0.868458, 0, -0.495762, -19.3132, 15, 2.46036)
+transform = Transform3D(0.284617, 0, 0.958641, 0, 1, 0, -0.958641, 0, 0.284617, -16.6926, 15.055, -2.49923)
 dialogue_file = "res://assets/dialogue/demo temple/falling plat warning.tres"
 
 [node name="Signpost5" parent="." instance=ExtResource("10_ik8nu")]
@@ -255,6 +294,7 @@ dialogue_file = "res://assets/dialogue/demo temple/respawn instruction.tres"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanr4")
+camera_attributes = SubResource("CameraAttributesPhysical_as7e6")
 
 [node name="Cinematic Cameras" type="Node" parent="."]
 
@@ -279,6 +319,7 @@ bus = &"Music"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.4938, 4.66395, -25.6462)
 collision_layer = 0
 collision_mask = 2
+script = ExtResource("11_k76jp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Game End Zone"]
 shape = SubResource("BoxShape3D_rldos")
@@ -290,10 +331,16 @@ transform = Transform3D(0.578379, -0.736884, -0.349972, 0.375302, -0.140553, 0.9
 light_color = Color(0.6, 0.678431, 1, 1)
 light_energy = 0.868
 shadow_enabled = true
+directional_shadow_split_1 = 0.184
+directional_shadow_split_2 = 0.459
+directional_shadow_split_3 = 0.862
+directional_shadow_blend_splits = true
+directional_shadow_fade_start = 0.62
 directional_shadow_max_distance = 1000.0
+directional_shadow_pancake_size = 9.9
+script = ExtResource("12_i67a2")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-visible = false
 custom_minimum_size = Vector2(500, 300)
 anchors_preset = 2
 anchor_top = 1.0
@@ -306,51 +353,37 @@ grow_vertical = 0
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(500, 300)
-render_target_update_mode = 0
+render_target_update_mode = 4
 script = ExtResource("12_8db8s")
-enable = true
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.726611, 0.354833, -0.588329, -1.49012e-08, 0.856312, 0.516459, 0.687049, -0.375264, 0.622206, -93.5539, 24.8886, 16.5694)
-
-[node name="Camera3D9" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -76.1346, 7.79253, -19.9202)
-script = ExtResource("13_atbyq")
+transform = Transform3D(-0.043044, 0.102454, 0.993806, 0, 0.994728, -0.102549, -0.999073, -0.00441414, -0.0428171, -130.567, 14.1687, 0.334607)
+script = ExtResource("15_qk8d4")
 move_direction = Vector3(-1, 0, 0)
-speed = 0.01
+rotate_direction = Vector3(1, 0, 0)
+speed = 2.0
+rotation_speed = 10.0
 
 [node name="Camera3D2" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.399341, -0.47349, 0.785069, -5.2713e-08, 0.856312, 0.516459, -0.916802, -0.206243, 0.341961, -10.3679, 38.3095, -25.4391)
+transform = Transform3D(-0.997663, 0, -0.0683287, 0, 1, 0, 0.0683287, 0, -0.997663, -113.804, 20.7448, 24.7658)
+script = ExtResource("15_qk8d4")
+move_direction = Vector3(0, 0, 1)
+rotate_direction = Vector3(-1, 0, 0)
+speed = 3.0
+rotation_speed = 20.0
 
 [node name="Camera3D3" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -81.2051, 25.4187, 17.3165)
-script = ExtResource("13_atbyq")
-move_direction = Vector3(0, 0, 1)
-speed = 0.01
-
-[node name="Camera3D7" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-1, 0, -8.74228e-08, -8.73908e-08, 0.0270493, 0.999634, 2.36473e-09, 0.999634, -0.0270493, -81.2051, 39.9327, -17.2152)
-script = ExtResource("13_atbyq")
-move_direction = Vector3(0, 0, 1)
-speed = 0.03
-
-[node name="Camera3D8" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-1, 0, -8.74228e-08, -8.73908e-08, 0.0270493, 0.999634, 2.36473e-09, 0.999634, -0.0270493, -112.952, -11.317, 29.7555)
-script = ExtResource("13_atbyq")
-move_direction = Vector3(0, 0, 1)
-speed = 0.01
+transform = Transform3D(-0.96422, 0, 0.265102, 0, 1, 0, -0.265102, 0, -0.96422, -74.2697, 7.71932, -19.1646)
+script = ExtResource("15_qk8d4")
+move_direction = Vector3(0, 1, 0)
+speed = 3.0
+rotation_speed = 0.0
 
 [node name="Camera3D4" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -159.777, 31.3977, -2.79132)
-script = ExtResource("13_atbyq")
-move_direction = Vector3(0, 1, 0)
-speed = 0.05
-
-[node name="Camera3D5" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.638862, 0.262732, 0.723068, 3.72529e-09, 0.939878, -0.341512, -0.769322, 0.218179, 0.600452, -138.457, -41.1924, 15.4117)
-
-[node name="Camera3D6" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -50.3944, 5.27958, -5.63116)
+transform = Transform3D(0.0643059, 0, 0.99793, 0, 1, 0, -0.99793, 0, 0.0643059, 2.57852, 5.33656, -0.0675907)
+script = ExtResource("15_qk8d4")
+move_direction = Vector3(-1, 0, 0)
+rotation_speed = 0.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.0121995, -0.999926, 0, 0.999926, -0.0121995, -150.099, -89.9718, -2.31849)
@@ -382,12 +415,17 @@ script = ExtResource("15_dtxpn")
 intro = ExtResource("16_rwtym")
 song = ExtResource("11_swj5e")
 
+[node name="Signpost6" parent="." instance=ExtResource("10_ik8nu")]
+transform = Transform3D(-0.890935, 0, -0.45413, 0, 1, 0, 0.45413, 0, -0.890935, -47.693, 14.5829, -21.8592)
+dialogue_file = "res://assets/dialogue/demo temple/gpound sign.tres"
+
 [connection signal="body_entered" from="Camera Lock Zones/Maze Camera Lock" to="Camera Lock Zones/Maze Camera Lock" method="_on_body_entered"]
 [connection signal="body_exited" from="Camera Lock Zones/Maze Camera Lock" to="Camera Lock Zones/Maze Camera Lock" method="_on_body_exited"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand2/Area3D" to="temple/door2-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand1/Area3D" to="temple/door1-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand3/Area3D" to="temple/entry-risingdoor" method="_on_area_3d_activate"]
 [connection signal="activate" from="dynamicObj/buttons/ButtonStand4/Area3D" to="temple/door3-risingdoor" method="_on_area_3d_activate"]
+[connection signal="body_entered" from="Game End Zone" to="Game End Zone" method="_on_body_entered"]
 [connection signal="body_entered" from="Game End Zone" to="Game End Zone/Demo Complete" method="_on_game_end_zone_body_entered"]
 
 [editable path="dynamicObj/buttons/ButtonStand2"]

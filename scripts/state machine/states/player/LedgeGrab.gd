@@ -9,7 +9,7 @@ var motion_input : String
 #private variables
 var _state_name = "LedgeGrab"
 var snapped_to_ledge = false
-
+var ready_to_move = false
 
 var height_of_platform := 0
 #onready variables
@@ -36,7 +36,8 @@ func update(delta):
 	var input = Vector3(_state.camera_relative_movement.x, 0, _state.camera_relative_movement.z)
 	var direction = input.signed_angle_to(_state.snap_vector, Vector3.UP)
 	
-	
+	if not ready_to_move and input == Vector3.ZERO:
+		ready_to_move = true
 	
 	# Update relevant counters
 	var left_or_right = 0
@@ -58,6 +59,8 @@ func update(delta):
 	else:
 		var dot = _state.camera_relative_movement.dot(_state.snap_vector)
 		_state.move_direction = Vector3.ZERO
+		if not ready_to_move:
+			return
 		if dot > .9:
 			_state.move_direction = _state.snap_vector
 			_state.current_speed = 10
@@ -101,17 +104,22 @@ func update(delta):
 
 func reset():
 	snapped_to_ledge = false
+	ready_to_move = false
 	_state._reset_animation_parameters()
 	_state.anim_tree["parameters/conditions/ledge hang"] = true
 	_state.velocity = Vector3(0, _state.velocity.y, 0)
 	_state.move_direction = Vector3.ZERO
 	_state.current_speed = 0
 	_state.snap_vector = -_state._raycast_middle.get_collision_normal()
+	_state.snap_vector.y = 0
+	_state.snap_vector = _state.snap_vector.normalized()
 	var distance = abs((_state._raycast_middle.get_collision_point() - _state._raycast_middle.global_position) *  .577)
 	_player.global_position += _state.snap_vector * distance
 	_state.snap_vector.y = 0
 	if _state.snap_vector == Vector3.ZERO:
 		_state.update_state("Falling")
 		return
-	_player.transform = _player.transform.looking_at(_player.global_transform.origin + _state.snap_vector, Vector3.UP)
+	var temp = _player.transform.looking_at(_player.global_transform.origin + _state.snap_vector, Vector3.UP)
+	if temp != Transform3D():
+		_player.transform = temp
 	pass

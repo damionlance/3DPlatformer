@@ -4,6 +4,8 @@ var last_active_menu_nodepath
 var current_active_menu_nodepath
 var current_active_menu
 
+var audio_player = AudioStreamPlayer.new()
+var audio_stream = load("res://assets/sounds/UI Noises/select button.ogg")
 
 var camera_change_timer : Timer
 var main_menu_cameras
@@ -12,6 +14,7 @@ var levels = []
 var current_level
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.apply_settings()
 	current_active_menu = $"Control"
 	current_active_menu_nodepath = "res://scenes/ui/main menu.tscn"
 	
@@ -40,6 +43,10 @@ func _ready():
 	camera_change_timer.one_shot = true
 	camera_change_timer.autostart = true
 	main_menu_cameras = get_tree().get_nodes_in_group("Main Menu Cameras")
+	
+	audio_player.bus = "Sound Effects"
+	audio_player.set_stream(audio_stream)
+	add_child(audio_player)
 
 func _process(delta):
 	if camera_change_timer.is_stopped():
@@ -47,6 +54,7 @@ func _process(delta):
 		camera_change_timer.start()
 
 func _on_options_pressed():
+	audio_player.play()
 	current_active_menu.queue_free()
 	last_active_menu_nodepath = current_active_menu_nodepath
 	current_active_menu_nodepath = "res://scenes/ui/options.tscn"
@@ -57,8 +65,10 @@ func main_menu_signals():
 	$"Control/MarginContainer/Main Menu/Quit Game".pressed.connect(_on_quit_game_pressed)
 	$"Control/MarginContainer/Main Menu/Options".pressed.connect(_on_options_pressed)
 	$"Control/MarginContainer/Main Menu/New Game".pressed.connect(_on_new_game_pressed)
+	$"Control/MarginContainer/Main Menu/Load Game".pressed.connect(_on_load_game_pressed)
 
 func _back():
+	audio_player.play()
 	current_active_menu_nodepath = last_active_menu_nodepath
 	current_active_menu.queue_free()
 	current_active_menu = load(str(current_active_menu_nodepath)).instantiate()
@@ -66,14 +76,17 @@ func _back():
 	current_active_menu._ready()
 
 func _on_quit_game_pressed():
+	audio_player.play()
 	get_tree().quit()
 
 func _on_new_game_pressed():
+	audio_player.play()
 	Global._delete_save()
 	get_tree().change_scene_to_packed(load("res://scenes/levels/temple.tscn"))
 
 
 func _on_level_picker_pressed():
+	audio_player.play()
 	current_active_menu.queue_free()
 	last_active_menu_nodepath = current_active_menu_nodepath
 	current_active_menu_nodepath = "res://scenes/ui/level_select.tscn"
@@ -82,4 +95,5 @@ func _on_level_picker_pressed():
 
 
 func _on_load_game_pressed():
+	audio_player.play()
 	get_tree().change_scene_to_packed(load("res://scenes/levels/temple.tscn"))

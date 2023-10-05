@@ -27,10 +27,17 @@ func _ready():
 func update(delta):
 	# Handle all state logic
 	if _state._jump_state == _state.ground_pound:
-		await _state.anim_tree.animation_finished
-		_state.update_state("Falling")
+		if ground_pound_finished:
+			_state.update_state("Falling")
+			print("Hello")
+			return
+	if _state._jump_state == _state.dive:
+		if _player.is_on_wall():
+			_state._jump_state = _state.bonk
+			_state.update_state("Jump")
+			return
 	if not _state.restricted_movement:
-		if _state.attempting_dive and _state._jump_state != _state.dive:
+		if _state.attempting_dive and _state._jump_state != _state.dive and _state._jump_state != _state.bonk:
 			if _state._controller.input_strength > .2:
 				_state._jump_state = _state.dive
 				_state.update_state("Jump")
@@ -46,10 +53,8 @@ func update(delta):
 				_state.update_state("LedgeGrab")
 				return
 	if _state._controller._jump_state == _state._controller.jump_released and constants.shorthop_timer == constants.shorthop_buffer:
-		_state.velocity.y *= .6
-		_state.update_state("Falling")
-		return
-	if _state.velocity.y <= 0:
+		_state.velocity.y *= .5
+	if _state.velocity.y < 0:
 		_state.update_state("Falling")
 		return
 	if _state.attempting_throw and _state._jump_state != _state.dive:
@@ -69,14 +74,8 @@ func update(delta):
 func reset():
 	ground_pound_finished = false
 	entering_jump_button_state = _state._controller._jump_state
+	_state._reset_animation_parameters()
 	_state.anim_tree["parameters/conditions/jump"] = true
-	_state.anim_tree["parameters/conditions/running"] = false
-	_state.anim_tree["parameters/conditions/landed"] = false
-	_state.anim_tree["parameters/Jump/conditions/dive"] = false
-	_state.anim_tree["parameters/Jump/conditions/roll out"] = false
-	_state.anim_tree["parameters/Jump/conditions/jump 1"] = false
-	_state.anim_tree["parameters/Jump/conditions/jump 2"] = false
-	_state.anim_tree["parameters/Jump/conditions/jump 3"] = false
 	match _state._jump_state:
 		_state.jump:
 			current_jump_gravity = constants._jump_gravity
@@ -96,11 +95,22 @@ func reset():
 			_state.anim_tree["parameters/Jump/conditions/jump 3"] = true
 			sound_player.set_stream(load("res://assets/sounds/actor noises/Jump 3.mp3"))
 			sound_player.play()
+		_state.long_jump:
+			_state.current_speed = 18.0
+			current_jump_gravity = constants._jump2_gravity/3
+			current_jump_strength = constants._jump2_strength/2
+			_state.anim_tree["parameters/Jump/conditions/jump 2"] = true
+			sound_player.set_stream(load("res://assets/sounds/actor noises/Jump 2.mp3"))
+			sound_player.play()
 		_state.spin_jump:
-			_player.anim_tree.travel("Spinning")
 			current_jump_gravity = constants._spin_jump_gravity
 			current_jump_strength = constants._spin_jump_strength
-			_state.anim_tree["parameters/Jump/conditions/jump 3"] = true
+			_state.anim_tree["parameters/conditions/jump"] = false
+		_state.wall_spin:
+			current_jump_gravity = constants._spin_fall_gravity
+			current_jump_strength = constants._spin_jump_strength/3
+			_state.anim_tree["parameters/conditions/spinning"] = true
+			_state.anim_tree["parameters/conditions/jump"] = false
 		_state.side_flip:
 			current_jump_gravity = constants._side_jump_gravity
 			current_jump_strength = constants._side_jump_strength
@@ -135,11 +145,23 @@ func reset():
 			_state.anim_tree["parameters/conditions/ground pound"] = true
 			sound_player.set_stream(load("res://assets/sounds/actor noises/Side Flip.mp3"))
 			sound_player.play()
+		_state.bonk:
+			current_jump_gravity = constants._jump_gravity
+			current_jump_strength = constants._jump_strength
+			_state.move_direction = -_state.move_direction
+			_state.velocity = _state.move_direction * 5
+			_state.current_dir = -_state.current_dir
+			_state.current_speed = 12.5
+			_state.anim_tree["parameters/Jump/conditions/bonk"] = true
+			sound_player.set_stream(load("res://assets/sounds/actor noises/Side Flip.mp3"))
+			sound_player.play()
 		_: 
 			current_jump_gravity = constants._jump_gravity
 			current_jump_strength = constants._jump_strength
 			_state.anim_tree["parameters/Jump/conditions/jump 1"] = true
 	
+	if _state.move_direction != Vector3.ZERO:
+		_state.current_dir = _state.move_direction
 	constants.shorthop_timer = 0
 	entering_jump_angle = _state.camera_relative_movement
 	_state.snap_vector = Vector3.ZERO
@@ -149,4 +171,5 @@ func reset():
 		var temp = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 		if temp != Transform3D():
 			_player.transform = temp
+			print("Hello")
 	pass

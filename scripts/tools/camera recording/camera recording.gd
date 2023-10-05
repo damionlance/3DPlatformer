@@ -15,10 +15,11 @@ var number_of_cameras = 0
 func _ready():
 	if not enable:
 		get_parent().queue_free()
-	number_of_cameras = get_child_count()
-	get_child(0).current = true
+	else:
+		number_of_cameras = get_child_count()
+		get_child(0).current = true
 
-func _process(delta):
+func _process(_delta):
 	if not allow_break and not Input.is_joy_button_pressed(0,JOY_BUTTON_RIGHT_SHOULDER) and not Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_LEFT) and Input.get_joy_axis(0, JOY_AXIS_TRIGGER_RIGHT) < .2 and not Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_RIGHT):
 		allow_break = true
 	elif (Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_RIGHT) or Input.get_joy_axis(0, JOY_AXIS_TRIGGER_RIGHT) > .5) and allow_break:
@@ -59,6 +60,8 @@ func record_screen():
 		screenshots.append(image)
 
 func _exit_tree():
+	if enable == false:
+		return
 	var thread0 = Thread.new()
 	var thread1 = Thread.new()
 	var thread2 = Thread.new()
@@ -67,6 +70,9 @@ func _exit_tree():
 	thread1.start(_save_picture.bind(1))
 	thread2.start(_save_picture.bind(2))
 	thread3.start(_save_picture.bind(3))
+	await thread0.wait_to_finish()
+	await thread1.wait_to_finish()
+	await thread2.wait_to_finish()
 	await thread3.wait_to_finish()
 
 func _save_picture(start):
@@ -75,4 +81,4 @@ func _save_picture(start):
 		if start + (4 * i) > screenshots.size() - 1:
 			return
 		screenshots[start + (4 * i)].save_png("user://recording/" + str(start + (4 * i)) + ".png")
-		print(( i / (screenshots.size() - 1)) * 100, "%")
+		print((i / (screenshots.size() - 1)) * 100, "%")

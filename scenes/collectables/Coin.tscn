@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://vrrtvf58mtu6"]
+[gd_scene load_steps=6 format=3 uid="uid://vrrtvf58mtu6"]
 
 [ext_resource type="Script" path="res://scripts/collectables/Coin.gd" id="1_andm5"]
-[ext_resource type="AudioStream" uid="uid://cbbwhdvw3l1pw" path="res://assets/sounds/activated noises/Coin touched.mp3" id="3_b2wmd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8frji"]
 radius = 0.559776
@@ -58,10 +57,6 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Coin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.141006, 0)
 shape = SubResource("CapsuleShape3D_8frji")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_b2wmd")
-volume_db = -12.431
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "bounce"

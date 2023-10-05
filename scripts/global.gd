@@ -1,6 +1,7 @@
 extends Node
 
 var settings = Dictionary()
+var settings_version = 1.01
 
 var BUTTON_NAMES : Dictionary
 var SPEEDRUN_SPLITS : Dictionary
@@ -18,6 +19,8 @@ var mutex
 var thread
 var exit_thread
 
+var device := "default"
+
 var left_stick_y_up = InputEventJoypadMotion.new()
 var left_stick_y_down = InputEventJoypadMotion.new()
 var left_stick_x_left = InputEventJoypadMotion.new()
@@ -27,10 +30,40 @@ var right_stick_y_down = InputEventJoypadMotion.new()
 var right_stick_x_left = InputEventJoypadMotion.new()
 var right_stick_x_right = InputEventJoypadMotion.new()
 
+var current_collectable_frequency_scale := 1.0
+var collectable_frequency_scale := 1.0/12.0
+var collectable_frequency_timer = 60
+
 var callable
 # Called when the node enters the scene tree for the first time.
 
+func _process(delta):
+	if collectable_frequency_timer != 0:
+		collectable_frequency_timer -= 1
+	else:
+		current_collectable_frequency_scale = 1.0
+	
+	if Input.is_action_just_pressed("FORCECLOSE"):
+		get_tree().quit()
+	if Input.is_action_just_pressed("TOGGLEFULLSCREEN"):
+		match settings["Window Mode"]:
+			"Fullscreen":
+				settings["Window Mode"] = "Windowed"
+			_:
+				settings["Window Mode"] = "Fullscreen"
+		apply_settings()
+
 func _ready():
+	
+	Engine.max_fps = 60
+	
+	var gamepad_name = Input.get_joy_name(0)
+	if "Nintendo" in gamepad_name:
+		device = "Nintendo"
+	elif "Playstation" in gamepad_name or "PS" in gamepad_name:
+		device = "Playstation"
+	else:
+		device = "default"
 	
 	left_stick_y_down.axis = JOY_AXIS_LEFT_Y
 	left_stick_y_down.device = 0
@@ -73,7 +106,6 @@ func _ready():
 		SPEEDRUN_SPLITS["BEST INDIVIDUAL SPLITS"] = Dictionary()
 		SPEEDRUN_SPLITS["BEST RUN"] = Dictionary()
 	
-	setup_input_images("Xbox")
 	
 	mutex = Mutex.new()
 	save_semaphore = Semaphore.new()
@@ -90,9 +122,9 @@ func _ready():
 			WORLD_COLLECTIBLES = json.data
 
 
-func UPDATE_COLLECTIBLES(name, value):
+func UPDATE_COLLECTIBLES(collectable_name, value):
 	mutex.lock()
-	WORLD_COLLECTIBLES[name] = value
+	WORLD_COLLECTIBLES[collectable_name] = value
 	mutex.unlock()
 	save_semaphore.post()
 
@@ -158,11 +190,33 @@ func apply_settings():
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 			DisplayServer.window_set_size(DisplayServer.window_get_max_size())
+	match settings["Window Mode"]:
+		"Disabled":
+			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_HARD)
+		"Super Low":
+			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_HARD)
+		"Low":
+			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_VERY_LOW)
+		"Medium":
+			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_LOW)
+		"Medium High":
+			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_MEDIUM)
+		"High":
+			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_HIGH)
+		"Maximum Supreme":
+			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_ULTRA)
+	#RenderingServer.directional_shadow_atlas_set_size(pow(2, settings["Directional Shadow Resolution"]), false)
+	get_viewport().positional_shadow_atlas_16_bits = true
+	#get_viewport().positional_shadow_atlas_size = pow(2, settings["Positional Shadow Resolution"])
 	
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), -100+settings["Master Volume"])
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -100+settings["Music Volume"])
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Ambient Sounds"), -100+settings["Ambience Volume"])
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sound Effects"), -100+settings["SFX Volume"])
+	var volume = -100 if settings["Master Volume"] == 0 else -20 + settings["Master Volume"]
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), volume)
+	volume = -100 if settings["Music Volume"] == 0 else -20 + settings["Music Volume"]
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), volume)
+	volume = -100 if settings["Ambience Volume"] == 0 else -20 + settings["Ambience Volume"]
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Ambient Sounds"), volume)
+	volume = -100 if settings["SFX Volume"] == 0 else -20 + settings["SFX Volume"]
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sound Effects"), volume)
 	
 	# Input Resets
 	InputMap.action_erase_events("Forward")
@@ -177,6 +231,7 @@ func apply_settings():
 	InputMap.action_erase_events("Throw")
 	InputMap.action_erase_events("Jump")
 	InputMap.action_erase_events("Pause")
+	InputMap.action_erase_events("Reset Camera")
 	
 	# Keyboard Movement Inputs
 	InputMap.action_add_event("Forward", settings["Keyboard Forward"])
@@ -211,9 +266,20 @@ func apply_settings():
 	InputMap.action_add_event("Pause", settings["Keyboard Pause"])
 	InputMap.action_add_event("Pause", settings["Controller Pause"])
 	
+	#Camera Inputs
+	InputMap.action_add_event("Reset Camera", settings["Keyboard Reset Camera"])
+	InputMap.action_add_event("Reset Camera", settings["Controller Reset Camera"])
+	
 	settings_file.set_value("Video", "Window Mode", settings["Window Mode"])
 	settings_file.set_value("Video", "Resolution", settings["Resolution"])
 	settings_file.set_value("Video", "VSync", settings["VSync"])
+	settings_file.set_value("Video", "MSAA", settings["MSAA"])
+	settings_file.set_value("Video", "FXAA", settings["FXAA"])
+	settings_file.set_value("Video", "TAA", settings["TAA"])
+	settings_file.set_value("Video", "Shadow Mode", settings["Shadow Mode"])
+	settings_file.set_value("Video", "Omni Light Shadows", settings["Omni Light Shadows"])
+	settings_file.set_value("Video", "Directional Shadow Resolution", settings["Directional Shadow Resolution"])
+	settings_file.set_value("Video", "Positional Shadow Resolution", settings["Positional Shadow Resolution"])
 	
 	settings_file.set_value("Audio", "Master Volume", settings["Master Volume"])
 	settings_file.set_value("Audio", "Music Volume", settings["Music Volume"])
@@ -233,6 +299,7 @@ func apply_settings():
 	settings_file.set_value("Keybinds", "Keyboard Place Spawn", settings["Keyboard Place Spawn"])
 	settings_file.set_value("Keybinds", "Keyboard Respawn", settings["Keyboard Respawn"])
 	settings_file.set_value("Keybinds", "Keyboard Camera Mode", settings["Keyboard Camera Mode"])
+	settings_file.set_value("Keybinds", "Keyboard Reset Camera", settings["Keyboard Reset Camera"])
 	
 	settings_file.set_value("Keybinds", "Controller Jump", settings["Controller Jump"])
 	settings_file.set_value("Keybinds", "Controller Dive", settings["Controller Dive"])
@@ -241,6 +308,7 @@ func apply_settings():
 	settings_file.set_value("Keybinds", "Controller Place Spawn", settings["Controller Place Spawn"])
 	settings_file.set_value("Keybinds", "Controller Respawn", settings["Controller Respawn"])
 	settings_file.set_value("Keybinds", "Controller Camera Mode", settings["Controller Camera Mode"])
+	settings_file.set_value("Keybinds", "Controller Reset Camera", settings["Controller Reset Camera"])
 	
 	settings_file.set_value("Keybinds", "SouthPawMode", settings["SouthPawMode"])
 	settings_file.set_value("Keybinds", "LeftStickInvertY", settings["LeftStickInvertY"])
@@ -248,11 +316,17 @@ func apply_settings():
 	settings_file.set_value("Keybinds", "RightStickInvertY", settings["RightStickInvertY"])
 	settings_file.set_value("Keybinds", "RightStickInvertX", settings["RightStickInvertX"])
 	
+	settings_file.set_value("Keybinds", "Look Sensitivity", settings["Look Sensitivity"])
+	
+	setup_input_images()
 	settings_file.save("user://settings.cfg")
  
 func load_settings():
 	var settings_file = ConfigFile.new()
 	var err = settings_file.load("user://settings.cfg")
+	
+	if settings_file.get_value("Global", "Settings Version") != settings_version:
+		default_settings()
 	
 	if err != OK:
 		return
@@ -260,6 +334,13 @@ func load_settings():
 	settings["Window Mode"] = settings_file.get_value("Video", "Window Mode")
 	settings["Resolution"] = settings_file.get_value("Video", "Resolution")
 	settings["VSync"] = settings_file.get_value("Video", "VSync")
+	settings["MSAA"] = settings_file.get_value("Video", "MSAA")
+	settings["FXAA"] = settings_file.get_value("Video", "FXAA")
+	settings["TAA"] = settings_file.get_value("Video", "TAA")
+	settings["Shadow Mode"] = settings_file.get_value("Video", "Shadow Mode")
+	settings["Omni Light Shadows"] = settings_file.get_value("Video", "Omni Light Shadows")
+	settings["Directional Shadow Resolution"] = settings_file.get_value("Video", "Directional Shadow Resolution")
+	settings["Positional Shadow Resolution"] = settings_file.get_value("Video", "Positional Shadow Resolution")
 	
 	settings["Master Volume"] = settings_file.get_value("Audio", "Master Volume")
 	settings["Music Volume"] = settings_file.get_value("Audio", "Music Volume")
@@ -279,6 +360,7 @@ func load_settings():
 	settings["Keyboard Place Spawn"] = settings_file.get_value("Keybinds", "Keyboard Place Spawn")
 	settings["Keyboard Respawn"] = settings_file.get_value("Keybinds", "Keyboard Respawn")
 	settings["Keyboard Camera Mode"] = settings_file.get_value("Keybinds", "Keyboard Camera Mode")
+	settings["Keyboard Reset Camera"] = settings_file.get_value("Keybinds", "Keyboard Reset Camera")
 	
 	settings["Controller Jump"] = settings_file.get_value("Keybinds", "Controller Jump")
 	settings["Controller Dive"] = settings_file.get_value("Keybinds", "Controller Dive")
@@ -287,6 +369,7 @@ func load_settings():
 	settings["Controller Place Spawn"] = settings_file.get_value("Keybinds", "Controller Place Spawn")
 	settings["Controller Respawn"] = settings_file.get_value("Keybinds", "Controller Respawn")
 	settings["Controller Camera Mode"] = settings_file.get_value("Keybinds", "Controller Camera Mode")
+	settings["Controller Reset Camera"] = settings_file.get_value("Keybinds", "Controller Reset Camera")
 	
 	settings["SouthPawMode"] = settings_file.get_value("Keybinds", "SouthPawMode")
 	settings["LeftStickInvertY"] = settings_file.get_value("Keybinds", "LeftStickInvertY")
@@ -294,20 +377,28 @@ func load_settings():
 	settings["RightStickInvertY"] = settings_file.get_value("Keybinds", "RightStickInvertY")
 	settings["RightStickInvertX"] = settings_file.get_value("Keybinds", "RightStickInvertX")
 	
-	settings["Camera Mode"] = settings_file.get_value("Keybinds", "Camera Mode")
-	
+	settings["Look Sensitivity"] = settings_file.get_value("Keybinds", "Look Sensitivity")
 
 func default_settings():
 	var settings_file = ConfigFile.new()
 	
+	settings_file.set_value("Global", "Settings Version", settings_version)
+	
 	settings_file.set_value("Video", "Window Mode", "Windowed")
 	settings_file.set_value("Video", "Resolution", "1280x720")
 	settings_file.set_value("Video", "VSync", false)
+	settings_file.set_value("Video", "MSAA", "Disabled")
+	settings_file.set_value("Video", "FXAA", "Disabled")
+	settings_file.set_value("Video", "TAA", "Disabled")
+	settings_file.set_value("Video", "Shadow Mode", "Disabled")
+	settings_file.set_value("Video", "Omni Light Shadows", "Disabled")
+	settings_file.set_value("Video", "Directional Shadow Resolution", 8)
+	settings_file.set_value("Video", "Positional Shadow Resolution", 8)
 	
-	settings_file.set_value("Audio", "Master Volume", 100)
-	settings_file.set_value("Audio", "Music Volume", 100)
-	settings_file.set_value("Audio", "Ambience Volume", 100)
-	settings_file.set_value("Audio", "SFX Volume", 100)
+	settings_file.set_value("Audio", "Master Volume", 20)
+	settings_file.set_value("Audio", "Music Volume", 20)
+	settings_file.set_value("Audio", "Ambience Volume", 20)
+	settings_file.set_value("Audio", "SFX Volume", 20)
 	
 	settings_file.set_value("Gameplay", "Difficulty", 2)
 	
@@ -322,6 +413,7 @@ func default_settings():
 	settings_file.set_value("Keybinds", "Keyboard Place Spawn", InputMap.action_get_events("Place Spawn")[0])
 	settings_file.set_value("Keybinds", "Keyboard Respawn", InputMap.action_get_events("Respawn")[0])
 	settings_file.set_value("Keybinds", "Keyboard Camera Mode", InputMap.action_get_events("Camera Mode")[0])
+	settings_file.set_value("Keybinds", "Keyboard Reset Camera", InputMap.action_get_events("Reset Camera")[0])
 	
 	settings_file.set_value("Keybinds", "Controller Jump", InputMap.action_get_events("Jump")[1])
 	settings_file.set_value("Keybinds", "Controller Throw", InputMap.action_get_events("Throw")[1])
@@ -336,23 +428,28 @@ func default_settings():
 	settings_file.set_value("Keybinds", "LeftStickInvertX", false)
 	settings_file.set_value("Keybinds", "RightStickInvertY", false)
 	settings_file.set_value("Keybinds", "RightStickInvertX", false)
+	settings_file.set_value("Keybinds", "Controller Reset Camera", InputMap.action_get_events("Reset Camera")[1])
+	
+	settings_file.set_value("Keybinds", "Look Sensitivity", 1.0)
 	
 	settings_file.save("user://settings.cfg")
 
-func setup_input_images(device):
+func setup_input_images():
 	var dir = DirAccess.open("res://assets/textures/input prompts")
 	var image_names
 	var apath = "res://assets/textures/input prompts/active input/"
-	match device:
-		"Keyboard":
-			pass
-		"Xbox":
-			var xpath = "res://assets/textures/input prompts/Xbox/"
-			dir.copy(xpath + InputMap.action_get_events("Jump")[1].as_text() + ".png", apath + "Jump.png")
-			dir.copy(xpath + InputMap.action_get_events("Throw")[1].as_text() + ".png", apath + "Throw.png")
-			dir.copy(xpath + InputMap.action_get_events("DiveButton")[1].as_text() + ".png", apath + "Dive.png")
-			dir.copy(xpath + InputMap.action_get_events("Pause")[1].as_text() + ".png", apath + "Pause.png")
-			dir.copy(xpath + InputMap.action_get_events("Place Spawn")[1].as_text() + ".png", apath + "Place Spawn.png")
-			dir.copy(xpath + InputMap.action_get_events("Respawn")[1].as_text() + ".png", apath + "Respawn.png")
-			dir.copy(xpath + InputMap.action_get_events("Camera Mode")[1].as_text() + ".png", apath + "Camera Mode.png")
-	
+	var xpath = "res://assets/textures/input prompts/" + device + "/"
+	dir.copy(xpath + InputMap.action_get_events("Jump")[1].as_text() + ".png", apath + "Jump.png")
+	dir.copy(xpath + InputMap.action_get_events("Throw")[1].as_text() + ".png", apath + "Throw.png")
+	dir.copy(xpath + InputMap.action_get_events("DiveButton")[1].as_text() + ".png", apath + "Dive.png")
+	dir.copy(xpath + InputMap.action_get_events("Pause")[1].as_text() + ".png", apath + "Pause.png")
+	dir.copy(xpath + InputMap.action_get_events("Place Spawn")[1].as_text() + ".png", apath + "Place Spawn.png")
+	dir.copy(xpath + InputMap.action_get_events("Respawn")[1].as_text() + ".png", apath + "Respawn.png")
+	dir.copy(xpath + InputMap.action_get_events("Camera Mode")[1].as_text().replace("/","") + ".png", apath + "Camera Mode.png")
+	ResourceLoader.load(apath + "Jump.png")
+	ResourceLoader.load(apath + "Throw.png")
+	ResourceLoader.load(apath + "Dive.png")
+	ResourceLoader.load(apath + "Pause.png")
+	ResourceLoader.load(apath + "Place Spawn.png")
+	ResourceLoader.load(apath + "Respawn.png")
+	ResourceLoader.load(apath + "Camera Mode.png")

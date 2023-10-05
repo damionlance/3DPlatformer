@@ -66,7 +66,7 @@ func tween_finished():
 	tween.tween_property(self, "global_position", path_positions[position_in_path], time).set_delay(delay_at_points)
 
 
-func _on_stomp_button_velocity_trigger_fired(body):
+func _on_stomp_button_velocity_trigger_fired(_body):
 	var direction = (path_positions[position_in_path] - global_position)
 	var distance = direction.length()
 	direction = direction.normalized()
