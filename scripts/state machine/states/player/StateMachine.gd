@@ -271,9 +271,13 @@ func _throw():
 		emit_signal("throw_fella")
 	else:
 		var temp_object = _holdable_object_node.current_object
-		temp_object.velocity = velocity * 2
-		temp_object.velocity.y += 15
-		temp_object._throw(temp_object.velocity)
+		if temp_object is CharacterBody3D:
+			temp_object._throw(temp_object.velocity)
+			temp_object.velocity = velocity * 2
+			temp_object.velocity.y += 15
+		else:
+			temp_object.linear_velocity = velocity * 2
+			temp_object.linear_velocity.y += 15
 		_holdable_object_node.drop_object()
 
 func _on_Friendo_hit_wall(friendo_position):

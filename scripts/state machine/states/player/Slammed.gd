@@ -12,7 +12,7 @@ var motion_input : String
 
 @onready var landing_particles = "res://scenes/particles/landing particles.tscn"
 #private variables
-var _state_name = "Dive Floor"
+var _state_name = "Slammed"
 
 var sound_player = AudioStreamPlayer.new()
 
@@ -33,22 +33,10 @@ func update(delta):
 		_state.update_state("Running")
 		return
 	if (_player.is_on_floor()):
-		if _state.pivot_allowed:
-			_state.update_state("FloorSlide")
 		if _state.ground_friction == 1 and frictionless_timer > frictionless_time:
 			_state.current_speed *= .95
 		elif frictionless_timer > frictionless_time:
 			_state.current_speed *= _state.ground_friction
-		if _state.attempting_jump:
-			if _state.spin_allowed:
-				_state._jump_state = _state.wall_spin
-				_state.update_state("Jump")
-				return
-			_state._jump_state = _state.rollout
-			_state.update_state("Jump")
-			return
-		if _state.current_speed < .01:
-			_state.current_speed = 0
 	else:
 		_state._jump_state = _state.jump
 		_state.update_state("Falling")
@@ -64,6 +52,10 @@ func update(delta):
 	pass
 
 func reset():
+	_state.anim_tree["parameters/conditions/jump"] = true
+	_state.anim_tree["parameters/Jump/conditions/dive"] = true
+	_state.current_speed = _state.velocity.length()
+	_state.move_direction = _state.velocity.normalized()
 	frictionless_timer = 0
 	_state._reset_animation_parameters()
 	var instance = load(landing_particles).instantiate()

@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://creq2ogc5wbib"]
+
+[ext_resource type="PackedScene" uid="uid://ceushj1rf1lpm" path="res://assets/models/levels/PB's Fortress/PBLing Boss Fight/arena floor test.glb" id="1_ict82"]
+[ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_jrodq"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/Camera Lock.gd" id="2_fa15o"]
+[ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="3_gtv2l"]
+[ext_resource type="PackedScene" uid="uid://bpevc6hk3xr2l" path="res://scenes/enemies/pbs fortress/bosses/bigling.tscn" id="5_fps1u"]
+[ext_resource type="PackedScene" uid="uid://1ykn5jjvvtr1" path="res://scenes/enemies/pbs fortress/bosses/punyling.tscn" id="6_3e35o"]
+[ext_resource type="Script" path="res://scripts/level objects/pbs fortress/bosses/rubbish generator.gd" id="7_304jo"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0gu82"]
+
+[sub_resource type="Sky" id="Sky_e4yoa"]
+sky_material = SubResource("ProceduralSkyMaterial_0gu82")
+
+[sub_resource type="Environment" id="Environment_q524d"]
+background_mode = 2
+sky = SubResource("Sky_e4yoa")
+ambient_light_source = 2
+ambient_light_color = Color(0.317647, 0.164706, 0.341176, 1)
+ambient_light_energy = 2.55
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_k6yfv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebjpv"]
+albedo_color = Color(0.878431, 0.403922, 0.172549, 1)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_jrodq")
+
+[node name="arena floor test" parent="." instance=ExtResource("1_ict82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.946473, -1.19209e-07, -1.94761)
+
+[node name="wall1" parent="arena floor test" index="1"]
+transform = Transform3D(0, 0, 1, 1, 0, 0, 0, 1, 0, 18.7613, -1.33347, 28.4891)
+
+[node name="wall2" parent="arena floor test" index="2"]
+transform = Transform3D(0, 0, 1, 1, 0, 0, 0, 1, 0, 18.7613, -1.02343, -28.4457)
+
+[node name="wall3" parent="arena floor test" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.6301, 4.10514, 0.196957)
+
+[node name="arena camera pivot" type="Node3D" parent="."]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 8.14601, 8.03977, -1.94761)
+script = ExtResource("2_fa15o")
+
+[node name="Player" parent="." instance=ExtResource("3_gtv2l")]
+transform = Transform3D(-0.033382, 0, 0.999443, 0, 1, 0, -0.999443, 0, -0.033382, 7.8699, 2.37611, 1.2673)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_q524d")
+camera_attributes = SubResource("CameraAttributesPhysical_k6yfv")
+
+[node name="Bigling" parent="." instance=ExtResource("5_fps1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0666, 4.05493, 2.14299)
+
+[node name="Punyling" parent="." instance=ExtResource("6_3e35o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8156, 2.22889, -10.6218)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.648824, 0.760938, 0, -0.760938, 0.648824, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Rubbish Piles" type="Node" parent="."]
+script = ExtResource("7_304jo")
+
+[node name="Rubbish Pile" type="CSGBox3D" parent="Rubbish Piles"]
+transform = Transform3D(0.646159, -0.733445, 0.21104, 0.577577, 0.650685, 0.492965, -0.498883, -0.196642, 0.844066, -17.4589, 1.17602, -25.2823)
+material = SubResource("StandardMaterial3D_ebjpv")
+
+[node name="Rubbish Pile2" type="CSGBox3D" parent="Rubbish Piles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.8182, 1.16162, 19.9165)
+
+[node name="Rubbish Pile3" type="CSGBox3D" parent="Rubbish Piles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.83897, 1.21365, 22.3094)
+
+[node name="Rubbish Pile4" type="CSGBox3D" parent="Rubbish Piles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.30197, 1.2011, -25.2357)
+
+[node name="Rubbish Pile5" type="CSGBox3D" parent="Rubbish Piles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.7851, 1.44414, 22.2256)
+
+[node name="Rubbish Pile6" type="CSGBox3D" parent="Rubbish Piles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.8517, 1.84456, -23.9038)
+
+[connection signal="dead" from="Bigling/StateMachine/Damaged" to="arena camera pivot" method="_on_damaged_dead"]
+[connection signal="dead" from="Bigling/StateMachine/Damaged" to="Punyling" method="_on_damaged_dead"]
+
+[editable path="arena floor test"]
+[editable path="Bigling"]

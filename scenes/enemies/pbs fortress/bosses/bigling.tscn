@@ -1,0 +1,58 @@
+[gd_scene load_steps=13 format=3 uid="uid://bpevc6hk3xr2l"]
+
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/bigling.gd" id="1_1qjai"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/Enemy State Machine.gd" id="2_qgc8b"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/bigling idle.gd" id="3_2ilko"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/bigling throw.gd" id="4_87f3a"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/bigling defend.gd" id="4_smjly"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/bigling rush.gd" id="5_jy28a"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/bigling stun.gd" id="6_beurp"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/bigling damaged.gd" id="7_d6d5q"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/HoldableObjectNode.gd" id="7_hbpgl"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/bigling get ball.gd" id="9_xi6j5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a7e2c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mhgxl"]
+size = Vector3(6, 6, 6)
+
+[node name="Bigling" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_1qjai")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(6, 6, 6)
+material = SubResource("StandardMaterial3D_a7e2c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_mhgxl")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_qgc8b")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_2ilko")
+
+[node name="Throw" type="Node" parent="StateMachine"]
+script = ExtResource("4_87f3a")
+
+[node name="Defend" type="Node" parent="StateMachine"]
+script = ExtResource("4_smjly")
+
+[node name="Rush" type="Node" parent="StateMachine"]
+script = ExtResource("5_jy28a")
+
+[node name="Stun" type="Node" parent="StateMachine"]
+script = ExtResource("6_beurp")
+
+[node name="Damaged" type="Node" parent="StateMachine"]
+script = ExtResource("7_d6d5q")
+
+[node name="Get Ball" type="Node" parent="StateMachine"]
+script = ExtResource("9_xi6j5")
+
+[node name="HoldableObjectNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76532, 6.52707)
+script = ExtResource("7_hbpgl")
