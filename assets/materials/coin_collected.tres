@@ -1,15 +1,5 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://c2o1g4wwj0mj0"]
 
 [resource]
-transparency = 3
-alpha_hash_scale = 1.0
-alpha_antialiasing_mode = 0
-blend_mode = 1
-albedo_color = Color(1, 1, 0.176471, 1)
-metallic = 0.55
-metallic_specular = 0.64
-emission_enabled = true
-emission = Color(1, 1, 0.282353, 1)
-emission_energy_multiplier = 0.5
-clearcoat_enabled = true
-clearcoat_roughness = 0.35
+shading_mode = 0
+albedo_color = Color(0.52549, 0.521569, 0, 1)

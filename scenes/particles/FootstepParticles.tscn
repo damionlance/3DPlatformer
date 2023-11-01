@@ -27,10 +27,10 @@ damping_max = 0.1
 damping_curve = SubResource("CurveTexture_4wxss")
 scale_curve = SubResource("152")
 
-[sub_resource type="ShaderMaterial" id="153"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cybvh"]
 
 [sub_resource type="SphereMesh" id="154"]
-material = SubResource("153")
+material = SubResource("StandardMaterial3D_cybvh")
 radius = 0.2
 height = 0.4
 

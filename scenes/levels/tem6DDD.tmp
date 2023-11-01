@@ -1,0 +1,432 @@
+[gd_scene load_steps=24 format=3 uid="uid://d3tj3j7rq6blp"]
+
+[ext_resource type="Script" path="res://scripts/level objects/level start/temple.gd" id="1_sd0wa"]
+[ext_resource type="Script" path="res://scripts/level objects/Goal Torch Handler.gd" id="2_313a1"]
+[ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_r0hrm"]
+[ext_resource type="Script" path="res://scripts/level objects/camera lock zone.gd" id="2_rq7k1"]
+[ext_resource type="PackedScene" uid="uid://bgpdulba1eqfl" path="res://scenes/tools/lights/fire.tscn" id="3_1m8ga"]
+[ext_resource type="PackedScene" uid="uid://g6qin1b8kg1e" path="res://scenes/tools/Interactive Objects/button_stand.tscn" id="6_gyy0o"]
+[ext_resource type="PackedScene" uid="uid://be3kuw0kv4rqi" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
+[ext_resource type="AudioStream" uid="uid://dmyfuyqfotjxy" path="res://assets/sounds/mixkit-light-rain-atmosphere-2474.mp3" id="9_5f0wq"]
+[ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
+[ext_resource type="Script" path="res://scripts/level objects/Water.gd" id="11_8rfn6"]
+[ext_resource type="Script" path="res://scripts/tools/camera recording/camera recording.gd" id="12_8db8s"]
+[ext_resource type="PackedScene" uid="uid://r0aa7hjyoq0r" path="res://scenes/ui/demo_complete.tscn" id="12_vr65w"]
+[ext_resource type="Script" path="res://scripts/tools/camera recording/watch_player.gd" id="13_pc4qg"]
+[ext_resource type="Script" path="res://scripts/tools/camera recording/activate camera.gd" id="14_5qoau"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k57rh"]
+shading_mode = 2
+specular_mode = 1
+vertex_color_use_as_albedo = true
+metallic = 0.2
+metallic_specular = 1.0
+roughness = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_u3dfg"]
+material = SubResource("StandardMaterial3D_k57rh")
+height = 0.15
+
+[sub_resource type="MultiMesh" id="MultiMesh_0kimi"]
+transform_format = 1
+use_colors = true
+instance_count = 200
+mesh = SubResource("CylinderMesh_u3dfg")
+buffer = PackedFloat32Array(0, 0.6, 0.566667, 0, 0, 0, 696.05, 0.0333333, 0, 0, 0, 0, 1.06482e+20, 0, 0, 0.01, 1, 0, -4.37114e-08, 0, 0, 1, 0, 0, 4.37114e-08, 0, 1, 0, -179.233, 36.706, -24.1492, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.933333, 0.9, 0, 0, 0, 696.383, 0.0333333, 0, 0, 0, 0, 4.24558e+23, 0, 0, 0.01, 1, 0, -4.37114e-08, 0, 0, 1, 0, 0, 4.37114e-08, 0, 1, 0, -179.233, 36.706, 20.8508, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, nan, nan, nan, nan, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, nan, nan, nan, nan, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18, 4.04201e+18)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5rlw6"]
+size = Vector3(6.941, 52.251, 48)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mi4jf"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.172549, 0.00392157, 0.294118, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+sun_angle_max = 7.74
+
+[sub_resource type="Sky" id="Sky_j57wk"]
+sky_material = SubResource("ProceduralSkyMaterial_mi4jf")
+
+[sub_resource type="Environment" id="Environment_yanr4"]
+background_mode = 2
+background_energy_multiplier = 0.8
+sky = SubResource("Sky_j57wk")
+ambient_light_source = 2
+ambient_light_color = Color(0.027451, 0.0627451, 0.164706, 1)
+ambient_light_energy = 7.97
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rldos"]
+size = Vector3(5, 5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vy74g"]
+size = Vector3(6.63087, 2, 7.35461)
+
+[node name="temple" type="Node3D"]
+script = ExtResource("1_sd0wa")
+
+[node name="Goal Torch Handler" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.1658, 6.39139, -17.7689)
+script = ExtResource("2_313a1")
+
+[node name="Fire 1" parent="Goal Torch Handler" instance=ExtResource("3_1m8ga")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.93344, 1.35949, -7.42877)
+visible = false
+
+[node name="Fire 2" parent="Goal Torch Handler" instance=ExtResource("3_1m8ga")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.00082, 1.35949, -7.42877)
+visible = false
+
+[node name="Fire 3" parent="Goal Torch Handler" instance=ExtResource("3_1m8ga")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.367447, 1.35949, -3.07719)
+visible = false
+
+[node name="Coin Meshes" type="Node" parent="."]
+
+[node name="Coins" type="MultiMeshInstance3D" parent="Coin Meshes"]
+multimesh = SubResource("MultiMesh_0kimi")
+
+[node name="Camera Lock Zones" type="Node" parent="."]
+
+[node name="Maze Camera Lock" type="Area3D" parent="Camera Lock Zones"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182.327, 34.8598, -2.07925)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_rq7k1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera Lock Zones/Maze Camera Lock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.78864, 24.0693, 0)
+shape = SubResource("BoxShape3D_5rlw6")
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera Lock Zones/Maze Camera Lock"]
+target_position = Vector3(-1, 0, 0)
+
+[node name="RayCast3D2" type="RayCast3D" parent="Camera Lock Zones/Maze Camera Lock"]
+target_position = Vector3(15, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_r0hrm")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.0506, 6.07195, -0.27728)
+
+[node name="dynamicObj" type="Node3D" parent="."]
+
+[node name="buttons" type="Node3D" parent="dynamicObj"]
+
+[node name="ButtonStand2" parent="dynamicObj/buttons" instance=ExtResource("6_gyy0o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -60.9351, 34.0076, -6.80772)
+
+[node name="Stand" parent="dynamicObj/buttons/ButtonStand2" index="0"]
+surface_material_override/0 = null
+
+[node name="Button" parent="dynamicObj/buttons/ButtonStand2" index="1"]
+surface_material_override/0 = null
+
+[node name="Area3D" parent="dynamicObj/buttons/ButtonStand2" index="2"]
+split_name = "Ground Pounds"
+
+[node name="ButtonStand1" parent="dynamicObj/buttons" instance=ExtResource("6_gyy0o")]
+transform = Transform3D(-0.863131, 0, -0.504979, 0, 1, 0, 0.504979, 0, -0.863131, -99.0581, 20.1979, 14.3811)
+
+[node name="Stand" parent="dynamicObj/buttons/ButtonStand1" index="0"]
+surface_material_override/0 = null
+
+[node name="Button" parent="dynamicObj/buttons/ButtonStand1" index="1"]
+surface_material_override/0 = null
+
+[node name="Area3D" parent="dynamicObj/buttons/ButtonStand1" index="2"]
+split_name = "Center Room"
+
+[node name="ButtonStand3" parent="dynamicObj/buttons" instance=ExtResource("6_gyy0o")]
+transform = Transform3D(-0.596295, 0, 0.802765, 0, 1, 0, -0.802765, 0, -0.596295, -11.5914, 22.0776, 11.6985)
+
+[node name="Stand" parent="dynamicObj/buttons/ButtonStand3" index="0"]
+surface_material_override/0 = null
+
+[node name="Button" parent="dynamicObj/buttons/ButtonStand3" index="1"]
+surface_material_override/0 = null
+
+[node name="Area3D" parent="dynamicObj/buttons/ButtonStand3" index="2"]
+split_name = "Entry Button"
+
+[node name="ButtonStand4" parent="dynamicObj/buttons" instance=ExtResource("6_gyy0o")]
+transform = Transform3D(-0.596295, 0, 0.802765, 0, 1, 0, -0.802765, 0, -0.596295, -169.528, 66.1979, -1.04269)
+
+[node name="Stand" parent="dynamicObj/buttons/ButtonStand4" index="0"]
+surface_material_override/0 = null
+
+[node name="Button" parent="dynamicObj/buttons/ButtonStand4" index="1"]
+surface_material_override/0 = null
+
+[node name="Area3D" parent="dynamicObj/buttons/ButtonStand4" index="2"]
+split_name = "Get to the finish!"
+
+[node name="temple" parent="." instance=ExtResource("8_pfxv6")]
+script = ExtResource("11_8rfn6")
+
+[node name="StompButton" parent="temple/maze button-stompbutton" index="1"]
+requiredSpeed = -1.0
+
+[node name="maze slideplat1-slidingplat" parent="temple" index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -137.791, 12.1621, 25.7172)
+
+[node name="StaticBody3D" parent="temple/maze slideplat1-slidingplat" index="0"]
+constant_linear_velocity = Vector3(3.86979, 0, -3.16619)
+
+[node name="maze slideplat2-slidingplat" parent="temple" index="16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 20.631)
+position_in_path = 1
+
+[node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, 0, -5)
+
+[node name="maze slideplat3-slidingplat" parent="temple" index="17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -18.8802)
+
+[node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, 0, 5)
+
+[node name="maze slideplat4-slidingplat" parent="temple" index="18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 11.1736, -32.3373)
+speed = 3.0
+button = NodePath("../maze button-stompbutton/StompButton")
+
+[node name="StaticBody3D" parent="temple/maze slideplat4-slidingplat" index="0"]
+constant_linear_velocity = Vector3(0, -3, 0)
+
+[node name="slidingplat1-slidingplat" parent="temple" index="99"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -73.8943, 16.8739, -10.4809)
+
+[node name="StaticBody3D" parent="temple/slidingplat1-slidingplat" index="0"]
+constant_linear_velocity = Vector3(-4.99993, 0.0244635, -0.0113727)
+
+[node name="slidingplat2-slidingplat" parent="temple" index="100"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -88.3686, 16.9093, -0.49737)
+
+[node name="StaticBody3D" parent="temple/slidingplat2-slidingplat" index="0"]
+constant_linear_velocity = Vector3(5, 0, 0)
+
+[node name="slidingplat3-slidingplat" parent="temple" index="101"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -87.8122, 16.9093, 9.50263)
+position_in_path = 1
+
+[node name="StaticBody3D" parent="temple/slidingplat3-slidingplat" index="0"]
+constant_linear_velocity = Vector3(-5, 0, 0)
+
+[node name="spinplat1-risingplat" parent="temple" index="147"]
+transform = Transform3D(0.999991, 0, 0.00427604, 0, 1, 0, -0.00427604, 0, 0.999991, -31.364, 19, -41.9127)
+button = NodePath("../spin button 1-stompbutton/StompButton")
+spinHeight = Vector3(0, 8, 0)
+risingSpeed = 10.0
+fallingSpeed = 0.25
+
+[node name="spinplat3-risingplat" parent="temple" index="148"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 22, -34)
+button = NodePath("../spin button 3-stompbutton/StompButton")
+initial_position = Vector3(-5, 9, -34)
+spinHeight = Vector3(0, 13, 0)
+risingSpeed = 10.0
+fallingSpeed = 0.25
+
+[node name="spinplat4-risingplat" parent="temple" index="149"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 30, -22)
+button = NodePath("../spin button 2-stompbutton/StompButton")
+spinHeight = Vector3(0, 19, 0)
+risingSpeed = 10.0
+fallingSpeed = 0.25
+
+[node name="StompButton" parent="temple/spin button 1-stompbutton" index="1"]
+requiredSpeed = -23.0
+
+[node name="StompButton" parent="temple/spin button 2-stompbutton" index="1"]
+requiredSpeed = -23.0
+
+[node name="StompButton" parent="temple/spin button 3-stompbutton" index="1"]
+requiredSpeed = -23.0
+
+[node name="spinplat2-risingplat" parent="temple" index="153"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 24, -22)
+button = NodePath("../spin button 1-stompbutton/StompButton")
+spinHeight = Vector3(0, 13, 0)
+risingSpeed = 10.0
+fallingSpeed = 0.25
+
+[node name="Signpost" parent="." instance=ExtResource("10_ik8nu")]
+transform = Transform3D(-0.445526, 0, 0.895269, 0, 1, 0, -0.895269, 0, -0.445526, -13.0228, 1.96233, 2.16712)
+
+[node name="Signpost2" parent="." instance=ExtResource("10_ik8nu")]
+transform = Transform3D(0.427232, 0, 0.904142, 0, 1, 0, -0.904142, 0, 0.427232, -20.3716, 2, -3.09043)
+dialogue_file = "res://assets/dialogue/demo temple/basic instruction sign.tres"
+
+[node name="Signpost3" parent="." instance=ExtResource("10_ik8nu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.2168, 2, -14.3514)
+dialogue_file = "res://assets/dialogue/demo temple/pedestal instruction.tres"
+
+[node name="Signpost4" parent="." instance=ExtResource("10_ik8nu")]
+transform = Transform3D(-0.495762, 0, 0.868458, 0, 1, 0, -0.868458, 0, -0.495762, -19.3132, 15, 2.46036)
+dialogue_file = "res://assets/dialogue/demo temple/falling plat warning.tres"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yanr4")
+
+[node name="Cinematic Cameras" type="Node" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Cinematic Cameras"]
+transform = Transform3D(-0.811727, -0.285106, 0.509719, 0, 0.872752, 0.488164, -0.584037, 0.396256, -0.708436, -66.7372, 33.9436, -19.8977)
+
+[node name="Camera3D2" type="Camera3D" parent="Cinematic Cameras"]
+transform = Transform3D(0.608917, -0.544419, 0.576912, 0.175847, 0.801841, 0.571077, -0.773497, -0.24629, 0.583989, -62.6095, 39.0638, 12.7572)
+
+[node name="Camera3D3" type="Camera3D" parent="Cinematic Cameras"]
+transform = Transform3D(0.420011, -0.585777, 0.69315, 0.175847, 0.801841, 0.571077, -0.89032, -0.11797, 0.439789, -15.4559, 31.7437, 8.06724)
+
+[node name="Ambience" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Ambience"]
+stream = ExtResource("9_5f0wq")
+volume_db = -12.0
+autoplay = true
+bus = &"Music"
+
+[node name="Game End Zone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.4938, 4.66395, -25.6462)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game End Zone"]
+shape = SubResource("BoxShape3D_rldos")
+
+[node name="Demo Complete" parent="Game End Zone" instance=ExtResource("12_vr65w")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.578379, -0.736884, -0.349972, 0.375302, -0.140553, 0.916184, -0.724311, -0.661247, 0.195261, -39.9303, 5.51301, 1.4965)
+light_color = Color(0.6, 0.678431, 1, 1)
+light_energy = 0.868
+shadow_enabled = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+custom_minimum_size = Vector2(500, 300)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -299.0
+offset_right = 1920.0
+offset_bottom = 781.0
+grow_vertical = 0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(500, 300)
+render_target_update_mode = 4
+script = ExtResource("12_8db8s")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.452979, 0, -0.891521, 0, 1, 0, 0.891521, 0, 0.452979, -47.9242, 8.51754, 7.18197)
+
+[node name="Camera3D2" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.466649, 0, -0.884443, 0, 1, 0, 0.884443, 0, -0.466649, -39.0385, 17.3416, -8.26417)
+script = ExtResource("13_pc4qg")
+
+[node name="Camera3D3" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.638042, 0, -0.770001, 0, 1, 0, 0.770001, 0, -0.638042, -91.4892, 34.6833, -18.417)
+script = ExtResource("13_pc4qg")
+
+[node name="Camera3D4" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.691715, 0, 0.722171, 0, 1, 0, -0.722171, 0, -0.691715, -76.9995, 22.101, 18.8335)
+
+[node name="Camera3D5" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.638042, 0, -0.770001, 0, 1, 0, 0.770001, 0, -0.638042, -77.9844, 26.584, 57.4015)
+script = ExtResource("13_pc4qg")
+
+[node name="Camera3D6" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.638042, 0, -0.770001, 0, 1, 0, 0.770001, 0, -0.638042, -114.447, 22.1608, 15.6614)
+script = ExtResource("13_pc4qg")
+
+[node name="Camera3D7" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.638042, 0, -0.770001, 0, 1, 0, 0.770001, 0, -0.638042, -84.0284, 22.1608, 19.2815)
+script = ExtResource("13_pc4qg")
+
+[node name="Area3D" type="Area3D" parent="SubViewportContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56109, 3.41735, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/Area3D"]
+shape = SubResource("BoxShape3D_vy74g")
+
+[node name="Area3D2" type="Area3D" parent="SubViewportContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7554, 8.00951, -8.69579)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("14_5qoau")
+camera_nodepath = NodePath("../SubViewport/Camera3D2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/Area3D2"]
+shape = SubResource("BoxShape3D_vy74g")
+
+[node name="Area3D3" type="Area3D" parent="SubViewportContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.8705, 12.0448, -0.870679)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("14_5qoau")
+camera_nodepath = NodePath("../SubViewport/Camera3D3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/Area3D3"]
+shape = SubResource("BoxShape3D_vy74g")
+
+[node name="Area3D4" type="Area3D" parent="SubViewportContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.9618, 18.8801, 27.9682)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("14_5qoau")
+camera_nodepath = NodePath("../SubViewport/Camera3D4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/Area3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43241, 2.19298, -3.49046)
+shape = SubResource("BoxShape3D_vy74g")
+
+[node name="Area3D5" type="Area3D" parent="SubViewportContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.2179, 18.8801, 57.2904)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("14_5qoau")
+camera_nodepath = NodePath("../SubViewport/Camera3D5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/Area3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43241, 2.19298, -3.49046)
+shape = SubResource("BoxShape3D_vy74g")
+
+[node name="Area3D6" type="Area3D" parent="SubViewportContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.731, 18.8801, 58.1993)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("14_5qoau")
+camera_nodepath = NodePath("../SubViewport/Camera3D6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/Area3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43241, 2.19298, -3.49046)
+shape = SubResource("BoxShape3D_vy74g")
+
+[node name="Area3D7" type="Area3D" parent="SubViewportContainer"]
+transform = Transform3D(0.00624827, 0.99998, 0, -0.99998, 0.00624827, 0, 0, 0, 1, -92.1527, 20.6193, 21.1203)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("14_5qoau")
+camera_nodepath = NodePath("../SubViewport/Camera3D7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/Area3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43241, 2.19298, -3.49046)
+shape = SubResource("BoxShape3D_vy74g")
+
+[connection signal="completed" from="Goal Torch Handler" to="temple/door3-risingdoor" method="_on_goal_torch_handler_completed"]
+[connection signal="body_entered" from="Camera Lock Zones/Maze Camera Lock" to="Camera Lock Zones/Maze Camera Lock" method="_on_body_entered"]
+[connection signal="body_exited" from="Camera Lock Zones/Maze Camera Lock" to="Camera Lock Zones/Maze Camera Lock" method="_on_body_exited"]
+[connection signal="activate" from="dynamicObj/buttons/ButtonStand2/Area3D" to="temple/door2-risingdoor" method="_on_area_3d_activate"]
+[connection signal="activate" from="dynamicObj/buttons/ButtonStand1/Area3D" to="temple/door1-risingdoor" method="_on_area_3d_activate"]
+[connection signal="activate" from="dynamicObj/buttons/ButtonStand3/Area3D" to="temple/entry-risingdoor" method="_on_area_3d_activate"]
+[connection signal="activate" from="dynamicObj/buttons/ButtonStand4/Area3D" to="temple/entry-risingdoor" method="_on_area_3d_activate"]
+[connection signal="body_entered" from="Game End Zone" to="Game End Zone/Demo Complete" method="_on_game_end_zone_body_entered"]
+[connection signal="body_entered" from="SubViewportContainer/Area3D" to="SubViewportContainer/Area3D" method="_on_body_entered"]
+
+[editable path="dynamicObj/buttons/ButtonStand2"]
+[editable path="dynamicObj/buttons/ButtonStand1"]
+[editable path="dynamicObj/buttons/ButtonStand3"]
+[editable path="dynamicObj/buttons/ButtonStand4"]
+[editable path="temple"]

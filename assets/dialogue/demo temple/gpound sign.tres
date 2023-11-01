@@ -1,0 +1,13 @@
+[gd_resource type="JSON" format=3 uid=""]
+
+[resource]
+data = {
+"0": {
+"text": "These buttons looks like they could be
+pressed down, if you used a lot of force..."
+},
+"1": {
+"text": "If you press [img]res://assets/textures/input prompts/active input/Dive.png[/img] in midair without moving,
+you'll slam down to the ground!"
+}
+}

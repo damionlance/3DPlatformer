@@ -1,0 +1,12 @@
+[gd_resource type="JSON" format=3 uid="uid://dj8o3qmiprqar"]
+
+[resource]
+data = {
+"0": {
+"text": "Welcome to the [color=red]Fella's Figments[/color] demo!"
+},
+"1": {
+"text": "Explore the challenges of the Temple and 
+light the three pedestals to escape!"
+}
+}

@@ -1,12 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bptgyahwh2pua"]
 
-[ext_resource type="Script" path="res://Scripts/Tools/UnstablePlatform.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/tools/UnstablePlatform.gd" id="1"]
 
-[node name="UnstablePlatform" type="RigidBody3D"]
-collision_mask = 0
+[node name="UnstablePlatform" type="StaticBody3D"]
 script = ExtResource("1")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
 
