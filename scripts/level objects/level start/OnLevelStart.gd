@@ -8,6 +8,8 @@ var is_level_preview = false
 
 var collectibles : Dictionary
 
+@onready var obj_root := find_child(name)
+
 var cinematic_cameras
 
 # Called when the node enters the scene tree for the first time.

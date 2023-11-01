@@ -13,6 +13,7 @@ func _ready():
 	var children
 	ensure_collectable_exists("COIN")
 	ensure_collectable_exists("LEVEL COIN")
-	emit_signal("level_loaded")
+	$"Player/HUD/MarginContainer/counters/level coin".compare_against = obj_root.level_coins
 	for i in 200:
 		coins.multimesh.set_instance_transform(i,Transform3D(Basis(), Vector3.ZERO))
+	emit_signal("level_loaded")

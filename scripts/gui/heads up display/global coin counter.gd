@@ -1,9 +1,11 @@
 extends Control
 
+@onready var root = get_tree().get_current_scene()
 var number_of_coins = 0
 var horizontal_tween
 var bounce_tween
 var on_screen = false
+var compare_against := 0
 
 @onready var label = $"MarginContainer/VSplitContainer/coin counter"
 @export var collectable_name : String
@@ -14,11 +16,18 @@ var starting_position
 var timer
 
 func _ready():
+	if not "level_loaded" in get_tree().get_current_scene():
+		queue_free()
+		return
+	
+	await root.level_loaded
 	$"MarginContainer/VSplitContainer/coin icon".texture = load(image_path)
 	starting_position = $MarginContainer.position
 	if Global.WORLD_COLLECTIBLES.has(name.to_upper()):
 		number_of_coins = Global.WORLD_COLLECTIBLES[name.to_upper()]
 	label.text = "x " + str(number_of_coins)
+	if compare_against != 0:
+		label.text += "/" + str(compare_against)
 	timer = Timer.new()
 	add_child(timer)
 	timer.one_shot = true
@@ -28,6 +37,8 @@ func _ready():
 func _increase_coins():
 	number_of_coins += 1
 	label.text = "x " + str(number_of_coins)
+	if compare_against != 0:
+		label.text += "/" + str(compare_against)
 	bounce_tween = create_tween()
 	bounce_tween.tween_property($MarginContainer, "position", $MarginContainer.position + Vector2(0,10), .1).set_trans(Tween.TRANS_ELASTIC)
 	bounce_tween.tween_property($MarginContainer, "position", Vector2($MarginContainer.position.x, starting_position.y), .1).set_trans(Tween.TRANS_ELASTIC)
