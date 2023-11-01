@@ -45,6 +45,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_left = 64.0
 offset_top = -2.0
 offset_right = 269.0

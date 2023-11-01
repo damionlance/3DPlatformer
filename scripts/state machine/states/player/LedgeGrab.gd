@@ -44,15 +44,30 @@ func update(delta):
 	var current_fall_gravity = 0
 	_state.current_speed = 2
 	if not snapped_to_ledge:
-		if _state._raycast_left.is_colliding():
-			
-			while _state._raycast_left.is_colliding():
+		if _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
+			if _state._raycast_left.is_colliding() != _state._raycast_right.is_colliding():
+				_state._jump_state = _state.jump
+				_state.update_state("Falling")
+				return
+			var increments := 0
+			while _state._raycast_left.is_colliding() or _state._raycast_right.is_colliding():
+				increments += 1
 				_player.global_position.y += .1
 				_state._raycast_left.force_raycast_update()
+				_state._raycast_right.force_raycast_update()
+				if _state._raycast_left.is_colliding() != _state._raycast_right.is_colliding() or increments == 10:
+					_state._jump_state = _state.jump
+					_state.update_state("Falling")
+					return
 			_player.global_position.y -= .125
 			_state.velocity = Vector3.ZERO
 			_state._player.velocity = Vector3.ZERO
 			_state.move_direction = Vector3.ZERO
+			_state.current_speed = 0
+			var temp = _player.transform.looking_at(_player.global_transform.origin + _state.snap_vector, Vector3.UP)
+			if temp != Transform3D():
+				_player.transform = temp
+			_state.anim_tree["parameters/conditions/ledge hang"] = true
 			snapped_to_ledge = true
 		else:
 			current_fall_gravity = constants._fall_gravity
@@ -85,6 +100,9 @@ func update(delta):
 					if _state._raycast_right.is_colliding():
 						continue_sliding = false
 					_state._raycast_right.position.y -= .2
+					_state._raycast_right.force_raycast_update()
+				else:
+					continue_sliding = false
 			else:
 				left_or_right = -1
 				if _state._raycast_left.is_colliding():
@@ -93,6 +111,9 @@ func update(delta):
 					if _state._raycast_left.is_colliding():
 						continue_sliding = false
 					_state._raycast_left.position.y -= .2
+				else:
+					continue_sliding = false
+					_state._raycast_left.force_raycast_update()
 			if continue_sliding:
 				_state.move_direction = desired_movement
 				_state.current_speed = 2 * _state._controller.input_strength
@@ -106,20 +127,13 @@ func reset():
 	snapped_to_ledge = false
 	ready_to_move = false
 	_state._reset_animation_parameters()
-	_state.anim_tree["parameters/conditions/ledge hang"] = true
-	_state.velocity = Vector3(0, _state.velocity.y, 0)
-	_state.move_direction = Vector3.ZERO
-	_state.current_speed = 0
-	_state.snap_vector = -_state._raycast_middle.get_collision_normal()
-	_state.snap_vector.y = 0
-	_state.snap_vector = _state.snap_vector.normalized()
 	var distance = abs((_state._raycast_middle.get_collision_point() - _state._raycast_middle.global_position) *  .577)
 	_player.global_position += _state.snap_vector * distance
-	_state.snap_vector.y = 0
-	if _state.snap_vector == Vector3.ZERO:
+	_state.snap_vector = -_state._raycast_middle.get_collision_normal()
+	_state.snap_vector = _state.snap_vector.normalized()
+	if _state.snap_vector.y < 0.00001:
+		_state.snap_vector.y = 0.0
+	if _state.snap_vector == Vector3.ZERO or _state.snap_vector.y != 0:
 		_state.update_state("Falling")
 		return
-	var temp = _player.transform.looking_at(_player.global_transform.origin + _state.snap_vector, Vector3.UP)
-	if temp != Transform3D():
-		_player.transform = temp
 	pass
