@@ -137,11 +137,14 @@ func _process(delta):
 		update_state("Falling")
 	
 	can_interact = false
+	var activated_object := false
 	for area in _softspot_detector.get_overlapping_areas():
-		if area.is_in_group("interactable"):
+		if area.is_in_group("interactable") and area.inactive != true:
 			can_interact = true
 			if _controller._jump_state == 1:
+				_controller._jump_state = 0
 				area._activate()
+				activated_object = false
 				if "split_name" in area and area.split_name != "":
 					_player._add_split(area.split_name)
 					area.split_name = ""
@@ -149,7 +152,8 @@ func _process(delta):
 			current_jump = 1
 			_jump_state = 1
 			update_state("Jump")
-	input_handling()
+	if not activated_object:
+		input_handling()
 	_current_state.update(delta)
 	_player.update_physics_data(velocity, snap_vector)
 
@@ -160,7 +164,7 @@ func input_handling():
 		$"../HUD/MarginContainer"._pause_enter()
 		get_tree().paused = true
 	
-	if Input.is_action_just_pressed("Place Spawn"):
+	if Input.is_action_just_pressed("Place Spawn") and _player.last_safe_transform == _player.transform:
 		respawn_point.global_position = _player.global_position
 	elif Input.is_action_just_pressed("Respawn"):
 		if respawn_point.global_position.y > -100000.0:

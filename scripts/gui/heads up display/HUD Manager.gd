@@ -80,8 +80,10 @@ func _unpause_coins():
 
 func dialogue():
 	if dialogue_box.display_dialogue() == true:
+		$"../../StateMachine".attempting_jump = false
 		dialogue_box.reset()
 		get_tree().paused = false
 		dialogue_box.visible = false
 		camera_pivot.halt_input = false
 		having_dialogue = false
+		
