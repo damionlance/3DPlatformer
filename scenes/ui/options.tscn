@@ -578,7 +578,7 @@ text = "MSAA"
 [node name="MSAA" type="OptionButton" parent="options container/Panel/MarginContainer/Video/MarginContainer/GridContainer"]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../Vsync")
+focus_neighbor_top = NodePath("../Vsync Button")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../FXAA")
 alignment = 1

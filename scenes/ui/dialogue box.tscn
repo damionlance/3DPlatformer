@@ -43,3 +43,16 @@ text = "Test Text"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 64.0
+offset_top = -2.0
+offset_right = 269.0
+offset_bottom = 98.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "[img]res://assets/textures/input prompts/active input/Throw.png[/img] to skip"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
