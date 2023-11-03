@@ -5,7 +5,7 @@ class_name LevelStart
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
+signal level_loaded
 var is_level_preview = false
 
 var collectibles : Dictionary
