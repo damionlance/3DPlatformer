@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://vrrtvf58mtu6"]
+[gd_scene load_steps=6 format=3 uid="uid://c5yk0j2koyfos"]
 
 [ext_resource type="Script" path="res://scripts/collectables/Coin.gd" id="1_andm5"]
 

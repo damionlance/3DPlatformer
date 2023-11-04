@@ -55,7 +55,8 @@ func wall_collision_check():
 		_state._raycast_middle.target_position *= -1
 		_state._raycast_middle.force_raycast_update()
 		if _state._raycast_middle.is_colliding() and _state.velocity.y < 0:
-			ledgeGrabHit = true
+			if _state._raycast_middle.get_collision_normal().y == 0:
+				ledgeGrabHit = true
 		_state._raycast_middle.target_position *= -1
 		_state._raycast_middle.force_raycast_update()
 	

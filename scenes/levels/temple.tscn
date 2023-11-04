@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d3tj3j7rq6blp"]
+[gd_scene load_steps=27 format=3 uid="uid://d3tj3j7rq6blp"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/temple.gd" id="1_sd0wa"]
 [ext_resource type="Script" path="res://scripts/level objects/Goal Torch Handler.gd" id="2_313a1"]
@@ -9,15 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://be3kuw0kv4rqi" path="res://assets/models/levels/Pool/temple.glb" id="8_pfxv6"]
 [ext_resource type="AudioStream" uid="uid://dmyfuyqfotjxy" path="res://assets/sounds/mixkit-light-rain-atmosphere-2474.mp3" id="9_5f0wq"]
 [ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="10_ik8nu"]
-[ext_resource type="Script" path="res://scripts/level objects/Water.gd" id="11_8rfn6"]
 [ext_resource type="Script" path="res://scripts/gui/heads up display/Game End Zone.gd" id="11_k76jp"]
-[ext_resource type="AudioStream" uid="uid://ms1chlhufu01" path="res://assets/sounds/music/TempleTheme.wav" id="11_swj5e"]
+[ext_resource type="AudioStream" uid="uid://b7f4nnakkbdl6" path="res://assets/sounds/music/TempleTheme.wav" id="11_swj5e"]
 [ext_resource type="Script" path="res://scripts/tools/camera recording/camera recording.gd" id="12_8db8s"]
 [ext_resource type="Script" path="res://scripts/level objects/lights/Directional Lights.gd" id="12_i67a2"]
-[ext_resource type="PackedScene" path="res://scenes/ui/demo_complete.tscn" id="12_vr65w"]
+[ext_resource type="PackedScene" uid="uid://r0aa7hjyoq0r" path="res://scenes/ui/demo_complete.tscn" id="12_vr65w"]
 [ext_resource type="Script" path="res://scripts/tools/Audio/SongPlayer.gd" id="15_dtxpn"]
 [ext_resource type="Script" path="res://scripts/tools/camera recording/dolly camera.gd" id="15_qk8d4"]
-[ext_resource type="AudioStream" uid="uid://7ko8lsubynbn" path="res://assets/sounds/music/Temple Theme Intro.wav" id="16_rwtym"]
+[ext_resource type="AudioStream" uid="uid://do6j8w12soc4j" path="res://assets/sounds/music/Temple Theme Intro.wav" id="16_rwtym"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k57rh"]
 shading_mode = 2
@@ -97,20 +96,16 @@ script = ExtResource("1_sd0wa")
 
 [node name="Goal Torch Handler" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.1658, 6.39139, -17.7689)
-visible = false
 script = ExtResource("2_313a1")
 
 [node name="Fire 1" parent="Goal Torch Handler" instance=ExtResource("3_1m8ga")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.93344, -0.774729, -2.81792)
-visible = false
 
 [node name="Fire 2" parent="Goal Torch Handler" instance=ExtResource("3_1m8ga")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.00082, -0.774729, -2.81792)
-visible = false
 
 [node name="Fire 3" parent="Goal Torch Handler" instance=ExtResource("3_1m8ga")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.367447, -0.774729, 1.39532)
-visible = false
 
 [node name="Coin Meshes" type="Node" parent="."]
 
@@ -191,32 +186,31 @@ surface_material_override/0 = null
 split_name = "Get to the finish!"
 
 [node name="temple" parent="." instance=ExtResource("8_pfxv6")]
-script = ExtResource("11_8rfn6")
 
 [node name="StompButton" parent="temple/maze button-stompbutton" index="1"]
 requiredSpeed = -1.0
 
 [node name="maze slideplat1-slidingplat" parent="temple" index="13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -133.405, 12.1621, 22.1285)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.823, 12.1621, 29.016)
 
 [node name="StaticBody3D" parent="temple/maze slideplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(3.87, 0.000116907, -3.16593)
+constant_linear_velocity = Vector3(3.86979, 0, -3.16619)
 
 [node name="maze slideplat2-slidingplat" parent="temple" index="14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 20.2138)
-position_in_path = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 15.8825)
 
 [node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 9.9695e-06, -5)
+constant_linear_velocity = Vector3(0, 0, 5)
 
 [node name="maze slideplat3-slidingplat" parent="temple" index="15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -19.0336)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -14.369)
+position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 9.9695e-06, 5)
+constant_linear_velocity = Vector3(0, 0, -5)
 
 [node name="maze slideplat4-slidingplat" parent="temple" index="16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 21.8758, -32.3373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.0248, -32.3373)
 speed = 3.0
 position_in_path = 1
 button = NodePath("../maze button-stompbutton/StompButton")
@@ -225,44 +219,49 @@ button = NodePath("../maze button-stompbutton/StompButton")
 constant_linear_velocity = Vector3(0, 3, 0)
 
 [node name="slidingplat1-slidingplat" parent="temple" index="134"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -90.7004, 16.9561, -10.5192)
-position_in_path = 1
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -91.6013, 16.9605, -10.5212)
 
 [node name="StaticBody3D" parent="temple/slidingplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(4.99993, -0.0244619, 0.0113807)
+constant_linear_velocity = Vector3(-4.99993, 0.0244635, -0.0113727)
 
 [node name="slidingplat2-slidingplat" parent="temple" index="135"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -71.5622, 16.9093, -0.49737)
-position_in_path = 1
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -69.6613, 16.9093, -0.49737)
 
 [node name="StaticBody3D" parent="temple/slidingplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-5, -2.64662e-06, 5.5138e-08)
+constant_linear_velocity = Vector3(5, 0, 0)
 
 [node name="slidingplat3-slidingplat" parent="temple" index="136"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -74.743, 16.9093, 9.50263)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -79.1613, 16.9093, 9.50263)
 
 [node name="StaticBody3D" parent="temple/slidingplat3-slidingplat" index="0"]
-constant_linear_velocity = Vector3(5, -1.0105e-05, 0)
+constant_linear_velocity = Vector3(5, 0, 0)
 
 [node name="spinplat1-risingplat" parent="temple" index="222"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.964, 19, -46.3127)
 button = NodePath("../spin button 1-stompbutton/StompButton")
 spinHeight = Vector3(0, 8, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.25
 
 [node name="spinplat3-risingplat" parent="temple" index="223"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6, 21, -32)
 button = NodePath("../spin button 3-stompbutton/StompButton")
 spinHeight = Vector3(0, 10, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.25
 
 [node name="spinplat4-risingplat" parent="temple" index="224"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 31, -22)
 button = NodePath("../spin button 2-stompbutton/StompButton")
 spinHeight = Vector3(0, 20, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.25
 
+[node name="spin button 1-stompbutton" parent="temple" index="225"]
+transform = Transform3D(1, 0, 0, 0, 1.25, 0, 0, 0, 1, -51.6322, 15.3111, -19.3866)
+
 [node name="spinplat2-risingplat" parent="temple" index="228"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 31, -22)
 button = NodePath("../spin button 1-stompbutton/StompButton")
 spinHeight = Vector3(0, 20, 0)
 risingSpeed = 10.0
@@ -336,6 +335,7 @@ directional_shadow_pancake_size = 9.9
 script = ExtResource("12_i67a2")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+visible = false
 custom_minimum_size = Vector2(500, 300)
 anchors_preset = 2
 anchor_top = 1.0
@@ -348,7 +348,7 @@ grow_vertical = 0
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(500, 300)
-render_target_update_mode = 4
+render_target_update_mode = 0
 script = ExtResource("12_8db8s")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]

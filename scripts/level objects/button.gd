@@ -30,6 +30,7 @@ func _ready():
 	if collected:
 		emit_signal("activate")
 		_activate()
+		queue_free()
 	else:
 		$"../Button".get_active_material(0).albedo_color = Color(255,0,0)
 	
@@ -40,12 +41,11 @@ func _ready():
 func _activate():
 	$"../Button".get_active_material(0).albedo_color = Color(0,255,0)
 	$"../AudioStreamPlayer3D".play()
-	if collected:
-		return
 	emit_signal("activate")
 	collected = true
 	Global.UPDATE_COLLECTIBLES(get_parent().name, collected)
 	activated = true
+	queue_free()
 
 func _on_body_exited(body):
 	if body.name == "Player":

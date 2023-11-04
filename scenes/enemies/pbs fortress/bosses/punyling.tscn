@@ -1,0 +1,81 @@
+[gd_scene load_steps=14 format=3 uid="uid://1ykn5jjvvtr1"]
+
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/bigling.gd" id="1_xsd8k"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/Enemy State Machine.gd" id="2_hhci6"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/punyling idle.gd" id="3_olr78"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/punyling pursue rubbish.gd" id="4_18rej"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/punyling building.gd" id="5_rrfh7"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/punyling damaged.gd" id="6_rw84k"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/HoldableObjectNode.gd" id="7_hmnfc"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/punyling deliver ball.gd" id="7_lo3d8"]
+[ext_resource type="Script" path="res://scripts/state machine/enemies/pbs fortress/bosses/punyling softspot.gd" id="8_8efbx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1425d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vosyd"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_beall"]
+radius = 0.001
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0hxsi"]
+size = Vector3(1.93636, 0.293096, 1.96239)
+
+[node name="Punyling" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 8
+script = ExtResource("1_xsd8k")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_1425d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_vosyd")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_hhci6")
+HP = 9000000
+max_speed = 12.0
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_olr78")
+
+[node name="Pursue Rubbish" type="Node" parent="StateMachine"]
+script = ExtResource("4_18rej")
+
+[node name="Building" type="Node" parent="StateMachine"]
+script = ExtResource("5_rrfh7")
+
+[node name="Damaged" type="Node" parent="StateMachine"]
+script = ExtResource("6_rw84k")
+
+[node name="Deliver Ball" type="Node" parent="StateMachine"]
+script = ExtResource("7_lo3d8")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="rubbish ball" type="CSGSphere3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51016, 1.01731, 0)
+radius = 0.001
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_beall")
+
+[node name="HoldableObjectNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08362, -1.10161)
+script = ExtResource("7_hmnfc")
+
+[node name="SoftSpot" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.969085, 0)
+collision_layer = 32
+script = ExtResource("8_8efbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SoftSpot"]
+shape = SubResource("BoxShape3D_0hxsi")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 5)
+collision_mask = 9
+
+[connection signal="area_entered" from="SoftSpot" to="SoftSpot" method="_on_area_entered"]

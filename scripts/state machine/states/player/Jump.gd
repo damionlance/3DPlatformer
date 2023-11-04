@@ -29,7 +29,6 @@ func update(delta):
 	if _state._jump_state == _state.ground_pound:
 		if ground_pound_finished:
 			_state.update_state("Falling")
-			print("Hello")
 			return
 	if _state._jump_state == _state.dive:
 		if _player.is_on_wall():
@@ -171,5 +170,4 @@ func reset():
 		var temp = _player.transform.looking_at(_player.global_transform.origin + _state.move_direction, Vector3.UP)
 		if temp != Transform3D():
 			_player.transform = temp
-			print("Hello")
 	pass

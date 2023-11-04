@@ -83,7 +83,6 @@ func update(delta):
 	pass
 
 func reset():
-	print("Hello")
 	_state._reset_animation_parameters()
 	_state.anim_tree["parameters/conditions/crouching"] = true
 	get_parent().dashing = false

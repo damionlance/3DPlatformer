@@ -6,6 +6,5 @@ extends Camera3D
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if current == true:
-		print(move_direction * speed * delta)
 		global_position += move_direction * speed * delta
 		rotation += rotate_direction* deg_to_rad(rotation_speed) * delta
