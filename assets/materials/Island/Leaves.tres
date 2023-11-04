@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://fuqi61vyvhm4"]
+
+[ext_resource type="Shader" path="res://addons/proton_scatter/demos/assets/materials/leaves.gdshader" id="1_dju3l"]
+[ext_resource type="Texture2D" uid="uid://d2pfepd467km3" path="res://assets/models/props/Island_Leaf.png" id="2_3bthp"]
+
+[sub_resource type="Gradient" id="Gradient_eexlq"]
+colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pr5ve"]
+gradient = SubResource("Gradient_eexlq")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_k3erp"]
+frequency = 0.001
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0p6tt"]
+seamless = true
+noise = SubResource("FastNoiseLite_k3erp")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dju3l")
+shader_parameter/alpha_scissor_threshold = null
+shader_parameter/transmission = Color(0, 0.266667, 0, 1)
+shader_parameter/total_height = 19.435
+shader_parameter/wind_direction = Vector2(1, -0.5)
+shader_parameter/wind_speed = 0.2
+shader_parameter/wind_strength = 0.71
+shader_parameter/noise_scale = 18.885
+shader_parameter/texture_albedo = ExtResource("2_3bthp")
+shader_parameter/texture_gradient = SubResource("GradientTexture1D_pr5ve")
+shader_parameter/texture_noise = SubResource("NoiseTexture2D_0p6tt")

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://brn6gclufxt7j"
+path="res://.godot/imported/grappleSphereCollider.obj-ca02a39866c42c653a0d6f9fb296c660.mesh"
+
+[deps]
+
+files=["res://.godot/imported/grappleSphereCollider.obj-ca02a39866c42c653a0d6f9fb296c660.mesh"]
+
+source_file="res://assets/models/grappleSphereCollider.obj"
+dest_files=["res://.godot/imported/grappleSphereCollider.obj-ca02a39866c42c653a0d6f9fb296c660.mesh", "res://.godot/imported/grappleSphereCollider.obj-ca02a39866c42c653a0d6f9fb296c660.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" uid="uid://dd13gyrf1cu70" path="res://assets/textures/pool/plaster_green.png" id="1_u11aw"]
+
+[resource]
+resource_name = "Plaster"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_u11aw")
+roughness = 0.5

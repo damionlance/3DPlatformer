@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://b4i1jsexdm1cm"]
+
+[ext_resource type="Shader" path="res://assets/shaders/magma.gdshader" id="1_dxey7"]
+[ext_resource type="Texture2D" uid="uid://4resoe7ir80s" path="res://assets/textures/pool/magma 1.png" id="2_32tlf"]
+[ext_resource type="Texture2D" uid="uid://b1ry688fdrjuo" path="res://assets/textures/pool/magma 2.png" id="3_hcf4k"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dxey7")
+shader_parameter/speed = 1.0
+shader_parameter/layer_1_direction = Vector2(1, 0)
+shader_parameter/layer_2_direction = Vector2(0, 1)
+shader_parameter/albedo_1 = ExtResource("2_32tlf")
+shader_parameter/albedo_2 = ExtResource("3_hcf4k")

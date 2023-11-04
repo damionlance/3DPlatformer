@@ -1,0 +1,15 @@
+[gd_scene load_steps=6 format=3 uid="uid://clgu5dxtcp2b3"]
+
+[ext_resource type="PackedScene" uid="uid://da6nxs8g7rwxr" path="res://assets/3Dmodels/Buildings/CornerShop.glb" id="1_hwhph"]
+[ext_resource type="Material" uid="uid://uu3ktchgqa1x" path="res://assets/materials/wood.tres" id="2_4q3tb"]
+[ext_resource type="Material" uid="uid://c4yivfw8qk43u" path="res://assets/materials/grass_roof.tres" id="3_0l8ac"]
+[ext_resource type="Material" uid="uid://cmx4nhjtffj85" path="res://assets/materials/wood_window.tres" id="4_blqpj"]
+[ext_resource type="Material" path="res://assets/materials/plaster_blue.tres" id="5_p13nr"]
+
+[node name="CornerShop" instance=ExtResource("1_hwhph")]
+
+[node name="Store" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_4q3tb")
+surface_material_override/1 = ExtResource("3_0l8ac")
+surface_material_override/2 = ExtResource("4_blqpj")
+surface_material_override/3 = ExtResource("5_p13nr")

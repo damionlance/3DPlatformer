@@ -1,0 +1,26 @@
+[gd_resource type="JSON" format=3 uid=""]
+
+[resource]
+data = {
+"0": {
+"text": "Here's a few basic movement tips:"
+},
+"1": {
+"text": "Practice moving [color=blue]Fella[/color] around!
+ Make sure to get comfortable moving the camera around too."
+},
+"2": {
+"text": "Press [img]res://assets/textures/input prompts/active input/Jump.png[/img] to jump.
+Press [img]res://assets/textures/input prompts/active input/Dive.png[/img] while in the air
+to make [color=blue]Fella[/color] dive forward with a burst of speed!"
+},
+"3": {
+"text": "[color=blue]Fella[/color] can crouch by pressing [img]res://assets/textures/input prompts/active input/Dive.png[/img] while on the ground.
+Try different kinds of jumps out of a crouch
+to reach new heights!"
+},
+"4": {
+"text": "But remember, those are just the basics! Experiment with 
+different movement options to speed through any challenge!"
+}
+}

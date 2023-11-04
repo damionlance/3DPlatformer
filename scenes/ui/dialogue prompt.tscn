@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3msswd4ciyt3"]
+
+[ext_resource type="Script" path="res://scripts/gui/heads up display/Dialogue Prompt.gd" id="1_b0w6l"]
+[ext_resource type="Script" path="res://scripts/tests/monitor_variable_change.gd" id="1_ic8bm"]
+
+[node name="Dialogue Prompt" type="PanelContainer"]
+custom_minimum_size = Vector2(10, 10)
+offset_right = 10.0
+offset_bottom = 10.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_ic8bm")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("1_b0w6l")

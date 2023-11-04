@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dsvxf85mfnsul"]
+
+[ext_resource type="Shader" path="res://Shaders/FellaShader.gdshader" id="1_dgf3i"]
+[ext_resource type="Material" uid="uid://bwyf813fo0jxj" path="res://assets/materials/Hat Shader.material" id="1_yo4l5"]
+
+[resource]
+render_priority = 0
+next_pass = ExtResource("1_yo4l5")
+shader = ExtResource("1_dgf3i")

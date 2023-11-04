@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c4yivfw8qk43u"]
+
+[ext_resource type="Texture2D" uid="uid://druj8ngc00467" path="res://assets/textures/pool/grass_roof.png" id="1_nw1bb"]
+
+[resource]
+resource_name = "Grass"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_nw1bb")
+metallic_specular = 0.0
+roughness = 0.0

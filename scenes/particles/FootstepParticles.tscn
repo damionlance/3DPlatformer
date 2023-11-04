@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://5xj0b55hbt7j"]
+
+[ext_resource type="Script" path="res://scripts/particles/FootstepParticles.gd" id="2"]
+
+[sub_resource type="Curve" id="Curve_oxlxt"]
+max_value = 100.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4wxss"]
+curve = SubResource("Curve_oxlxt")
+
+[sub_resource type="Curve" id="151"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.986033, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="152"]
+curve = SubResource("151")
+
+[sub_resource type="ParticleProcessMaterial" id="148"]
+direction = Vector3(0, 1, 0)
+spread = 90.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+damping_max = 0.1
+damping_curve = SubResource("CurveTexture_4wxss")
+scale_curve = SubResource("152")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cybvh"]
+
+[sub_resource type="SphereMesh" id="154"]
+material = SubResource("StandardMaterial3D_cybvh")
+radius = 0.2
+height = 0.4
+
+[node name="FootstepParticles" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.285234, 0, 0)
+emitting = false
+amount = 20
+lifetime = 0.75
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+fixed_fps = 60
+visibility_aabb = AABB(-0.777431, -0.40001, -0.740087, 1.52053, 1.04195, 1.4238)
+process_material = SubResource("148")
+draw_pass_1 = SubResource("154")
+script = ExtResource("2")

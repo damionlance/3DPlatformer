@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://csloqv62ayts6"]
+
+[ext_resource type="PackedScene" uid="uid://dukyr35u73lcw" path="res://assets/3Dmodels/Buildings/GeneralStore.glb" id="1_b7idi"]
+[ext_resource type="Material" uid="uid://uu3ktchgqa1x" path="res://assets/materials/wood.tres" id="2_nsi6q"]
+[ext_resource type="Material" uid="uid://cmx4nhjtffj85" path="res://assets/materials/wood_window.tres" id="3_vck1k"]
+[ext_resource type="Material" uid="uid://c4yivfw8qk43u" path="res://assets/materials/grass_roof.tres" id="4_7smic"]
+
+[node name="GeneralStore" instance=ExtResource("1_b7idi")]
+
+[node name="GeneralStore" parent="." index="0"]
+transform = Transform3D(2.00001, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_nsi6q")
+surface_material_override/1 = ExtResource("3_vck1k")
+surface_material_override/2 = ExtResource("4_7smic")

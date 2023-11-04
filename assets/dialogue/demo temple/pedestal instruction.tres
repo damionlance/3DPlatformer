@@ -1,0 +1,12 @@
+[gd_resource type="JSON" format=3 uid=""]
+
+[resource]
+data = {
+"0": {
+"text": "There should be 3 buttons scattered throughout
+this temple..."
+},
+"1": {
+"text": "I bet you can escape if you press all three!"
+}
+}

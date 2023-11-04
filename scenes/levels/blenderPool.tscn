@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://b30asjlyo3ts5"]
+
+[ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_dqton"]
+[ext_resource type="PackedScene" uid="uid://bsql6oafltx0h" path="res://assets/models/levels/Pool/BlenderPool.glb" id="1_u0644"]
+[ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_8fuo0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qqnup"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.654902, 0.376471, 0.607843, 1)
+sky_curve = 0.0265165
+
+[sub_resource type="Sky" id="Sky_bo4n3"]
+sky_material = SubResource("ProceduralSkyMaterial_qqnup")
+
+[sub_resource type="Environment" id="Environment_dvimb"]
+background_mode = 2
+sky = SubResource("Sky_bo4n3")
+ambient_light_color = Color(0.227451, 0.313726, 0.478431, 1)
+ambient_light_energy = 5.15
+
+[node name="blenderPool" type="Node3D"]
+script = ExtResource("1_dqton")
+
+[node name="BlenderPool" parent="." instance=ExtResource("1_u0644")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0629071, 0, -0.0146928)
+
+[node name="Player" parent="." instance=ExtResource("2_8fuo0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183.805, 3.29467, -1438.4)
+
+[node name="DynamicObjects" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dvimb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.83378, 0.552097, 0, -0.552097, 0.83378, 0, 0, 0)
+light_energy = 0.09
+shadow_enabled = true

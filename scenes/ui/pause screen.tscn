@@ -1,0 +1,274 @@
+[gd_scene load_steps=11 format=3 uid="uid://btet040ih0fyq"]
+
+[ext_resource type="Theme" uid="uid://dh1dehixsqaqc" path="res://assets/UI Themes/default dialogue theme.tres" id="1_fo067"]
+[ext_resource type="Script" path="res://scripts/gui/pause menu/pause menu.gd" id="1_xa030"]
+[ext_resource type="PackedScene" uid="uid://brjysk84hvidf" path="res://scenes/ui/menu gradient.tscn" id="2_k5e4t"]
+[ext_resource type="Script" path="res://scripts/gui/main menu/button_hover.gd" id="4_jrg8o"]
+
+[sub_resource type="Animation" id="Animation_oqo6q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 338.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menu Gradient:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cky8l"]
+resource_name = "menu slide in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.0915055, 68.5935),
+"update": 0,
+"values": [Vector2(-388.675, 338.5), Vector2(0, 338.5)]
+}
+
+[sub_resource type="Animation" id="Animation_fq2t8"]
+resource_name = "menu slide out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.34151, 1),
+"update": 0,
+"values": [Vector2(0, 338.5), Vector2(-475.24, 338.5)]
+}
+
+[sub_resource type="Animation" id="Animation_wni1r"]
+resource_name = "pause slide out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.34151, 1),
+"update": 0,
+"values": [Vector2(0, 338.5), Vector2(-400, 338.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menu Gradient:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.420448, 1),
+"update": 0,
+"values": [Vector2(-0.996826, 0), Vector2(-1000, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7hu0d"]
+resource_name = "pause slide in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.0915055, 68.5935),
+"update": 0,
+"values": [Vector2(-388.675, 338.5), Vector2(0, 338.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menu Gradient:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.143587, 1),
+"update": 0,
+"values": [Vector2(-576, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wey8y"]
+_data = {
+"RESET": SubResource("Animation_oqo6q"),
+"menu slide in": SubResource("Animation_cky8l"),
+"menu slide out": SubResource("Animation_fq2t8"),
+"pause slide in": SubResource("Animation_7hu0d"),
+"pause slide out": SubResource("Animation_wni1r")
+}
+
+[node name="Pause Menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_fo067")
+script = ExtResource("1_xa030")
+
+[node name="Menu Gradient" parent="." instance=ExtResource("2_k5e4t")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wey8y")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = 338.5
+offset_right = 433.0
+offset_bottom = 750.5
+grow_vertical = 2
+rotation = -0.0617444
+theme_override_constants/margin_left = 80
+
+[node name="Main Menu" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Resume" type="Button" parent="MarginContainer/Main Menu"]
+custom_minimum_size = Vector2(353.59, 100)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Save and Quit")
+focus_neighbor_bottom = NodePath("../Reload")
+theme_override_font_sizes/font_size = 30
+script = ExtResource("4_jrg8o")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Main Menu/Resume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 30
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Main Menu/Resume/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Resume
+"
+
+[node name="Reload" type="Button" parent="MarginContainer/Main Menu"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Resume")
+focus_neighbor_bottom = NodePath("../Options")
+theme_override_font_sizes/font_size = 30
+script = ExtResource("4_jrg8o")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Main Menu/Reload"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 30
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Main Menu/Reload/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Reload
+"
+
+[node name="Options" type="Button" parent="MarginContainer/Main Menu"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Reload")
+focus_neighbor_bottom = NodePath("../Save and Quit")
+theme_override_font_sizes/font_size = 30
+script = ExtResource("4_jrg8o")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Main Menu/Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 30
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Main Menu/Options/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Options
+"
+
+[node name="Save and Quit" type="Button" parent="MarginContainer/Main Menu"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Options")
+focus_neighbor_bottom = NodePath("../Resume")
+theme_override_font_sizes/font_size = 30
+text = "
+"
+script = ExtResource("4_jrg8o")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Main Menu/Save and Quit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 30
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Main Menu/Save and Quit/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Save and Quit"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Reload" to="." method="_on_reload_pressed"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Save and Quit" to="." method="_on_save_and_quit_pressed"]

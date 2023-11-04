@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu8g6ln6c3iun"]
+
+[ext_resource type="Script" path="res://scripts/tools/Control Input and Processing.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/tests/ControlStickInput.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/tests/SpinAngleDisplay.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/gui/heads up display/FPS Counter.gd" id="4_8p2c6"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1")
+
+[node name="DebugDisplay" type="CanvasLayer" parent="."]
+
+[node name="ControlStickInput" type="Node2D" parent="DebugDisplay"]
+position = Vector2(57, 343)
+script = ExtResource("2")
+
+[node name="Node2D" type="Node2D" parent="DebugDisplay"]
+visible = false
+position = Vector2(56, 274)
+script = ExtResource("3")
+
+[node name="Label" type="Label" parent="DebugDisplay"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+script = ExtResource("4_8p2c6")

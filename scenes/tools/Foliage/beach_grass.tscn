@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctd8mprap3qgd"]
+
+[ext_resource type="PackedScene" uid="uid://cbu8jw1lecywg" path="res://assets/models/props/Beach Grass.glb" id="1_py6v1"]
+[ext_resource type="Shader" path="res://addons/proton_scatter/demos/assets/materials/grass.gdshader" id="2_acfhm"]
+[ext_resource type="Texture2D" uid="uid://5eadumrnyft7" path="res://assets/textures/pool/Grass Alpha.png" id="3_sa5gn"]
+
+[sub_resource type="Gradient" id="Gradient_qy8io"]
+offsets = PackedFloat32Array(0.369202, 0.549165, 0.910946, 1)
+colors = PackedColorArray(0.823529, 0.470588, 0.00392157, 1, 0.315548, 0.419333, 0.0441964, 1, 2.40654e-08, 0.479513, 9.62615e-07, 1, 0.568627, 0.431373, 0.113725, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l4xnx"]
+gradient = SubResource("Gradient_qy8io")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fj44u"]
+frequency = 0.0033
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fj3ia"]
+seamless = true
+noise = SubResource("FastNoiseLite_fj44u")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmbld"]
+render_priority = 0
+shader = ExtResource("2_acfhm")
+shader_parameter/alpha_scissor_threshold = 0.323
+shader_parameter/transmission = Color(0.176471, 0.384314, 0.164706, 1)
+shader_parameter/secondary_color = Color(0, 0, 0, 1)
+shader_parameter/secondary_attenuation = 1.125
+shader_parameter/grass_height = 1.0
+shader_parameter/wind_direction = Vector2(0.32, 1)
+shader_parameter/wind_speed = 0.675
+shader_parameter/wind_strength = 0.155
+shader_parameter/noise_scale = 6.0
+shader_parameter/texture_albedo = ExtResource("3_sa5gn")
+shader_parameter/texture_gradient = SubResource("GradientTexture1D_l4xnx")
+shader_parameter/texture_noise = SubResource("NoiseTexture2D_fj3ia")
+
+[node name="Beach Grass" instance=ExtResource("1_py6v1")]
+
+[node name="Grass 1" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_wmbld")

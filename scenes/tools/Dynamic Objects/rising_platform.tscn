@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cidp2f3wpxk7c"]
+
+[ext_resource type="Script" path="res://scripts/level objects/spinplat.gd" id="1_ujvjt"]
+
+[node name="Rising Platform" type="Node3D"]
+script = ExtResource("1_ujvjt")
