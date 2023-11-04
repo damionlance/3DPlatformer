@@ -130,9 +130,9 @@ func reset():
 	var distance = abs((_state._raycast_middle.get_collision_point() - _state._raycast_middle.global_position) *  .577)
 	_player.global_position += _state.snap_vector * distance
 	_state.snap_vector = -_state._raycast_middle.get_collision_normal()
-	_state.snap_vector = _state.snap_vector.normalized()
-	if _state.snap_vector.y < 0.00001:
+	if abs(_state.snap_vector.y) < 0.00001:
 		_state.snap_vector.y = 0.0
+	_state.snap_vector = _state.snap_vector.normalized()
 	if _state.snap_vector == Vector3.ZERO or _state.snap_vector.y != 0:
 		_state.update_state("Falling")
 		return
