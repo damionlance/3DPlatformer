@@ -129,11 +129,22 @@ func reset():
 	_state._reset_animation_parameters()
 	var distance = abs((_state._raycast_middle.get_collision_point() - _state._raycast_middle.global_position) *  .577)
 	_player.global_position += _state.snap_vector * distance
-	_state.snap_vector = -_state._raycast_middle.get_collision_normal()
+	if _state._raycast_middle.is_colliding():
+		_state.snap_vector = -_state._raycast_middle.get_collision_normal()
+	else:
+		_state._raycast_middle.target_position *= -1
+		_state._raycast_middle.force_raycast_update()
+		if _state._raycast_middle.is_colliding():
+			_state.snap_vector = -_state._raycast_middle.get_collision_normal()
+		_state._raycast_middle.target_position *= -1
 	if abs(_state.snap_vector.y) < 0.00001:
 		_state.snap_vector.y = 0.0
 	_state.snap_vector = _state.snap_vector.normalized()
 	if _state.snap_vector == Vector3.ZERO or _state.snap_vector.y != 0:
 		_state.update_state("Falling")
 		return
+	
+	var temp = _player.transform.looking_at(_player.global_transform.origin + _state.snap_vector, Vector3.UP)
+	if temp != Transform3D():
+		_player.transform = temp
 	pass
