@@ -7,6 +7,7 @@ var _state_name = "ThrowOut"
 @onready var _friendo = get_parent().get_parent()
 @onready var _grapple_raycast = $"../../../../GrappleRaycast"
 
+var constants := preload("res://resources/player/aerial physics constants.tres")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_state.state_dictionary[_state_name] = self
@@ -21,7 +22,7 @@ func update(delta):
 		if _grapple_raycast.is_colliding():
 			_friendo.position = _grapple_raycast.get_collision_point()
 		_state.update_state("StuckToWall")
-		_grapple_raycast.enabled()
+		_grapple_raycast.enabled = true
 		return
 	
 	if _state._controller._dive_state == 1:
@@ -53,12 +54,12 @@ func reset():
 	
 	var pVelocity = _state._player_state.velocity
 	var pCurrentSpeed = _state._player_state.current_speed
-	var pGravity = $"../../../../StateMachine/AerialMovement".current_jump_gravity
-	var defaultPGravity = $"../../../../StateMachine/AerialMovement"._jump_gravity
+	var pGravity = $"../../../../StateMachine/AerialMovement/Jump".current_jump_gravity
+	var defaultPGravity = constants._jump_gravity
 	var pMaxSpeed = $"../../../../StateMachine/GroundedMovement".max_speed
 	var pDirection = _state._player_state.move_direction
-	var pDiveSpeed = $"../../../../StateMachine/AerialMovement".dive_speed
-	var pJump = $"../../../../StateMachine/AerialMovement"._jump_strength*.5
+	var pDiveSpeed = 3
+	var pJump = $"../../../../StateMachine/AerialMovement/Jump".current_jump_strength*.5
 	pVelocity.y = 0
 	pVelocity += (pDirection * (pCurrentSpeed + pDiveSpeed)) + Vector3.UP * pJump
 	var timeOfJump

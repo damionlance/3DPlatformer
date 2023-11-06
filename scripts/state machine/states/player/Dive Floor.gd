@@ -14,6 +14,8 @@ var motion_input : String
 #private variables
 var _state_name = "Dive Floor"
 
+var steep_slope_timer := 0
+var steep_slope_buffer := 5
 var sound_player = AudioStreamPlayer.new()
 
 var frictionless_time := 5
@@ -28,7 +30,12 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	# Handle state changes
+	# Handle state changesif _player.get_floor_normal().dot(Vector3.UP) < .85 and _player.get_floor_normal().dot(Vector3.UP) != 0:
+	if steep_slope_buffer == steep_slope_timer:
+		steep_slope_timer = 0
+		_state.update_state("Uncontrolled Slide")
+		return
+	steep_slope_timer += 1
 	if _state.current_speed <= .5:
 		_state.update_state("Running")
 		return

@@ -13,7 +13,7 @@ extends CharacterBody3D
 @onready var coin_sounds = $"Sounds/Coin Collected"
 
 var properties := ["pleasant_smelling", "hydrophobic"]
-var has_fella := false
+var has_fella := true
 
 var snap_vector := Vector3.ZERO
 var inertia := 1

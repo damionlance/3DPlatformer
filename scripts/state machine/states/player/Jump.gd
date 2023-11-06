@@ -120,8 +120,6 @@ func reset():
 			current_jump_gravity = constants._dive_jump_gravity
 			current_jump_strength = constants._dive_jump_strength
 			_state.current_speed += dive_speed
-			if _state.current_speed < 20.0:
-				_state.current_speed = 20.0
 			_state.move_direction = _state.camera_relative_movement
 			_state.anim_tree["parameters/Jump/conditions/dive"] = true
 			sound_player.set_stream(load("res://assets/sounds/actor noises/Dive.mp3"))
