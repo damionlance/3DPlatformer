@@ -70,5 +70,5 @@ var _rollout_fall_gravity : float = (-2.0 * rollout_jump_height) / (rollout_jump
 
 var wall_jump_speed = 12.5
 var max_reel_in = 25.0
-var dive_speed := 2.0
+var dive_speed := 5.0
 var spin_skip_strength := 0.7

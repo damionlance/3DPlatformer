@@ -13,7 +13,7 @@ ambient_light_energy = 0.45
 script = ExtResource("1_wxxbr")
 
 [node name="Player" parent="." instance=ExtResource("2_v2y61")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9065, 11.3043, -9.94028)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9065, 11.3043, -55.127)
 
 [node name="pbfort" parent="." instance=ExtResource("3_c3nhn")]
 
