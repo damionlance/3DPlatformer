@@ -10,6 +10,7 @@ albedo_color = Color(0.211765, 0.211765, 0.211765, 1)
 [node name="Rubbish Ball" type="RigidBody3D"]
 collision_layer = 8
 collision_mask = 11
+continuous_cd = true
 max_contacts_reported = 2
 contact_monitor = true
 script = ExtResource("1_8x5yc")
@@ -21,3 +22,4 @@ shape = SubResource("SphereShape3D_oivr4")
 material = SubResource("StandardMaterial3D_idp51")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]

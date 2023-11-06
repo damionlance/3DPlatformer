@@ -1,15 +1,20 @@
 extends Node3D
 
 var current_object = null
-@onready var one_handed_position = $"../lilfella/rig/Skeleton3D/RightHand"
-@onready var _state = $"../StateMachine"
+var one_handed_position
+var _state
 
 var object_original_collision_layer
 var object_original_collision_mask
 
+func _ready():
+	one_handed_position = get_parent().find_child("RightHand", true)
+	_state = get_parent().find_child("StateMachine", false)
+
 func _process(_delta):
-	if current_object == null: 
-		_state.restricted_movement = false
+	if current_object == null:
+		if _state != null:
+			_state.restricted_movement = false
 		return
 	
 	if current_object.is_in_group("holdable"):
@@ -32,7 +37,8 @@ func hold_object(object):
 	object.set_collision_mask(0)
 	
 	if current_object.is_in_group("heavy"):
-		_state.restricted_movement = true
+		if _state != null:
+			_state.restricted_movement = true
 
 func drop_object():
 	current_object.set_collision_layer(object_original_collision_layer)

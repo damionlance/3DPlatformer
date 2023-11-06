@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://sa1nx52er4j3"]
+
+[ext_resource type="Script" path="res://scripts/level objects/pbs fortress/Gumball Machine.gd" id="1_2sfhs"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/HoldableObjectNode.gd" id="2_xp6jc"]
+[ext_resource type="PackedScene" uid="uid://d1ihh00ee7ei2" path="res://assets/models/levels/PB's Fortress/gumballmachine.glb" id="4_5u1s0"]
+
+[node name="Gumball Machine" type="Node3D"]
+script = ExtResource("1_2sfhs")
+
+[node name="Gumball Spawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3352, 3.08921, 0)
+script = ExtResource("2_xp6jc")
+
+[node name="gumballmachine" parent="." instance=ExtResource("4_5u1s0")]
+
+[connection signal="activate" from="gumballmachine/Trigger-stompbutton/StompButton" to="." method="_on_stomp_button_activate"]
+
+[editable path="gumballmachine"]

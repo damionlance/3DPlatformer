@@ -17,6 +17,8 @@ var _fall_timer := 0
 var vertical_rotation
 
 var base_rotation = 0
+var steep_slope_timer := 0
+var steep_slope_buffer := 5
 var can_slide := false
 var can_slide_timer := 0
 var can_slide_buffer := 5
@@ -27,10 +29,14 @@ func _ready():
 
 func update(delta):
 	# Handle all states
-	print( _player.get_floor_normal().dot(Vector3.UP))
 	if _player.get_floor_normal().dot(Vector3.UP) < .85 and _player.get_floor_normal().dot(Vector3.UP) != 0:
-		_state.update_state("Uncontrolled Slide")
-		return
+		if steep_slope_buffer == steep_slope_timer:
+			steep_slope_timer = 0
+			_state.update_state("Uncontrolled Slide")
+			return
+		steep_slope_timer += 1
+	else:
+		steep_slope_timer = 0 
 	if not _state.restricted_movement:
 		if Input.is_action_pressed("DiveButton"):
 			_state.update_state("Crouching")
@@ -45,11 +51,12 @@ func update(delta):
 			if _player.grappling:
 				_state.update_state("ReelIn")
 	if _state.attempting_jump and not _state.can_interact:
-		if _state.current_speed < 5:
+		if _state.current_speed < 5 and _state._holdable_object_node.current_object == null:
 			for body in get_tree().get_nodes_in_group("holdable"):
 				if (body.global_position - _player.global_position).length() < 2.5:
 					if previous_move_direction.dot((body.global_position - _player.global_position)) > .5:
 						_state._holdable_object_node.hold_object(body)
+						_state.attempting_jump = false
 						return
 		
 		if _state.just_landed and _state.current_jump < 3:
