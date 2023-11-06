@@ -27,6 +27,10 @@ func _ready():
 
 func update(delta):
 	# Handle all states
+	print( _player.get_floor_normal().dot(Vector3.UP))
+	if _player.get_floor_normal().dot(Vector3.UP) < .85 and _player.get_floor_normal().dot(Vector3.UP) != 0:
+		_state.update_state("Uncontrolled Slide")
+		return
 	if not _state.restricted_movement:
 		if Input.is_action_pressed("DiveButton"):
 			_state.update_state("Crouching")
@@ -41,7 +45,6 @@ func update(delta):
 			if _player.grappling:
 				_state.update_state("ReelIn")
 	if _state.attempting_jump and not _state.can_interact:
-		
 		if _state.current_speed < 5:
 			for body in get_tree().get_nodes_in_group("holdable"):
 				if (body.global_position - _player.global_position).length() < 2.5:

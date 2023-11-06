@@ -1,4 +1,4 @@
-[gd_scene load_steps=169 format=3 uid="uid://385mcfonrl8g"]
+[gd_scene load_steps=174 format=3 uid="uid://385mcfonrl8g"]
 
 [ext_resource type="Script" path="res://scripts/actors/player/Player.gd" id="1_vh0xg"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/StateMachine.gd" id="2_k8mag"]
@@ -21,9 +21,10 @@
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Slammed.gd" id="18_el24c"]
 [ext_resource type="Script" path="res://scripts/state machine/State.gd" id="18_oduss"]
 [ext_resource type="Script" path="res://scripts/tools/Camera.gd" id="19_fx30m"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Uncontrolled Slide.gd" id="19_wjv72"]
 [ext_resource type="Shader" path="res://assets/shaders/C64 Dither.gdshader" id="20_3sq3i"]
 [ext_resource type="Script" path="res://scripts/actors/player/shadow.gd" id="20_47ecb"]
-[ext_resource type="Texture2D" uid="uid://bl443oe8bfjft" path="res://assets/models/shadow.png" id="21_1rscf"]
+[ext_resource type="Texture2D" uid="uid://c52bihrts8irm" path="res://assets/models/shadow.png" id="21_1rscf"]
 [ext_resource type="Script" path="res://scripts/actors/player/Friendo.gd" id="21_cgka8"]
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/FriendoStateMachine.gd" id="22_065we"]
 [ext_resource type="Script" path="res://scripts/state machine/states/friendo/Idle.gd" id="23_sua4n"]
@@ -44,10 +45,10 @@
 [ext_resource type="PackedScene" uid="uid://b307pwugmfuji" path="res://scenes/ui/collectible_counter.tscn" id="40_0cooe"]
 [ext_resource type="Script" path="res://scripts/tools/Run Timer.gd" id="40_efptr"]
 [ext_resource type="Script" path="res://scripts/actors/player/FootFall Handler.gd" id="41_8nayu"]
-[ext_resource type="PackedScene" path="res://scenes/ui/dialogue prompt.tscn" id="41_mysnv"]
+[ext_resource type="PackedScene" uid="uid://d3msswd4ciyt3" path="res://scenes/ui/dialogue prompt.tscn" id="41_mysnv"]
 [ext_resource type="PackedScene" uid="uid://4vh2f3m2n7bn" path="res://assets/models/actors/Fella/possible final fella.glb" id="41_tlfky"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/HoldableObjectNode.gd" id="42_083u5"]
-[ext_resource type="PackedScene" path="res://scenes/ui/dialogue box.tscn" id="42_xi1wd"]
+[ext_resource type="PackedScene" uid="uid://b6n1a3115odny" path="res://scenes/ui/dialogue box.tscn" id="42_xi1wd"]
 
 [sub_resource type="CapsuleShape3D" id="147"]
 radius = 0.408809
@@ -68,6 +69,9 @@ radius = 0.096878
 [sub_resource type="CylinderShape3D" id="146"]
 height = 0.171016
 radius = 0.607043
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q6abs"]
+animation = &"Dive"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_42mrw"]
 animation = &"Ground Pound"
@@ -531,7 +535,21 @@ advance_condition = &"skid"
 advance_mode = 2
 advance_condition = &"ledge hang"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bih3b"]
+advance_mode = 2
+advance_condition = &"uncontrolled slide"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pb3mn"]
+advance_mode = 2
+advance_condition = &"running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2r7bh"]
+advance_mode = 2
+advance_condition = &"jump"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_num38"]
+states/Dive/node = SubResource("AnimationNodeAnimation_q6abs")
+states/Dive/position = Vector2(538, 158)
 "states/Ground Pound/node" = SubResource("AnimationNodeAnimation_42mrw")
 "states/Ground Pound/position" = Vector2(603.667, -143)
 states/Jump/node = SubResource("AnimationNodeStateMachine_njf4v")
@@ -552,7 +570,7 @@ states/land/position = Vector2(516, 7.33333)
 states/running/node = SubResource("AnimationNodeBlendTree_2t6qc")
 states/running/position = Vector2(291.677, 74.7779)
 states/spinning/node = SubResource("AnimationNodeAnimation_jx6ld")
-states/spinning/position = Vector2(465.333, 83)
+states/spinning/position = Vector2(614.666, 84.3333)
 "states/start jumping/node" = SubResource("AnimationNodeAnimation_aiq4s")
 "states/start jumping/position" = Vector2(-106.099, -86.049)
 "states/stop running/node" = SubResource("AnimationNodeAnimation_fodtb")
@@ -561,8 +579,8 @@ states/spinning/position = Vector2(465.333, 83)
 "states/wall climb/position" = Vector2(64.6667, -356.333)
 "states/wall slide/node" = SubResource("AnimationNodeAnimation_w5ks4")
 "states/wall slide/position" = Vector2(-133.333, -163.565)
-transitions = ["running", "stop running", SubResource("AnimationNodeStateMachineTransition_1xmfq"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_klhxs"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_nw8r3"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_neth8"), "stop running", "idle", SubResource("AnimationNodeStateMachineTransition_kxy37"), "idle", "start jumping", SubResource("AnimationNodeStateMachineTransition_0homr"), "start jumping", "Jump", SubResource("AnimationNodeStateMachineTransition_gc6ex"), "land", "running", SubResource("AnimationNodeStateMachineTransition_f5ee6"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_a32rx"), "running", "start jumping", SubResource("AnimationNodeStateMachineTransition_881fx"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_1pt78"), "land", "start jumping", SubResource("AnimationNodeStateMachineTransition_pongi"), "Jump", "wall slide", SubResource("AnimationNodeStateMachineTransition_y2j8y"), "wall slide", "start jumping", SubResource("AnimationNodeStateMachineTransition_jk32a"), "fall", "wall slide", SubResource("AnimationNodeStateMachineTransition_ooovh"), "wall slide", "fall", SubResource("AnimationNodeStateMachineTransition_424dw"), "Jump", "land", SubResource("AnimationNodeStateMachineTransition_5rp6i"), "running", "fall", SubResource("AnimationNodeStateMachineTransition_1jqft"), "Jump", "ledge hang", SubResource("AnimationNodeStateMachineTransition_0x2up"), "fall", "ledge hang", SubResource("AnimationNodeStateMachineTransition_ekayw"), "ledge hang", "Jump", SubResource("AnimationNodeStateMachineTransition_vfjty"), "ledge hang", "fall", SubResource("AnimationNodeStateMachineTransition_xo4tn"), "wall slide", "running", SubResource("AnimationNodeStateMachineTransition_aybet"), "stop running", "start jumping", SubResource("AnimationNodeStateMachineTransition_xq8c1"), "Jump", "wall climb", SubResource("AnimationNodeStateMachineTransition_un7dc"), "wall slide", "wall climb", SubResource("AnimationNodeStateMachineTransition_cecq5"), "wall climb", "running", SubResource("AnimationNodeStateMachineTransition_ixl3b"), "wall climb", "fall", SubResource("AnimationNodeStateMachineTransition_en5dd"), "wall climb", "start jumping", SubResource("AnimationNodeStateMachineTransition_l477u"), "fall", "wall climb", SubResource("AnimationNodeStateMachineTransition_idwwm"), "ledge hang", "wall slide", SubResource("AnimationNodeStateMachineTransition_tif1t"), "wall slide", "ledge hang", SubResource("AnimationNodeStateMachineTransition_ttgjr"), "Jump", "Ground Pound", SubResource("AnimationNodeStateMachineTransition_ni4mh"), "fall", "Ground Pound", SubResource("AnimationNodeStateMachineTransition_o2h36"), "Ground Pound", "land", SubResource("AnimationNodeStateMachineTransition_4sm22"), "start jumping", "Ground Pound", SubResource("AnimationNodeStateMachineTransition_184rx"), "running", "Skid", SubResource("AnimationNodeStateMachineTransition_40jcf"), "stop running", "Skid", SubResource("AnimationNodeStateMachineTransition_svj6w"), "Skid", "running", SubResource("AnimationNodeStateMachineTransition_p2hs7"), "Skid", "idle", SubResource("AnimationNodeStateMachineTransition_381co"), "Skid", "start jumping", SubResource("AnimationNodeStateMachineTransition_vrfkc"), "ledge hang", "running", SubResource("AnimationNodeStateMachineTransition_32tkd"), "running", "spinning", SubResource("AnimationNodeStateMachineTransition_0hq0t"), "spinning", "running", SubResource("AnimationNodeStateMachineTransition_gbakk"), "spinning", "Jump", SubResource("AnimationNodeStateMachineTransition_ax80t"), "running", "ledge hang", SubResource("AnimationNodeStateMachineTransition_n6fti"), "idle", "ledge hang", SubResource("AnimationNodeStateMachineTransition_xxqyx"), "start jumping", "fall", SubResource("AnimationNodeStateMachineTransition_ipo87"), "Jump", "fall", SubResource("AnimationNodeStateMachineTransition_e6p3n"), "fall", "Jump", SubResource("AnimationNodeStateMachineTransition_8iv7f"), "wall slide", "spinning", SubResource("AnimationNodeStateMachineTransition_fdqhx"), "Jump", "spinning", SubResource("AnimationNodeStateMachineTransition_i2fha"), "running", "crouching", SubResource("AnimationNodeStateMachineTransition_jvoh4"), "crouching", "running", SubResource("AnimationNodeStateMachineTransition_kwwpe"), "idle", "crouching", SubResource("AnimationNodeStateMachineTransition_3r275"), "crouching", "start jumping", SubResource("AnimationNodeStateMachineTransition_t3d6f"), "Skid", "crouching", SubResource("AnimationNodeStateMachineTransition_ye5tx"), "Jump", "Skid", SubResource("AnimationNodeStateMachineTransition_hc4cp"), "wall climb", "ledge hang", SubResource("AnimationNodeStateMachineTransition_34k4r")]
-graph_offset = Vector2(-584, -178)
+transitions = ["running", "stop running", SubResource("AnimationNodeStateMachineTransition_1xmfq"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_klhxs"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_nw8r3"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_neth8"), "stop running", "idle", SubResource("AnimationNodeStateMachineTransition_kxy37"), "idle", "start jumping", SubResource("AnimationNodeStateMachineTransition_0homr"), "start jumping", "Jump", SubResource("AnimationNodeStateMachineTransition_gc6ex"), "land", "running", SubResource("AnimationNodeStateMachineTransition_f5ee6"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_a32rx"), "running", "start jumping", SubResource("AnimationNodeStateMachineTransition_881fx"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_1pt78"), "land", "start jumping", SubResource("AnimationNodeStateMachineTransition_pongi"), "Jump", "wall slide", SubResource("AnimationNodeStateMachineTransition_y2j8y"), "wall slide", "start jumping", SubResource("AnimationNodeStateMachineTransition_jk32a"), "fall", "wall slide", SubResource("AnimationNodeStateMachineTransition_ooovh"), "wall slide", "fall", SubResource("AnimationNodeStateMachineTransition_424dw"), "Jump", "land", SubResource("AnimationNodeStateMachineTransition_5rp6i"), "running", "fall", SubResource("AnimationNodeStateMachineTransition_1jqft"), "Jump", "ledge hang", SubResource("AnimationNodeStateMachineTransition_0x2up"), "fall", "ledge hang", SubResource("AnimationNodeStateMachineTransition_ekayw"), "ledge hang", "Jump", SubResource("AnimationNodeStateMachineTransition_vfjty"), "ledge hang", "fall", SubResource("AnimationNodeStateMachineTransition_xo4tn"), "wall slide", "running", SubResource("AnimationNodeStateMachineTransition_aybet"), "stop running", "start jumping", SubResource("AnimationNodeStateMachineTransition_xq8c1"), "Jump", "wall climb", SubResource("AnimationNodeStateMachineTransition_un7dc"), "wall slide", "wall climb", SubResource("AnimationNodeStateMachineTransition_cecq5"), "wall climb", "running", SubResource("AnimationNodeStateMachineTransition_ixl3b"), "wall climb", "fall", SubResource("AnimationNodeStateMachineTransition_en5dd"), "wall climb", "start jumping", SubResource("AnimationNodeStateMachineTransition_l477u"), "fall", "wall climb", SubResource("AnimationNodeStateMachineTransition_idwwm"), "ledge hang", "wall slide", SubResource("AnimationNodeStateMachineTransition_tif1t"), "wall slide", "ledge hang", SubResource("AnimationNodeStateMachineTransition_ttgjr"), "Jump", "Ground Pound", SubResource("AnimationNodeStateMachineTransition_ni4mh"), "fall", "Ground Pound", SubResource("AnimationNodeStateMachineTransition_o2h36"), "Ground Pound", "land", SubResource("AnimationNodeStateMachineTransition_4sm22"), "start jumping", "Ground Pound", SubResource("AnimationNodeStateMachineTransition_184rx"), "running", "Skid", SubResource("AnimationNodeStateMachineTransition_40jcf"), "stop running", "Skid", SubResource("AnimationNodeStateMachineTransition_svj6w"), "Skid", "running", SubResource("AnimationNodeStateMachineTransition_p2hs7"), "Skid", "idle", SubResource("AnimationNodeStateMachineTransition_381co"), "Skid", "start jumping", SubResource("AnimationNodeStateMachineTransition_vrfkc"), "ledge hang", "running", SubResource("AnimationNodeStateMachineTransition_32tkd"), "running", "spinning", SubResource("AnimationNodeStateMachineTransition_0hq0t"), "spinning", "running", SubResource("AnimationNodeStateMachineTransition_gbakk"), "spinning", "Jump", SubResource("AnimationNodeStateMachineTransition_ax80t"), "running", "ledge hang", SubResource("AnimationNodeStateMachineTransition_n6fti"), "idle", "ledge hang", SubResource("AnimationNodeStateMachineTransition_xxqyx"), "start jumping", "fall", SubResource("AnimationNodeStateMachineTransition_ipo87"), "Jump", "fall", SubResource("AnimationNodeStateMachineTransition_e6p3n"), "fall", "Jump", SubResource("AnimationNodeStateMachineTransition_8iv7f"), "wall slide", "spinning", SubResource("AnimationNodeStateMachineTransition_fdqhx"), "Jump", "spinning", SubResource("AnimationNodeStateMachineTransition_i2fha"), "running", "crouching", SubResource("AnimationNodeStateMachineTransition_jvoh4"), "crouching", "running", SubResource("AnimationNodeStateMachineTransition_kwwpe"), "idle", "crouching", SubResource("AnimationNodeStateMachineTransition_3r275"), "crouching", "start jumping", SubResource("AnimationNodeStateMachineTransition_t3d6f"), "Skid", "crouching", SubResource("AnimationNodeStateMachineTransition_ye5tx"), "Jump", "Skid", SubResource("AnimationNodeStateMachineTransition_hc4cp"), "wall climb", "ledge hang", SubResource("AnimationNodeStateMachineTransition_34k4r"), "running", "Dive", SubResource("AnimationNodeStateMachineTransition_bih3b"), "Dive", "running", SubResource("AnimationNodeStateMachineTransition_pb3mn"), "Dive", "start jumping", SubResource("AnimationNodeStateMachineTransition_2r7bh")]
+graph_offset = Vector2(-591, -80)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qx7cd"]
 
@@ -642,6 +660,9 @@ script = ExtResource("17_ydgw3")
 
 [node name="Slammed" type="Node" parent="StateMachine/GroundedMovement"]
 script = ExtResource("18_el24c")
+
+[node name="Uncontrolled Slide" type="Node" parent="StateMachine/GroundedMovement"]
+script = ExtResource("19_wjv72")
 
 [node name="Damaged" type="Node" parent="StateMachine"]
 script = ExtResource("17_bpou6")
@@ -769,6 +790,7 @@ parameters/conditions/running = false
 parameters/conditions/skid = false
 parameters/conditions/spinning = false
 parameters/conditions/stop = false
+"parameters/conditions/uncontrolled slide" = false
 "parameters/conditions/wall climb" = false
 "parameters/conditions/wall slide" = false
 parameters/Jump/conditions/bonk = false
@@ -797,6 +819,9 @@ footstep = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 0
 collision_mask = 5
+continuous_cd = true
+angular_damp_mode = 1
+angular_damp = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GrappleSlider"]
 shape = SubResource("SphereShape3D_qx7cd")
@@ -1045,7 +1070,7 @@ bones/220/position = Vector3(-0.286896, 0.118866, 0.278486)
 bones/220/rotation = Quaternion(-0.5591, -4.42868e-14, 6.91517e-15, 0.8291)
 
 [node name="RightHand" type="BoneAttachment3D" parent="lilfella/rig/Skeleton3D" index="4"]
-transform = Transform3D(0.767347, -0.637949, -0.0768104, 0.537168, 0.572148, 0.620911, -0.352617, -0.514259, 0.779797, -0.632779, 1.38221, -0.287037)
+transform = Transform3D(0.767354, -0.637948, -0.0768126, 0.537171, 0.57215, 0.620913, -0.352619, -0.514257, 0.779801, -0.632779, 1.38221, -0.287036)
 bone_name = "DEF-hand.R"
 bone_idx = 174
 

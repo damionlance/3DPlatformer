@@ -194,20 +194,20 @@ requiredSpeed = -1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.823, 12.1621, 29.016)
 
 [node name="StaticBody3D" parent="temple/maze slideplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(3.86979, 0, -3.16619)
+constant_linear_velocity = Vector3(3.8698, 1.03859e-05, -3.16618)
 
 [node name="maze slideplat2-slidingplat" parent="temple" index="14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, 15.8825)
 
 [node name="StaticBody3D" parent="temple/maze slideplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 0, 5)
+constant_linear_velocity = Vector3(0, 1.13787e-05, 5)
 
 [node name="maze slideplat3-slidingplat" parent="temple" index="15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.1621, -14.369)
 position_in_path = 1
 
 [node name="StaticBody3D" parent="temple/maze slideplat3-slidingplat" index="0"]
-constant_linear_velocity = Vector3(0, 0, -5)
+constant_linear_velocity = Vector3(0, 1.10409e-05, -5)
 
 [node name="maze slideplat4-slidingplat" parent="temple" index="16"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.854, 12.0248, -32.3373)
@@ -218,50 +218,46 @@ button = NodePath("../maze button-stompbutton/StompButton")
 [node name="StaticBody3D" parent="temple/maze slideplat4-slidingplat" index="0"]
 constant_linear_velocity = Vector3(0, 3, 0)
 
-[node name="slidingplat1-slidingplat" parent="temple" index="134"]
+[node name="slidingplat1-slidingplat" parent="temple" index="142"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -91.6013, 16.9605, -10.5212)
 
 [node name="StaticBody3D" parent="temple/slidingplat1-slidingplat" index="0"]
-constant_linear_velocity = Vector3(-4.99993, 0.0244635, -0.0113727)
+constant_linear_velocity = Vector3(-4.99993, 0.0245093, -0.0114192)
 
-[node name="slidingplat2-slidingplat" parent="temple" index="135"]
+[node name="slidingplat2-slidingplat" parent="temple" index="143"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -69.6613, 16.9093, -0.49737)
 
 [node name="StaticBody3D" parent="temple/slidingplat2-slidingplat" index="0"]
-constant_linear_velocity = Vector3(5, 0, 0)
+constant_linear_velocity = Vector3(5, -9.85015e-05, 2.05211e-06)
 
-[node name="slidingplat3-slidingplat" parent="temple" index="136"]
+[node name="slidingplat3-slidingplat" parent="temple" index="144"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -79.1613, 16.9093, 9.50263)
 
 [node name="StaticBody3D" parent="temple/slidingplat3-slidingplat" index="0"]
-constant_linear_velocity = Vector3(5, 0, 0)
+constant_linear_velocity = Vector3(5, -5.67612e-06, 0)
 
-[node name="spinplat1-risingplat" parent="temple" index="222"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.964, 19, -46.3127)
+[node name="spinplat1-risingplat" parent="temple" index="230"]
 button = NodePath("../spin button 1-stompbutton/StompButton")
 spinHeight = Vector3(0, 8, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.25
 
-[node name="spinplat3-risingplat" parent="temple" index="223"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6, 21, -32)
+[node name="spinplat3-risingplat" parent="temple" index="231"]
 button = NodePath("../spin button 3-stompbutton/StompButton")
 spinHeight = Vector3(0, 10, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.25
 
-[node name="spinplat4-risingplat" parent="temple" index="224"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 31, -22)
+[node name="spinplat4-risingplat" parent="temple" index="232"]
 button = NodePath("../spin button 2-stompbutton/StompButton")
 spinHeight = Vector3(0, 20, 0)
 risingSpeed = 10.0
 fallingSpeed = 0.25
 
-[node name="spin button 1-stompbutton" parent="temple" index="225"]
+[node name="spin button 1-stompbutton" parent="temple" index="233"]
 transform = Transform3D(1, 0, 0, 0, 1.25, 0, 0, 0, 1, -51.6322, 15.3111, -19.3866)
 
-[node name="spinplat2-risingplat" parent="temple" index="228"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 31, -22)
+[node name="spinplat2-risingplat" parent="temple" index="236"]
 button = NodePath("../spin button 1-stompbutton/StompButton")
 spinHeight = Vector3(0, 20, 0)
 risingSpeed = 10.0

@@ -309,6 +309,7 @@ func _reset_animation_parameters():
 	anim_tree["parameters/conditions/wall climb"] = false
 	anim_tree["parameters/conditions/wall slide"] = false
 	anim_tree["parameters/conditions/crouching"] = false
+	anim_tree["parameters/conditions/uncontrolled slide"] = false
 	
 	#JUMP PARAMETERS
 	anim_tree["parameters/Jump/conditions/jump 1"] = false
