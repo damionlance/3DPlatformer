@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8k3wyttmvc2f"]
+
+[ext_resource type="Script" path="res://scripts/level objects/pbs fortress/Rocking Horse.gd" id="1_ejlsv"]
+[ext_resource type="PackedScene" uid="uid://4hb85og0j6f7" path="res://assets/models/levels/PB's Fortress/rocking horse.glb" id="2_cosea"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ve8xb"]
+radius = 3.02554
+
+[node name="Rocking Horse" type="Area3D"]
+transform = Transform3D(-0.999991, 0, 0.00401916, 0, 1, 0, -0.00401916, 0, -0.999991, 0, 0, 0)
+script = ExtResource("1_ejlsv")
+
+[node name="rocking horse" parent="." instance=ExtResource("2_cosea")]
+
+[node name="Skeleton3D" parent="rocking horse/Armature" index="0"]
+bones/0/position = Vector3(7.57843e-18, -0.0134083, 0.119585)
+bones/0/rotation = Quaternion(0.0291926, 0, 0, 0.999574)
+
+[node name="Saddle" type="BoneAttachment3D" parent="."]
+transform = Transform3D(1, -1.45519e-11, 0, 0, 0.998296, -0.0583603, 0, 0.0583603, 0.998296, 0, 1.72561, 0.119585)
+bone_name = "Bone"
+bone_idx = 0
+use_external_skeleton = true
+external_skeleton = NodePath("../rocking horse/Armature/Skeleton3D")
+
+[node name="Target Position" type="Node3D" parent="."]
+transform = Transform3D(1.00003, 0, -1.75834e-06, 0, 1, 0, 1.75834e-06, 0, 1.00003, 0, 0, 0)
+top_level = true
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Target Position"]
+
+[node name="Detection Area" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_ve8xb")
+
+[editable path="rocking horse"]
