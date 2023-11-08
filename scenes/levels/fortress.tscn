@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_wxxbr"]
 [ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_v2y61"]
 [ext_resource type="PackedScene" uid="uid://de8pd7uwfbfmx" path="res://assets/models/levels/fortress/pbfort.glb" id="3_c3nhn"]
-[ext_resource type="PackedScene" uid="uid://sa1nx52er4j3" path="res://scenes/tools/Interactive Objects/gumball_machine.tscn" id="4_bn5yv"]
+[ext_resource type="PackedScene" path="res://scenes/tools/Interactive Objects/gumball_machine.tscn" id="4_bn5yv"]
 [ext_resource type="PackedScene" uid="uid://b8k3wyttmvc2f" path="res://scenes/tools/Interactive Objects/rocking_horse.tscn" id="5_7gu7p"]
 
 [sub_resource type="Environment" id="Environment_r6nig"]
@@ -120,7 +120,7 @@ libraries = {
 }
 
 [node name="Saddle" parent="Rocking Horse" index="1"]
-transform = Transform3D(-1, -3.57628e-07, 2.31899e-07, -2.38376e-07, 0.018927, -0.999821, 3.27826e-07, -0.999821, -0.018927, -3.8147e-06, 1.3727, -0.0172653)
+transform = Transform3D(-1, -3.8743e-07, 2.31899e-07, -2.38376e-07, 0.018927, -0.999821, 3.57628e-07, -0.999821, -0.018927, -3.8147e-06, 1.3727, -0.0172577)
 
 [node name="Target Position" parent="Rocking Horse" index="2"]
 transform = Transform3D(1.00003, 0, -1.75834e-06, 0, 1, 0, 1.75834e-06, 0, 1.00003, 0, 0, -145.59)
