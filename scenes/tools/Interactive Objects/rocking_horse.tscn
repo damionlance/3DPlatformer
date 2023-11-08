@@ -17,7 +17,7 @@ bones/0/position = Vector3(7.57843e-18, -0.0134083, 0.119585)
 bones/0/rotation = Quaternion(0.0291926, 0, 0, 0.999574)
 
 [node name="Saddle" type="BoneAttachment3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.998296, -0.0583603, 0, 0.0583603, 0.998296, 7.57843e-18, -0.0134083, 0.119585)
+transform = Transform3D(1, -1.45519e-11, 0, 0, 0.998296, -0.0583603, 4.65661e-10, 0.0583603, 0.998296, 0, 1.72561, 0.119585)
 bone_name = "Bone"
 bone_idx = 0
 use_external_skeleton = true
@@ -26,8 +26,6 @@ external_skeleton = NodePath("../rocking horse/Armature/Skeleton3D")
 [node name="Target Position" type="Node3D" parent="."]
 transform = Transform3D(1.00003, 0, -1.75834e-06, 0, 1, 0, 1.75834e-06, 0, 1.00003, 0, 0, 0)
 top_level = true
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Target Position"]
 
 [node name="Detection Area" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_ve8xb")

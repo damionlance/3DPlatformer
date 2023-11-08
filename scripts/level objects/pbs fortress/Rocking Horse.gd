@@ -1,12 +1,12 @@
+@tool
 extends interactive_button
 
-var target_position
+@export var target_position : Vector3
 var rocking_with_player := false
 @onready var animation_player = $"rocking horse/AnimationPlayer"
 var sweet_spots
 
 func _ready():
-	target_position = $"Target Position".global_position
 	connect("body_entered", _on_body_entered)
 	connect("body_exited", _on_body_exited)
 	_player = get_tree().current_scene.find_child("Player")
@@ -14,9 +14,16 @@ func _ready():
 	sweet_spots = [animation_player.current_animation_length/2-animation_player.current_animation_length/4, animation_player.current_animation_length/2+animation_player.current_animation_length/4]
 	for property in properties:
 		add_to_group(property)
+	print(target_position)
+	$"Target Position".global_position = target_position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Engine.is_editor_hint():
+		var aim_direction = $"Target Position".global_position
+		aim_direction.y = global_position.y
+		look_at(aim_direction, Vector3.UP)
+		target_position = $"Target Position".global_position
 	if rocking_with_player == true:
 		_player.global_position = $"Saddle".global_position
 
