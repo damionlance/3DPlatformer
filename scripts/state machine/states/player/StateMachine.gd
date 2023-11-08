@@ -281,7 +281,10 @@ func _throw():
 			temp_object.velocity.y += 15
 		else:
 			temp_object.linear_velocity = velocity * 2
-			temp_object.linear_velocity.y += 15
+			temp_object.linear_velocity = (current_dir * 15) + velocity
+			if temp_object.linear_velocity.length() < 20:
+				temp_object.linear_velocity = temp_object.linear_velocity.normalized() * 20
+			temp_object.linear_velocity.y += 40
 		_holdable_object_node.drop_object()
 
 func _on_Friendo_hit_wall(friendo_position):

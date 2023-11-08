@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_wxxbr"]
 [ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_v2y61"]
 [ext_resource type="PackedScene" uid="uid://de8pd7uwfbfmx" path="res://assets/models/levels/fortress/pbfort.glb" id="3_c3nhn"]
-[ext_resource type="PackedScene" path="res://scenes/tools/Interactive Objects/gumball_machine.tscn" id="4_bn5yv"]
+[ext_resource type="PackedScene" uid="uid://sa1nx52er4j3" path="res://scenes/tools/Interactive Objects/gumball_machine.tscn" id="4_bn5yv"]
 [ext_resource type="PackedScene" uid="uid://b8k3wyttmvc2f" path="res://scenes/tools/Interactive Objects/rocking_horse.tscn" id="5_7gu7p"]
 
 [sub_resource type="Environment" id="Environment_r6nig"]
