@@ -14,7 +14,6 @@ func _ready():
 	sweet_spots = [animation_player.current_animation_length/2-animation_player.current_animation_length/4, animation_player.current_animation_length/2+animation_player.current_animation_length/4]
 	for property in properties:
 		add_to_group(property)
-	print(target_position)
 	$"Target Position".global_position = target_position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,7 +21,8 @@ func _process(delta):
 	if Engine.is_editor_hint():
 		var aim_direction = $"Target Position".global_position
 		aim_direction.y = global_position.y
-		look_at(aim_direction, Vector3.UP)
+		if aim_direction != global_position:
+			look_at(aim_direction, Vector3.UP)
 		target_position = $"Target Position".global_position
 	if rocking_with_player == true:
 		_player.global_position = $"Saddle".global_position

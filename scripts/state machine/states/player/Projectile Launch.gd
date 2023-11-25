@@ -1,10 +1,6 @@
 extends AerialMovement
 var current_position := Vector3.ZERO
 var target_position := Vector3.ZERO
-
-var time_of_launch := 2000.0
-
-var current_jump_gravity = constants._jump_gravity
 var launched := false
 #private variables
 var _state_name = "Projectile Launch"
@@ -35,29 +31,43 @@ func update(delta):
 	
 	if current_position != Vector3.ZERO:
 		if launched:
-			_state.velocity = _state.calculate_velocity(current_jump_gravity, delta)
+			_state.velocity = _state.calculate_velocity(_state.terminal_velocity, delta)
 		else:
-			var total_distance = (target_position - current_position)
-			print("Total distance: ", total_distance.length())
-			var horizontal_velocity = total_distance/time_of_launch
-			print("Horizontal velocity: ", horizontal_velocity.length())
-			var height_offset = target_position.y - current_position.y
-			var angle = 0.5 * asin((current_jump_gravity*total_distance.length())/pow(horizontal_velocity.length(),2))
-			print("Launch angle in degrees: ", rad_to_deg(angle))
-			var initial_velocity = (1/cos(angle))
-			initial_velocity *= sqrt((current_jump_gravity*.5*pow(total_distance.length(),2))/(total_distance.length()*tan(angle) + height_offset))
-			print("Initial velocity: ", initial_velocity)
-			_state.velocity = Vector3(initial_velocity*cos(angle), -initial_velocity * sin(angle), 0)
-			var rotation_angle = atan2(target_position.z-current_position.z, target_position.x-current_position.x)
-			print("Aimed angle in degrees: ", rad_to_deg(rotation_angle))
-			_state.velocity = _state.velocity.rotated(Vector3.UP, rotation_angle)
-			_state.velocity.z *= -1
-			_player.velocity = _state.velocity
-			_state.current_speed = Vector3(_state.velocity.x, 0, _state.velocity.z).length()
-			_state.move_direction = Vector3(_state.velocity.x, 0, _state.velocity.z).normalized()
+			calculate_launch_angle_and_velocity()
+			
 			launched = true
 	# Process physics
 	pass
+
+func calculate_launch_angle_and_velocity():
+	
+	var planar_target = Vector3(target_position.x, 0, target_position.z)
+	var planar_position = Vector3(current_position.x, 0, current_position.z)
+	var target_height = (target_position.y - current_position.y)
+	var gravity = _state.terminal_velocity
+	var delta_x = (planar_target-planar_position).length()
+	var Viy
+	var Vix
+	var t1
+	var t0
+	var delta_y = 0 # for planar launches
+	if target_position.y >= current_position.y:
+		delta_y = 5 + target_height
+		t1 = sqrt(5/(.5 * -gravity))
+		t0 = sqrt(delta_y/(.5 * -gravity))
+		Viy = -gravity * t0
+		Vix = delta_x/(t0+t1)
+	else:
+		pass
+	
+	var rotation_angle = atan2(planar_target.z-planar_position.z, planar_target.x - planar_position.x)
+	var Vi = Vector3(Vix, Viy, 0).rotated(Vector3.UP, rotation_angle)
+	Vi.z *= -1
+	var horizontal_velocity = Vi
+	horizontal_velocity.y = 0
+	_state.move_direction = horizontal_velocity.normalized()
+	_state.current_speed = horizontal_velocity.length()
+	_state.velocity.y = Viy
 
 func reset():
 	launched = false

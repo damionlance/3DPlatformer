@@ -77,7 +77,7 @@ _data = {
 script = ExtResource("1_wxxbr")
 
 [node name="Player" parent="." instance=ExtResource("2_v2y61")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -137.25, 15.6375, 79.9227)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.2639, 13.7178, 42.8993)
 
 [node name="pbfort" parent="." instance=ExtResource("3_c3nhn")]
 
@@ -92,8 +92,8 @@ light_color = Color(1, 1, 0.843137, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -147.164, 15, 80.335)
 
 [node name="Rocking Horse" parent="." instance=ExtResource("5_7gu7p")]
-transform = Transform3D(-0.999631, 0, 0.02715, 0, 1, 0, -0.02715, 0, -0.999631, -88.3837, 13.0956, 49.7706)
-target_position = Vector3(-89.1139, 13.1856, 76.6569)
+transform = Transform3D(-0.83825, 0, 0.545285, 0, 1, 0, -0.545285, 0, -0.83825, -88.3837, 13.0956, 49.7706)
+target_position = Vector3(-92.3999, 23.1774, 55.9446)
 
 [node name="Armature" parent="Rocking Horse/rocking horse" index="0"]
 transform = Transform3D(-1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0.962599, 0)
@@ -121,10 +121,46 @@ libraries = {
 }
 
 [node name="Saddle" parent="Rocking Horse" index="1"]
-transform = Transform3D(-1, -3.27826e-07, 2.32132e-07, -2.38376e-07, 0.018927, -0.999821, 3.12924e-07, -0.999821, -0.018927, 0, 1.3727, -0.0172729)
+transform = Transform3D(-1, -3.8743e-07, 2.32831e-07, -2.38376e-07, 0.018927, -0.999821, 3.57628e-07, -0.999821, -0.018927, -3.8147e-06, 1.3727, -0.0172729)
 
 [node name="Target Position" parent="Rocking Horse" index="2"]
-transform = Transform3D(1.00003, 0, -1.74344e-06, 0, 1, 0, 1.74344e-06, 0, 1.00003, -89.1139, 13.1856, 76.6569)
+transform = Transform3D(1.00003, 0, -1.74344e-06, 0, 1, 0, 1.74344e-06, 0, 1.00003, -92.3999, 23.1774, 55.9446)
+
+[node name="Rocking Horse2" parent="." instance=ExtResource("5_7gu7p")]
+transform = Transform3D(-0.999754, 0, -0.0221558, 0, 1, 0, 0.0221558, 0, -0.999754, -149, 37, 70)
+target_position = Vector3(-148.161, 37.2876, 107.859)
+
+[node name="Saddle" parent="Rocking Horse2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.998296, -0.0583603, 0, 0.0583603, 0.998296, 1.52588e-05, 1.72561, 0.119583)
+
+[node name="Target Position" parent="Rocking Horse2" index="2"]
+transform = Transform3D(1.00003, 0, -1.75834e-06, 0, 1, 0, 1.75834e-06, 0, 1.00003, -148.161, 37.2876, 107.859)
+
+[node name="Rocking Horse3" parent="." instance=ExtResource("5_7gu7p")]
+transform = Transform3D(0.021037, 0, -0.999778, 0, 1, 0, 0.999778, 0, 0.021037, -132.094, 80, 33.2363)
+target_position = Vector3(-91.5934, 80, 32.3841)
+
+[node name="Saddle" parent="Rocking Horse3" index="1"]
+transform = Transform3D(1, 0, -1.86265e-09, 0, 0.998296, -0.0583603, 1.86265e-09, 0.0583603, 0.998296, -3.8147e-06, 1.72561, 0.119583)
+
+[node name="Target Position" parent="Rocking Horse3" index="2"]
+transform = Transform3D(1.00003, 0, -1.75834e-06, 0, 1, 0, 1.75834e-06, 0, 1.00003, -91.5934, 80, 32.3841)
+
+[node name="Rocking Horse4" parent="." instance=ExtResource("5_7gu7p")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -50.2481, 9, -67.2707)
+target_position = Vector3(-94.5323, 141.174, -67.2707)
+
+[node name="Saddle" parent="Rocking Horse4" index="1"]
+transform = Transform3D(1, -2.22045e-16, 0, 0, 0.998296, -0.0583603, 3.55271e-15, 0.0583603, 0.998296, 0, 1.72561, 0.119583)
+
+[node name="Target Position" parent="Rocking Horse4" index="2"]
+transform = Transform3D(1.00003, 0, -1.75834e-06, 0, 1, 0, 1.75834e-06, 0, 1.00003, -94.5323, 141.174, -67.2707)
 
 [editable path="Rocking Horse"]
 [editable path="Rocking Horse/rocking horse"]
+[editable path="Rocking Horse2"]
+[editable path="Rocking Horse2/rocking horse"]
+[editable path="Rocking Horse3"]
+[editable path="Rocking Horse3/rocking horse"]
+[editable path="Rocking Horse4"]
+[editable path="Rocking Horse4/rocking horse"]
