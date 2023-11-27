@@ -20,17 +20,17 @@ func update(delta):
 	state.velocity.y += -9.8 * delta
 	
 	var distance_to_punyling = (punyling.global_position - body.global_position).length()
-	var punyling_distance_to_player = (punyling.global_position - state.player.global_position).length()
-	var distance_to_player = (body.global_position-state.player.global_position).length()
+	var punyling_distance_toplayer = (punyling.global_position - state.player.global_position).length()
+	var distance_toplayer = (body.global_position-state.player.global_position).length()
 	var direction
-	if distance_to_punyling < punyling_distance_to_player:
+	if distance_to_punyling < punyling_distance_toplayer:
 		direction = distance_to_line() + body.global_position.direction_to(state.player.global_position)
-		if distance_to_player > 30 and distance_to_player < 50 and timer.time_left == 0:
+		if distance_toplayer > 30 and distance_toplayer < 50 and timer.time_left == 0:
 			state.update_state("Rush")
 			return
 	else:
 		direction = body.global_position.direction_to(state.player.global_position)
-		if distance_to_player < 20 and timer.time_left == 0:
+		if distance_toplayer < 20 and timer.time_left == 0:
 			state.update_state("Rush")
 			return
 	

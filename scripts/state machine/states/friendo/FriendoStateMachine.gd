@@ -11,14 +11,14 @@ var max_speed := 5.0
 
 var grapple_position = Vector3.ZERO
 
-var _current_state
+var _currentstate
 
 #onready variables
-@onready var _player_state = get_parent().get_parent().get_parent().get_node("StateMachine")
-@onready var _player = get_parent().get_parent().get_parent()
+@onready var playerstate = get_parent().get_parent().get_parent().get_node("StateMachine")
+@onready var player = get_parent().get_parent().get_parent()
 @onready var _friendo = get_parent()
 @onready var _camera = find_child("CameraPivot")
-@onready var _controller = _player.find_child("Controller")
+@onready var controller = player.find_child("Controller")
 
 @onready var _homing_node = $"../../../FriendoHomingNode"
 
@@ -29,11 +29,11 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	_current_state.update(delta)
+	_currentstate.update(delta)
 
-func update_state( new_state ):
-	_current_state = state_dictionary[new_state]
-	_current_state.reset()
+func update_state( newstate ):
+	_currentstate = state_dictionary[newstate]
+	_currentstate.reset()
 
 func calculate_velocity(gravity, delta):
 	velocity = (move_direction * movement_speed) + gravity * delta

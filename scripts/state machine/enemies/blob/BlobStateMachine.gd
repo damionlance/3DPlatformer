@@ -18,7 +18,7 @@ var terminal_velocity := 50
 var previous_angle := [0.0, 0.0]
 var previous_direction := Vector2.ZERO
 var gravity : int = ProjectSettings.get_setting("physics/2d/default_gravity")
-var _current_state = null
+var _currentstate = null
 
 var is_on_floor := false
 
@@ -42,7 +42,7 @@ var home = null
 @onready var _raycast_left = _blob.get_node("Left Raycast")
 @onready var _raycast_right = _blob.get_node("Right Raycast")
 @onready var _raycast_middle = _blob.get_node("Front Raycast")
-@onready var _player = _blob.owner.find_child("Player")
+@onready var player = _blob.owner.find_child("Player")
 @onready var _animation_tree = $"../AnimationTree"
 @onready var _behavior_timer = $"../BehaviorTimer"
 
@@ -64,16 +64,16 @@ func _process(delta):
 		update_state("Idle")
 		return
 	
-	if _current_state == null:
+	if _currentstate == null:
 		update_state("Idle")
-	_current_state.update(delta)
-	if _current_state.name == "Idle" or _current_state.name == "Run":
+	_currentstate.update(delta)
+	if _currentstate.name == "Idle" or _currentstate.name == "Run":
 		process_interests()
 
 
-func update_state( new_state ):
-	_current_state = state_dictionary[new_state]
-	_current_state.reset()
+func update_state( newstate ):
+	_currentstate = state_dictionary[newstate]
+	_currentstate.reset()
 
 func calculate_velocity(delta) -> Vector3:
 	var temp = velocity.y

@@ -10,7 +10,7 @@ extends SpotLight3D
 
 var rng = RandomNumberGenerator.new()
 var state = 2
-var last_state = 2
+var laststate = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

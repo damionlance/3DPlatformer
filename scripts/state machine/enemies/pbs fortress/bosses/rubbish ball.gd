@@ -36,7 +36,7 @@ func increase_size():
 
 
 func _on_body_entered(body):
-	if body.is_in_group("scared of rubbish") and body.state._current_state.state_name != "Damaged":
+	if body.is_in_group("scared of rubbish") and body.state._currentstate.state_name != "Damaged":
 		body.state.HP -= current_level
 		body.state.update_state("Damaged")
 		destroy()
@@ -45,6 +45,6 @@ func _on_body_entered(body):
 			destroy()
 
 
-func _on_sleeping_state_changed():
+func _on_sleepingstate_changed():
 	if sleeping and not breaks_on_ground:
 		start_expiring()

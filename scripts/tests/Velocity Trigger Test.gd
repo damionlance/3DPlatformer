@@ -18,9 +18,9 @@ func _ready():
 
 func _on_VelocityTrigger_velocity_trigger_fired(body):
 	if body.name == "Player":
-		body._state.velocity.y = 100
+		body.state.velocity.y = 100
 		body.velocity.y = 100
-		body._state.snap_vector = Vector3.ZERO
-		body._state.update_state("Falling")
-		body._state._jump_state = body._state.jump
+		body.state.snap_vector = Vector3.ZERO
+		body.state.update_state("Falling")
+		body.state.jump_state = body.state.jump
 	pass # Replace with function body.

@@ -13,8 +13,8 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body.name == "Player":
-		body._state.velocity.y = 25
+		body.state.velocity.y = 25
 		body.velocity.y = 25
-		body._state.snap_vector = Vector3.ZERO
-		body._state._jump_state = body._state.spin_jump
-		body._state.update_state("Falling")
+		body.state.snap_vector = Vector3.ZERO
+		body.state.jump_state = body.state.spin_jump
+		body.state.update_state("Falling")

@@ -27,3 +27,4 @@ rollout_jump_time_to_peak = 0.3
 rollout_jump_time_to_descent = 0.3
 air_friction = 0.99
 air_acceleration = 2.0
+terminal_velocity = 25.0

@@ -3,7 +3,7 @@ extends Collectable
 @onready var root = get_tree().get_current_scene()
 @onready var coin = $Coin
 
-@onready var sound_player := AudioStreamPlayer.new()
+@onready var soundplayer := AudioStreamPlayer.new()
 @onready var coin_sound := load("res://assets/sounds/activated noises/retro_coin_01.ogg")
 @onready var special_coin_sound := load("res://assets/sounds/activated noises/retro_coin_02.ogg")
 
@@ -34,9 +34,9 @@ var special_coin = false
 
 func _ready():
 	$AnimationPlayer.seek(randf()/2.0)
-	sound_player.bus = "Sound Effects"
-	sound_player.volume_db = -5
-	add_child(sound_player)
+	soundplayer.bus = "Sound Effects"
+	soundplayer.volume_db = -5
+	add_child(soundplayer)
 	if root is Control:
 		queue_free()
 		return
@@ -96,14 +96,14 @@ func _process(delta):
 
 func _on_coin_body_entered(body):
 	if body.get_name() == "Player" and not touched:
-		sound_player.pitch_scale = Global.current_collectable_frequency_scale
+		soundplayer.pitch_scale = Global.current_collectable_frequency_scale
 		Global.current_collectable_frequency_scale += Global.collectable_frequency_scale
 		Global.collectable_frequency_timer = 60
 		if "LevelCoin" in name:
-			sound_player.set_stream(special_coin_sound)
+			soundplayer.set_stream(special_coin_sound)
 		else:
-			sound_player.set_stream(coin_sound)
-		sound_player.play()
+			soundplayer.set_stream(coin_sound)
+		soundplayer.play()
 		process_mode = Node.PROCESS_MODE_PAUSABLE
 		playerBody = body
 		if not collected:

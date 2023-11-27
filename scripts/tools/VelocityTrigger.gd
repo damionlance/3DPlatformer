@@ -7,9 +7,9 @@ extends ShapeCast3D
 @onready var _parent = get_parent()
 @onready var height = get_parent().get_aabb().size.y
 @onready var particles = $GPUParticles3D
-@onready var audio_player = AudioStreamPlayer3D.new()
+@onready var audioplayer = AudioStreamPlayer3D.new()
 @onready var audio_stream = load("res://assets/sounds/activated noises/Chunking.mp3")
-@onready var _player = get_tree().get_current_scene().find_child("Player")
+@onready var player = get_tree().get_current_scene().find_child("Player")
 
 signal activate(body)
 var active := false
@@ -29,15 +29,15 @@ func _ready():
 	collisionshape.points = PackedVector3Array(verts)
 	shape = collisionshape
 	position = Vector3.UP
-	audio_player.bus = "Ambient Sounds"
-	audio_player.set_stream(audio_stream)
-	audio_player.volume_db = -14
-	add_child(audio_player)
+	audioplayer.bus = "Ambient Sounds"
+	audioplayer.set_stream(audio_stream)
+	audioplayer.volume_db = -14
+	add_child(audioplayer)
 
 func _physics_process(_delta):
-	if _player == null:
+	if player == null:
 		return
-	if abs((_player.global_position - global_position).length()) > 5:
+	if abs((player.global_position - global_position).length()) > 5:
 		return
 	force_shapecast_update()
 	var bodies = get_collision_count()
@@ -63,7 +63,7 @@ func _slightly_depress():
 
 func _ground_pound_test(body):
 	if body.name == "Player":
-		if body._state._jump_state ==  body._state.ground_pound:
+		if body.state.jump_state ==  body.state.ground_pound:
 			emit_signal("activate", body)
 			activatable = false
 			active = true
@@ -91,7 +91,7 @@ func _slam_down():
 	if tween != null and tween.is_running():
 		tween.stop()
 	particles.emitting = true
-	audio_player.play()
+	audioplayer.play()
 	tween = create_tween()
 	tween.tween_property(get_parent(), "global_position", original_position - Vector3(0, height, 0), .1)
 

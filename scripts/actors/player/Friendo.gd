@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @onready var goal_location := get_parent()
 @onready var player_location := get_parent().get_parent()
-@onready var _state := get_node("../../StateMachine")
+@onready var state := get_node("../../StateMachine")
 @onready var grapple_shape := $Grapple
 @export var toss_friendo := false
 
@@ -22,6 +22,6 @@ func _physics_process(_delta):
 	velocity = velocity
 	pass
 
-func _on_StateMachine_throw_fella():
+func _onstateMachine_throw_fella():
 	throwing = true
 	pass # Replace with function body.

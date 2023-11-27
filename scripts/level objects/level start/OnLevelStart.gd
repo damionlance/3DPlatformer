@@ -14,7 +14,6 @@ var cinematic_cameras
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Player/StateMachine.level_loaded = true
 	emit_signal("level_loaded")
 
 func ensure_collectable_exists(collectable_name):

@@ -4,8 +4,8 @@ var state_dictionary : Dictionary
 
 var level_loaded = false
 
-var _current_state = null
-var _previous_state = null
+var _currentstate = null
+var _previousstate = null
 
 @export var HP := 9
 
@@ -34,13 +34,13 @@ func _process(delta):
 		velocity.y = 0
 	if level_loaded != true:
 		return
-	_current_state.update(delta)
+	_currentstate.update(delta)
 	update_physics_data(velocity)
 
-func update_state( new_state ):
-	_previous_state = _current_state
-	_current_state = state_dictionary[new_state]
-	_current_state.reset()
+func update_state( newstate ):
+	_previousstate = _currentstate
+	_currentstate = state_dictionary[newstate]
+	_currentstate.reset()
 
 func update_physics_data(velocity):
 	var lookdir = atan2(current_direction.x, current_direction.z)

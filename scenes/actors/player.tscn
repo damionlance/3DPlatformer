@@ -1,0 +1,79 @@
+[gd_scene load_steps=15 format=3 uid="uid://q0ntyxnavgqa"]
+
+[ext_resource type="Script" path="res://scripts/actors/player/Player_all_raycast.gd" id="1_2clf3"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/StateMachine.gd" id="2_0ax74"]
+[ext_resource type="PackedScene" uid="uid://4vh2f3m2n7bn" path="res://assets/models/actors/Fella/possible final fella.glb" id="2_dx06d"]
+[ext_resource type="Script" path="res://scripts/actors/player/raycast_handler.gd" id="3_ip2tk"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/aerial_movement.gd" id="3_iygc6"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Jump.gd" id="4_egrs2"]
+[ext_resource type="Script" path="res://scripts/tools/Camera.gd" id="4_f1fdh"]
+[ext_resource type="Shader" path="res://assets/shaders/C64 Dither.gdshader" id="5_4ogbp"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Falling.gd" id="5_j64dv"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/grounded_movement.gd" id="6_r4bex"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Running.gd" id="7_moui0"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Idle.gd" id="8_g1gfr"]
+[ext_resource type="PackedScene" uid="uid://bu8g6ln6c3iun" path="res://scenes/tools/Controller.tscn" id="13_kfpib"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5gn7b"]
+render_priority = 0
+shader = ExtResource("5_4ogbp")
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_2clf3")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_0ax74")
+
+[node name="AerialMovement" type="Node" parent="StateMachine"]
+script = ExtResource("3_iygc6")
+
+[node name="Jump" type="Node" parent="StateMachine/AerialMovement"]
+script = ExtResource("4_egrs2")
+ground_pound_finished = true
+
+[node name="Falling" type="Node" parent="StateMachine/AerialMovement"]
+script = ExtResource("5_j64dv")
+
+[node name="GroundedMovement" type="Node" parent="StateMachine"]
+script = ExtResource("6_r4bex")
+
+[node name="Running" type="Node" parent="StateMachine/GroundedMovement"]
+script = ExtResource("7_moui0")
+
+[node name="Idle" type="Node" parent="StateMachine/GroundedMovement"]
+script = ExtResource("8_g1gfr")
+
+[node name="possible final fella" parent="." instance=ExtResource("2_dx06d")]
+
+[node name="RaycastHandler" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("3_ip2tk")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+process_mode = 3
+script = ExtResource("4_f1fdh")
+camera_sensitivity = Vector2(2, 2)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+spring_length = 10.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.12232, 7.53115)
+current = true
+fov = 80.0
+far = 500.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CameraPivot/SpringArm3D/Camera3D"]
+visible = false
+
+[node name="TextureRect" type="ColorRect" parent="CameraPivot/SpringArm3D/Camera3D/CanvasLayer"]
+material = SubResource("ShaderMaterial_5gn7b")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Controller" parent="." instance=ExtResource("13_kfpib")]

@@ -27,7 +27,7 @@ func reset():
 
 func finished_building():
 	
-	if state._current_state.state_name != state_name:
+	if state._currentstate.state_name != state_name:
 		return
 	
 	state.target.visible = false

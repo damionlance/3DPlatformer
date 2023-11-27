@@ -1,30 +1,30 @@
 extends Node
 
 #private variables
-var _state_name = "StuckToWall"
+var state_name = "StuckToWall"
 #onready variables
-@onready var _state = get_parent()
+@onready var state = get_parent()
 @onready var _friendo = get_parent().get_parent()
 @onready var _grapple = $"../../Grapple"
 
 @onready var _grapple_raycast = $"../../../../GrappleRaycast"
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_state.state_dictionary[_state_name] = self
+	state.state_dictionary[state_name] = self
 	pass # Replace with function body.
 
 var last_distance
 
 func update(_delta):
 	# State processing
-	if not _state._player.grappling:
+	if not state.player.grappling:
 		if _grapple.get_child(0).get_child(0):
 			_grapple.get_child(0).get_child(0).queue_free()
-		_state.update_state("Idle")
+		state.update_state("Idle")
 		return
 	
-	var distance = (_state._player.global_transform.origin - _friendo.global_transform.origin).length()
-	if _state._controller._throw_state != 0:
+	var distance = (state.player.global_transform.origin - _friendo.global_transform.origin).length()
+	if state.controller.throw_state != 0:
 		if not _grapple.get_child(0).get_child(0) and distance >= last_distance:
 			_grapple.position = _friendo.position
 			_grapple.scale.x = distance * 2 + 2
@@ -44,7 +44,7 @@ func reset():
 	
 	last_distance = 9999
 	_friendo.velocity = Vector3.ZERO
-	_state.move_direction = Vector3.ZERO
-	_state.movement_speed = 0.0
+	state.move_direction = Vector3.ZERO
+	state.movement_speed = 0.0
 	_friendo.emit_signal("hit_wall", _friendo.global_transform.origin)
 	pass

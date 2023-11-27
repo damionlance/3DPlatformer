@@ -5,13 +5,13 @@ extends interactive_button
 
 func _activate():
 	if not inactive:
-		_on_body_exited(_player)
+		_on_body_exited(player)
 		inactive = true
-		_player.activate_dialogue_box(dialogue_file,self)
+		player.activate_dialogue_box(dialogue_file,self)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	connect("body_entered", _on_body_entered)
 	connect("body_exited", _on_body_exited)
-	_player = get_tree().current_scene.find_child("Player")
+	player = get_tree().current_scene.find_child("Player")
 	for property in properties:
 		add_to_group(property)

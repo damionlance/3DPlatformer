@@ -2,10 +2,10 @@ extends Panel
 var i = 0
 var ready_for_input = false
 var dialogue : Dictionary
-@onready var _state = $"../../../StateMachine"
+@onready var state = $"../../../StateMachine"
 
 func add_new_text(new_text):
-	_state.attempting_jump = false
+	state.attempting_jump = false
 	$MarginContainer/RichTextLabel.text = "[center]" + new_text + "[/center]"
 
 func display_dialogue() -> bool:

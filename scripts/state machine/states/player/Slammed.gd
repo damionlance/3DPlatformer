@@ -12,34 +12,34 @@ var motion_input : String
 
 @onready var landing_particles = "res://scenes/particles/landing particles.tscn"
 #private variables
-var _state_name = "Slammed"
+var state_name = "Slammed"
 
-var sound_player = AudioStreamPlayer.new()
+var soundplayer = AudioStreamPlayer.new()
 
 var frictionless_time := 5
 var frictionless_timer := 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sound_player.bus = "Sound Effects"
-	sound_player.set_mix_target(AudioStreamPlayer.MIX_TARGET_CENTER)
-	sound_player.volume_db = -9
-	add_child(sound_player)
-	_state.state_dictionary[_state_name] = self
+	soundplayer.bus = "Sound Effects"
+	soundplayer.set_mix_target(AudioStreamPlayer.MIX_TARGET_CENTER)
+	soundplayer.volume_db = -9
+	add_child(soundplayer)
+	state.state_dictionary[state_name] = self
 	pass # Replace with function body.
 
 func update(delta):
 	# Handle state changes
-	if _state.current_speed <= .5:
-		_state.update_state("Running")
+	if state.current_speed <= .5:
+		state.update_state("Running")
 		return
-	if (_player.is_on_floor()):
-		if _state.ground_friction == 1 and frictionless_timer > frictionless_time:
-			_state.current_speed *= .95
+	if (player.is_on_floor()):
+		if state.ground_friction == 1 and frictionless_timer > frictionless_time:
+			state.current_speed *= .95
 		elif frictionless_timer > frictionless_time:
-			_state.current_speed *= _state.ground_friction
+			state.current_speed *= state.ground_friction
 	else:
-		_state._jump_state = _state.jump
-		_state.update_state("Falling")
+		state.jump_state = state.jump
+		state.update_state("Falling")
 	frictionless_timer += 1
 	# Handle animation tree
 	
@@ -48,22 +48,22 @@ func update(delta):
 	# Handle inputs
 	
 	# Process Physics
-	_state.velocity = _state.calculate_velocity(-9.8, delta)
+	state.velocity = state.calculate_velocity(-9.8, delta)
 	pass
 
 func reset():
-	_state.anim_tree["parameters/conditions/jump"] = true
-	_state.anim_tree["parameters/Jump/conditions/dive"] = true
-	_state.current_speed = _state.velocity.length()
-	_state.move_direction = _state.velocity.normalized()
+	state.anim_tree["parameters/conditions/jump"] = true
+	state.anim_tree["parameters/Jump/conditions/dive"] = true
+	state.current_speed = state.velocity.length()
+	state.move_direction = state.velocity.normalized()
 	frictionless_timer = 0
-	_state._reset_animation_parameters()
+	state._reset_animation_parameters()
 	var instance = load(landing_particles).instantiate()
 	add_child(instance)
-	instance.global_position = _state._player.global_position
-	sound_player.set_stream(load("res://assets/sounds/actor noises/Jump Land.mp3"))
-	sound_player.play()
-	_state.snap_vector = Vector3.DOWN
+	instance.global_position = state.player.global_position
+	soundplayer.set_stream(load("res://assets/sounds/actor noises/Jump Land.mp3"))
+	soundplayer.play()
+	state.snap_vector = Vector3.DOWN
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

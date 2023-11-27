@@ -4,15 +4,15 @@ extends Control
 var new_settings = Dictionary()
 var in_menu := false
 
-var audio_player = AudioStreamPlayer.new()
+var audioplayer = AudioStreamPlayer.new()
 var audio_stream = load("res://assets/sounds/UI Noises/select button.ogg")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"AnimationPlayer".play("slide_in")
 	$"MarginContainer/Main Menu/Video".grab_focus()
-	audio_player.bus = "Sound Effects"
-	audio_player.set_stream(audio_stream)
-	add_child(audio_player)
+	audioplayer.bus = "Sound Effects"
+	audioplayer.set_stream(audio_stream)
+	add_child(audioplayer)
 	new_settings.clear()
 
 func _process(_delta):
@@ -39,7 +39,7 @@ func clear_settings():
 	get_parent()._back()
 
 func _on_back_pressed():
-	audio_player.play()
+	audioplayer.play()
 	if $"AnimationPlayer".current_animation != "slide_out":
 		$"AnimationPlayer".play("slide_out")
 	if new_settings.size() == 0:
@@ -66,7 +66,7 @@ func _on_sfx_slider_value_changed(value):
 
 
 func _on_video_pressed():
-	audio_player.play()
+	audioplayer.play()
 	if $"AnimationPlayer".current_animation != "slide_out":
 		$"AnimationPlayer".play("slide_out")
 	$"options container".visible = true
@@ -75,7 +75,7 @@ func _on_video_pressed():
 
 
 func _on_audio_pressed():
-	audio_player.play()
+	audioplayer.play()
 	if $"AnimationPlayer".current_animation != "slide_out":
 		$"AnimationPlayer".play("slide_out")
 	$"options container".visible = true
@@ -83,8 +83,8 @@ func _on_audio_pressed():
 	in_menu = true
 
 
-func _on_controller_binds_pressed():
-	audio_player.play()
+func _oncontroller_binds_pressed():
+	audioplayer.play()
 	if $"AnimationPlayer".current_animation != "slide_out":
 		$"AnimationPlayer".play("slide_out")
 	$"options container".visible = true

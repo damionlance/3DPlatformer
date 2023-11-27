@@ -11,7 +11,7 @@ var breaks_momentum = false
 var motion_input : String
 
 #private variables
-var _state_name = "Crouching"
+var state_name = "Crouching"
 var _fall_timer := 0
 
 var vertical_rotation
@@ -22,54 +22,52 @@ var can_slide_timer := 0
 var can_slide_buffer := 5
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_state.state_dictionary[_state_name] = self
+	state.state_dictionary[state_name] = self
 	pass 
 
 func update(delta):
 	# Handle all states
 	if not Input.is_action_pressed("DiveButton"):
-		_state.update_state("Running")
+		state.update_state("Running")
 		return
-	if _state.attempting_jump and not _state.can_interact:
+	if state.attempting_jump and not state.can_interact:
 		
-		if _state.current_speed < 5:
+		if state.current_speed < 5:
 			for body in get_tree().get_nodes_in_group("holdable"):
-				if (body.global_position - _player.global_position).length() < 2.5:
-					if previous_move_direction.dot((body.global_position - _player.global_position)) > .5:
-						_state._holdable_object_node.hold_object(body)
+				if (body.global_position - player.global_position).length() < 2.5:
+					if previous_move_direction.dot((body.global_position - player.global_position)) > .5:
+						state._holdable_object_node.hold_object(body)
 						return
 		
-		if _state.just_landed and _state.current_jump < 3:
-			_state.current_jump += 1
+		if state.just_landed and state.current_jump < 3:
+			state.current_jump += 1
 		else:
-			_state.current_jump = 1
-		if _state._controller.input_strength > .1:
-			_state._jump_state = _state.long_jump
+			state.current_jump = 1
+		if state._controller.input_strength > .1:
+			state.jump_state = state.long_jump
 		else:
-			_state._jump_state = _state.side_flip
-		_state.update_state("Jump")
+			state.jump_state = state.side_flip
+		state.update_state("Jump")
 		return
-	if not _player.is_on_floor():
-		_state._jump_state = _state.jump
-		_state.update_state("Falling")
-		_state.anim_tree["parameters/conditions/fall"] = true
+	if not player.is_on_floor():
+		state.jump_state = state.jump
+		state.update_state("Falling")
+		state.anim_tree["parameters/conditions/fall"] = true
 		return
 	else:
 		_fall_timer = 0
 	# Handle Animation Tree
-	if _state.attempting_throw:
-		_state._throw()
+	if state.attempting_throw:
+		state._throw()
 	
-	_state.anim_tree["parameters/crouching/crouch blend/blend_amount"] = _state.current_speed/crouch_walk
+	state.anim_tree["parameters/crouching/crouch blend/blend_amount"] = state.current_speed/crouch_walk
 	# Process all inputs
 	
-	previous_speed = _state.current_speed
-	crouched_movement_processing()
-	look_forward()
-	_state.current_dir = _state.move_direction
+	previous_speed = state.current_speed
+	state.current_dir = state.move_direction
 	
 	# Process all relevant timers
-	if _state.current_speed > max_speed * .9:
+	if state.current_speed > max_speed * .9:
 		can_slide = true
 		can_slide_timer = 0
 	elif can_slide:
@@ -79,21 +77,21 @@ func update(delta):
 			can_slide = false
 
 	#Process physics
-	_state.velocity = _state.calculate_velocity(0, delta)
+	state.velocity = state.calculate_velocity(0, delta)
 	pass
 
 func reset():
-	_state._reset_animation_parameters()
-	_state.anim_tree["parameters/conditions/crouching"] = true
+	state._reset_animation_parameters()
+	state.anim_tree["parameters/conditions/crouching"] = true
 	get_parent().dashing = false
-	_state._air_drift_state = _state.not_air_drifting
-	var collision = _player.get_last_slide_collision()
+	state._air_driftstate = state.not_air_drifting
+	var collision = player.get_last_slide_collision()
 	if collision:
-		_state.snap_vector = Vector3.DOWN
+		state.snap_vector = Vector3.DOWN
 	else:
-		_state.snap_vector = Vector3.ZERO
-	_state.velocity.y = 0
+		state.snap_vector = Vector3.ZERO
+	state.velocity.y = 0
 	can_slide = false
 	can_slide_timer = 0
-	_player.rotation.z = 0
+	player.rotation.z = 0
 	pass

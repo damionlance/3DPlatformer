@@ -39,6 +39,7 @@ var double_jump_buffer := 5
 
 @export var air_friction := 0.99
 @export var air_acceleration := 2.0
+@export var terminal_velocity := 25.0
 
 var _jump_strength : float = (2.0 * jump_height) / jump_time_to_peak
 var _jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)

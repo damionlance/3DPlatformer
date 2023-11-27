@@ -2,8 +2,26 @@ extends Node
 
 var movement_direction := Vector2.ZERO # Always Normalized
 var input_strength := 0.0
+@onready var camera = $"../CameraPivot"
 
 var previous_direction := Vector2.ZERO
+var forwards := Vector3.ZERO
+var right := Vector3.ZERO
+var camera_relative_movement := Vector3.ZERO
+
+var attempting_jump := false
+var allow_jump := false
+var attempting_dive := false
+var allow_dive := true
+var spin_allowed := false
+var pivot_allowed := false
+var spin_timer := 0
+var spin_buffer := 30
+var pivot_timer := 0
+var pivot_time_buffer := 30
+var is_on_floor := false
+var attempting_throw := false
+var restricted_movement := false
 
 # Spin variables
 var angle := [0.0, 0.0]
@@ -16,21 +34,24 @@ var spin_jump_sign := int(0)
 # pivot variables
 var pivot_buffer = []
 
-var _jump_state := 0
+var jump_buffer := 0
+var jump_timer := 5
+
+var jump_state := 0
 enum {
 	jump_pressed = 1,
 	jump_held = 2,
 	jump_released = 0
 }
 
-var _dive_state := 0
+var dive_state := 0
 enum {
 	dive_pressed = 1,
 	dive_held = 2,
 	dive_released = 0
 }
 
-var _throw_state := 0
+var throw_state := 0
 enum {
 	throw_pressed = 1,
 	throw_held = 2,
@@ -48,7 +69,6 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(_delta):
-	
 	movement_direction = Input.get_vector("Right", "Left", "Backward", "Forward")
 	input_strength = movement_direction.length()
 	if input_strength > .9:
@@ -60,20 +80,73 @@ func _process(_delta):
 	if input_strength:
 		movement_direction /= input_strength
 	
-	
 	if Input.get_action_strength("Jump"):
-		_jump_state = jump_pressed if _jump_state == 0 else jump_held
-	else: _jump_state = jump_released
+		jump_state = jump_pressed if jump_state == 0 else jump_held
+	else: jump_state = jump_released
 	if Input.get_action_strength("DiveButton"):
-		_dive_state = dive_pressed if _dive_state == 0 else dive_held
-	else: _dive_state = dive_released
+		dive_state = dive_pressed if dive_state == 0 else dive_held
+	else: dive_state = dive_released
 	if Input.get_action_strength("Throw"):
-		_throw_state = throw_pressed if _throw_state == 0 else throw_held
-	else: _throw_state = throw_released
+		throw_state = throw_pressed if throw_state == 0 else throw_held
+	else: throw_state = throw_released
 	
 	check_for_spin()
 	check_for_pivot()
-	pass
+	input_handling()
+
+func input_handling():
+	if Input.is_action_pressed("Pause"):
+		camera.halt_input = true
+		$"../".add_child(load("res://scenes/ui/pause screen.tscn").instantiate())
+		$"../HUD/MarginContainer"._pause_enter()
+		get_tree().paused = true
+	
+	forwards = camera.global_transform.basis.z
+	forwards.y = 0
+	forwards = forwards.normalized()
+	forwards *= movement_direction.y
+	right = camera.global_transform.basis.x * movement_direction.x
+	camera_relative_movement = -forwards + -right
+	var resetting_collision = false
+	var jump_released_since_jump = false
+	
+	if spin_entered:
+		spin_allowed = true
+	if spin_allowed:
+		spin_timer += 1
+		if spin_timer == spin_buffer:
+			spin_allowed = false
+			spin_timer = 0
+	if pivot_entered:
+		pivot_allowed = true
+	if pivot_allowed:
+		pivot_timer += 1
+		if pivot_timer == pivot_time_buffer:
+			pivot_allowed = false
+			pivot_timer = 0
+	
+	if jump_state == jump_pressed and allow_jump:
+		attempting_jump = true
+	elif jump_state == jump_held and jump_buffer < jump_timer:
+		attempting_jump = true
+		jump_buffer += 1
+	else: 
+		attempting_jump = false
+	if dive_state == dive_pressed and allow_dive and not restricted_movement:
+		attempting_dive = true
+	else: 
+		attempting_dive = false
+	
+	if throw_state == throw_pressed:
+		attempting_throw = true
+	elif throw_state == throw_held:
+		attempting_throw = false
+	else:
+		attempting_throw = false
+	
+	if (jump_state == jump_released and
+		dive_state == dive_released):
+			jump_buffer = 0
 
 var stayed_still_buffer = 5
 var stayed_still_timer = 0

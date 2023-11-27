@@ -4,7 +4,7 @@ var last_active_menu_nodepath
 var current_active_menu_nodepath
 var current_active_menu
 
-var audio_player = AudioStreamPlayer.new()
+var audioplayer = AudioStreamPlayer.new()
 var audio_stream = load("res://assets/sounds/UI Noises/select button.ogg")
 
 # Called when the node enters the scene tree for the first time.
@@ -13,13 +13,13 @@ func _ready():
 	$"AnimationPlayer".play("pause slide in")
 	$"MarginContainer/Main Menu/Resume".grab_focus()
 	main_menu_signals()
-	audio_player.bus = "Sound Effects"
-	audio_player.set_stream(audio_stream)
-	add_child(audio_player)
+	audioplayer.bus = "Sound Effects"
+	audioplayer.set_stream(audio_stream)
+	add_child(audioplayer)
 	pass # Replace with function body.
 
 func _on_options_pressed():
-	audio_player.play()
+	audioplayer.play()
 	if $"AnimationPlayer".current_animation != "menu slide out":
 		$"AnimationPlayer".play("menu slide out")
 	last_active_menu_nodepath = current_active_menu_nodepath
@@ -29,7 +29,7 @@ func _on_options_pressed():
 	pass # Replace with function body.
 	
 func _back():
-	audio_player.play()
+	audioplayer.play()
 	main_menu_signals()
 	$"AnimationPlayer".play("menu slide in")
 	$"MarginContainer/Main Menu/Resume".grab_focus()
@@ -41,7 +41,7 @@ func _on_quit_game_pressed():
 
 
 func _on_resume_pressed():
-	audio_player.play()
+	audioplayer.play()
 	if $"AnimationPlayer".current_animation != "pause slide out":
 		$"AnimationPlayer".play("pause slide out")
 	get_parent().find_child("CameraPivot").halt_input = false
@@ -59,13 +59,13 @@ func main_menu_signals():
 
 
 func _on_save_and_quit_pressed():
-	audio_player.play()
+	audioplayer.play()
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(load("res://scenes/ui/title screen.tscn"))
 
 
 func _on_reload_pressed():
-	audio_player.play()
+	audioplayer.play()
 	Global._delete_save()
 	get_tree().reload_current_scene()
 	get_tree().paused = false

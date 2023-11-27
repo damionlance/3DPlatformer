@@ -13,7 +13,7 @@ var breaks_momentum = false
 var motion_input : String
 
 #private variables
-var _state_name = "Demo"
+var state_name = "Demo"
 
 #onready variables
 @onready var state = get_parent()
@@ -21,7 +21,7 @@ var _state_name = "Demo"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	state.state_dictionary[_state_name] = self
+	state.state_dictionary[state_name] = self
 	pass # Replace with function body.
 
 func update(_delta):

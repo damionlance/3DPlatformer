@@ -1,36 +1,36 @@
 extends AerialMovement
 
-var _state_name = "SwingFromFriendo"
+var state_name = "SwingFromFriendo"
 
 @onready var grapple = $"../../../GrappleRaycast"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_state.state_dictionary[_state_name] = self
+	state.state_dictionary[state_name] = self
 	
 	pass # Replace with function body.
 
 func update(_delta):
-	if _controller._throw_state == 0:
-		_player.grappling = false
-		_state._jump_state = _state.jump
-		_state.update_state("Falling")
+	if controller.throw_state == 0:
+		player.grappling = false
+		state.jump_state = state.jump
+		state.update_state("Falling")
 		return
-	if _state.attempting_dive:
-		_state.update_state("ReelIn")
+	if state.attempting_dive:
+		state.update_state("ReelIn")
 		return
-	if _state.attempting_jump:
-		_player.grappling = false
-		_state._jump_state = _state.jump
-		_state.update_state("Jump")
+	if state.attempting_jump:
+		player.grappling = false
+		state.jump_state = state.jump
+		state.update_state("Jump")
 		return
-	_state.current_speed = _state.velocity.length()
-	_state.move_direction = _state.velocity.normalized()
+	state.current_speed = state.velocity.length()
+	state.move_direction = state.velocity.normalized()
 	pass
 
 func reset():
-	_state._reset_animation_parameters()
-	_player.grappling = true
-	_player.grapple_slider.linear_velocity = _player.velocity
-	_state.velocity.y = 0
+	state._reset_animation_parameters()
+	player.grappling = true
+	player.grapple_slider.linear_velocity = player.velocity
+	state.velocity.y = 0
 	pass

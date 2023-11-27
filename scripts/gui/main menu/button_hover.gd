@@ -3,7 +3,7 @@ extends Button
 var tween
 var starting_position := Vector2(-500, -500)
 
-var audio_player = AudioStreamPlayer.new()
+var audioplayer = AudioStreamPlayer.new()
 var audio_stream = load("res://assets/sounds/UI Noises/button.ogg")
 
 @onready var original_text = $"MarginContainer/RichTextLabel".text
@@ -11,16 +11,16 @@ var audio_stream = load("res://assets/sounds/UI Noises/button.ogg")
 func _ready():
 	connect("focus_entered", _on_focus_entered)
 	connect("focus_exited", _on_focus_exited)
-	audio_player.bus = "Sound Effect"
-	audio_player.set_stream(audio_stream)
-	add_child(audio_player)
+	audioplayer.bus = "Sound Effect"
+	audioplayer.set_stream(audio_stream)
+	add_child(audioplayer)
 
 func _process(delta):
 	if starting_position == Vector2(-500,-500):
 		starting_position = position
 
 func _on_focus_entered():
-	audio_player.play()
+	audioplayer.play()
 	move_tween()
 
 func get_original_position():
