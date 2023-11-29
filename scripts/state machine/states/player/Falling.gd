@@ -24,14 +24,12 @@ func _ready():
 
 func update(delta):
 	var delta_v = Vector3.ZERO
-	
 	# Handle state logic
 	if raycasts.is_on_floor:
 		state.update_state("Idle")
 		return
 	# Update relevant counters
 	delta_v.y = -1
-	
 	# Process Physics
 	player.delta_v = delta_v
 	pass

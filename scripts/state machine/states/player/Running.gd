@@ -35,7 +35,6 @@ func update(delta):
 		return
 	
 	delta_v = grounded_movement_processing()
-	
 	player.delta_v = delta_v
 	pass
 

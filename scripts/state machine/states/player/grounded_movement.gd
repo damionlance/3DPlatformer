@@ -19,5 +19,8 @@ func grounded_movement_processing() -> Vector3:
 	var delta_v
 	
 	delta_v = controller.camera_relative_movement * floor_acceleration
+	# adjust delta_v to slope
+	#var cross = Vector3.UP.cross(raycasts.average_floor_normal).normalized()
+	#delta_v = delta_v.rotated(cross, Vector3.UP.signed_angle_to(raycasts.average_floor_normal, cross))
 	
 	return delta_v

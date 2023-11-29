@@ -14,15 +14,13 @@ func _ready():
 func update(delta):
 	# Handle all states
 	var delta_v = Vector3.ZERO
-	player.velocity.y = 0
-	if not raycasts.is_on_floor or false:
+	if not raycasts.is_on_floor:
 		state.update_state("Falling")
 		return
-	if controller.input_strength > .1 or false:
+	if controller.input_strength > .1:
 		state.update_state("Running")
 		return
 	# Handle animation Tree
-	
 	# Process inputs
 	
 	# Handle all relevant timers
