@@ -29,7 +29,7 @@ func update(delta):
 		state.update_state("Idle")
 		return
 	# Update relevant counters
-	delta_v.y = -1
+	delta_v.y = current_fall_gravity * delta
 	# Process Physics
 	player.delta_v = delta_v
 	pass

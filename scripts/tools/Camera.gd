@@ -3,7 +3,7 @@ extends Node3D
 @export var camera_sensitivity := Vector2(0,0)
 @onready var player := get_parent()
 @onready var camera := $"SpringArm3D/Camera3D"
-@onready var raycasts := $"../Raycast Handler"
+@onready var raycasts := $"../RaycastHandler"
 
 @export var change_in_fov = 7.5
 @export var base_fov = 80.0
@@ -51,14 +51,14 @@ func _physics_process(_delta):
 		rotation.y = player.rotation.y
 	if chase_cam:
 		if camera_horizontal_distance.length() != 0:
-			var p1 = camera_tracking_position - camera.global_position
+			var p1 = raycasts.center_floor_distance - camera.global_position
 			var p2 = parent_position - camera.global_position
 			var angle = atan2(p1.x, p1.z) - atan2(p2.x, p2.z)
 			
-			#rotation_degrees.y -= rad_to_deg(angle)
+			rotation_degrees.y -= rad_to_deg(angle)
 	
 	if not halt_input:
-		position = player.global_position
+		global_position = lerp(global_position, raycasts.center_floor_distance, 0.05)
 		
 	
 	pass

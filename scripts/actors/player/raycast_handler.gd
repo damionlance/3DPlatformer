@@ -12,12 +12,13 @@ var horizontal_extents := .51
 var average_floor_normal := Vector3.ZERO
 var average_floor_distance := Vector3.ZERO
 var center_floor_distance := Vector3.ZERO
+var closest_wall_collision := Vector3.ZERO
 
 
 @export var maximum_step_height := 0.251
 
-@export var maximum_floor_angle := 0.0871557
-@export var maximum_ceiling_angle := -0.0871557
+@export var maximum_floor_angle := 0.08715574274
+@export var maximum_ceiling_angle := -0.08715574274
 
 @onready var player = get_parent()
 
@@ -58,6 +59,7 @@ func _ready():
 			var ray_name = "Wall Raycast" + str(i+(12*j))
 			raycast.target_position = Vector3(0, 0, 25).rotated(Vector3.UP, (TAU/horizontal_raycast_number)*i)
 			raycast.position = horizontal_raycast_positions[j]
+			raycast.position.y -= maximum_step_height * 2 - .1
 			raycasts.append(raycast)
 			raycast.name = ray_name
 			add_child(raycast)
@@ -77,30 +79,41 @@ func calculate_collisions():
 	normals = []
 	average_floor_distance = Vector3.ZERO
 	center_floor_distance = Vector3.ZERO
+	closest_wall_collision = Vector3.UP * 1000
 	var number_of_floor_collisions := 0
 	for raycast in raycasts:
 		if not raycast.is_colliding():continue
-		var test_distance = raycast.get_collision_point() - raycast.global_position
+		var test_distance = raycast.get_collision_point()
+		test_distance.y = test_distance.y
+		test_distance -= raycast.global_position
 		if raycast.target_position.y != 0:
-			if test_distance.y < 0:
+			if test_distance.y <= 0:
 				number_of_floor_collisions += 1
 				average_floor_distance.y += test_distance.y + vertical_extents
 				if raycast.name == "Center Raycast":
-					center_floor_distance.y = test_distance.y + vertical_extents
-			if abs(test_distance.length()) - vertical_extents < player.velocity.y:
-				normals.append(raycast.get_collision_normal())
-				if normals.back().y > maximum_floor_angle:
-					average_floor_normal += normals.back()
+					center_floor_distance = raycast.get_collision_point()
+			if abs(test_distance.y) - vertical_extents < player.velocity.y or abs(test_distance.y) <= vertical_extents:
+				if raycast.get_collision_normal().y > maximum_floor_angle:
+					average_floor_normal += raycast.get_collision_normal()
 		else:
+			if closest_wall_collision == Vector3.UP * 1000:
+				closest_wall_collision = raycast.get_collision_point() - raycast.global_position
+			elif closest_wall_collision.length() > (raycast.get_collision_point() - raycast.global_position).length():
+				closest_wall_collision = (raycast.get_collision_point() - raycast.global_position)
 			if test_distance.length() - horizontal_extents < player.horizontal_velocity.length():
 				normals.append(raycast.get_collision_normal())
 				if test_distance.y > maximum_ceiling_angle and test_distance.y < maximum_floor_angle:
 					is_on_wall = true
-	average_floor_normal = average_floor_normal.normalized()
+	
+	if average_floor_normal != Vector3.ZERO:
+		average_floor_normal = average_floor_normal.normalized()
+	
 	if number_of_floor_collisions != 0:
 		average_floor_distance.y /= number_of_floor_collisions
-		average_floor_distance.y = snapped(average_floor_distance.y, 0.01)
-		if center_floor_distance.y >= 0:
+		average_floor_distance.y = snapped(average_floor_distance.y, 0.001)
+		if average_floor_distance.y >= 0:
 			is_on_floor = true
 	else:
-		average_floor_distance.y = -10000.0
+		average_floor_distance.y = global_position.y - 25
+	if center_floor_distance == Vector3.ZERO:
+		center_floor_distance = average_floor_distance

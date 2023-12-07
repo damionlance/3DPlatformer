@@ -33,14 +33,17 @@ func update(delta):
 	if not raycasts.is_on_floor:
 		state.update_state("Falling")
 		return
+	if controller.attempting_jump:
+		player.jump_state = player.jump
+		state.update_state("Jump")
+		return
 	
-	delta_v = grounded_movement_processing()
+	delta_v = grounded_movement_processing(delta)
+	player.snap_vector = -raycasts.average_floor_normal
+	delta_v.y = 0.0
 	player.delta_v = delta_v
 	pass
 
 func reset():
 	player.velocity.y = 0
-	can_slide = false
-	can_slide_timer = 0
-	player.rotation.z = 0
 	pass

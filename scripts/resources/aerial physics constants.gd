@@ -9,7 +9,7 @@ var double_jump_timer := 0
 var double_jump_buffer := 5
 
 # Air Physics Constants
-@export var jump_height := 3.1
+@export var jump_height := 4.5
 @export var jump_time_to_peak := 0.3
 @export var jump_time_to_descent := 0.216
 

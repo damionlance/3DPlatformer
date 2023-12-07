@@ -293,7 +293,7 @@ ambient_light_color = Color(0.701961, 0.701961, 0.701961, 1)
 script = ExtResource("1_x2lfh")
 
 [node name="Player" parent="." instance=ExtResource("2_pe1dl")]
-transform = Transform3D(0.209277, 0, -0.977856, 0, 1, 0, 0.977856, 0, 0.209277, 30.3333, 14.9305, 7.11744)
+transform = Transform3D(0.20927, -0.00822041, -0.977823, 0.00172034, 0.999966, -0.00803838, 0.977856, 0, 0.209277, 23.1534, 3.79657, -47.892)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.536652, 0.786261, -0.306266, 0.674972, -0.182185, 0.714998, 0.506378, -0.590425, -0.628474, 0, 48.6497, 0)

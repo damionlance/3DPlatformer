@@ -7,20 +7,49 @@ class_name GroundedMovement
 # var b = "text"
 
 # Floor Physics Constants
-@export var floor_acceleration := 1.8
+@export var floor_acceleration := 10.0
+@export var slide_acceleration := 20.0
+const safe_floor_angle := 0.88
+var slope_strength := 0.0
+
+var delta_v := Vector3.ZERO
 
 @onready var player = find_parent("Player")
 @onready var state = find_parent("StateMachine")
 @onready var controller = player.find_child("Controller", false)
 @onready var raycasts := player.find_child("RaycastHandler", false)
 
-func grounded_movement_processing() -> Vector3:
+func grounded_movement_processing(delta) -> Vector3:
 	#Reset vertical wall jump tech limit
-	var delta_v
+	delta_v = Vector3.ZERO
 	
-	delta_v = controller.camera_relative_movement * floor_acceleration
-	# adjust delta_v to slope
-	#var cross = Vector3.UP.cross(raycasts.average_floor_normal).normalized()
-	#delta_v = delta_v.rotated(cross, Vector3.UP.signed_angle_to(raycasts.average_floor_normal, cross))
+	delta_v = controller.camera_relative_movement * controller.input_strength * floor_acceleration
+	var plane = Plane(raycasts.average_floor_normal)
+	var magnitude = delta_v.length()
+	delta_v = plane.project(delta_v) * magnitude * delta
+	delta_v += calculate_velocity_change_of_slope() * delta
 	
 	return delta_v
+
+func calculate_velocity_change_of_slope():
+	
+	var slope_direction := Plane(raycasts.average_floor_normal).project(Vector3.DOWN).normalized()
+	var final_slope_strength := 0.0
+	if raycasts.average_floor_normal.y == 1.0:
+		slope_strength = 0.0
+	if raycasts.average_floor_normal.y > safe_floor_angle: #You are not going to slide down the slope, you'll just slow down
+		if controller.camera_relative_movement == Vector3.ZERO:
+			slope_strength = 0.0
+			return Vector3.ZERO
+		var current_grade = 1.0 - raycasts.average_floor_normal.y
+		var maximum_grade = 1.0 - safe_floor_angle
+		slope_strength = floor_acceleration * (current_grade / maximum_grade)
+	
+	elif raycasts.average_floor_normal.y > .08: #you're sliding down a slope but not falling
+		if player.velocity.dot(slope_direction) >= 0:
+			delta_v = Vector3.ZERO
+		var current_grade : float = safe_floor_angle - raycasts.average_floor_normal.y
+		var maximum_grade := .08
+		slope_strength = (current_grade / maximum_grade) * slide_acceleration
+	
+	return slope_direction * slope_strength

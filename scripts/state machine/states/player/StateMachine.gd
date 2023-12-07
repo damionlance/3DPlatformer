@@ -16,7 +16,7 @@ func _ready():
 	await get_tree().get_current_scene().level_loaded
 	update_state("Running")
 
-func _process(delta):
+func _physics_process(delta):
 	currentstate.update(delta)
 
 func update_state( newstate ):

@@ -17,14 +17,21 @@ func update(delta):
 	if not raycasts.is_on_floor:
 		state.update_state("Falling")
 		return
+	if controller.attempting_jump:
+		player.jump_state = player.jump
+		state.update_state("Jump")
+		return
 	if controller.input_strength > .1:
 		state.update_state("Running")
 		return
 	# Handle animation Tree
 	# Process inputs
 	
+	delta_v = grounded_movement_processing(delta)
+	
 	# Handle all relevant timers
 	player.delta_v = delta_v
+	player.snap_vector = -raycasts.average_floor_normal
 	# Process physics
 	pass
 
