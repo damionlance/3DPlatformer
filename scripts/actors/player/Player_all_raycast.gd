@@ -59,8 +59,8 @@ func _process(delta):
 	if raycasts.center_floor_distance.y > global_position.y:
 		global_position.y = raycasts.center_floor_distance.y
 		velocity.y = 0
-#	if raycasts.closest_wall_collision.length() < .5:
-#		global_position -= raycasts.closest_wall_collision.normalized() * (.5 - raycasts.closest_wall_collision.length())
+	if raycasts.closest_wall_collision.length() < .5:
+		global_position -= raycasts.closest_wall_collision.normalized() * (.5 - raycasts.closest_wall_collision.length())
 	
 	align_to_floor()
 	look_forward()

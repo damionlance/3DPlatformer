@@ -7,7 +7,7 @@ var vertical_raycast_positions = [Vector3(-.175,0,-.175), Vector3(0,0,-.25), Vec
 var horizontal_raycast_positions = [Vector3.ZERO,Vector3.UP]
 
 var vertical_extents := 1.0
-var horizontal_extents := .51
+var horizontal_extents := .75
 
 var average_floor_normal := Vector3.ZERO
 var average_floor_distance := Vector3.ZERO
@@ -58,7 +58,7 @@ func _ready():
 			var raycast = RayCast3D.new()
 			var ray_name = "Wall Raycast" + str(i+(12*j))
 			raycast.target_position = Vector3(0, 0, 25).rotated(Vector3.UP, (TAU/horizontal_raycast_number)*i)
-			raycast.position = horizontal_raycast_positions[j]
+			raycast.position = horizontal_raycast_positions[j] - raycast.target_position.normalized() * .25
 			raycast.position.y -= maximum_step_height * 2 - .1
 			raycasts.append(raycast)
 			raycast.name = ray_name
