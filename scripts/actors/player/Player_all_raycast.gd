@@ -6,6 +6,7 @@ var horizontal_velocity := Vector3.ZERO
 
 
 @onready var facing_direction := Vector3(sin(rotation.y), 0, cos(rotation.y))
+@onready var state := $"StateMachine"
 var delta_v := Vector3.ZERO
 
 var snap_vector := Vector3.ZERO
@@ -16,6 +17,10 @@ var look_at_velocity := true
 @onready var controller := $"Controller"
 @onready var player_model := $"possible final fella"
 var friction = .9
+
+var state_name := ""
+var previous_state_name := ""
+var is_on_floor := true
 
 var jump_state := 0
 enum {
@@ -35,16 +40,16 @@ enum {
 	bonk
 }
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	state_name = state.current_state.name
+	previous_state_name = state.previous_state.name
+	is_on_floor = raycasts.is_on_floor
+	
 	previous_velocity = velocity
+	if is_on_floor:
+		velocity *= friction
 	velocity += delta_v * delta
-	if raycasts.is_on_floor: velocity *= friction
 	
 	
 	for normal in raycasts.normals:
@@ -53,14 +58,15 @@ func _process(delta):
 		if push_back < 0:
 			velocity = velocity - scaled_normal
 	
-	horizontal_velocity = Vector3(velocity.x, 0, velocity.y)
-	if velocity.y < -1: velocity.y = -1
 	
-	if raycasts.center_floor_distance.y > global_position.y:
-		global_position.y = raycasts.center_floor_distance.y
-		velocity.y = 0
+	horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
+	if raycasts.center_floor_distance > 0:
+		global_position.y = raycasts.center_floor_distance + global_position.y
 	if raycasts.closest_wall_collision.length() < .5:
 		global_position -= raycasts.closest_wall_collision.normalized() * (.5 - raycasts.closest_wall_collision.length())
+	
+	if velocity.y < -0.8:
+		velocity.y = -0.8
 	
 	align_to_floor()
 	look_forward()

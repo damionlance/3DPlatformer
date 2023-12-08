@@ -2,11 +2,12 @@ extends Node
 
 #public variables
 var state_dictionary : Dictionary
-var currentstate = null
-var previousstate = null
+var current_state = null
+var previous_state = null
 
 #onready variables
 @onready var body = get_parent()
+var _delta := 0.0166
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,10 +18,11 @@ func _ready():
 	update_state("Running")
 
 func _physics_process(delta):
-	currentstate.update(delta)
+	_delta = delta
+	current_state.update(delta)
 
 func update_state( newstate ):
-	previousstate = currentstate
-	currentstate = state_dictionary[newstate]
-	currentstate.reset()
+	previous_state = current_state
+	current_state = state_dictionary[newstate]
+	current_state.reset(_delta)
 

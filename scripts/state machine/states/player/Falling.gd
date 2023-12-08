@@ -26,15 +26,20 @@ func update(delta):
 	var delta_v = Vector3.ZERO
 	# Handle state logic
 	if raycasts.is_on_floor:
-		state.update_state("Idle")
+		state.update_state("Running")
+		return
+	if controller.attempting_dive:
+		player.jump_state = player.dive
+		state.update_state("Jump")
 		return
 	# Update relevant counters
+	delta_v = regular_aerial_movement_processing()
 	delta_v.y = current_fall_gravity * delta
 	# Process Physics
 	player.delta_v = delta_v
 	pass
 
-func reset():
+func reset(_delta):
 	match player.jump_state:
 		player.jump:
 			current_fall_gravity = constants._fall_gravity

@@ -5,17 +5,25 @@ var state_name = "Jump"
 var current_jump_strength : float
 var current_jump_gravity := 0.0
 
-var dive_speed = 3
+var consecutive_jump_timer : Timer
+var consecutive_jump_buffer := 0.083
+var consecutive_jump_position := 0
+
+var dive_speed = 10
 
 var no_wall_jump : bool
 @export var ground_pound_finished := false
 
 var soundplayer = AudioStreamPlayer.new()
 #onready variables
-
 var entering_jump_buttonstate
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	consecutive_jump_timer = Timer.new()
+	consecutive_jump_timer.one_shot = true
+	consecutive_jump_timer.name = "Consecutive Jump Timer"
+	add_child(consecutive_jump_timer)
+	
 	soundplayer.bus = "Sound Effects"
 	soundplayer.set_mix_target(AudioStreamPlayer.MIX_TARGET_CENTER)
 	soundplayer.volume_db = -9
@@ -27,22 +35,31 @@ func _ready():
 
 func update(delta):
 	
-	
-	
-	var delta_v = Vector3.ZERO
+	delta_v = Vector3.ZERO
 	# Handle all state logic
+	if controller.attempting_dive:
+		player.jump_state = player.dive
+		state.update_state("Jump")
+		return
 	if player.velocity.y < 0:
 		state.update_state("Falling")
 		return
 	# Update all relevant counters
-	
+	if player.jump_state < 4:
+		delta_v = regular_aerial_movement_processing()
 	# Process physics
 	delta_v.y = current_jump_gravity * delta
 	player.delta_v = delta_v
 
-func reset():
+func reset(_delta):
 	ground_pound_finished = false
 	entering_jump_buttonstate = player.jump_state
+	
+	if player.jump_state == 0:
+		consecutive_jump_position += 1
+		player.jump_state += 1
+	
+	
 #	state._reset_animation_parameters()
 #	state.anim_tree["parameters/conditions/jump"] = true
 	match player.jump_state:
@@ -88,8 +105,7 @@ func reset():
 		player.dive:
 			current_jump_gravity = constants._dive_jump_gravity
 			current_jump_strength = constants._dive_jump_strength
-			state.current_speed += dive_speed
-			state.move_direction = state.camera_relative_movement
+			player.velocity = controller.camera_relative_movement * (dive_speed * _delta + player.velocity.length())
 #			state.anim_tree["parameters/Jump/conditions/dive"] = true
 #			soundplayer.set_stream(load("res://assets/sounds/actor noises/Dive.mp3"))
 #			soundplayer.play()
@@ -130,5 +146,5 @@ func reset():
 	constants.shorthop_timer = 0
 	entering_jump_angle = controller.camera_relative_movement
 	player.snap_vector = Vector3.ZERO
-	player.velocity.y = current_jump_strength * 0.0166
+	player.velocity.y = current_jump_strength * _delta
 	pass

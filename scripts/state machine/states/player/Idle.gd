@@ -9,11 +9,12 @@ var state_name = "Idle"
 func _ready():
 	state.state_dictionary[state_name] = self
 	state.update_state(state_name)
+	
 	pass # Replace with function body.
 
 func update(delta):
 	# Handle all states
-	var delta_v = Vector3.ZERO
+	delta_v = Vector3.ZERO
 	if not raycasts.is_on_floor:
 		state.update_state("Falling")
 		return
@@ -35,6 +36,5 @@ func update(delta):
 	# Process physics
 	pass
 
-func reset():
-	player.velocity.y = 0
+func reset(_delta):
 	pass

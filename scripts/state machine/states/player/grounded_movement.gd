@@ -18,6 +18,12 @@ var delta_v := Vector3.ZERO
 @onready var state = find_parent("StateMachine")
 @onready var controller = player.find_child("Controller", false)
 @onready var raycasts := player.find_child("RaycastHandler", false)
+@onready var animation_tree = player.find_child("AnimationTree")
+
+
+func _ready():
+	
+	pass
 
 func grounded_movement_processing(delta) -> Vector3:
 	#Reset vertical wall jump tech limit
@@ -28,7 +34,6 @@ func grounded_movement_processing(delta) -> Vector3:
 	var magnitude = delta_v.length()
 	delta_v = plane.project(delta_v) * magnitude * delta
 	delta_v += calculate_velocity_change_of_slope() * delta
-	
 	return delta_v
 
 func calculate_velocity_change_of_slope():
@@ -45,7 +50,7 @@ func calculate_velocity_change_of_slope():
 		var maximum_grade = 1.0 - safe_floor_angle
 		slope_strength = floor_acceleration * (current_grade / maximum_grade)
 	
-	elif raycasts.average_floor_normal.y > .08: #you're sliding down a slope but not falling
+	elif raycasts.average_floor_normal.y > .08 and false: #you're sliding down a slope but not falling
 		if player.velocity.dot(slope_direction) >= 0:
 			delta_v = Vector3.ZERO
 		var current_grade : float = safe_floor_angle - raycasts.average_floor_normal.y

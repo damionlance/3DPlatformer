@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_v3whg")
-jump_height = 3.1
+jump_height = 4.5
 jump_time_to_peak = 0.3
 jump_time_to_descent = 0.216
 jump2_height = 5.1

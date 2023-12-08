@@ -9,15 +9,15 @@ var double_jump_timer := 0
 var double_jump_buffer := 5
 
 # Air Physics Constants
-@export var jump_height := 4.5
+@export var jump_height := 4
 @export var jump_time_to_peak := 0.3
 @export var jump_time_to_descent := 0.216
 
-@export var jump2_height := 5.1
+@export var jump2_height := 8
 @export var jump2_time_to_peak := 0.3
 @export var jump2_time_to_descent := 0.266
 
-@export var jump3_height := 7.1
+@export var jump3_height := 12
 @export var jump3_time_to_peak := 0.35
 @export var jump3_time_to_descent := 0.36
 
@@ -41,16 +41,16 @@ var double_jump_buffer := 5
 @export var air_acceleration := 2.0
 @export var terminal_velocity := 25.0
 
-var _jump_strength : float = (2.0 * jump_height) / jump_time_to_peak
 var _jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
+var _jump_strength : float = -_jump_gravity * jump_time_to_peak
 var _fall_gravity : float = (-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)
 
-var _jump2_strength : float = (2.0 * jump2_height) / jump2_time_to_peak
 var _jump2_gravity : float = (-2.0 * jump2_height) / (jump2_time_to_peak * jump2_time_to_peak)
+var _jump2_strength : float = -_jump2_gravity * jump2_time_to_peak
 var _fall2_gravity : float = (-2.0 * jump2_height) / (jump2_time_to_descent * jump2_time_to_descent)
 
-var _jump3_strength : float = (2.0 * jump3_height) / jump3_time_to_peak
 var _jump3_gravity : float = (-2.0 * jump3_height) / (jump3_time_to_peak * jump3_time_to_peak)
+var _jump3_strength : float = -_jump3_gravity * jump3_time_to_peak
 var _fall3_gravity : float = (-2.0 * jump3_height) / (jump3_time_to_descent * jump3_time_to_descent)
 
 var _spin_jump_strength : float = (2.0 * spin_jump_height) / spin_jump_time_to_peak

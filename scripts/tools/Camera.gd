@@ -10,13 +10,14 @@ extends Node3D
 
 var previous_camera_height = 0
 var camera_tracking_position = Vector3.ZERO
+var previous_position = Vector3.ZERO
 
 var chase_cam = true
 
 var halt_input := false
+var goal_height := 0.0
 
-var match_height
-var tracking = false
+var tracking := false
 
 var target_body
 
@@ -26,7 +27,6 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(_delta):
-	
 	var spacestate = get_world_3d().direct_space_state
 	
 	var horizontal_speed = Vector3(player.velocity.x, 0, player.velocity.z).length()
@@ -34,7 +34,7 @@ func _physics_process(_delta):
 		camera.fov = lerp(camera.fov, base_fov + (change_in_fov * (horizontal_speed/12)), .05)
 	else:
 		camera.fov = lerp(camera.fov, base_fov, .05)
-	var parent_position = player.global_position + (Vector3.UP * 4)
+	var parent_position = player.global_position + Vector3.UP * 4
 	
 	var height_difference = previous_camera_height - parent_position.y
 	var camera_horizontal_distance = Vector3(camera_tracking_position.x, 0, camera_tracking_position.z)
@@ -49,18 +49,30 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("Reset Camera"):
 		rotation = Vector3.ZERO
 		rotation.y = player.rotation.y
+	
+	if player.is_on_floor or abs(player.global_position.y - global_position.y) > 4:
+		tracking = true
+	else:
+		tracking = false
+	
+	if tracking == true:
+		goal_height = player.global_position.y + 5
+	
 	if chase_cam:
 		if camera_horizontal_distance.length() != 0:
-			var p1 = raycasts.center_floor_distance - camera.global_position
+			var p1 = previous_position - camera.global_position
 			var p2 = parent_position - camera.global_position
 			var angle = atan2(p1.x, p1.z) - atan2(p2.x, p2.z)
 			
 			rotation_degrees.y -= rad_to_deg(angle)
 	
 	if not halt_input:
-		global_position = lerp(global_position, raycasts.center_floor_distance, 0.05)
+		var goal_position = parent_position
+		goal_position.y = goal_height
+		global_position = lerp(global_position, goal_position, 0.05)
 		
 	
+	previous_position = parent_position
 	pass
 
 func set_target_body(body):
