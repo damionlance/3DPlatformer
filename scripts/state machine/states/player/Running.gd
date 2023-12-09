@@ -54,7 +54,7 @@ func update(delta):
 	player.snap_vector = -raycasts.average_floor_normal * 0.25
 	delta_v.y = 0.0
 	player.delta_v = delta_v
-	animation_tree[blend_parameter] = lerpf(animation_tree[blend_parameter], controller.input_strength/1.0, 0.15)
+	animation_tree[blend_parameter] = lerpf(animation_tree[blend_parameter], player.velocity.length()/0.3, 0.15)
 	pass
 
 func reset(_delta):

@@ -11,7 +11,7 @@ var horizontal_extents := .75
 
 var average_floor_normal := Vector3.ZERO
 var average_floor_distance := 0.0
-var closest_floor_distance := 100.0
+var closest_floor_distance := -100.0
 var center_floor_distance := 0.0
 var closest_wall_collision := Vector3.ZERO
 
@@ -81,7 +81,7 @@ func calculate_collisions():
 	average_floor_distance = 0.0
 	center_floor_distance = 0.0
 	closest_wall_collision = Vector3.UP * 1000
-	var closest_floor_distance =-100.0
+	var closest_floor_distance = -100.0
 	var number_of_floor_collisions := 0
 	
 	for raycast in raycasts:

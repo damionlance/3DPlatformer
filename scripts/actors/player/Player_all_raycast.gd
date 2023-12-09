@@ -3,7 +3,7 @@ extends Node3D
 var velocity := Vector3.ZERO
 var previous_velocity := Vector3.ZERO
 var horizontal_velocity := Vector3.ZERO
-
+var max_horizontal_velocity := 15.0
 
 @onready var facing_direction := Vector3(sin(rotation.y), 0, cos(rotation.y))
 @onready var state := $"StateMachine"
@@ -16,11 +16,14 @@ var look_at_velocity := true
 @onready var raycasts := $"RaycastHandler"
 @onready var controller := $"Controller"
 @onready var player_model := $"possible final fella"
-var friction = .9
 
 var state_name := ""
 var previous_state_name := ""
 var is_on_floor := true
+var friction_timer := 0
+var friction_buffer := 5
+var sideways_friction := 10
+var forwards_friction := 10
 
 var jump_state := 0
 enum {
@@ -48,10 +51,8 @@ func _process(delta):
 	
 	previous_velocity = velocity
 	if is_on_floor:
-		velocity *= friction
+		velocity = apply_friction(delta)
 	velocity += delta_v * delta
-	
-	
 	for normal in raycasts.normals:
 		var push_back = velocity.dot(normal)
 		var scaled_normal = normal * push_back
@@ -62,6 +63,8 @@ func _process(delta):
 	horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 	if raycasts.center_floor_distance > 0:
 		global_position.y = raycasts.center_floor_distance + global_position.y
+	elif raycasts.closest_floor_distance > 0:
+		global_position.y = raycasts.closest_floor_distance + global_position.y
 	if raycasts.closest_wall_collision.length() < .5:
 		global_position -= raycasts.closest_wall_collision.normalized() * (.5 - raycasts.closest_wall_collision.length())
 	
@@ -70,7 +73,6 @@ func _process(delta):
 	
 	align_to_floor()
 	look_forward()
-	lean_into_turns()
 	global_position += velocity
 	delta_v = Vector3.ZERO
 	
@@ -80,6 +82,18 @@ func _process(delta):
 		var result = space_state.intersect_ray(query)
 		if result and result.position.y < global_position.y:
 			global_position = result.position
+
+func apply_friction(delta):
+	var forward_velocity = controller.camera_relative_movement
+	forward_velocity *= controller.camera_relative_movement.dot(velocity)
+	var lateral_velocity = velocity - forward_velocity
+	
+	lateral_velocity = lerp(lateral_velocity, Vector3.ZERO, sideways_friction * delta) 
+	
+	if forward_velocity.length() > max_horizontal_velocity * delta:
+		forward_velocity = lerp(forward_velocity, Vector3.ZERO, forwards_friction * delta) 
+	
+	return forward_velocity + lateral_velocity
 
 func align_to_floor():
 	if raycasts.average_floor_normal == Vector3.ZERO:
@@ -95,10 +109,10 @@ func look_forward():
 	var normalized_direction = facing_direction.normalized()
 	var lookdir = atan2(normalized_direction.x, normalized_direction.z)
 	rotation.y = lookdir
-	if look_at_velocity and velocity != Vector3.ZERO:
+	if look_at_velocity and controller.camera_relative_movement != Vector3.ZERO:
 		player_model.rotation.y = 0.0
-		facing_direction = velocity.normalized()
-	else:
+		facing_direction = controller.camera_relative_movement.normalized()
+	elif not look_at_velocity:
 		player_model.rotation.y = - rotation.y
 
 func lean_into_turns():
@@ -108,7 +122,6 @@ func lean_into_turns():
 		direction = Vector3.ZERO
 	else:
 		direction = controller.camera_relative_movement
-	direction = -(direction.dot(lateralAxis)) * .7
-	player_model.rotation.z = lerp(player_model.rotation.z, -direction, .15)
+	direction = -(direction.dot(lateralAxis)) * 1.0
 
 

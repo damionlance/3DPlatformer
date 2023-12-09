@@ -7,7 +7,7 @@ class_name GroundedMovement
 # var b = "text"
 
 # Floor Physics Constants
-@export var floor_acceleration := 10.0
+@export var floor_acceleration := 7.0
 @export var slide_acceleration := 20.0
 const safe_floor_angle := 0.88
 var slope_strength := 0.0

@@ -14,12 +14,12 @@ var double_jump_buffer := 5
 @export var jump_time_to_descent := 0.216
 
 @export var jump2_height := 8
-@export var jump2_time_to_peak := 0.3
-@export var jump2_time_to_descent := 0.266
+@export var jump2_time_to_peak := 0.4
+@export var jump2_time_to_descent := 0.3
 
 @export var jump3_height := 12
-@export var jump3_time_to_peak := 0.35
-@export var jump3_time_to_descent := 0.36
+@export var jump3_time_to_peak := 0.5
+@export var jump3_time_to_descent := 0.45
 
 @export var spin_jump_height := 5.5
 @export var spin_jump_time_to_peak := .7
