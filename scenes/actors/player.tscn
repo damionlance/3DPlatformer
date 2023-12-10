@@ -24,9 +24,6 @@ animation = &"Dive"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1xbhe"]
 animation = &"Fall"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7c1iw"]
-animation = &"Start Jump"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uqhko"]
 animation = &"Dive"
 
@@ -66,6 +63,9 @@ states/Dive/position = Vector2(337.926, 360.667)
 "states/Jump 3/position" = Vector2(337.259, 175.333)
 transitions = ["Start", "Jump 1", SubResource("AnimationNodeStateMachineTransition_bsffs"), "Start", "Jump 2", SubResource("AnimationNodeStateMachineTransition_this4"), "Start", "Jump 3", SubResource("AnimationNodeStateMachineTransition_c6ktd"), "Start", "Dive", SubResource("AnimationNodeStateMachineTransition_ao6an")]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7c1iw"]
+animation = &"Start Jump"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g6fno"]
 xfade_time = 0.25
 advance_mode = 2
@@ -93,15 +93,15 @@ advance_expression = "jump_state == 8"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iwdpj"]
 states/Dive/node = SubResource("AnimationNodeAnimation_kgxte")
-states/Dive/position = Vector2(693, 26.3333)
+states/Dive/position = Vector2(654.333, -33.0411)
 states/Fall/node = SubResource("AnimationNodeAnimation_1xbhe")
-states/Fall/position = Vector2(511.556, 134.667)
+states/Fall/position = Vector2(513.119, 134.667)
+states/Jumps/node = SubResource("AnimationNodeStateMachine_1r50f")
+states/Jumps/position = Vector2(512.901, -32.6049)
 states/Start/position = Vector2(188, 107.333)
 "states/Start Jump/node" = SubResource("AnimationNodeAnimation_7c1iw")
-"states/Start Jump/position" = Vector2(333.333, 42.6667)
-states/StateMachine/node = SubResource("AnimationNodeStateMachine_1r50f")
-states/StateMachine/position = Vector2(511, 36.8519)
-transitions = ["Start", "Fall", SubResource("AnimationNodeStateMachineTransition_g6fno"), "Start", "Start Jump", SubResource("AnimationNodeStateMachineTransition_dvj2f"), "Start Jump", "StateMachine", SubResource("AnimationNodeStateMachineTransition_lqmfx"), "StateMachine", "Fall", SubResource("AnimationNodeStateMachineTransition_71c71"), "StateMachine", "Dive", SubResource("AnimationNodeStateMachineTransition_gau13"), "Fall", "Dive", SubResource("AnimationNodeStateMachineTransition_kq56m")]
+"states/Start Jump/position" = Vector2(188.667, -32)
+transitions = ["Start", "Fall", SubResource("AnimationNodeStateMachineTransition_g6fno"), "Start", "Start Jump", SubResource("AnimationNodeStateMachineTransition_dvj2f"), "Start Jump", "Jumps", SubResource("AnimationNodeStateMachineTransition_lqmfx"), "Jumps", "Fall", SubResource("AnimationNodeStateMachineTransition_71c71"), "Jumps", "Dive", SubResource("AnimationNodeStateMachineTransition_gau13"), "Fall", "Dive", SubResource("AnimationNodeStateMachineTransition_kq56m")]
 graph_offset = Vector2(-39, -159)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_awx2h"]
