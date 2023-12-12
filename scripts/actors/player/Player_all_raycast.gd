@@ -62,9 +62,9 @@ func _process(delta):
 	
 	horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 	if raycasts.center_floor_distance > 0:
-		global_position.y = raycasts.center_floor_distance + global_position.y
-	elif raycasts.closest_floor_distance > 0:
-		global_position.y = raycasts.closest_floor_distance + global_position.y
+		global_position.y += raycasts.center_floor_distance
+	if raycasts.closest_floor_distance > 0:
+		global_position.y += raycasts.closest_floor_distance
 	if raycasts.closest_wall_collision.length() < .5:
 		global_position -= raycasts.closest_wall_collision.normalized() * (.5 - raycasts.closest_wall_collision.length())
 	
@@ -75,12 +75,14 @@ func _process(delta):
 	look_forward()
 	global_position += velocity
 	delta_v = Vector3.ZERO
-	
+	snap_player_to_surface()
+
+func snap_player_to_surface():
 	if snap_vector != Vector3.ZERO:
 		var space_state = get_world_3d().direct_space_state
 		var query = PhysicsRayQueryParameters3D.create(global_position - snap_vector, global_position + snap_vector)
 		var result = space_state.intersect_ray(query)
-		if result and result.position.y < global_position.y:
+		if result and result.position.y - global_position.y < -0.01:
 			global_position = result.position
 
 func apply_friction(delta):

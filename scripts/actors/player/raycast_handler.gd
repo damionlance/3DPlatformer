@@ -10,7 +10,7 @@ var vertical_extents := 1.0
 var horizontal_extents := .75
 
 var average_floor_normal := Vector3.ZERO
-var average_floor_distance := 0.0
+var average_floor_distance := -100.0
 var closest_floor_distance := -100.0
 var center_floor_distance := 0.0
 var closest_wall_collision := Vector3.ZERO
@@ -79,7 +79,7 @@ func calculate_collisions():
 	is_on_wall = false
 	normals = []
 	average_floor_distance = 0.0
-	center_floor_distance = 0.0
+	center_floor_distance = -100.0
 	closest_wall_collision = Vector3.UP * 1000
 	var closest_floor_distance = -100.0
 	var number_of_floor_collisions := 0
@@ -92,15 +92,14 @@ func calculate_collisions():
 			var test_distance = raycast.get_collision_point().y - raycast.global_position.y
 			# hitting the floor
 			if test_distance < 0:
-				if test_distance + vertical_extents >= 0:
-					test_distance += vertical_extents
-					number_of_floor_collisions += 1
-					average_floor_distance += test_distance
-					if test_distance > closest_floor_distance:
-						closest_floor_distance = test_distance
-					if raycast.name == "Center Raycast":
-						center_floor_distance = test_distance
-				if abs(test_distance) < player.velocity.y or abs(test_distance) <= vertical_extents:
+				test_distance += vertical_extents
+				number_of_floor_collisions += 1
+				average_floor_distance += test_distance
+				if test_distance > closest_floor_distance:
+					closest_floor_distance = snappedf(test_distance, 0.01)
+				if raycast.name == "Center Raycast":
+					center_floor_distance = snappedf(test_distance, 0.01)
+				if abs(test_distance) < player.velocity.y or test_distance > 0:
 					if raycast.get_collision_normal().y > maximum_floor_angle:
 						average_floor_normal += raycast.get_collision_normal()
 		# horizontal raycasts
@@ -121,6 +120,7 @@ func calculate_collisions():
 	
 	if number_of_floor_collisions != 0:
 		average_floor_distance /= number_of_floor_collisions
+		average_floor_distance = snappedf(average_floor_distance, 0.01)
 		if closest_floor_distance >= -0.1:
 			is_on_floor = true
 	if center_floor_distance == 0:
