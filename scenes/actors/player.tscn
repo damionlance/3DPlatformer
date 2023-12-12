@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://q0ntyxnavgqa"]
+[gd_scene load_steps=64 format=3 uid="uid://q0ntyxnavgqa"]
 
 [ext_resource type="Script" path="res://scripts/actors/player/Player_all_raycast.gd" id="1_2clf3"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/StateMachine.gd" id="2_0ax74"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://scripts/state machine/states/player/grounded_movement.gd" id="6_r4bex"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Running.gd" id="7_moui0"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Idle.gd" id="8_g1gfr"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/crouch walk.gd" id="8_pkphm"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Belly Slide.gd" id="9_w26o5"]
 [ext_resource type="PackedScene" uid="uid://bu8g6ln6c3iun" path="res://scenes/tools/Controller.tscn" id="13_kfpib"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5gn7b"]
@@ -23,6 +25,9 @@ animation = &"Dive"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1xbhe"]
 animation = &"Fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dd8qj"]
+animation = &"Ground Pound"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uqhko"]
 animation = &"Dive"
@@ -42,7 +47,8 @@ advance_expression = "jump_state == 1"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_this4"]
 advance_mode = 2
-advance_expression = "jump_state == 2"
+advance_expression = "jump_state == 2 or
+jump_state == 4"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c6ktd"]
 advance_mode = 2
@@ -81,7 +87,8 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_71c71"]
 xfade_time = 0.25
 advance_mode = 2
-advance_expression = "state_name == \"Falling\""
+advance_expression = "state_name == \"Falling\" and
+jump_state < 2"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gau13"]
 advance_mode = 2
@@ -91,18 +98,45 @@ advance_expression = "jump_state == 8"
 advance_mode = 2
 advance_expression = "jump_state == 8"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2c3ux"]
+priority = 0
+advance_mode = 2
+advance_expression = "state_name == \"Jump\" and
+jump_state == 9"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3yhot"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iwdpj"]
 states/Dive/node = SubResource("AnimationNodeAnimation_kgxte")
 states/Dive/position = Vector2(654.333, -33.0411)
 states/Fall/node = SubResource("AnimationNodeAnimation_1xbhe")
 states/Fall/position = Vector2(513.119, 134.667)
+"states/Ground Pound/node" = SubResource("AnimationNodeAnimation_dd8qj")
+"states/Ground Pound/position" = Vector2(187.333, 211)
 states/Jumps/node = SubResource("AnimationNodeStateMachine_1r50f")
 states/Jumps/position = Vector2(512.901, -32.6049)
 states/Start/position = Vector2(188, 107.333)
 "states/Start Jump/node" = SubResource("AnimationNodeAnimation_7c1iw")
 "states/Start Jump/position" = Vector2(188.667, -32)
-transitions = ["Start", "Fall", SubResource("AnimationNodeStateMachineTransition_g6fno"), "Start", "Start Jump", SubResource("AnimationNodeStateMachineTransition_dvj2f"), "Start Jump", "Jumps", SubResource("AnimationNodeStateMachineTransition_lqmfx"), "Jumps", "Fall", SubResource("AnimationNodeStateMachineTransition_71c71"), "Jumps", "Dive", SubResource("AnimationNodeStateMachineTransition_gau13"), "Fall", "Dive", SubResource("AnimationNodeStateMachineTransition_kq56m")]
-graph_offset = Vector2(-39, -159)
+transitions = ["Start", "Fall", SubResource("AnimationNodeStateMachineTransition_g6fno"), "Start", "Start Jump", SubResource("AnimationNodeStateMachineTransition_dvj2f"), "Start Jump", "Jumps", SubResource("AnimationNodeStateMachineTransition_lqmfx"), "Jumps", "Fall", SubResource("AnimationNodeStateMachineTransition_71c71"), "Jumps", "Dive", SubResource("AnimationNodeStateMachineTransition_gau13"), "Fall", "Dive", SubResource("AnimationNodeStateMachineTransition_kq56m"), "Start", "Ground Pound", SubResource("AnimationNodeStateMachineTransition_2c3ux"), "Ground Pound", "Fall", SubResource("AnimationNodeStateMachineTransition_3yhot")]
+graph_offset = Vector2(-250, -95)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s63db"]
+animation = &"crouch"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_13t78"]
+animation = &"crouch walk"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_423ba"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_s63db")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_13t78")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_72f8s"]
+animation = &"Dive"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_awx2h"]
 animation = &"Idle"
@@ -149,15 +183,37 @@ xfade_time = 0.15
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l7m26"]
+switch_mode = 1
+advance_mode = 2
+advance_expression = "state_name == \"Belly Slide\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3xx5s"]
+advance_mode = 2
+advance_expression = "state_name == \"Running\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ofv0"]
+advance_mode = 2
+advance_expression = "state_name == \"Running\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yv1ub"]
+advance_mode = 2
+advance_expression = "state_name == \"Crouching\""
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0pnke"]
+states/Crouching/node = SubResource("AnimationNodeBlendSpace1D_423ba")
+states/Crouching/position = Vector2(575, 192)
+states/Dive/node = SubResource("AnimationNodeAnimation_72f8s")
+states/Dive/position = Vector2(337.889, 309.333)
 states/Idle/node = SubResource("AnimationNodeAnimation_awx2h")
 states/Idle/position = Vector2(370.222, 77.3333)
 states/Land/node = SubResource("AnimationNodeAnimation_gmt1e")
 states/Land/position = Vector2(336.667, -13.3333)
 states/Running/node = SubResource("AnimationNodeBlendSpace1D_fch5t")
-states/Running/position = Vector2(370, 196)
-transitions = ["Start", "Running", SubResource("AnimationNodeStateMachineTransition_xlpdu"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1l7t8"), "Idle", "Running", SubResource("AnimationNodeStateMachineTransition_fvhqt"), "Running", "Idle", SubResource("AnimationNodeStateMachineTransition_xqqsv"), "Start", "Land", SubResource("AnimationNodeStateMachineTransition_mandk"), "Land", "Idle", SubResource("AnimationNodeStateMachineTransition_cr3ed")]
-graph_offset = Vector2(-77, -126)
+states/Running/position = Vector2(370.592, 191.333)
+states/Start/position = Vector2(204.667, 116.667)
+transitions = ["Start", "Running", SubResource("AnimationNodeStateMachineTransition_xlpdu"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1l7t8"), "Idle", "Running", SubResource("AnimationNodeStateMachineTransition_fvhqt"), "Running", "Idle", SubResource("AnimationNodeStateMachineTransition_xqqsv"), "Start", "Land", SubResource("AnimationNodeStateMachineTransition_mandk"), "Land", "Idle", SubResource("AnimationNodeStateMachineTransition_cr3ed"), "Start", "Dive", SubResource("AnimationNodeStateMachineTransition_l7m26"), "Dive", "Running", SubResource("AnimationNodeStateMachineTransition_3xx5s"), "Crouching", "Running", SubResource("AnimationNodeStateMachineTransition_1ofv0"), "Running", "Crouching", SubResource("AnimationNodeStateMachineTransition_yv1ub")]
+graph_offset = Vector2(-235, -52)
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pbm6s"]
 advance_mode = 2
@@ -180,7 +236,7 @@ advance_expression = "is_on_floor == false"
 states/AerialMovement/node = SubResource("AnimationNodeStateMachine_iwdpj")
 states/AerialMovement/position = Vector2(345.111, 20.6667)
 states/GroundedMovement/node = SubResource("AnimationNodeStateMachine_0pnke")
-states/GroundedMovement/position = Vector2(344.963, 111.333)
+states/GroundedMovement/position = Vector2(344.839, 99.4072)
 states/Start/position = Vector2(6, 100.444)
 transitions = ["Start", "GroundedMovement", SubResource("AnimationNodeStateMachineTransition_pbm6s"), "Start", "AerialMovement", SubResource("AnimationNodeStateMachineTransition_veckv"), "AerialMovement", "GroundedMovement", SubResource("AnimationNodeStateMachineTransition_hm42r"), "GroundedMovement", "AerialMovement", SubResource("AnimationNodeStateMachineTransition_0uin4")]
 graph_offset = Vector2(-60, -136)
@@ -207,8 +263,15 @@ script = ExtResource("6_r4bex")
 [node name="Running" type="Node" parent="StateMachine/GroundedMovement"]
 script = ExtResource("7_moui0")
 
+[node name="Crouching" type="Node" parent="StateMachine/GroundedMovement"]
+script = ExtResource("8_pkphm")
+
 [node name="Idle" type="Node" parent="StateMachine/GroundedMovement"]
 script = ExtResource("8_g1gfr")
+floor_acceleration = null
+
+[node name="Belly Slide" type="Node" parent="StateMachine/GroundedMovement"]
+script = ExtResource("9_w26o5")
 
 [node name="possible final fella" parent="." instance=ExtResource("2_dx06d")]
 
@@ -340,6 +403,7 @@ tree_root = SubResource("AnimationNodeStateMachine_xs8ki")
 anim_player = NodePath("../possible final fella/AnimationPlayer")
 advance_expression_base_node = NodePath("..")
 active = true
+parameters/GroundedMovement/Crouching/blend_position = 0.00036478
 parameters/GroundedMovement/Running/blend_position = 0
 
 [editable path="possible final fella"]

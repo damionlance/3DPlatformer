@@ -9,7 +9,9 @@ var consecutive_jump_timer : Timer
 var consecutive_jump_buffer := 0.083
 var consecutive_jump_position := 0
 
-var dive_speed = 10
+var long_jump_speed = 20
+var dive_speed = 15
+var dive_acceleration = 2.0
 
 var no_wall_jump : bool
 @export var ground_pound_finished := false
@@ -37,7 +39,7 @@ func update(delta):
 	
 	delta_v = Vector3.ZERO
 	# Handle all state logic
-	if controller.attempting_dive:
+	if controller.attempting_dive and player.jump_state != player.dive:
 		player.jump_state = player.dive
 		state.update_state("Jump")
 		return
@@ -78,13 +80,12 @@ func reset(_delta):
 		player.jump3: 
 			current_jump_gravity = constants._jump3_gravity
 			current_jump_strength = constants._jump3_strength
-#			state.anim_tree["parameters/Jump/conditions/jump 3"] = true
 #			soundplayer.set_stream(load("res://assets/sounds/actor noises/Jump 3.mp3"))
 #			soundplayer.play()
 		player.long_jump:
 			current_jump_gravity = constants._jump2_gravity/3
 			current_jump_strength = constants._jump2_strength/2
-#			state.anim_tree["parameters/Jump/conditions/jump 2"] = true
+			player.velocity = controller.camera_relative_movement * long_jump_speed * _delta
 #			soundplayer.set_stream(load("res://assets/sounds/actor noises/Jump 2.mp3"))
 #			soundplayer.play()
 		player.spin_jump:
@@ -105,12 +106,15 @@ func reset(_delta):
 		player.dive:
 			current_jump_gravity = constants._dive_jump_gravity
 			current_jump_strength = constants._dive_jump_strength
-			player.velocity = controller.camera_relative_movement * (dive_speed * _delta + player.velocity.length())
+			if player.velocity.length() < dive_speed * _delta:
+				player.velocity = controller.camera_relative_movement * dive_speed * _delta
+			else:
+				player.velocity = controller.camera_relative_movement * ((dive_acceleration * _delta) + player.velocity.length())
+			player.look_at_velocity = false
 #			state.anim_tree["parameters/Jump/conditions/dive"] = true
 #			soundplayer.set_stream(load("res://assets/sounds/actor noises/Dive.mp3"))
 #			soundplayer.play()
 		player.rollout:
-			state.current_jump = 0
 			current_jump_gravity = constants._dive_jump_gravity
 			current_jump_strength = constants._dive_jump_strength
 #			state.anim_tree["parameters/Jump/conditions/roll out"] = true

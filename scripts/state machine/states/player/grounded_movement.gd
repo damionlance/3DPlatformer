@@ -7,8 +7,9 @@ class_name GroundedMovement
 # var b = "text"
 
 # Floor Physics Constants
-@export var floor_acceleration := 7.0
+@export var running_acceleration := 7.0
 @export var slide_acceleration := 20.0
+@export var crouching_acceleration := 4.0
 const safe_floor_angle := 0.88
 var slope_strength := 0.0
 
@@ -19,17 +20,13 @@ var delta_v := Vector3.ZERO
 @onready var controller = player.find_child("Controller", false)
 @onready var raycasts := player.find_child("RaycastHandler", false)
 @onready var animation_tree = player.find_child("AnimationTree")
-
-
 func _ready():
 	
 	pass
 
-func grounded_movement_processing(delta) -> Vector3:
+func grounded_movement_processing(delta, delta_v) -> Vector3:
 	#Reset vertical wall jump tech limit
-	delta_v = Vector3.ZERO
 	
-	delta_v = controller.camera_relative_movement * controller.input_strength * floor_acceleration
 	var plane = Plane(raycasts.average_floor_normal)
 	var magnitude = delta_v.length()
 	delta_v = plane.project(delta_v) * magnitude * delta
@@ -48,9 +45,9 @@ func calculate_velocity_change_of_slope():
 			return Vector3.ZERO
 		var current_grade = 1.0 - raycasts.average_floor_normal.y
 		var maximum_grade = 1.0 - safe_floor_angle
-		slope_strength = floor_acceleration * (current_grade / maximum_grade)
+		slope_strength = running_acceleration * (current_grade / maximum_grade)
 	
-	elif raycasts.average_floor_normal.y > .08 and false: #you're sliding down a slope but not falling
+	elif raycasts.average_floor_normal.y > .08: #you're sliding down a slope but not falling
 		if player.velocity.dot(slope_direction) >= 0:
 			delta_v = Vector3.ZERO
 		var current_grade : float = safe_floor_angle - raycasts.average_floor_normal.y

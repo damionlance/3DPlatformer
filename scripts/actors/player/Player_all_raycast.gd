@@ -23,7 +23,7 @@ var is_on_floor := true
 var friction_timer := 0
 var friction_buffer := 5
 var sideways_friction := 10
-var forwards_friction := 10
+var forwards_friction := 3
 
 var jump_state := 0
 enum {
@@ -92,7 +92,7 @@ func apply_friction(delta):
 	
 	lateral_velocity = lerp(lateral_velocity, Vector3.ZERO, sideways_friction * delta) 
 	
-	if forward_velocity.length() > max_horizontal_velocity * delta:
+	if forward_velocity.length() > max_horizontal_velocity * delta or forward_velocity.dot(controller.camera_relative_movement) < 0:
 		forward_velocity = lerp(forward_velocity, Vector3.ZERO, forwards_friction * delta) 
 	
 	return forward_velocity + lateral_velocity
@@ -105,7 +105,7 @@ func align_to_floor():
 	xform.basis.y = new_y
 	xform.basis.x = -xform.basis.z.cross(new_y)
 	xform.basis = xform.basis.orthonormalized()
-	player_model.global_transform = player_model.global_transform.interpolate_with(xform, 0.2)
+	player_model.global_transform = player_model.global_transform.interpolate_with(xform, 0.1)
 
 func look_forward():
 	var normalized_direction = facing_direction.normalized()
@@ -114,8 +114,6 @@ func look_forward():
 	if look_at_velocity and controller.camera_relative_movement != Vector3.ZERO:
 		player_model.rotation.y = 0.0
 		facing_direction = controller.camera_relative_movement.normalized()
-	elif not look_at_velocity:
-		player_model.rotation.y = - rotation.y
 
 func lean_into_turns():
 	var direction

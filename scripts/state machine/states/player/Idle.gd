@@ -28,7 +28,7 @@ func update(delta):
 	# Handle animation Tree
 	# Process inputs
 	
-	delta_v = grounded_movement_processing(delta)
+	delta_v = grounded_movement_processing(delta, delta_v)
 	
 	# Handle all relevant timers
 	player.delta_v = delta_v
@@ -37,4 +37,4 @@ func update(delta):
 	pass
 
 func reset(_delta):
-	pass
+	player.max_horizontal_velocity = 0.0

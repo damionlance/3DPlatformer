@@ -41,6 +41,9 @@ func update(delta):
 		consecutive_jump_timer += 1
 		# Handle all states
 	var delta_v = Vector3.ZERO
+	if Input.is_action_pressed("DiveButton"):
+		state.update_state("Crouching")
+		return
 	if controller.attempting_jump:
 		consecutive_jump_number += 1
 		player.jump_state = consecutive_jump_number
@@ -49,13 +52,18 @@ func update(delta):
 	if not raycasts.is_on_floor:
 		state.update_state("Falling")
 		return
+	if raycasts.average_floor_normal.y < safe_floor_angle and player.velocity.dot(Plane(raycasts.average_floor_normal).project(Vector3.DOWN).normalized()) >= 0:
+		state.update_state("Belly Slide")
+		return
 	
-	delta_v = grounded_movement_processing(delta)
+	delta_v = controller.camera_relative_movement * controller.input_strength * running_acceleration
+	
+	delta_v = grounded_movement_processing(delta, delta_v)
 	player.snap_vector = -raycasts.average_floor_normal * 0.25
-	delta_v.y = 0.0
 	player.delta_v = delta_v
-	animation_tree[blend_parameter] = lerpf(animation_tree[blend_parameter], player.velocity.length()/0.3, 0.15)
+	animation_tree[blend_parameter] = lerpf(animation_tree[blend_parameter], player.velocity.length()/(player.max_horizontal_velocity * delta), 0.15)
 	pass
 
 func reset(_delta):
-	pass
+	player.max_horizontal_velocity = 15.0
+	player.look_at_velocity = true

@@ -26,9 +26,12 @@ func update(delta):
 	var delta_v = Vector3.ZERO
 	# Handle state logic
 	if raycasts.is_on_floor:
+		if player.jump_state == player.dive:
+			state.update_state("Belly Slide")
+			return
 		state.update_state("Running")
 		return
-	if controller.attempting_dive:
+	if controller.attempting_dive and player.jump_state != player.dive:
 		player.jump_state = player.dive
 		state.update_state("Jump")
 		return
