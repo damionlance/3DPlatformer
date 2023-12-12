@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://ck7605kyg2tas"]
+[gd_scene load_steps=15 format=3 uid="uid://ck7605kyg2tas"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_wxxbr"]
 [ext_resource type="PackedScene" uid="uid://385mcfonrl8g" path="res://scenes/actors/Fella.tscn" id="2_v2y61"]
 [ext_resource type="PackedScene" uid="uid://de8pd7uwfbfmx" path="res://assets/models/levels/fortress/pbfort.glb" id="3_c3nhn"]
-[ext_resource type="PackedScene" uid="uid://sa1nx52er4j3" path="res://scenes/tools/Interactive Objects/gumball_machine.tscn" id="4_bn5yv"]
+[ext_resource type="PackedScene" path="res://scenes/tools/Interactive Objects/gumball_machine.tscn" id="4_bn5yv"]
 [ext_resource type="PackedScene" uid="uid://b8k3wyttmvc2f" path="res://scenes/tools/Interactive Objects/rocking_horse.tscn" id="5_7gu7p"]
+[ext_resource type="Script" path="res://scripts/level objects/pbs fortress/Rocking Horse.gd" id="6_f1mel"]
+[ext_resource type="PackedScene" uid="uid://4hb85og0j6f7" path="res://assets/models/levels/PB's Fortress/rocking horse.glb" id="7_jkqge"]
 
 [sub_resource type="Environment" id="Environment_r6nig"]
 ambient_light_source = 2
@@ -73,11 +75,14 @@ _data = {
 "Rocking": SubResource("Animation_10375")
 }
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ve8xb"]
+radius = 3.02554
+
 [node name="fortress" type="Node3D"]
 script = ExtResource("1_wxxbr")
 
 [node name="Player" parent="." instance=ExtResource("2_v2y61")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.2639, 13.7178, 42.8993)
+transform = Transform3D(0.207314, 0, -0.978274, 0, 1, 0, 0.978274, 0, 0.207314, -12.9099, 9.85145, -73.7084)
 
 [node name="pbfort" parent="." instance=ExtResource("3_c3nhn")]
 
@@ -92,8 +97,8 @@ light_color = Color(1, 1, 0.843137, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -147.164, 15, 80.335)
 
 [node name="Rocking Horse" parent="." instance=ExtResource("5_7gu7p")]
-transform = Transform3D(-0.83825, 0, 0.545285, 0, 1, 0, -0.545285, 0, -0.83825, -88.3837, 13.0956, 49.7706)
-target_position = Vector3(-92.3999, 23.1774, 55.9446)
+transform = Transform3D(-0.999719, 0, 0.0236433, 0, 1, 0, -0.0236433, 0, -0.999719, -88.3837, 13.0956, 49.7706)
+target_position = Vector3(-89.0162, 14.9673, 76.5128)
 
 [node name="Armature" parent="Rocking Horse/rocking horse" index="0"]
 transform = Transform3D(-1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0.962599, 0)
@@ -121,10 +126,10 @@ libraries = {
 }
 
 [node name="Saddle" parent="Rocking Horse" index="1"]
-transform = Transform3D(-1, -3.8743e-07, 2.32831e-07, -2.38376e-07, 0.018927, -0.999821, 3.57628e-07, -0.999821, -0.018927, -3.8147e-06, 1.3727, -0.0172729)
+transform = Transform3D(-1, -3.57628e-07, 2.32831e-07, -2.38376e-07, 0.018927, -0.999821, 3.57628e-07, -0.999821, -0.018927, -3.8147e-06, 1.3727, -0.0172653)
 
 [node name="Target Position" parent="Rocking Horse" index="2"]
-transform = Transform3D(1.00003, 0, -1.74344e-06, 0, 1, 0, 1.74344e-06, 0, 1.00003, -92.3999, 23.1774, 55.9446)
+transform = Transform3D(1.00003, 0, -1.74344e-06, 0, 1, 0, 1.74344e-06, 0, 1.00003, -89.0162, 14.9673, 76.5128)
 
 [node name="Rocking Horse2" parent="." instance=ExtResource("5_7gu7p")]
 transform = Transform3D(-0.999754, 0, -0.0221558, 0, 1, 0, 0.0221558, 0, -0.999754, -149, 37, 70)
@@ -141,20 +146,35 @@ transform = Transform3D(0.021037, 0, -0.999778, 0, 1, 0, 0.999778, 0, 0.021037, 
 target_position = Vector3(-91.5934, 80, 32.3841)
 
 [node name="Saddle" parent="Rocking Horse3" index="1"]
-transform = Transform3D(1, 0, -1.86265e-09, 0, 0.998296, -0.0583603, 1.86265e-09, 0.0583603, 0.998296, -3.8147e-06, 1.72561, 0.119583)
+transform = Transform3D(1, 0, 0, 0, 0.998296, -0.0583603, -1.86265e-09, 0.0583603, 0.998296, 0, 1.72561, 0.119598)
 
 [node name="Target Position" parent="Rocking Horse3" index="2"]
 transform = Transform3D(1.00003, 0, -1.75834e-06, 0, 1, 0, 1.75834e-06, 0, 1.00003, -91.5934, 80, 32.3841)
 
-[node name="Rocking Horse4" parent="." instance=ExtResource("5_7gu7p")]
-transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -50.2481, 9, -67.2707)
-target_position = Vector3(-94.5323, 141.174, -67.2707)
+[node name="Rocking Horse5" type="Area3D" parent="."]
+transform = Transform3D(0.273757, 0, 0.961798, 0, 1, 0, -0.961798, 0, 0.273757, -211.467, 83.6251, 26.449)
+script = ExtResource("6_f1mel")
+target_position = Vector3(-278.717, 115.681, 7.30778)
 
-[node name="Saddle" parent="Rocking Horse4" index="1"]
-transform = Transform3D(1, -2.22045e-16, 0, 0, 0.998296, -0.0583603, 3.55271e-15, 0.0583603, 0.998296, 0, 1.72561, 0.119583)
+[node name="rocking horse" parent="Rocking Horse5" instance=ExtResource("7_jkqge")]
 
-[node name="Target Position" parent="Rocking Horse4" index="2"]
-transform = Transform3D(1.00003, 0, -1.75834e-06, 0, 1, 0, 1.75834e-06, 0, 1.00003, -94.5323, 141.174, -67.2707)
+[node name="Skeleton3D" parent="Rocking Horse5/rocking horse/Armature" index="0"]
+bones/0/position = Vector3(7.57843e-18, -0.0134083, 0.119585)
+bones/0/rotation = Quaternion(0.0291926, 0, 0, 0.999574)
+
+[node name="Saddle" type="BoneAttachment3D" parent="Rocking Horse5"]
+transform = Transform3D(1, -1.45519e-11, 0, 0, 0.998296, -0.0583603, 4.65661e-10, 0.0583603, 0.998296, 0, 1.72561, 0.119585)
+bone_name = "Bone"
+bone_idx = 0
+use_external_skeleton = true
+external_skeleton = NodePath("../rocking horse/Armature/Skeleton3D")
+
+[node name="Target Position" type="Node3D" parent="Rocking Horse5"]
+transform = Transform3D(1.00003, 0, -1.75834e-06, 0, 1, 0, 1.75834e-06, 0, 1.00003, -278.717, 115.681, 7.30778)
+top_level = true
+
+[node name="Detection Area" type="CollisionShape3D" parent="Rocking Horse5"]
+shape = SubResource("CylinderShape3D_ve8xb")
 
 [editable path="Rocking Horse"]
 [editable path="Rocking Horse/rocking horse"]
@@ -162,5 +182,4 @@ transform = Transform3D(1.00003, 0, -1.75834e-06, 0, 1, 0, 1.75834e-06, 0, 1.000
 [editable path="Rocking Horse2/rocking horse"]
 [editable path="Rocking Horse3"]
 [editable path="Rocking Horse3/rocking horse"]
-[editable path="Rocking Horse4"]
-[editable path="Rocking Horse4/rocking horse"]
+[editable path="Rocking Horse5/rocking horse"]
