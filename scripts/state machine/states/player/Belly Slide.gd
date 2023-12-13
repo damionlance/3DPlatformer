@@ -30,7 +30,6 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	print("Hello!")
 	var delta_v = Vector3.ZERO
 #	if player.velocity.length() < 1 * delta:
 #		state.update_state("Running")

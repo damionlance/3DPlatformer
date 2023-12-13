@@ -52,9 +52,9 @@ func update(delta):
 	if not raycasts.is_on_floor:
 		state.update_state("Falling")
 		return
-	if raycasts.average_floor_normal.y < safe_floor_angle and player.velocity.dot(Plane(raycasts.average_floor_normal).project(Vector3.DOWN).normalized()) >= 0:
-		state.update_state("Belly Slide")
-		return
+#	if raycasts.average_floor_normal.y < safe_floor_angle and player.velocity.dot(Plane(raycasts.average_floor_normal).project(Vector3.DOWN).normalized()) >= 0:
+#		state.update_state("Belly Slide")
+#		return
 	
 	delta_v = controller.camera_relative_movement * controller.input_strength * running_acceleration
 	
