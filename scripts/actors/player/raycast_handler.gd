@@ -14,6 +14,7 @@ var average_floor_distance := -100.0
 var closest_floor_distance := -100.0
 var center_floor_distance := 0.0
 var closest_wall_collision := Vector3.ZERO
+var closest_wall_normal := Vector3.ZERO
 
 
 @export var maximum_step_height := 0.251
@@ -110,10 +111,11 @@ func calculate_collisions():
 				closest_wall_collision = test_distance
 			elif closest_wall_collision.length() > test_distance.length():
 				closest_wall_collision = test_distance
-			if test_distance.length() - horizontal_extents < player.horizontal_velocity.length():
-				normals.append(raycast.get_collision_normal())
-				if test_distance.y > maximum_ceiling_angle and test_distance.y < maximum_floor_angle:
+				closest_wall_normal = raycast.get_collision_normal()
+				if test_distance.y > maximum_ceiling_angle and test_distance.y < maximum_floor_angle and closest_wall_collision.length() < 1:
 					is_on_wall = true
+			if test_distance.length() - horizontal_extents < player.horizontal_velocity.length() or test_distance.length() - horizontal_extents + 0.25 < 0.2:
+				normals.append(raycast.get_collision_normal())
 	if average_floor_normal != Vector3.ZERO:
 		average_floor_normal = average_floor_normal.normalized()
 		normals.append(average_floor_normal)

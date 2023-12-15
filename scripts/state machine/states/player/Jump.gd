@@ -46,6 +46,9 @@ func update(delta):
 	if player.velocity.y < 0:
 		state.update_state("Falling")
 		return
+	if raycasts.is_on_wall:
+		state.update_state("Decide Wall Interaction")
+		return
 	# Update all relevant counters
 	if player.jump_state < 4:
 		delta_v = regular_aerial_movement_processing()
@@ -110,7 +113,6 @@ func reset(_delta):
 				player.velocity = controller.camera_relative_movement * dive_speed * _delta
 			else:
 				player.velocity = controller.camera_relative_movement * ((dive_acceleration * _delta) + player.velocity.length())
-			player.look_at_velocity = false
 #			state.anim_tree["parameters/Jump/conditions/dive"] = true
 #			soundplayer.set_stream(load("res://assets/sounds/actor noises/Dive.mp3"))
 #			soundplayer.play()
@@ -147,6 +149,7 @@ func reset(_delta):
 			current_jump_gravity = constants._jump_gravity
 			current_jump_strength = constants._jump_strength
 #			state.anim_tree["parameters/Jump/conditions/jump 1"] = true
+	player.look_at_velocity = false
 	constants.shorthop_timer = 0
 	entering_jump_angle = controller.camera_relative_movement
 	player.snap_vector = Vector3.ZERO

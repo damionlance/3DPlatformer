@@ -20,6 +20,7 @@ var look_at_velocity := true
 var state_name := ""
 var previous_state_name := ""
 var is_on_floor := true
+var is_on_wall := true
 var friction_timer := 0
 var friction_buffer := 5
 var sideways_friction := 10
@@ -48,6 +49,7 @@ func _process(delta):
 	state_name = state.current_state.name
 	previous_state_name = state.previous_state.name
 	is_on_floor = raycasts.is_on_floor
+	is_on_wall = raycasts.is_on_wall
 	
 	previous_velocity = velocity
 	if is_on_floor:

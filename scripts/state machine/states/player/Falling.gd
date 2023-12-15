@@ -35,6 +35,9 @@ func update(delta):
 		player.jump_state = player.dive
 		state.update_state("Jump")
 		return
+	if raycasts.is_on_wall:
+		state.update_state("Decide Wall Interaction")
+		return
 	# Update relevant counters
 	delta_v = regular_aerial_movement_processing()
 	delta_v.y = current_fall_gravity * delta
@@ -75,4 +78,4 @@ func reset(_delta):
 			current_fall_gravity = constants._fall_gravity
 		_: 
 			current_fall_gravity = constants._fall_gravity
-	pass
+	player.look_at_velocity = false

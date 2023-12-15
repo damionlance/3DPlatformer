@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://q0ntyxnavgqa"]
+[gd_scene load_steps=75 format=3 uid="uid://q0ntyxnavgqa"]
 
 [ext_resource type="Script" path="res://scripts/actors/player/Player_all_raycast.gd" id="1_2clf3"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/StateMachine.gd" id="2_0ax74"]
@@ -10,15 +10,40 @@
 [ext_resource type="Shader" path="res://assets/shaders/C64 Dither.gdshader" id="5_4ogbp"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Falling.gd" id="5_j64dv"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/grounded_movement.gd" id="6_r4bex"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Decide Wall Interaction.gd" id="6_tcp14"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Running.gd" id="7_moui0"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Wall Slide.gd" id="7_qc1q7"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Idle.gd" id="8_g1gfr"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/crouch walk.gd" id="8_pkphm"]
+[ext_resource type="Script" path="res://scripts/state machine/states/player/Wall Run.gd" id="8_tye82"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Belly Slide.gd" id="9_w26o5"]
 [ext_resource type="PackedScene" uid="uid://bu8g6ln6c3iun" path="res://scenes/tools/Controller.tscn" id="13_kfpib"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5gn7b"]
 render_priority = 0
 shader = ExtResource("5_4ogbp")
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gk55t"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bur8i"]
+animation = &"Wall Slide"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0ncn1"]
+advance_mode = 2
+advance_expression = "state_name == \"Wall Slide\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f8krk"]
+advance_mode = 2
+advance_expression = "state_name == \"Wall Run\""
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_q37nv"]
+states/Run/node = SubResource("AnimationNodeAnimation_gk55t")
+states/Run/position = Vector2(318.333, 99.2222)
+"states/Wall Slide/node" = SubResource("AnimationNodeAnimation_bur8i")
+"states/Wall Slide/position" = Vector2(317.333, 30.6667)
+transitions = ["Start", "Wall Slide", SubResource("AnimationNodeStateMachineTransition_0ncn1"), "Start", "Run", SubResource("AnimationNodeStateMachineTransition_f8krk")]
+graph_offset = Vector2(-57, -71)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kgxte"]
 animation = &"Dive"
@@ -121,7 +146,7 @@ states/Start/position = Vector2(188, 107.333)
 "states/Start Jump/node" = SubResource("AnimationNodeAnimation_7c1iw")
 "states/Start Jump/position" = Vector2(188.667, -32)
 transitions = ["Start", "Fall", SubResource("AnimationNodeStateMachineTransition_g6fno"), "Start", "Start Jump", SubResource("AnimationNodeStateMachineTransition_dvj2f"), "Start Jump", "Jumps", SubResource("AnimationNodeStateMachineTransition_lqmfx"), "Jumps", "Fall", SubResource("AnimationNodeStateMachineTransition_71c71"), "Jumps", "Dive", SubResource("AnimationNodeStateMachineTransition_gau13"), "Fall", "Dive", SubResource("AnimationNodeStateMachineTransition_kq56m"), "Start", "Ground Pound", SubResource("AnimationNodeStateMachineTransition_2c3ux"), "Ground Pound", "Fall", SubResource("AnimationNodeStateMachineTransition_3yhot")]
-graph_offset = Vector2(-250, -95)
+graph_offset = Vector2(-244, 15)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s63db"]
 animation = &"crouch"
@@ -232,14 +257,30 @@ advance_expression = "is_on_floor == true"
 advance_mode = 2
 advance_expression = "is_on_floor == false"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p08j3"]
+advance_mode = 2
+advance_expression = "is_on_floor != true and
+is_on_wall == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2s58n"]
+advance_mode = 2
+advance_expression = "state_name == \"Jump\" or
+state_name == \"Falling\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d8mya"]
+advance_mode = 2
+advance_expression = "is_on_floor == true"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xs8ki"]
+"states/Aerial Wall Tech/node" = SubResource("AnimationNodeStateMachine_q37nv")
+"states/Aerial Wall Tech/position" = Vector2(580.667, 22.6667)
 states/AerialMovement/node = SubResource("AnimationNodeStateMachine_iwdpj")
 states/AerialMovement/position = Vector2(345.111, 20.6667)
 states/GroundedMovement/node = SubResource("AnimationNodeStateMachine_0pnke")
 states/GroundedMovement/position = Vector2(344.839, 99.4072)
 states/Start/position = Vector2(6, 100.444)
-transitions = ["Start", "GroundedMovement", SubResource("AnimationNodeStateMachineTransition_pbm6s"), "Start", "AerialMovement", SubResource("AnimationNodeStateMachineTransition_veckv"), "AerialMovement", "GroundedMovement", SubResource("AnimationNodeStateMachineTransition_hm42r"), "GroundedMovement", "AerialMovement", SubResource("AnimationNodeStateMachineTransition_0uin4")]
-graph_offset = Vector2(-60, -136)
+transitions = ["Start", "GroundedMovement", SubResource("AnimationNodeStateMachineTransition_pbm6s"), "Start", "AerialMovement", SubResource("AnimationNodeStateMachineTransition_veckv"), "AerialMovement", "GroundedMovement", SubResource("AnimationNodeStateMachineTransition_hm42r"), "GroundedMovement", "AerialMovement", SubResource("AnimationNodeStateMachineTransition_0uin4"), "AerialMovement", "Aerial Wall Tech", SubResource("AnimationNodeStateMachineTransition_p08j3"), "Aerial Wall Tech", "AerialMovement", SubResource("AnimationNodeStateMachineTransition_2s58n"), "Aerial Wall Tech", "GroundedMovement", SubResource("AnimationNodeStateMachineTransition_d8mya")]
+graph_offset = Vector2(-144, -72)
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_2clf3")
@@ -256,6 +297,15 @@ ground_pound_finished = true
 
 [node name="Falling" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource("5_j64dv")
+
+[node name="Decide Wall Interaction" type="Node" parent="StateMachine/AerialMovement"]
+script = ExtResource("6_tcp14")
+
+[node name="Wall Slide" type="Node" parent="StateMachine/AerialMovement"]
+script = ExtResource("7_qc1q7")
+
+[node name="Wall Run" type="Node" parent="StateMachine/AerialMovement"]
+script = ExtResource("8_tye82")
 
 [node name="GroundedMovement" type="Node" parent="StateMachine"]
 script = ExtResource("6_r4bex")
@@ -278,6 +328,7 @@ script = ExtResource("9_w26o5")
 bones/1/rotation = Quaternion(0.753165, 0, 0, 0.657832)
 bones/2/rotation = Quaternion(-0.0374373, 1.19126e-07, -4.46287e-09, 0.999299)
 bones/3/rotation = Quaternion(-0.0399615, -1.19114e-07, -4.76378e-09, 0.999201)
+bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(0.00125846, 2.12385e-18, -1.68693e-15, 0.999999)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(-0.266093, 8.0438e-07, -2.85487e-07, 0.963947)
@@ -335,6 +386,7 @@ bones/140/scale = Vector3(1, 1, 1)
 bones/142/rotation = Quaternion(0.15382, 1.06036e-09, -1.58347e-07, 0.988099)
 bones/143/rotation = Quaternion(-5.21541e-08, -5.58793e-08, -2.8871e-08, 1)
 bones/144/rotation = Quaternion(-0.0137172, -0.000808021, -0.0588157, 0.998174)
+bones/144/scale = Vector3(1, 1, 1)
 bones/146/rotation = Quaternion(-0.0130863, 0.833835, -0.279125, -0.476064)
 bones/146/scale = Vector3(1, 1, 1)
 bones/147/rotation = Quaternion(0.15382, 3.68769e-08, 4.7127e-08, 0.988099)
@@ -351,6 +403,7 @@ bones/170/scale = Vector3(1, 1, 1)
 bones/172/rotation = Quaternion(0.15382, -1.06036e-09, 1.58347e-07, 0.988099)
 bones/173/rotation = Quaternion(-5.21541e-08, 5.58793e-08, 2.8871e-08, 1)
 bones/174/rotation = Quaternion(-0.0137172, 0.000808021, 0.0588157, 0.998174)
+bones/174/scale = Vector3(1, 1, 1)
 bones/184/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/185/rotation = Quaternion(0.420825, 0.669028, -0.586181, 0.178044)
 bones/187/rotation = Quaternion(-0.707107, 0, 0, 0.707107)

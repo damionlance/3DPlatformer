@@ -11,12 +11,17 @@ var breaks_momentum = false
 var motion_input : String
 
 #private variables
-var state_name = "WallSlide"
+var state_name = "Wall Slide"
 var entering_angle : Vector3
 var surface_normal : Vector3
 
 var wall_bounce_buffer := 5
 var wall_bounce_timer := 0
+
+var falling := false
+
+var entering_gravity := 0.0
+var jump_speed := 10.0
 
 var forwards
 var right
@@ -29,56 +34,36 @@ func _ready():
 	pass # Replace with function body.
 
 func update(delta):
-	wall_bounce_timer += 1
-	if player.is_on_floor():
-		state.anim_tree["parameters/conditions/wall slide"] = false
+	delta_v = Vector3.ZERO
+	
+	if raycasts.is_on_floor:
 		state.update_state("Running")
 		return
-	if not state._raycast_middle.is_colliding():
-		state.jumpstate = state.jump
-		state.move_direction = -state.move_direction
-		state.anim_tree["parameters/conditions/wall slide"] = false
+	if not raycasts.is_on_wall:
+		player.jump_state = 1
 		state.update_state("Falling")
 		return
-	if wall_collision_check() == wall_collision.wallClimb:
-		state.update_state("WallClimb")
+	if controller.attempting_jump:
+		player.jump_state = 1
+		player.velocity = directional_input_handling() * (jump_speed * delta)
+		state.update_state("Jump")
 		return
-	if wall_bounce_timer < wall_bounce_buffer:
-		if  state.attempting_jump and state.controller.jumpstate:
-			state.move_direction = state.camera_relative_movement.normalized()
-			if state.move_direction.dot(surface_normal) < 0:
-				state.move_direction = state.move_direction.bounce(surface_normal)
-			if state.move_direction == Vector3.ZERO:
-				state.move_direction == surface_normal
-			if state.current_speed + 0.25 > 12.5:
-				state.current_speed += 0.25
-			else:
-				state.current_speed = 12.5
-			state.jumpstate = state.jump
-			state.anim_tree["parameters/conditions/wall slide"] = false
-			state.update_state("Jump")
+	
+	if player.velocity.y > 0:
+		delta_v.y = entering_gravity * delta
 	else:
-		if  state.attempting_jump:
-			if state.spin_allowed:
-				state.move_direction = surface_normal
-				state.velocity = surface_normal * 12.5
-				state.current_speed = 12.5
-				state.jumpstate = state.wall_spin
-				state.update_state("Jump")
-				return
-			directional_input_handling()
-			state.current_speed = 10
-			state.jumpstate = state.jump
-			state.anim_tree["parameters/conditions/wall slide"] = false
-			state.update_state("Jump")
-	state.velocity = state.calculate_velocity(-10, delta)
-	pass
+		delta_v.y = constants._spin_jump_gravity * delta
+		if not falling:
+			player.velocity = Vector3(0, player.velocity.y, 0)
+			falling = true
+	
+	player.snap_vector = -raycasts.closest_wall_normal
+	player.delta_v = delta_v
 
-func directional_input_handling():
-	var dir = state.camera_relative_movement.normalized()
-	if state.controller.input_strength == 0:
-		state.move_direction = surface_normal
-		return
+func directional_input_handling() -> Vector3:
+	var dir = controller.camera_relative_movement.normalized()
+	if controller.input_strength == 0:
+		return surface_normal
 	if dir.dot(surface_normal) < 0:
 		dir = dir.bounce(surface_normal)
 	var angle = surface_normal.signed_angle_to(dir, Vector3.UP)
@@ -86,27 +71,19 @@ func directional_input_handling():
 		angle = deg_to_rad(40)
 	elif angle > deg_to_rad(40):
 		angle = -deg_to_rad(40)
-	state.move_direction = dir.rotated(Vector3.UP, angle)
+	return dir.rotated(Vector3.UP, angle)
 
-func reset():
-	state._reset_animation_parameters()
-	state.anim_tree["parameters/conditions/wall slide"] = true
-	var instance = load(landing_particles).instantiate()
-	add_child(instance)
-	instance.global_position = state.player.global_position
-	entering_angle = Vector3(state.velocity.x,0, state.velocity.z)
-	var horizontal_strength = entering_angle.length()
+func reset(_delta):
+	falling = false
+	entering_angle = player.velocity
 	entering_angle = entering_angle.normalized()
-	if horizontal_strength < .1:
-		state.consecutive_stationary_wall_jump += 1
-	wall_bounce_timer = 0
-	state.velocity = Vector3.ZERO
-	surface_normal = state._raycast_middle.get_collision_normal()
-	surface_normal.y = 0
-	state.move_direction = -surface_normal
-	state.snap_vector = -surface_normal
-	if state.move_direction != Vector3.ZERO:
-		var temp = player.transform.looking_at(player.global_transform.origin + state.move_direction, Vector3.UP)
-		if temp != Transform3D():
-			player.transform = temp
+	
+	if player.velocity.y < 0:
+		falling = true
+		player.velocity = Vector3(0, player.velocity.y, 0)
+	
+	entering_gravity = $"../Jump".current_jump_gravity
+	
+	surface_normal = raycasts.closest_wall_normal
+	player.snap_vector = -surface_normal
 	return
