@@ -77,3 +77,6 @@ func _physics_process(_delta):
 
 func set_target_body(body):
 	target_body = body
+
+func get_camera_basis():
+	return camera.global_transform.basis

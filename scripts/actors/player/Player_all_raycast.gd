@@ -54,6 +54,7 @@ func _process(delta):
 	previous_velocity = velocity
 	if is_on_floor:
 		velocity = apply_friction(delta)
+	
 	velocity += delta_v * delta
 	for normal in raycasts.normals:
 		var push_back = velocity.dot(normal)
@@ -91,7 +92,6 @@ func apply_friction(delta):
 	var forward_velocity = controller.camera_relative_movement
 	forward_velocity *= controller.camera_relative_movement.dot(velocity)
 	var lateral_velocity = velocity - forward_velocity
-	
 	lateral_velocity = lerp(lateral_velocity, Vector3.ZERO, sideways_friction * delta) 
 	
 	if forward_velocity.length() > max_horizontal_velocity * delta or forward_velocity.dot(controller.camera_relative_movement) < 0:

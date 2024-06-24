@@ -71,8 +71,9 @@ func directional_input_handling() -> Vector3:
 	return dir.rotated(Vector3.UP, angle)
 
 func reset(_delta):
+	print("We're wall running")
 	falling = false
-	entering_angle = player.velocity
+	entering_angle = controller.camera_relative_movement
 	entering_angle = entering_angle.normalized()
 	if player.velocity.y < 0:
 		falling = true

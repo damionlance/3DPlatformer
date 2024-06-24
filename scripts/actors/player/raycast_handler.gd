@@ -34,6 +34,7 @@ var is_on_ceiling := false
 var normals := []
 var wall_distance := Vector3.FORWARD * 10000
 var is_on_wall := false
+var is_on_wall_top := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -78,6 +79,7 @@ func calculate_collisions():
 	is_on_floor = false
 	is_on_ceiling = false
 	is_on_wall = false
+	is_on_wall_top = false
 	normals = []
 	average_floor_distance = 0.0
 	center_floor_distance = -100.0
@@ -107,13 +109,13 @@ func calculate_collisions():
 		else:
 			var test_distance = raycast.get_collision_point() - raycast.global_position
 			test_distance -= test_distance.normalized() * .25
-			if closest_wall_collision == Vector3.UP * 1000:
-				closest_wall_collision = test_distance
-			elif closest_wall_collision.length() > test_distance.length():
+			if closest_wall_collision.length() > test_distance.length():
 				closest_wall_collision = test_distance
 				closest_wall_normal = raycast.get_collision_normal()
 				if test_distance.y > maximum_ceiling_angle and test_distance.y < maximum_floor_angle and closest_wall_collision.length() < 1:
 					is_on_wall = true
+					if raycast.position == Vector3.UP:
+						is_on_wall_top = true
 			if test_distance.length() - horizontal_extents < player.horizontal_velocity.length() or test_distance.length() - horizontal_extents + 0.25 < 0.2:
 				normals.append(raycast.get_collision_normal())
 	if average_floor_normal != Vector3.ZERO:

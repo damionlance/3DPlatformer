@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://djtkmkopv1lam"]
+
+[ext_resource type="Script" path="res://scripts/tools/Camera.gd" id="1_kputu"]
+[ext_resource type="Shader" path="res://assets/shaders/C64 Dither.gdshader" id="2_llox3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5gn7b"]
+render_priority = 0
+shader = ExtResource("2_llox3")
+
+[node name="CameraPivot" type="Node3D"]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.52292, 0)
+script = ExtResource("1_kputu")
+camera_sensitivity = Vector2(2, 2)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+spring_length = 10.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.12232, 7.53115)
+current = true
+fov = 80.0
+far = 500.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SpringArm3D/Camera3D"]
+visible = false
+
+[node name="TextureRect" type="ColorRect" parent="SpringArm3D/Camera3D/CanvasLayer"]
+material = SubResource("ShaderMaterial_5gn7b")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="PlayerPhysicsConstants" load_steps=2 format=3 uid="uid://drca2jshr551c"]
+
+[ext_resource type="Script" path="res://scripts/resources/player physics constants.gd" id="1_ifwn0"]
+
+[resource]
+script = ExtResource("1_ifwn0")
+running_acceleration = 48.0
+slide_acceleration = 20.0
+crouching_acceleration = 4.0
+max_horizontal_velocity = 15.0
+max_walk_speed = 10.0
+safe_floor_angle = 0.88
+jump_height = 4
+jump_time_to_peak = 0.3
+jump_time_to_descent = 0.216
+jump2_height = 8
+jump2_time_to_peak = 0.4
+jump2_time_to_descent = 0.3
+jump3_height = 12
+jump3_time_to_peak = 0.5
+jump3_time_to_descent = 0.45
+spin_jump_height = 5.5
+spin_jump_time_to_peak = 0.7
+spin_jump_time_to_descent = 1.2
+side_jump_height = 6.1
+side_jump_time_to_peak = 0.4
+side_jump_time_to_descent = 0.4
+dive_jump_height = 2.1
+dive_jump_time_to_peak = 0.3
+dive_jump_time_to_descent = 0.22
+rollout_jump_height = 2.1
+rollout_jump_time_to_peak = 0.3
+rollout_jump_time_to_descent = 0.3
+air_friction = 0.99
+air_acceleration = 2.0
+terminal_velocity = 25.0

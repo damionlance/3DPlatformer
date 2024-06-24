@@ -75,7 +75,7 @@ func directional_input_handling() -> Vector3:
 
 func reset(_delta):
 	falling = false
-	entering_angle = player.velocity
+	entering_angle = controller.camera_relative_movement
 	entering_angle = entering_angle.normalized()
 	
 	if player.velocity.y < 0:

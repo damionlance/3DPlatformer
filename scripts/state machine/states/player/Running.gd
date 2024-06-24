@@ -57,7 +57,6 @@ func update(delta):
 #		return
 	
 	delta_v = controller.camera_relative_movement * controller.input_strength * running_acceleration
-	
 	delta_v = grounded_movement_processing(delta, delta_v)
 	player.snap_vector = -raycasts.average_floor_normal * 0.25
 	player.delta_v = delta_v

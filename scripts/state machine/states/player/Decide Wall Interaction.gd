@@ -8,7 +8,7 @@ func _ready():
 	state.state_dictionary[state_name] = self
 
 func reset(_delta):
-	var entering_jump_velocity = player.velocity
+	var entering_jump_velocity = controller.camera_relative_movement
 	var wall_normal = raycasts.closest_wall_normal
 	
 	var wall_velocity_dot_product = entering_jump_velocity.dot(wall_normal)
