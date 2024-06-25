@@ -10,6 +10,7 @@ crouching_acceleration = 4.0
 max_horizontal_velocity = 15.0
 max_walk_speed = 10.0
 safe_floor_angle = 0.88
+slide_friction = 3.0
 jump_height = 4
 jump_time_to_peak = 0.3
 jump_time_to_descent = 0.216
