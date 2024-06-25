@@ -68,7 +68,8 @@ func check_for_jump(delta : float) -> void:
 		jump_reset_timer.stop()
 
 func initial_jump_processing():
-	state_chart.send_event("stop_rotating")
+	if current_jump >= constants.jump_strength.size():
+		current_jump == 0
 	velocity.y = constants.jump_strength[current_jump]
 	match current_jump:
 		3:
