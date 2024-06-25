@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b1no6pukt37fw"]
+[gd_scene load_steps=63 format=3 uid="uid://b1no6pukt37fw"]
 
 [ext_resource type="Script" path="res://scripts/actors/player/Player State Chart.gd" id="1_7viet"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_1c6vs"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="7_66yvw"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/expression_guard.gd" id="8_p6w2l"]
 [ext_resource type="PackedScene" uid="uid://4vh2f3m2n7bn" path="res://assets/models/actors/Fella/possible final fella.glb" id="8_vaatg"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="9_q4dmx"]
 [ext_resource type="PackedScene" uid="uid://djtkmkopv1lam" path="res://scenes/tools/3D Platformer Camera.tscn" id="10_0siog"]
 [ext_resource type="Script" path="res://scripts/actors/player/animation tree value handler.gd" id="10_c4rsc"]
 [ext_resource type="Script" path="res://scripts/actors/player/Floor Alignment Raycast.gd" id="11_vbojm"]
@@ -33,6 +34,9 @@ expression = "speed != 0"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c8h3y"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7i1ss"]
+animation = &"Dive"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dvt4w"]
 animation = &"Fall"
 
@@ -44,8 +48,7 @@ animation = &"Jump 3"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i4f6r"]
 advance_mode = 2
-advance_expression = "current_jump == 0
-"
+advance_expression = "current_jump <= 0"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l8yi5"]
 switch_mode = 1
@@ -57,14 +60,25 @@ switch_mode = 1
 advance_mode = 2
 advance_expression = "current_jump == 2"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8i43j"]
+switch_mode = 1
+advance_mode = 2
+advance_expression = "current_jump == 3"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vks00"]
+states/Dive/node = SubResource("AnimationNodeAnimation_7i1ss")
+states/Dive/position = Vector2(335, 238)
 states/Fall/node = SubResource("AnimationNodeAnimation_dvt4w")
 states/Fall/position = Vector2(335, 52)
 "states/Jump 2/node" = SubResource("AnimationNodeAnimation_7u1be")
 "states/Jump 2/position" = Vector2(333, 106)
 "states/Jump 3/node" = SubResource("AnimationNodeAnimation_xvibm")
 "states/Jump 3/position" = Vector2(331, 176)
-transitions = ["Start", "Fall", SubResource("AnimationNodeStateMachineTransition_i4f6r"), "Start", "Jump 2", SubResource("AnimationNodeStateMachineTransition_l8yi5"), "Start", "Jump 3", SubResource("AnimationNodeStateMachineTransition_lbt2q")]
+transitions = ["Start", "Fall", SubResource("AnimationNodeStateMachineTransition_i4f6r"), "Start", "Jump 2", SubResource("AnimationNodeStateMachineTransition_l8yi5"), "Start", "Jump 3", SubResource("AnimationNodeStateMachineTransition_lbt2q"), "Start", "Dive", SubResource("AnimationNodeStateMachineTransition_8i43j")]
+graph_offset = Vector2(-47, 0)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6x75d"]
+animation = &"Dive"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hpjfc"]
 animation = &"Jump 1"
@@ -73,6 +87,9 @@ animation = &"Jump 1"
 animation = &"Jump 2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rbuvg"]
+animation = &"Jump 3"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xxtqr"]
 animation = &"Jump 3"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kmvrm"]
@@ -87,15 +104,28 @@ advance_expression = "current_jump == 1"
 advance_mode = 2
 advance_expression = "current_jump == 2"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tkjwv"]
+advance_mode = 2
+advance_expression = "current_jump == 3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8h4mj"]
+advance_mode = 2
+advance_expression = "current_jump == 4"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sqcbh"]
+allow_transition_to_self = true
+states/Dive/node = SubResource("AnimationNodeAnimation_6x75d")
+states/Dive/position = Vector2(337, 237)
 "states/Jump 1/node" = SubResource("AnimationNodeAnimation_hpjfc")
 "states/Jump 1/position" = Vector2(362, 20)
 "states/Jump 2/node" = SubResource("AnimationNodeAnimation_opae5")
 "states/Jump 2/position" = Vector2(347, 98)
 "states/Jump 3/node" = SubResource("AnimationNodeAnimation_rbuvg")
 "states/Jump 3/position" = Vector2(362, 176)
-transitions = ["Start", "Jump 1", SubResource("AnimationNodeStateMachineTransition_kmvrm"), "Start", "Jump 2", SubResource("AnimationNodeStateMachineTransition_6ko45"), "Start", "Jump 3", SubResource("AnimationNodeStateMachineTransition_asbh0")]
-graph_offset = Vector2(-119, -9)
+states/Rollout/node = SubResource("AnimationNodeAnimation_xxtqr")
+states/Rollout/position = Vector2(337, 330)
+transitions = ["Start", "Jump 1", SubResource("AnimationNodeStateMachineTransition_kmvrm"), "Start", "Jump 2", SubResource("AnimationNodeStateMachineTransition_6ko45"), "Start", "Jump 3", SubResource("AnimationNodeStateMachineTransition_asbh0"), "Start", "Dive", SubResource("AnimationNodeStateMachineTransition_tkjwv"), "Start", "Rollout", SubResource("AnimationNodeStateMachineTransition_8h4mj")]
+graph_offset = Vector2(-171, -46)
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_25qry"]
 advance_mode = 2
@@ -105,14 +135,27 @@ advance_expression = "velocity.y >= 0"
 xfade_time = 0.15
 switch_mode = 1
 advance_mode = 2
+advance_expression = "velocity.y <= 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r2dmm"]
+switch_mode = 1
+advance_mode = 2
+advance_expression = "velocity.y > 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1yafm"]
+advance_mode = 2
+advance_expression = "velocity.y < 0"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_61yq5"]
 states/Fall/node = SubResource("AnimationNodeStateMachine_vks00")
 states/Fall/position = Vector2(437, 190)
 states/Jump/node = SubResource("AnimationNodeStateMachine_sqcbh")
 states/Jump/position = Vector2(437, 100)
-transitions = ["Start", "Jump", SubResource("AnimationNodeStateMachineTransition_25qry"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_7e171")]
+transitions = ["Start", "Jump", SubResource("AnimationNodeStateMachineTransition_25qry"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_7e171"), "Fall", "Jump", SubResource("AnimationNodeStateMachineTransition_r2dmm"), "Start", "Fall", SubResource("AnimationNodeStateMachineTransition_1yafm")]
 graph_offset = Vector2(-8, 41)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b6lxs"]
+animation = &"Dive"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b68mb"]
 animation = &"Idle"
@@ -153,12 +196,18 @@ xfade_time = 0.15
 advance_mode = 2
 advance_expression = "movement_direction.length() <= .7"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vyy1o"]
+advance_mode = 2
+advance_expression = "current_jump == 3"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xt3vh"]
+states/Dive/node = SubResource("AnimationNodeAnimation_b6lxs")
+states/Dive/position = Vector2(400, 23)
 states/run/node = SubResource("AnimationNodeBlendSpace1D_obkoh")
 states/run/position = Vector2(399, 170)
 states/walk/node = SubResource("AnimationNodeBlendSpace1D_4t6sa")
 states/walk/position = Vector2(400, 93)
-transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_gjekn"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_fpse2"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_c68tr")]
+transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_gjekn"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_fpse2"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_c68tr"), "Start", "Dive", SubResource("AnimationNodeStateMachineTransition_vyy1o")]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1vb8g"]
 advance_mode = 2
@@ -171,6 +220,7 @@ advance_expression = "is_on_floor() == false"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qwqa3"]
 xfade_time = 0.15
+switch_mode = 1
 advance_mode = 2
 advance_expression = "is_on_floor() == true"
 
@@ -257,6 +307,15 @@ to = NodePath("../../../Aerial Movement Options/Fall")
 event = &"Fall"
 delay_in_seconds = "0.0"
 
+[node name="Belly Slide" type="Node" parent="StateChart/ParallelState/Movement State/Grounded Movement Options"]
+script = ExtResource("7_66yvw")
+
+[node name="Jump" type="Node" parent="StateChart/ParallelState/Movement State/Grounded Movement Options/Belly Slide"]
+script = ExtResource("6_m6nmy")
+to = NodePath("../../../Aerial Movement Options/Jump")
+event = &"Jump"
+delay_in_seconds = "0.0"
+
 [node name="Aerial Movement Options" type="Node" parent="StateChart/ParallelState/Movement State"]
 script = ExtResource("4_gkhyx")
 initial_state = NodePath("Jump")
@@ -284,8 +343,20 @@ to = NodePath("../../Fall")
 event = &"Fall"
 delay_in_seconds = "0.0"
 
+[node name="Dive" type="Node" parent="StateChart/ParallelState/Movement State/Aerial Movement Options/Jump"]
+script = ExtResource("6_m6nmy")
+to = NodePath("../../Dive")
+event = &"Dive"
+delay_in_seconds = "0.0"
+
 [node name="Fall" type="Node" parent="StateChart/ParallelState/Movement State/Aerial Movement Options"]
 script = ExtResource("7_66yvw")
+
+[node name="Dive" type="Node" parent="StateChart/ParallelState/Movement State/Aerial Movement Options/Fall"]
+script = ExtResource("6_m6nmy")
+to = NodePath("../../Dive")
+event = &"Dive"
+delay_in_seconds = "0.0"
 
 [node name="Idle" type="Node" parent="StateChart/ParallelState/Movement State/Aerial Movement Options/Fall"]
 script = ExtResource("6_m6nmy")
@@ -301,51 +372,13 @@ event = &"Landed"
 guard = SubResource("Resource_v1fey")
 delay_in_seconds = "0.0"
 
-[node name="Orientation" type="Node" parent="StateChart/ParallelState"]
-script = ExtResource("3_mlwsq")
-
-[node name="Facing" type="Node" parent="StateChart/ParallelState/Orientation"]
-script = ExtResource("4_gkhyx")
-initial_state = NodePath("Rotate Facing")
-
-[node name="Rotate Facing" type="Node" parent="StateChart/ParallelState/Orientation/Facing"]
+[node name="Dive" type="Node" parent="StateChart/ParallelState/Movement State/Aerial Movement Options"]
 script = ExtResource("7_66yvw")
 
-[node name="Face Forward" type="Node" parent="StateChart/ParallelState/Orientation/Facing/Rotate Facing"]
+[node name="Belly Slide" type="Node" parent="StateChart/ParallelState/Movement State/Aerial Movement Options/Dive"]
 script = ExtResource("6_m6nmy")
-to = NodePath("../../Face Forward")
-event = &"stop_rotating"
-delay_in_seconds = "0.0"
-
-[node name="Face Forward" type="Node" parent="StateChart/ParallelState/Orientation/Facing"]
-script = ExtResource("7_66yvw")
-
-[node name="Rotate Facing" type="Node" parent="StateChart/ParallelState/Orientation/Facing/Face Forward"]
-script = ExtResource("6_m6nmy")
-to = NodePath("../../Rotate Facing")
-event = &"start_rotating"
-delay_in_seconds = "0.0"
-
-[node name="Align To Ground" type="Node" parent="StateChart/ParallelState/Orientation"]
-script = ExtResource("4_gkhyx")
-initial_state = NodePath("Align To Ground")
-
-[node name="Align To Ground" type="Node" parent="StateChart/ParallelState/Orientation/Align To Ground"]
-script = ExtResource("7_66yvw")
-
-[node name="Don\'t Align to Ground" type="Node" parent="StateChart/ParallelState/Orientation/Align To Ground/Align To Ground"]
-script = ExtResource("6_m6nmy")
-to = NodePath("../../Don\'t Align to Ground")
-event = &"stop_align_to_ground"
-delay_in_seconds = ""
-
-[node name="Don\'t Align to Ground" type="Node" parent="StateChart/ParallelState/Orientation/Align To Ground"]
-script = ExtResource("7_66yvw")
-
-[node name="Align to Ground" type="Node" parent="StateChart/ParallelState/Orientation/Align To Ground/Don\'t Align to Ground"]
-script = ExtResource("6_m6nmy")
-to = NodePath("../../Align To Ground")
-event = &"align_to_ground"
+to = NodePath("../../../Grounded Movement Options/Belly Slide")
+event = &"Landed"
 delay_in_seconds = "0.0"
 
 [node name="possible final fella" parent="." instance=ExtResource("8_vaatg")]
@@ -572,14 +605,36 @@ unique_name_in_owner = true
 target_position = Vector3(0, -0.1, 0)
 script = ExtResource("11_vbojm")
 
+[node name="StateChartDebugger" parent="." instance=ExtResource("9_q4dmx")]
+offset_right = -1456.0
+offset_bottom = -474.0
+initial_node_to_watch = NodePath("..")
+
 [connection signal="state_physics_processing" from="StateChart/ParallelState/Movement State/Grounded Movement Options/Idle" to="." method="grounded_movement_processing"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement State/Grounded Movement Options/Idle" to="." method="align_to_floor"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement State/Grounded Movement Options/Idle" to="." method="check_for_jump"]
+[connection signal="taken" from="StateChart/ParallelState/Movement State/Grounded Movement Options/Idle/Jump" to="." method="increment_jump"]
 [connection signal="state_entered" from="StateChart/ParallelState/Movement State/Grounded Movement Options/Run" to="." method="_on_run_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/Movement State/Grounded Movement Options/Run" to="." method="grounded_movement_processing"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement State/Grounded Movement Options/Run" to="." method="align_to_floor"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement State/Grounded Movement Options/Run" to="." method="look_forward"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement State/Grounded Movement Options/Run" to="." method="check_for_jump"]
+[connection signal="taken" from="StateChart/ParallelState/Movement State/Grounded Movement Options/Run/Jump" to="." method="increment_jump"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement State/Grounded Movement Options/Belly Slide" to="." method="belly_slide_processing"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement State/Grounded Movement Options/Belly Slide" to="." method="check_for_jump"]
+[connection signal="taken" from="StateChart/ParallelState/Movement State/Grounded Movement Options/Belly Slide/Jump" to="." method="set_jump" binds= [4]]
 [connection signal="state_entered" from="StateChart/ParallelState/Movement State/Aerial Movement Options/Jump" to="." method="initial_jump_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/Movement State/Aerial Movement Options/Jump" to="." method="normal_jump_processing"]
+[connection signal="taken" from="StateChart/ParallelState/Movement State/Aerial Movement Options/Jump/Idle" to="." method="start_jump_reset_timer"]
+[connection signal="taken" from="StateChart/ParallelState/Movement State/Aerial Movement Options/Jump/Run" to="." method="start_jump_reset_timer"]
+[connection signal="taken" from="StateChart/ParallelState/Movement State/Aerial Movement Options/Jump/Dive" to="." method="set_jump" binds= [3]]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/Movement State/Aerial Movement Options/Fall" to="." method="normal_jump_processing"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/Orientation/Facing/Rotate Facing" to="." method="look_forward"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/Orientation/Align To Ground/Align To Ground" to="." method="align_to_floor"]
+[connection signal="taken" from="StateChart/ParallelState/Movement State/Aerial Movement Options/Fall/Dive" to="." method="set_jump" binds= [3]]
+[connection signal="taken" from="StateChart/ParallelState/Movement State/Aerial Movement Options/Fall/Idle" to="." method="start_jump_reset_timer"]
+[connection signal="taken" from="StateChart/ParallelState/Movement State/Aerial Movement Options/Fall/Run" to="." method="start_jump_reset_timer"]
+[connection signal="state_entered" from="StateChart/ParallelState/Movement State/Aerial Movement Options/Dive" to="." method="look_forward"]
+[connection signal="state_entered" from="StateChart/ParallelState/Movement State/Aerial Movement Options/Dive" to="." method="initial_jump_processing"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement State/Aerial Movement Options/Dive" to="." method="normal_jump_processing"]
 
 [editable path="possible final fella"]
 [editable path="CameraPivot"]
