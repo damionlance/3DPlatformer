@@ -78,7 +78,7 @@ var _spin_fall_gravity : float = (-2.0 * spin_jump_height) / (spin_jump_time_to_
 var _side_jump_strength : float = (2.0 * side_jump_height) / side_jump_time_to_peak
 var _side_jump_gravity : float = (-2.0 * side_jump_height) / (side_jump_time_to_peak * side_jump_time_to_peak)
 var _side_fall_gravity : float = (-2.0 * side_jump_height) / (side_jump_time_to_descent * side_jump_time_to_descent)
-var _side_jump_velocity : float = max_horizontal_velocity / 4
+var _side_jump_velocity : float = max_horizontal_velocity / 3
 
 var jump_strength := [_jump_strength, _jump2_strength, _jump3_strength, _dive_jump_strength, _rollout_jump_strength, _spin_jump_strength, _side_jump_strength, _jump_strength]
 var jump_gravity := [_jump_gravity, _jump2_gravity, _jump3_gravity, _dive_jump_gravity, _rollout_jump_gravity, _spin_jump_gravity, _side_jump_gravity, _jump_gravity]
