@@ -22,6 +22,7 @@ var joystick_input_buffer : Array[Vector2] = []
 @onready var state_chart := $%StateChart
 @onready var camera := $CameraPivot
 @onready var animation_tree := $AnimationTree
+@onready var wall_jump_raycasts := $"%Wall Jump Raycasts"
 
 #Raycasts
 @onready var floor_alignment_raycast := $"%Floor Alignment Raycast"
@@ -67,6 +68,10 @@ func check_for_jump(delta : float) -> void:
 		state_chart.send_event("Jump")
 		jump_reset_timer.stop()
 
+func check_for_floor(delta : float) -> void:
+	if is_on_floor():
+		state_chart.send_event("Landed")
+
 func initial_jump_processing():
 	if current_jump >= constants.jump_strength.size():
 		current_jump == 0
@@ -80,6 +85,13 @@ func initial_jump_processing():
 			movement_direction = movement_direction.normalized() * constants._side_jump_velocity
 			velocity = Vector3(movement_direction.x, constants.jump_strength[current_jump], movement_direction.z)
 			look_forward(0.0166)
+		7:
+			movement_direction = movement_direction.normalized() * constants.max_horizontal_velocity
+			velocity = Vector3(movement_direction.x, constants.jump_strength[current_jump], movement_direction.z)
+			look_forward(0.0166)
+
+func wall_slide_processing(delta : float) -> void:
+	delta_v.y = constants.wall_slide_gravity * delta
 
 func normal_jump_processing(delta : float):
 	delta_v = movement_direction
@@ -92,11 +104,8 @@ func normal_jump_processing(delta : float):
 	if Input.is_action_just_pressed("DiveButton"):
 		state_chart.send_event("Dive")
 	
-	if velocity.y <= 0:
+	if velocity.y <= 0 and not is_on_floor():
 		state_chart.send_event("Fall")
-	
-	if is_on_floor():
-		state_chart.send_event("Landed")
 
 func set_jump(jump_index : int) -> void:
 	current_jump = jump_index
@@ -115,6 +124,9 @@ func reset_jumps() -> void:
 func reset_pivot_buffer() -> void:
 	joystick_input_buffer.clear()
 	joystick_input_buffer.resize(20)
+
+func reset_velocity() -> void:
+	velocity = Vector3.ZERO
 
 func apply_friction(delta : float) -> void:
 	var forward_velocity = movement_direction
@@ -148,12 +160,14 @@ func align_to_floor(delta) -> void:
 	global_transform = global_transform.interpolate_with(xform, 0.1)
 
 func look_forward(delta) -> void:
-	
 	var normalized_direction = movement_direction.normalized()
 	var lookdir = atan2(normalized_direction.x, normalized_direction.z)
 	rotation.y = lookdir
 	if movement_direction != Vector3.ZERO:
 		facing_direction = movement_direction.normalized()
+
+func disable_wall_jump(delta) -> void:
+	wall_jump_raycasts.disable()
 
 func check_for_pivots(delta) -> void:
 	joystick_input_buffer.push_front(Input.get_vector("Left", "Right", "Backward", "Forward"))
