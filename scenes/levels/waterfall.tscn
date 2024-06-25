@@ -20,6 +20,6 @@ transform = Transform3D(0.972889, -0.0918938, 0.212232, 0, 0.917671, 0.39734, -0
 light_color = Color(1, 1, 0.843137, 1)
 
 [node name="Player" parent="." instance=ExtResource("7_a2qux")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92024, 0, -20.4318)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.9777, -17.1101, -58.0349)
 
 [node name="waterfall" parent="." instance=ExtResource("2_evhbf")]
