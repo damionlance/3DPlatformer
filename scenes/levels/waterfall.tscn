@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://vgsr2whv77up"]
+
+[ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_0kyes"]
+[ext_resource type="PackedScene" uid="uid://fcui28jwkkq" path="res://assets/models/levels/waterfall/waterfall.glb" id="2_evhbf"]
+[ext_resource type="PackedScene" uid="uid://q0ntyxnavgqa" path="res://scenes/actors/player.tscn" id="7_a2qux"]
+
+[sub_resource type="Environment" id="Environment_r6nig"]
+ambient_light_source = 2
+ambient_light_color = Color(0.584314, 0.768627, 0.839216, 1)
+ambient_light_energy = 0.45
+
+[node name="waterfall" type="Node3D"]
+script = ExtResource("1_0kyes")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r6nig")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.972889, -0.0918938, 0.212232, 0, 0.917671, 0.39734, -0.231273, -0.386568, 0.892792, 0, 20.9702, 0)
+light_color = Color(1, 1, 0.843137, 1)
+
+[node name="Player" parent="." instance=ExtResource("7_a2qux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92024, 0, -20.4318)
+
+[node name="waterfall" parent="." instance=ExtResource("2_evhbf")]
