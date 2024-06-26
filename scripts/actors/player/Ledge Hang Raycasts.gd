@@ -16,6 +16,38 @@ func _process(delta):
 			break
 	#Check if raycasts normals are within margin of error
 	if colliding:
-		if forward_raycasts[0].get_collision_normal() == forward_raycasts[1].get_collision_normal():
+		if check_wall_group("climbable object"):
+			state_chart.send_event("Wall Climb")
+		elif forward_raycasts[0].get_collision_normal() == forward_raycasts[1].get_collision_normal():
 			state_chart.send_event("Wall Slide")
 		pass
+
+func check_wall_group(check_group : String) -> bool:
+	var in_group := false
+	if forward_raycasts[0].is_colliding():
+		if forward_raycasts[0].get_collider().get_parent().is_in_group(check_group):
+			return false
+		in_group = true
+	if forward_raycasts[1].is_colliding():
+		if forward_raycasts[1].get_collider().get_parent().is_in_group(check_group):
+			return false
+		if in_group:
+			return true
+	return false
+
+func get_average_wall_distance() -> Vector3:
+	var distance := Vector3.ZERO
+	if forward_raycasts[0].is_colliding():
+		distance += forward_raycasts[0].get_collision_point() - forward_raycasts[0].global_position
+	if forward_raycasts[1].is_colliding():
+		distance += forward_raycasts[1].get_collision_point() - forward_raycasts[1].global_position
+	return distance
+
+func get_average_wall_normal() -> Vector3:
+	var sum := Vector3.ZERO
+	if forward_raycasts[0].is_colliding():
+		sum += forward_raycasts[0].get_collision_normal()
+	if forward_raycasts[1].is_colliding():
+		sum += forward_raycasts[1].get_collision_normal()
+	
+	return sum.normalized()

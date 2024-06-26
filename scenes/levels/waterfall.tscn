@@ -22,4 +22,6 @@ light_color = Color(1, 1, 0.843137, 1)
 [node name="waterfall" parent="." instance=ExtResource("2_evhbf")]
 
 [node name="Player" parent="." instance=ExtResource("3_n1hwv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0606, -28.8738, -58.7759)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.03064, 20.7781, -58.7759)
+
+[editable path="waterfall"]

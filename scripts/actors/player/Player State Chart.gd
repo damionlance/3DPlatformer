@@ -63,6 +63,25 @@ func grounded_movement_processing(delta):
 	if not is_on_floor():
 		state_chart.send_event("Fall")
 
+func wall_climb_processing(delta) -> void:
+	if not wall_jump_raycasts.check_wall_group("climbable zone"):
+		return
+	var wall_normal = wall_jump_raycasts.get_average_wall_normal()
+	var wall_distance = wall_jump_raycasts.get_average_wall_distance()
+	
+	var wall_sideways = wall_normal.cross(Vector3.UP)
+	var wall_up = wall_normal.cross(wall_sideways)
+	
+	#current_speed = 5
+	movement_direction = Vector3.ZERO
+	movement_direction -= wall_up * Input.get_axis("Backward", "Forward")
+	movement_direction += wall_sideways * Input.get_axis("Right", "Left")
+	movement_direction += wall_distance
+	
+	look_at(global_position + wall_normal)
+	
+	velocity = movement_direction * 5
+
 func check_for_jump(delta : float) -> void:
 	if Input.is_action_just_pressed("Jump"):
 		state_chart.send_event("Jump")
@@ -75,6 +94,7 @@ func check_for_floor(delta : float) -> void:
 func initial_jump_processing():
 	if current_jump >= constants.jump_strength.size():
 		current_jump == 0
+	
 	velocity.y = constants.jump_strength[current_jump]
 	match current_jump:
 		3:
@@ -127,6 +147,7 @@ func reset_pivot_buffer() -> void:
 
 func reset_velocity() -> void:
 	velocity = Vector3.ZERO
+	delta_v = Vector3.ZERO
 
 func apply_friction(delta : float) -> void:
 	var forward_velocity = movement_direction
