@@ -34,7 +34,7 @@ func iterate(node, main_scene):
 		if "-levelcoin" in node.name:
 			set_up_level_coin(node, main_scene)
 		if "-climbable" in node.name:
-			set_up_climable_surface(node, main_scene)
+			node = set_up_climbable_surface(node, main_scene)
 		if "-hazard" in node.name:
 			node = set_up_hazard(node, main_scene)
 		for child in node.get_children():
@@ -127,8 +127,11 @@ func set_up_rising_door(door, main_scene) -> Node:
 	door.set_script(load("res://scripts/level objects/door.gd"))
 	return door
 
-func set_up_climable_surface(plane, main_scene) -> Node:
-	plane.set_script(load("res://scripts/tools/climbable_zone.gd"))
+func set_up_climbable_surface(plane, main_scene) -> Node:
+	plane.create_convex_collision()
+	plane.get_child(0).add_to_group("climbable")
+	plane.get_child(0).name = "StaticBody3D"
+	plane.get_child(0).set_collision_layer(128)
 	return plane
 	
 func set_up_leaf_emitter(leaf, main_scene) -> Node:
