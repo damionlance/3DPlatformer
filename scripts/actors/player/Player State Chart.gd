@@ -203,3 +203,8 @@ func check_for_pivots(delta) -> void:
 			else:
 				if checked_position.dot(positions) < -.9:
 					state_chart.send_event("Pivot")
+
+func attach_to_object(object_type : String) -> void:
+	match object_type:
+		"Climbable Rope":
+			state_chart.send_event("Rope Climb")

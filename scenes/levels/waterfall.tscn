@@ -28,7 +28,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.43087, 20.7781, -73.7759)
 [node name="Dynamic Objects" type="Node3D" parent="."]
 
 [node name="Climbable Rope" parent="Dynamic Objects" instance=ExtResource("6_8l0cg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6185, 28.7325, -58.271)
-height = 0.905
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6185, 38.2474, -58.271)
+height = 17.82
+climbing_speed = 3.0
 
 [editable path="waterfall"]
