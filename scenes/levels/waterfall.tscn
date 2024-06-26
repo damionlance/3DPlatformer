@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cau3x6x8wkgnu"]
+[gd_scene load_steps=6 format=3 uid="uid://cau3x6x8wkgnu"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_0kyes"]
 [ext_resource type="PackedScene" uid="uid://fcui28jwkkq" path="res://assets/models/levels/waterfall/waterfall.glb" id="2_evhbf"]
 [ext_resource type="PackedScene" uid="uid://b1no6pukt37fw" path="res://scenes/actors/New Player.tscn" id="3_n1hwv"]
+[ext_resource type="PackedScene" uid="uid://ch24fj2bm5imh" path="res://scenes/tools/dynamic objects/Climbing Rope/Climbable Rope.tscn" id="6_8l0cg"]
 
 [sub_resource type="Environment" id="Environment_r6nig"]
 ambient_light_source = 2
@@ -22,6 +23,12 @@ light_color = Color(1, 1, 0.843137, 1)
 [node name="waterfall" parent="." instance=ExtResource("2_evhbf")]
 
 [node name="Player" parent="." instance=ExtResource("3_n1hwv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.03064, 20.7781, -58.7759)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.43087, 20.7781, -73.7759)
+
+[node name="Dynamic Objects" type="Node3D" parent="."]
+
+[node name="Climbable Rope" parent="Dynamic Objects" instance=ExtResource("6_8l0cg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6185, 28.7325, -58.271)
+height = 0.905
 
 [editable path="waterfall"]
