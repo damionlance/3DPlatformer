@@ -35,7 +35,7 @@ func _ready():
 
 func _physics_process(delta):
 	velocity += delta_v * delta
-	speed = Vector3(velocity.x, 0, velocity.y).length()
+	speed = Vector3(velocity.x, 0, velocity.z).length()
 	move_and_slide()
 	
 	input_polling()
