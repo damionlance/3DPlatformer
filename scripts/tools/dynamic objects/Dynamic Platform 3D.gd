@@ -2,7 +2,7 @@ extends Node
 class_name DynamicPlatform3D
 
 @onready var platform := $"%platform"
-@onready var animation_player := $"%AnimationPlayer"
+@onready var animation_player : AnimationPlayer = $"%AnimationPlayer"
 @onready var mesh : MeshInstance3D
 
 @export_category("Debug Properties")
