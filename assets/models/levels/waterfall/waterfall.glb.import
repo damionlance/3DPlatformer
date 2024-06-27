@@ -35,6 +35,10 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://assets/materials/garden/wallSplash.tres"
 },
+"Splash.001": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/garden/fallsBreak.tres"
+},
 "Waterfall": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/materials/garden/waterfall.tres"

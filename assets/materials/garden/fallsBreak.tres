@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bcqmauvtbcltq"]
+
+[ext_resource type="Shader" path="res://assets/shaders/scrollingImage.gdshader" id="1_8x7xy"]
+[ext_resource type="Texture2D" uid="uid://ctnssg8xsc1lc" path="res://assets/textures/garden/wallwake.png" id="2_5u1v3"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8x7xy")
+shader_parameter/scroll_speed = 0.194
+shader_parameter/angle_degrees = 0.0
+shader_parameter/repeat_x = 1.0
+shader_parameter/repeat_y = 1.0
+shader_parameter/row_offset = 1.0
+shader_parameter/texture_to_scroll = ExtResource("2_5u1v3")

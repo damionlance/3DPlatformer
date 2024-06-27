@@ -32,4 +32,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6185, 38.2474, -58.271)
 height = 17.82
 climbing_speed = 3.0
 
+[node name="Particles" type="Node3D" parent="."]
+
 [editable path="waterfall"]
