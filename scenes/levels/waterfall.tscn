@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_0kyes"]
 [ext_resource type="PackedScene" uid="uid://fcui28jwkkq" path="res://assets/models/levels/waterfall/waterfall.glb" id="2_evhbf"]
 [ext_resource type="PackedScene" uid="uid://b1no6pukt37fw" path="res://scenes/actors/New Player.tscn" id="3_n1hwv"]
-[ext_resource type="PackedScene" uid="uid://ch24fj2bm5imh" path="res://scenes/tools/dynamic objects/Climbing Rope/Climbable Rope.tscn" id="6_8l0cg"]
+[ext_resource type="PackedScene" uid="uid://ch24fj2bm5imh" path="res://scenes/tools/Dynamic Objects/Climbing Rope/Climbable Rope.tscn" id="6_8l0cg"]
 
 [sub_resource type="Environment" id="Environment_r6nig"]
 ambient_light_source = 2

@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bltmknxmy7p1a"]
+
+[ext_resource type="Shader" path="res://assets/shaders/scrollingImage.gdshader" id="1_yp4ep"]
+[ext_resource type="Texture2D" uid="uid://ddrphmwfebmm6" path="res://assets/textures/garden/water.png" id="2_27f73"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_yp4ep")
+shader_parameter/scroll_speed = 0.613
+shader_parameter/angle_degrees = 90.0
+shader_parameter/repeat_x = 1.0
+shader_parameter/repeat_y = 1.0
+shader_parameter/row_offset = 1.0
+shader_parameter/texture_to_scroll = ExtResource("2_27f73")
