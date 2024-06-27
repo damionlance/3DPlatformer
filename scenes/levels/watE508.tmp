@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://cau3x6x8wkgnu"]
+
+[ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_0kyes"]
+[ext_resource type="PackedScene" uid="uid://fcui28jwkkq" path="res://assets/models/levels/waterfall/waterfall.glb" id="2_evhbf"]
+[ext_resource type="PackedScene" uid="uid://b1no6pukt37fw" path="res://scenes/actors/New Player.tscn" id="3_n1hwv"]
+[ext_resource type="PackedScene" uid="uid://caepckx3gr70v" path="res://scenes/tools/managers/Checkpoint/checkpoint.tscn" id="5_4u3v7"]
+[ext_resource type="PackedScene" uid="uid://egrvieqe3s2p" path="res://scenes/tools/dynamic objects/Moving Platform/Moving Platform.tscn" id="5_i60yu"]
+[ext_resource type="PackedScene" uid="uid://b77fgnopqf6lt" path="res://scenes/tools/managers/Linear Respawn Zone/linear respawn zone.tscn" id="6_jaayl"]
+
+[sub_resource type="Environment" id="Environment_r6nig"]
+ambient_light_source = 2
+ambient_light_color = Color(0.584314, 0.768627, 0.839216, 1)
+ambient_light_energy = 0.45
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2b8ue"]
+size = Vector3(32.957, 17.9077, 46.9966)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5nlh7"]
+size = Vector3(414.961, 224.157, 314.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_55aod"]
+size = Vector3(61.8173, 4.68921, 53.5786)
+
+[node name="waterfall" type="Node3D"]
+script = ExtResource("1_0kyes")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r6nig")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.972889, -0.0918938, 0.212232, 0, 0.917671, 0.39734, -0.231273, -0.386568, 0.892792, 0, 20.9702, 0)
+light_color = Color(1, 1, 0.843137, 1)
+
+[node name="waterfall" parent="." instance=ExtResource("2_evhbf")]
+
+[node name="Player" parent="." instance=ExtResource("3_n1hwv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.43087, 21.1513, -54.9937)
+
+[node name="Dynamic Objects" type="Node3D" parent="."]
+
+[node name="Moving Platform" parent="Dynamic Objects" instance=ExtResource("5_i60yu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.79288, 26.3885, -60.1108)
+loop = false
+
+[node name="Particles" type="Node3D" parent="."]
+
+[node name="Checkpoints" type="Node3D" parent="."]
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("5_4u3v7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2621, -11.5332, -52.0238)
+
+[node name="CollisionShape3D" parent="Checkpoints/Checkpoint/Player Detector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.45403, -8.51688, -4.38219)
+shape = SubResource("BoxShape3D_2b8ue")
+
+[node name="Respawn Location" parent="Checkpoints/Checkpoint" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.39869, 0)
+
+[node name="Linear Respawn Zone" parent="." instance=ExtResource("6_jaayl")]
+
+[node name="CollisionShape3D" parent="Linear Respawn Zone" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -111.328, 77.8998, 46.8949)
+shape = SubResource("BoxShape3D_5nlh7")
+
+[node name="Test Hazard" type="Area3D" parent="."]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test Hazard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33536, -33.6993, -106.457)
+shape = SubResource("BoxShape3D_55aod")
+
+[editable path="waterfall"]
+[editable path="Checkpoints/Checkpoint"]
+[editable path="Linear Respawn Zone"]

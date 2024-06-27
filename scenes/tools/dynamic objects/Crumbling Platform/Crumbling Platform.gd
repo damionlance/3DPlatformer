@@ -17,6 +17,7 @@ class_name CrumblingPlatform
 
 @onready var timer := $Timer
 @onready var trigger := $Trigger
+@onready var animation_player := $AnimationPlayer
 
 var player : CharacterBody3D
 var _reset_crumble := false

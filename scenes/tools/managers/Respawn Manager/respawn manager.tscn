@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://df257xxycwk5d"]
+
+[ext_resource type="Script" path="res://scenes/tools/managers/Respawn Manager/respawn manager.gd" id="1_lo5aq"]
+[ext_resource type="PackedScene" uid="uid://bdubytf2flgoy" path="res://scenes/tools/managers/respawn zone detector.tscn" id="2_y1dos"]
+
+[node name="Respawn Manager" type="Node3D"]
+script = ExtResource("1_lo5aq")
+
+[node name="Respawn Zone Detector" parent="." instance=ExtResource("2_y1dos")]
+collision_mask = 32

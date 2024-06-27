@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b77fgnopqf6lt"]
+
+[ext_resource type="Script" path="res://scenes/tools/managers/Linear Respawn Zone/linear respawn zone.gd" id="1_v6u2r"]
+
+[node name="Linear Respawn Zone" type="Area3D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_v6u2r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]

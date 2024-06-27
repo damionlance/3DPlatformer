@@ -208,3 +208,11 @@ func attach_to_object(object_type : String) -> void:
 	match object_type:
 		"Climbable Rope":
 			state_chart.send_event("Rope Climb")
+
+func hazard_reaction(hazard : Node) -> void:
+	if hazard.is_in_group("water"):
+		$"Respawn Manager".process_respawn()
+	return
+
+func respawn(new_position : Vector3) -> void:
+	global_position = new_position

@@ -57,6 +57,10 @@ singletons=[]
 
 fps=false
 
+[global_group]
+
+checkpoint="respawn locations for player"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
@@ -209,6 +213,8 @@ TOGGLEFULLSCREEN={
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Dynamic Objects"
 3d_physics/layer_4="Passthru"
+3d_physics/layer_6="Respawn Zones"
+3d_physics/layer_7="Hazard"
 3d_physics/layer_8="Climbable Zones"
 
 [physics]

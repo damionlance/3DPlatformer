@@ -42,9 +42,9 @@ var path_follow_agents_loop : Array[bool] = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	if trigger_object != null:
-		trigger_object.connect("activate", activate_platform)
-		trigger_object.connect("pause", pause_platform)
+	#if trigger_object != null:
+	#	trigger_object.connect("activate", activate_platform)
+	#	trigger_object.connect("pause", pause_platform)
 	
 	if dynamic_platforms.size() != 0:
 		path_follow.get_child(0).queue_free()
@@ -87,12 +87,6 @@ func _physics_process(delta):
 
 func pause_platform(pause : bool) -> void:
 	moving = pause
-
-func activate_platform(activate : bool) -> void:
-	if activate:
-		animation_player.play("Path Follow")
-	else:
-		animation_player.stop(not reset_on_trigger)
 
 func loop_movement(delta: float) -> void:
 	var i = 0

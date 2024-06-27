@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://caepckx3gr70v"]
+
+[ext_resource type="Script" path="res://scenes/tools/managers/Checkpoint/Checkpoint.gd" id="1_bf7kb"]
+[ext_resource type="PackedScene" uid="uid://bdubytf2flgoy" path="res://scenes/tools/managers/respawn zone detector.tscn" id="2_apc1a"]
+
+[node name="Checkpoint" type="Node3D"]
+script = ExtResource("1_bf7kb")
+
+[node name="Respawn Zone Detector" parent="." instance=ExtResource("2_apc1a")]
+collision_mask = 32
+
+[node name="Player Detector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player Detector"]
+
+[node name="Respawn Location" type="Node3D" parent="."]

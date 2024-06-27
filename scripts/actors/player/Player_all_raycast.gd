@@ -126,4 +126,6 @@ func lean_into_turns():
 		direction = controller.camera_relative_movement
 	direction = -(direction.dot(lateralAxis)) * 1.0
 
-
+func respawn() -> void:
+	
+	return
