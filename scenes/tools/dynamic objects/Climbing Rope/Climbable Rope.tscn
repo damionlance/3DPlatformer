@@ -13,7 +13,6 @@ size = Vector3(0.1, 3.43, 0.1)
 
 [node name="Climbable Rope" type="Node3D"]
 script = ExtResource("1_kipkn")
-climbing_speed = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true

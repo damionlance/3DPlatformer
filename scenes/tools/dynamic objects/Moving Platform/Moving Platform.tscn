@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://egrvieqe3s2p"]
+[gd_scene load_steps=3 format=3 uid="uid://egrvieqe3s2p"]
 
 [ext_resource type="Script" path="res://scenes/tools/dynamic objects/Moving Platform/Moving Platform.gd" id="1_7h4rf"]
 
@@ -9,60 +9,17 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="Animation" id="Animation_hm58m"]
-resource_name = "Path Follow"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_2eauj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_i3ttf"]
-_data = {
-"Path Follow": SubResource("Animation_hm58m"),
-"RESET": SubResource("Animation_2eauj")
-}
-
 [node name="Moving Platform" type="Node3D"]
 script = ExtResource("1_7h4rf")
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_psaym")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
 transform = Transform3D(0.999994, 0, 0, 0, 0.999994, 0, 0, 0, 0.999999, 0, 0, 0)
 rotation_mode = 0
 
-[node name="platform" type="CharacterBody3D" parent="Path3D/PathFollow3D"]
+[node name="platform" type="CharacterBody3D" parent="PathFollow3D"]
 unique_name_in_owner = true
 collision_layer = 4
 collision_mask = 0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_i3ttf")
-}
-autoplay = "Path Follow"
