@@ -5,6 +5,7 @@ var _respawn_zone : RespawnZone
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	await get_tree().get_current_scene().ready
 	$"Respawn Zone Detector".connect("area_entered", add_to_linear_respawn_group)
 	$"Player Detector".connect("body_entered", activate)
 
@@ -14,6 +15,8 @@ func add_to_linear_respawn_group(respawn_zone : RespawnZone) -> void:
 
 func activate(body : Node3D) -> void:
 	if not open_zone_checkpoint:
+		if _respawn_zone == null:
+			await $"Respawn Zone Detector".area_entered
 		_respawn_zone.active_checkpoint = self
 	else:
 		add_to_group("checkpoint")

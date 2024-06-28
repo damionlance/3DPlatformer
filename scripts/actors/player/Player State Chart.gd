@@ -140,6 +140,7 @@ func start_jump_reset_timer() -> void:
 
 func reset_jumps() -> void:
 	current_jump = -1
+	jump_reset_timer.stop()
 
 func reset_pivot_buffer() -> void:
 	joystick_input_buffer.clear()
@@ -159,9 +160,13 @@ func apply_friction(delta : float) -> void:
 	if forward_velocity.length() > constants.max_horizontal_velocity * delta or forward_velocity.dot(movement_direction) < 0:
 		forward_velocity = lerp(forward_velocity, Vector3.ZERO, forwards_friction * delta)
 	velocity = forward_velocity + lateral_velocity
+	if velocity.length() < 1 and Input.get_vector("Left", "Right", "Backward", "Forward") == Vector2.ZERO:
+		velocity = Vector3(0, velocity.y, 0)
 
 func apply_slide_friction(delta : float) -> void:
 	velocity = lerp(velocity, Vector3.ZERO, (constants.slide_friction * delta))
+	if velocity.length() < 1:
+		velocity = Vector3(0, velocity.y, 0)
 
 func start_skidding() -> void:
 	pivot = true
