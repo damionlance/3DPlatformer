@@ -1,14 +1,65 @@
-[gd_scene load_steps=6 format=3 uid="uid://cau3x6x8wkgnu"]
+[gd_scene load_steps=19 format=3 uid="uid://cau3x6x8wkgnu"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_0kyes"]
 [ext_resource type="PackedScene" uid="uid://fcui28jwkkq" path="res://assets/models/levels/waterfall/waterfall.glb" id="2_evhbf"]
 [ext_resource type="PackedScene" uid="uid://b1no6pukt37fw" path="res://scenes/actors/New Player.tscn" id="3_n1hwv"]
-[ext_resource type="PackedScene" uid="uid://ch24fj2bm5imh" path="res://scenes/tools/Dynamic Objects/Climbing Rope/Climbable Rope.tscn" id="6_8l0cg"]
+[ext_resource type="PackedScene" uid="uid://jaxv1pb1wkxy" path="res://scenes/tools/Dynamic Objects/Garden/moving_log_platform.tscn" id="4_u4tyk"]
+[ext_resource type="PackedScene" uid="uid://b77fgnopqf6lt" path="res://scenes/tools/managers/Linear Respawn Zone/linear respawn zone.tscn" id="5_am48q"]
+[ext_resource type="PackedScene" path="res://scenes/tools/dynamic objects/Garden/crumbling_rock_platform.tscn" id="6_6w2qi"]
+[ext_resource type="PackedScene" uid="uid://caepckx3gr70v" path="res://scenes/tools/managers/Checkpoint/checkpoint.tscn" id="6_jhb82"]
+[ext_resource type="PackedScene" uid="uid://ce4llblk2ui00" path="res://scenes/tools/Dynamic Objects/Garden/crumbling_rock_platform.tscn" id="6_xo4n8"]
 
 [sub_resource type="Environment" id="Environment_r6nig"]
 ambient_light_source = 2
 ambient_light_color = Color(0.584314, 0.768627, 0.839216, 1)
 ambient_light_energy = 0.45
+
+[sub_resource type="Curve3D" id="Curve3D_f4k0y"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.426, 0, 20.654),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_12ckc"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.426, 0, 23.574),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_exrwb"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.426, -8.546, 16.814),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_jqo2u"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.426, 3.744, -14.756),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_0782h"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -5.496, 12.534),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vjfi2"]
+size = Vector3(346.906, 232.703, 306.93)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i42jw"]
+size = Vector3(33.4636, 20.9569, 47.7898)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i3o1b"]
+size = Vector3(56.5091, 20.206, 49.0284)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yudm0"]
+size = Vector3(495.342, 5.78857, 343.93)
 
 [node name="waterfall" type="Node3D"]
 script = ExtResource("1_0kyes")
@@ -23,15 +74,137 @@ light_color = Color(1, 1, 0.843137, 1)
 [node name="waterfall" parent="." instance=ExtResource("2_evhbf")]
 
 [node name="Player" parent="." instance=ExtResource("3_n1hwv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.3444, 178.701, -73.7759)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.2401, 2.16675, -52.2894)
 
 [node name="Dynamic Objects" type="Node3D" parent="."]
 
-[node name="Climbable Rope" parent="Dynamic Objects" instance=ExtResource("6_8l0cg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6185, 38.2474, -58.271)
-height = 17.82
-climbing_speed = 3.0
+[node name="First Layer" type="Node3D" parent="Dynamic Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.2381, 0)
+
+[node name="Moving Platform" parent="Dynamic Objects/First Layer" instance=ExtResource("4_u4tyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78369, -3, -23.5407)
+travel_time = 4.0
+
+[node name="Path3D" parent="Dynamic Objects/First Layer/Moving Platform" index="0"]
+curve = SubResource("Curve3D_f4k0y")
+
+[node name="platform" parent="Dynamic Objects/First Layer/Moving Platform/PathFollow3D" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.41399, 0, 0)
+
+[node name="Second Layer" type="Node3D" parent="Dynamic Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40.2764, 0)
+
+[node name="Crumbling Platform" parent="Dynamic Objects/Second Layer" instance=ExtResource("6_xo4n8")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -5.76214, 3.74906, -39.934)
+
+[node name="Crumbling Platform2" parent="Dynamic Objects/Second Layer" instance=ExtResource("6_xo4n8")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -4.41228, -5.63519, 4.03029)
+
+[node name="Third Layer" type="Node3D" parent="Dynamic Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 74.7092, 0)
+
+[node name="Crumbling Platform" parent="Dynamic Objects/Third Layer" instance=ExtResource("6_6w2qi")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -6.6076, 2.80649, 5.06729)
+
+[node name="Crumbling Platform4" parent="Dynamic Objects/Third Layer" instance=ExtResource("6_6w2qi")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10.0357, 2.80649, 33.1955)
+
+[node name="Crumbling Platform5" parent="Dynamic Objects/Third Layer" instance=ExtResource("6_6w2qi")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10.0357, 2.80649, 61.0529)
+
+[node name="Crumbling Platform6" parent="Dynamic Objects/Third Layer" instance=ExtResource("6_6w2qi")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 8.23561, 2.80649, 47.0059)
+
+[node name="Crumbling Platform7" parent="Dynamic Objects/Third Layer" instance=ExtResource("6_6w2qi")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 52.0811, 2.80649, 47.0059)
+
+[node name="Crumbling Platform2" parent="Dynamic Objects/Third Layer" instance=ExtResource("6_6w2qi")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -6.6076, 2.80649, -9.07642)
+
+[node name="Crumbling Platform3" parent="Dynamic Objects/Third Layer" instance=ExtResource("6_6w2qi")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -5.83618, -5.16555, -36.8933)
+
+[node name="Moving Platform" parent="Dynamic Objects/Third Layer" instance=ExtResource("4_u4tyk")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19.5413, 4.7345, 46.9806)
+travel_time = 6.0
+
+[node name="Path3D" parent="Dynamic Objects/Third Layer/Moving Platform" index="0"]
+curve = SubResource("Curve3D_12ckc")
+
+[node name="Moving Platform2" parent="Dynamic Objects/Third Layer" instance=ExtResource("4_u4tyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.2575, 12.8237, 19.7974)
+travel_time = 6.0
+
+[node name="Path3D" parent="Dynamic Objects/Third Layer/Moving Platform2" index="0"]
+curve = SubResource("Curve3D_exrwb")
+
+[node name="Fourth Layer" type="Node3D" parent="Dynamic Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 115.745, 0)
+
+[node name="Crumbling Platform" parent="Dynamic Objects/Fourth Layer" instance=ExtResource("6_xo4n8")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1.26089, 0, -1.97807)
+
+[node name="Moving Platform" parent="Dynamic Objects/Fourth Layer" instance=ExtResource("4_u4tyk")]
+transform = Transform3D(2.25, 0, 0, 0, 2.25, 0, 0, 0, 2.25, -3.47638, -8.48678, 45.1825)
+travel_time = 12.0
+
+[node name="Path3D" parent="Dynamic Objects/Fourth Layer/Moving Platform" index="0"]
+curve = SubResource("Curve3D_jqo2u")
+
+[node name="Moving Platform2" parent="Dynamic Objects/Fourth Layer" instance=ExtResource("4_u4tyk")]
+transform = Transform3D(2.25, 0, 0, 0, 2.25, 0, 0, 0, 2.25, -3.40124, 12.5541, -40.7999)
+travel_time = 12.0
+
+[node name="Path3D" parent="Dynamic Objects/Fourth Layer/Moving Platform2" index="0"]
+curve = SubResource("Curve3D_0782h")
 
 [node name="Particles" type="Node3D" parent="."]
 
+[node name="Linear Respawn Zone" parent="." instance=ExtResource("5_am48q")]
+
+[node name="CollisionShape3D" parent="Linear Respawn Zone" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.5475, 82.6524, 47.5633)
+shape = SubResource("BoxShape3D_vjfi2")
+
+[node name="Checkpoints" type="Node3D" parent="."]
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("6_jhb82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.6459, -63.369)
+
+[node name="CollisionShape3D" parent="Checkpoints/Checkpoint/Player Detector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.80835, -3.55084, 8.55359)
+shape = SubResource("BoxShape3D_i42jw")
+
+[node name="Respawn Location" parent="Checkpoints/Checkpoint" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.90379, 1.3272, 25.8584)
+
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("6_jhb82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.6399, 53.7649)
+
+[node name="CollisionShape3D" parent="Checkpoints/Checkpoint2/Player Detector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85151, 7.28268, 10.9515)
+shape = SubResource("BoxShape3D_i3o1b")
+
+[node name="Respawn Location" parent="Checkpoints/Checkpoint2" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0118, 12.6272, 8.35892)
+
+[node name="Hazards" type="Node3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="Hazards" groups=["water"]]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hazards/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.7964, -4.03853, 57.2913)
+shape = SubResource("BoxShape3D_yudm0")
+
 [editable path="waterfall"]
+[editable path="Dynamic Objects/First Layer/Moving Platform"]
+[editable path="Dynamic Objects/Third Layer/Moving Platform"]
+[editable path="Dynamic Objects/Third Layer/Moving Platform2"]
+[editable path="Dynamic Objects/Fourth Layer/Crumbling Platform"]
+[editable path="Dynamic Objects/Fourth Layer/Moving Platform"]
+[editable path="Dynamic Objects/Fourth Layer/Moving Platform2"]
+[editable path="Linear Respawn Zone"]
+[editable path="Checkpoints/Checkpoint"]
+[editable path="Checkpoints/Checkpoint2"]

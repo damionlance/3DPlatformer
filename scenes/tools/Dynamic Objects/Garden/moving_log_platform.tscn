@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://jaxv1pb1wkxy"]
+
+[ext_resource type="PackedScene" uid="uid://egrvieqe3s2p" path="res://scenes/tools/Dynamic Objects/Moving Platform/Moving Platform.tscn" id="1_uib1y"]
+[ext_resource type="PackedScene" uid="uid://bdjs3ocwet8lr" path="res://assets/models/levels/waterfall/logPlat.glb" id="2_ln38l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hc26x"]
+size = Vector3(7.96887, 1, 7.95563)
+
+[node name="Moving Platform" instance=ExtResource("1_uib1y")]
+
+[node name="platform" parent="PathFollow3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.41399, 0, 0)
+
+[node name="logPlat" parent="PathFollow3D/platform" index="0" instance=ExtResource("2_ln38l")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PathFollow3D/platform" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48444, 0, -0.0128477)
+shape = SubResource("BoxShape3D_hc26x")

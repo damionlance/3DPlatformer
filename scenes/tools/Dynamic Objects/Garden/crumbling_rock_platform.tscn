@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce4llblk2ui00"]
+
+[ext_resource type="PackedScene" uid="uid://buu4i5jugr5hs" path="res://scenes/tools/Dynamic Objects/Crumbling Platform/Crumbling Platform.tscn" id="1_17lh2"]
+[ext_resource type="PackedScene" uid="uid://wk2td5ukmxqh" path="res://assets/models/levels/waterfall/crumblingRockPlat.glb" id="2_ap105"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4658i"]
+size = Vector3(8.15997, 3.26166, 8.13397)
+
+[node name="Crumbling Platform" instance=ExtResource("1_17lh2")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+time_to_crumble = 2.0
+time_to_return = 5.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="platform" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0189095, 0.615143, -0.00576782)
+shape = SubResource("BoxShape3D_4658i")
+
+[node name="crumblingRockPlat" parent="platform" index="1" instance=ExtResource("2_ap105")]
