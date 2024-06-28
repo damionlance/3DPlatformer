@@ -17,6 +17,6 @@ func activate(body : Node3D) -> void:
 	if not open_zone_checkpoint:
 		if _respawn_zone == null:
 			await $"Respawn Zone Detector".area_entered
-		_respawn_zone.active_checkpoint = self
+		_respawn_zone.active_checkpoint = $"Respawn Location"
 	else:
 		add_to_group("checkpoint")

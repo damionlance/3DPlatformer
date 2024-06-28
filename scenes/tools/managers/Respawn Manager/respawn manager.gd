@@ -15,6 +15,8 @@ func process_respawn():
 
 func _linear_respawn_zone():
 	var last_respawn_position = $"Respawn Zone Detector".get_overlapping_areas()[0].active_checkpoint.global_position
+	print($"Respawn Zone Detector".get_overlapping_areas()[0].name)
+	print("last respawn position: ", last_respawn_position)
 	emit_signal("respawn", last_respawn_position)
 
 func _free_respawn_zone():

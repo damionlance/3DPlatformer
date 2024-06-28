@@ -10,4 +10,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if active_checkpoint != null:
+		print(active_checkpoint.global_position)
 	pass
