@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cau3x6x8wkgnu"]
+[gd_scene load_steps=33 format=3 uid="uid://cau3x6x8wkgnu"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_0kyes"]
 [ext_resource type="PackedScene" uid="uid://fcui28jwkkq" path="res://assets/models/levels/waterfall/waterfall.glb" id="2_evhbf"]
@@ -16,7 +16,7 @@ ambient_light_energy = 0.45
 
 [sub_resource type="Curve3D" id="Curve3D_f4k0y"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.426, 0, 20.654),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24.024),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -112,6 +112,39 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgmng"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.890196, 1, 1, 0.909804)
+refraction_scale = 1.0
+
+[sub_resource type="Curve" id="Curve_w2asx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.413043, 0.846154), -2.19629, -2.19629, 0, 0, Vector2(0.971014, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_t2abx"]
+curve = SubResource("Curve_w2asx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4hng5"]
+emission_shape_scale = Vector3(10.32, 1, 18.115)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(1, 33.905, 0)
+spread = 32.53
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, -7.075, 0)
+damping_max = 31.034
+scale_min = 3.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_t2abx")
+turbulence_noise_strength = 7.74
+turbulence_noise_scale = 2.82
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.065
+
+[sub_resource type="SphereMesh" id="SphereMesh_e01cd"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjfi2"]
 size = Vector3(346.906, 232.703, 306.93)
 
@@ -145,7 +178,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.657, 171.986, -67.9783)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.2381, 0)
 
 [node name="Moving Platform" parent="Dynamic Objects/First Layer" instance=ExtResource("4_u4tyk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78369, -3, -23.5407)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0432, -3, -26.9771)
 travel_time = 4.0
 
 [node name="Path3D" parent="Dynamic Objects/First Layer/Moving Platform" index="0"]
@@ -317,6 +350,26 @@ transform = Transform3D(1.68, 0, 0, 0, 1.68, 0, 0, 0, 1.68, 2.05229, 0, 162.902)
 curve = SubResource("Curve3D_1apbq")
 
 [node name="Particles" type="Node3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.84896, 1.98045, -14.4338)
+material_override = SubResource("StandardMaterial3D_mgmng")
+amount = 400
+lifetime = 2.34
+randomness = 0.22
+trail_lifetime = 1.11
+process_material = SubResource("ParticleProcessMaterial_4hng5")
+draw_pass_1 = SubResource("SphereMesh_e01cd")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5484, 1.98045, 23.9839)
+material_override = SubResource("StandardMaterial3D_mgmng")
+amount = 400
+lifetime = 2.34
+randomness = 0.22
+trail_lifetime = 1.11
+process_material = SubResource("ParticleProcessMaterial_4hng5")
+draw_pass_1 = SubResource("SphereMesh_e01cd")
 
 [node name="Linear Respawn Zone" parent="." instance=ExtResource("5_am48q")]
 
