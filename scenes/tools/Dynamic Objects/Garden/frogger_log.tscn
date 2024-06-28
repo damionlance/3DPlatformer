@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ds2kwr3biacnf"]
+[gd_scene load_steps=3 format=3 uid="uid://ds2kwr3biacnf"]
 
-[ext_resource type="PackedScene" uid="uid://egrvieqe3s2p" path="res://scenes/tools/Dynamic Objects/Moving Platform/Moving Platform.tscn" id="1_imuen"]
+[ext_resource type="PackedScene" uid="uid://egrvieqe3s2p" path="res://scenes/tools/dynamic objects/Moving Platform/Moving Platform.tscn" id="1_imuen"]
 [ext_resource type="PackedScene" uid="uid://c0wlu8g7xmcen" path="res://assets/models/levels/waterfall/log.glb" id="2_o7jqm"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_x82gc"]
-size = Vector3(9.09193, 1.1644, 4.03006)
 
 [node name="Moving Platform" instance=ExtResource("1_imuen")]
 loop = false
@@ -13,9 +10,5 @@ transition_type = 7
 [node name="PathFollow3D" parent="." index="1"]
 rotation_mode = 2
 
-[node name="log" parent="PathFollow3D/platform" index="0" instance=ExtResource("2_o7jqm")]
-transform = Transform3D(-5.46392e-08, 0, 1, 0, 1, 0, -1.25, 0, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PathFollow3D/platform" index="1"]
-transform = Transform3D(-5.46392e-08, 0, 1, 0, 1, 0, -1.25, 0, -4.37114e-08, 0.00634097, 1.43385, -0.0129546)
-shape = SubResource("BoxShape3D_x82gc")
+[node name="log" parent="PathFollow3D/object" index="0" instance=ExtResource("2_o7jqm")]
+transform = Transform3D(-4.37118e-08, 0, 1, 0, 1.00001, 0, -1.00001, 0, -4.37114e-08, 0, 0, 0)

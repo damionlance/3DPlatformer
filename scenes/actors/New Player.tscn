@@ -757,9 +757,120 @@ root_node = NodePath("../possible final fella")
 tree_root = SubResource("AnimationNodeBlendTree_oysrg")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../possible final fella/AnimationPlayer")
+parameters/current_length = null
+parameters/current_position = null
+parameters/current_delta = null
+parameters/StateMachine/current_length = false
+parameters/StateMachine/current_position = false
+parameters/StateMachine/current_delta = false
+"parameters/StateMachine/Aerial Animations/current_length" = false
+"parameters/StateMachine/Aerial Animations/current_position" = false
+"parameters/StateMachine/Aerial Animations/current_delta" = false
+"parameters/StateMachine/Aerial Animations/End/current_length" = null
+"parameters/StateMachine/Aerial Animations/End/current_position" = null
+"parameters/StateMachine/Aerial Animations/End/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Fall/current_length" = false
+"parameters/StateMachine/Aerial Animations/Fall/current_position" = false
+"parameters/StateMachine/Aerial Animations/Fall/current_delta" = false
+"parameters/StateMachine/Aerial Animations/Fall/Dive/current_length" = null
+"parameters/StateMachine/Aerial Animations/Fall/Dive/current_position" = null
+"parameters/StateMachine/Aerial Animations/Fall/Dive/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Fall/End/current_length" = null
+"parameters/StateMachine/Aerial Animations/Fall/End/current_position" = null
+"parameters/StateMachine/Aerial Animations/Fall/End/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Fall/Fall/current_length" = null
+"parameters/StateMachine/Aerial Animations/Fall/Fall/current_position" = null
+"parameters/StateMachine/Aerial Animations/Fall/Fall/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Fall/Jump 2/current_length" = null
+"parameters/StateMachine/Aerial Animations/Fall/Jump 2/current_position" = null
+"parameters/StateMachine/Aerial Animations/Fall/Jump 2/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Fall/Jump 3/current_length" = null
+"parameters/StateMachine/Aerial Animations/Fall/Jump 3/current_position" = null
+"parameters/StateMachine/Aerial Animations/Fall/Jump 3/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Fall/Side Flip/current_length" = null
+"parameters/StateMachine/Aerial Animations/Fall/Side Flip/current_position" = null
+"parameters/StateMachine/Aerial Animations/Fall/Side Flip/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Fall/Start/current_length" = null
+"parameters/StateMachine/Aerial Animations/Fall/Start/current_position" = null
+"parameters/StateMachine/Aerial Animations/Fall/Start/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Jump/current_length" = false
+"parameters/StateMachine/Aerial Animations/Jump/current_position" = false
+"parameters/StateMachine/Aerial Animations/Jump/current_delta" = false
+"parameters/StateMachine/Aerial Animations/Jump/Dive/current_length" = null
+"parameters/StateMachine/Aerial Animations/Jump/Dive/current_position" = null
+"parameters/StateMachine/Aerial Animations/Jump/Dive/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Jump/End/current_length" = null
+"parameters/StateMachine/Aerial Animations/Jump/End/current_position" = null
+"parameters/StateMachine/Aerial Animations/Jump/End/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Jump/Jump 1/current_length" = null
+"parameters/StateMachine/Aerial Animations/Jump/Jump 1/current_position" = null
+"parameters/StateMachine/Aerial Animations/Jump/Jump 1/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Jump/Jump 2/current_length" = null
+"parameters/StateMachine/Aerial Animations/Jump/Jump 2/current_position" = null
+"parameters/StateMachine/Aerial Animations/Jump/Jump 2/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Jump/Jump 3/current_length" = null
+"parameters/StateMachine/Aerial Animations/Jump/Jump 3/current_position" = null
+"parameters/StateMachine/Aerial Animations/Jump/Jump 3/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Jump/Rollout/current_length" = null
+"parameters/StateMachine/Aerial Animations/Jump/Rollout/current_position" = null
+"parameters/StateMachine/Aerial Animations/Jump/Rollout/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Jump/Side Flip/current_length" = null
+"parameters/StateMachine/Aerial Animations/Jump/Side Flip/current_position" = null
+"parameters/StateMachine/Aerial Animations/Jump/Side Flip/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Jump/Start/current_length" = null
+"parameters/StateMachine/Aerial Animations/Jump/Start/current_position" = null
+"parameters/StateMachine/Aerial Animations/Jump/Start/current_delta" = null
+"parameters/StateMachine/Aerial Animations/Start/current_length" = null
+"parameters/StateMachine/Aerial Animations/Start/current_position" = null
+"parameters/StateMachine/Aerial Animations/Start/current_delta" = null
+parameters/StateMachine/End/current_length = null
+parameters/StateMachine/End/current_position = null
+parameters/StateMachine/End/current_delta = null
+"parameters/StateMachine/Grounded Animations/current_length" = false
+"parameters/StateMachine/Grounded Animations/current_position" = false
+"parameters/StateMachine/Grounded Animations/current_delta" = false
+"parameters/StateMachine/Grounded Animations/Dive/current_length" = null
+"parameters/StateMachine/Grounded Animations/Dive/current_position" = null
+"parameters/StateMachine/Grounded Animations/Dive/current_delta" = null
+"parameters/StateMachine/Grounded Animations/End/current_length" = null
+"parameters/StateMachine/Grounded Animations/End/current_position" = null
+"parameters/StateMachine/Grounded Animations/End/current_delta" = null
+"parameters/StateMachine/Grounded Animations/Skid/current_length" = null
+"parameters/StateMachine/Grounded Animations/Skid/current_position" = null
+"parameters/StateMachine/Grounded Animations/Skid/current_delta" = null
+"parameters/StateMachine/Grounded Animations/Start/current_length" = null
+"parameters/StateMachine/Grounded Animations/Start/current_position" = null
+"parameters/StateMachine/Grounded Animations/Start/current_delta" = null
+"parameters/StateMachine/Grounded Animations/run/current_length" = 0
+"parameters/StateMachine/Grounded Animations/run/current_position" = 0
+"parameters/StateMachine/Grounded Animations/run/current_delta" = 0
 "parameters/StateMachine/Grounded Animations/run/blend_position" = 0
+"parameters/StateMachine/Grounded Animations/run/0/current_length" = null
+"parameters/StateMachine/Grounded Animations/run/0/current_position" = null
+"parameters/StateMachine/Grounded Animations/run/0/current_delta" = null
+"parameters/StateMachine/Grounded Animations/run/1/current_length" = null
+"parameters/StateMachine/Grounded Animations/run/1/current_position" = null
+"parameters/StateMachine/Grounded Animations/run/1/current_delta" = null
+"parameters/StateMachine/Grounded Animations/walk/current_length" = 0
+"parameters/StateMachine/Grounded Animations/walk/current_position" = 0
+"parameters/StateMachine/Grounded Animations/walk/current_delta" = 0
 "parameters/StateMachine/Grounded Animations/walk/blend_position" = 0
+"parameters/StateMachine/Grounded Animations/walk/0/current_length" = null
+"parameters/StateMachine/Grounded Animations/walk/0/current_position" = null
+"parameters/StateMachine/Grounded Animations/walk/0/current_delta" = null
+"parameters/StateMachine/Grounded Animations/walk/1/current_length" = null
+"parameters/StateMachine/Grounded Animations/walk/1/current_position" = null
+"parameters/StateMachine/Grounded Animations/walk/1/current_delta" = null
+parameters/StateMachine/Start/current_length = null
+parameters/StateMachine/Start/current_position = null
+parameters/StateMachine/Start/current_delta = null
+parameters/TimeScale/current_length = 1.0
+parameters/TimeScale/current_position = 1.0
+parameters/TimeScale/current_delta = 1.0
 parameters/TimeScale/scale = 1.0
+parameters/output/current_length = null
+parameters/output/current_position = null
+parameters/output/current_delta = null
 script = ExtResource("10_c4rsc")
 
 [node name="CameraPivot" parent="." instance=ExtResource("10_0siog")]
@@ -812,34 +923,34 @@ initial_node_to_watch = NodePath("..")
 
 [node name="Respawn Manager" parent="." groups=["water"] instance=ExtResource("14_3ha1c")]
 
-[connection signal="state_entered" from="StateChart/CompoundState/Interactive Object States/Climbing Rope" to="." method="reset_jumps"]
-[connection signal="state_entered" from="StateChart/CompoundState/Interactive Object States/Climbing Rope" to="." method="start_jump_reset_timer"]
 [connection signal="state_entered" from="StateChart/CompoundState/Interactive Object States/Climbing Rope" to="." method="reset_velocity"]
+[connection signal="state_entered" from="StateChart/CompoundState/Interactive Object States/Climbing Rope" to="." method="start_jump_reset_timer"]
+[connection signal="state_entered" from="StateChart/CompoundState/Interactive Object States/Climbing Rope" to="." method="reset_jumps"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Interactive Object States/Climbing Rope" to="." method="check_for_jump"]
 [connection signal="taken" from="StateChart/CompoundState/Interactive Object States/Climbing Rope/Jump" to="." method="reset_velocity"]
 [connection signal="taken" from="StateChart/CompoundState/Interactive Object States/Climbing Rope/Jump" to="." method="set_jump" binds= [7]]
-[connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="grounded_movement_processing"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="check_for_floor"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="check_for_jump"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="apply_friction"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="align_to_floor"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="check_for_pivots"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="grounded_movement_processing"]
 [connection signal="taken" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Idle/Jump" to="." method="increment_jump"]
 [connection signal="state_entered" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="_on_run_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="grounded_movement_processing"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="check_for_floor"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="check_for_jump"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="look_forward"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="apply_friction"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="align_to_floor"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="check_for_pivots"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="grounded_movement_processing"]
 [connection signal="taken" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Run/Jump" to="." method="increment_jump"]
 [connection signal="state_entered" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Belly Slide" to="." method="reset_jumps"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Belly Slide" to="." method="belly_slide_processing"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Belly Slide" to="." method="check_for_jump"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Belly Slide" to="." method="apply_slide_friction"]
-[connection signal="state_entered" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Pivot" to="." method="reset_pivot_buffer"]
 [connection signal="state_entered" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Pivot" to="." method="start_skidding"]
+[connection signal="state_entered" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Pivot" to="." method="reset_pivot_buffer"]
 [connection signal="state_exited" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Pivot" to="." method="stop_skidding"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Pivot" to="." method="check_for_jump"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Grounded Movement Options/Pivot" to="." method="apply_slide_friction"]
@@ -865,12 +976,12 @@ initial_node_to_watch = NodePath("..")
 [connection signal="taken" from="StateChart/CompoundState/Movement State/Aerial Movement Options/Rollout/Fall" to="." method="reset_jumps"]
 [connection signal="state_entered" from="StateChart/CompoundState/Movement State/Aerial Movement Options/Wall Slide" to="." method="reset_velocity"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Aerial Movement Options/Wall Slide" to="." method="check_for_floor"]
-[connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Aerial Movement Options/Wall Slide" to="." method="wall_slide_processing"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Aerial Movement Options/Wall Slide" to="." method="check_for_jump"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Aerial Movement Options/Wall Slide" to="." method="wall_slide_processing"]
 [connection signal="taken" from="StateChart/CompoundState/Movement State/Aerial Movement Options/Wall Slide/Jump" to="." method="set_jump" binds= [7.0]]
-[connection signal="state_entered" from="StateChart/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="reset_jumps"]
-[connection signal="state_entered" from="StateChart/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="start_jump_reset_timer"]
 [connection signal="state_entered" from="StateChart/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="reset_velocity"]
+[connection signal="state_entered" from="StateChart/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="start_jump_reset_timer"]
+[connection signal="state_entered" from="StateChart/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="reset_jumps"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="check_for_floor"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="wall_climb_processing"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="check_for_jump"]

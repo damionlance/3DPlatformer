@@ -3,7 +3,6 @@ extends Node3D
 @export var camera_sensitivity := Vector2(0,0)
 @onready var player := get_parent()
 @onready var camera := $"SpringArm3D/Camera3D"
-@onready var raycasts := $"../RaycastHandler"
 
 @export var change_in_fov = 7.5
 @export var base_fov = 80.0

@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://g6hpxklapxmc"]
+[gd_scene load_steps=4 format=3 uid="uid://g6hpxklapxmc"]
 
 [ext_resource type="Script" path="res://scenes/tools/dynamic objects/Moving Hazard/Moving Hazard.gd" id="1_4bm3c"]
+[ext_resource type="Script" path="res://scenes/tools/dynamic objects/Moving Hazard/Hazard Object.gd" id="2_2of21"]
 
 [sub_resource type="Curve3D" id="Curve3D_tlh1d"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.204356, -0.115693, 3.50085, 0, 0, 0, 0, 0, 0, 1.82147, -4.43875, 3.89524),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [node name="Moving Hazard" type="Node3D"]
 script = ExtResource("1_4bm3c")
@@ -12,8 +18,8 @@ curve = SubResource("Curve3D_tlh1d")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="."]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="PathFollow3D"]
-
-[node name="Hazard" type="Area3D" parent="PathFollow3D/CharacterBody3D" groups=["moving hazard"]]
+[node name="object" type="Area3D" parent="PathFollow3D" groups=["moving hazard"]]
+unique_name_in_owner = true
 collision_layer = 64
-collision_mask = 0
+collision_mask = 5
+script = ExtResource("2_2of21")

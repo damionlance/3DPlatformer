@@ -31,12 +31,12 @@ func _ready():
 		mesh_instance.material = StandardMaterial3D.new()
 		mesh_instance.material.albedo_color = mesh_color
 		mesh.mesh = mesh_instance
-		platform.add_child(mesh)
+		object.add_child(mesh)
 		generate_collision_data()
 	else:
-		mesh.reparent(platform)
+		mesh.reparent(object)
 		generate_collision_data()
-	for child in platform.get_children():
+	for child in object.get_children():
 		if child is CollisionShape3D:
 			trigger.add_child(child.duplicate())
 			trigger.get_child(0).position.y += .1
@@ -47,15 +47,15 @@ func _ready():
 	timer.connect("timeout", timer_timeout)
 
 func timer_timeout() -> void:
-	if platform.collision_layer == 4 and _reset_crumble:
+	if object.collision_layer == 4 and _reset_crumble:
 		animation_player.play("RESET")
-		platform.collision_layer = 0
-		platform.visible = false
+		object.collision_layer = 0
+		object.visible = false
 		_reset_crumble = false
 		timer.start(time_to_return)
 	else:
-		platform.collision_layer = 4
-		platform.visible = true
+		object.collision_layer = 4
+		object.visible = true
 		if player != null:
 			detect_player_on_ground(player)
 	pass

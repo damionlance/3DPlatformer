@@ -47,6 +47,7 @@ extends DynamicPlatform3D
 
 var path_follow_agents : Array[PathFollow3D] = []
 var path_follow_agents_loop : Array[bool] = []
+var path_follow_agents_tween : Array[Tween] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -67,10 +68,10 @@ func _ready():
 			mesh_instance.material = StandardMaterial3D.new()
 			mesh_instance.material.albedo_color = mesh_color
 			mesh.mesh = mesh_instance
-			platform.add_child(mesh)
+			object.add_child(mesh)
 			generate_collision_data()
 		else:
-			mesh.reparent(platform)
+			mesh.reparent(object)
 			generate_collision_data()
 	
 	if speed_of_platform != 0 and travel_time == 0:
@@ -82,12 +83,16 @@ func _ready():
 		$Path3D.add_child(new_path)
 		path_follow_agents.append(new_path)
 		path_follow_agents_loop.append(false)
+		path_follow_agents_tween.append(create_tween())
 		
 		add_another_path_follow(new_path, i)
 		
 		_create_path_tween(new_path)
 	pause_platform(not moving)
 	path_follow.queue_free()
+	
+	if self.has_method("extra_ready_processing"):
+		connect("ready", self.extra_ready_processing)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -101,32 +106,34 @@ func pause_platform(pause : bool) -> void:
 		else:
 			platform.process_mode = Node.PROCESS_MODE_INHERIT
 
-func loop_movement(delta: float) -> void:
-	var i = 0
-	for path_follow in path_follow_agents:
-		var negate := 1
-		if path_follow_agents_loop[i]:
-			negate = -1
-		var new_ratio = path_follow.progress_ratio
-		if new_ratio + (negate * (speed_of_platform / path_length) * delta) > 1 or new_ratio + (negate * (speed_of_platform / path_length) * delta) < 0:
-			path_follow_agents_loop[i] = not path_follow_agents_loop[i]
-			negate *= -1
-		new_ratio +=(negate * (speed_of_platform / path_length) * delta)
-		path_follow.progress_ratio = new_ratio
-		i += 1
-
 func _create_path_tween(object_to_tween : PathFollow3D) -> void:
 	var tween = create_tween()
+	var i = 0
+	for path_follow in path_follow_agents:
+		if path_follow == object_to_tween:
+			path_follow_agents_tween[i] = tween
+			break
+		i += 1
 	tween.bind_node(object_to_tween)
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_BOUND)
 	if object_to_tween.progress_ratio != 1.0:
 		tween.tween_property(object_to_tween, "progress_ratio", 1.0, travel_time * (1.0 - object_to_tween.progress_ratio)).set_ease(easing_type).set_trans(transition_type).set_delay(loop_delay)
-	if loop:
+	elif loop:
 		tween.tween_property(object_to_tween, "progress_ratio", 0.0, travel_time).set_ease(easing_type).set_trans(transition_type).set_delay(loop_delay)
 	else:
 		object_to_tween.progress_ratio = 0.0
 	
 	tween.tween_callback(_create_path_tween.bind(object_to_tween))
+
+func _stop_tween(object_to_stop : PathFollow3D):
+	var i := 0
+	for path_follow in path_follow_agents:
+		if path_follow == object_to_stop:
+			path_follow_agents_tween[i].kill()
+			path_follow.progress_ratio = 0
+			_create_path_tween(object_to_stop)
+			return
+		i += 1
 
 func linear_movement(delta : float) -> void:
 	for path_follow in path_follow_agents:

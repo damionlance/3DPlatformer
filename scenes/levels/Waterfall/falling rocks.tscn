@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://4a04y8mp1fyf"]
+
+[ext_resource type="PackedScene" uid="uid://g6hpxklapxmc" path="res://scenes/tools/dynamic objects/Moving Hazard/Moving Hazard.tscn" id="1_cmdfa"]
+
+[sub_resource type="Curve3D" id="Curve3D_2y5i6"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.339793, 0.764069, -1.93199, -0.339793, -0.764069, 1.93199, 0, -0.116, 3.501, 0, 0, 0, 0, 0, 0, 0, -16.894, 8.08),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[node name="Moving Hazard" instance=ExtResource("1_cmdfa")]
+destroys_self_on_contact = true
+starts_in_object = true
+travel_time = 0.0
+speed_of_platform = 25.0
+loop = false
+transition_type = 4
+
+[node name="Path3D" parent="." index="0"]
+curve = SubResource("Curve3D_2y5i6")

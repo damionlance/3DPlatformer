@@ -19,7 +19,7 @@ curve = SubResource("Curve3D_psaym")
 transform = Transform3D(0.999994, 0, 0, 0, 0.999994, 0, 0, 0, 0.999999, 0, 0, 0)
 rotation_mode = 0
 
-[node name="platform" type="CharacterBody3D" parent="PathFollow3D"]
+[node name="object" type="CharacterBody3D" parent="PathFollow3D"]
 unique_name_in_owner = true
 collision_layer = 4
 collision_mask = 0

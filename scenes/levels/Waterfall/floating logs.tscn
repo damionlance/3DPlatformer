@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpgmrlqhdec0p"]
+[gd_scene load_steps=4 format=3 uid="uid://dpgmrlqhdec0p"]
 
 [ext_resource type="PackedScene" uid="uid://egrvieqe3s2p" path="res://scenes/tools/dynamic objects/Moving Platform/Moving Platform.tscn" id="1_n7iiq"]
+[ext_resource type="PackedScene" uid="uid://bdjs3ocwet8lr" path="res://assets/models/levels/waterfall/logPlat.glb" id="2_jif10"]
 
 [sub_resource type="Curve3D" id="Curve3D_nn4ek"]
 _data = {
@@ -17,4 +18,5 @@ curve = SubResource("Curve3D_nn4ek")
 [node name="PathFollow3D" parent="." index="1"]
 rotation_mode = 1
 
-[node name="LogMesh" type="MeshInstance3D" parent="PathFollow3D/platform" index="0"]
+[node name="logPlat" parent="PathFollow3D/object" index="0" instance=ExtResource("2_jif10")]
+transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1, 0, 0, 0)
