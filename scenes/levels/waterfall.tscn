@@ -1,12 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://cau3x6x8wkgnu"]
+[gd_scene load_steps=20 format=3 uid="uid://cau3x6x8wkgnu"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_0kyes"]
 [ext_resource type="PackedScene" uid="uid://fcui28jwkkq" path="res://assets/models/levels/waterfall/waterfall.glb" id="2_evhbf"]
 [ext_resource type="PackedScene" uid="uid://b1no6pukt37fw" path="res://scenes/actors/New Player.tscn" id="3_n1hwv"]
-[ext_resource type="PackedScene" uid="uid://jaxv1pb1wkxy" path="res://scenes/tools/dynamic objects/Garden/moving_log_platform.tscn" id="4_u4tyk"]
+[ext_resource type="PackedScene" uid="uid://jaxv1pb1wkxy" path="res://scenes/tools/Dynamic Objects/Garden/moving_log_platform.tscn" id="4_u4tyk"]
 [ext_resource type="PackedScene" uid="uid://b77fgnopqf6lt" path="res://scenes/tools/managers/Linear Respawn Zone/linear respawn zone.tscn" id="5_am48q"]
+[ext_resource type="PackedScene" uid="uid://ds2kwr3biacnf" path="res://scenes/tools/Dynamic Objects/Garden/frogger_log.tscn" id="6_fxmaa"]
 [ext_resource type="PackedScene" uid="uid://caepckx3gr70v" path="res://scenes/tools/managers/Checkpoint/checkpoint.tscn" id="6_jhb82"]
-[ext_resource type="PackedScene" uid="uid://ce4llblk2ui00" path="res://scenes/tools/dynamic objects/Garden/crumbling_rock_platform.tscn" id="6_xo4n8"]
+[ext_resource type="PackedScene" uid="uid://ce4llblk2ui00" path="res://scenes/tools/Dynamic Objects/Garden/crumbling_rock_platform.tscn" id="6_xo4n8"]
 
 [sub_resource type="Environment" id="Environment_r6nig"]
 ambient_light_source = 2
@@ -48,6 +49,13 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Curve3D" id="Curve3D_ptpi1"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 3.858, 0, -6.602, -6.152, 0, 11.186, 0, 0, 179.184, 2.164, 0, -6.889, -2.295, 0, 7.131, -15.781, 0, 205.555, 0, 8.465, 0, 0, 0, 0, -22.525, -4.545, 223.775),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjfi2"]
 size = Vector3(346.906, 232.703, 306.93)
 
@@ -73,7 +81,7 @@ light_color = Color(1, 1, 0.843137, 1)
 [node name="waterfall" parent="." instance=ExtResource("2_evhbf")]
 
 [node name="Player" parent="." instance=ExtResource("3_n1hwv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.2401, 2.16675, -52.2894)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.657, 171.986, -67.9783)
 
 [node name="Dynamic Objects" type="Node3D" parent="."]
 
@@ -157,6 +165,17 @@ travel_time = 12.0
 [node name="Path3D" parent="Dynamic Objects/Fourth Layer/Moving Platform2" index="0"]
 curve = SubResource("Curve3D_0782h")
 
+[node name="Top of Falls" type="Node3D" parent="Dynamic Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -246.757, 166.411, -57.9055)
+
+[node name="Moving Platform" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.4073, 0)
+travel_time = 45.0
+number_of_platforms = 15
+
+[node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform" index="0"]
+curve = SubResource("Curve3D_ptpi1")
+
 [node name="Particles" type="Node3D" parent="."]
 
 [node name="Linear Respawn Zone" parent="." instance=ExtResource("5_am48q")]
@@ -204,6 +223,7 @@ shape = SubResource("BoxShape3D_yudm0")
 [editable path="Dynamic Objects/Fourth Layer/Crumbling Platform"]
 [editable path="Dynamic Objects/Fourth Layer/Moving Platform"]
 [editable path="Dynamic Objects/Fourth Layer/Moving Platform2"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform"]
 [editable path="Linear Respawn Zone"]
 [editable path="Checkpoints/Checkpoint"]
 [editable path="Checkpoints/Checkpoint2"]

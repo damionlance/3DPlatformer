@@ -7,8 +7,11 @@
 render_priority = 0
 shader = ExtResource("1_8x7xy")
 shader_parameter/scroll_speed = 0.194
+shader_parameter/scroll_speed2 = 0.1
 shader_parameter/angle_degrees = 0.0
+shader_parameter/texture_mix = 0.5
 shader_parameter/repeat_x = 1.0
 shader_parameter/repeat_y = 1.0
 shader_parameter/row_offset = 1.0
 shader_parameter/texture_to_scroll = ExtResource("2_5u1v3")
+shader_parameter/back_texture = ExtResource("2_5u1v3")
