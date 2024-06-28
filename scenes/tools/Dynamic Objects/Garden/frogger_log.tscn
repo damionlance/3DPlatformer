@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ds2kwr3biacnf"]
 
-[ext_resource type="PackedScene" uid="uid://egrvieqe3s2p" path="res://scenes/tools/dynamic objects/Moving Platform/Moving Platform.tscn" id="1_imuen"]
+[ext_resource type="PackedScene" uid="uid://egrvieqe3s2p" path="res://scenes/tools/Dynamic Objects/Moving Platform/Moving Platform.tscn" id="1_imuen"]
 [ext_resource type="PackedScene" uid="uid://c0wlu8g7xmcen" path="res://assets/models/levels/waterfall/log.glb" id="2_o7jqm"]
 
 [node name="Moving Platform" instance=ExtResource("1_imuen")]
@@ -9,6 +9,9 @@ transition_type = 7
 
 [node name="PathFollow3D" parent="." index="1"]
 rotation_mode = 2
+
+[node name="object" parent="PathFollow3D" index="0"]
+transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 1.08, 0, 0, 0)
 
 [node name="log" parent="PathFollow3D/object" index="0" instance=ExtResource("2_o7jqm")]
 transform = Transform3D(-4.37118e-08, 0, 1, 0, 1.00001, 0, -1.00001, 0, -4.37114e-08, 0, 0, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cau3x6x8wkgnu"]
+[gd_scene load_steps=28 format=3 uid="uid://cau3x6x8wkgnu"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_0kyes"]
 [ext_resource type="PackedScene" uid="uid://fcui28jwkkq" path="res://assets/models/levels/waterfall/waterfall.glb" id="2_evhbf"]
@@ -56,6 +56,62 @@ _data = {
 }
 point_count = 4
 
+[sub_resource type="Curve3D" id="Curve3D_ue8hy"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 3.858, 0, -6.602, -6.152, 0, 11.186, 0, 0, 179.184, 2.164, 0, -6.889, -2.295, 0, 7.131, -15.781, 0, 205.555, 0, 8.465, 0, 0, 0, 0, -22.525, -4.545, 223.775),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_geuw8"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 3.858, 0, -6.602, -6.152, 0, 11.186, 0, 0, 179.184, 2.164, 0, -6.889, -2.295, 0, 7.131, -15.781, 0, 205.555, 0, 8.465, 0, 0, 0, 0, -22.525, -4.545, 223.775),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_b7iiq"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 179.184, 0, 0, 0, 0, 0, 0, 0, 0, 205.555, 0, 8.465, 0, 0, 0, 0, 0, -4.545, 223.775),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_8vqvp"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 179.184, 0, 0, 0, 0, 0, 0, 0, 0, 205.555, 0, 8.465, 0, 0, 0, 0, 0, -4.545, 223.775),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_1dsq6"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, -6.203, 0, -11.888, 6.203, 0, 11.888, 3.625, 0, 179.184, -3.625, 0, -7.026, 3.625, 0, 7.026, 15.781, 0, 205.555, 0, 8.465, 0, 0, 0, 0, 22.525, -4.545, 223.775),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_v18p1"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, -9, 0, -20, 9, 0, 20, 5.625, 0, 179.184, -1.98, 0, -8, 4, 0, 8, 15.809, 0, 205.555, 0, 8.465, 0, 0, 0, 0, 23.77, -4.545, 223.775),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_jn5ym"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, -8.216, 0, -12.727, 8.461, 0, 12.727, 9.505, 0, 179.184, -4.503, 0, -10.513, 4.503, 0, 10.513, 18.999, 0, 205.555, 0, 8.465, 0, 0, 0, 0, 26.71, -4.545, 223.775),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_1apbq"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11.014),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjfi2"]
 size = Vector3(346.906, 232.703, 306.93)
 
@@ -94,9 +150,6 @@ travel_time = 4.0
 
 [node name="Path3D" parent="Dynamic Objects/First Layer/Moving Platform" index="0"]
 curve = SubResource("Curve3D_f4k0y")
-
-[node name="platform" parent="Dynamic Objects/First Layer/Moving Platform/PathFollow3D" index="0"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.41399, 0, 0)
 
 [node name="Second Layer" type="Node3D" parent="Dynamic Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40.2764, 0)
@@ -170,12 +223,98 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -246.757, 166.411, -57.9055)
 
 [node name="Moving Platform" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.4073, 0)
-number_of_objects = 12
+number_of_objects = 16
 travel_time = 45.0
 transition_type = 0
 
 [node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform" index="0"]
 curve = SubResource("Curve3D_ptpi1")
+
+[node name="Moving Platform2" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.4073, 9.8543)
+number_of_objects = 10
+travel_time = 30.0
+transition_type = 0
+
+[node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform2" index="0"]
+curve = SubResource("Curve3D_ue8hy")
+
+[node name="Moving Platform3" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.4073, 19.887)
+number_of_objects = 8
+travel_time = 25.0
+transition_type = 0
+
+[node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform3" index="0"]
+curve = SubResource("Curve3D_geuw8")
+
+[node name="Moving Platform4" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.4073, 75.0193)
+number_of_objects = 14
+travel_time = 30.0
+transition_type = 0
+
+[node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform4" index="0"]
+curve = SubResource("Curve3D_b7iiq")
+
+[node name="Moving Platform5" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.4073, 82.9631)
+number_of_objects = 8
+travel_time = 23.0
+transition_type = 0
+
+[node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform5" index="0"]
+curve = SubResource("Curve3D_8vqvp")
+
+[node name="Moving Platform6" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.4073, 100.881)
+number_of_objects = 12
+travel_time = 33.0
+transition_type = 0
+
+[node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform6" index="0"]
+curve = SubResource("Curve3D_1dsq6")
+
+[node name="Moving Platform7" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.4073, 109.569)
+number_of_objects = 7
+travel_time = 45.0
+transition_type = 0
+
+[node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform7" index="0"]
+curve = SubResource("Curve3D_v18p1")
+
+[node name="Moving Platform8" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.4073, 118.864)
+number_of_objects = 4
+transition_type = 0
+
+[node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform8" index="0"]
+curve = SubResource("Curve3D_jn5ym")
+
+[node name="Crumbling Platform" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_xo4n8")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 28.4045, -1.29872, 90.4157)
+
+[node name="Crumbling Platform2" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_xo4n8")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 53.7328, -1.29872, 90.4157)
+
+[node name="Crumbling Platform3" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_xo4n8")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 78.4376, -1.29872, 90.4157)
+
+[node name="Crumbling Platform4" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_xo4n8")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 103.717, -1.29872, 90.4157)
+
+[node name="Crumbling Platform5" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_xo4n8")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 128.279, -1.29872, 90.4157)
+
+[node name="Crumbling Platform6" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_xo4n8")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 153.615, -1.29872, 90.4157)
+
+[node name="Moving Platform9" parent="Dynamic Objects/Top of Falls" instance=ExtResource("4_u4tyk")]
+transform = Transform3D(1.68, 0, 0, 0, 1.68, 0, 0, 0, 1.68, 2.05229, 0, 162.902)
+
+[node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform9" index="0"]
+curve = SubResource("Curve3D_1apbq")
 
 [node name="Particles" type="Node3D" parent="."]
 
@@ -225,6 +364,14 @@ shape = SubResource("BoxShape3D_yudm0")
 [editable path="Dynamic Objects/Fourth Layer/Moving Platform"]
 [editable path="Dynamic Objects/Fourth Layer/Moving Platform2"]
 [editable path="Dynamic Objects/Top of Falls/Moving Platform"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform2"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform3"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform4"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform5"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform6"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform7"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform8"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform9"]
 [editable path="Linear Respawn Zone"]
 [editable path="Checkpoints/Checkpoint"]
 [editable path="Checkpoints/Checkpoint2"]

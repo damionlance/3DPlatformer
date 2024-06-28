@@ -21,15 +21,15 @@ var slope_strength := 0.0
 @export_category("Jump Value Tuning")
 @export var jump_height := 4.1
 @export var jump_time_to_peak := 0.3
-@export var jump_time_to_descent := 0.25
+@export var jump_time_to_descent := 0.3
 
 @export var jump2_height := 5.5
 @export var jump2_time_to_peak := 0.35
-@export var jump2_time_to_descent := 0.3
+@export var jump2_time_to_descent := 0.35
 
 @export var jump3_height := 7.5
 @export var jump3_time_to_peak := 0.4
-@export var jump3_time_to_descent := 0.35
+@export var jump3_time_to_descent := 0.4
 
 @export var spin_jump_height := 5.5
 @export var spin_jump_time_to_peak := .7
@@ -48,7 +48,7 @@ var slope_strength := 0.0
 @export var rollout_jump_time_to_descent := 0.3
 
 @export var air_friction := 0.99
-@export var air_acceleration := 5
+@export var air_acceleration := 1000
 @export var terminal_velocity := 25.0
 
 var _jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
