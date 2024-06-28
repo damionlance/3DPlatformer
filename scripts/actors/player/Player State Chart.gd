@@ -217,6 +217,8 @@ func attach_to_object(object_type : String) -> void:
 func hazard_reaction(hazard : Node) -> void:
 	if hazard.is_in_group("water"):
 		$"Respawn Manager".process_respawn()
+	if hazard.is_in_group("moving hazard"):
+		state_chart.send_event("Take Damage")
 	return
 
 func respawn(new_position : Vector3) -> void:

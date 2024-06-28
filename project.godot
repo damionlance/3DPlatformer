@@ -60,6 +60,7 @@ fps=false
 [global_group]
 
 checkpoint="respawn locations for player"
+"moving hazard"=""
 
 [gui]
 

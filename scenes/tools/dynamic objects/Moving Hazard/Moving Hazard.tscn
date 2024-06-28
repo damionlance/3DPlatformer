@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://g6hpxklapxmc"]
+
+[ext_resource type="Script" path="res://scenes/tools/dynamic objects/Moving Hazard/Moving Hazard.gd" id="1_4bm3c"]
+
+[sub_resource type="Curve3D" id="Curve3D_tlh1d"]
+
+[node name="Moving Hazard" type="Node3D"]
+script = ExtResource("1_4bm3c")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_tlh1d")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="PathFollow3D"]
+
+[node name="Hazard" type="Area3D" parent="PathFollow3D/CharacterBody3D" groups=["moving hazard"]]
+collision_layer = 64
+collision_mask = 0
