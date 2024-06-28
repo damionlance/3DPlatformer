@@ -46805,6 +46805,12 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": null
 }
+},
+"materials": {
+"Clothes": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/fellaTexture.tres"
+}
 }
 }
 gltf/naming_version=0

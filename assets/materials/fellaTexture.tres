@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dvg1gjoaow7wf"]
+
+[ext_resource type="Texture2D" uid="uid://by8ql2kkmfriw" path="res://assets/models/actors/Fella/possible final fella_possible final fella_Clothes.png" id="1_nkfaw"]
+
+[resource]
+albedo_texture = ExtResource("1_nkfaw")

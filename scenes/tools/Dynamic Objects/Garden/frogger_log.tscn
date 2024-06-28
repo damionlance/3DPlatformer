@@ -8,6 +8,7 @@ size = Vector3(9.09193, 1.1644, 4.03006)
 
 [node name="Moving Platform" instance=ExtResource("1_imuen")]
 loop = false
+transition_type = 7
 
 [node name="PathFollow3D" parent="." index="1"]
 rotation_mode = 2
