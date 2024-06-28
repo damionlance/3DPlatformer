@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ch24fj2bm5imh"]
 
-[ext_resource type="Script" path="res://scenes/tools/Dynamic Objects/Climbing Rope/Climbable Rope.gd" id="1_kipkn"]
+[ext_resource type="Script" path="res://scenes/tools/dynamic objects/Climbing Rope/Climbable Rope.gd" id="1_kipkn"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xxfbk"]
 top_radius = 0.05

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ce4llblk2ui00"]
 
-[ext_resource type="PackedScene" uid="uid://buu4i5jugr5hs" path="res://scenes/tools/Dynamic Objects/Crumbling Platform/Crumbling Platform.tscn" id="1_17lh2"]
+[ext_resource type="PackedScene" uid="uid://buu4i5jugr5hs" path="res://scenes/tools/dynamic objects/Crumbling Platform/Crumbling Platform.tscn" id="1_17lh2"]
 [ext_resource type="PackedScene" uid="uid://wk2td5ukmxqh" path="res://assets/models/levels/waterfall/crumblingRockPlat.glb" id="2_ap105"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4658i"]

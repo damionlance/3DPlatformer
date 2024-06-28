@@ -1,5 +1,5 @@
-extends DynamicPlatform3D
 class_name CrumblingPlatform
+extends DynamicPlatform3D
 
 ## Crumbling platform that interacts with CharacterBody3D
 ## Collapses after set time

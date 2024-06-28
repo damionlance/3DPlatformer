@@ -1,5 +1,5 @@
-extends DynamicPlatform3D
 class_name MovingPlatform3D
+extends DynamicPlatform3D
 
 ## Moving platform that interacts with RigidBodies and CharacterBodies
 ## Enable Editable Children to set path and edit PathFollow3D characteristics
