@@ -7,7 +7,7 @@ extends Node3D
 @onready var state_chart := $%StateChart
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	
 	#Check if raycasts are both colliding
 	var colliding := true
@@ -23,7 +23,7 @@ func _process(delta):
 			state_chart.send_event("Wall Slide")
 		pass
 
-func check_wall_group(check_group : String) -> bool:
+func check_wall_group(_check_group : String) -> bool:
 	var in_group := false
 	if forward_climb_raycasts[0].is_colliding():
 		in_group = true

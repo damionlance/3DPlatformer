@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b5638r3gpb44l"]
+
+[ext_resource type="Shader" path="res://assets/shaders/plain texture.gdshader" id="1_1g2cd"]
+[ext_resource type="Texture2D" uid="uid://cbr8jx42dn8rk" path="res://assets/textures/garden/bark.png" id="2_lgh2y"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1g2cd")
+shader_parameter/image = ExtResource("2_lgh2y")

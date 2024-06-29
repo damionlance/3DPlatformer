@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bpjj64rwy8nbw"]
+
+[ext_resource type="Shader" path="res://assets/shaders/plain texture.gdshader" id="1_0mmv0"]
+[ext_resource type="Texture2D" uid="uid://ei3d50mxaibb" path="res://assets/textures/garden/rock.png" id="2_cgeml"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_0mmv0")
+shader_parameter/image = ExtResource("2_cgeml")

@@ -1,12 +1,60 @@
-[gd_scene load_steps=3 format=3 uid="uid://ce4llblk2ui00"]
+[gd_scene load_steps=6 format=3 uid="uid://ce4llblk2ui00"]
 
-[ext_resource type="PackedScene" uid="uid://buu4i5jugr5hs" path="res://scenes/tools/Dynamic Objects/Crumbling Platform/Crumbling Platform.tscn" id="1_17lh2"]
+[ext_resource type="PackedScene" uid="uid://buu4i5jugr5hs" path="res://scenes/tools/dynamic objects/Crumbling Platform/Crumbling Platform.tscn" id="1_17lh2"]
 [ext_resource type="PackedScene" uid="uid://wk2td5ukmxqh" path="res://assets/models/levels/waterfall/crumblingRockPlat.glb" id="2_ap105"]
+
+[sub_resource type="Animation" id="Animation_g5js8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("object/crumblingRockPlat:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dynke"]
+resource_name = "start_collapse"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("object/crumblingRockPlat:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 0.999999),
+"update": 0,
+"values": [Vector3(0.0174533, 0, 0), Vector3(0, 0, 0.0174533), Vector3(0, 0, -0.0174533), Vector3(-0.0174533, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ddvb7"]
+_data = {
+"RESET": SubResource("Animation_g5js8"),
+"start_collapse": SubResource("Animation_dynke")
+}
 
 [node name="Crumbling Platform" instance=ExtResource("1_17lh2")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 time_to_crumble = 2.0
 time_to_return = 5.0
 
+[node name="object" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.999848, -0.0174524, 0, 0.0174524, 0.999848, 0, 0, 0)
+
 [node name="crumblingRockPlat" parent="object" index="0" instance=ExtResource("2_ap105")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07434, 0, 1.16009)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_ddvb7")
+}
+autoplay = "start_collapse"

@@ -13,7 +13,7 @@ func add_to_linear_respawn_group(respawn_zone : RespawnZone) -> void:
 	_respawn_zone = respawn_zone
 	remove_from_group("checkpoint")
 
-func activate(body : Node3D) -> void:
+func activate(_body : Node3D) -> void:
 	if not open_zone_checkpoint:
 		if _respawn_zone == null:
 			await $"Respawn Zone Detector".area_entered

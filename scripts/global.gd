@@ -37,7 +37,7 @@ var collectable_frequency_timer = 60
 var callable
 # Called when the node enters the scene tree for the first time.
 
-func _process(delta):
+func _process(_delta):
 	if collectable_frequency_timer != 0:
 		collectable_frequency_timer -= 1
 	else:

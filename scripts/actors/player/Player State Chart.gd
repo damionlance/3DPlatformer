@@ -63,7 +63,7 @@ func grounded_movement_processing(delta):
 	if not is_on_floor():
 		state_chart.send_event("Fall")
 
-func wall_climb_processing(delta) -> void:
+func wall_climb_processing(_delta) -> void:
 	if not wall_jump_raycasts.check_wall_group("climbable zone"):
 		return
 	var wall_normal = wall_jump_raycasts.get_average_wall_normal()
@@ -82,18 +82,18 @@ func wall_climb_processing(delta) -> void:
 	
 	velocity = movement_direction * 5
 
-func check_for_jump(delta : float) -> void:
+func check_for_jump(_delta : float) -> void:
 	if Input.is_action_just_pressed("Jump"):
 		state_chart.send_event("Jump")
 		jump_reset_timer.stop()
 
-func check_for_floor(delta : float) -> void:
+func check_for_floor(_delta : float) -> void:
 	if is_on_floor():
 		state_chart.send_event("Landed")
 
 func initial_jump_processing():
 	if current_jump >= constants.jump_strength.size():
-		current_jump == 0
+		current_jump = 0
 	
 	velocity.y = constants.jump_strength[current_jump]
 	match current_jump:
@@ -113,7 +113,7 @@ func initial_jump_processing():
 func wall_slide_processing(delta : float) -> void:
 	delta_v.y = constants.wall_slide_gravity * delta
 
-func normal_jump_processing(delta : float):
+func normal_jump_processing(_delta : float):
 	delta_v = movement_direction
 	delta_v *= constants.air_acceleration
 	if velocity.y > 0:
@@ -168,13 +168,28 @@ func apply_slide_friction(delta : float) -> void:
 	if velocity.length() < 1:
 		velocity = Vector3(0, velocity.y, 0)
 
+func apply_air_friction(delta : float) -> void:
+	var vertical_velocity = Vector3(0, velocity.y, 0)
+	var horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
+	var forward_velocity = movement_direction
+	forward_velocity *= movement_direction.dot(horizontal_velocity)
+	var lateral_velocity = horizontal_velocity - forward_velocity
+	
+	lateral_velocity = lerp(lateral_velocity, Vector3.ZERO, (sideways_friction / 8) * delta) 
+	
+	if forward_velocity.length() > constants.max_horizontal_velocity * delta or forward_velocity.dot(movement_direction) < 0:
+		forward_velocity = lerp(forward_velocity, Vector3.ZERO, forwards_friction * delta)
+	velocity = forward_velocity + lateral_velocity + vertical_velocity
+	if velocity.length() < 1 and Input.get_vector("Left", "Right", "Backward", "Forward") == Vector2.ZERO:
+		velocity = Vector3(0, velocity.y, 0)
+
 func start_skidding() -> void:
 	pivot = true
 
 func stop_skidding() -> void:
 	pivot = false
 
-func align_to_floor(delta) -> void:
+func align_to_floor(_delta) -> void:
 	var floor_normal = floor_alignment_raycast.get_collision_normal()
 	if floor_normal == Vector3.ZERO:
 		return
@@ -185,17 +200,17 @@ func align_to_floor(delta) -> void:
 	xform.basis = xform.basis.orthonormalized()
 	global_transform = global_transform.interpolate_with(xform, 0.1)
 
-func look_forward(delta) -> void:
+func look_forward(_delta) -> void:
 	var normalized_direction = movement_direction.normalized()
 	var lookdir = atan2(normalized_direction.x, normalized_direction.z)
 	rotation.y = lookdir
 	if movement_direction != Vector3.ZERO:
 		facing_direction = movement_direction.normalized()
 
-func disable_wall_jump(delta) -> void:
+func disable_wall_jump(_delta) -> void:
 	wall_jump_raycasts.disable()
 
-func check_for_pivots(delta) -> void:
+func check_for_pivots(_delta : float) -> void:
 	joystick_input_buffer.push_front(Input.get_vector("Left", "Right", "Backward", "Forward"))
 	joystick_input_buffer.pop_back()
 	if joystick_input_buffer[0].length() < 0.8:

@@ -213,7 +213,7 @@ light_color = Color(1, 1, 0.843137, 1)
 [node name="waterfall" parent="." instance=ExtResource("2_evhbf")]
 
 [node name="Player" parent="." instance=ExtResource("3_n1hwv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.87274, 78.2982, -10.2577)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.7321, 168.594, -59.3348)
 
 [node name="Dynamic Objects" type="Node3D" parent="."]
 
@@ -232,33 +232,69 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40.2764, 0)
 
 [node name="Crumbling Platform" parent="Dynamic Objects/Second Layer" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -5.76214, 3.74906, -39.934)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="Crumbling Platform2" parent="Dynamic Objects/Second Layer" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -4.41228, -5.63519, 4.03029)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="Third Layer" type="Node3D" parent="Dynamic Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 74.7092, 0)
 
 [node name="Crumbling Platform" parent="Dynamic Objects/Third Layer" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -2.2331, 2.80649, 5.56959)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="Crumbling Platform4" parent="Dynamic Objects/Third Layer" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10.0357, 2.80649, 33.1955)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="Crumbling Platform5" parent="Dynamic Objects/Third Layer" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10.0357, 2.80649, 61.0529)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="Crumbling Platform6" parent="Dynamic Objects/Third Layer" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 8.23561, 2.80649, 47.0059)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="Crumbling Platform7" parent="Dynamic Objects/Third Layer" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 52.0811, 2.80649, 47.0059)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="Crumbling Platform2" parent="Dynamic Objects/Third Layer" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -2.2331, 2.80649, -6.91732)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="Crumbling Platform3" parent="Dynamic Objects/Third Layer" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -5.83618, -5.16555, -38.1266)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="Moving Platform" parent="Dynamic Objects/Third Layer" instance=ExtResource("4_u4tyk")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19.5413, 4.7345, 46.9806)
@@ -279,6 +315,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 115.745, 0)
 
 [node name="Crumbling Platform" parent="Dynamic Objects/Fourth Layer" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1.26089, 0, -1.97807)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="object" parent="Dynamic Objects/Fourth Layer/Crumbling Platform" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -327,6 +367,7 @@ speed_of_platform = 7.0
 transition_type = 1
 
 [node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 curve = SubResource("Curve3D_612d3")
 
 [node name="log" parent="Dynamic Objects/Top of Falls/Moving Platform2/PathFollow3D/object" index="0"]
@@ -412,21 +453,45 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 
 [node name="Crumbling Platform" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.22669, 0, -0.240267, 0, 1.25, 0, 0.240267, 0, 1.22669, 206.084, -1.29872, 37.5182)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="Crumbling Platform7" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(0.862703, 0, -0.904568, 0, 1.25, 0, 0.904568, 0, 0.862703, 72.4296, -1.29872, 11.0962)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="Crumbling Platform9" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.12509, 0, -0.544687, 0, 1.25, 0, 0.544687, 0, 1.12509, 106.245, -1.29872, -5.71657)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="Crumbling Platform10" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.2128, 0, -0.302677, 0, 1.25, 0, 0.302677, 0, 1.2128, 108.714, -1.29872, 25.0105)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="Crumbling Platform8" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.09692, 0, 0.59938, 0, 1.25, 0, -0.59938, 0, 1.09692, 50.5886, -1.29872, 4.85785)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="Crumbling Platform11" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 72.1669, -1.29872, 138.746)
+rotation_speed = 0.0
+continue_collapse_after_player_leaves = true
+size = Vector2(4, 4)
+mesh_color = Color(0, 0, 0, 1)
 
 [node name="Moving Platform9" parent="Dynamic Objects/Top of Falls" instance=ExtResource("4_u4tyk")]
 transform = Transform3D(1.68, 0, 0, 0, 1.68, 0, 0, 0, 1.68, 2.05229, 0, 162.902)
@@ -538,6 +603,7 @@ shape = SubResource("BoxShape3D_yudm0")
 [editable path="Dynamic Objects/Top of Falls/Moving Platform6"]
 [editable path="Dynamic Objects/Top of Falls/Moving Platform7"]
 [editable path="Dynamic Objects/Top of Falls/Moving Platform8"]
+[editable path="Dynamic Objects/Top of Falls/Crumbling Platform11"]
 [editable path="Dynamic Objects/Top of Falls/Moving Platform9"]
 [editable path="Linear Respawn Zone"]
 [editable path="Checkpoints/Checkpoint"]

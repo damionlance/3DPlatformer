@@ -17,7 +17,7 @@ extends DynamicPlatform3D
 
 @onready var timer := $Timer
 @onready var trigger := $Trigger
-@onready var animation_player := $AnimationPlayer
+@onready var animation_player : AnimationPlayer = $%AnimationPlayer
 
 var player : CharacterBody3D
 var _reset_crumble := false
@@ -71,4 +71,5 @@ func detect_player_on_ground(body : Node3D) -> void:
 		player = body
 		timer.start(time_to_crumble)
 		_reset_crumble = true
-		animation_player.play("rumble")
+		if animation_player.has_animation("start_collapse"):
+			animation_player.play("start_collapse")
