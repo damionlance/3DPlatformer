@@ -206,6 +206,8 @@ func reset_alignment() -> void:
 	rotation = Vector3(0, rotation.y, 0)
 
 func look_forward(_delta) -> void:
+	if movement_direction == Vector3.ZERO:
+		return
 	var normalized_direction = movement_direction.normalized()
 	var lookdir = atan2(normalized_direction.x, normalized_direction.z)
 	rotation.y = lookdir
