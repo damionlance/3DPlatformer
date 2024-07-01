@@ -23,8 +23,6 @@ func step():
 	var material = get_ground_material_at_point_using_mesh_data_tool(mesh, global_position + Vector3.UP)
 	if material:
 		material_tag = material.get_meta("sound", "default")
-		print("Material: " + material.resource_path.get_file())
-		print(" ")
 	else:
 		material_tag = "default"
 
@@ -39,7 +37,6 @@ func get_mesh_using_raycast() -> MeshInstance3D:
 				return child
 	
 	if collider is MeshInstance3D:
-		print(collider.name)
 		return collider
 	else:
 		return null
@@ -47,8 +44,6 @@ func get_mesh_using_raycast() -> MeshInstance3D:
 
 func get_ground_material_at_point_using_mesh_data_tool(mesh_instance : MeshInstance3D, point : Vector3) -> Material:
 	var start_time = Time.get_ticks_msec()
-
-	print("Getting step material for mesh: " + str(mesh_instance))
 
 	# Create Mesh Data Tools From Mesh
 	if !mesh_data.has(mesh_instance.mesh):
@@ -81,16 +76,12 @@ func get_ground_material_at_point_using_mesh_data_tool(mesh_instance : MeshInsta
 			var collide = Geometry3D.ray_intersects_triangle(point, Vector3.DOWN, v1_pos, v2_pos, v3_pos)
 			if collide:
 				var material = mesh_data_tool.get_material()
-				print("FOUND MATERIAL")
 				var end_time = Time.get_ticks_msec()
 				var elapsed = end_time - start_time
-				print("Finished in: " + str(elapsed))
 				return material
 
-	print("DID NOT FIND MATERIAL")
 	var end_time = Time.get_ticks_msec()
 	var elapsed = end_time - start_time
-	print("Finished in: " + str(elapsed))
 	return null
 
 
@@ -99,7 +90,6 @@ func get_ground_material_at_point_using_mesh_data_tool(mesh_instance : MeshInsta
 # query a given mesh
 func _create_mesh_data_tools(mesh: Mesh):
 	var start_time = Time.get_ticks_msec()
-	print ("Creating Mesh Data for: " + str(mesh))
 
 	var mesh_data_tools : Array[MeshDataTool] = []
 	for surface_index in mesh.get_surface_count():
@@ -111,4 +101,3 @@ func _create_mesh_data_tools(mesh: Mesh):
 
 	var end_time = Time.get_ticks_msec()
 	var elapsed = end_time - start_time
-	print("Finished in: " + str(elapsed))

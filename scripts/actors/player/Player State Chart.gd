@@ -28,6 +28,7 @@ var joystick_input_buffer : Array[Vector2] = []
 @onready var floor_alignment_raycast := $"%Floor Alignment Raycast"
 
 func _ready():
+	constants._ready()
 	jump_reset_timer.connect("timeout", reset_jumps)
 	add_child(jump_reset_timer)
 	
@@ -37,7 +38,6 @@ func _physics_process(delta):
 	velocity += delta_v * delta
 	speed = Vector3(velocity.x, 0, velocity.z).length()
 	move_and_slide()
-	
 	input_polling()
 	state_chart_expression_update()
 	delta_v = Vector3.ZERO
@@ -58,7 +58,6 @@ func input_polling():
 func grounded_movement_processing(delta):
 	delta_v = movement_direction
 	delta_v *= constants.running_acceleration
-	delta_v.y = constants._fall_gravity * delta
 	
 	if not is_on_floor():
 		state_chart.send_event("Fall")
@@ -95,13 +94,11 @@ func initial_jump_processing():
 	if current_jump >= constants.jump_strength.size():
 		current_jump = 0
 	
-	velocity.y = constants.jump_strength[current_jump]
+	velocity.y = constants.jump_strength[current_jump] - (constants.jump_gravity[current_jump]*0.0166)
 	match current_jump:
 		3:
-			print(velocity)
 			var new_movement_direction = movement_direction.normalized() * constants._side_jump_velocity
 			velocity = Vector3(new_movement_direction.x, constants.jump_strength[current_jump], new_movement_direction.z)
-			print(velocity)
 			look_forward(0.0166)
 		6:
 			var new_movement_direction = movement_direction.normalized() * constants._side_jump_velocity
@@ -113,16 +110,15 @@ func initial_jump_processing():
 			look_forward(0.0166)
 
 func wall_slide_processing(delta : float) -> void:
-	delta_v.y = constants.wall_slide_gravity * delta
+	delta_v.y = constants.wall_slide_gravity
 
-func normal_jump_processing(_delta : float):
+func normal_jump_processing(delta : float):
 	delta_v = movement_direction
 	delta_v *= constants.air_acceleration
 	if velocity.y > 0:
 		delta_v.y = constants.jump_gravity[current_jump]
 	else:
 		delta_v.y = constants.fall_gravity[current_jump]
-	
 	if Input.is_action_just_pressed("DiveButton"):
 		state_chart.send_event("Dive")
 	
@@ -183,7 +179,7 @@ func apply_air_friction(delta : float) -> void:
 		forward_velocity = lerp(forward_velocity, Vector3.ZERO, forwards_friction * delta)
 	velocity = forward_velocity + lateral_velocity + vertical_velocity
 	if velocity.length() < 1 and Input.get_vector("Left", "Right", "Backward", "Forward") == Vector2.ZERO:
-		velocity = Vector3(0, velocity.y, 0)
+		velocity = Vector3(0, vertical_velocity.y, 0)
 
 func start_skidding() -> void:
 	pivot = true
