@@ -42,7 +42,7 @@ version_control_plugin_name="GitAPI"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
+enabled=PackedStringArray("res://addons/OvaniAmbiencePlugin/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg")
 
 [filesystem]
 

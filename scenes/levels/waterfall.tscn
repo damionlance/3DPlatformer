@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://cau3x6x8wkgnu"]
+[gd_scene load_steps=66 format=4 uid="uid://cau3x6x8wkgnu"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_0kyes"]
 [ext_resource type="PackedScene" uid="uid://dx43f0ws6wsw2" path="res://assets/models/levels/waterfall/waterfall.glb" id="2_evhbf"]
@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://ce4llblk2ui00" path="res://scenes/tools/dynamic objects/Garden/crumbling_rock_platform.tscn" id="6_xo4n8"]
 [ext_resource type="Material" uid="uid://b5638r3gpb44l" path="res://assets/materials/garden/Bark.tres" id="7_qiiup"]
 [ext_resource type="Material" uid="uid://cabjis8wr5kti" path="res://assets/materials/garden/frogger logs.tres" id="8_im6ms"]
+[ext_resource type="Script" path="res://addons/OvaniAmbiencePlugin/AmbienceArea.gd" id="11_n3bhk"]
+[ext_resource type="Script" path="res://addons/OvaniAmbiencePlugin/BusSnapshot.gd" id="12_1euut"]
+[ext_resource type="AudioStream" uid="uid://by2jcp8wxl2ml" path="res://assets/sounds/ambient noises/Large Waterfall Loop.wav" id="12_g1btq"]
+[ext_resource type="AudioStream" uid="uid://clyxjtpuxmic" path="res://assets/sounds/ambient noises/Lively Garden Loop.wav" id="13_du2em"]
 
 [sub_resource type="Environment" id="Environment_r6nig"]
 ambient_light_source = 2
@@ -255,6 +259,108 @@ size = Vector3(33.4636, 20.9569, 47.7898)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yudm0"]
 size = Vector3(495.342, 5.78857, 343.93)
+
+[sub_resource type="Resource" id="Resource_6xolh"]
+script = ExtResource("12_1euut")
+Name = &"Park"
+Volume = -1.32149
+Effects = Array[AudioEffect]([])
+States = Array[bool]([])
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_6dtqa"]
+resource_name = "LowPassFilter"
+cutoff_hz = 5000.0
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_55fkc"]
+resource_name = "Compressor"
+
+[sub_resource type="Resource" id="Resource_3a77q"]
+script = ExtResource("12_1euut")
+Name = &"Waterfall"
+Volume = -4.76812
+Effects = Array[AudioEffect]([SubResource("AudioEffectLowPassFilter_6dtqa"), SubResource("AudioEffectCompressor_55fkc")])
+States = Array[bool]([true, true])
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_csdie"]
+resource_name = "LowPassFilter"
+
+[sub_resource type="Resource" id="Resource_qfsce"]
+script = ExtResource("12_1euut")
+Name = &"Muffle Waterfall"
+Volume = -80.0
+Effects = Array[AudioEffect]([SubResource("AudioEffectLowPassFilter_csdie")])
+States = Array[bool]([true])
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uxih5"]
+size = Vector3(510.922, 253.13, 316.106)
+
+[sub_resource type="Resource" id="Resource_edf7t"]
+script = ExtResource("12_1euut")
+Name = &"Park"
+Volume = -1.32149
+Effects = Array[AudioEffect]([])
+States = Array[bool]([])
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_evc7a"]
+resource_name = "LowPassFilter"
+cutoff_hz = 5000.0
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_ilkv1"]
+resource_name = "Compressor"
+
+[sub_resource type="Resource" id="Resource_sb5jd"]
+script = ExtResource("12_1euut")
+Name = &"Waterfall"
+Volume = 5.02899
+Effects = Array[AudioEffect]([SubResource("AudioEffectLowPassFilter_evc7a"), SubResource("AudioEffectCompressor_ilkv1")])
+States = Array[bool]([true, true])
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_3xrax"]
+resource_name = "LowPassFilter"
+
+[sub_resource type="Resource" id="Resource_4ibej"]
+script = ExtResource("12_1euut")
+Name = &"Muffle Waterfall"
+Volume = -80.0
+Effects = Array[AudioEffect]([SubResource("AudioEffectLowPassFilter_3xrax")])
+States = Array[bool]([true])
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_djkuw"]
+size = Vector3(213.864, 211.636, 290.858)
+
+[sub_resource type="Resource" id="Resource_awm0c"]
+script = ExtResource("12_1euut")
+Name = &"Park"
+Volume = 0.860514
+Effects = Array[AudioEffect]([])
+States = Array[bool]([])
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_3kagy"]
+resource_name = "LowPassFilter"
+cutoff_hz = 5000.0
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_8gapy"]
+resource_name = "Compressor"
+
+[sub_resource type="Resource" id="Resource_tuwyu"]
+script = ExtResource("12_1euut")
+Name = &"Waterfall"
+Volume = -2.91905
+Effects = Array[AudioEffect]([SubResource("AudioEffectLowPassFilter_3kagy"), SubResource("AudioEffectCompressor_8gapy")])
+States = Array[bool]([true, true])
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_akll4"]
+resource_name = "LowPassFilter"
+
+[sub_resource type="Resource" id="Resource_vngs8"]
+script = ExtResource("12_1euut")
+Name = &"Muffle Waterfall"
+Volume = 0.0672607
+Effects = Array[AudioEffect]([SubResource("AudioEffectLowPassFilter_akll4")])
+States = Array[bool]([true])
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oh7hy"]
+size = Vector3(176.53, 55.8427, 270.639)
 
 [node name="waterfall" type="Node3D"]
 script = ExtResource("1_0kyes")
@@ -624,6 +730,51 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hazards/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.7964, -4.03853, 57.2913)
 shape = SubResource("BoxShape3D_yudm0")
+
+[node name="Ambience" type="Node" parent="."]
+
+[node name="Park" type="Area3D" parent="Ambience"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_n3bhk")
+Snapshots = Array[ExtResource("12_1euut")]([SubResource("Resource_6xolh"), SubResource("Resource_3a77q"), SubResource("Resource_qfsce")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ambience/Park"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.5274, 103.796, 51.2271)
+shape = SubResource("BoxShape3D_uxih5")
+
+[node name="Waterfall" type="Area3D" parent="Ambience/Park"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_n3bhk")
+Snapshots = Array[ExtResource("12_1euut")]([SubResource("Resource_edf7t"), SubResource("Resource_sb5jd"), SubResource("Resource_4ibej")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ambience/Park/Waterfall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.0466, 105.318, 49.3198)
+shape = SubResource("BoxShape3D_djkuw")
+
+[node name="Muffle Waterfall" type="Area3D" parent="Ambience/Park/Waterfall"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_n3bhk")
+Snapshots = Array[ExtResource("12_1euut")]([SubResource("Resource_awm0c"), SubResource("Resource_tuwyu"), SubResource("Resource_vngs8")])
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Ambience/Park/Waterfall/Muffle Waterfall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -151.935, 196.206, 54.0849)
+shape = SubResource("BoxShape3D_oh7hy")
+
+[node name="Audio Players" type="Node3D" parent="."]
+
+[node name="Ambient Park Sounds" type="AudioStreamPlayer" parent="Audio Players"]
+stream = ExtResource("13_du2em")
+autoplay = true
+bus = &"Park"
+
+[node name="Waterfall" type="AudioStreamPlayer" parent="Audio Players"]
+stream = ExtResource("12_g1btq")
+volume_db = 5.0
+autoplay = true
+bus = &"Waterfall"
 
 [editable path="Dynamic Objects/First Layer/Moving Platform"]
 [editable path="Dynamic Objects/Third Layer/Moving Platform"]
