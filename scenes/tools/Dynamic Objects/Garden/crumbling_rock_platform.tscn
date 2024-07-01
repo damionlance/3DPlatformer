@@ -57,4 +57,3 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_ddvb7")
 }
-autoplay = "start_collapse"

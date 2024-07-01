@@ -213,7 +213,7 @@ light_color = Color(1, 1, 0.843137, 1)
 [node name="waterfall" parent="." instance=ExtResource("2_evhbf")]
 
 [node name="Player" parent="." instance=ExtResource("3_n1hwv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.87275, 3.62401, -68.16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.5527, 174.033, -68.16)
 
 [node name="Dynamic Objects" type="Node3D" parent="."]
 
@@ -400,7 +400,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 [node name="Moving Platform8" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(-0.0337657, 0, 0.99943, 0, 1, 0, -0.99943, 0, -0.0337657, 7.14407, -1.40729, 107.576)
 number_of_objects = 12
-speed_of_platform = 12.0
+speed_of_platform = 14.0
 transition_type = 1
 
 [node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform8" index="0"]
@@ -426,7 +426,10 @@ transform = Transform3D(1.2128, 0, -0.302677, 0, 1.25, 0, 0.302677, 0, 1.2128, 1
 transform = Transform3D(1.09692, 0, 0.59938, 0, 1.25, 0, -0.59938, 0, 1.09692, 50.5886, -1.29872, 4.85785)
 
 [node name="Crumbling Platform11" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_xo4n8")]
-transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 72.1669, -1.29872, 138.746)
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 68.3998, -1.29872, 138.746)
+
+[node name="Crumbling Platform12" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_xo4n8")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 81.474, -1.29872, 138.746)
 
 [node name="Moving Platform9" parent="Dynamic Objects/Top of Falls" instance=ExtResource("4_u4tyk")]
 transform = Transform3D(1.68, 0, 0, 0, 1.68, 0, 0, 0, 1.68, 2.05229, 0, 162.902)
@@ -531,13 +534,21 @@ shape = SubResource("BoxShape3D_yudm0")
 [editable path="Dynamic Objects/Fourth Layer/Moving Platform"]
 [editable path="Dynamic Objects/Fourth Layer/Moving Platform2"]
 [editable path="Dynamic Objects/Top of Falls/Moving Platform"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform/PathFollow3D/object/log"]
 [editable path="Dynamic Objects/Top of Falls/Moving Platform2"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform2/PathFollow3D/object/log"]
 [editable path="Dynamic Objects/Top of Falls/Moving Platform3"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform3/PathFollow3D/object/log"]
 [editable path="Dynamic Objects/Top of Falls/Moving Platform4"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform4/PathFollow3D/object/log"]
 [editable path="Dynamic Objects/Top of Falls/Moving Platform5"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform5/PathFollow3D/object/log"]
 [editable path="Dynamic Objects/Top of Falls/Moving Platform6"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform6/PathFollow3D/object/log"]
 [editable path="Dynamic Objects/Top of Falls/Moving Platform7"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform7/PathFollow3D/object/log"]
 [editable path="Dynamic Objects/Top of Falls/Moving Platform8"]
+[editable path="Dynamic Objects/Top of Falls/Moving Platform8/PathFollow3D/object/log"]
 [editable path="Dynamic Objects/Top of Falls/Moving Platform9"]
 [editable path="Linear Respawn Zone"]
 [editable path="Checkpoints/Checkpoint"]

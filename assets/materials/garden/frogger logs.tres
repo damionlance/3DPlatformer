@@ -1,9 +1,10 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cabjis8wr5kti"]
 
 [ext_resource type="Shader" path="res://assets/shaders/plain texture.gdshader" id="1_o672r"]
-[ext_resource type="Texture2D" uid="uid://vnbwllmr8aue" path="res://assets/textures/garden/crackedStone.png" id="2_pi8it"]
+[ext_resource type="Texture2D" uid="uid://bweo4rpbbivpq" path="res://assets/textures/garden/woodCrossCut.png" id="2_2ggdo"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_o672r")
-shader_parameter/image = ExtResource("2_pi8it")
+shader_parameter/image = ExtResource("2_2ggdo")
+metadata/sound = "wood"

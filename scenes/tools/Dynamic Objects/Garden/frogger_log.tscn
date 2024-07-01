@@ -17,3 +17,5 @@ transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 1.08, 0, 0, 0)
 
 [node name="log" parent="PathFollow3D/object" index="0" instance=ExtResource("2_o7jqm")]
 transform = Transform3D(-4.37118e-08, 0, 1, 0, 1.00001, 0, -1.00001, 0, -4.37114e-08, 0, 0, 0)
+
+[editable path="PathFollow3D/object/log"]
