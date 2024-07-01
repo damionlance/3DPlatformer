@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=4 uid="uid://ds2kwr3biacnf"]
 
-[ext_resource type="PackedScene" uid="uid://egrvieqe3s2p" path="res://scenes/tools/Dynamic Objects/Moving Platform/Moving Platform.tscn" id="1_imuen"]
+[ext_resource type="PackedScene" uid="uid://egrvieqe3s2p" path="res://scenes/tools/dynamic objects/Moving Platform/Moving Platform.tscn" id="1_imuen"]
 [ext_resource type="PackedScene" uid="uid://c0wlu8g7xmcen" path="res://assets/models/levels/waterfall/log.glb" id="2_o7jqm"]
-[ext_resource type="Texture2D" uid="uid://mcrtn8imv4py" path="res://assets/models/levels/waterfall/log_bark.png" id="3_5puqm"]
-[ext_resource type="Texture2D" uid="uid://bo8q53h14jcso" path="res://assets/models/levels/waterfall/log_woodCrossCut.png" id="4_6fscr"]
+[ext_resource type="Texture2D" uid="uid://cbr8jx42dn8rk" path="res://assets/textures/garden/bark.png" id="3_5puqm"]
+[ext_resource type="Texture2D" uid="uid://bweo4rpbbivpq" path="res://assets/textures/garden/woodCrossCut.png" id="4_6fscr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7gwg"]
 resource_name = "Bark"
@@ -91,7 +91,6 @@ transform = Transform3D(-4.37118e-08, 0, 1, 0, 1.00001, 0, -1.00001, 0, -4.37114
 
 [node name="Cylinder" parent="PathFollow3D/object/log" index="0"]
 mesh = SubResource("ArrayMesh_86sgt")
-skeleton = NodePath("")
 
 [node name="CollisionShape3D" parent="PathFollow3D/object/log/Cylinder/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_qv6kx")

@@ -94,7 +94,8 @@ func initial_jump_processing():
 	if current_jump >= constants.jump_strength.size():
 		current_jump = 0
 	
-	velocity.y = constants.jump_strength[current_jump] - (constants.jump_gravity[current_jump]*0.0166)
+	velocity.y = constants.jump_strength[current_jump]
+	
 	match current_jump:
 		3:
 			var new_movement_direction = movement_direction.normalized() * constants._side_jump_velocity
@@ -157,7 +158,9 @@ func apply_friction(delta : float) -> void:
 	
 	if forward_velocity.length() > constants.max_horizontal_velocity * delta or forward_velocity.dot(movement_direction) < 0:
 		forward_velocity = lerp(forward_velocity, Vector3.ZERO, forwards_friction * delta)
+	var temp = velocity.y
 	velocity = forward_velocity + lateral_velocity
+	velocity.y = temp
 	if velocity.length() < 1 and Input.get_vector("Left", "Right", "Backward", "Forward") == Vector2.ZERO:
 		velocity = Vector3(0, velocity.y, 0)
 
