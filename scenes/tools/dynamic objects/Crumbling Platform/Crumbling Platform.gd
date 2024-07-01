@@ -35,6 +35,7 @@ func _ready():
 		generate_collision_data()
 	else:
 		mesh.reparent(object)
+		generate_collision_data()
 	for child in object.get_children():
 		if child is CollisionShape3D:
 			trigger.add_child(child.duplicate())
