@@ -85,32 +85,32 @@ var jump_strength := [_jump_strength, _jump2_strength, _jump3_strength, _dive_ju
 var jump_gravity := [_jump_gravity, _jump2_gravity, _jump3_gravity, _dive_jump_gravity, _rollout_jump_gravity, _spin_jump_gravity, _side_jump_gravity, _jump_gravity]
 var fall_gravity := [_fall_gravity, _fall2_gravity, _fall3_gravity, _dive_fall_gravity, _rollout_fall_gravity, _spin_fall_gravity, _side_fall_gravity, _fall_gravity]
 func _ready():
-	_jump_gravity = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
 	_jump_strength = (2 * jump_height) / jump_time_to_peak
+	_jump_gravity = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
 	_fall_gravity  = (-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)
-
-	_jump2_gravity = (-2.0 * jump2_height) / (jump2_time_to_peak * jump2_time_to_peak)
+	
 	_jump2_strength = (2 * jump2_height) / jump2_time_to_peak
+	_jump2_gravity = (-2.0 * jump2_height) / (jump2_time_to_peak * jump2_time_to_peak)
 	_fall2_gravity = (-2.0 * jump2_height) / (jump2_time_to_descent * jump2_time_to_descent)
-
-	_jump3_gravity = (-2.0 * jump3_height) / (jump3_time_to_peak * jump3_time_to_peak)
+	
 	_jump3_strength = (2 * jump3_height) / jump3_time_to_peak
+	_jump3_gravity = (-2.0 * jump3_height) / (jump3_time_to_peak * jump3_time_to_peak)
 	_fall3_gravity = (-2.0 * jump3_height) / (jump3_time_to_descent * jump3_time_to_descent)
-
+	
 	_dive_jump_strength = (2.0 * dive_jump_height) / dive_jump_time_to_peak
-	_dive_jump_gravity = (2 * dive_jump_height) / dive_jump_time_to_peak
+	_dive_jump_gravity = (-2.0 * dive_jump_height) / (dive_jump_time_to_peak * dive_jump_time_to_peak)
 	_dive_fall_gravity = (-2.0 * dive_jump_height) / (dive_jump_time_to_descent * dive_jump_time_to_descent)
-
+	
 	_rollout_jump_strength = (2.0 * rollout_jump_height) / rollout_jump_time_to_peak
-	_rollout_jump_gravity = (2 * rollout_jump_height) / rollout_jump_time_to_peak
+	_rollout_jump_gravity = (-2.0 * rollout_jump_height) / (rollout_jump_time_to_peak * rollout_jump_time_to_peak)
 	_rollout_fall_gravity = (-2.0 * rollout_jump_height) / (rollout_jump_time_to_descent * rollout_jump_time_to_descent)
-
+	
 	_spin_jump_strength = (2.0 * spin_jump_height) / spin_jump_time_to_peak
-	_spin_jump_gravity = (2 * spin_jump_height) / spin_jump_time_to_peak
+	_spin_jump_gravity = (-2.0 * spin_jump_height) / (spin_jump_time_to_peak * spin_jump_time_to_peak)
 	_spin_fall_gravity = (-2.0 * spin_jump_height) / (spin_jump_time_to_descent * spin_jump_time_to_descent)
-
+	
 	_side_jump_strength = (2.0 * side_jump_height) / side_jump_time_to_peak
-	_side_jump_gravity = (2 * side_jump_height) / side_jump_time_to_peak
+	_side_jump_gravity = (-2.0 * side_jump_height) / (side_jump_time_to_peak * side_jump_time_to_peak)
 	_side_fall_gravity = (-2.0 * side_jump_height) / (side_jump_time_to_descent * side_jump_time_to_descent)
 
 	jump_strength = [_jump_strength, _jump2_strength, _jump3_strength, _dive_jump_strength, _rollout_jump_strength, _spin_jump_strength, _side_jump_strength, _jump_strength]
