@@ -295,7 +295,7 @@ light_color = Color(1, 1, 0.843137, 1)
 [node name="waterfall" parent="." instance=ExtResource("2_evhbf")]
 
 [node name="Player" parent="." instance=ExtResource("3_n1hwv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.5527, 174.033, -68.16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4256, 0.450977, -70.9882)
 
 [node name="Dynamic Objects" type="Node3D" parent="."]
 

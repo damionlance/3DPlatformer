@@ -45,7 +45,6 @@ func get_mesh_using_raycast() -> MeshInstance3D:
 func get_ground_material_at_point_using_mesh_data_tool(mesh_instance : MeshInstance3D, point : Vector3) -> Material:
 	var start_time = Time.get_ticks_msec()
 
-
 	# Create Mesh Data Tools From Mesh
 	if !mesh_data.has(mesh_instance.mesh):
 		_create_mesh_data_tools(mesh_instance.mesh)
