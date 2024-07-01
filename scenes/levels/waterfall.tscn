@@ -1,7 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://cau3x6x8wkgnu"]
+[gd_scene load_steps=38 format=3 uid="uid://cau3x6x8wkgnu"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_0kyes"]
 [ext_resource type="PackedScene" uid="uid://dx43f0ws6wsw2" path="res://assets/models/levels/waterfall/waterfall.glb" id="2_evhbf"]
+[ext_resource type="Script" path="res://scripts/level objects/level start/level object tracker.gd" id="3_3arip"]
 [ext_resource type="PackedScene" uid="uid://b1no6pukt37fw" path="res://scenes/actors/New Player.tscn" id="3_n1hwv"]
 [ext_resource type="PackedScene" uid="uid://jaxv1pb1wkxy" path="res://scenes/tools/dynamic objects/Garden/moving_log_platform.tscn" id="4_u4tyk"]
 [ext_resource type="PackedScene" uid="uid://b77fgnopqf6lt" path="res://scenes/tools/managers/Linear Respawn Zone/linear respawn zone.tscn" id="5_am48q"]
@@ -210,7 +211,8 @@ environment = SubResource("Environment_r6nig")
 transform = Transform3D(0.972889, -0.0918938, 0.212232, 0, 0.917671, 0.39734, -0.231273, -0.386568, 0.892792, 0, 20.9702, 0)
 light_color = Color(1, 1, 0.843137, 1)
 
-[node name="waterfall" parent="." instance=ExtResource("2_evhbf")]
+[node name="waterfall" type="Node3D" parent="." instance=ExtResource("2_evhbf")]
+script = ExtResource("3_3arip")
 
 [node name="Player" parent="." instance=ExtResource("3_n1hwv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.87274, 78.2982, -10.2577)
