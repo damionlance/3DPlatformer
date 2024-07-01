@@ -14,7 +14,7 @@ var jump_reset_timer := Timer.new()
 
 # Flags
 var pivot:= false
-
+var was_on_floor := false
 var delta_v := Vector3.ZERO
 
 var joystick_input_buffer : Array[Vector2] = []
@@ -98,16 +98,18 @@ func initial_jump_processing():
 	velocity.y = constants.jump_strength[current_jump]
 	match current_jump:
 		3:
-			movement_direction = movement_direction.normalized() * constants.max_horizontal_velocity
-			velocity = Vector3(movement_direction.x, constants.jump_strength[current_jump], movement_direction.z)
+			print(velocity)
+			var new_movement_direction = movement_direction.normalized() * constants._side_jump_velocity
+			velocity = Vector3(new_movement_direction.x, constants.jump_strength[current_jump], new_movement_direction.z)
+			print(velocity)
 			look_forward(0.0166)
 		6:
-			movement_direction = movement_direction.normalized() * constants._side_jump_velocity
-			velocity = Vector3(movement_direction.x, constants.jump_strength[current_jump], movement_direction.z)
+			var new_movement_direction = movement_direction.normalized() * constants._side_jump_velocity
+			velocity = Vector3(new_movement_direction.x, constants.jump_strength[current_jump], new_movement_direction.z)
 			look_forward(0.0166)
 		7:
-			movement_direction = movement_direction.normalized() * constants.max_horizontal_velocity
-			velocity = Vector3(movement_direction.x, constants.jump_strength[current_jump], movement_direction.z)
+			var new_movement_direction = movement_direction.normalized() * constants.max_horizontal_velocity
+			velocity = Vector3(new_movement_direction.x, constants.jump_strength[current_jump], new_movement_direction.z)
 			look_forward(0.0166)
 
 func wall_slide_processing(delta : float) -> void:
@@ -124,7 +126,7 @@ func normal_jump_processing(_delta : float):
 	if Input.is_action_just_pressed("DiveButton"):
 		state_chart.send_event("Dive")
 	
-	if velocity.y <= 0 and not is_on_floor():
+	if velocity.y < 0 and not is_on_floor():
 		state_chart.send_event("Fall")
 
 func set_jump(jump_index : int) -> void:
@@ -200,12 +202,23 @@ func align_to_floor(_delta) -> void:
 	xform.basis = xform.basis.orthonormalized()
 	global_transform = global_transform.interpolate_with(xform, 0.1)
 
+func reset_alignment() -> void:
+	rotation = Vector3(0, rotation.y, 0)
+
 func look_forward(_delta) -> void:
 	var normalized_direction = movement_direction.normalized()
 	var lookdir = atan2(normalized_direction.x, normalized_direction.z)
 	rotation.y = lookdir
 	if movement_direction != Vector3.ZERO:
 		facing_direction = movement_direction.normalized()
+
+func look_backward(_delta : float) -> void:
+	var normalized_direction = movement_direction.normalized()
+	var lookdir = atan2(normalized_direction.x, normalized_direction.z)
+	rotation.y = -lookdir
+	if movement_direction != Vector3.ZERO:
+		facing_direction = -movement_direction.normalized()
+
 
 func disable_wall_jump(_delta) -> void:
 	wall_jump_raycasts.disable()
@@ -223,6 +236,7 @@ func check_for_pivots(_delta : float) -> void:
 			else:
 				if checked_position.dot(positions) < -.9:
 					state_chart.send_event("Pivot")
+	return
 
 func attach_to_object(object_type : String) -> void:
 	match object_type:
@@ -234,7 +248,20 @@ func hazard_reaction(hazard : Node) -> void:
 		$"Respawn Manager".process_respawn()
 	if hazard.is_in_group("moving hazard"):
 		state_chart.send_event("Take Damage")
+		state_chart.send_event("Jump")
+		if hazard.get_parent().get_parent().get_parent().launch_direction != Vector3.ZERO:
+			velocity = hazard.get_parent().get_parent().get_parent().launch_direction * constants._damage_launch_velocity
+		else:
+			var launch_direction = global_position - hazard.global_position
+			launch_direction.y = 0
+			velocity = launch_direction.normalized() * constants._damage_launch_velocity
 	return
+
+func intangible(delta : float)->void:
+	$"%Blinking Animation Player".play("blinking")
+
+func ensure_player_is_visible() -> void:
+	$"%Blinking Animation Player".play("RESET")
 
 func respawn(new_position : Vector3) -> void:
 	global_position = new_position

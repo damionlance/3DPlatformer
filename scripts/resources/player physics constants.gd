@@ -47,6 +47,9 @@ var slope_strength := 0.0
 @export var rollout_jump_time_to_peak := 0.3
 @export var rollout_jump_time_to_descent := 0.3
 
+@export var _side_jump_velocity : float = 15.0
+@export var _damage_launch_velocity : float = 7.5
+
 @export var air_friction := 0.99
 @export var air_acceleration := 1000
 @export var terminal_velocity := 25.0
@@ -78,13 +81,12 @@ var _spin_fall_gravity : float = (-2.0 * spin_jump_height) / (spin_jump_time_to_
 var _side_jump_strength : float = (2.0 * side_jump_height) / side_jump_time_to_peak
 var _side_jump_gravity : float = (-2.0 * side_jump_height) / (side_jump_time_to_peak * side_jump_time_to_peak)
 var _side_fall_gravity : float = (-2.0 * side_jump_height) / (side_jump_time_to_descent * side_jump_time_to_descent)
-var _side_jump_velocity : float = max_horizontal_velocity / 3
 
 var jump_strength := [_jump_strength, _jump2_strength, _jump3_strength, _dive_jump_strength, _rollout_jump_strength, _spin_jump_strength, _side_jump_strength, _jump_strength]
 var jump_gravity := [_jump_gravity, _jump2_gravity, _jump3_gravity, _dive_jump_gravity, _rollout_jump_gravity, _spin_jump_gravity, _side_jump_gravity, _jump_gravity]
 var fall_gravity := [_fall_gravity, _fall2_gravity, _fall3_gravity, _dive_fall_gravity, _rollout_fall_gravity, _spin_fall_gravity, _side_fall_gravity, _fall_gravity]
 
-var wall_slide_gravity := _spin_fall_gravity
+var wall_slide_gravity := _spin_jump_gravity
 
 var wall_jump_speed = 12.5
 var max_reel_in = 25.0
