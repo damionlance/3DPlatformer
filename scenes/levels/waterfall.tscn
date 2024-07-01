@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://cau3x6x8wkgnu"]
+[gd_scene load_steps=41 format=4 uid="uid://cau3x6x8wkgnu"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_0kyes"]
 [ext_resource type="PackedScene" uid="uid://dx43f0ws6wsw2" path="res://assets/models/levels/waterfall/waterfall.glb" id="2_evhbf"]
@@ -151,9 +151,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_l2lhf")
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5jme6"]
-data = PackedVector3Array(-4.5, 2, -2, 4.5, 1.60982, -1.96157, 4.5, 2, -2, -4.5, 2, -2, -4.5, 1.60982, -1.96157, 4.5, 1.60982, -1.96157, -4.5, 1.60982, -1.96157, 4.5, 1.23463, -1.84776, 4.5, 1.60982, -1.96157, -4.5, 1.60982, -1.96157, -4.5, 1.23463, -1.84776, 4.5, 1.23463, -1.84776, -4.5, 1.23463, -1.84776, 4.5, 0.888859, -1.66294, 4.5, 1.23463, -1.84776, -4.5, 1.23463, -1.84776, -4.5, 0.88886, -1.66294, 4.5, 0.888859, -1.66294, -4.5, 0.88886, -1.66294, 4.5, 0.585786, -1.41421, 4.5, 0.888859, -1.66294, -4.5, 0.88886, -1.66294, -4.5, 0.585787, -1.41421, 4.5, 0.585786, -1.41421, -4.5, 0.585787, -1.41421, 4.5, 0.337061, -1.11114, 4.5, 0.585786, -1.41421, -4.5, 0.585787, -1.41421, -4.5, 0.337061, -1.11114, 4.5, 0.337061, -1.11114, -4.5, 0.337061, -1.11114, 4.5, 0.152241, -0.765367, 4.5, 0.337061, -1.11114, -4.5, 0.337061, -1.11114, -4.5, 0.152241, -0.765367, 4.5, 0.152241, -0.765367, -4.5, 0.152241, -0.765367, 4.5, 0.0384293, -0.390181, 4.5, 0.152241, -0.765367, -4.5, 0.152241, -0.765367, -4.5, 0.0384296, -0.390181, 4.5, 0.0384293, -0.390181, -4.5, 0.0384296, -0.390181, 4.5, 0, 9.31323e-09, 4.5, 0.0384293, -0.390181, -4.5, 0.0384296, -0.390181, -4.5, 1.19209e-07, 9.31323e-09, 4.5, 0, 9.31323e-09, -4.5, 1.19209e-07, 9.31323e-09, 4.5, 0.0384293, 0.390181, 4.5, 0, 9.31323e-09, -4.5, 1.19209e-07, 9.31323e-09, -4.5, 0.0384296, 0.390181, 4.5, 0.0384293, 0.390181, -4.5, 0.0384296, 0.390181, 4.5, 0.152241, 0.765367, 4.5, 0.0384293, 0.390181, -4.5, 0.0384296, 0.390181, -4.5, 0.152241, 0.765367, 4.5, 0.152241, 0.765367, -4.5, 0.152241, 0.765367, 4.5, 0.337061, 1.11114, 4.5, 0.152241, 0.765367, -4.5, 0.152241, 0.765367, -4.5, 0.337061, 1.11114, 4.5, 0.337061, 1.11114, -4.5, 0.337061, 1.11114, 4.5, 0.585786, 1.41421, 4.5, 0.337061, 1.11114, -4.5, 0.337061, 1.11114, -4.5, 0.585787, 1.41421, 4.5, 0.585786, 1.41421, -4.5, 0.585787, 1.41421, 4.5, 0.888859, 1.66294, 4.5, 0.585786, 1.41421, -4.5, 0.585787, 1.41421, -4.5, 0.88886, 1.66294, 4.5, 0.888859, 1.66294, -4.5, 0.88886, 1.66294, 4.5, 1.23463, 1.84776, 4.5, 0.888859, 1.66294, -4.5, 0.88886, 1.66294, -4.5, 1.23463, 1.84776, 4.5, 1.23463, 1.84776, -4.5, 1.23463, 1.84776, 4.5, 1.60982, 1.96157, 4.5, 1.23463, 1.84776, -4.5, 1.23463, 1.84776, -4.5, 1.60982, 1.96157, 4.5, 1.60982, 1.96157, -4.5, 1.60982, 1.96157, 4.5, 2, 2, 4.5, 1.60982, 1.96157, -4.5, 1.60982, 1.96157, -4.5, 2, 2, 4.5, 2, 2, -4.5, 2, 2, -4.5, 1.60982, -1.96157, -4.5, 2, -2, -4.5, 1.60982, -1.96157, -4.5, 0.88886, -1.66294, -4.5, 1.23463, -1.84776, -4.5, 0.88886, -1.66294, -4.5, 0.337061, -1.11114, -4.5, 0.585787, -1.41421, -4.5, 0.337061, -1.11114, -4.5, 0.0384296, -0.390181, -4.5, 0.152241, -0.765367, -4.5, 0.0384296, -0.390181, -4.5, 0.0384296, 0.390181, -4.5, 1.19209e-07, 9.31323e-09, -4.5, 0.0384296, 0.390181, -4.5, 0.337061, 1.11114, -4.5, 0.152241, 0.765367, -4.5, 0.337061, 1.11114, -4.5, 0.88886, 1.66294, -4.5, 0.585787, 1.41421, -4.5, 0.88886, 1.66294, -4.5, 1.60982, 1.96157, -4.5, 1.23463, 1.84776, -4.5, 1.60982, 1.96157, -4.5, 1.60982, -1.96157, -4.5, 2, 2, -4.5, 1.60982, -1.96157, -4.5, 0.337061, -1.11114, -4.5, 0.88886, -1.66294, -4.5, 0.337061, -1.11114, -4.5, 0.0384296, 0.390181, -4.5, 0.0384296, -0.390181, -4.5, 0.0384296, 0.390181, -4.5, 0.88886, 1.66294, -4.5, 0.337061, 1.11114, -4.5, 0.88886, 1.66294, -4.5, 1.60982, -1.96157, -4.5, 1.60982, 1.96157, -4.5, 1.60982, -1.96157, -4.5, 0.0384296, 0.390181, -4.5, 0.337061, -1.11114, -4.5, 1.60982, -1.96157, -4.5, 0.88886, 1.66294, -4.5, 0.0384296, 0.390181, 4.5, 1.23463, -1.84776, 4.5, 2, -2, 4.5, 1.60982, -1.96157, 4.5, 2, -2, 4.5, 1.60982, 1.96157, 4.5, 2, 2, 4.5, 1.60982, 1.96157, 4.5, 0.888859, 1.66294, 4.5, 1.23463, 1.84776, 4.5, 0.888859, 1.66294, 4.5, 0.337061, 1.11114, 4.5, 0.585786, 1.41421, 4.5, 0.337061, 1.11114, 4.5, 0.0384293, 0.390181, 4.5, 0.152241, 0.765367, 4.5, 0.0384293, 0.390181, 4.5, 0.0384293, -0.390181, 4.5, 0, 9.31323e-09, 4.5, 0.0384293, -0.390181, 4.5, 0.337061, -1.11114, 4.5, 0.152241, -0.765367, 4.5, 0.337061, -1.11114, 4.5, 0.888859, -1.66294, 4.5, 0.585786, -1.41421, 4.5, 0.888859, -1.66294, 4.5, 2, -2, 4.5, 1.23463, -1.84776, 4.5, 2, -2, 4.5, 0.888859, 1.66294, 4.5, 1.60982, 1.96157, 4.5, 0.888859, 1.66294, 4.5, 0.0384293, 0.390181, 4.5, 0.337061, 1.11114, 4.5, 0.0384293, 0.390181, 4.5, 0.337061, -1.11114, 4.5, 0.0384293, -0.390181, 4.5, 0.337061, -1.11114, 4.5, 2, -2, 4.5, 0.888859, -1.66294, 4.5, 2, -2, 4.5, 0.0384293, 0.390181, 4.5, 0.888859, 1.66294, 4.5, 2, -2, 4.5, 0.337061, -1.11114, 4.5, 0.0384293, 0.390181, -4.5, 2, -2, 4.5, 2, 2, -4.5, 2, 2, -4.5, 2, -2, 4.5, 2, -2, 4.5, 2, 2)
 
 [sub_resource type="Curve3D" id="Curve3D_612d3"]
 _data = {
@@ -397,9 +394,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 [node name="Cylinder" parent="Dynamic Objects/Top of Falls/Moving Platform/PathFollow3D/object/log" index="0"]
 mesh = SubResource("ArrayMesh_tyrub")
 
-[node name="CollisionShape3D" parent="Dynamic Objects/Top of Falls/Moving Platform/PathFollow3D/object/log/Cylinder/StaticBody3D" index="0"]
-shape = SubResource("ConcavePolygonShape3D_5jme6")
-
 [node name="Moving Platform2" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(0.60102, 0, 0.799234, 0, 1, 0, -0.799234, 0, 0.60102, 168.163, -1.407, 35.898)
 number_of_objects = 4
@@ -414,9 +408,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 
 [node name="Cylinder" parent="Dynamic Objects/Top of Falls/Moving Platform2/PathFollow3D/object/log" index="0"]
 mesh = SubResource("ArrayMesh_tyrub")
-
-[node name="CollisionShape3D" parent="Dynamic Objects/Top of Falls/Moving Platform2/PathFollow3D/object/log/Cylinder/StaticBody3D" index="0"]
-shape = SubResource("ConcavePolygonShape3D_5jme6")
 
 [node name="Moving Platform3" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(0.324231, 0, 0.945978, 0, 1, 0, -0.945978, 0, 0.324231, 81.2525, -1.4073, -21.7931)
@@ -434,9 +425,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 [node name="Cylinder" parent="Dynamic Objects/Top of Falls/Moving Platform3/PathFollow3D/object/log" index="0"]
 mesh = SubResource("ArrayMesh_tyrub")
 
-[node name="CollisionShape3D" parent="Dynamic Objects/Top of Falls/Moving Platform3/PathFollow3D/object/log/Cylinder/StaticBody3D" index="0"]
-shape = SubResource("ConcavePolygonShape3D_5jme6")
-
 [node name="Moving Platform4" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(0.324231, 0, 0.945978, 0, 1, 0, -0.945978, 0, 0.324231, 68.1057, -1.4073, -10.0208)
 number_of_objects = 4
@@ -452,9 +440,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 
 [node name="Cylinder" parent="Dynamic Objects/Top of Falls/Moving Platform4/PathFollow3D/object/log" index="0"]
 mesh = SubResource("ArrayMesh_tyrub")
-
-[node name="CollisionShape3D" parent="Dynamic Objects/Top of Falls/Moving Platform4/PathFollow3D/object/log/Cylinder/StaticBody3D" index="0"]
-shape = SubResource("ConcavePolygonShape3D_5jme6")
 
 [node name="Moving Platform5" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(0.995057, 0, -0.0993025, 0, 1, 0, 0.0993025, 0, 0.995057, 10.2259, -1.4073, 5.43216)
@@ -472,9 +457,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 [node name="Cylinder" parent="Dynamic Objects/Top of Falls/Moving Platform5/PathFollow3D/object/log" index="0"]
 mesh = SubResource("ArrayMesh_tyrub")
 
-[node name="CollisionShape3D" parent="Dynamic Objects/Top of Falls/Moving Platform5/PathFollow3D/object/log/Cylinder/StaticBody3D" index="0"]
-shape = SubResource("ConcavePolygonShape3D_5jme6")
-
 [node name="Moving Platform6" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(0.999991, 0, -0.00415391, 0, 1, 0, 0.00415391, 0, 0.999991, 110.088, -1.4073, 61.1469)
 number_of_objects = 4
@@ -490,9 +472,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 
 [node name="Cylinder" parent="Dynamic Objects/Top of Falls/Moving Platform6/PathFollow3D/object/log" index="0"]
 mesh = SubResource("ArrayMesh_tyrub")
-
-[node name="CollisionShape3D" parent="Dynamic Objects/Top of Falls/Moving Platform6/PathFollow3D/object/log/Cylinder/StaticBody3D" index="0"]
-shape = SubResource("ConcavePolygonShape3D_5jme6")
 
 [node name="Moving Platform7" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(-0.0268573, 0, 0.999639, 0, 1, 0, -0.999639, 0, -0.0268573, 1.85509, -1.4073, 89.5808)
@@ -510,9 +489,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 [node name="Cylinder" parent="Dynamic Objects/Top of Falls/Moving Platform7/PathFollow3D/object/log" index="0"]
 mesh = SubResource("ArrayMesh_tyrub")
 
-[node name="CollisionShape3D" parent="Dynamic Objects/Top of Falls/Moving Platform7/PathFollow3D/object/log/Cylinder/StaticBody3D" index="0"]
-shape = SubResource("ConcavePolygonShape3D_5jme6")
-
 [node name="Moving Platform8" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(-0.0337657, 0, 0.99943, 0, 1, 0, -0.99943, 0, -0.0337657, 7.14407, -1.40729, 107.576)
 number_of_objects = 12
@@ -528,9 +504,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 
 [node name="Cylinder" parent="Dynamic Objects/Top of Falls/Moving Platform8/PathFollow3D/object/log" index="0"]
 mesh = SubResource("ArrayMesh_tyrub")
-
-[node name="CollisionShape3D" parent="Dynamic Objects/Top of Falls/Moving Platform8/PathFollow3D/object/log/Cylinder/StaticBody3D" index="0"]
-shape = SubResource("ConcavePolygonShape3D_5jme6")
 
 [node name="Crumbling Platform" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_xo4n8")]
 transform = Transform3D(1.22669, 0, -0.240267, 0, 1.25, 0, 0.240267, 0, 1.22669, 206.084, -1.29872, 37.5182)

@@ -37,7 +37,9 @@ func _ready():
 func _physics_process(delta):
 	velocity += delta_v * delta
 	speed = Vector3(velocity.x, 0, velocity.z).length()
+	
 	move_and_slide()
+	
 	input_polling()
 	state_chart_expression_update()
 	delta_v = Vector3.ZERO
@@ -58,6 +60,7 @@ func input_polling():
 func grounded_movement_processing(delta):
 	delta_v = movement_direction
 	delta_v *= constants.running_acceleration
+	delta_v.y = -1
 	
 	if not is_on_floor():
 		state_chart.send_event("Fall")
@@ -199,7 +202,7 @@ func align_to_floor(_delta) -> void:
 	xform.basis.y = new_y
 	xform.basis.x = -xform.basis.z.cross(new_y)
 	xform.basis = xform.basis.orthonormalized()
-	global_transform = global_transform.interpolate_with(xform, 0.1)
+	$"possible final fella".global_transform = $"possible final fella".global_transform.interpolate_with(xform, 0.1)
 
 func reset_alignment() -> void:
 	rotation = Vector3(0, rotation.y, 0)
