@@ -1,18 +1,13 @@
-[gd_scene load_steps=37 format=3 uid="uid://cau3x6x8wkgnu"]
+[gd_scene load_steps=48 format=3 uid="uid://cau3x6x8wkgnu"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_0kyes"]
 [ext_resource type="PackedScene" uid="uid://dx43f0ws6wsw2" path="res://assets/models/levels/waterfall/waterfall.glb" id="2_evhbf"]
 [ext_resource type="PackedScene" uid="uid://b1no6pukt37fw" path="res://scenes/actors/New Player.tscn" id="3_n1hwv"]
-[ext_resource type="PackedScene" uid="uid://jaxv1pb1wkxy" path="res://scenes/tools/dynamic objects/Garden/moving_log_platform.tscn" id="4_u4tyk"]
+[ext_resource type="PackedScene" uid="uid://jaxv1pb1wkxy" path="res://scenes/tools/Dynamic Objects/Garden/moving_log_platform.tscn" id="4_u4tyk"]
 [ext_resource type="PackedScene" uid="uid://b77fgnopqf6lt" path="res://scenes/tools/managers/Linear Respawn Zone/linear respawn zone.tscn" id="5_am48q"]
-[ext_resource type="PackedScene" uid="uid://ds2kwr3biacnf" path="res://scenes/tools/dynamic objects/Garden/frogger_log.tscn" id="6_fxmaa"]
+[ext_resource type="PackedScene" uid="uid://ds2kwr3biacnf" path="res://scenes/tools/Dynamic Objects/Garden/frogger_log.tscn" id="6_fxmaa"]
 [ext_resource type="PackedScene" uid="uid://caepckx3gr70v" path="res://scenes/tools/managers/Checkpoint/checkpoint.tscn" id="6_jhb82"]
-[ext_resource type="PackedScene" uid="uid://ce4llblk2ui00" path="res://scenes/tools/dynamic objects/Garden/crumbling_rock_platform.tscn" id="6_xo4n8"]
-
-[sub_resource type="Environment" id="Environment_r6nig"]
-ambient_light_source = 2
-ambient_light_color = Color(0.584314, 0.768627, 0.839216, 1)
-ambient_light_energy = 0.45
+[ext_resource type="PackedScene" uid="uid://ce4llblk2ui00" path="res://scenes/tools/Dynamic Objects/Garden/crumbling_rock_platform.tscn" id="6_xo4n8"]
 
 [sub_resource type="Curve3D" id="Curve3D_f4k0y"]
 _data = {
@@ -185,6 +180,56 @@ turbulence_influence_max = 0.065
 
 [sub_resource type="SphereMesh" id="SphereMesh_e01cd"]
 
+[sub_resource type="Curve" id="Curve_5jspa"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.413043, 0.846154), -2.19629, -2.19629, 0, 0, Vector2(0.971014, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_c40lu"]
+curve = SubResource("Curve_5jspa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aq1fr"]
+emission_shape_scale = Vector3(2.725, 1, 24.29)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(1, 33.905, 0)
+spread = 32.53
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, -7.075, 0)
+damping_max = 31.034
+scale_min = 3.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_c40lu")
+turbulence_noise_strength = 7.74
+turbulence_noise_scale = 2.82
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.065
+
+[sub_resource type="Curve" id="Curve_0n2is"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.413043, 0.846154), -2.19629, -2.19629, 0, 0, Vector2(0.971014, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_aeeqe"]
+curve = SubResource("Curve_0n2is")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_htukb"]
+emission_shape_scale = Vector3(2.725, 1, 34.25)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(1, 33.905, 0)
+spread = 32.53
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, -7.075, 0)
+damping_max = 31.034
+scale_min = 3.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_aeeqe")
+turbulence_noise_strength = 7.74
+turbulence_noise_scale = 2.82
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.065
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjfi2"]
 size = Vector3(346.906, 232.703, 306.93)
 
@@ -195,16 +240,53 @@ size = Vector3(33.4636, 20.9569, 30.4614)
 size = Vector3(56.5091, 20.206, 49.0284)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_piapy"]
-size = Vector3(33.4636, 20.9569, 47.7898)
+size = Vector3(17.2921, 20.9569, 17.9655)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yudm0"]
 size = Vector3(495.342, 5.78857, 343.93)
 
+[sub_resource type="Gradient" id="Gradient_lt56e"]
+offsets = PackedFloat32Array(0, 0.122881, 0.529661, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0.574467, 0.653925, 0.975021, 1, 0.8877, 0.956568, 0.989172, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3gtab"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_faovp"]
+invert = true
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_lt56e")
+noise = SubResource("FastNoiseLite_3gtab")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_quf7q"]
+sky_top_color = Color(0.443968, 0.656862, 0.985156, 1)
+sky_horizon_color = Color(0.324741, 0.465874, 0.940921, 1)
+sky_cover = SubResource("NoiseTexture2D_faovp")
+ground_bottom_color = Color(0.0441871, 3.93469e-06, 0.255608, 1)
+ground_horizon_color = Color(0.278558, 0.530381, 0.868948, 1)
+ground_curve = 0.00933031
+sun_angle_max = 360.0
+sun_curve = 0.023898
+
+[sub_resource type="Sky" id="Sky_y3msu"]
+sky_material = SubResource("ProceduralSkyMaterial_quf7q")
+
+[sub_resource type="Environment" id="Environment_fc03w"]
+background_mode = 2
+sky = SubResource("Sky_y3msu")
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.44
+reflected_light_source = 2
+ssao_enabled = true
+ssao_radius = 2.76
+ssao_intensity = 4.22
+ssao_power = 1.84672
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0023
+volumetric_fog_length = 66.57
+
 [node name="waterfall" type="Node3D"]
 script = ExtResource("1_0kyes")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_r6nig")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.972889, -0.0918938, 0.212232, 0, 0.917671, 0.39734, -0.231273, -0.386568, 0.892792, 0, 20.9702, 0)
@@ -226,6 +308,9 @@ travel_time = 4.0
 
 [node name="Path3D" parent="Dynamic Objects/First Layer/Moving Platform" index="0"]
 curve = SubResource("Curve3D_f4k0y")
+
+[node name="logPlat" parent="Dynamic Objects/First Layer/Moving Platform/PathFollow3D/object" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Second Layer" type="Node3D" parent="Dynamic Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40.2764, 0)
@@ -267,12 +352,18 @@ travel_time = 6.0
 [node name="Path3D" parent="Dynamic Objects/Third Layer/Moving Platform" index="0"]
 curve = SubResource("Curve3D_12ckc")
 
+[node name="logPlat" parent="Dynamic Objects/Third Layer/Moving Platform/PathFollow3D/object" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
 [node name="Moving Platform2" parent="Dynamic Objects/Third Layer" instance=ExtResource("4_u4tyk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.2575, 12.8237, 19.7974)
 travel_time = 6.0
 
 [node name="Path3D" parent="Dynamic Objects/Third Layer/Moving Platform2" index="0"]
 curve = SubResource("Curve3D_exrwb")
+
+[node name="logPlat" parent="Dynamic Objects/Third Layer/Moving Platform2/PathFollow3D/object" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Fourth Layer" type="Node3D" parent="Dynamic Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 115.745, 0)
@@ -298,12 +389,18 @@ travel_time = 12.0
 [node name="Path3D" parent="Dynamic Objects/Fourth Layer/Moving Platform" index="0"]
 curve = SubResource("Curve3D_jqo2u")
 
+[node name="logPlat" parent="Dynamic Objects/Fourth Layer/Moving Platform/PathFollow3D/object" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
 [node name="Moving Platform2" parent="Dynamic Objects/Fourth Layer" instance=ExtResource("4_u4tyk")]
 transform = Transform3D(2.25, 0, 0, 0, 2.25, 0, 0, 0, 2.25, -3.40124, 12.5541, -40.7999)
 travel_time = 12.0
 
 [node name="Path3D" parent="Dynamic Objects/Fourth Layer/Moving Platform2" index="0"]
 curve = SubResource("Curve3D_0782h")
+
+[node name="logPlat" parent="Dynamic Objects/Fourth Layer/Moving Platform2/PathFollow3D/object" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Top of Falls" type="Node3D" parent="Dynamic Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -246.757, 166.411, -57.9055)
@@ -437,6 +534,9 @@ transform = Transform3D(1.68, 0, 0, 0, 1.68, 0, 0, 0, 1.68, 2.05229, 0, 162.902)
 [node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform9" index="0"]
 curve = SubResource("Curve3D_1apbq")
 
+[node name="logPlat" parent="Dynamic Objects/Top of Falls/Moving Platform9/PathFollow3D/object" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
 [node name="Particles" type="Node3D" parent="."]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Particles"]
@@ -447,6 +547,26 @@ lifetime = 2.34
 randomness = 0.22
 trail_lifetime = 1.11
 process_material = SubResource("ParticleProcessMaterial_4hng5")
+draw_pass_1 = SubResource("SphereMesh_e01cd")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(0.741847, 0, 0.670569, 0, 1, 0, -0.670569, 0, 0.741847, 71.6035, 1.98045, 121.69)
+material_override = SubResource("StandardMaterial3D_mgmng")
+amount = 400
+lifetime = 2.34
+randomness = 0.22
+trail_lifetime = 1.11
+process_material = SubResource("ParticleProcessMaterial_aq1fr")
+draw_pass_1 = SubResource("SphereMesh_e01cd")
+
+[node name="GPUParticles3D4" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6504, 78.8344, 136.81)
+material_override = SubResource("StandardMaterial3D_mgmng")
+amount = 400
+lifetime = 2.34
+randomness = 0.22
+trail_lifetime = 1.11
+process_material = SubResource("ParticleProcessMaterial_htukb")
 draw_pass_1 = SubResource("SphereMesh_e01cd")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="Particles"]
@@ -497,6 +617,16 @@ shape = SubResource("BoxShape3D_piapy")
 [node name="Respawn Location" parent="Checkpoints/Checkpoint3" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.202759, -5.02377, 3.81107)
 
+[node name="Checkpoint6" parent="Checkpoints" instance=ExtResource("6_jhb82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -154.278, 173.502, -33.8228)
+
+[node name="CollisionShape3D" parent="Checkpoints/Checkpoint6/Player Detector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.16414, -3.55084, 4.26665)
+shape = SubResource("BoxShape3D_piapy")
+
+[node name="Respawn Location" parent="Checkpoints/Checkpoint6" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.79062, -5.02377, 3.81107)
+
 [node name="Checkpoint4" parent="Checkpoints" instance=ExtResource("6_jhb82")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.64374, 86.5374, -69.4132)
 
@@ -527,6 +657,9 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.7964, -4.03853, 57.2913)
 shape = SubResource("BoxShape3D_yudm0")
 
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fc03w")
+
 [editable path="Dynamic Objects/First Layer/Moving Platform"]
 [editable path="Dynamic Objects/Third Layer/Moving Platform"]
 [editable path="Dynamic Objects/Third Layer/Moving Platform2"]
@@ -554,5 +687,6 @@ shape = SubResource("BoxShape3D_yudm0")
 [editable path="Checkpoints/Checkpoint"]
 [editable path="Checkpoints/Checkpoint2"]
 [editable path="Checkpoints/Checkpoint3"]
+[editable path="Checkpoints/Checkpoint6"]
 [editable path="Checkpoints/Checkpoint4"]
 [editable path="Checkpoints/Checkpoint5"]
