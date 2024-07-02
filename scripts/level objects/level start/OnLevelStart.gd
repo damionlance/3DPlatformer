@@ -26,6 +26,7 @@ func _ready():
 	$"Player/CanvasLayer/HUD/MarginContainer/counters/level coin".compare_against = obj_root.level_coins
 	for i in 200:
 		coins.multimesh.set_instance_transform(i,Transform3D(Basis(), Vector3.ZERO))
+	coins.visible = true
 	emit_signal("level_loaded")
 
 func ensure_collectable_exists(collectable_name):
