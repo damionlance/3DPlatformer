@@ -49,6 +49,10 @@ func state_chart_expression_update():
 	state_chart.set_expression_property("current_jump", current_jump)
 
 func input_polling():
+	
+	if Input.is_action_just_pressed("Pause"):
+		open_pause_menu()
+	
 	var movement_input = Input.get_vector("Left", "Right", "Backward", "Forward")
 	var forwards = camera.get_camera_basis().z
 	forwards.y = 0
@@ -269,3 +273,9 @@ func ensure_player_is_visible() -> void:
 
 func respawn(new_position : Vector3) -> void:
 	global_position = new_position
+
+func open_pause_menu():
+	camera.halt_input = true
+	$"../".add_child(load("res://scenes/ui/pause screen.tscn").instantiate())
+	$"%HUD/MarginContainer".pause_enter()
+	get_tree().paused = true

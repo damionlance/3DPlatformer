@@ -62,33 +62,6 @@ tracks/0/keys = {
 "values": [Vector2(0, 338.5), Vector2(-475.24, 338.5)]
 }
 
-[sub_resource type="Animation" id="Animation_wni1r"]
-resource_name = "pause slide out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.34151, 1),
-"update": 0,
-"values": [Vector2(0, 338.5), Vector2(-400, 338.5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Menu Gradient:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.420448, 1),
-"update": 0,
-"values": [Vector2(-0.996826, 0), Vector2(-1000, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_7hu0d"]
 resource_name = "pause slide in"
 tracks/0/type = "value"
@@ -114,6 +87,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.143587, 1),
 "update": 0,
 "values": [Vector2(-576, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wni1r"]
+resource_name = "pause slide out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.34151, 1),
+"update": 0,
+"values": [Vector2(0, 338.5), Vector2(-400, 338.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menu Gradient:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.420448, 1),
+"update": 0,
+"values": [Vector2(-0.996826, 0), Vector2(-1000, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wey8y"]

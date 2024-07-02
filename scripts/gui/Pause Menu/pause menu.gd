@@ -67,5 +67,5 @@ func _on_save_and_quit_pressed():
 func _on_reload_pressed():
 	audioplayer.play()
 	Global._delete_save()
-	get_tree().reload_current_scene()
 	get_tree().paused = false
+	get_tree().reload_current_scene()

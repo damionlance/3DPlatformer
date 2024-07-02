@@ -70,7 +70,7 @@ func start_dialogue(dialogue_path, body):
 	get_tree().paused = true
 	having_dialogue = true
 
-func _pause_enter():
+func pause_enter():
 	$"counters/coin"._pause_enter()
 	$"counters/level coin"._pause_enter()
 
