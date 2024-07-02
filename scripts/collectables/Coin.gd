@@ -51,6 +51,7 @@ func _ready():
 		collectable_name = "coin"
 	add_to_group("coins")
 	basis = Basis().rotated(Vector3.LEFT, deg_to_rad(90.0))
+	connect("collectable_touched", get_tree().get_current_scene().get_node("%Player/%HUD/%" + collectable_name)._enter_screen)
 	root.coins_id_tracker += 1
 	multimesh = root.coins.multimesh
 	instance_id = root.coins_id_tracker
@@ -107,7 +108,7 @@ func _on_coin_body_entered(body):
 		process_mode = Node.PROCESS_MODE_PAUSABLE
 		playerBody = body
 		if not collected:
-			emit_signal("collectable_touched", collectable_name.to_lower())
+			emit_signal("collectable_touched")
 		tween = create_tween()
 		tween.tween_property(self, "position", position + Vector3(0,3,0), .75).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 		tween.tween_callback(_allow_collect)
