@@ -63,6 +63,8 @@ func input_polling():
 	movement_direction = -forwards + right
 
 func grounded_movement_processing(delta):
+	if Input.is_action_just_pressed("Jump"):
+		return
 	delta_v = movement_direction
 	delta_v *= constants.running_acceleration
 	delta_v.y = -1
@@ -71,13 +73,16 @@ func grounded_movement_processing(delta):
 		state_chart.send_event("Fall")
 
 func wall_climb_processing(_delta) -> void:
-	if not wall_jump_raycasts.check_wall_group("climbable zone"):
+	if Input.is_action_just_pressed("Jump"):
 		return
+	if not wall_jump_raycasts.check_wall_group("climbable zone"):
+		state_chart.send_event("Fall")
 	var wall_normal = wall_jump_raycasts.get_average_wall_normal()
 	var wall_distance = wall_jump_raycasts.get_average_wall_distance()
 	
 	var wall_sideways = wall_normal.cross(Vector3.UP)
 	var wall_up = wall_normal.cross(wall_sideways)
+	
 	
 	#current_speed = 5
 	movement_direction = Vector3.ZERO
