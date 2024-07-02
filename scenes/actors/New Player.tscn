@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://b1no6pukt37fw"]
+[gd_scene load_steps=97 format=3 uid="uid://b1no6pukt37fw"]
 
 [ext_resource type="Script" path="res://scripts/actors/player/Player State Chart.gd" id="1_7viet"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_1c6vs"]
@@ -30,6 +30,7 @@
 [ext_resource type="AudioStream" uid="uid://bqhff1iomok0v" path="res://assets/sounds/footstep sounds/grass/Shoe Step Grass Hard E.wav" id="28_ibl6q"]
 [ext_resource type="Script" path="res://addons/OvaniAmbiencePlugin/AmbienceListener.gd" id="29_p1dag"]
 [ext_resource type="PackedScene" uid="uid://bw5b4yo834bsj" path="res://scenes/ui/hud.tscn" id="31_efh1g"]
+[ext_resource type="AudioStream" uid="uid://v16707j2o45t" path="res://assets/sounds/activated noises/Coin collected.mp3" id="31_v2m87"]
 
 [sub_resource type="Resource" id="Resource_a5mpj"]
 script = ExtResource("8_p6w2l")
@@ -1088,6 +1089,13 @@ script = ExtResource("29_p1dag")
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("31_efh1g")]
 unique_name_in_owner = true
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Coin Collected" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("31_v2m87")
+volume_db = 7.0
+bus = &"Sound Effects"
 
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Climbing Rope" to="." method="reset_jumps"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Climbing Rope" to="." method="start_jump_reset_timer"]

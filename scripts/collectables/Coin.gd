@@ -68,6 +68,7 @@ func _ready():
 	
 	new_pos = global_position
 	multimesh.set_instance_transform(instance_id, Transform3D(basis, new_pos))
+	print(global_position)
 
 func _process(delta):
 	if hide:

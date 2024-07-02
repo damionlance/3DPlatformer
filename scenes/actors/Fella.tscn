@@ -1,4 +1,4 @@
-[gd_scene load_steps=176 format=3 uid="uid://385mcfonrl8g"]
+[gd_scene load_steps=174 format=3 uid="uid://385mcfonrl8g"]
 
 [ext_resource type="Script" path="res://scripts/actors/player/Player.gd" id="1_vh0xg"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/StateMachine.gd" id="2_k8mag"]
@@ -10,10 +10,8 @@
 [ext_resource type="Script" path="res://scripts/state machine/states/player/SwingFromFriendo.gd" id="8_lndlw"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/PopperBounce.gd" id="9_wrvqw"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/ReelIn.gd" id="10_enj56"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/WallClimb.gd" id="11_3aobf"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Projectile Launch.gd" id="12_1xdfi"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/grounded_movement.gd" id="12_p1mkm"]
-[ext_resource type="Script" path="res://scripts/state machine/states/player/Dive Floor.gd" id="13_47036"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Floor Spin.gd" id="14_a83xy"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Floor Slide.gd" id="15_g1ebh"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Running.gd" id="16_cdc7s"]
@@ -190,7 +188,7 @@ nodes/Animation/position = Vector2(-91.3333, 140)
 "nodes/crouch blend/node" = SubResource("AnimationNodeBlend2_3xwjt")
 "nodes/crouch blend/position" = Vector2(240, 106.667)
 nodes/output/position = Vector2(533.333, 160)
-node_connections = [&"output", 0, &"crouch blend", &"crouch blend", 0, &"Animation", &"crouch blend", 1, &"Animation 2"]
+node_connections = [&"crouch blend", 0, &"Animation", &"crouch blend", 1, &"Animation 2", &"output", 0, &"crouch blend"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pjjgv"]
 animation = &"Fall"
@@ -617,7 +615,6 @@ script = ExtResource("3_7npyn")
 
 [node name="Jump" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource("4_dyhwi")
-ground_pound_finished = true
 
 [node name="LedgeGrab" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource("5_ot18q")
@@ -638,7 +635,6 @@ script = ExtResource("9_wrvqw")
 script = ExtResource("10_enj56")
 
 [node name="WallClimb" type="Node" parent="StateMachine/AerialMovement"]
-script = ExtResource("11_3aobf")
 
 [node name="Projectile Launch" type="Node" parent="StateMachine/AerialMovement"]
 script = ExtResource("12_1xdfi")
@@ -647,7 +643,6 @@ script = ExtResource("12_1xdfi")
 script = ExtResource("12_p1mkm")
 
 [node name="Dive Floor" type="Node" parent="StateMachine/GroundedMovement"]
-script = ExtResource("13_47036")
 
 [node name="Floor Spin" type="Node" parent="StateMachine/GroundedMovement"]
 script = ExtResource("14_a83xy")
@@ -664,10 +659,6 @@ script = ExtResource("16_cdc7s")
 
 [node name="crouch walk" type="Node" parent="StateMachine/GroundedMovement"]
 script = ExtResource("17_ydgw3")
-max_speed = null
-crouch_walk = null
-floor_rotation_speed = null
-maximum_lean = null
 
 [node name="Slammed" type="Node" parent="StateMachine/GroundedMovement"]
 script = ExtResource("18_el24c")
@@ -787,9 +778,12 @@ shape = SubResource("146")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 process_mode = 3
+root_node = NodePath("../lilfella")
 tree_root = SubResource("AnimationNodeStateMachine_num38")
 anim_player = NodePath("../lilfella/AnimationPlayer")
-active = true
+parameters/current_length = 0.633333
+parameters/current_position = 0.633333
+parameters/current_delta = 0.0
 parameters/conditions/crouching = false
 parameters/conditions/fall = false
 "parameters/conditions/ground pound" = false
@@ -803,16 +797,142 @@ parameters/conditions/stop = false
 "parameters/conditions/uncontrolled slide" = false
 "parameters/conditions/wall climb" = false
 "parameters/conditions/wall slide" = false
+parameters/Dive/current_length = null
+parameters/Dive/current_position = null
+parameters/Dive/current_delta = null
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+"parameters/Ground Pound/current_length" = null
+"parameters/Ground Pound/current_position" = null
+"parameters/Ground Pound/current_delta" = null
+parameters/Jump/current_length = 0.633333
+parameters/Jump/current_position = 0.633333
+parameters/Jump/current_delta = 0.0
 parameters/Jump/conditions/bonk = false
 parameters/Jump/conditions/dive = false
 "parameters/Jump/conditions/jump 1" = false
 "parameters/Jump/conditions/jump 2" = true
 "parameters/Jump/conditions/jump 3" = false
 "parameters/Jump/conditions/roll out" = false
+parameters/Jump/End/current_length = null
+parameters/Jump/End/current_position = null
+parameters/Jump/End/current_delta = null
+parameters/Jump/Start/current_length = 0.0
+parameters/Jump/Start/current_position = 0.0
+parameters/Jump/Start/current_delta = 0.0
+parameters/Jump/bonk/current_length = null
+parameters/Jump/bonk/current_position = null
+parameters/Jump/bonk/current_delta = null
+parameters/Jump/dive/current_length = null
+parameters/Jump/dive/current_position = null
+parameters/Jump/dive/current_delta = null
+"parameters/Jump/jump 1/current_length" = null
+"parameters/Jump/jump 1/current_position" = null
+"parameters/Jump/jump 1/current_delta" = null
+"parameters/Jump/jump 2/current_length" = 0.633333
+"parameters/Jump/jump 2/current_position" = 0.633333
+"parameters/Jump/jump 2/current_delta" = 0.0
+"parameters/Jump/jump 3/current_length" = null
+"parameters/Jump/jump 3/current_position" = null
+"parameters/Jump/jump 3/current_delta" = null
+"parameters/Jump/roll out/current_length" = null
+"parameters/Jump/roll out/current_position" = null
+"parameters/Jump/roll out/current_delta" = null
+parameters/Skid/current_length = null
+parameters/Skid/current_position = null
+parameters/Skid/current_delta = null
+parameters/Start/current_length = 0.0
+parameters/Start/current_position = 0.0
+parameters/Start/current_delta = 0.0
+parameters/crouching/current_length = null
+parameters/crouching/current_position = null
+parameters/crouching/current_delta = null
+parameters/crouching/Animation/current_length = null
+parameters/crouching/Animation/current_position = null
+parameters/crouching/Animation/current_delta = null
+"parameters/crouching/Animation 2/current_length" = null
+"parameters/crouching/Animation 2/current_position" = null
+"parameters/crouching/Animation 2/current_delta" = null
+"parameters/crouching/crouch blend/current_length" = 0
+"parameters/crouching/crouch blend/current_position" = 0
+"parameters/crouching/crouch blend/current_delta" = 0
 "parameters/crouching/crouch blend/blend_amount" = 0
+parameters/crouching/output/current_length = null
+parameters/crouching/output/current_position = null
+parameters/crouching/output/current_delta = null
+parameters/fall/current_length = null
+parameters/fall/current_position = null
+parameters/fall/current_delta = null
+parameters/idle/current_length = 0.633333
+parameters/idle/current_position = 0.157246
+parameters/idle/current_delta = 0.00889033
+parameters/idle/End/current_length = null
+parameters/idle/End/current_position = null
+parameters/idle/End/current_delta = null
+parameters/idle/Start/current_length = 0.0
+parameters/idle/Start/current_position = 0.0
+parameters/idle/Start/current_delta = 0.0
+parameters/idle/idle/current_length = 0.633333
+parameters/idle/idle/current_position = 0.157246
+parameters/idle/idle/current_delta = 0.00889033
+parameters/land/current_length = null
+parameters/land/current_position = null
+parameters/land/current_delta = null
+"parameters/ledge hang/current_length" = 0
+"parameters/ledge hang/current_position" = 0
+"parameters/ledge hang/current_delta" = 0
 "parameters/ledge hang/blend_position" = -0.001297
+"parameters/ledge hang/0/current_length" = null
+"parameters/ledge hang/0/current_position" = null
+"parameters/ledge hang/0/current_delta" = null
+"parameters/ledge hang/1/current_length" = null
+"parameters/ledge hang/1/current_position" = null
+"parameters/ledge hang/1/current_delta" = null
+"parameters/ledge hang/2/current_length" = null
+"parameters/ledge hang/2/current_position" = null
+"parameters/ledge hang/2/current_delta" = null
+parameters/running/current_length = null
+parameters/running/current_position = null
+parameters/running/current_delta = null
+parameters/running/BlendSpace1D/current_length = 0
+parameters/running/BlendSpace1D/current_position = 0
+parameters/running/BlendSpace1D/current_delta = 0
 parameters/running/BlendSpace1D/blend_position = 0.995677
+parameters/running/BlendSpace1D/0/current_length = null
+parameters/running/BlendSpace1D/0/current_position = null
+parameters/running/BlendSpace1D/0/current_delta = null
+parameters/running/BlendSpace1D/1/current_length = null
+parameters/running/BlendSpace1D/1/current_position = null
+parameters/running/BlendSpace1D/1/current_delta = null
+parameters/running/output/current_length = null
+parameters/running/output/current_position = null
+parameters/running/output/current_delta = null
+parameters/spinning/current_length = null
+parameters/spinning/current_position = null
+parameters/spinning/current_delta = null
+"parameters/start jumping/current_length" = 0.133333
+"parameters/start jumping/current_position" = 0.133333
+"parameters/start jumping/current_delta" = 0.0
+"parameters/stop running/current_length" = null
+"parameters/stop running/current_position" = null
+"parameters/stop running/current_delta" = null
+"parameters/wall climb/current_length" = Vector2(0, 0)
+"parameters/wall climb/current_position" = Vector2(0, 0)
+"parameters/wall climb/current_delta" = Vector2(0, 0)
 "parameters/wall climb/blend_position" = Vector2(-0.998173, -0.0030272)
+"parameters/wall climb/0/current_length" = null
+"parameters/wall climb/0/current_position" = null
+"parameters/wall climb/0/current_delta" = null
+"parameters/wall climb/1/current_length" = null
+"parameters/wall climb/1/current_position" = null
+"parameters/wall climb/1/current_delta" = null
+"parameters/wall climb/2/current_length" = null
+"parameters/wall climb/2/current_position" = null
+"parameters/wall climb/2/current_delta" = null
+"parameters/wall slide/current_length" = null
+"parameters/wall slide/current_position" = null
+"parameters/wall slide/current_delta" = null
 
 [node name="Controller" parent="." instance=ExtResource("30_icjaf")]
 
@@ -1076,7 +1196,7 @@ bones/220/position = Vector3(-0.286896, 0.118866, 0.278486)
 bones/220/rotation = Quaternion(-0.5591, -4.42868e-14, 6.91517e-15, 0.8291)
 
 [node name="RightHand" type="BoneAttachment3D" parent="lilfella/rig/Skeleton3D" index="4"]
-transform = Transform3D(0.767347, -0.637949, -0.0768104, 0.537168, 0.572148, 0.620911, -0.352617, -0.514259, 0.779797, -0.632779, 1.38221, -0.287037)
+transform = Transform3D(0.767354, -0.637948, -0.0768126, 0.537171, 0.57215, 0.620913, -0.352619, -0.514257, 0.779801, -0.632779, 1.38221, -0.287036)
 bone_name = "DEF-hand.R"
 bone_idx = 174
 

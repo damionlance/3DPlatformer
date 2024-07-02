@@ -23,6 +23,7 @@ var joystick_input_buffer : Array[Vector2] = []
 @onready var camera := $CameraPivot
 @onready var animation_tree := $AnimationTree
 @onready var wall_jump_raycasts := $"%Wall Jump Raycasts"
+@onready var coin_sounds = $"Sounds/Coin Collected"
 
 #Raycasts
 @onready var floor_alignment_raycast := $"%Floor Alignment Raycast"
@@ -279,3 +280,13 @@ func open_pause_menu():
 	$"../".add_child(load("res://scenes/ui/pause screen.tscn").instantiate())
 	$"%HUD/MarginContainer".pause_enter()
 	get_tree().paused = true
+
+func add_coin(coin_name):
+	if not coin_name.contains("LEVELCOIN"):
+		Global.UPDATE_COLLECTIBLES("COIN", Global.WORLD_COLLECTIBLES["COIN"] + 1)
+	else:
+		Global.UPDATE_COLLECTIBLES("LEVEL COIN", Global.WORLD_COLLECTIBLES["LEVEL COIN"] + 1)
+	get_node("CanvasLayer/HUD/MarginContainer/counters/" + coin_name.to_lower())._increase_coins()
+	coin_sounds.pitch_scale = randf() + .7
+	coin_sounds.play()
+	return true

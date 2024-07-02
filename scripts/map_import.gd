@@ -91,20 +91,21 @@ func set_up_passthru_walls(node, main_scene):
 	node.get_child(0).set_collision_layer(8)
 
 func set_up_coin(node, main_scene):
-	var new_coin = load("res://scenes/Collectables/Coin.tscn").instantiate()
+	var new_coin = load("res://scenes/collectables/Coin.tscn").instantiate()
 	node.get_parent().add_child(new_coin)
 	new_coin.set_owner(main_scene)
-	new_coin.name = "TempleCoin"
+	new_coin.name = "Coin"
 	new_coin.position = node.position + Vector3.UP
 	main_scene.coins += 1
 	node.hide()
 
 func set_up_level_coin(node, main_scene):
-	var new_coin = load("res://scenes/Collectables/Coin.tscn").instantiate()
+	var new_coin = load("res://scenes/collectables/Coin.tscn").instantiate()
 	node.get_parent().add_child(new_coin)
 	new_coin.set_owner(main_scene)
-	new_coin.name = "TempleLevelCoin"
+	new_coin.name = "LevelCoin"
 	new_coin.position = node.position + Vector3.UP
+	print(new_coin.position)
 	main_scene.level_coins += 1
 	node.hide()
 
