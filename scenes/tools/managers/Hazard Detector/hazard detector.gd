@@ -10,6 +10,7 @@ func _ready():
 	if get_parent() is CharacterBody3D:
 		if get_parent().has_method("hazard_reaction"):
 			connect("area_entered", get_parent().hazard_reaction)
+			connect("body_entered", get_parent().hazard_reaction)
 
 func disable() -> void:
 	collision_mask = death_planes_layer

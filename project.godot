@@ -61,6 +61,8 @@ fps=false
 
 checkpoint="respawn locations for player"
 "moving hazard"=""
+"level geometry"=""
+player=""
 
 [gui]
 
@@ -208,6 +210,7 @@ TOGGLEFULLSCREEN={
 
 [layer_names]
 
+3d_render/layer_2="Character Models"
 3d_render/layer_10="fella"
 3d_render/layer_20="decals"
 3d_physics/layer_1="World"
@@ -218,6 +221,7 @@ TOGGLEFULLSCREEN={
 3d_physics/layer_6="Respawn Zones"
 3d_physics/layer_7="Hazard"
 3d_physics/layer_8="Climbable Zones"
+3d_physics/layer_9="Hazard Detectors"
 
 [physics]
 

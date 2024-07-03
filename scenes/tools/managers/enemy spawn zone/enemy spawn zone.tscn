@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cflycaeo6q5rt"]
+
+[ext_resource type="Script" path="res://scenes/tools/managers/enemy spawn zone/enemy spawn zone.gd" id="1_mqtu6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6s1uu"]
+radius = 6.66719
+
+[node name="Enemy Spawn Zone" type="Node3D"]
+script = ExtResource("1_mqtu6")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_6s1uu")
+
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

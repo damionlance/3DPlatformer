@@ -263,8 +263,8 @@ func hazard_reaction(hazard : Node) -> void:
 	if hazard.is_in_group("moving hazard"):
 		state_chart.send_event("Take Damage")
 		state_chart.send_event("Jump")
-		if hazard.get_parent().get_parent().get_parent().launch_direction != Vector3.ZERO:
-			velocity = hazard.get_parent().get_parent().get_parent().launch_direction * constants._damage_launch_velocity
+		if "launch_direction" in hazard.get_parent() and hazard.get_parent().launch_direction != Vector3.ZERO:
+			velocity = hazard.get_parent().launch_direction * constants._damage_launch_velocity
 		else:
 			var launch_direction = global_position - hazard.global_position
 			launch_direction.y = 0
@@ -295,3 +295,7 @@ func add_coin(coin_name):
 	coin_sounds.pitch_scale = randf() + .7
 	coin_sounds.play()
 	return true
+
+
+func bounce(area: Area3D) -> void:
+	state_chart.send_event("bounce")

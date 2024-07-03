@@ -3,9 +3,10 @@
 [ext_resource type="Script" path="res://scenes/tools/managers/Hazard Detector/hazard detector.gd" id="1_ugn5t"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_myryg"]
+radius = 0.7
 
 [node name="Hazard Detector" type="Area3D"]
-collision_layer = 0
+collision_layer = 256
 collision_mask = 64
 script = ExtResource("1_ugn5t")
 
