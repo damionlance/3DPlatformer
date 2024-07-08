@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var forward_raycasts = [$"Left Forward", $"Right Forward"]
-@onready var downward_raycasts = [$"Left Downward", $"Right Downward"]
+@onready var forward_climb_raycasts = [$"Climbable Left Forward", $"Climbable Right Forward"]
 
 @onready var state_chart := $%StateChart
 
@@ -15,10 +15,21 @@ func _process(_delta):
 			colliding = false
 			break
 	#Check if raycasts normals are within margin of error
-	if not colliding:
-		if downward_raycasts[0].is_colliding() and downward_raycasts[1].is_colliding():
-			if downward_raycasts[0].get_collision_normal() == downward_raycasts[1].get_collision_normal():
-				state_chart.send_event("ledge hang")
+	if colliding:
+		if check_wall_group("climbable zone"):
+			state_chart.send_event("Wall Climb")
+		elif forward_raycasts[0].get_collision_normal() == forward_raycasts[1].get_collision_normal():
+			state_chart.send_event("Wall Slide")
+
+func check_wall_group(_check_group : String) -> bool:
+	var in_group := false
+	if forward_climb_raycasts[0].is_colliding():
+		in_group = true
+	else: return false
+	if forward_climb_raycasts[1].is_colliding():
+		if in_group:
+			return true
+	return false
 
 func get_average_wall_distance() -> Vector3:
 	var distance := Vector3.ZERO

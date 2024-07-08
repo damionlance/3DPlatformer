@@ -22,11 +22,12 @@ var joystick_input_buffer : Array[Vector2] = []
 @onready var state_chart := $%StateChart
 @onready var camera := $CameraPivot
 @onready var animation_tree := $AnimationTree
-@onready var wall_jump_raycasts := $"%Wall Jump Raycasts"
 @onready var coin_sounds = $"Sounds/Coin Collected"
 
 #Raycasts
 @onready var floor_alignment_raycast := $"%Floor Alignment Raycast"
+@onready var wall_jump_raycasts := $"%Wall Jump Raycasts"
+@onready var ledge_hang_raycasts := $"%Ledge Hang Raycasts"
 
 func _ready():
 	constants._ready()
@@ -296,6 +297,36 @@ func add_coin(coin_name):
 	coin_sounds.play()
 	return true
 
+func start_ledge_hang() -> void:
+	var raycast_collision_points : Vector3 = ledge_hang_raycasts.downward_raycasts[0].get_collision_point()
+	raycast_collision_points -= ledge_hang_raycasts.downward_raycasts[1].get_collision_point()
+	raycast_collision_points *= 0.25
+	var height_difference : float = raycast_collision_points.y
+	
+	global_position.y += height_difference
+	movement_direction = wall_jump_raycasts.get_average_wall_normal()
+	look_backward(0.0166)
+
+func ledge_hang_processing(_delta : float) -> void:
+	
+	movement_direction = wall_jump_raycasts.get_average_wall_normal()
+	look_backward(0.0166)
+	ledge_hang_raycasts.downward_raycasts[0].force_raycast_update()
+	ledge_hang_raycasts.downward_raycasts[1].force_raycast_update()
+	
+	var horizontal_movement = -Input.get_axis("Left", "Right")
+	if horizontal_movement > 0:
+		if not ledge_hang_raycasts.downward_raycasts[0].is_colliding() or ledge_hang_raycasts.forward_raycasts[0].is_colliding():
+			horizontal_movement = 0
+	elif horizontal_movement < 0:
+		if not ledge_hang_raycasts.downward_raycasts[1].is_colliding() or ledge_hang_raycasts.forward_raycasts[1].is_colliding():
+			horizontal_movement = 0
+	else:
+		return
+	
+	
+	velocity = wall_jump_raycasts.get_average_wall_normal().cross(Vector3.UP)
+	velocity *= horizontal_movement * constants.ledge_hang_speed
 
 func bounce(area: Area3D) -> void:
 	state_chart.send_event("bounce")

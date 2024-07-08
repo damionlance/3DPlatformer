@@ -18,6 +18,11 @@ var double_jump_buffer := 5
 @export var slide_friction := 0.1
 var slope_strength := 0.0
 
+@export_category("Wall Physics Tuning")
+
+@export var wall_slide_gravity := 75.0
+@export var ledge_hang_speed := 7.0
+
 @export_category("Jump Value Tuning")
 @export var jump_height := 4.1
 @export var jump_time_to_peak := 0.3
@@ -53,6 +58,7 @@ var slope_strength := 0.0
 @export var air_friction := 0.99
 @export var air_acceleration := 1000
 @export var terminal_velocity := 25.0
+
 var _jump_gravity : float
 var _jump_strength : float
 var _fall_gravity : float
@@ -120,7 +126,6 @@ func _ready():
 
 
 
-var wall_slide_gravity := _spin_jump_gravity
 
 var wall_jump_speed = 12.5
 var max_reel_in = 25.0
