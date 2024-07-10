@@ -4,6 +4,7 @@ extends CharacterBody3D
 
 var movement_direction := Vector3.ZERO
 var speed := 0.0
+var speed_coefficient := 1.0
 var facing_direction := Vector3.ZERO
 
 var sideways_friction := 10
@@ -169,9 +170,10 @@ func apply_friction(delta : float) -> void:
 	var lateral_velocity = velocity - forward_velocity
 	
 	lateral_velocity = lerp(lateral_velocity, Vector3.ZERO, sideways_friction * delta) 
-	
-	if forward_velocity.length() > constants.max_horizontal_velocity * delta or forward_velocity.dot(movement_direction) < 0:
-		forward_velocity = lerp(forward_velocity, Vector3.ZERO, forwards_friction * delta)
+	print(constants.max_horizontal_velocity * speed_coefficient)
+	if forward_velocity.length() > constants.max_horizontal_velocity * speed_coefficient * delta or forward_velocity.dot(movement_direction) < 0:
+		print("Hey!!")
+		forward_velocity = lerp(forward_velocity, Vector3.ZERO, forwards_friction/speed_coefficient * delta)
 	var temp = velocity.y
 	velocity = forward_velocity + lateral_velocity
 	velocity.y = temp
