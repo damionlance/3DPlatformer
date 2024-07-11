@@ -78,7 +78,8 @@ func grounded_movement_processing(delta):
 		state_chart.send_event("Fall")
 
 func start_ground_pound() -> void:
-	velocity.y = -constants.terminal_velocity
+	if state_chart.get_expression_property("groundpound") == true:
+		velocity.y = -constants.terminal_velocity
 
 func stop_ground_pound() -> void:
 	state_chart.set_expression_property("groundpound", false)
