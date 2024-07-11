@@ -49,7 +49,10 @@ func _physics_process(delta):
 
 func state_chart_expression_update():
 	state_chart.set_expression_property("speed", speed)
+	state_chart.set_expression_property("vertical_speed", velocity.y)
+	state_chart.set_expression_property("movement_direction", movement_direction)
 	state_chart.set_expression_property("current_jump", current_jump)
+	state_chart.set_expression_property("is_on_floor", is_on_floor())
 
 func input_polling():
 	
@@ -74,9 +77,13 @@ func grounded_movement_processing(delta):
 	if not is_on_floor():
 		state_chart.send_event("Fall")
 
+func start_ground_pound() -> void:
+	velocity.y = -constants.terminal_velocity
+
+func stop_ground_pound() -> void:
+	state_chart.set_expression_property("groundpound", false)
+
 func wall_climb_processing(_delta) -> void:
-	if Input.is_action_just_pressed("Jump"):
-		return
 	if not wall_jump_raycasts.check_wall_group("climbable zone"):
 		state_chart.send_event("Fall")
 	var wall_normal = wall_jump_raycasts.get_average_wall_normal()
@@ -87,14 +94,14 @@ func wall_climb_processing(_delta) -> void:
 	
 	
 	#current_speed = 5
-	movement_direction = Vector3.ZERO
-	movement_direction -= wall_up * Input.get_axis("Backward", "Forward")
-	movement_direction += wall_sideways * Input.get_axis("Right", "Left")
-	movement_direction += wall_distance
+	var input_direction := Vector3.ZERO
+	input_direction -= wall_up * Input.get_axis("Backward", "Forward")
+	input_direction += wall_sideways * Input.get_axis("Right", "Left")
+	input_direction += wall_distance
 	
 	look_at(global_position + wall_normal)
 	
-	velocity = movement_direction * 5
+	velocity = input_direction * 5
 
 func check_for_jump(_delta : float) -> void:
 	if Input.is_action_just_pressed("Jump"):
@@ -126,7 +133,7 @@ func initial_jump_processing():
 			look_forward(0.0166)
 
 func wall_slide_processing(delta : float) -> void:
-	delta_v.y = constants.wall_slide_gravity
+	delta_v.y = -constants.wall_slide_gravity
 
 func normal_jump_processing(delta : float):
 	delta_v = movement_direction
@@ -135,14 +142,23 @@ func normal_jump_processing(delta : float):
 		delta_v.y = constants.jump_gravity[current_jump]
 	else:
 		delta_v.y = constants.fall_gravity[current_jump]
-	if Input.is_action_just_pressed("DiveButton"):
-		state_chart.send_event("Dive")
 	
 	if velocity.y < 0 and not is_on_floor():
 		state_chart.send_event("Fall")
 
 func set_jump(jump_index : int) -> void:
 	current_jump = jump_index
+
+func check_for_dive(_delta : float) -> void:
+	if Input.is_action_just_pressed("DiveButton"):
+		if not is_on_floor() and movement_direction.length() < 0.15:
+			state_chart.send_event("groundpound")
+			state_chart.set_expression_property("groundpound", true)
+		else:
+			state_chart.send_event("Dive")
+	elif not Input.is_action_pressed("DiveButton"):
+		state_chart.send_event("stop_crouch")
+	
 
 func increment_jump() -> void:
 	current_jump += 1
@@ -170,9 +186,8 @@ func apply_friction(delta : float) -> void:
 	var lateral_velocity = velocity - forward_velocity
 	
 	lateral_velocity = lerp(lateral_velocity, Vector3.ZERO, sideways_friction * delta) 
-	print(constants.max_horizontal_velocity * speed_coefficient)
-	if forward_velocity.length() > constants.max_horizontal_velocity * speed_coefficient * delta or forward_velocity.dot(movement_direction) < 0:
-		print("Hey!!")
+	
+	if forward_velocity.length() > constants.max_horizontal_velocity * speed_coefficient or forward_velocity.dot(movement_direction) < 0:
 		forward_velocity = lerp(forward_velocity, Vector3.ZERO, forwards_friction/speed_coefficient * delta)
 	var temp = velocity.y
 	velocity = forward_velocity + lateral_velocity
@@ -194,7 +209,8 @@ func apply_air_friction(delta : float) -> void:
 	
 	lateral_velocity = lerp(lateral_velocity, Vector3.ZERO, (sideways_friction / 8) * delta) 
 	
-	if forward_velocity.length() > constants.max_horizontal_velocity * delta or forward_velocity.dot(movement_direction) < 0:
+	if forward_velocity.length() > constants.max_horizontal_velocity or forward_velocity.dot(movement_direction) < 0:
+		print("Hey!")
 		forward_velocity = lerp(forward_velocity, Vector3.ZERO, forwards_friction * delta)
 	velocity = forward_velocity + lateral_velocity + vertical_velocity
 	if velocity.length() < 1 and Input.get_vector("Left", "Right", "Backward", "Forward") == Vector2.ZERO:
@@ -202,9 +218,18 @@ func apply_air_friction(delta : float) -> void:
 
 func start_skidding() -> void:
 	pivot = true
+	state_chart.set_expression_property("pivot", true)
 
 func stop_skidding() -> void:
-	pivot = false
+	state_chart.set_expression_property("pivot", false)
+
+func start_crouching() -> void:
+	state_chart.set_expression_property("crouching", true)
+	speed_coefficient *= 0.25
+
+func stop_crouching() -> void:
+	state_chart.set_expression_property("crouching", false)
+	speed_coefficient /= 0.25
 
 func align_to_floor(_delta) -> void:
 	var floor_normal = floor_alignment_raycast.get_collision_normal()
@@ -228,6 +253,8 @@ func look_forward(_delta) -> void:
 	rotation.y = lookdir
 	if movement_direction != Vector3.ZERO:
 		facing_direction = movement_direction.normalized()
+	wall_jump_raycasts.force_update()
+	ledge_hang_raycasts.force_update()
 
 func look_backward(_delta : float) -> void:
 	var normalized_direction = movement_direction.normalized()
@@ -235,6 +262,8 @@ func look_backward(_delta : float) -> void:
 	rotation.y = -lookdir
 	if movement_direction != Vector3.ZERO:
 		facing_direction = -movement_direction.normalized()
+	wall_jump_raycasts.force_update()
+	ledge_hang_raycasts.force_update()
 
 
 func disable_wall_jump(_delta) -> void:

@@ -28,6 +28,10 @@ func get_average_wall_distance() -> Vector3:
 		distance += forward_raycasts[1].get_collision_point() - forward_raycasts[1].global_position
 	return distance
 
+func force_update() -> void:
+	for raycast in forward_raycasts + downward_raycasts:
+		raycast.force_raycast_update()
+
 func get_average_wall_normal() -> Vector3:
 	var sum := Vector3.ZERO
 	if forward_raycasts[0].is_colliding():

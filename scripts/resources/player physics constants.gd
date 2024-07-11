@@ -52,6 +52,10 @@ var slope_strength := 0.0
 @export var rollout_jump_time_to_peak := 0.3
 @export var rollout_jump_time_to_descent := 0.3
 
+@export var bounce_jump_height := 12.1
+@export var bounce_jump_time_to_peak := .55
+@export var bounce_jump_time_to_descent := 0.5
+
 @export var _side_jump_velocity : float = 15.0
 @export var _damage_launch_velocity : float = 7.5
 
@@ -87,9 +91,13 @@ var _side_jump_strength : float
 var _side_jump_gravity : float
 var _side_fall_gravity : float
 
-var jump_strength := [_jump_strength, _jump2_strength, _jump3_strength, _dive_jump_strength, _rollout_jump_strength, _spin_jump_strength, _side_jump_strength, _jump_strength]
-var jump_gravity := [_jump_gravity, _jump2_gravity, _jump3_gravity, _dive_jump_gravity, _rollout_jump_gravity, _spin_jump_gravity, _side_jump_gravity, _jump_gravity]
-var fall_gravity := [_fall_gravity, _fall2_gravity, _fall3_gravity, _dive_fall_gravity, _rollout_fall_gravity, _spin_fall_gravity, _side_fall_gravity, _fall_gravity]
+var _bounce_jump_strength : float
+var _bounce_jump_gravity : float
+var _bounce_fall_gravity : float
+
+var jump_strength
+var jump_gravity
+var fall_gravity
 func _ready():
 	_jump_strength = (2 * jump_height) / jump_time_to_peak
 	_jump_gravity = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
@@ -118,10 +126,14 @@ func _ready():
 	_side_jump_strength = (2.0 * side_jump_height) / side_jump_time_to_peak
 	_side_jump_gravity = (-2.0 * side_jump_height) / (side_jump_time_to_peak * side_jump_time_to_peak)
 	_side_fall_gravity = (-2.0 * side_jump_height) / (side_jump_time_to_descent * side_jump_time_to_descent)
+	
+	_bounce_jump_strength = (2.0 * bounce_jump_height) / bounce_jump_time_to_peak
+	_bounce_jump_gravity = (-2.0 * bounce_jump_height) / (bounce_jump_time_to_peak * bounce_jump_time_to_peak)
+	_bounce_fall_gravity = (-2.0 * bounce_jump_height) / (bounce_jump_time_to_descent * bounce_jump_time_to_descent)
 
-	jump_strength = [_jump_strength, _jump2_strength, _jump3_strength, _dive_jump_strength, _rollout_jump_strength, _spin_jump_strength, _side_jump_strength, _jump_strength]
-	jump_gravity = [_jump_gravity, _jump2_gravity, _jump3_gravity, _dive_jump_gravity, _rollout_jump_gravity, _spin_jump_gravity, _side_jump_gravity, _jump_gravity]
-	fall_gravity = [_fall_gravity, _fall2_gravity, _fall3_gravity, _dive_fall_gravity, _rollout_fall_gravity, _spin_fall_gravity, _side_fall_gravity, _fall_gravity]
+	jump_strength = [_jump_strength, _jump2_strength, _jump3_strength, _dive_jump_strength, _rollout_jump_strength, _spin_jump_strength, _side_jump_strength, _jump_strength, _bounce_jump_strength]
+	jump_gravity = [_jump_gravity, _jump2_gravity, _jump3_gravity, _dive_jump_gravity, _rollout_jump_gravity, _spin_jump_gravity, _side_jump_gravity, _jump_gravity, _bounce_jump_gravity]
+	fall_gravity = [_fall_gravity, _fall2_gravity, _fall3_gravity, _dive_fall_gravity, _rollout_fall_gravity, _spin_fall_gravity, _side_fall_gravity, _fall_gravity, _bounce_fall_gravity]
 	pass
 
 

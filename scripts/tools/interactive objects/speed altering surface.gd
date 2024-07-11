@@ -12,8 +12,8 @@ func _ready() -> void:
 
 func detect_body(body : Node) -> void:
 	if "speed_coefficient" in body:
-		body.speed_coefficient = speed_change
+		body.speed_coefficient *= speed_change
 
 func drop_body(body : Node) -> void:
 	if "speed_coefficient" in body:
-		body.speed_coefficient = 1.0
+		body.speed_coefficient /= speed_change

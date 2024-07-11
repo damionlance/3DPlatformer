@@ -37,6 +37,8 @@ func iterate(node, main_scene):
 			node = set_up_climbable_surface(node, main_scene)
 		if "-slowdown" in node.name:
 			node = set_up_speed_altering_surface(node, main_scene, 0.5)
+		if "-bouncyfloor" in node.name:
+			node = set_up_bouncy_surface(node, main_scene)
 		if "-hazard" in node.name:
 			node = set_up_hazard(node, main_scene)
 		for child in node.get_children():
@@ -152,6 +154,23 @@ func set_up_speed_altering_surface(mesh, main_scene : Node, speed_coefficient : 
 	
 	mesh.set_script(load("res://scripts/tools/interactive objects/speed altering surface.gd"))
 	mesh.speed_change = speed_coefficient
+	mesh.get_child(1).queue_free()
+	return mesh
+	
+func set_up_bouncy_surface(mesh, main_scene : Node) -> Node:
+	var area3D := Area3D.new()
+	mesh.add_child(area3D)
+	area3D.owner = mesh.owner
+	
+	mesh.create_trimesh_collision()
+	mesh.get_child(1).name = "StaticBody3D"
+	var collision_shape = mesh.get_child(1).get_child(0)
+	mesh.get_child(1).remove_child(collision_shape)
+	area3D.add_child(collision_shape)
+	
+	mesh.get_child(0).name = "Area3D"
+	
+	mesh.set_script(load("res://scripts/tools/interactive objects/bouncy floor.gd"))
 	mesh.get_child(1).queue_free()
 	return mesh
 
