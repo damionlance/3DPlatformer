@@ -211,7 +211,6 @@ func apply_air_friction(delta : float) -> void:
 	lateral_velocity = lerp(lateral_velocity, Vector3.ZERO, (sideways_friction / 8) * delta) 
 	
 	if forward_velocity.length() > constants.max_horizontal_velocity or forward_velocity.dot(movement_direction) < 0:
-		print("Hey!")
 		forward_velocity = lerp(forward_velocity, Vector3.ZERO, forwards_friction * delta)
 	velocity = forward_velocity + lateral_velocity + vertical_velocity
 	if velocity.length() < 1 and Input.get_vector("Left", "Right", "Backward", "Forward") == Vector2.ZERO:

@@ -21,7 +21,6 @@ func _on_body_exited(body: Node3D) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if get_parent().get_parent().get_parent().starts_in_object:
 		if collide:
-			print("Collided")
 			emit_signal("collided_with_body", get_parent())
 			collide = false
 	else:

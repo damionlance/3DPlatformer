@@ -11,7 +11,9 @@ class_name DynamicPlatform3D
 # Called when the node enters the scene tree for the first time.
 
 func generate_collision_data() -> void:
-	
+	for child in object.get_children():
+		if child is CollisionShape3D:
+			return
 	if mesh:
 		for child : MeshInstance3D in mesh.get_children():
 			child.reparent(object)

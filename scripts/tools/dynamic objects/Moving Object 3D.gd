@@ -76,20 +76,21 @@ func _ready():
 	
 	if speed_of_platform != 0 and travel_time == 0:
 		travel_time = path_length / speed_of_platform
-	
-	for i in number_of_objects:
-		var new_path = path_follow.duplicate()
-		new_path.name = "PathFollow3D" + str(i + 1)
-		$Path3D.add_child(new_path)
-		path_follow_agents.append(new_path)
-		path_follow_agents_loop.append(false)
-		path_follow_agents_tween.append(create_tween())
-		
-		add_another_path_follow(new_path, i)
-		
-		_create_path_tween(new_path)
+	if $"Path3D".get_child_count() == 0:
+		for i in number_of_objects:
+			var new_path = path_follow.duplicate()
+			new_path.name = "PathFollow3D" + str(i + 1)
+			$Path3D.add_child(new_path)
+			path_follow_agents.append(new_path)
+			path_follow_agents_loop.append(false)
+			path_follow_agents_tween.append(create_tween())
+			
+			add_another_path_follow(new_path, i)
+			if moving:
+				_create_path_tween(new_path, false)
 	pause_platform(not moving)
-	path_follow.queue_free()
+	if path_follow != null:
+		path_follow.queue_free()
 	
 	if self.has_method("extra_ready_processing"):
 		connect("ready", self.extra_ready_processing)
@@ -106,7 +107,7 @@ func pause_platform(pause : bool) -> void:
 		else:
 			platform.process_mode = Node.PROCESS_MODE_INHERIT
 
-func _create_path_tween(object_to_tween : PathFollow3D) -> void:
+func _create_path_tween(object_to_tween : PathFollow3D, halt_at_end: bool) -> void:
 	var tween = create_tween()
 	var i = 0
 	for path_follow in path_follow_agents:
@@ -118,12 +119,12 @@ func _create_path_tween(object_to_tween : PathFollow3D) -> void:
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_BOUND)
 	if object_to_tween.progress_ratio != 1.0:
 		tween.tween_property(object_to_tween, "progress_ratio", 1.0, travel_time * (1.0 - object_to_tween.progress_ratio)).set_ease(easing_type).set_trans(transition_type).set_delay(loop_delay)
-	elif loop:
+	if loop or object_to_tween.progress_ratio == 1.0:
 		tween.tween_property(object_to_tween, "progress_ratio", 0.0, travel_time).set_ease(easing_type).set_trans(transition_type).set_delay(loop_delay)
 	else:
 		object_to_tween.progress_ratio = 0.0
-	
-	tween.tween_callback(_create_path_tween.bind(object_to_tween))
+	if not halt_at_end:
+		tween.tween_callback(_create_path_tween.bind(object_to_tween, false))
 
 func _stop_tween(object_to_stop : PathFollow3D):
 	var i := 0
@@ -131,7 +132,7 @@ func _stop_tween(object_to_stop : PathFollow3D):
 		if path_follow == object_to_stop:
 			path_follow_agents_tween[i].kill()
 			path_follow.progress_ratio = 0
-			_create_path_tween(object_to_stop)
+			_create_path_tween(object_to_stop, false)
 			return
 		i += 1
 

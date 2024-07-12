@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://prwo27u8nms1"]
+
+[ext_resource type="Script" path="res://scenes/tools/dynamic objects/Zipline/zipline.gd" id="1_x3i2s"]
+
+[sub_resource type="Curve3D" id="Curve3D_62116"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_vbvyb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rm1xi"]
+radius = 1.0
+
+[node name="Zipline" type="Node3D"]
+script = ExtResource("1_x3i2s")
+moving = false
+travel_time = 0.0
+speed_of_platform = 14.0
+loop = false
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_62116")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+unique_name_in_owner = true
+rotation_mode = 0
+
+[node name="object" type="Area3D" parent="Path3D/PathFollow3D"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 255
+monitorable = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D/object"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18744, 0)
+mesh = SubResource("SphereMesh_vbvyb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/PathFollow3D/object"]
+shape = SubResource("SphereShape3D_rm1xi")
+
+[connection signal="body_entered" from="Path3D/PathFollow3D/object" to="." method="_on_object_body_entered"]
+[connection signal="body_exited" from="Path3D/PathFollow3D/object" to="." method="_on_object_body_exited"]
