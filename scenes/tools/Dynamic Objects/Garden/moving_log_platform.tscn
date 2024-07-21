@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://jaxv1pb1wkxy"]
 
-[ext_resource type="PackedScene" uid="uid://egrvieqe3s2p" path="res://scenes/tools/Dynamic Objects/Moving Platform/Moving Platform.tscn" id="1_uib1y"]
+[ext_resource type="PackedScene" uid="uid://egrvieqe3s2p" path="res://scenes/tools/dynamic objects/Moving Platform/Moving Platform.tscn" id="1_uib1y"]
 [ext_resource type="PackedScene" uid="uid://bdjs3ocwet8lr" path="res://assets/models/levels/waterfall/logPlat.glb" id="2_ln38l"]
 
 [node name="Moving Platform" instance=ExtResource("1_uib1y")]

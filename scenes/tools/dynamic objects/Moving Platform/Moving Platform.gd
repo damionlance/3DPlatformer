@@ -1,2 +1,1 @@
-class_name MovingPlatform3D
-extends MovingObject3D
+class_name MovingPlatform3D extends MovingObject3D

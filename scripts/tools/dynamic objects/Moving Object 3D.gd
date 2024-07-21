@@ -119,7 +119,7 @@ func _create_path_tween(object_to_tween : PathFollow3D, halt_at_end: bool) -> vo
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_BOUND)
 	if object_to_tween.progress_ratio != 1.0:
 		tween.tween_property(object_to_tween, "progress_ratio", 1.0, travel_time * (1.0 - object_to_tween.progress_ratio)).set_ease(easing_type).set_trans(transition_type).set_delay(loop_delay)
-	if loop or object_to_tween.progress_ratio == 1.0:
+	if loop and object_to_tween.progress_ratio == 1.0:
 		tween.tween_property(object_to_tween, "progress_ratio", 0.0, travel_time).set_ease(easing_type).set_trans(transition_type).set_delay(loop_delay)
 	else:
 		object_to_tween.progress_ratio = 0.0

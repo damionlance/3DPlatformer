@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc1qbermb8nfi"]
+
+[sub_resource type="GDScript" id="GDScript_diggd"]
+script/source = "class_name PlayerLockingArea extends Area3D
+
+var body_original_parent : Node = null
+var attached_body : Player = null
+
+## Input Action name to use to leave the Locking Area
+@export var character_leave_input : StringName = &\"Jump\"
+
+## Retain current player rotation or not when jumping into a Locking Area
+@export var retain_initial_rotation : bool = false
+
+func _process(delta: float) -> void:
+	if attached_body == null:
+		return
+	attached_body.global_position = global_position
+	
+	if Input.is_action_just_pressed(character_leave_input):
+		_remove_body()
+
+func _on_body_entered(body: Node3D) -> void:
+	if body_original_parent != null:
+		return
+	attached_body = body
+	if not retain_initial_rotation:
+		body.basis = basis
+	body.state_chart.send_event(\"Stationary Interactive State\")
+
+func _remove_body() -> void:
+	attached_body.state_chart.send_event(\"Jump\")
+	attached_body = null
+	body_original_parent = null
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rm1xi"]
+radius = 1.0
+
+[node name="object" type="Area3D"]
+collision_layer = 0
+collision_mask = 255
+monitorable = false
+script = SubResource("GDScript_diggd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_rm1xi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

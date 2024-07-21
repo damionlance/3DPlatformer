@@ -1,13 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://prwo27u8nms1"]
+[gd_scene load_steps=4 format=3 uid="uid://prwo27u8nms1"]
 
 [ext_resource type="Script" path="res://scenes/tools/dynamic objects/Zipline/zipline.gd" id="1_x3i2s"]
+[ext_resource type="PackedScene" uid="uid://bc1qbermb8nfi" path="res://scenes/tools/Interactive Objects/player locking area/player locking area.tscn" id="2_cumte"]
 
 [sub_resource type="Curve3D" id="Curve3D_62116"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_vbvyb"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_rm1xi"]
-radius = 1.0
 
 [node name="Zipline" type="Node3D"]
 script = ExtResource("1_x3i2s")
@@ -23,18 +19,5 @@ curve = SubResource("Curve3D_62116")
 unique_name_in_owner = true
 rotation_mode = 0
 
-[node name="object" type="Area3D" parent="Path3D/PathFollow3D"]
+[node name="object" parent="Path3D/PathFollow3D" instance=ExtResource("2_cumte")]
 unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 255
-monitorable = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D/object"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18744, 0)
-mesh = SubResource("SphereMesh_vbvyb")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/PathFollow3D/object"]
-shape = SubResource("SphereShape3D_rm1xi")
-
-[connection signal="body_entered" from="Path3D/PathFollow3D/object" to="." method="_on_object_body_entered"]
-[connection signal="body_exited" from="Path3D/PathFollow3D/object" to="." method="_on_object_body_exited"]

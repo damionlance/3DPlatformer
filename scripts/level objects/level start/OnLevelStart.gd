@@ -23,10 +23,11 @@ var cinematic_cameras
 func _ready():
 	ensure_collectable_exists("COIN")
 	ensure_collectable_exists("LEVEL COIN")
-	$"Player/CanvasLayer/HUD/MarginContainer/counters/level coin".compare_against = obj_root.level_coins
-	for i in 200:
-		coins.multimesh.set_instance_transform(i,Transform3D(Basis(), Vector3.ZERO))
-	coins.visible = true
+	if obj_root != null:
+		$"Player/CanvasLayer/HUD/MarginContainer/counters/level coin".compare_against = obj_root.level_coins
+		for i in 200:
+			coins.multimesh.set_instance_transform(i,Transform3D(Basis(), Vector3.ZERO))
+		coins.visible = true
 	emit_signal("level_loaded")
 
 func ensure_collectable_exists(collectable_name):

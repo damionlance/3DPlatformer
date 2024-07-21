@@ -19,7 +19,6 @@ func _process(delta: float) -> void:
 				_attached_body.state_chart.send_event("Fall")
 				_attached_body = null
 				return
-			_attached_body.global_position = path_follow.global_position
 		pass
 	if return_to_start and $"%PathFollow3D".progress_ratio == 1.0 and $"%object".get_overlapping_bodies().size() == 0:
 		_create_path_tween(path_follow, true)

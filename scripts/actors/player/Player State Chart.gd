@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 @export var constants : PlayerPhysicsConstants
 
@@ -24,6 +24,7 @@ var joystick_input_buffer : Array[Vector2] = []
 @onready var camera := $CameraPivot
 @onready var animation_tree := $AnimationTree
 @onready var coin_sounds = $"Sounds/Coin Collected"
+@onready var player_model = $"%model"
 
 #Raycasts
 @onready var floor_alignment_raycast := $"%Floor Alignment Raycast"
@@ -240,7 +241,8 @@ func align_to_floor(_delta) -> void:
 	xform.basis.y = new_y
 	xform.basis.x = -xform.basis.z.cross(new_y)
 	xform.basis = xform.basis.orthonormalized()
-	$"possible final fella".global_transform = $"possible final fella".global_transform.interpolate_with(xform, 0.1)
+	if player_model != null:
+		player_model.global_transform = player_model.global_transform.interpolate_with(xform, 0.1)
 
 func reset_alignment() -> void:
 	rotation = Vector3(0, rotation.y, 0)

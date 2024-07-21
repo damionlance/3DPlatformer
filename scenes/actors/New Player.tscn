@@ -296,7 +296,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("possible final fella:visible")
+tracks/0/path = NodePath("model:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -314,7 +314,7 @@ step = 0.13
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("possible final fella:visible")
+tracks/0/path = NodePath("model:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -380,18 +380,18 @@ initial_state = NodePath("Movement State")
 
 [node name="Interactive Object States" type="Node" parent="StateChart/ParallelState/CompoundState"]
 script = ExtResource("4_gkhyx")
-initial_state = NodePath("Climbing Rope")
+initial_state = NodePath("Stationary Interactive State")
 
-[node name="Climbing Rope" type="Node" parent="StateChart/ParallelState/CompoundState/Interactive Object States"]
+[node name="Stationary Interactive State" type="Node" parent="StateChart/ParallelState/CompoundState/Interactive Object States"]
 script = ExtResource("7_66yvw")
 
-[node name="Jump" type="Node" parent="StateChart/ParallelState/CompoundState/Interactive Object States/Climbing Rope"]
+[node name="Jump" type="Node" parent="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State"]
 script = ExtResource("6_m6nmy")
 to = NodePath("../../../Movement State/Aerial Movement Options/Jump")
 event = &"Jump"
 delay_in_seconds = "0.0"
 
-[node name="Fall" type="Node" parent="StateChart/ParallelState/CompoundState/Interactive Object States/Climbing Rope"]
+[node name="Fall" type="Node" parent="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State"]
 script = ExtResource("6_m6nmy")
 to = NodePath("../../../Movement State/Aerial Movement Options/Fall")
 event = &"Fall"
@@ -432,6 +432,12 @@ to = NodePath("../../Crouch")
 event = &"Dive"
 delay_in_seconds = "0.0"
 
+[node name="Stationary Interactive State" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle"]
+script = ExtResource("6_m6nmy")
+to = NodePath("../../../../Interactive Object States/Stationary Interactive State")
+event = &"Stationary Interactive State"
+delay_in_seconds = "0.0"
+
 [node name="Run" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options"]
 script = ExtResource("7_66yvw")
 
@@ -465,6 +471,12 @@ to = NodePath("../../Crouch")
 event = &"Dive"
 delay_in_seconds = "0.0"
 
+[node name="Stationary Interactive State" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run"]
+script = ExtResource("6_m6nmy")
+to = NodePath("../../../../Interactive Object States/Stationary Interactive State")
+event = &"Stationary Interactive State"
+delay_in_seconds = "0.0"
+
 [node name="Belly Slide" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options"]
 script = ExtResource("7_66yvw")
 
@@ -480,6 +492,12 @@ to = NodePath("../../Idle")
 guard = SubResource("Resource_bmxlo")
 delay_in_seconds = "0.0"
 
+[node name="Stationary Interactive State" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Belly Slide"]
+script = ExtResource("6_m6nmy")
+to = NodePath("../../../../Interactive Object States/Stationary Interactive State")
+event = &"Stationary Interactive State"
+delay_in_seconds = "0.0"
+
 [node name="Pivot" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options"]
 script = ExtResource("7_66yvw")
 
@@ -493,6 +511,12 @@ delay_in_seconds = "0.0"
 script = ExtResource("6_m6nmy")
 to = NodePath("../../Idle")
 guard = SubResource("Resource_igy1i")
+delay_in_seconds = "0.0"
+
+[node name="Stationary Interactive State" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Pivot"]
+script = ExtResource("6_m6nmy")
+to = NodePath("../../../../Interactive Object States/Stationary Interactive State")
+event = &"Stationary Interactive State"
 delay_in_seconds = "0.0"
 
 [node name="Crouch" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options"]
@@ -516,6 +540,12 @@ to = NodePath("../../Idle")
 event = &"stop_crouch"
 delay_in_seconds = "0.0"
 
+[node name="Stationary Interactive State" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch"]
+script = ExtResource("6_m6nmy")
+to = NodePath("../../../../Interactive Object States/Stationary Interactive State")
+event = &"Stationary Interactive State"
+delay_in_seconds = "0.0"
+
 [node name="Ground Pound Landing" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options"]
 script = ExtResource("7_66yvw")
 
@@ -528,6 +558,12 @@ delay_in_seconds = "1.0"
 script = ExtResource("6_m6nmy")
 to = NodePath("../../../Aerial Movement Options/Jump")
 event = &"Jump"
+delay_in_seconds = "0.0"
+
+[node name="Stationary Interactive State" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Ground Pound Landing"]
+script = ExtResource("6_m6nmy")
+to = NodePath("../../../../Interactive Object States/Stationary Interactive State")
+event = &"Stationary Interactive State"
 delay_in_seconds = "0.0"
 
 [node name="Aerial Movement Options" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State"]
@@ -555,10 +591,10 @@ to = NodePath("../../Wall Climb")
 event = &"Wall Climb"
 delay_in_seconds = "0.0"
 
-[node name="Climbing Rope" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump"]
+[node name="Stationary Interactive State" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump"]
 script = ExtResource("6_m6nmy")
-to = NodePath("../../../../Interactive Object States/Climbing Rope")
-event = &"Rope Climb"
+to = NodePath("../../../../Interactive Object States/Stationary Interactive State")
+event = &"Stationary Interactive State"
 delay_in_seconds = "0.0"
 
 [node name="Bounce off Enemy" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump"]
@@ -603,10 +639,10 @@ to = NodePath("../../Wall Climb")
 event = &"Wall Climb"
 delay_in_seconds = "0.0"
 
-[node name="Climbing Rope" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall"]
+[node name="Stationary Interactive State" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall"]
 script = ExtResource("6_m6nmy")
-to = NodePath("../../../../Interactive Object States/Climbing Rope")
-event = &"Rope Climb"
+to = NodePath("../../../../Interactive Object States/Stationary Interactive State")
+event = &"Stationary Interactive State"
 delay_in_seconds = "0.0"
 
 [node name="Dive" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall"]
@@ -644,7 +680,7 @@ delay_in_seconds = "0.0"
 
 [node name="Climbing Rope" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive"]
 script = ExtResource("6_m6nmy")
-to = NodePath("../../../../Interactive Object States/Climbing Rope")
+to = NodePath("../../../../Interactive Object States/Stationary Interactive State")
 event = &"Rope Climb"
 delay_in_seconds = "0.0"
 
@@ -768,7 +804,7 @@ delay_in_seconds = "0.0"
 
 [node name="Climbing Rope" type="Node" parent="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy"]
 script = ExtResource("6_m6nmy")
-to = NodePath("../../../../Interactive Object States/Climbing Rope")
+to = NodePath("../../../../Interactive Object States/Stationary Interactive State")
 event = &"Rope Climb"
 delay_in_seconds = "0.0"
 
@@ -817,20 +853,20 @@ to = NodePath("../../Take Damage")
 event = &"Take Damage"
 delay_in_seconds = "0.0"
 
-[node name="possible final fella" parent="." instance=ExtResource("8_vaatg")]
+[node name="model" parent="." instance=ExtResource("8_vaatg")]
+unique_name_in_owner = true
 
-[node name="Skeleton3D" parent="possible final fella/rig" index="0"]
+[node name="Skeleton3D" parent="model/rig" index="0"]
 bones/1/rotation = Quaternion(0.753165, 0, 0, 0.657832)
 bones/2/rotation = Quaternion(-0.0374373, 1.19126e-07, -4.46287e-09, 0.999299)
 bones/3/rotation = Quaternion(-0.0399615, -1.19114e-07, -4.76378e-09, 0.999201)
+bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(0.00125846, 2.12385e-18, -1.68693e-15, 0.999999)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(-0.266093, 8.0438e-07, -2.85487e-07, 0.963947)
 bones/7/rotation = Quaternion(-0.305761, -1.0215e-06, -2.55147e-07, 0.952108)
-bones/9/rotation = Quaternion(-0.218036, 0.672652, 0.672652, -0.218036)
 bones/10/rotation = Quaternion(0.707106, 8.42938e-08, 8.42936e-08, 0.707108)
 bones/11/rotation = Quaternion(0.707106, -8.42938e-08, -8.42936e-08, 0.707108)
-bones/12/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/17/rotation = Quaternion(0.728009, 8.1726e-08, 8.67855e-08, 0.685567)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/rotation = Quaternion(-0.728009, -8.17259e-08, -8.67855e-08, 0.685567)
@@ -841,14 +877,14 @@ bones/22/scale = Vector3(1, 1, 1)
 bones/24/rotation = Quaternion(-0.39159, 0.665833, 0.440747, 0.457237)
 bones/24/scale = Vector3(1, 1, 1)
 bones/26/rotation = Quaternion(0.987333, 1.8914e-08, 1.17701e-07, 0.15866)
-bones/27/rotation = Quaternion(0.171006, -8.99203e-14, 4.07715e-08, 0.98527)
+bones/27/rotation = Quaternion(0.171006, -8.9695e-14, 4.07715e-08, 0.98527)
 bones/28/rotation = Quaternion(-0.694189, 8.58048e-08, -2.48263e-07, 0.719792)
 bones/29/rotation = Quaternion(1.59542e-08, 0.995194, -0.0979265, 3.12408e-07)
 bones/29/scale = Vector3(1, 1, 1)
 bones/30/rotation = Quaternion(0.448633, 0.448633, -0.54656, 0.54656)
 bones/33/rotation = Quaternion(-6.70552e-08, 1.56541e-14, -3.20723e-14, 1)
 bones/40/rotation = Quaternion(0.987333, -1.8914e-08, -1.17701e-07, 0.15866)
-bones/41/rotation = Quaternion(0.171006, 9.53291e-14, -4.07715e-08, 0.98527)
+bones/41/rotation = Quaternion(0.171006, 9.55544e-14, -4.07715e-08, 0.98527)
 bones/42/rotation = Quaternion(-0.694189, -8.58048e-08, 2.48263e-07, 0.719792)
 bones/43/rotation = Quaternion(-1.59542e-08, 0.995194, -0.0979265, -3.12408e-07)
 bones/43/scale = Vector3(1, 1, 1)
@@ -861,51 +897,46 @@ bones/57/rotation = Quaternion(0.171006, -4.1467e-14, 4.07711e-08, 0.98527)
 bones/58/rotation = Quaternion(-0.69419, 8.58058e-08, -2.48262e-07, 0.719792)
 bones/62/rotation = Quaternion(-0.704406, 8.46145e-08, -8.39718e-08, 0.709798)
 bones/62/scale = Vector3(1, 1, 1)
-bones/63/rotation = Quaternion(-0.0955388, -1.43877e-14, -2.27782e-08, 0.995426)
+bones/63/rotation = Quaternion(-0.0955388, -1.40531e-14, -2.27782e-08, 0.995426)
 bones/63/scale = Vector3(1, 1, 1)
-bones/64/rotation = Quaternion(0.171006, 1.2395e-14, 4.07711e-08, 0.98527)
+bones/64/scale = Vector3(1, 1, 1)
 bones/65/rotation = Quaternion(0.987333, 1.89138e-08, 1.17699e-07, 0.158661)
 bones/65/scale = Vector3(1, 1, 0.999997)
 bones/67/rotation = Quaternion(0.987333, 1.89139e-08, 1.177e-07, 0.15866)
-bones/69/rotation = Quaternion(0.171006, -5.52142e-14, 4.07714e-08, 0.98527)
-bones/71/rotation = Quaternion(-0.694189, 8.58047e-08, -2.48262e-07, 0.719792)
+bones/69/rotation = Quaternion(0.171006, -5.45381e-14, 4.07714e-08, 0.98527)
+bones/72/rotation = Quaternion(1.59541e-08, 0.995194, -0.0979265, 3.12408e-07)
 bones/73/rotation = Quaternion(0.987333, -2.14475e-22, -9.04816e-22, 0.15866)
 bones/75/rotation = Quaternion(-0.768997, -7.62049e-08, 9.16716e-08, 0.639253)
 bones/76/rotation = Quaternion(0.171006, 3.87626e-14, -4.07711e-08, 0.98527)
-bones/79/rotation = Quaternion(-1.59542e-08, 0.995194, -0.0979263, -3.12408e-07)
 bones/81/rotation = Quaternion(-0.704406, -8.46145e-08, 8.39718e-08, 0.709798)
 bones/81/scale = Vector3(1, 1, 1)
-bones/82/rotation = Quaternion(-0.0955388, 1.40531e-14, 2.27782e-08, 0.995426)
+bones/82/rotation = Quaternion(-0.0955388, 1.34954e-14, 2.27782e-08, 0.995426)
 bones/82/scale = Vector3(1, 1, 1)
-bones/83/rotation = Quaternion(0.171006, -1.50994e-14, -4.07711e-08, 0.98527)
+bones/83/scale = Vector3(1, 1, 1)
 bones/84/rotation = Quaternion(0.987333, -1.89138e-08, -1.17699e-07, 0.158661)
 bones/84/scale = Vector3(1, 1, 0.999997)
 bones/86/rotation = Quaternion(0.987333, -1.89139e-08, -1.177e-07, 0.15866)
-bones/88/rotation = Quaternion(0.171006, 5.92708e-14, -4.07714e-08, 0.98527)
-bones/90/rotation = Quaternion(-0.694189, -8.58046e-08, 2.48262e-07, 0.719792)
+bones/88/rotation = Quaternion(0.171006, 5.85947e-14, -4.07714e-08, 0.98527)
+bones/90/rotation = Quaternion(-0.694189, -8.58047e-08, 2.48262e-07, 0.719792)
 bones/91/rotation = Quaternion(-1.59541e-08, 0.995194, -0.0979265, -3.12408e-07)
 bones/92/rotation = Quaternion(-0.0374372, 1.19126e-07, -4.46286e-09, 0.999299)
 bones/96/rotation = Quaternion(0.700032, 0, 0, 0.714112)
-bones/97/rotation = Quaternion(0.0399614, 1.19114e-07, 4.76377e-09, 0.999201)
+bones/97/rotation = Quaternion(0.0399615, 1.19114e-07, 4.76377e-09, 0.999201)
 bones/97/scale = Vector3(1, 1, 1)
 bones/98/rotation = Quaternion(-0.0399615, -1.19114e-07, -4.76378e-09, 0.999201)
-bones/100/rotation = Quaternion(-0.700032, 0, 0, 0.714112)
 bones/102/rotation = Quaternion(0.101723, 1.18591e-07, 1.21264e-08, 0.994813)
 bones/103/rotation = Quaternion(-0.266093, 8.0438e-07, -2.85487e-07, 0.963947)
 bones/103/scale = Vector3(1, 1, 1)
 bones/104/rotation = Quaternion(-0.305761, -1.0215e-06, -2.55147e-07, 0.952108)
-bones/104/scale = Vector3(1, 1, 1)
 bones/106/rotation = Quaternion(0.674824, 8.79739e-08, 8.04453e-08, 0.737979)
-bones/108/rotation = Quaternion(0.294111, -1.13937e-07, -3.50608e-08, 0.955771)
 bones/109/rotation = Quaternion(0.137437, -9.86356e-15, 3.27676e-08, 0.990511)
 bones/109/scale = Vector3(1, 1, 1)
-bones/110/rotation = Quaternion(1.49012e-08, -6.71685e-15, 3.55271e-15, 1)
 bones/112/rotation = Quaternion(-0.131085, 8.27264e-07, -1.40639e-07, 0.991371)
 bones/115/rotation = Quaternion(-0.608621, -0.347846, -0.354198, 0.618974)
 bones/115/scale = Vector3(1, 1, 1)
 bones/116/rotation = Quaternion(0.0130863, 0.833835, -0.279125, 0.476064)
-bones/116/scale = Vector3(1, 1, 1)
 bones/117/rotation = Quaternion(0.15382, -3.68769e-08, -4.7127e-08, 0.988099)
+bones/117/scale = Vector3(1, 1, 1)
 bones/118/rotation = Quaternion(-0.0137169, -0.000808211, -0.0588158, 0.998174)
 bones/118/scale = Vector3(1, 1, 1)
 bones/122/rotation = Quaternion(-1.76951e-07, -1.49012e-08, -5.68107e-08, 1)
@@ -928,13 +959,12 @@ bones/138/rotation = Quaternion(0.0130866, 0.833835, -0.279125, 0.476064)
 bones/140/rotation = Quaternion(0.0130862, 0.833835, -0.279125, 0.476064)
 bones/140/scale = Vector3(1, 1, 1)
 bones/142/rotation = Quaternion(0.15382, 1.06036e-09, -1.58347e-07, 0.988099)
-bones/143/rotation = Quaternion(-5.21541e-08, -5.58793e-08, -2.8871e-08, 1)
-bones/144/rotation = Quaternion(-0.0137172, -0.000808021, -0.0588157, 0.998174)
+bones/144/scale = Vector3(1, 1, 1)
 bones/145/rotation = Quaternion(-0.608621, 0.347846, 0.354198, 0.618974)
 bones/145/scale = Vector3(1, 1, 1)
 bones/146/rotation = Quaternion(-0.0130863, 0.833835, -0.279125, -0.476064)
-bones/146/scale = Vector3(1, 1, 1)
 bones/147/rotation = Quaternion(0.15382, 3.68769e-08, 4.7127e-08, 0.988099)
+bones/147/scale = Vector3(1, 1, 1)
 bones/148/rotation = Quaternion(-0.0137169, 0.000808211, 0.0588158, 0.998174)
 bones/148/scale = Vector3(1, 1, 1)
 bones/152/rotation = Quaternion(-1.76951e-07, 1.49012e-08, 5.68107e-08, 1)
@@ -949,7 +979,6 @@ bones/161/scale = Vector3(1, 1, 1)
 bones/162/rotation = Quaternion(0.15382, -8.85988e-08, 6.9748e-08, 0.988099)
 bones/163/rotation = Quaternion(-0.0137167, 0.000808684, 0.0588162, 0.998174)
 bones/164/rotation = Quaternion(-1.78814e-07, -4.5076e-07, -3.59025e-07, 1)
-bones/165/rotation = Quaternion(-0.432121, 0.670956, -0.545112, -0.256791)
 bones/165/scale = Vector3(1, 1, 1)
 bones/166/rotation = Quaternion(-0.0792235, -0.0248417, -0.00197481, 0.996545)
 bones/166/scale = Vector3(1, 1, 1)
@@ -958,8 +987,7 @@ bones/168/rotation = Quaternion(-0.0130866, 0.833835, -0.279125, -0.476064)
 bones/170/rotation = Quaternion(-0.0130862, 0.833835, -0.279125, -0.476064)
 bones/170/scale = Vector3(1, 1, 1)
 bones/172/rotation = Quaternion(0.15382, -1.06036e-09, 1.58347e-07, 0.988099)
-bones/173/rotation = Quaternion(-5.21541e-08, 5.58793e-08, 2.8871e-08, 1)
-bones/174/rotation = Quaternion(-0.0137172, 0.000808021, 0.0588157, 0.998174)
+bones/174/scale = Vector3(1, 1, 1)
 bones/175/rotation = Quaternion(5.38474e-08, 0.70093, 0.71323, 5.29187e-08)
 bones/177/rotation = Quaternion(5.38474e-08, 0.70093, 0.71323, 5.29187e-08)
 bones/179/rotation = Quaternion(5.38474e-08, 0.70093, 0.71323, 5.29187e-08)
@@ -968,25 +996,19 @@ bones/181/rotation = Quaternion(-0.608621, -0.347846, -0.354198, 0.618974)
 bones/181/scale = Vector3(1, 1, 1)
 bones/182/rotation = Quaternion(-0.608621, 0.347846, 0.354198, 0.618974)
 bones/182/scale = Vector3(1, 1, 1)
-bones/184/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/185/rotation = Quaternion(0.420825, 0.669028, -0.586181, 0.178044)
 bones/185/scale = Vector3(1, 1, 1)
-bones/187/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
-bones/188/rotation = Quaternion(0.887029, -5.03969e-08, -0.426413, -0.177066)
+bones/188/rotation = Quaternion(0.887029, -4.61971e-08, -0.426413, -0.177066)
 bones/188/scale = Vector3(1, 1, 1)
-bones/189/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/190/rotation = Quaternion(-0.420825, 0.669028, -0.586181, -0.178044)
 bones/190/scale = Vector3(1, 1, 1)
-bones/192/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
-bones/193/rotation = Quaternion(0.887029, 5.03969e-08, 0.426413, -0.177066)
+bones/193/rotation = Quaternion(0.887029, 4.61971e-08, 0.426413, -0.177066)
 bones/193/scale = Vector3(1, 1, 1)
 bones/202/rotation = Quaternion(0.995194, -2.33469e-08, 2.37268e-07, -0.0979266)
 bones/202/scale = Vector3(1, 1, 0.999993)
 bones/203/rotation = Quaternion(2.98023e-08, -4.04121e-14, 1.04121e-14, 1)
 bones/204/rotation = Quaternion(0.995194, -2.33467e-08, 2.37269e-07, 0.0979268)
 bones/204/scale = Vector3(1, 1, 1)
-bones/205/rotation = Quaternion(7.54995e-08, 4.26326e-14, 1, -3.10837e-15)
-bones/206/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/207/rotation = Quaternion(0.00381207, 0, 0, 0.999993)
 bones/207/scale = Vector3(1, 1, 1)
 bones/216/rotation = Quaternion(0.995194, 2.33469e-08, -2.37268e-07, -0.0979266)
@@ -994,20 +1016,19 @@ bones/216/scale = Vector3(1, 1, 0.999993)
 bones/217/rotation = Quaternion(2.98023e-08, 4.04121e-14, -1.04121e-14, 1)
 bones/218/rotation = Quaternion(0.995194, 2.33467e-08, -2.37269e-07, 0.0979268)
 bones/218/scale = Vector3(1, 1, 1)
-bones/220/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/221/rotation = Quaternion(0.00381207, 0, 0, 0.999993)
 bones/221/scale = Vector3(1, 1, 1)
 
-[node name="Boots" parent="possible final fella/rig/Skeleton3D" index="0"]
+[node name="Boots" parent="model/rig/Skeleton3D" index="0"]
 layers = 2
 
-[node name="Head" parent="possible final fella/rig/Skeleton3D" index="1"]
+[node name="Head" parent="model/rig/Skeleton3D" index="1"]
 layers = 2
 
-[node name="Jacket" parent="possible final fella/rig/Skeleton3D" index="2"]
+[node name="Jacket" parent="model/rig/Skeleton3D" index="2"]
 layers = 2
 
-[node name="Sleeves" parent="possible final fella/rig/Skeleton3D" index="3"]
+[node name="Sleeves" parent="model/rig/Skeleton3D" index="3"]
 layers = 2
 
 [node name="LegsCollider" type="CollisionShape3D" parent="."]
@@ -1015,21 +1036,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.436873, 0)
 shape = SubResource("SphereShape3D_nmheo")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="."]
-transform = Transform3D(1, -2.87682e-14, -2.38419e-07, 1.97172e-07, 0.562206, 0.826998, 1.3404e-07, -0.826998, 0.562206, -1.01986e-14, 1.58012, -0.0345111)
+transform = Transform3D(1, -4.19301e-15, -2.38419e-07, 1.97172e-07, 0.562205, 0.826998, 1.3404e-07, -0.826998, 0.562206, -1.22383e-14, 1.58012, -0.0345111)
 bone_name = "head"
 bone_idx = 108
 use_external_skeleton = true
-external_skeleton = NodePath("../possible final fella/rig/Skeleton3D")
+external_skeleton = NodePath("../model/rig/Skeleton3D")
 
 [node name="TorsoCollider" type="CollisionShape3D" parent="BoneAttachment3D"]
 transform = Transform3D(1, 1.97172e-07, 1.3404e-07, 0, 0.562205, -0.826998, -2.38419e-07, 0.826998, 0.562205, -1.1171e-08, -0.0735832, -0.0468547)
 shape = SubResource("SphereShape3D_c8h3y")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../possible final fella")
+root_node = NodePath("%model")
 tree_root = SubResource("AnimationNodeBlendTree_oysrg")
 advance_expression_base_node = NodePath("../StateChart")
-anim_player = NodePath("../possible final fella/AnimationPlayer")
+anim_player = NodePath("../model/AnimationPlayer")
 parameters/current_length = 0.0
 parameters/current_position = 0.0
 parameters/current_delta = 0.0
@@ -1279,33 +1300,33 @@ shape = SubResource("CylinderShape3D_6oiiy")
 visible = false
 offset_right = -1472.0
 offset_bottom = -288.0
+enabled = false
 initial_node_to_watch = NodePath("../StateChart")
 
-[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Climbing Rope" to="." method="reset_jumps"]
-[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Climbing Rope" to="." method="reset_velocity"]
-[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Climbing Rope" to="." method="start_jump_reset_timer"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Interactive Object States/Climbing Rope" to="." method="check_for_jump"]
-[connection signal="taken" from="StateChart/ParallelState/CompoundState/Interactive Object States/Climbing Rope/Jump" to="." method="reset_velocity"]
-[connection signal="taken" from="StateChart/ParallelState/CompoundState/Interactive Object States/Climbing Rope/Jump" to="." method="set_jump" binds= [7]]
+[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State" to="." method="reset_jumps"]
+[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State" to="." method="start_jump_reset_timer"]
+[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State" to="." method="reset_velocity"]
+[connection signal="taken" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State/Jump" to="." method="reset_velocity"]
+[connection signal="taken" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State/Jump" to="." method="set_jump" binds= [7]]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="grounded_movement_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="check_for_jump"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="apply_friction"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="check_for_dive"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="apply_friction"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="align_to_floor"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="check_for_pivots"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle/Jump" to="." method="increment_jump" flags=3]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="_on_run_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="grounded_movement_processing"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="look_forward"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="check_for_jump"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="apply_friction"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="look_forward"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="check_for_dive"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="apply_friction"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="align_to_floor"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="check_for_pivots"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run/Jump" to="." method="increment_jump"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Belly Slide" to="." method="belly_slide_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Belly Slide" to="." method="check_for_jump"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Belly Slide" to="." method="apply_slide_friction"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Belly Slide" to="." method="belly_slide_processing"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Belly Slide/Jump" to="." method="set_jump" binds= [4]]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Belly Slide/Idle" to="." method="reset_jumps"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Pivot" to="." method="reset_pivot_buffer"]
@@ -1316,28 +1337,28 @@ initial_node_to_watch = NodePath("../StateChart")
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Pivot/Jump" to="." method="set_jump" binds= [6.0]]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="start_crouching"]
 [connection signal="state_exited" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="stop_crouching"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="check_for_floor"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="grounded_movement_processing"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="look_forward"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="check_for_jump"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="apply_friction"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="check_for_floor"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="look_forward"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="check_for_dive"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="apply_friction"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="align_to_floor"]
 [connection signal="state_exited" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Ground Pound Landing" to="." method="stop_ground_pound"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="initial_jump_processing" flags=3]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="reset_pivot_buffer"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="reset_alignment"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="look_forward" flags=3 binds= [0.017]]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="normal_jump_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="check_for_floor"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="normal_jump_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="check_for_dive"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="apply_air_friction"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump/Dive" to="." method="set_jump" binds= [3]]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump/Bounce off Enemy" to="." method="initial_jump_processing"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall" to="." method="reset_pivot_buffer"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall" to="." method="reset_alignment"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall" to="." method="normal_jump_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall" to="." method="check_for_floor"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall" to="." method="normal_jump_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall" to="." method="check_for_dive"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall" to="." method="apply_air_friction"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall/Idle" to="." method="start_jump_reset_timer"]
@@ -1346,36 +1367,36 @@ initial_node_to_watch = NodePath("../StateChart")
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall/Bounce off Enemy" to="." method="initial_jump_processing"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive" to="." method="initial_jump_processing"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive" to="." method="look_forward"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive" to="." method="normal_jump_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive" to="." method="check_for_floor"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive" to="." method="normal_jump_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive" to="." method="apply_air_friction"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive/Bounce off Enemy" to="." method="initial_jump_processing"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Rollout" to="." method="initial_jump_processing"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Rollout" to="." method="normal_jump_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Rollout" to="." method="check_for_floor"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Rollout" to="." method="normal_jump_processing"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Rollout/Fall" to="." method="reset_jumps"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Rollout/Bounce off Enemy" to="." method="initial_jump_processing"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Slide" to="." method="reset_velocity"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Slide" to="." method="check_for_jump"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Slide" to="." method="check_for_floor"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Slide" to="." method="wall_slide_processing"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Slide" to="." method="check_for_jump"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Slide/Jump" to="." method="set_jump" binds= [7.0]]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="reset_jumps"]
-[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="reset_velocity"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="start_jump_reset_timer"]
+[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="reset_velocity"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="wall_climb_processing"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="check_for_floor"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="check_for_jump"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="check_for_floor"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb/Jump" to="." method="look_forward" flags=3]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb/Jump" to="." method="set_jump" binds= [7.0]]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Coyote Time" to="." method="check_for_jump"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Coyote Time/Jump" to="." method="increment_jump" flags=3]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="initial_jump_processing"]
-[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="reset_pivot_buffer"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="check_for_dive"]
+[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="reset_pivot_buffer"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="reset_alignment"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="normal_jump_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="check_for_floor"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="normal_jump_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="apply_air_friction"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy/Idle" to="." method="start_jump_reset_timer"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy/Run" to="." method="start_jump_reset_timer"]
@@ -1395,6 +1416,6 @@ initial_node_to_watch = NodePath("../StateChart")
 [connection signal="state_entered" from="StateChart/ParallelState/Damage States/No Damage" to="." method="ensure_player_is_visible"]
 [connection signal="area_entered" from="Enemy Killer" to="." method="bounce"]
 
-[editable path="possible final fella"]
+[editable path="model"]
 [editable path="CameraPivot"]
 [editable path="CanvasLayer/HUD"]

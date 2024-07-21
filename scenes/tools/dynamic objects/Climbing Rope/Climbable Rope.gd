@@ -1,56 +1,45 @@
 @tool
-extends Node3D
+class_name ClimbableRope extends DynamicRope
 
 ## Rope attaches relevant CharacterBody3Ds to a hook point that then overtakes controls from the player
-@export var height : float = 0.0 :
-	set(value):
-		height = value
-		update_length()
 
 @export var climbing_speed := 3.0
-@export var player_height := 2.0
+@export var climber : LinearClimbingNode = null
 
-@onready var mesh_instance := $"%MeshInstance3D"
-@onready var attach_point := $"Attach Point"
+var player
 
-signal attach
+func _ready() -> void:
+	climber.up_direction = -bottom_point.position.normalized()
 
-var player : CharacterBody3D
+func _get_configuration_warnings() -> PackedStringArray:
+	var warning_array : Array[String] = []
+	if climber == null:
+		warning_array.append("Must initialize property 'Climber' with LinearClimbingNode.")
+	if mesh_instance == null:
+		warning_array.append("Must initialize property 'Mesh Instance' with MeshInstance3D.")
+	if bottom_point == null:
+		warning_array.append("Must initialize property 'Bottom Point' with Node3D.")
+	
+	return warning_array
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	$Area3D.connect("body_entered", attach_player)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if player != null:
-		attach_point.position.y += Input.get_axis("Backward", "Forward") * climbing_speed * delta
-		if attach_point.position.y > 0:
-			attach_point.position.y = 0
-		if attach_point.position.y < -height:
-			attach_point.position.y = -height
-		player.global_position = attach_point.global_position
-		if Input.is_action_just_pressed("Jump"):
-			release_player()
-
-func attach_player(body : CharacterBody3D) -> void:
-	player = body
-	attach_point.global_position.y = player.global_position.y
-	connect("attach", player.attach_to_object)
-	emit_signal("attach", "Climbable Rope")
-	pass
-
-func release_player() -> void:
-	player = null
-
-func update_length() -> void:
+func _process(_delta : float) -> void:
 	if Engine.is_editor_hint():
-		mesh_instance.mesh.height = height
-		mesh_instance.position.y = -height / 2.0
-	else:
-		await ready
-		mesh_instance.mesh.height = height
-		mesh_instance.position.y = -height / 2.0
-		$"Area3D/CollisionShape3D".shape.size.y = height
-		$"Area3D/CollisionShape3D".position.y = -height/2.0
+		update_length()
+
+func calculate_closest_point_on_line(incoming_point : Vector3) -> Vector3:
+	
+	var outgoing_point : Vector3 = Vector3.ZERO
+	
+	var direction = (bottom_point.position).normalized()
+	var direction_to_object = incoming_point
+	var distance = direction.dot(direction_to_object)
+	
+	outgoing_point = distance * direction
+	
+	return outgoing_point
+
+func attach_player(body: Node3D) -> void:
+	
+	if climber.player == null:
+		var new_point = calculate_closest_point_on_line(body.global_position - global_position)
+		climber.attach_player(body, new_point)
