@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5aa6e0y7tdij"]
+
+[ext_resource type="PackedScene" uid="uid://b5ovro3x6fhty" path="res://assets/models/levels/woods/woodsLatest.glb" id="2_qwece"]
+[ext_resource type="PackedScene" uid="uid://b1no6pukt37fw" path="res://scenes/actors/New Player.tscn" id="2_x0sll"]
+[ext_resource type="PackedScene" uid="uid://dnv4yffmjf5wr" path="res://scenes/tools/Dynamic Objects/swinging rope/swinging rope.tscn" id="3_yli2a"]
+
+[sub_resource type="Gradient" id="Gradient_2gfyl"]
+offsets = PackedFloat32Array(0, 0.35474, 0.59322, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0.748371, 0.721598, 0.919273, 1, 0.859153, 0.913993, 0.98913, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jk3ds"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tgud8"]
+invert = true
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_2gfyl")
+noise = SubResource("FastNoiseLite_jk3ds")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_78j1y"]
+sky_top_color = Color(0.242352, 0.539692, 0.618089, 1)
+sky_horizon_color = Color(0.397798, 0.640197, 0.545406, 1)
+sky_cover = SubResource("NoiseTexture2D_tgud8")
+sky_cover_modulate = Color(0.908439, 1, 0.955212, 1)
+ground_bottom_color = Color(0.0469885, 0.116209, 0.0904792, 1)
+ground_horizon_color = Color(0.114862, 0.464122, 0.289564, 1)
+ground_curve = 0.00933031
+sun_angle_max = 360.0
+sun_curve = 0.023898
+
+[sub_resource type="Sky" id="Sky_uf4ue"]
+sky_material = SubResource("ProceduralSkyMaterial_78j1y")
+
+[sub_resource type="Environment" id="Environment_uvliy"]
+background_mode = 2
+sky = SubResource("Sky_uf4ue")
+ambient_light_source = 3
+ambient_light_color = Color(2.18995e-06, 0.380172, 0.302241, 1)
+ambient_light_sky_contribution = 0.44
+ambient_light_energy = 0.8
+reflected_light_source = 2
+ssao_enabled = true
+ssao_radius = 2.76
+ssao_intensity = 4.22
+ssao_power = 1.84672
+fog_mode = 1
+fog_light_color = Color(0.23273, 0.619755, 0.598681, 1)
+fog_light_energy = 0.1
+fog_sun_scatter = 0.47
+fog_density = 1.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0036
+volumetric_fog_albedo = Color(0, 0.835294, 0.521569, 1)
+volumetric_fog_length = 66.57
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4yip2"]
+
+[node name="Woods" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("2_x0sll")]
+transform = Transform3D(0.0729249, 0, -0.997337, 0, 1, 0, 0.997337, 0, 0.0729249, 0, 4.10745, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.972889, -0.0918938, 0.212232, 0, 0.917671, 0.39734, -0.231273, -0.386568, 0.892792, 0, 20.9702, 0)
+light_color = Color(1, 1, 0.843137, 1)
+
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uvliy")
+
+[node name="woodsLatest" parent="." instance=ExtResource("2_qwece")]
+
+[node name="Movement Interactables" type="Node3D" parent="."]
+
+[node name="Swinging Rope" parent="Movement Interactables" instance=ExtResource("3_yli2a")]
+transform = Transform3D(1, 0, 0, 0, 0.84147, 0.540304, 0, -0.540304, 0.84147, -47.4894, 26.9169, 1.89539)
+time_to_swing = 2.5
+
+[node name="MeshInstance3D" parent="Movement Interactables/Swinging Rope" index="0"]
+mesh = SubResource("CylinderMesh_4yip2")
+
+[node name="Bottom Point" parent="Movement Interactables/Swinging Rope" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, -11.9716, -7.68692)
+
+[editable path="Movement Interactables/Swinging Rope"]
