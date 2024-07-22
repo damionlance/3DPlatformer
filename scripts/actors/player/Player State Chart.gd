@@ -39,6 +39,9 @@ func _ready():
 	add_child(jump_reset_timer)
 	
 	joystick_input_buffer.resize(5)
+	
+	state_chart.set_expression_property("locked_in_dialogue", false)
+	state_chart.set_expression_property("in_interactable", false)
 
 func _physics_process(delta):
 	velocity += delta_v * delta
