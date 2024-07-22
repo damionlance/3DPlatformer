@@ -18,6 +18,8 @@ var pivot:= false
 var was_on_floor := false
 var delta_v := Vector3.ZERO
 
+var character_paused := false
+
 var joystick_input_buffer : Array[Vector2] = []
 
 @onready var state_chart := $%StateChart
@@ -44,7 +46,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-	input_polling()
+	if not character_paused: input_polling()
 	state_chart_expression_update()
 	delta_v = Vector3.ZERO
 
@@ -363,3 +365,6 @@ func ledge_hang_processing(_delta : float) -> void:
 
 func bounce(area: Area3D) -> void:
 	state_chart.send_event("bounce")
+
+func pause_character(pause : bool) -> void:
+	character_paused = pause

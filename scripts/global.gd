@@ -1,5 +1,7 @@
 extends Node
 
+var dialogue_effects : Array = [BouncyLetters.new()]
+
 var settings = Dictionary()
 var settings_version = 1.01
 
@@ -440,6 +442,7 @@ func setup_input_images():
 	var apath = "res://assets/textures/input prompts/active input/"
 	var xpath = "res://assets/textures/input prompts/" + device + "/"
 	dir.copy(xpath + InputMap.action_get_events("Jump")[1].as_text() + ".png", apath + "Jump.png")
+	dir.copy(xpath + InputMap.action_get_events("ui_cancel")[1].as_text() + ".png", apath + "ui_cancel.png")
 	dir.copy(xpath + InputMap.action_get_events("Throw")[1].as_text() + ".png", apath + "Throw.png")
 	dir.copy(xpath + InputMap.action_get_events("DiveButton")[1].as_text() + ".png", apath + "Dive.png")
 	dir.copy(xpath + InputMap.action_get_events("Pause")[1].as_text() + ".png", apath + "Pause.png")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://cu0m6axkfpnwa"]
+[gd_scene load_steps=23 format=3 uid="uid://cu0m6axkfpnwa"]
 
 [ext_resource type="PackedScene" uid="uid://dxl0785m13c2a" path="res://assets/models/levels/bee hive/Bee Hive.glb" id="1_ds78j"]
 [ext_resource type="PackedScene" uid="uid://b1no6pukt37fw" path="res://scenes/actors/New Player.tscn" id="2_ljniw"]
 [ext_resource type="PackedScene" uid="uid://caepckx3gr70v" path="res://scenes/tools/managers/Checkpoint/checkpoint.tscn" id="3_iskfl"]
 [ext_resource type="PackedScene" uid="uid://b77fgnopqf6lt" path="res://scenes/tools/managers/Linear Respawn Zone/linear respawn zone.tscn" id="4_y7k48"]
 [ext_resource type="PackedScene" uid="uid://prwo27u8nms1" path="res://scenes/tools/dynamic objects/Zipline/zipline.tscn" id="5_bvawl"]
+[ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="6_lcc53"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvnjw"]
 vertex_color_use_as_albedo = true
@@ -102,7 +103,7 @@ point_count = 2
 [node name="Bee Hive" parent="." instance=ExtResource("1_ds78j")]
 
 [node name="Player" parent="." instance=ExtResource("2_ljniw")]
-transform = Transform3D(0.977042, 0, 0.213047, 0, 1, 0, -0.213047, 0, 0.977042, 144.384, 154.249, 201.411)
+transform = Transform3D(0.977042, 0, 0.213047, 0, 1, 0, -0.213047, 0, 0.977042, 1.35828, 2.00334, 2.90473)
 
 [node name="Coins" type="MultiMeshInstance3D" parent="."]
 visible = false
@@ -173,6 +174,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.0314, 81.0469, 106.728)
 
 [node name="Path3D" parent="Dynamic Objects/First Floor/Zipline4" index="0"]
 curve = SubResource("Curve3D_oo274")
+
+[node name="Signpost" parent="." instance=ExtResource("6_lcc53")]
+transform = Transform3D(-0.902683, 0, -0.430306, 0, 1, 0, 0.430306, 0, -0.902683, 6.16725, 1.46515, 9.2671)
 
 [editable path="Checkpoints/Checkpoint"]
 [editable path="Linear Respawn Zone"]

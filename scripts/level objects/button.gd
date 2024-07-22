@@ -8,6 +8,9 @@ var player
 @export var split_name : String
 
 var inactive = false
+
+var activatable := false
+
 signal add_body
 signal remove_body
 signal activate
@@ -48,11 +51,10 @@ func _activate():
 	queue_free()
 
 func _on_body_exited(body):
-	if body.name == "Player":
-		body.remove_body(self)
+	if body is Player:
 		inactive = false
-
+		activatable = false
 
 func _on_body_entered(body):
-	if body.name == "Player":
-		body.add_body(self, "[img]res://assets/textures/input prompts/active input/Jump.png[/img]")
+	if body is Player:
+		activatable = true
