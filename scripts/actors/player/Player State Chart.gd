@@ -42,6 +42,7 @@ func _ready():
 	
 	state_chart.set_expression_property("locked_in_dialogue", false)
 	state_chart.set_expression_property("in_interactable", false)
+	print(get_tree().get_nodes_in_group("climbable").size())
 
 func _physics_process(delta):
 	velocity += delta_v * delta

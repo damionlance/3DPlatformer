@@ -1,0 +1,171 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxjlrtgnllq8v"]
+
+[ext_resource type="Script" path="res://scenes/enemies/Jumping Spider/jumping spider.gd" id="1_chuir"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="1_ekuwx"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="2_oa52c"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_0f0i5"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_xy38h"]
+[ext_resource type="PackedScene" uid="uid://buoyb72atumdt" path="res://scenes/tools/managers/Hazard Detector/hazard detector.tscn" id="5_8kumj"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_j4jws"]
+[ext_resource type="Script" path="res://scenes/enemies/Jumping Spider/raycasts.gd" id="8_8doxj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hmdac"]
+radius = 1.20612
+height = 3.16566
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7rsqb"]
+height = 0.577994
+radius = 2.19899
+
+[node name="Jumping Spider" type="CharacterBody3D"]
+collision_layer = 64
+collision_mask = 71
+script = ExtResource("1_chuir")
+
+[node name="Body" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Body" type="CSGSphere3D" parent="Body"]
+transform = Transform3D(-5.46392e-08, 0, 1.25, 0, 1.25, 0, -1.25, 0, -5.46392e-08, 0, 1.98287, 0)
+layers = 2
+radius = 1.0
+
+[node name="Body2" type="CSGSphere3D" parent="Body"]
+transform = Transform3D(-1.5625, 0, -1.36598e-07, 0, 1.5625, 0, 1.36598e-07, 0, -1.5625, 0, 1.44699, -2.31962)
+layers = 2
+radius = 1.0
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Body"]
+transform = Transform3D(0.588629, 0.777404, -0.221719, -0.797247, 0.603653, 0, 0.133841, 0.176765, 0.975111, -2.23162, 0.827577, -0.528157)
+radius = 0.143409
+height = 4.42658
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Body"]
+transform = Transform3D(0.603653, 0.797247, 0, -0.797247, 0.603653, 0, 0, 0, 1, -2.23162, 0.827577, 0.34123)
+radius = 0.143409
+height = 4.42658
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Body"]
+transform = Transform3D(0.577715, 0.76299, 0.289984, -0.797247, 0.603653, -8.75712e-09, -0.17505, -0.231189, 0.957032, -1.97998, 0.827577, 1.12656)
+radius = 0.143409
+height = 4.42658
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Body"]
+transform = Transform3D(0.514164, 0.679059, -0.523941, -0.797247, 0.603653, 0, 0.316279, 0.417711, 0.851754, -2.07243, 0.827577, -1.46995)
+radius = 0.143409
+height = 4.42658
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Body"]
+transform = Transform3D(-0.602988, -0.796368, -0.0469321, -0.797247, 0.603653, -1.38729e-08, 0.0283308, 0.0374165, -0.998898, 2.2502, 0.827577, 0.221163)
+radius = 0.143409
+height = 4.42658
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Body"]
+transform = Transform3D(-0.581699, -0.768251, -0.267238, -0.797247, 0.603653, 0, 0.161319, 0.213055, -0.96363, 2.01787, 0.827577, -0.616605)
+radius = 0.143409
+height = 4.42658
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="Body"]
+transform = Transform3D(-0.509924, -0.673458, -0.535193, -0.797247, 0.603653, -1.75142e-08, 0.323071, 0.426681, -0.84473, 1.56551, 0.827577, -1.30612)
+radius = 0.143409
+height = 4.42658
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="Body"]
+transform = Transform3D(-0.579986, -0.76599, 0.277264, -0.797247, 0.603653, -4.09989e-08, -0.167372, -0.221048, -0.960794, 2.34848, 0.827577, 1.17124)
+radius = 0.143409
+height = 4.42658
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("1_ekuwx")
+
+[node name="ParallelState" type="Node" parent="StateChart"]
+script = ExtResource("2_oa52c")
+
+[node name="Logic States" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("3_0f0i5")
+initial_state = NodePath("Peaceful")
+
+[node name="Peaceful" type="Node" parent="StateChart/ParallelState/Logic States"]
+script = ExtResource("3_0f0i5")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/ParallelState/Logic States/Peaceful"]
+script = ExtResource("4_xy38h")
+
+[node name="Dash" type="Node" parent="StateChart/ParallelState/Logic States/Peaceful/Idle"]
+script = ExtResource("6_j4jws")
+to = NodePath("../../Dash")
+event = &"dash"
+delay_in_seconds = "0.0"
+
+[node name="Jump" type="Node" parent="StateChart/ParallelState/Logic States/Peaceful/Idle"]
+script = ExtResource("6_j4jws")
+to = NodePath("../../Jump")
+event = &"jump"
+delay_in_seconds = "0.0"
+
+[node name="Dash" type="Node" parent="StateChart/ParallelState/Logic States/Peaceful"]
+script = ExtResource("4_xy38h")
+
+[node name="Idle" type="Node" parent="StateChart/ParallelState/Logic States/Peaceful/Dash"]
+script = ExtResource("6_j4jws")
+to = NodePath("../../Idle")
+event = &"idle"
+delay_in_seconds = "0.0"
+
+[node name="Jump" type="Node" parent="StateChart/ParallelState/Logic States/Peaceful"]
+script = ExtResource("4_xy38h")
+
+[node name="Idle" type="Node" parent="StateChart/ParallelState/Logic States/Peaceful/Jump"]
+script = ExtResource("6_j4jws")
+to = NodePath("../../Idle")
+event = &"idle"
+delay_in_seconds = "0.0"
+
+[node name="Angry" type="Node" parent="StateChart/ParallelState/Logic States"]
+script = ExtResource("3_0f0i5")
+
+[node name="Animation States" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("3_0f0i5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56766, 0)
+shape = SubResource("CapsuleShape3D_hmdac")
+
+[node name="Hazard Detector" parent="." instance=ExtResource("5_8kumj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49793, 0)
+
+[node name="CollisionShape3D" parent="Hazard Detector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.972224, 0)
+shape = SubResource("CylinderShape3D_7rsqb")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+unique_name_in_owner = true
+path_desired_distance = 0.5
+path_max_distance = 10.01
+
+[node name="Raycasts" type="Node3D" parent="."]
+script = ExtResource("8_8doxj")
+
+[node name="Left Raycast" type="RayCast3D" parent="Raycasts"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.755485, 0.614352, 1.42137)
+
+[node name="Right Raycast" type="RayCast3D" parent="Raycasts"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.836675, 0.614352, 1.42137)
+
+[node name="Floor Alignment Raycast" type="RayCast3D" parent="Raycasts"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0539151, 0)
+
+[connection signal="state_entered" from="StateChart/ParallelState/Logic States/Peaceful/Idle" to="." method="idle"]
+[connection signal="state_entered" from="StateChart/ParallelState/Logic States/Peaceful/Dash" to="." method="prep_dash"]
+[connection signal="state_entered" from="StateChart/ParallelState/Logic States/Peaceful/Dash" to="." method="look_forward" flags=3 binds= [0.017]]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Logic States/Peaceful/Dash" to="." method="process_dash"]
+[connection signal="state_entered" from="StateChart/ParallelState/Logic States/Peaceful/Jump" to="." method="prep_jump"]
+[connection signal="state_entered" from="StateChart/ParallelState/Logic States/Peaceful/Jump" to="." method="look_forward" flags=3 binds= [0.017]]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Logic States/Peaceful/Jump" to="." method="check_for_floor" flags=3]
+[connection signal="stop_moving" from="Raycasts" to="." method="_on_raycasts_stop_moving"]
+
+[editable path="Hazard Detector"]

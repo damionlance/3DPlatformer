@@ -8,6 +8,7 @@ extends Enemy
 @onready var left_raycast := $"%Left Side Raycast"
 @onready var right_raycast := $"%Right Side Raycast"
 @onready var navigation_agent := $"%NavigationAgent3D"
+@onready var body := $"%Body"
 
 var delta_v := Vector3.ZERO
 
@@ -77,6 +78,18 @@ func wander(delta: float) -> void:
 	
 	delta_v.y = -90
 	delta_v *= _wander_walk_speed
+
+func align_to_floor(_delta) -> void:
+	var floor_normal = floor_alignment_raycast.get_collision_normal()
+	if floor_normal == Vector3.ZERO:
+		return
+	var xform = global_transform
+	var new_y = floor_normal
+	xform.basis.y = new_y
+	xform.basis.x = -xform.basis.z.cross(new_y)
+	xform.basis = xform.basis.orthonormalized()
+	if body != null:
+		body.global_transform = player_model.global_transform.interpolate_with(xform, 0.1)
 
 func hazard_reaction(body : Node) -> void:
 	if body == self:

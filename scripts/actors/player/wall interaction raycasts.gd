@@ -16,12 +16,12 @@ func _process(_delta):
 			break
 	#Check if raycasts normals are within margin of error
 	if colliding:
-		if check_wall_group("climbable zone"):
+		if check_wall_group():
 			state_chart.send_event("Wall Climb")
 		elif forward_raycasts[0].get_collision_normal() == forward_raycasts[1].get_collision_normal():
 			state_chart.send_event("Wall Slide")
 
-func check_wall_group(_check_group : String) -> bool:
+func check_wall_group() -> bool:
 	var in_group := false
 	if forward_climb_raycasts[0].is_colliding():
 		in_group = true

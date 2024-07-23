@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ba6e1y4f0pnve"
-path.s3tc="res://.godot/imported/possible final fella_Clothes.png-f730ae1272c696b736d8baeb11092fcf.s3tc.ctex"
+path.s3tc="res://.godot/imported/possible final fella_Clothes.png-d9cd4a64e6771e5d523f59e08475a7f8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/actors/Fella/possible final fella_Clothes.png"
-dest_files=["res://.godot/imported/possible final fella_Clothes.png-f730ae1272c696b736d8baeb11092fcf.s3tc.ctex"]
+source_file="res://assets/models/actors/fella/possible final fella_Clothes.png"
+dest_files=["res://.godot/imported/possible final fella_Clothes.png-d9cd4a64e6771e5d523f59e08475a7f8.s3tc.ctex"]
 
 [params]
 

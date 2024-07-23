@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://d2rqv1fspr6ke"]
+[gd_scene load_steps=51 format=4 uid="uid://d2rqv1fspr6ke"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_x2lfh"]
 [ext_resource type="Texture2D" uid="uid://co7kl4bkcra5x" path="res://assets/textures/playground/whitex.png" id="3_wfla7"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://ch24fj2bm5imh" path="res://scenes/tools/dynamic objects/Climbing Rope/Climbable Rope.tscn" id="17_udhlb"]
 [ext_resource type="PackedScene" uid="uid://dnv4yffmjf5wr" path="res://scenes/tools/dynamic objects/swinging rope/swinging rope.tscn" id="18_1o8no"]
 [ext_resource type="PackedScene" uid="uid://b1no6pukt37fw" path="res://scenes/actors/New Player.tscn" id="19_qv6ga"]
+[ext_resource type="PackedScene" uid="uid://dxjlrtgnllq8v" path="res://scenes/enemies/Jumping Spider/jumping spider.tscn" id="20_qp0kq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5naoj"]
 albedo_texture = ExtResource("3_wfla7")
@@ -429,10 +430,10 @@ transform = Transform3D(-0.503475, -0.223875, -0.834501, 0, 0.965847, -0.259111,
 transform = Transform3D(-0.860973, 0.508651, 0, -0.508651, -0.860973, 0, 0, 0, 1, 2.06914, -8.92676, 1.20573)
 
 [node name="Swinging Rope" parent="DynamicObjects" instance=ExtResource("18_1o8no")]
-transform = Transform3D(1, 0, 0, 0, 0.751373, -0.659878, 0, 0.659878, 0.751373, -35.9657, 19.6002, 10.4999)
+transform = Transform3D(1, 0, 0, 0, 0.752555, -0.65853, 0, 0.65853, 0.752555, -35.9657, 19.6002, 10.4999)
 
 [node name="MeshInstance3D" parent="DynamicObjects/Swinging Rope" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.8, -1.90735e-06)
 mesh = SubResource("CylinderMesh_2oa51")
 
 [node name="Bottom Point" parent="DynamicObjects/Swinging Rope" index="1"]
@@ -443,6 +444,15 @@ environment = SubResource("Environment_sveea")
 
 [node name="Player" parent="." instance=ExtResource("19_qv6ga")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9647, 0.99998, -17.5517)
+
+[node name="Jumping Spider" parent="." instance=ExtResource("20_qp0kq")]
+transform = Transform3D(0.520265, 0, -0.854005, 0, 1, 0, 0.854005, 0, 0.520265, -24.5143, 4.0892, -25.5864)
+
+[node name="Jumping Spider2" parent="." instance=ExtResource("20_qp0kq")]
+transform = Transform3D(0.48232, 0, -0.875995, 0, 1, 0, 0.875995, 0, 0.48232, -24.5143, 2.10338, -16.5146)
+
+[node name="Jumping Spider3" parent="." instance=ExtResource("20_qp0kq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7996, 3.10221, -25.5864)
 
 [editable path="DynamicObjects/Climbable Rope"]
 [editable path="DynamicObjects/Swinging Rope"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/actors/player/Player_all_raycast.gd" id="1_2clf3"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/StateMachine.gd" id="2_0ax74"]
-[ext_resource type="PackedScene" uid="uid://4vh2f3m2n7bn" path="res://assets/models/actors/Fella/possible final fella.glb" id="2_dx06d"]
+[ext_resource type="PackedScene" uid="uid://4vh2f3m2n7bn" path="res://assets/models/actors/fella/possible final fella.glb" id="2_dx06d"]
 [ext_resource type="Script" path="res://scripts/actors/player/raycast_handler.gd" id="3_ip2tk"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/aerial_movement.gd" id="3_iygc6"]
 [ext_resource type="Script" path="res://scripts/state machine/states/player/Jump.gd" id="4_egrs2"]

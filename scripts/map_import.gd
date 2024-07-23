@@ -134,7 +134,6 @@ func set_up_rising_door(door, main_scene) -> Node:
 
 func set_up_climbable_surface(plane, main_scene) -> Node:
 	plane.create_convex_collision()
-	plane.get_child(0).add_to_group("climbable")
 	plane.get_child(0).name = "StaticBody3D"
 	plane.get_child(0).set_collision_layer(128)
 	return plane
