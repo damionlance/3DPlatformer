@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bc1qbermb8nfi" path="res://scenes/tools/Interactive Objects/player locking area/player locking area.tscn" id="2_gyk7i"]
 
 [node name="Swinging Rope" type="Node3D" node_paths=PackedStringArray("mesh_instance", "bottom_point")]
-transform = Transform3D(1, 0, 0, 0, 0.84147, 0.540304, 0, -0.540304, 0.84147, 0, 0, 0)
 script = ExtResource("2_8wlk6")
 mesh_instance = NodePath("MeshInstance3D")
 bottom_point = NodePath("Bottom Point")

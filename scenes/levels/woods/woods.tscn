@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5aa6e0y7tdij"]
+[gd_scene load_steps=19 format=3 uid="uid://c5aa6e0y7tdij"]
 
 [ext_resource type="PackedScene" uid="uid://b5ovro3x6fhty" path="res://assets/models/levels/woods/woodsLatest.glb" id="2_qwece"]
 [ext_resource type="PackedScene" uid="uid://b1no6pukt37fw" path="res://scenes/actors/New Player.tscn" id="2_x0sll"]
@@ -54,11 +54,36 @@ volumetric_fog_albedo = Color(0, 0.835294, 0.521569, 1)
 volumetric_fog_length = 66.57
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_4yip2"]
+height = 19.5218
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_l62fv"]
+height = 29.472
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_oswix"]
+height = 35.551
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_d8h3f"]
+height = 29.472
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_u6yd5"]
+height = 22.47
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pr0yd"]
+height = 66.278
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vfhiw"]
+height = 39.078
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kvvoi"]
+height = 24.5721
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_egddu"]
+height = 31.3924
 
 [node name="Woods" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("2_x0sll")]
-transform = Transform3D(0.0729249, 0, -0.997337, 0, 1, 0, 0.997337, 0, 0.0729249, 0, 4.10745, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -215.947, 112.919, 159.589)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.972889, -0.0918938, 0.212232, 0, 0.917671, 0.39734, -0.231273, -0.386568, 0.892792, 0, 20.9702, 0)
@@ -72,13 +97,122 @@ environment = SubResource("Environment_uvliy")
 [node name="Movement Interactables" type="Node3D" parent="."]
 
 [node name="Swinging Rope" parent="Movement Interactables" instance=ExtResource("3_yli2a")]
-transform = Transform3D(1, 0, 0, 0, 0.84147, 0.540304, 0, -0.540304, 0.84147, -47.4894, 26.9169, 1.89539)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -47.4894, 32.1678, 1.89539)
 time_to_swing = 2.5
 
 [node name="MeshInstance3D" parent="Movement Interactables/Swinging Rope" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.7609, 0)
 mesh = SubResource("CylinderMesh_4yip2")
 
 [node name="Bottom Point" parent="Movement Interactables/Swinging Rope" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, -11.9716, -7.68692)
+transform = Transform3D(1, 0, 0, 0, 0.84147, -0.540304, 0, 0.540304, 0.84147, 0, -19.5218, 0)
+
+[node name="Swinging Rope4" parent="Movement Interactables" instance=ExtResource("3_yli2a")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -153.492, 89.6596, 0.316395)
+time_to_swing = 2.6
+
+[node name="MeshInstance3D" parent="Movement Interactables/Swinging Rope4" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.736, 0)
+mesh = SubResource("CylinderMesh_l62fv")
+
+[node name="Bottom Point" parent="Movement Interactables/Swinging Rope4" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -29.472, 0)
+
+[node name="Swinging Rope10" parent="Movement Interactables" instance=ExtResource("3_yli2a")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -361.277, 92.9693, -164.457)
+time_to_swing = 4.0
+
+[node name="MeshInstance3D" parent="Movement Interactables/Swinging Rope10" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17.7755, 0)
+mesh = SubResource("CylinderMesh_oswix")
+
+[node name="Bottom Point" parent="Movement Interactables/Swinging Rope10" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -35.551, 0)
+
+[node name="Swinging Rope5" parent="Movement Interactables" instance=ExtResource("3_yli2a")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -153.492, 89.6596, -68.1594)
+time_to_swing = 2.4
+
+[node name="MeshInstance3D" parent="Movement Interactables/Swinging Rope5" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.736, 0)
+mesh = SubResource("CylinderMesh_d8h3f")
+
+[node name="Bottom Point" parent="Movement Interactables/Swinging Rope5" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -29.472, 0)
+
+[node name="Swinging Rope2" parent="Movement Interactables" instance=ExtResource("3_yli2a")]
+transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, -82.0535, 37.4464, 34.8401)
+
+[node name="MeshInstance3D" parent="Movement Interactables/Swinging Rope2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.235, 0)
+mesh = SubResource("CylinderMesh_u6yd5")
+
+[node name="Bottom Point" parent="Movement Interactables/Swinging Rope2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22.47, 0)
+
+[node name="Swinging Rope3" parent="Movement Interactables" instance=ExtResource("3_yli2a")]
+transform = Transform3D(-4.37114e-08, -0.258819, 0.965925, 0, 0.965925, 0.258819, -1, 1.13133e-08, -4.22219e-08, -170.609, 104.45, 0.0826292)
+max_angle = 15.0
+time_to_swing = 2.0
+
+[node name="MeshInstance3D" parent="Movement Interactables/Swinging Rope3" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -33.139, 0)
+mesh = SubResource("CylinderMesh_pr0yd")
+
+[node name="Bottom Point" parent="Movement Interactables/Swinging Rope3" index="1"]
+transform = Transform3D(1, 8.88178e-16, 3.55271e-15, 0, 1, -3.26746e-16, 0, -1.49012e-08, 1, 0, -66.278, 0)
+
+[node name="Swinging Rope6" parent="Movement Interactables" instance=ExtResource("3_yli2a")]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, -220.418, 73.5885, 54.6446)
+max_angle = 35.0
+
+[node name="MeshInstance3D" parent="Movement Interactables/Swinging Rope6" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -19.539, 0)
+mesh = SubResource("CylinderMesh_vfhiw")
+
+[node name="Bottom Point" parent="Movement Interactables/Swinging Rope6" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -39.078, 0)
+
+[node name="Swinging Rope7" parent="Movement Interactables" instance=ExtResource("3_yli2a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -256.176, 75.136, 76.8313)
+
+[node name="MeshInstance3D" parent="Movement Interactables/Swinging Rope7" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.2861, 0)
+mesh = SubResource("CylinderMesh_kvvoi")
+
+[node name="Bottom Point" parent="Movement Interactables/Swinging Rope7" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -24.5721, 0)
+
+[node name="Swinging Rope9" parent="Movement Interactables" instance=ExtResource("3_yli2a")]
+transform = Transform3D(-4.37114e-08, -0.642787, 0.766044, 0, 0.766044, 0.642787, -1, 2.80971e-08, -3.34848e-08, -260.785, 154.685, 161.987)
+max_angle = 40.0
+time_to_swing = 6.0
+
+[node name="MeshInstance3D" parent="Movement Interactables/Swinging Rope9" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32.406, 0)
+mesh = SubResource("CylinderMesh_kvvoi")
+
+[node name="Bottom Point" parent="Movement Interactables/Swinging Rope9" index="1"]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, -64.812, 0)
+
+[node name="Swinging Rope8" parent="Movement Interactables" instance=ExtResource("3_yli2a")]
+transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, -273.566, 64.2781, 2.46661)
+time_to_swing = 4.5
+
+[node name="MeshInstance3D" parent="Movement Interactables/Swinging Rope8" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.6962, 0)
+mesh = SubResource("CylinderMesh_egddu")
+
+[node name="Bottom Point" parent="Movement Interactables/Swinging Rope8" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -31.3924, 0)
 
 [editable path="Movement Interactables/Swinging Rope"]
+[editable path="Movement Interactables/Swinging Rope4"]
+[editable path="Movement Interactables/Swinging Rope10"]
+[editable path="Movement Interactables/Swinging Rope5"]
+[editable path="Movement Interactables/Swinging Rope2"]
+[editable path="Movement Interactables/Swinging Rope3"]
+[editable path="Movement Interactables/Swinging Rope6"]
+[editable path="Movement Interactables/Swinging Rope7"]
+[editable path="Movement Interactables/Swinging Rope9"]
+[editable path="Movement Interactables/Swinging Rope8"]

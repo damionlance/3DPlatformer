@@ -12,7 +12,8 @@ func _ready():
 	rotation.x = -deg_to_rad(max_angle)
 	update_length()
 	mesh_instance.rotation = Vector3.ZERO
-	_swing()
+	if not Engine.is_editor_hint():
+		_swing()
 
 func _swing() -> void:
 	var tween := create_tween()
