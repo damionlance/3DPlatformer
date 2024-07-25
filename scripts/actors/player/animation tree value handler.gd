@@ -4,6 +4,7 @@ extends AnimationTree
 func _process(_delta):
 	set("parameters/Walk/blend_position", player.movement_direction.length())
 	set("parameters/Run/blend_position", player.movement_direction.length())
+	set("parameters/Crouch/blend_position", player.movement_direction.length())
 	#set("parameters/StateMachine/Grounded Animations/walk/blend_position", player.movement_direction.length())
 	#set("parameters/StateMachine/Grounded Animations/run/blend_position", player.movement_direction.length())
 	#set("parameters/StateMachine/Grounded Animations/Crouch/blend_position", player.movement_direction.length())

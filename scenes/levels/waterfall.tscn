@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_0kyes"]
 [ext_resource type="PackedScene" uid="uid://dx43f0ws6wsw2" path="res://assets/models/levels/waterfall/waterfall.glb" id="2_evhbf"]
 [ext_resource type="PackedScene" uid="uid://b1no6pukt37fw" path="res://scenes/actors/New Player.tscn" id="3_n1hwv"]
-[ext_resource type="PackedScene" uid="uid://jaxv1pb1wkxy" path="res://scenes/tools/Dynamic Objects/Garden/moving_log_platform.tscn" id="4_u4tyk"]
+[ext_resource type="PackedScene" uid="uid://jaxv1pb1wkxy" path="res://scenes/tools/dynamic objects/Garden/moving_log_platform.tscn" id="4_u4tyk"]
 [ext_resource type="PackedScene" uid="uid://b77fgnopqf6lt" path="res://scenes/tools/managers/Linear Respawn Zone/linear respawn zone.tscn" id="5_am48q"]
-[ext_resource type="PackedScene" uid="uid://ds2kwr3biacnf" path="res://scenes/tools/Dynamic Objects/Garden/frogger_log.tscn" id="6_fxmaa"]
+[ext_resource type="PackedScene" uid="uid://ds2kwr3biacnf" path="res://scenes/tools/dynamic objects/Garden/frogger_log.tscn" id="6_fxmaa"]
 [ext_resource type="PackedScene" uid="uid://4a04y8mp1fyf" path="res://scenes/levels/Waterfall/falling rocks.tscn" id="6_hgbrb"]
 [ext_resource type="PackedScene" uid="uid://caepckx3gr70v" path="res://scenes/tools/managers/Checkpoint/checkpoint.tscn" id="6_jhb82"]
-[ext_resource type="PackedScene" uid="uid://ce4llblk2ui00" path="res://scenes/tools/Dynamic Objects/Garden/crumbling_rock_platform.tscn" id="6_xo4n8"]
+[ext_resource type="PackedScene" uid="uid://ce4llblk2ui00" path="res://scenes/tools/dynamic objects/Garden/crumbling_rock_platform.tscn" id="6_xo4n8"]
 [ext_resource type="Material" uid="uid://b5638r3gpb44l" path="res://assets/materials/garden/Bark.tres" id="7_qiiup"]
 [ext_resource type="Material" uid="uid://cabjis8wr5kti" path="res://assets/materials/garden/frogger logs.tres" id="8_im6ms"]
 [ext_resource type="Script" path="res://addons/OvaniAmbiencePlugin/AmbienceArea.gd" id="11_n3bhk"]
@@ -632,9 +632,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -246.757, 166.411, -57.9055)
 
 [node name="Moving Platform" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(0.965486, 0, 0.260454, 0, 1, 0, -0.260454, 0, 0.965486, 154.356, -1.4073, -18.0812)
+number_of_objects = 4
 speed_of_platform = 6.0
 transition_type = 1
-number_of_objects = 4
 
 [node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform" index="0"]
 curve = SubResource("Curve3D_ptpi1")
@@ -647,9 +647,9 @@ mesh = SubResource("ArrayMesh_tyrub")
 
 [node name="Moving Platform2" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(0.60102, 0, 0.799234, 0, 1, 0, -0.799234, 0, 0.60102, 168.163, -1.407, 35.898)
+number_of_objects = 4
 speed_of_platform = 7.0
 transition_type = 1
-number_of_objects = 4
 
 [node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform2" index="0"]
 curve = SubResource("Curve3D_612d3")
@@ -662,9 +662,9 @@ mesh = SubResource("ArrayMesh_tyrub")
 
 [node name="Moving Platform3" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(0.324231, 0, 0.945978, 0, 1, 0, -0.945978, 0, 0.324231, 81.2525, -1.4073, -21.7931)
+number_of_objects = 4
 speed_of_platform = 5.0
 transition_type = 1
-number_of_objects = 4
 
 [node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform3" index="0"]
 transform = Transform3D(0.864889, 0, 0.501964, 0, 1, 0, -0.501964, 0, 0.864889, -1.51876, 0, 0.520554)
@@ -678,9 +678,9 @@ mesh = SubResource("ArrayMesh_tyrub")
 
 [node name="Moving Platform4" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(0.324231, 0, 0.945978, 0, 1, 0, -0.945978, 0, 0.324231, 73.1078, -1.4073, -10.0208)
+number_of_objects = 4
 speed_of_platform = 7.0
 transition_type = 1
-number_of_objects = 4
 
 [node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform4" index="0"]
 transform = Transform3D(0.864889, 0, 0.501964, 0, 1, 0, -0.501964, 0, 0.864889, 0, 0, 0)
@@ -694,9 +694,9 @@ mesh = SubResource("ArrayMesh_tyrub")
 
 [node name="Moving Platform5" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(0.995057, 0, -0.0993025, 0, 1, 0, 0.0993025, 0, 0.995057, 37.0382, -1.4073, 6.68208)
+number_of_objects = 9
 speed_of_platform = 2.405
 transition_type = 1
-number_of_objects = 9
 
 [node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform5" index="0"]
 transform = Transform3D(0.864889, 0, 0.501964, 0, 1, 0, -0.501964, 0, 0.864889, 0, 0, 0)
@@ -710,9 +710,9 @@ mesh = SubResource("ArrayMesh_tyrub")
 
 [node name="Moving Platform6" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(0.999991, 0, -0.00415391, 0, 1, 0, 0.00415391, 0, 0.999991, 79.101, -1.4073, 71.4153)
+number_of_objects = 4
 speed_of_platform = 6.0
 transition_type = 1
-number_of_objects = 4
 
 [node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform6" index="0"]
 transform = Transform3D(0.864889, 0, 0.501964, 0, 1, 0, -0.501964, 0, 0.864889, 3.05176e-05, -0.193497, 0.00439239)
@@ -726,9 +726,9 @@ mesh = SubResource("ArrayMesh_tyrub")
 
 [node name="Moving Platform7" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(-0.0268573, 0, 0.999639, 0, 1, 0, -0.999639, 0, -0.0268573, 68.9373, -1.4073, 89.5808)
+number_of_objects = 4
 speed_of_platform = 10.0
 transition_type = 1
-number_of_objects = 4
 
 [node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform7" index="0"]
 transform = Transform3D(0.864889, 0, 0.501964, 0, 1, 0, -0.501964, 0, 0.864889, 3.05176e-05, -0.193497, 0.00439239)
@@ -743,9 +743,9 @@ mesh = SubResource("ArrayMesh_tyrub")
 
 [node name="Moving Platform8" parent="Dynamic Objects/Top of Falls" instance=ExtResource("6_fxmaa")]
 transform = Transform3D(-0.0337657, 0, 0.99943, 0, 1, 0, -0.99943, 0, -0.0337657, 49.4941, -1.40729, 107.576)
+number_of_objects = 12
 speed_of_platform = 14.0
 transition_type = 1
-number_of_objects = 12
 
 [node name="Path3D" parent="Dynamic Objects/Top of Falls/Moving Platform8" index="0"]
 transform = Transform3D(0.864889, 0, 0.501964, 0, 1, 0, -0.501964, 0, 0.864889, 3.05176e-05, -0.193497, 0.00439239)

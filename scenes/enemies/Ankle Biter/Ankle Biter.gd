@@ -89,7 +89,7 @@ func align_to_floor(_delta) -> void:
 	xform.basis.x = -xform.basis.z.cross(new_y)
 	xform.basis = xform.basis.orthonormalized()
 	if body != null:
-		body.global_transform = player_model.global_transform.interpolate_with(xform, 0.1)
+		body.global_transform = body.global_transform.interpolate_with(xform, 0.1)
 
 func hazard_reaction(body : Node) -> void:
 	if body == self:

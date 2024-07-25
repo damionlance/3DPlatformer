@@ -92,7 +92,7 @@ func stop_ground_pound() -> void:
 	state_chart.set_expression_property("groundpound", false)
 
 func wall_climb_processing(_delta) -> void:
-	if not wall_jump_raycasts.check_wall_group("climbable zone"):
+	if not wall_jump_raycasts.check_wall_group():
 		state_chart.send_event("Fall")
 	var wall_normal = wall_jump_raycasts.get_average_wall_normal()
 	var wall_distance = wall_jump_raycasts.get_average_wall_distance()

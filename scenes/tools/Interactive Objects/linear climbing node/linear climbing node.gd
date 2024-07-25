@@ -4,7 +4,7 @@ var player_original_parent : Node = null
 var player : Player = null
 @export var climbing_speed : float = 3.0
 var height : float
-var up_direction : Vector3
+var up_direction := Vector3.ZERO
 
 @onready var attach_node := $"%Attach Point"
 
