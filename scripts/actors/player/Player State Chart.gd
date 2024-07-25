@@ -7,7 +7,7 @@ var speed := 0.0
 var speed_coefficient := 1.0
 var facing_direction := Vector3.ZERO
 
-var sideways_friction := 10
+var sideways_friction := 7
 var forwards_friction := 3
 
 var current_jump := -1
@@ -196,6 +196,7 @@ func apply_friction(delta : float) -> void:
 	lateral_velocity = lerp(lateral_velocity, Vector3.ZERO, sideways_friction * delta) 
 	
 	if forward_velocity.length() > constants.max_horizontal_velocity * speed_coefficient or forward_velocity.dot(movement_direction) < 0:
+		
 		forward_velocity = lerp(forward_velocity, Vector3.ZERO, forwards_friction/speed_coefficient * delta)
 	var temp = velocity.y
 	velocity = forward_velocity + lateral_velocity
