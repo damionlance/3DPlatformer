@@ -430,7 +430,7 @@ transform = Transform3D(-0.503475, -0.223875, -0.834501, 0, 0.965847, -0.259111,
 transform = Transform3D(-0.860973, 0.508651, 0, -0.508651, -0.860973, 0, 0, 0, 1, 2.06914, -8.92676, 1.20573)
 
 [node name="Swinging Rope" parent="DynamicObjects" instance=ExtResource("18_1o8no")]
-transform = Transform3D(1, 0, 0, 0, 0.752555, -0.65853, 0, 0.65853, 0.752555, -35.9657, 19.6002, 10.4999)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -35.9657, 19.6002, 10.4999)
 
 [node name="MeshInstance3D" parent="DynamicObjects/Swinging Rope" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.8, -1.90735e-06)
