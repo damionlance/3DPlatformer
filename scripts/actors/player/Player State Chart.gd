@@ -17,6 +17,7 @@ var jump_reset_timer := Timer.new()
 var pivot:= false
 var was_on_floor := false
 var delta_v := Vector3.ZERO
+var root_velocity := Vector3.ZERO
 
 var character_paused := false
 
@@ -25,6 +26,7 @@ var joystick_input_buffer : Array[Vector2] = []
 @onready var state_chart := $%StateChart
 @onready var camera := $CameraPivot
 @onready var animation_tree := $AnimationTree
+@onready var animation_player := $"model/AnimationPlayer"
 @onready var coin_sounds = $"Sounds/Coin Collected"
 @onready var player_model = $"%model"
 
@@ -32,6 +34,7 @@ var joystick_input_buffer : Array[Vector2] = []
 @onready var floor_alignment_raycast := $"%Floor Alignment Raycast"
 @onready var wall_jump_raycasts := $"%Wall Jump Raycasts"
 @onready var ledge_hang_raycasts := $"%Ledge Hang Raycasts"
+@onready var ledge_climb_raycast := $"%Ledge Climb Raycast"
 
 func _ready():
 	constants._ready()
@@ -44,7 +47,7 @@ func _ready():
 	state_chart.set_expression_property("in_interactable", false)
 
 func _physics_process(delta):
-	velocity += delta_v * delta
+	velocity +=  + (delta_v * delta)
 	speed = Vector3(velocity.x, 0, velocity.z).length()
 	
 	move_and_slide()
@@ -337,23 +340,31 @@ func add_coin(coin_name):
 	return true
 
 func start_ledge_hang() -> void:
+	delta_v = Vector3.ZERO
 	var raycast_collision_points : Vector3 = ledge_hang_raycasts.downward_raycasts[0].get_collision_point()
 	raycast_collision_points -= ledge_hang_raycasts.downward_raycasts[1].get_collision_point()
 	raycast_collision_points *= 0.25
 	var height_difference : float = raycast_collision_points.y
 	
 	global_position.y += height_difference
-	movement_direction = wall_jump_raycasts.get_average_wall_normal()
-	look_backward(0.0166)
+	movement_direction = -wall_jump_raycasts.get_average_wall_normal()
+	look_forward(0.0166)
 
 func ledge_hang_processing(_delta : float) -> void:
-	
+	velocity = Vector3.ZERO
 	movement_direction = wall_jump_raycasts.get_average_wall_normal()
-	look_backward(0.0166)
 	ledge_hang_raycasts.downward_raycasts[0].force_raycast_update()
 	ledge_hang_raycasts.downward_raycasts[1].force_raycast_update()
 	
 	var horizontal_movement = -Input.get_axis("Left", "Right")
+	var vertical_movement = Input.get_axis("Backward", "Forward")
+	
+	if vertical_movement == 1:
+		start_ledge_climb()
+		return
+	if vertical_movement == -1:
+		state_chart.send_event("Fall")
+	
 	if horizontal_movement > 0:
 		if not ledge_hang_raycasts.downward_raycasts[0].is_colliding() or ledge_hang_raycasts.forward_raycasts[0].is_colliding():
 			horizontal_movement = 0
@@ -372,3 +383,20 @@ func bounce(area: Area3D) -> void:
 
 func pause_character(pause : bool) -> void:
 	character_paused = pause
+
+var previous_root_motion_position := Vector3.ZERO
+var starting_position := Vector3.ZERO
+func start_ledge_climb() -> void:
+	state_chart.set_expression_property("ledge_climb", true)
+	starting_position = global_position
+	previous_root_motion_position = Vector3.ZERO
+
+func set_ledge_climb_position(_delta : float) -> void:
+	var current_root_motion_position = animation_tree.get_root_motion_position_accumulator()
+	var difference : Vector3 = current_root_motion_position - previous_root_motion_position
+	previous_root_motion_position = current_root_motion_position
+	difference = difference.rotated(Vector3.UP, rotation.y)
+	global_position += difference
+
+func stop_ledge_climb() -> void:
+	state_chart.set_expression_property("ledge_climb", false)
