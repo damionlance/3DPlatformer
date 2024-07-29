@@ -38,17 +38,19 @@ func attach_player(body : Node3D, new_position : Vector3) -> void:
 	player_original_parent = body.get_parent()
 	player = body
 	position = new_position
-	rotation.y = player.rotation.y + PI
+	look_at(player.global_position, up_direction)
+	rotate_object_local(Vector3.UP, PI)
 	player.state_chart.send_event("Stationary Interactive State")
 	player.state_chart.send_event("Rope Climb")
 
 func process_rotation() -> void:
-	rotate_y( deg_to_rad(Input.get_axis("Left", "Right")) )
+	rotate_object_local(Vector3.UP, deg_to_rad(Input.get_axis("Left", "Right")))
 
 func process_climb(delta : float) -> void:
 	
 	if player_root_motion:
-		position += up_direction * player.get_root_motion().length() * delta
+		var player_root_motion = player.get_root_motion()
+		position += up_direction * player_root_motion.y
 	else:
 		position += up_direction * Input.get_axis("Backward", "Forward") * climbing_speed * delta
 	

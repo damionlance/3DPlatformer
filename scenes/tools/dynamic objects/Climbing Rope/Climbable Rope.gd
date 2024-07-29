@@ -10,6 +10,7 @@ var player
 
 func _ready() -> void:
 	climber.up_direction = -bottom_point.position.normalized()
+	climber.rotation = -mesh_instance.rotation
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warning_array : Array[String] = []

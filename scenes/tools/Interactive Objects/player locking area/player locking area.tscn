@@ -21,6 +21,8 @@ func _process(delta: float) -> void:
 		_remove_body()
 
 func _on_body_entered(body: Node3D) -> void:
+	if not body is Player:
+		return
 	if body_original_parent != null:
 		return
 	attached_body = body
