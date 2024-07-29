@@ -483,7 +483,7 @@ states/Rollout/position = Vector2(-234, -149)
 "states/Rope Climb/node" = SubResource("AnimationNodeBlendSpace1D_m681i")
 "states/Rope Climb/position" = Vector2(767, -406)
 "states/Rope Grab/node" = SubResource("AnimationNodeAnimation_y4qe2")
-"states/Rope Grab/position" = Vector2(526, -406)
+"states/Rope Grab/position" = Vector2(306, -400)
 states/Run/node = SubResource("AnimationNodeBlendSpace1D_ywqfv")
 states/Run/position = Vector2(746, -149)
 states/Skidding/node = SubResource("AnimationNodeAnimation_pvowa")
@@ -496,7 +496,7 @@ states/Walk/position = Vector2(746, 100)
 "states/Wall Hang/node" = SubResource("AnimationNodeBlendSpace2D_jgwk2")
 "states/Wall Hang/position" = Vector2(526, -322)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_rt8j0"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_xr18s"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_g3pfe"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_aqs1s"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_lknsq"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_me3lj"), "Jump", "Dive", SubResource("AnimationNodeStateMachineTransition_dado3"), "Rollout", "Idle", SubResource("AnimationNodeStateMachineTransition_kfyo0"), "Jump", "Land", SubResource("AnimationNodeStateMachineTransition_s3hvy"), "Land", "Idle", SubResource("AnimationNodeStateMachineTransition_lj4ej"), "Dive", "Dive Land", SubResource("AnimationNodeStateMachineTransition_gjiah"), "Land", "Jump", SubResource("AnimationNodeStateMachineTransition_oljkw"), "Dive Getup", "Idle", SubResource("AnimationNodeStateMachineTransition_035kh"), "Dive Land", "Dive Getup", SubResource("AnimationNodeStateMachineTransition_gfhk4"), "Dive Land", "Rollout", SubResource("AnimationNodeStateMachineTransition_wn44c"), "Idle", "Crouch", SubResource("AnimationNodeStateMachineTransition_ku5lo"), "Crouch", "Idle", SubResource("AnimationNodeStateMachineTransition_x6yy3"), "Run", "Pivot", SubResource("AnimationNodeStateMachineTransition_fmk8h"), "Pivot", "Jump", SubResource("AnimationNodeStateMachineTransition_4yi31"), "Pivot", "Idle", SubResource("AnimationNodeStateMachineTransition_fcydj"), "Land", "Run", SubResource("AnimationNodeStateMachineTransition_83c58"), "Run", "Skidding", SubResource("AnimationNodeStateMachineTransition_c4aef"), "Skidding", "Walk", SubResource("AnimationNodeStateMachineTransition_1vnut"), "Skidding", "Fast Stop", SubResource("AnimationNodeStateMachineTransition_jqb6g"), "Fast Stop", "Idle", SubResource("AnimationNodeStateMachineTransition_isgfb"), "Skidding", "Jump", SubResource("AnimationNodeStateMachineTransition_1e7co"), "Fast Stop", "Jump", SubResource("AnimationNodeStateMachineTransition_6kbsj"), "Jump", "Ground Pound Flip", SubResource("AnimationNodeStateMachineTransition_f0ste"), "Ground Pound Flip", "Land Ground Pound", SubResource("AnimationNodeStateMachineTransition_mbcwr"), "Land Ground Pound", "Ground Pound Getup", SubResource("AnimationNodeStateMachineTransition_77wek"), "Ground Pound Getup", "Idle", SubResource("AnimationNodeStateMachineTransition_1hpwy"), "Land Ground Pound", "Jump", SubResource("AnimationNodeStateMachineTransition_jikvw"), "Jump", "Ledge Hang", SubResource("AnimationNodeStateMachineTransition_c68s4"), "Ledge Hang", "Jump", SubResource("AnimationNodeStateMachineTransition_uai1h"), "Ledge Hang", "Ledge Climb", SubResource("AnimationNodeStateMachineTransition_hkni0"), "Ledge Climb", "Idle", SubResource("AnimationNodeStateMachineTransition_kdele"), "Jump", "Wall Hang", SubResource("AnimationNodeStateMachineTransition_1u3ly"), "Wall Hang", "Jump", SubResource("AnimationNodeStateMachineTransition_6wr44"), "Jump", "Rope Grab", SubResource("AnimationNodeStateMachineTransition_tmupj"), "Rope Grab", "Rope Climb", SubResource("AnimationNodeStateMachineTransition_hp58a"), "Rope Climb", "Jump", SubResource("AnimationNodeStateMachineTransition_svgta"), "Rope Climb", "Slide Down Rope", SubResource("AnimationNodeStateMachineTransition_vbrcx"), "Slide Down Rope", "Rope Climb", SubResource("AnimationNodeStateMachineTransition_1477k")]
-graph_offset = Vector2(-758, -473)
+graph_offset = Vector2(-707, -523)
 
 [sub_resource type="Animation" id="Animation_pmtvo"]
 length = 0.001
@@ -581,6 +581,12 @@ delay_in_seconds = "0.0"
 script = ExtResource("6_m6nmy")
 to = NodePath("../../../Movement State/Aerial Movement Options/Fall")
 event = &"Fall"
+delay_in_seconds = "0.0"
+
+[node name="Idle" type="Node" parent="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State"]
+script = ExtResource("6_m6nmy")
+to = NodePath("../../../Movement State/Grounded Movement Options/Idle")
+event = &"Idle"
 delay_in_seconds = "0.0"
 
 [node name="Dialogue" type="Node" parent="StateChart/ParallelState/CompoundState/Interactive Object States"]
@@ -1393,6 +1399,12 @@ to = NodePath("../../Jump")
 event = &"Jump"
 delay_in_seconds = "0.0"
 
+[node name="Idle" type="Node" parent="StateChart/ParallelState/Animation Controller/Rope Climb"]
+script = ExtResource("6_m6nmy")
+to = NodePath("../../Idle")
+event = &"Idle"
+delay_in_seconds = "0.0"
+
 [node name="Wall Hang" type="Node" parent="StateChart/ParallelState/Animation Controller"]
 script = ExtResource("9_n02co")
 animation_tree = NodePath("../../../../AnimationTree")
@@ -1430,8 +1442,8 @@ tree_root = SubResource("AnimationNodeStateMachine_3yd1y")
 advance_expression_base_node = NodePath("../StateChart")
 anim_player = NodePath("../model/AnimationPlayer")
 parameters/current_length = 0.666667
-parameters/current_position = 0.548635
-parameters/current_delta = 0.007465
+parameters/current_position = 0.594508
+parameters/current_delta = 0.008026
 parameters/Crouch/current_length = 0
 parameters/Crouch/current_position = 0
 parameters/Crouch/current_delta = 0
@@ -1464,8 +1476,8 @@ parameters/End/current_delta = null
 "parameters/Ground Pound Getup/current_position" = 1.0
 "parameters/Ground Pound Getup/current_delta" = 0.0
 parameters/Idle/current_length = 0.666667
-parameters/Idle/current_position = 0.548635
-parameters/Idle/current_delta = 0.007465
+parameters/Idle/current_position = 0.594508
+parameters/Idle/current_delta = 0.008026
 parameters/Jump/current_length = 0.0
 parameters/Jump/current_position = 0.0
 parameters/Jump/current_delta = 0.0
@@ -1749,36 +1761,36 @@ unique_name_in_owner = true
 bones/0/rotation = Quaternion(-0.707107, -1.93821e-24, -7.42028e-24, 0.707107)
 bones/1/position = Vector3(1.21389e-15, 0.0552, 1.0099)
 bones/1/rotation = Quaternion(0.854047, -5.54432e-15, 9.10255e-15, 0.520196)
-bones/3/rotation = Quaternion(-0.221752, -1.68463e-07, -1.4559e-08, 0.975103)
-bones/4/rotation = Quaternion(0.0450081, 1.72589e-07, 2.95499e-09, 0.998987)
+bones/3/rotation = Quaternion(-0.223786, -1.68382e-07, -1.46926e-08, 0.974638)
+bones/4/rotation = Quaternion(0.0429241, 1.72605e-07, 2.81816e-09, 0.999078)
 bones/5/position = Vector3(-1.6691e-14, 0.192579, -4.20884e-08)
-bones/5/rotation = Quaternion(0.198196, 6.00908e-14, 4.72536e-08, 0.980162)
+bones/5/rotation = Quaternion(0.200241, 5.18405e-14, 4.7741e-08, 0.979747)
 bones/6/position = Vector3(1.04945e-14, 0.0661635, -2.44754e-08)
 bones/6/rotation = Quaternion(-0.162247, -2.36359e-07, -8.65749e-09, 0.98675)
 bones/7/position = Vector3(9.76996e-15, 0.22612, -1.31774e-08)
-bones/7/rotation = Quaternion(-0.029493, 8.96438e-08, 1.11639e-08, 0.999565)
+bones/7/rotation = Quaternion(-0.0274078, 1.0822e-07, 1.1596e-08, 0.999624)
 bones/8/position = Vector3(0.175137, 0.0579125, 0.075985)
 bones/8/rotation = Quaternion(-0.605155, -0.345862, -0.356135, 0.622363)
-bones/9/rotation = Quaternion(-0.240726, 0.717765, -0.420769, 0.499818)
+bones/9/rotation = Quaternion(-0.243364, 0.718329, -0.417402, 0.500553)
 bones/10/position = Vector3(-1.00814e-07, 0.135573, -3.73036e-09)
-bones/10/rotation = Quaternion(-8.91237e-08, 0.0498176, 2.02333e-07, 0.998758)
+bones/10/rotation = Quaternion(-9.47222e-08, 0.0499532, 2.36685e-07, 0.998752)
 bones/11/position = Vector3(-7.561e-08, 0.135573, -3.05982e-08)
-bones/11/rotation = Quaternion(0.202426, 0.0497244, -0.0102922, 0.97798)
+bones/11/rotation = Quaternion(0.204106, 0.0499321, -0.0104249, 0.977619)
 bones/12/position = Vector3(8.20589e-08, 0.0950915, 2.98261e-08)
-bones/12/rotation = Quaternion(-1.61294e-07, 0.00676612, -5.90758e-08, 0.999977)
+bones/12/rotation = Quaternion(3.01138e-10, 0.00851854, -3.42767e-08, 0.999964)
 bones/13/position = Vector3(2.43166e-08, 0.0950915, -3.67379e-08)
-bones/13/rotation = Quaternion(-0.0531293, 0.00369748, -0.123503, 0.990914)
+bones/13/rotation = Quaternion(-0.0549119, 0.00545013, -0.124511, 0.990683)
 bones/14/position = Vector3(-0.175137, 0.0579125, 0.0759849)
 bones/14/rotation = Quaternion(-0.605155, 0.345862, 0.356134, 0.622363)
-bones/15/rotation = Quaternion(-0.240726, -0.717765, 0.420768, 0.499818)
+bones/15/rotation = Quaternion(-0.243364, -0.718329, 0.417402, 0.500553)
 bones/16/position = Vector3(-1.19209e-07, 0.135573, 1.86259e-08)
-bones/16/rotation = Quaternion(9.7194e-08, -0.0498178, 1.01569e-07, 0.998758)
+bones/16/rotation = Quaternion(1.33883e-07, -0.0499535, 1.24159e-07, 0.998752)
 bones/17/position = Vector3(7.61312e-09, 0.135573, -8.65079e-08)
-bones/17/rotation = Quaternion(0.202427, -0.0497245, 0.0102923, 0.97798)
+bones/17/rotation = Quaternion(0.204106, -0.0499321, 0.010425, 0.977619)
 bones/18/position = Vector3(4.64661e-08, 0.0950913, 1.4931e-08)
-bones/18/rotation = Quaternion(-5.8295e-08, -0.00676614, 2.26495e-08, 0.999977)
+bones/18/rotation = Quaternion(-1.04878e-07, -0.00851846, -2.44327e-07, 0.999964)
 bones/19/position = Vector3(6.62751e-08, 0.0950915, 5.65965e-08)
-bones/19/rotation = Quaternion(-0.0531299, -0.00369754, 0.123503, 0.990914)
+bones/19/rotation = Quaternion(-0.0549121, -0.00545029, 0.124511, 0.990683)
 bones/20/position = Vector3(0.1184, -0.00488109, -0.0427569)
 bones/20/rotation = Quaternion(-5.50249e-08, 0.696936, 0.717133, 5.17344e-08)
 bones/21/position = Vector3(-0.1184, -0.00488119, -0.0427569)
@@ -1812,7 +1824,7 @@ bones/35/rotation = Quaternion(-4.76526e-05, 0.961249, -0.275682, 0.000165821)
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State" to="." method="reset_velocity"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State" to="." method="reset_root_motion_variables"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State/Jump" to="." method="reset_velocity"]
-[connection signal="taken" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State/Jump" to="." method="set_jump" binds= [7]]
+[connection signal="taken" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State/Jump" to="." method="set_jump" binds= [1]]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Dialogue" to="." method="reset_jumps"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Dialogue" to="." method="reset_pivot_buffer"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Dialogue" to="." method="reset_velocity"]
@@ -1928,9 +1940,6 @@ bones/35/rotation = Quaternion(-4.76526e-05, 0.961249, -0.275682, 0.000165821)
 [connection signal="state_physics_processing" from="StateChart/ParallelState/Damage States/Take Damage" to="." method="intangible"]
 [connection signal="state_entered" from="StateChart/ParallelState/Damage States/No Damage" to="." method="ensure_player_is_visible"]
 [connection signal="taken" from="StateChart/ParallelState/Animation Controller/Ledge Hang/Jump" to="." method="increment_jump"]
-[connection signal="taken" from="StateChart/ParallelState/Animation Controller/Rope Climb/Jump" to="." method="increment_jump"]
-[connection signal="taken" from="StateChart/ParallelState/Animation Controller/Wall Hang/Jump" to="." method="increment_jump"]
-[connection signal="taken" from="StateChart/ParallelState/Animation Controller/Ledge Climb/Idle" to="." method="set_position_to_root_node"]
 [connection signal="area_entered" from="Enemy Killer" to="." method="bounce"]
 [connection signal="area_entered" from="Interactable Detector" to="Interactable Detector" method="_on_area_entered"]
 [connection signal="area_exited" from="Interactable Detector" to="Interactable Detector" method="_on_area_exited"]

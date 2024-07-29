@@ -19,20 +19,24 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if player != null:
-		if Input.is_action_pressed("DiveButton"):
-			position -= up_direction * climbing_speed * 5 * delta
-		else:
-			process_climb(delta)
-			process_rotation()
-		if Input.is_action_just_pressed("Jump"):
-			player.movement_direction = (player.global_position - global_position).normalized()
-			player.state_chart.send_event("Jump")
-			release_player()
-			return
+	if player == null:
+		return
+	
+	process_climb(delta)
+	process_rotation()
+	if Input.is_action_just_pressed("Jump"):
+		player.movement_direction = (player.global_position - global_position).normalized()
+		player.state_chart.send_event("Jump")
+		release_player()
+		return
+	if player.is_on_floor():
+		player.state_chart.send_event("Idle")
+		release_player()
+		return
 
 func attach_player(body : Node3D, new_position : Vector3) -> void:
-	
+	if body.is_on_floor():
+		return
 	emit_signal("attached")
 	
 	player_original_parent = body.get_parent()
@@ -47,7 +51,8 @@ func process_rotation() -> void:
 	rotate_object_local(Vector3.UP, deg_to_rad(Input.get_axis("Left", "Right")))
 
 func process_climb(delta : float) -> void:
-	
+	if Input.is_action_pressed("DiveButton"):
+		position -= up_direction * climbing_speed * 3 * delta
 	if player_root_motion:
 		var player_root_motion = player.get_root_motion()
 		position += up_direction * player_root_motion.y
