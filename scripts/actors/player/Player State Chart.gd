@@ -400,3 +400,13 @@ func set_ledge_climb_position(_delta : float) -> void:
 
 func stop_ledge_climb() -> void:
 	state_chart.set_expression_property("ledge_climb", false)
+
+func get_root_motion() -> Vector3:
+	var current_root_motion_position = animation_tree.get_root_motion_position_accumulator()
+	var difference : Vector3 = current_root_motion_position - previous_root_motion_position
+	previous_root_motion_position = current_root_motion_position
+	difference = difference.rotated(Vector3.UP, rotation.y)
+	return difference
+
+func reset_root_motion_variables() -> void:
+	previous_root_motion_position = Vector3.ZERO

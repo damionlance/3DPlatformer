@@ -24,6 +24,7 @@ mesh = SubResource("CylinderMesh_xxfbk")
 
 [node name="Pivot Point" parent="." instance=ExtResource("2_mg8ec")]
 unique_name_in_owner = true
+player_root_motion = true
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0

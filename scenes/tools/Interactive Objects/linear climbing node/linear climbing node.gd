@@ -3,6 +3,8 @@ class_name LinearClimbingNode extends Node3D
 var player_original_parent : Node = null
 var player : Player = null
 @export var climbing_speed : float = 3.0
+
+@export var player_root_motion : bool = false
 var height : float
 var up_direction := Vector3.ZERO
 
@@ -37,14 +39,18 @@ func attach_player(body : Node3D, new_position : Vector3) -> void:
 	player = body
 	position = new_position
 	rotation.y = player.rotation.y + PI
-	
 	player.state_chart.send_event("Stationary Interactive State")
+	player.state_chart.send_event("Rope Climb")
 
 func process_rotation() -> void:
 	rotate_y( deg_to_rad(Input.get_axis("Left", "Right")) )
 
 func process_climb(delta : float) -> void:
-	position += up_direction * Input.get_axis("Backward", "Forward") * climbing_speed * delta
+	
+	if player_root_motion:
+		position += up_direction * player.get_root_motion().length() * delta
+	else:
+		position += up_direction * Input.get_axis("Backward", "Forward") * climbing_speed * delta
 	
 	if position.length() < 2:
 		position = -up_direction * 2
