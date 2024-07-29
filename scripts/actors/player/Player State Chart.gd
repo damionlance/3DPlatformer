@@ -306,7 +306,7 @@ func hazard_reaction(hazard : Node) -> void:
 	if hazard.is_in_group("moving hazard"):
 		state_chart.send_event("Take Damage")
 		state_chart.send_event("Jump")
-		if "launch_direction" in hazard.get_parent() and hazard.get_parent().launch_direction != Vector3.ZERO:
+		if hazard.get_parent() is CharacterBody3D and "launch_direction" in hazard.get_parent() and hazard.get_parent().launch_direction != Vector3.ZERO:
 			velocity = hazard.get_parent().launch_direction * constants._damage_launch_velocity
 		else:
 			var launch_direction = global_position - hazard.global_position

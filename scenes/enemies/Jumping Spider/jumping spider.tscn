@@ -17,7 +17,7 @@ height = 3.16566
 height = 0.577994
 radius = 2.19899
 
-[node name="Jumping Spider" type="CharacterBody3D"]
+[node name="Jumping Spider" type="CharacterBody3D" groups=["moving hazard"]]
 collision_layer = 64
 collision_mask = 71
 script = ExtResource("1_chuir")

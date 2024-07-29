@@ -1,0 +1,254 @@
+[gd_scene load_steps=27 format=3 uid="uid://3cy6pldo2ols"]
+
+[ext_resource type="Script" path="res://scenes/enemies/sleepy snake/sleepy snake.gd" id="1_bf0g7"]
+[ext_resource type="PackedScene" uid="uid://cnvf2q3etn52q" path="res://assets/models/actors/enemies/sleepy snake/Sleepy Snake_gameready.glb" id="1_gam7e"]
+[ext_resource type="PackedScene" uid="uid://buoyb72atumdt" path="res://scenes/tools/managers/Hazard Detector/hazard detector.tscn" id="2_dkj0v"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="4_6d8pm"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="5_ffdsf"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="6_1dxxw"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="7_sk5vu"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="8_gpaap"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/animation_tree_state.gd" id="9_1x1dn"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3yypj"]
+height = 0.301766
+radius = 1.38344
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_llq7d"]
+radius = 0.863875
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bo8p4"]
+animation = &"Attack_gameready"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_26ndm"]
+animation = &"Fall Asleep_gameready"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6wfrj"]
+animation = &"Idle_gameready"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pjct7"]
+animation = &"Sleeping_gameready"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0uja7"]
+animation = &"Wake Up_gameready"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cl1u6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_25g41"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w26i5"]
+xfade_time = 0.15
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4u2la"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r12n4"]
+xfade_time = 0.25
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0m4s3"]
+xfade_time = 0.15
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ic2pk"]
+xfade_time = 0.15
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nn0ow"]
+states/Attack/node = SubResource("AnimationNodeAnimation_bo8p4")
+states/Attack/position = Vector2(1106, 100)
+states/End/position = Vector2(1704, 118)
+"states/Fall Asleep/node" = SubResource("AnimationNodeAnimation_26ndm")
+"states/Fall Asleep/position" = Vector2(682, 200)
+states/Idle/node = SubResource("AnimationNodeAnimation_6wfrj")
+states/Idle/position = Vector2(924, 100)
+states/Sleeping/node = SubResource("AnimationNodeAnimation_pjct7")
+states/Sleeping/position = Vector2(431, 100)
+"states/Wake Up/node" = SubResource("AnimationNodeAnimation_0uja7")
+"states/Wake Up/position" = Vector2(682, 100)
+transitions = ["Start", "Sleeping", SubResource("AnimationNodeStateMachineTransition_cl1u6"), "Idle", "Fall Asleep", SubResource("AnimationNodeStateMachineTransition_25g41"), "Fall Asleep", "Sleeping", SubResource("AnimationNodeStateMachineTransition_w26i5"), "Sleeping", "Wake Up", SubResource("AnimationNodeStateMachineTransition_4u2la"), "Wake Up", "Idle", SubResource("AnimationNodeStateMachineTransition_r12n4"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_0m4s3"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ic2pk")]
+graph_offset = Vector2(-552, -107)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gpjyx"]
+radius = 1.0562
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yvof1"]
+height = 2.35365
+radius = 3.41372
+
+[node name="Sleepy Snake" type="CharacterBody3D"]
+collision_layer = 64
+collision_mask = 79
+script = ExtResource("1_bf0g7")
+
+[node name="body" parent="." instance=ExtResource("1_gam7e")]
+unique_name_in_owner = true
+
+[node name="Skeleton3D" parent="body/game_rig" index="0"]
+bones/0/position = Vector3(0, 0.574482, 0)
+bones/2/rotation = Quaternion(-0.172198, 0.0348062, -0.0629846, 0.98243)
+bones/3/rotation = Quaternion(-0.0664583, 0.0386104, -0.0497443, 0.9958)
+bones/4/rotation = Quaternion(0.0486435, 0.0395306, -0.0343829, 0.997441)
+bones/5/rotation = Quaternion(0.237834, 0.0370397, -0.0220952, 0.970348)
+bones/6/rotation = Quaternion(0.32999, 0.0309449, -0.0130643, 0.943386)
+bones/7/rotation = Quaternion(0.398579, 0.0241822, -0.00534471, 0.916799)
+bones/8/rotation = Quaternion(0.192022, 0.0498825, 0.0841633, 0.976502)
+bones/10/rotation = Quaternion(0.299545, 1.63237e-07, 2.40768e-08, 0.954082)
+bones/11/position = Vector3(0.483851, 2.289, 0.362395)
+bones/11/rotation = Quaternion(0.709219, 0, 0, 0.704988)
+
+[node name="Hazard Detector" parent="." instance=ExtResource("2_dkj0v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.70464, 0)
+
+[node name="CollisionShape3D" parent="Hazard Detector" index="0"]
+shape = SubResource("CylinderShape3D_3yypj")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="."]
+transform = Transform3D(0.949443, -0.206768, -0.236232, -0.299247, -0.823565, -0.481863, -0.0949184, 0.528193, -0.843803, 0.408564, 2.10822, 0.179254)
+bone_name = "Bone.010"
+bone_idx = 10
+use_external_skeleton = true
+external_skeleton = NodePath("../body/game_rig/Skeleton3D")
+
+[node name="Hazard" type="Area3D" parent="BoneAttachment3D" groups=["moving hazard"]]
+transform = Transform3D(0.999946, 0.00975303, 0.0036262, -0.00994208, 0.99836, 0.0563811, -0.00307031, -0.0564141, 0.998403, -0.0341552, 0.402441, 0.327746)
+collision_layer = 64
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BoneAttachment3D/Hazard"]
+shape = SubResource("SphereShape3D_llq7d")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("%body")
+tree_root = SubResource("AnimationNodeStateMachine_nn0ow")
+anim_player = NodePath("../body/AnimationPlayer")
+parameters/current_length = 0.666667
+parameters/current_position = 0.437559
+parameters/current_delta = 0.00603
+parameters/Attack/current_length = 4.16667
+parameters/Attack/current_position = 4.16667
+parameters/Attack/current_delta = 0.00803249
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+"parameters/Fall Asleep/current_length" = 5.0
+"parameters/Fall Asleep/current_position" = 5.0
+"parameters/Fall Asleep/current_delta" = 0.01325
+parameters/Idle/current_length = 3.0
+parameters/Idle/current_position = 1.98201
+parameters/Idle/current_delta = 0.006496
+parameters/Sleeping/current_length = 0.666667
+parameters/Sleeping/current_position = 0.437559
+parameters/Sleeping/current_delta = 0.00603
+parameters/Start/current_length = 0.0
+parameters/Start/current_position = 0.0
+parameters/Start/current_delta = 0.0
+"parameters/Wake Up/current_length" = 3.43333
+"parameters/Wake Up/current_position" = 3.43333
+"parameters/Wake Up/current_delta" = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.684952, 0)
+shape = SubResource("SphereShape3D_gpjyx")
+
+[node name="Player Detection" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player Detection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5774, 0)
+shape = SubResource("CylinderShape3D_yvof1")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("4_6d8pm")
+
+[node name="parallel" type="Node" parent="StateChart"]
+script = ExtResource("5_ffdsf")
+
+[node name="Logic States" type="Node" parent="StateChart/parallel"]
+script = ExtResource("6_1dxxw")
+initial_state = NodePath("Sleeping")
+
+[node name="Sleeping" type="Node" parent="StateChart/parallel/Logic States"]
+script = ExtResource("7_sk5vu")
+
+[node name="Idle" type="Node" parent="StateChart/parallel/Logic States/Sleeping"]
+script = ExtResource("8_gpaap")
+to = NodePath("../../Idle")
+event = &"Wake Up"
+delay_in_seconds = "0.0"
+
+[node name="Idle" type="Node" parent="StateChart/parallel/Logic States"]
+script = ExtResource("7_sk5vu")
+
+[node name="Attack" type="Node" parent="StateChart/parallel/Logic States/Idle"]
+script = ExtResource("8_gpaap")
+to = NodePath("../../Attack")
+event = &"Attack"
+delay_in_seconds = "0.0"
+
+[node name="Sleeping" type="Node" parent="StateChart/parallel/Logic States/Idle"]
+script = ExtResource("8_gpaap")
+to = NodePath("../../Sleeping")
+event = &"Sleep"
+delay_in_seconds = "0.0"
+
+[node name="Attack" type="Node" parent="StateChart/parallel/Logic States"]
+script = ExtResource("7_sk5vu")
+
+[node name="Idle" type="Node" parent="StateChart/parallel/Logic States/Attack"]
+script = ExtResource("8_gpaap")
+to = NodePath("../../Idle")
+event = &"Idle"
+delay_in_seconds = "0.0"
+
+[node name="Animation States" type="Node" parent="StateChart/parallel"]
+script = ExtResource("6_1dxxw")
+initial_state = NodePath("Sleeping")
+
+[node name="Sleeping" type="Node" parent="StateChart/parallel/Animation States"]
+script = ExtResource("9_1x1dn")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="Idle" type="Node" parent="StateChart/parallel/Animation States/Sleeping"]
+script = ExtResource("8_gpaap")
+to = NodePath("../../Idle")
+event = &"Wake Up"
+delay_in_seconds = "0.0"
+
+[node name="Idle" type="Node" parent="StateChart/parallel/Animation States"]
+script = ExtResource("9_1x1dn")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="Attack" type="Node" parent="StateChart/parallel/Animation States/Idle"]
+script = ExtResource("8_gpaap")
+to = NodePath("../../Attack")
+event = &"Attack"
+delay_in_seconds = "0.0"
+
+[node name="Sleeping" type="Node" parent="StateChart/parallel/Animation States/Idle"]
+script = ExtResource("8_gpaap")
+to = NodePath("../../Sleeping")
+event = &"Sleep"
+delay_in_seconds = "0.0"
+
+[node name="Attack" type="Node" parent="StateChart/parallel/Animation States"]
+script = ExtResource("9_1x1dn")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="Idle" type="Node" parent="StateChart/parallel/Animation States/Attack"]
+script = ExtResource("8_gpaap")
+to = NodePath("../../Idle")
+event = &"Idle"
+delay_in_seconds = "0.0"
+
+[connection signal="body_entered" from="Player Detection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="Player Detection" to="." method="_on_player_detection_body_exited"]
+[connection signal="state_physics_processing" from="StateChart/parallel/Logic States/Idle" to="." method="idle"]
+[connection signal="state_physics_processing" from="StateChart/parallel/Logic States/Idle" to="." method="face_target"]
+
+[editable path="body"]
+[editable path="Hazard Detector"]
