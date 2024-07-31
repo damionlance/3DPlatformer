@@ -443,7 +443,6 @@ ssao_enabled = true
 ssao_radius = 2.76
 ssao_intensity = 4.22
 ssao_power = 1.84672
-sdfgi_enabled = true
 sdfgi_use_occlusion = true
 sdfgi_bounce_feedback = 0.32
 volumetric_fog_enabled = true
