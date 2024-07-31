@@ -79,3 +79,7 @@ func _on_raycasts_stop_moving() -> void:
 	if is_on_floor():
 		state_chart.send_event("idle")
 		velocity = -velocity.normalized()
+
+
+func hazard_reaction(Hazard: Variant) -> void:
+	queue_free()

@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var forward_raycasts = [$"Left Forward", $"Right Forward"]
-@onready var downward_raycasts = [$"Left Downward", $"Right Downward"]
+@onready var downward_raycasts = [$"Left Downward", $"Right Downward", $"Center Downward"]
 
 @onready var state_chart := $%StateChart
 
@@ -16,8 +16,8 @@ func _process(_delta):
 			break
 	#Check if raycasts normals are within margin of error
 	if not colliding:
-		if downward_raycasts[0].is_colliding() and downward_raycasts[1].is_colliding():
-			if downward_raycasts[0].get_collision_normal() == downward_raycasts[1].get_collision_normal():
+		if downward_raycasts[0].is_colliding() and downward_raycasts[2].is_colliding():
+			if downward_raycasts[2].get_collision_normal() == Vector3.UP:
 				state_chart.send_event("ledge hang")
 
 func get_average_wall_distance() -> Vector3:

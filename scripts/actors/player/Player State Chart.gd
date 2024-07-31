@@ -45,6 +45,8 @@ func _ready():
 	
 	state_chart.set_expression_property("locked_in_dialogue", false)
 	state_chart.set_expression_property("in_interactable", false)
+	state_chart.set_expression_property("ledge_hang", false)
+	state_chart.set_expression_property("ledge_climb", false)
 
 func _physics_process(delta):
 	velocity +=  + (delta_v * delta)
@@ -301,6 +303,8 @@ func attach_to_object(object_type : String) -> void:
 			state_chart.send_event("Rope Climb")
 
 func hazard_reaction(hazard : Node) -> void:
+	if hazard.is_in_group("instant death"):
+		$"Respawn Manager".process_respawn()
 	if hazard.is_in_group("water"):
 		$"Respawn Manager".process_respawn()
 	if hazard.is_in_group("moving hazard"):

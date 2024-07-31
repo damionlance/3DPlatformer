@@ -66,7 +66,7 @@ func wander(delta: float) -> void:
 	var adjusted_wander_angle = _wander_turn_angle
 	
 	if not left_raycast_collision and not right_raycast_collision:
-		adjusted_wander_angle = PI
+		movement_direction = movement_direction.rotated(Vector3.UP, PI)
 	elif not left_raycast_collision:
 		adjusted_wander_angle = -max_wander_turn_angle * 3
 	elif not right_raycast_collision:

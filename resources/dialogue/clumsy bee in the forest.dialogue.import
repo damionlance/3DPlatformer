@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://wpjgfeywdu6h"
+path="res://.godot/imported/clumsy bee in the forest.dialogue-ce4cf4645575e48c7ca39c4a9737714f.tres"
+
+[deps]
+
+source_file="res://resources/dialogue/clumsy bee in the forest.dialogue"
+dest_files=["res://.godot/imported/clumsy bee in the forest.dialogue-ce4cf4645575e48c7ca39c4a9737714f.tres"]
+
+[params]
+
+defaults=true

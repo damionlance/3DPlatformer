@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://d2rqv1fspr6ke"]
+[gd_scene load_steps=57 format=4 uid="uid://d2rqv1fspr6ke"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level start/OnLevelStart.gd" id="1_x2lfh"]
 [ext_resource type="Texture2D" uid="uid://co7kl4bkcra5x" path="res://assets/textures/playground/whitex.png" id="3_wfla7"]
@@ -21,6 +21,11 @@
 [ext_resource type="PackedScene" uid="uid://b1no6pukt37fw" path="res://scenes/actors/New Player.tscn" id="19_qv6ga"]
 [ext_resource type="PackedScene" uid="uid://dxjlrtgnllq8v" path="res://scenes/enemies/Jumping Spider/jumping spider.tscn" id="20_qp0kq"]
 [ext_resource type="PackedScene" uid="uid://3cy6pldo2ols" path="res://scenes/enemies/sleepy snake/sleepy snake.tscn" id="21_nplbp"]
+[ext_resource type="PackedScene" uid="uid://cflycaeo6q5rt" path="res://scenes/tools/managers/enemy spawn zone/enemy spawn zone.tscn" id="22_s2ocp"]
+[ext_resource type="PackedScene" uid="uid://l781ycf0ca7g" path="res://scenes/enemies/Ankle Biter/ankle biter.tscn" id="23_6ok00"]
+[ext_resource type="PackedScene" uid="uid://bplc8plqwct3x" path="res://scenes/actors/NPCs/clumsy bee/clumsy bee.tscn" id="24_bs4yj"]
+[ext_resource type="Resource" uid="uid://wpjgfeywdu6h" path="res://resources/dialogue/clumsy bee in the forest.dialogue" id="25_2oovk"]
+[ext_resource type="PackedScene" uid="uid://d3ejfrmj2okk1" path="res://scenes/tools/Interactive Objects/signpost.tscn" id="26_cr3xi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5naoj"]
 albedo_texture = ExtResource("3_wfla7")
@@ -458,5 +463,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7996, 3.10221, -25.5864)
 [node name="Sleepy Snake" parent="." instance=ExtResource("21_nplbp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.8157, 16.9468)
 
+[node name="Enemy Spawn Zone" parent="." instance=ExtResource("22_s2ocp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2153, 4.42869, -3.92873)
+enemy_type = ExtResource("23_6ok00")
+number_of_enemies_to_spawn = 1
+
+[node name="CollisionShape3D" parent="Enemy Spawn Zone/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.86643, 0)
+
+[node name="Sleepy Snake2" parent="." instance=ExtResource("21_nplbp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.8816, 0.966179, 0.40626)
+
+[node name="clumsy bee" parent="." instance=ExtResource("24_bs4yj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9134, 1.82387, 11.0581)
+dialogue = ExtResource("25_2oovk")
+
+[node name="Signpost" parent="." instance=ExtResource("26_cr3xi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9672, 0.999979, 0.993948)
+
 [editable path="DynamicObjects/Climbable Rope"]
 [editable path="DynamicObjects/Swinging Rope"]
+[editable path="Enemy Spawn Zone"]

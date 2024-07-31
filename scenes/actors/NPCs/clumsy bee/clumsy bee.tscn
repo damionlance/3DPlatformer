@@ -1,0 +1,159 @@
+[gd_scene load_steps=14 format=3 uid="uid://bplc8plqwct3x"]
+
+[ext_resource type="PackedScene" uid="uid://dddgxpkjh1723" path="res://assets/models/actors/NPCs/clumsy bee.glb" id="1_c7qth"]
+[ext_resource type="Script" path="res://scenes/actors/NPCs/clumsy bee/clumsy bee.gd" id="1_nhcpn"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_bdsjb"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="3_xapei"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="4_03nk7"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/animation_tree_state.gd" id="5_k0kkt"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_4xf3w"]
+[ext_resource type="PackedScene" uid="uid://clltnpbojo5d8" path="res://scenes/tools/Interactive Objects/dialogue/dialogue detection zone.tscn" id="6_5xyfx"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_x33lv"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ndxck"]
+animation = &"Idle_gameready"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w4xj5"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_eavbi"]
+states/Idle_gameready/node = SubResource("AnimationNodeAnimation_ndxck")
+states/Idle_gameready/position = Vector2(328, 101)
+transitions = ["Start", "Idle_gameready", SubResource("AnimationNodeStateMachineTransition_w4xj5")]
+graph_offset = Vector2(-285, 37)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_di3wr"]
+radius = 1.05392
+height = 3.88436
+
+[node name="clumsy bee" type="CharacterBody3D"]
+script = ExtResource("1_nhcpn")
+
+[node name="clumsy bee" parent="." instance=ExtResource("1_c7qth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02057, 0, -0.05688)
+
+[node name="Skeleton3D" parent="clumsy bee/game_rig" index="0"]
+bones/0/position = Vector3(-0.0203994, 2.68087, -0.859276)
+bones/2/position = Vector3(2.30911e-08, 0.499603, 6.91593e-07)
+bones/8/position = Vector3(0.0596, 0.199091, 0.106903)
+bones/9/rotation = Quaternion(-0.230302, -0.734142, -0.186007, 0.611063)
+bones/10/position = Vector3(-1.07066e-07, 0.253683, 6.97518e-07)
+bones/10/rotation = Quaternion(6.97285e-07, -0.00673812, -1.95151e-07, 0.999977)
+bones/11/position = Vector3(6.83598e-08, 0.253683, 3.7111e-07)
+bones/11/rotation = Quaternion(0.143473, -0.00744808, 0.00108026, 0.989626)
+bones/12/position = Vector3(2.30761e-08, 0.286649, 2.44658e-07)
+bones/12/rotation = Quaternion(-1.38567e-07, -0.00577335, 3.40677e-08, 0.999983)
+bones/13/position = Vector3(-1.52143e-09, 0.286649, -5.70668e-08)
+bones/13/rotation = Quaternion(0.205213, -0.000932606, -0.531294, 0.821957)
+bones/14/rotation = Quaternion(-4.36643e-08, 0.0485457, -1.59025e-07, 0.998821)
+bones/15/rotation = Quaternion(-0.0381087, 0.0621991, -0.0069404, 0.997312)
+bones/16/position = Vector3(-0.0596002, 0.19909, 0.106902)
+bones/17/rotation = Quaternion(-0.267151, 0.718395, 0.234486, 0.59796)
+bones/18/position = Vector3(-3.55176e-07, 0.2479, 8.14462e-07)
+bones/18/rotation = Quaternion(3.96858e-07, 0.0160235, -3.14288e-09, 0.999872)
+bones/19/position = Vector3(-2.60183e-07, 0.2479, 8.64092e-08)
+bones/19/rotation = Quaternion(0.608824, 0.0167514, -0.0128604, 0.793024)
+bones/20/position = Vector3(-2.0144e-07, 0.280488, 3.30505e-08)
+bones/20/rotation = Quaternion(-1.69293e-09, 0.0151971, 9.18102e-08, 0.999885)
+bones/21/position = Vector3(9.72947e-08, 0.280488, 6.33945e-08)
+bones/21/rotation = Quaternion(-0.0220526, 0.01051, 0.523813, 0.851483)
+bones/22/rotation = Quaternion(3.94972e-09, 0.0823743, 2.42946e-09, 0.996601)
+bones/23/rotation = Quaternion(-0.0656632, 0.0687488, -0.00316092, 0.995466)
+bones/24/position = Vector3(0.646348, -0.379911, -0.0336736)
+bones/24/rotation = Quaternion(-0.158814, 0.205267, -0.804516, 0.534226)
+bones/25/position = Vector3(-0.646348, -0.379911, -0.0336747)
+bones/25/rotation = Quaternion(-0.158815, -0.205268, 0.804516, 0.534226)
+bones/26/rotation = Quaternion(0.537417, 0.738098, 0.305693, -0.270087)
+bones/28/rotation = Quaternion(0.184033, 0.319491, -0.690925, 0.621836)
+bones/29/position = Vector3(2.27969e-08, 0.209779, -1.12004e-08)
+bones/29/rotation = Quaternion(1.17289e-07, -0.00709917, -3.48212e-09, 0.999975)
+bones/30/position = Vector3(4.25816e-08, 0.209779, 2.393e-07)
+bones/30/rotation = Quaternion(0.249675, -0.0083331, 0.00214871, 0.968292)
+bones/31/position = Vector3(-5.99389e-09, 0.310598, 7.34668e-08)
+bones/31/rotation = Quaternion(1.93492e-07, -0.00645245, 2.99991e-08, 0.999979)
+bones/32/position = Vector3(7.53301e-09, 0.310598, 7.95402e-08)
+bones/32/rotation = Quaternion(0.504409, 0.0276881, -0.0623967, 0.860762)
+bones/33/position = Vector3(4.64365e-08, 0.728841, 3.56615e-08)
+bones/33/rotation = Quaternion(6.76491e-08, -0.00825101, -1.15677e-08, 0.999966)
+bones/34/position = Vector3(-8.00306e-08, 0.728841, 3.54484e-08)
+bones/34/rotation = Quaternion(-0.287641, -0.0172595, 0.0785791, 0.954353)
+bones/35/rotation = Quaternion(0.344249, -0.11352, 0.80043, 0.477406)
+bones/36/position = Vector3(8.4659e-08, 0.209717, 3.11616e-07)
+bones/36/rotation = Quaternion(3.06976e-07, -0.00376634, 4.32716e-08, 0.999993)
+bones/37/position = Vector3(7.12656e-09, 0.209717, 1.51395e-07)
+bones/37/rotation = Quaternion(0.273203, -0.00432152, 0.00122535, 0.961946)
+bones/38/position = Vector3(-8.18398e-08, 0.309319, 1.68509e-08)
+bones/38/rotation = Quaternion(6.42508e-08, -0.00326449, -4.52884e-08, 0.999995)
+bones/39/position = Vector3(7.59941e-09, 0.309319, 3.86286e-08)
+bones/39/rotation = Quaternion(0.526682, -0.0391386, 0.0776151, 0.845607)
+bones/40/position = Vector3(1.53973e-08, 0.728913, -1.24639e-09)
+bones/40/rotation = Quaternion(-4.95102e-08, -0.00883757, 5.48914e-11, 0.999961)
+bones/41/position = Vector3(-3.96853e-09, 0.728913, -6.46171e-08)
+bones/41/rotation = Quaternion(-0.0809398, -0.00134638, -0.0137057, 0.996624)
+bones/42/position = Vector3(-0.0203994, 0.497361, -1.44363)
+
+[node name="AnimationPlayer" parent="clumsy bee" index="1"]
+autoplay = "Idle_gameready"
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_bdsjb")
+
+[node name="ParallelState" type="Node" parent="StateChart"]
+script = ExtResource("3_xapei")
+
+[node name="Logic States" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("4_03nk7")
+initial_state = NodePath("Wander")
+
+[node name="Wander" type="Node" parent="StateChart/ParallelState/Logic States"]
+script = ExtResource("6_4xf3w")
+
+[node name="Dialogue" type="Node" parent="StateChart/ParallelState/Logic States/Wander"]
+script = ExtResource("7_x33lv")
+to = NodePath("../../Dialogue")
+event = &"in dialogue"
+delay_in_seconds = "0.0"
+
+[node name="Dialogue" type="Node" parent="StateChart/ParallelState/Logic States"]
+script = ExtResource("6_4xf3w")
+
+[node name="Wander" type="Node" parent="StateChart/ParallelState/Logic States/Dialogue"]
+script = ExtResource("7_x33lv")
+to = NodePath("../../Wander")
+event = &"Wander"
+delay_in_seconds = "0.0"
+
+[node name="Animation States" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("4_03nk7")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/ParallelState/Animation States"]
+script = ExtResource("5_k0kkt")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../clumsy bee")
+tree_root = SubResource("AnimationNodeStateMachine_eavbi")
+anim_player = NodePath("../clumsy bee/AnimationPlayer")
+parameters/current_length = 3.33333
+parameters/current_position = 0.407432
+parameters/current_delta = 0.008266
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/Idle_gameready/current_length = 3.33333
+parameters/Idle_gameready/current_position = 0.407432
+parameters/Idle_gameready/current_delta = 0.008266
+parameters/Start/current_length = 0.0
+parameters/Start/current_position = 0.0
+parameters/Start/current_delta = 0.0
+
+[node name="Dialogue Detection Zone" parent="." instance=ExtResource("6_5xyfx")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90238, -0.475802)
+shape = SubResource("CapsuleShape3D_di3wr")
+
+[connection signal="in_dialogue" from="Dialogue Detection Zone" to="." method="enable_dialogue"]
+
+[editable path="clumsy bee"]
