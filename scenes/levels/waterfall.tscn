@@ -443,6 +443,9 @@ ssao_enabled = true
 ssao_radius = 2.76
 ssao_intensity = 4.22
 ssao_power = 1.84672
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 0.32
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0023
 volumetric_fog_length = 66.57
@@ -474,7 +477,7 @@ coins = 9
 
 [node name="Player" parent="." instance=ExtResource("3_n1hwv")]
 unique_name_in_owner = true
-transform = Transform3D(0.0288986, 0, -0.999582, 0, 1, 0, 0.999582, 0, 0.0288986, 25.323, 1.29809, -74.6438)
+transform = Transform3D(0.0288986, 0, -0.999582, 0, 1, 0, 0.999582, 0, 0.0288986, 210.504, 4.18677, -24.9836)
 
 [node name="Dynamic Objects" type="Node3D" parent="."]
 
@@ -967,6 +970,19 @@ environment = SubResource("Environment_hfaew")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_irp2s")
+
+[node name="Foliage" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.611855, -0.230007, -0.756789, 0.790129, 0.221855, 0.571382, 0.0364757, -0.947564, 0.317478, 22.9373, 234.074, 136.76)
+light_color = Color(0.89059, 0.89059, 0.89059, 1)
+light_energy = 0.887
+light_angular_distance = 0.63
+light_bake_mode = 1
+shadow_enabled = true
+shadow_reverse_cull_face = true
+shadow_blur = 1.608
+directional_shadow_max_distance = 1000.0
 
 [editable path="Dynamic Objects/First Layer/Moving Platform"]
 [editable path="Dynamic Objects/Third Layer/Moving Platform"]

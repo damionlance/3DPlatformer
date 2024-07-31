@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://3cy6pldo2ols"]
+[gd_scene load_steps=33 format=3 uid="uid://3cy6pldo2ols"]
 
 [ext_resource type="Script" path="res://scenes/enemies/sleepy snake/sleepy snake.gd" id="1_bf0g7"]
 [ext_resource type="PackedScene" uid="uid://cnvf2q3etn52q" path="res://assets/models/actors/enemies/sleepy snake/Sleepy Snake_gameready.glb" id="1_gam7e"]
@@ -25,6 +25,9 @@ animation = &"Fall Asleep_gameready"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6wfrj"]
 animation = &"Idle_gameready"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vvfy0"]
+animation = &"Sleeping_gameready"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pjct7"]
 animation = &"Sleeping_gameready"
@@ -56,6 +59,16 @@ xfade_time = 0.15
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_csjc5"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pi1v6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6rweu"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8j40s"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q4uhn"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nn0ow"]
 states/Attack/node = SubResource("AnimationNodeAnimation_bo8p4")
 states/Attack/position = Vector2(1106, 100)
@@ -64,12 +77,14 @@ states/End/position = Vector2(1704, 118)
 "states/Fall Asleep/position" = Vector2(682, 200)
 states/Idle/node = SubResource("AnimationNodeAnimation_6wfrj")
 states/Idle/position = Vector2(924, 100)
+"states/Knocked Out/node" = SubResource("AnimationNodeAnimation_vvfy0")
+"states/Knocked Out/position" = Vector2(685, -5)
 states/Sleeping/node = SubResource("AnimationNodeAnimation_pjct7")
 states/Sleeping/position = Vector2(431, 100)
 "states/Wake Up/node" = SubResource("AnimationNodeAnimation_0uja7")
 "states/Wake Up/position" = Vector2(682, 100)
-transitions = ["Start", "Sleeping", SubResource("AnimationNodeStateMachineTransition_cl1u6"), "Idle", "Fall Asleep", SubResource("AnimationNodeStateMachineTransition_25g41"), "Fall Asleep", "Sleeping", SubResource("AnimationNodeStateMachineTransition_w26i5"), "Sleeping", "Wake Up", SubResource("AnimationNodeStateMachineTransition_4u2la"), "Wake Up", "Idle", SubResource("AnimationNodeStateMachineTransition_r12n4"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_0m4s3"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ic2pk")]
-graph_offset = Vector2(-552, -107)
+transitions = ["Start", "Sleeping", SubResource("AnimationNodeStateMachineTransition_cl1u6"), "Idle", "Fall Asleep", SubResource("AnimationNodeStateMachineTransition_25g41"), "Fall Asleep", "Sleeping", SubResource("AnimationNodeStateMachineTransition_w26i5"), "Sleeping", "Wake Up", SubResource("AnimationNodeStateMachineTransition_4u2la"), "Wake Up", "Idle", SubResource("AnimationNodeStateMachineTransition_r12n4"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_0m4s3"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ic2pk"), "Idle", "Knocked Out", SubResource("AnimationNodeStateMachineTransition_csjc5"), "Attack", "Knocked Out", SubResource("AnimationNodeStateMachineTransition_pi1v6"), "Wake Up", "Knocked Out", SubResource("AnimationNodeStateMachineTransition_6rweu"), "Fall Asleep", "Knocked Out", SubResource("AnimationNodeStateMachineTransition_8j40s"), "Knocked Out", "Wake Up", SubResource("AnimationNodeStateMachineTransition_q4uhn")]
+graph_offset = Vector2(26, -28)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gpjyx"]
 radius = 1.0562
@@ -87,16 +102,16 @@ script = ExtResource("1_bf0g7")
 unique_name_in_owner = true
 
 [node name="Skeleton3D" parent="body/game_rig" index="0"]
-bones/0/position = Vector3(0, 0.574482, 0)
-bones/2/rotation = Quaternion(-0.172198, 0.0348062, -0.0629846, 0.98243)
-bones/3/rotation = Quaternion(-0.0664583, 0.0386104, -0.0497443, 0.9958)
-bones/4/rotation = Quaternion(0.0486435, 0.0395306, -0.0343829, 0.997441)
-bones/5/rotation = Quaternion(0.237834, 0.0370397, -0.0220952, 0.970348)
-bones/6/rotation = Quaternion(0.32999, 0.0309449, -0.0130643, 0.943386)
-bones/7/rotation = Quaternion(0.398579, 0.0241822, -0.00534471, 0.916799)
-bones/8/rotation = Quaternion(0.192022, 0.0498825, 0.0841633, 0.976502)
-bones/10/rotation = Quaternion(0.299545, 1.63237e-07, 2.40768e-08, 0.954082)
-bones/11/position = Vector3(0.483851, 2.289, 0.362395)
+bones/0/position = Vector3(0, 0.0301652, 0)
+bones/2/rotation = Quaternion(0.135709, 0.000752892, 0.0021986, 0.990746)
+bones/3/rotation = Quaternion(0.137665, 0.00182015, 0.00415354, 0.990469)
+bones/4/rotation = Quaternion(0.142886, 0.00223405, 0.00590841, 0.989719)
+bones/5/rotation = Quaternion(0.225614, 0.00288147, 0.00680549, 0.974189)
+bones/6/rotation = Quaternion(0.238992, 0.00390581, 0.0066953, 0.970991)
+bones/7/rotation = Quaternion(0.280894, 0.00510106, 0.00581775, 0.959708)
+bones/8/rotation = Quaternion(-0.118168, 0.025303, 0.0482511, 0.991498)
+bones/10/rotation = Quaternion(0.299545, 1.30091e-07, 9.07857e-08, 0.954082)
+bones/11/position = Vector3(-0.0517851, 1.07795, 1.46254)
 bones/11/rotation = Quaternion(0.709219, 0, 0, 0.704988)
 
 [node name="Hazard Detector" parent="." instance=ExtResource("2_dkj0v")]
@@ -106,7 +121,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.70464, 0)
 shape = SubResource("CylinderShape3D_3yypj")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.949443, -0.206768, -0.236232, -0.299247, -0.823565, -0.481863, -0.0949184, 0.528193, -0.843803, 0.408564, 2.10822, 0.179254)
+transform = Transform3D(0.98863, -0.0330876, 0.146683, 0.0302238, -0.911857, -0.409394, 0.1473, 0.409173, -0.900489, -0.0159471, 0.910367, 1.25683)
 bone_name = "Bone.010"
 bone_idx = 10
 use_external_skeleton = true
@@ -126,8 +141,8 @@ root_node = NodePath("%body")
 tree_root = SubResource("AnimationNodeStateMachine_nn0ow")
 anim_player = NodePath("../body/AnimationPlayer")
 parameters/current_length = 0.666667
-parameters/current_position = 0.437559
-parameters/current_delta = 0.00603
+parameters/current_position = 0.071874
+parameters/current_delta = 0.018291
 parameters/Attack/current_length = 4.16667
 parameters/Attack/current_position = 4.16667
 parameters/Attack/current_delta = 0.00803249
@@ -140,9 +155,12 @@ parameters/End/current_delta = null
 parameters/Idle/current_length = 3.0
 parameters/Idle/current_position = 1.98201
 parameters/Idle/current_delta = 0.006496
+"parameters/Knocked Out/current_length" = null
+"parameters/Knocked Out/current_position" = null
+"parameters/Knocked Out/current_delta" = null
 parameters/Sleeping/current_length = 0.666667
-parameters/Sleeping/current_position = 0.437559
-parameters/Sleeping/current_delta = 0.00603
+parameters/Sleeping/current_position = 0.071874
+parameters/Sleeping/current_delta = 0.018291
 parameters/Start/current_length = 0.0
 parameters/Start/current_position = 0.0
 parameters/Start/current_delta = 0.0
@@ -156,7 +174,7 @@ shape = SubResource("SphereShape3D_gpjyx")
 
 [node name="Player Detection" type="Area3D" parent="."]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 514
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player Detection"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5774, 0)
@@ -196,6 +214,12 @@ to = NodePath("../../Sleeping")
 event = &"Sleep"
 delay_in_seconds = "0.0"
 
+[node name="Knocked Out" type="Node" parent="StateChart/parallel/Logic States/Idle"]
+script = ExtResource("8_gpaap")
+to = NodePath("../../Knocked Out")
+event = &"knoocked out"
+delay_in_seconds = "0.0"
+
 [node name="Attack" type="Node" parent="StateChart/parallel/Logic States"]
 script = ExtResource("7_sk5vu")
 
@@ -204,6 +228,20 @@ script = ExtResource("8_gpaap")
 to = NodePath("../../Idle")
 event = &"Idle"
 delay_in_seconds = "0.0"
+
+[node name="Knocked Out" type="Node" parent="StateChart/parallel/Logic States/Attack"]
+script = ExtResource("8_gpaap")
+to = NodePath("../../Knocked Out")
+event = &"knoocked out"
+delay_in_seconds = "0.0"
+
+[node name="Knocked Out" type="Node" parent="StateChart/parallel/Logic States"]
+script = ExtResource("7_sk5vu")
+
+[node name="Idle" type="Node" parent="StateChart/parallel/Logic States/Knocked Out"]
+script = ExtResource("8_gpaap")
+to = NodePath("../../Idle")
+delay_in_seconds = "10.0"
 
 [node name="Animation States" type="Node" parent="StateChart/parallel"]
 script = ExtResource("6_1dxxw")
@@ -235,6 +273,12 @@ to = NodePath("../../Sleeping")
 event = &"Sleep"
 delay_in_seconds = "0.0"
 
+[node name="Knocked Out" type="Node" parent="StateChart/parallel/Animation States/Idle"]
+script = ExtResource("8_gpaap")
+to = NodePath("../../Knocked Out")
+event = &"knocked out"
+delay_in_seconds = "0.0"
+
 [node name="Attack" type="Node" parent="StateChart/parallel/Animation States"]
 script = ExtResource("9_1x1dn")
 animation_tree = NodePath("../../../../AnimationTree")
@@ -244,6 +288,21 @@ script = ExtResource("8_gpaap")
 to = NodePath("../../Idle")
 event = &"Idle"
 delay_in_seconds = "0.0"
+
+[node name="Knocked Out" type="Node" parent="StateChart/parallel/Animation States/Attack"]
+script = ExtResource("8_gpaap")
+to = NodePath("../../Knocked Out")
+event = &"knocked out"
+delay_in_seconds = "0.0"
+
+[node name="Knocked Out" type="Node" parent="StateChart/parallel/Animation States"]
+script = ExtResource("9_1x1dn")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="Idle" type="Node" parent="StateChart/parallel/Animation States/Knocked Out"]
+script = ExtResource("8_gpaap")
+to = NodePath("../../Idle")
+delay_in_seconds = "10.0"
 
 [connection signal="body_entered" from="Player Detection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="Player Detection" to="." method="_on_player_detection_body_exited"]
