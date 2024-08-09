@@ -413,7 +413,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0.748371, 0.721598, 0.919273, 
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_pgw0e"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ujn0f"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4xtvy"]
 invert = true
 seamless = true
 seamless_blend_skirt = 1.0
@@ -423,19 +423,19 @@ noise = SubResource("FastNoiseLite_pgw0e")
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mfu1d"]
 sky_top_color = Color(0.603891, 0.762991, 0.965292, 1)
 sky_horizon_color = Color(0.403742, 0.550493, 0.987241, 1)
-sky_cover = SubResource("NoiseTexture2D_ujn0f")
+sky_cover = SubResource("NoiseTexture2D_4xtvy")
 ground_bottom_color = Color(0.098003, 0.0867322, 0.169146, 1)
 ground_horizon_color = Color(0.792527, 0.821745, 0.895605, 1)
 ground_curve = 0.00933031
 sun_angle_max = 360.0
 sun_curve = 0.023898
 
-[sub_resource type="Sky" id="Sky_g6ys8"]
+[sub_resource type="Sky" id="Sky_gwku0"]
 sky_material = SubResource("ProceduralSkyMaterial_mfu1d")
 
 [sub_resource type="Environment" id="Environment_hfaew"]
 background_mode = 2
-sky = SubResource("Sky_g6ys8")
+sky = SubResource("Sky_gwku0")
 ambient_light_source = 3
 ambient_light_sky_contribution = 0.44
 reflected_light_source = 2
@@ -971,17 +971,6 @@ environment = SubResource("Environment_hfaew")
 navigation_mesh = SubResource("NavigationMesh_irp2s")
 
 [node name="Foliage" type="Node3D" parent="."]
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.611855, -0.230007, -0.756789, 0.790129, 0.221855, 0.571382, 0.0364757, -0.947564, 0.317478, 22.9373, 234.074, 136.76)
-light_color = Color(0.89059, 0.89059, 0.89059, 1)
-light_energy = 0.887
-light_angular_distance = 0.63
-light_bake_mode = 1
-shadow_enabled = true
-shadow_reverse_cull_face = true
-shadow_blur = 1.608
-directional_shadow_max_distance = 1000.0
 
 [editable path="Dynamic Objects/First Layer/Moving Platform"]
 [editable path="Dynamic Objects/Third Layer/Moving Platform"]

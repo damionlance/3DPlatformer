@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://iafio1frcm7q"]
+
+[ext_resource type="PackedScene" uid="uid://bkf8k0obau1mu" path="res://assets/models/levels/fountain/Fountain.glb" id="1_gaxl2"]
+[ext_resource type="PackedScene" uid="uid://b1no6pukt37fw" path="res://scenes/actors/New Player.tscn" id="2_xr48g"]
+
+[node name="Fountain" type="Node3D"]
+
+[node name="Fountain" parent="." instance=ExtResource("1_gaxl2")]
+
+[node name="Player" parent="." instance=ExtResource("2_xr48g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.994, 18.0785, 0)
