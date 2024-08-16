@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://uaeelsjj4pe4"]
+
+[ext_resource type="Shader" path="res://assets/shaders/flower_petals.gdshader" id="1_woyco"]
+[ext_resource type="Texture2D" uid="uid://bmxx4cx7rqcrs" path="res://assets/textures/garden/leaf_texture.png" id="2_foqkd"]
+[ext_resource type="Texture2D" uid="uid://diw2cdyxge552" path="res://resources/level resources/garden/wind noise texture.tres" id="3_314oa"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_woyco")
+shader_parameter/petal_color_1 = Color(5.0056e-06, 0.821092, 0.325323, 1)
+shader_parameter/petal_color_2 = Color(0, 0, 0, 1)
+shader_parameter/center_color = Color(0, 0.420815, 0.198413, 1)
+shader_parameter/petal_texture = ExtResource("2_foqkd")
+shader_parameter/wind_speed = 0.03
+shader_parameter/wind_strength = 2.03
+shader_parameter/wind_texture_tile_size = 20.0
+shader_parameter/wind_vertical_strength = 0.945
+shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
+shader_parameter/character_position = null
+shader_parameter/character_radius = 3.0
+shader_parameter/character_push_strength = 1.0
+shader_parameter/wind_noise = ExtResource("3_314oa")

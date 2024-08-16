@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://tgpexym8dipp"
-path="res://.godot/imported/tree.glb-4899b21278c123da7999d46d8effbcfb.scn"
+uid="uid://l01177rm63hb"
+path="res://.godot/imported/grass.glb-a0a2c35551e2cc8612f2f5dbca371602.scn"
 
 [deps]
 
-source_file="res://assets/models/props/Trees/tree.glb"
-dest_files=["res://.godot/imported/tree.glb-4899b21278c123da7999d46d8effbcfb.scn"]
+source_file="res://assets/models/props/Foliage/grass.glb"
+dest_files=["res://.godot/imported/grass.glb-a0a2c35551e2cc8612f2f5dbca371602.scn"]
 
 [params]
 
@@ -31,6 +31,13 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"grass blades": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/garden/grass blades.tres"
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dkl2geyht1361"]
+
+[ext_resource type="Shader" path="res://assets/shaders/pbr_shader.gdshader" id="1_yy6ij"]
+[ext_resource type="Texture2D" uid="uid://daf47xqvsmlf2" path="res://assets/models/props/rocks/Rocks1_Normal.png" id="2_fmfla"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_yy6ij")
+shader_parameter/roughness = 1.0
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/base_color = Color(0.288518, 0.288518, 0.288518, 1)
+shader_parameter/highlight_color = Color(0.513233, 0.513233, 0.513233, 1)
+shader_parameter/ao_power = 1.0
+shader_parameter/ao_adjust = 0.0
+shader_parameter/normal_power = 1.0
+shader_parameter/normal_adjust = 0.0
+shader_parameter/normal = ExtResource("2_fmfla")
+shader_parameter/edgewear_power = 1.0
+shader_parameter/edgewear_adjust = 0.0
+shader_parameter/grunge_color = Color(1, 1, 1, 1)
+shader_parameter/grunge_power = 1.0
+shader_parameter/grunge_adjust = 0.0
+shader_parameter/grunge_tile_size = Vector2(1, 1)

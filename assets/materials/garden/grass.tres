@@ -1,10 +1,81 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://8omwkhx2mg5c"]
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://bweam3lwbljg4"]
 
-[ext_resource type="Shader" path="res://assets/shaders/plain texture.gdshader" id="1_rkqwl"]
-[ext_resource type="Texture2D" uid="uid://c0j8txevs8jka" path="res://assets/textures/garden/grass.png" id="2_2741a"]
+[ext_resource type="Shader" path="res://assets/shaders/blend from vertex color.gdshader" id="1_711qh"]
+[ext_resource type="Texture2D" uid="uid://dhc74dobib1cd" path="res://assets/textures/garden/ground_ao.png" id="2_o8q40"]
+[ext_resource type="Texture2D" uid="uid://dc1jcjqmodg3p" path="res://assets/textures/garden/ground_curvature.png" id="3_ibjwq"]
+[ext_resource type="Texture2D" uid="uid://b6ywjxal2qptq" path="res://assets/textures/garden/ground_normal.png" id="3_p7pid"]
+[ext_resource type="Texture2D" uid="uid://bknkgjgmtsjgp" path="res://assets/textures/garden/ground_emission map.png" id="4_2uqnb"]
+[ext_resource type="Texture2D" uid="uid://cwhsibqlsxgjs" path="res://assets/textures/surface wear/Smudges_26.png" id="4_nwty0"]
+[ext_resource type="Texture2D" uid="uid://dehm507bnwbkm" path="res://assets/textures/surface wear/Decal_Dirt_02.png" id="4_ovpdd"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_rkqwl")
-shader_parameter/image = ExtResource("2_2741a")
-metadata/sound = "grass"
+shader = ExtResource("1_711qh")
+shader_parameter/roughness = 0.17
+shader_parameter/UV_Scaling = 0.6
+shader_parameter/base_color_1 = Color(0, 0.3694, 0.219025, 1)
+shader_parameter/highlight_color_1 = Color(0.338646, 0.517588, 0, 1)
+shader_parameter/base_color_2 = Color(0.556168, 0.450219, 0.233494, 1)
+shader_parameter/highlight_color_2 = Color(0.483677, 0.3526, 0.0950527, 1)
+shader_parameter/base_color_3 = Color(0.249214, 0.291979, 0.243998, 1)
+shader_parameter/highlight_color_3 = Color(0.385493, 0.385492, 0.385492, 1)
+shader_parameter/base_color_4 = Color(0, 0, 0, 1)
+shader_parameter/highlight_color_4 = Color(0, 0, 0, 1)
+shader_parameter/ao_power_1 = 1.0
+shader_parameter/ao_adjust_1 = 0.0
+shader_parameter/ao_power_2 = 29.7
+shader_parameter/ao_adjust_2 = 0.5
+shader_parameter/ao_power_3 = 1.0
+shader_parameter/ao_adjust_3 = 0.0
+shader_parameter/ao_power_4 = 1.0
+shader_parameter/ao_adjust_4 = 0.0
+shader_parameter/ambient_occlusion_1 = ExtResource("2_o8q40")
+shader_parameter/ambient_occlusion_2 = ExtResource("2_o8q40")
+shader_parameter/ambient_occlusion_3 = ExtResource("2_o8q40")
+shader_parameter/normal_power_1 = 1.0
+shader_parameter/normal_adjust_1 = 0.0
+shader_parameter/normal_power_2 = 1.0
+shader_parameter/normal_adjust_2 = 7.4506e-08
+shader_parameter/normal_power_3 = 1.0
+shader_parameter/normal_adjust_3 = 0.0
+shader_parameter/normal_power_4 = 1.0
+shader_parameter/normal_adjust_4 = 0.0
+shader_parameter/normal_1 = ExtResource("3_p7pid")
+shader_parameter/normal_2 = ExtResource("3_p7pid")
+shader_parameter/normal_3 = ExtResource("3_p7pid")
+shader_parameter/edgewear_power_1 = 1.5
+shader_parameter/edgewear_adjust_1 = 7.4506e-08
+shader_parameter/edgewear_power_2 = 1.0
+shader_parameter/edgewear_adjust_2 = 0.2
+shader_parameter/edgewear_power_3 = 1.0
+shader_parameter/edgewear_adjust_3 = 0.0
+shader_parameter/edgewear_power_4 = 1.0
+shader_parameter/edgewear_adjust_4 = 0.0
+shader_parameter/edgewear_1 = ExtResource("3_ibjwq")
+shader_parameter/edgewear_2 = ExtResource("3_ibjwq")
+shader_parameter/edgewear_3 = ExtResource("3_ibjwq")
+shader_parameter/grunge_color_1 = Color(0.523449, 0.276328, 0.128946, 1)
+shader_parameter/grunge_power_1 = 0.3
+shader_parameter/grunge_adjust_1 = 7.4506e-08
+shader_parameter/grunge_tile_size_1 = Vector2(0.525, 0.5)
+shader_parameter/grunge_color_2 = Color(0.435294, 0.270588, 0.0862745, 1)
+shader_parameter/grunge_power_2 = 1.0
+shader_parameter/grunge_adjust_2 = 0.0
+shader_parameter/grunge_tile_size_2 = Vector2(1, 1)
+shader_parameter/grunge_color_3 = Color(0, 0, 0, 0)
+shader_parameter/grunge_power_3 = 1.0
+shader_parameter/grunge_adjust_3 = 0.0
+shader_parameter/grunge_tile_size_3 = Vector2(1, 1)
+shader_parameter/grunge_color_4 = Color(0, 0, 0, 0)
+shader_parameter/grunge_power_4 = 1.0
+shader_parameter/grunge_adjust_4 = 0.0
+shader_parameter/grunge_tile_size_4 = Vector2(1, 1)
+shader_parameter/grunge_texture_1 = ExtResource("4_ovpdd")
+shader_parameter/grunge_texture_2 = ExtResource("4_nwty0")
+shader_parameter/emission_scroll = Vector2(-0.05, 0.1)
+shader_parameter/emission_scale = Vector2(100, 100)
+shader_parameter/emission_color = Color(0.772459, 0.71311, 0.0995574, 1)
+shader_parameter/emission_power = 0.8
+shader_parameter/emission_adjust = 7.4506e-08
+shader_parameter/emission_map = ExtResource("4_2uqnb")
+metadata/sound = "rock"

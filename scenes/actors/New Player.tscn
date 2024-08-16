@@ -1475,166 +1475,13 @@ root_motion_track = NodePath("game_rig/Skeleton3D:DEF-root")
 tree_root = SubResource("AnimationNodeStateMachine_3yd1y")
 advance_expression_base_node = NodePath("../StateChart")
 anim_player = NodePath("../model/AnimationPlayer")
-parameters/current_length = 0.666667
-parameters/current_position = 0.148147
-parameters/current_delta = 0.00826
-parameters/Crouch/current_length = 0
-parameters/Crouch/current_position = 0
-parameters/Crouch/current_delta = 0
 parameters/Crouch/blend_position = 0
-parameters/Crouch/0/current_length = null
-parameters/Crouch/0/current_position = null
-parameters/Crouch/0/current_delta = null
-parameters/Crouch/1/current_length = null
-parameters/Crouch/1/current_position = null
-parameters/Crouch/1/current_delta = null
-parameters/Dive/current_length = 0.5
-parameters/Dive/current_position = 0.0
-parameters/Dive/current_delta = 0.0
-"parameters/Dive Getup/current_length" = 0.566667
-"parameters/Dive Getup/current_position" = 0.566667
-"parameters/Dive Getup/current_delta" = 0.0520163
-"parameters/Dive Land/current_length" = 0.233333
-"parameters/Dive Land/current_position" = 0.0
-"parameters/Dive Land/current_delta" = 0.0
-parameters/End/current_length = null
-parameters/End/current_position = null
-parameters/End/current_delta = null
-"parameters/Fast Stop/current_length" = 0.5
-"parameters/Fast Stop/current_position" = 0.5
-"parameters/Fast Stop/current_delta" = 0.014569
-"parameters/Ground Pound Flip/current_length" = 0.333333
-"parameters/Ground Pound Flip/current_position" = 0.333333
-"parameters/Ground Pound Flip/current_delta" = 0.0
-"parameters/Ground Pound Getup/current_length" = 1.0
-"parameters/Ground Pound Getup/current_position" = 1.0
-"parameters/Ground Pound Getup/current_delta" = 0.0
-parameters/Idle/current_length = 0.666667
-parameters/Idle/current_position = 0.148147
-parameters/Idle/current_delta = 0.00826
-parameters/Jump/current_length = 0.0
-parameters/Jump/current_position = 0.0
-parameters/Jump/current_delta = 0.0
-parameters/Jump/End/current_length = null
-parameters/Jump/End/current_position = null
-parameters/Jump/End/current_delta = null
-parameters/Jump/Fall/current_length = 0.3
-parameters/Jump/Fall/current_position = 0.3
-parameters/Jump/Fall/current_delta = 0.0
-"parameters/Jump/Jump 1/current_length" = 0.166667
-"parameters/Jump/Jump 1/current_position" = 0.166667
-"parameters/Jump/Jump 1/current_delta" = 0.0
-"parameters/Jump/Jump 2/current_length" = null
-"parameters/Jump/Jump 2/current_position" = null
-"parameters/Jump/Jump 2/current_delta" = null
-"parameters/Jump/Jump 3/current_length" = null
-"parameters/Jump/Jump 3/current_position" = null
-"parameters/Jump/Jump 3/current_delta" = null
-"parameters/Jump/Long Jump_gameready/current_length" = null
-"parameters/Jump/Long Jump_gameready/current_position" = null
-"parameters/Jump/Long Jump_gameready/current_delta" = null
-"parameters/Jump/Side Flip/current_length" = null
-"parameters/Jump/Side Flip/current_position" = null
-"parameters/Jump/Side Flip/current_delta" = null
-parameters/Jump/Start/current_length = 0.0
-parameters/Jump/Start/current_position = 0.0
-parameters/Jump/Start/current_delta = 0.0
-parameters/Land/current_length = 0.3
-parameters/Land/current_position = 0.3
-parameters/Land/current_delta = 0.00927899
-"parameters/Land Ground Pound/current_length" = 0.166667
-"parameters/Land Ground Pound/current_position" = 0.166667
-"parameters/Land Ground Pound/current_delta" = 0.014993
-"parameters/Ledge Climb/current_length" = 1.0
-"parameters/Ledge Climb/current_position" = 1.0
-"parameters/Ledge Climb/current_delta" = 0.0
-"parameters/Ledge Hang/current_length" = 0.166667
-"parameters/Ledge Hang/current_position" = 0.0
-"parameters/Ledge Hang/current_delta" = 0.166667
 "parameters/Ledge Hang/blend_position" = -0.0193424
-"parameters/Ledge Hang/0/current_length" = 0.833333
-"parameters/Ledge Hang/0/current_position" = 0.0
-"parameters/Ledge Hang/0/current_delta" = 0.833333
-"parameters/Ledge Hang/1/current_length" = 0.833333
-"parameters/Ledge Hang/1/current_position" = 0.490472
-"parameters/Ledge Hang/1/current_delta" = 0.007502
-"parameters/Ledge Hang/2/current_length" = 0.166667
-"parameters/Ledge Hang/2/current_position" = 0.0
-"parameters/Ledge Hang/2/current_delta" = 0.166667
-parameters/Pivot/current_length = 0.25
-parameters/Pivot/current_position = 0.0
-parameters/Pivot/current_delta = 0.0
-parameters/Rollout/current_length = 0.333333
-parameters/Rollout/current_position = 0.110681
-parameters/Rollout/current_delta = 0.00685
-"parameters/Rope Climb/current_length" = 0.001
-"parameters/Rope Climb/current_position" = 0.001
-"parameters/Rope Climb/current_delta" = 0.0
 "parameters/Rope Climb/blend_position" = -0.0101547
-"parameters/Rope Climb/0/current_length" = 1.0
-"parameters/Rope Climb/0/current_position" = 0.18351
-"parameters/Rope Climb/0/current_delta" = 0.00706
-"parameters/Rope Climb/1/current_length" = 1.0
-"parameters/Rope Climb/1/current_position" = 0.658264
-"parameters/Rope Climb/1/current_delta" = 0.007199
-"parameters/Rope Climb/2/current_length" = 0.001
-"parameters/Rope Climb/2/current_position" = 0.001
-"parameters/Rope Climb/2/current_delta" = 0.0
-"parameters/Rope Grab/current_length" = 0.5
-"parameters/Rope Grab/current_position" = 0.0
-"parameters/Rope Grab/current_delta" = 0.0
-parameters/Run/current_length = 0.75
-parameters/Run/current_position = 0.0755327
-parameters/Run/current_delta = 0.006859
 parameters/Run/blend_position = 1.00387
-parameters/Run/0/current_length = 0.666667
-parameters/Run/0/current_position = 0.604009
-parameters/Run/0/current_delta = 0.007018
-parameters/Run/1/current_length = 0.75
-parameters/Run/1/current_position = 0.0755327
-parameters/Run/1/current_delta = 0.006859
-parameters/Skidding/current_length = 0.333333
-parameters/Skidding/current_position = 0.095936
-parameters/Skidding/current_delta = 0.006014
-"parameters/Slide Down Rope/current_length" = null
-"parameters/Slide Down Rope/current_position" = null
-"parameters/Slide Down Rope/current_delta" = null
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
-parameters/Walk/current_length = 0.666667
-parameters/Walk/current_position = 0.144008
-parameters/Walk/current_delta = 0.006002
 parameters/Walk/blend_position = -0.00580269
-parameters/Walk/0/current_length = 0.666667
-parameters/Walk/0/current_position = 0.144008
-parameters/Walk/0/current_delta = 0.006002
-parameters/Walk/1/current_length = 1.0
-parameters/Walk/1/current_position = 0.144309
-parameters/Walk/1/current_delta = 0.006006
-"parameters/Wall Hang/current_length" = 1.0
-"parameters/Wall Hang/current_position" = 0.657129
-"parameters/Wall Hang/current_delta" = 0.006999
 "parameters/Wall Hang/blend_position" = Vector2(1.29058, -0.0558767)
-"parameters/Wall Hang/0/current_length" = 0.333333
-"parameters/Wall Hang/0/current_position" = 0.107718
-"parameters/Wall Hang/0/current_delta" = 0.006999
-"parameters/Wall Hang/1/current_length" = 0.666667
-"parameters/Wall Hang/1/current_position" = 0.49006
-"parameters/Wall Hang/1/current_delta" = 0.007917
-"parameters/Wall Hang/2/current_length" = 0.666667
-"parameters/Wall Hang/2/current_position" = 0.348128
-"parameters/Wall Hang/2/current_delta" = 0.006999
-"parameters/Wall Hang/3/current_length" = 1.0
-"parameters/Wall Hang/3/current_position" = 0.657129
-"parameters/Wall Hang/3/current_delta" = 0.006999
-"parameters/Wall Hang/4/current_length" = 0.666667
-"parameters/Wall Hang/4/current_position" = 0.545479
-"parameters/Wall Hang/4/current_delta" = 0.006328
 script = ExtResource("10_c4rsc")
-
-[node name="CameraPivot" parent="." instance=ExtResource("10_0siog")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Raycasts" type="Node3D" parent="."]
 
@@ -1808,179 +1655,160 @@ unique_name_in_owner = true
 
 [node name="Skeleton3D" parent="model/game_rig" index="0"]
 bones/0/rotation = Quaternion(-0.707107, -1.93821e-24, -7.42028e-24, 0.707107)
-bones/1/position = Vector3(1.21389e-15, 0.0552, 1.0099)
-bones/1/rotation = Quaternion(0.854047, -5.54432e-15, 9.10255e-15, 0.520196)
-bones/3/rotation = Quaternion(-0.220191, -1.68524e-07, -1.44566e-08, 0.975457)
-bones/4/rotation = Quaternion(0.0466068, 1.72576e-07, 3.05995e-09, 0.998913)
-bones/5/position = Vector3(-1.6691e-14, 0.192579, -4.20884e-08)
-bones/5/rotation = Quaternion(0.196627, 5.57332e-14, 4.68795e-08, 0.980478)
-bones/6/position = Vector3(1.04945e-14, 0.0661635, -2.44754e-08)
-bones/6/rotation = Quaternion(-0.162247, -2.36359e-07, -8.65749e-09, 0.98675)
-bones/7/position = Vector3(9.76996e-15, 0.22612, -1.31774e-08)
-bones/7/rotation = Quaternion(-0.0310927, 1.18561e-07, 1.24136e-08, 0.999517)
-bones/8/position = Vector3(0.175137, 0.0579125, 0.075985)
-bones/8/rotation = Quaternion(-0.605155, -0.345862, -0.356135, 0.622363)
-bones/9/rotation = Quaternion(-0.238687, 0.717329, -0.423332, 0.499257)
+bones/1/rotation = Quaternion(0.854047, 0, 0, 0.520196)
+bones/3/rotation = Quaternion(-0.218283, -1.68598e-07, -1.43313e-08, 0.975886)
+bones/4/rotation = Quaternion(0.0485603, 1.7256e-07, 3.18821e-09, 0.99882)
+bones/5/rotation = Quaternion(0.194709, 5.54834e-14, 4.64223e-08, 0.980861)
+bones/6/rotation = Quaternion(-0.162247, -1.1763e-07, -1.93413e-08, 0.98675)
+bones/7/rotation = Quaternion(-0.0330474, 1.18537e-07, 1.26455e-08, 0.999454)
+bones/8/rotation = Quaternion(-0.605155, -0.345863, -0.356134, 0.622363)
+bones/9/rotation = Quaternion(-0.236183, 0.71679, -0.426448, 0.498569)
 bones/10/position = Vector3(-1.00814e-07, 0.135573, -3.73036e-09)
-bones/10/rotation = Quaternion(3.14983e-08, 0.049481, -6.1458e-09, 0.998775)
+bones/10/rotation = Quaternion(-8.11425e-08, 0.0496242, 1.53359e-07, 0.998768)
 bones/11/position = Vector3(-7.561e-08, 0.135573, -3.05982e-08)
-bones/11/rotation = Quaternion(0.201147, 0.0495647, -0.0101915, 0.978253)
+bones/11/rotation = Quaternion(0.199596, 0.0493689, -0.0100695, 0.978582)
 bones/12/position = Vector3(8.20589e-08, 0.0950915, 2.98261e-08)
-bones/12/rotation = Quaternion(-1.37177e-07, 0.00542127, 8.57377e-08, 0.999985)
+bones/12/rotation = Quaternion(-8.51405e-08, 0.00377674, -1.49022e-07, 0.999993)
 bones/13/position = Vector3(2.43166e-08, 0.0950915, -3.67379e-08)
-bones/13/rotation = Quaternion(-0.0517662, 0.00235211, -0.122737, 0.991085)
-bones/14/position = Vector3(-0.175137, 0.0579125, 0.0759849)
+bones/13/rotation = Quaternion(-0.0501036, 0.000707499, -0.121807, 0.991288)
 bones/14/rotation = Quaternion(-0.605155, 0.345862, 0.356134, 0.622363)
-bones/15/rotation = Quaternion(-0.238687, -0.717329, 0.423332, 0.499257)
+bones/15/rotation = Quaternion(-0.236183, -0.71679, 0.426448, 0.498569)
 bones/16/position = Vector3(-1.19209e-07, 0.135573, 1.86259e-08)
-bones/16/rotation = Quaternion(-4.89609e-08, -0.0494811, -3.0856e-08, 0.998775)
+bones/16/rotation = Quaternion(4.48897e-08, -0.0496244, 6.9365e-08, 0.998768)
 bones/17/position = Vector3(7.61312e-09, 0.135573, -8.65079e-08)
-bones/17/rotation = Quaternion(0.20115, -0.0495646, 0.010192, 0.978253)
+bones/17/rotation = Quaternion(0.199599, -0.0493687, 0.0100698, 0.978582)
 bones/18/position = Vector3(4.64661e-08, 0.0950913, 1.4931e-08)
-bones/18/rotation = Quaternion(-5.26409e-08, -0.00542128, 7.97287e-08, 0.999985)
+bones/18/rotation = Quaternion(-3.27835e-09, -0.00377679, 3.95592e-07, 0.999993)
 bones/19/position = Vector3(6.62751e-08, 0.0950915, 5.65965e-08)
-bones/19/rotation = Quaternion(-0.0517667, -0.00235217, 0.122737, 0.991085)
-bones/20/position = Vector3(0.1184, -0.00488109, -0.0427569)
-bones/20/rotation = Quaternion(-5.50249e-08, 0.696936, 0.717133, 5.17344e-08)
-bones/21/position = Vector3(-0.1184, -0.00488119, -0.0427569)
-bones/21/rotation = Quaternion(-5.50249e-08, 0.696936, 0.717133, 5.17344e-08)
+bones/19/rotation = Quaternion(-0.0501032, -0.000707634, 0.121807, 0.991288)
+bones/20/rotation = Quaternion(-9.94568e-08, 0.696936, 0.717133, 5.26172e-08)
+bones/21/rotation = Quaternion(-9.94568e-08, 0.696936, 0.717133, 5.26172e-08)
 bones/22/rotation = Quaternion(0.209211, 0.820302, 0.194913, -0.495323)
-bones/24/rotation = Quaternion(0.95508, -0.00151501, 0.00458441, 0.296308)
-bones/25/position = Vector3(2.00962e-08, 0.164435, -3.84171e-08)
-bones/25/rotation = Quaternion(-1.41489e-07, -6.40284e-09, -2.2148e-08, 1)
-bones/26/position = Vector3(-1.83345e-09, 0.164435, 2.42507e-08)
-bones/26/rotation = Quaternion(0.108324, 4.11455e-06, 6.18691e-07, 0.994116)
-bones/27/position = Vector3(-1.08557e-08, 0.24364, 6.51925e-09)
+bones/24/rotation = Quaternion(0.95508, -0.00151497, 0.00458434, 0.296307)
+bones/26/rotation = Quaternion(0.108323, 4.1688e-06, 5.89108e-07, 0.994116)
 bones/27/rotation = Quaternion(6.64164e-08, -0.0269311, 4.01089e-09, 0.999637)
-bones/28/position = Vector3(-5.94193e-09, 0.24364, -1.16737e-08)
 bones/28/rotation = Quaternion(-0.524246, -0.0297219, -0.0145221, 0.850924)
-bones/29/position = Vector3(-3.65337e-08, 0.129246, 3.52675e-08)
-bones/29/rotation = Quaternion(-4.76095e-05, 0.961249, -0.275682, 0.000166103)
-bones/30/rotation = Quaternion(0.95508, 0.00151499, -0.0045844, 0.296308)
-bones/31/position = Vector3(-2.61061e-08, 0.164435, -3.81842e-08)
-bones/31/rotation = Quaternion(-1.45305e-07, 6.43195e-09, -2.91038e-10, 1)
-bones/32/position = Vector3(1.7055e-08, 0.164435, -1.03184e-09)
-bones/32/rotation = Quaternion(0.108324, -4.11482e-06, -5.91288e-07, 0.994116)
-bones/33/position = Vector3(1.78879e-08, 0.24364, 1.44355e-08)
+bones/30/rotation = Quaternion(0.95508, 0.00151497, -0.00458434, 0.296307)
+bones/32/rotation = Quaternion(0.108323, -4.1688e-06, -5.89108e-07, 0.994116)
 bones/33/rotation = Quaternion(6.52755e-08, 0.0269311, 8.73053e-10, 0.999637)
-bones/34/position = Vector3(-1.8073e-08, 0.24364, 9.81815e-10)
 bones/34/rotation = Quaternion(-0.524246, 0.0297219, 0.014522, 0.850924)
-bones/35/position = Vector3(3.18835e-08, 0.129246, 1.6359e-08)
-bones/35/rotation = Quaternion(-4.76526e-05, 0.961249, -0.275682, 0.000165821)
 
+[node name="CameraPivot" parent="." instance=ExtResource("10_0siog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State" to="." method="start_jump_reset_timer"]
+[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State" to="." method="reset_velocity"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State" to="." method="reset_root_motion_variables"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State" to="." method="reset_jumps"]
-[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State" to="." method="reset_velocity"]
-[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State" to="." method="start_jump_reset_timer"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State/Jump" to="." method="reset_velocity"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Interactive Object States/Stationary Interactive State/Jump" to="." method="set_jump" binds= [7]]
-[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Dialogue" to="." method="reset_jumps"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Dialogue" to="." method="reset_pivot_buffer"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Dialogue" to="." method="reset_velocity"]
+[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Dialogue" to="." method="reset_jumps"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Interactive Object States/Dialogue" to="." method="pause_character" binds= [true]]
 [connection signal="state_exited" from="StateChart/ParallelState/CompoundState/Interactive Object States/Dialogue" to="." method="pause_character" binds= [false]]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="check_for_jump"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="grounded_movement_processing"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="apply_friction"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="check_for_dive"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="apply_friction"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="align_to_floor"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="check_for_pivots"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="grounded_movement_processing"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle" to="." method="check_for_jump"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Idle/Jump" to="." method="increment_jump" flags=3]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="_on_run_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="check_for_jump"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="grounded_movement_processing"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="apply_friction"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="look_forward"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="check_for_dive"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="apply_friction"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="align_to_floor"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="check_for_pivots"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="grounded_movement_processing"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run" to="." method="check_for_jump"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Run/Jump" to="." method="increment_jump"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Belly Slide" to="." method="belly_slide_processing"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Belly Slide" to="." method="check_for_jump"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Belly Slide" to="." method="apply_slide_friction"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Belly Slide" to="." method="check_for_jump"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Belly Slide" to="." method="belly_slide_processing"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Belly Slide/Jump" to="." method="set_jump" binds= [4]]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Belly Slide/Idle" to="." method="reset_jumps"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Pivot" to="." method="reset_pivot_buffer"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Pivot" to="." method="start_skidding"]
 [connection signal="state_exited" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Pivot" to="." method="stop_skidding"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Pivot" to="." method="check_for_jump"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Pivot" to="." method="apply_slide_friction"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Pivot" to="." method="check_for_jump"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Pivot/Jump" to="." method="set_jump" binds= [6.0]]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="start_crouching"]
 [connection signal="state_exited" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="stop_crouching"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="check_for_jump"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="grounded_movement_processing"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="apply_friction"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="look_forward"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="check_for_floor"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="check_for_dive"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="apply_friction"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="align_to_floor"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="grounded_movement_processing"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch" to="." method="check_for_jump"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Crouch/Jump" to="." method="set_jump" binds= [7]]
 [connection signal="state_exited" from="StateChart/ParallelState/CompoundState/Movement State/Grounded Movement Options/Ground Pound Landing" to="." method="stop_ground_pound"]
-[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="reset_pivot_buffer"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="initial_jump_processing" flags=3]
+[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="reset_pivot_buffer"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="reset_alignment"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="look_forward" flags=3 binds= [0.017]]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="normal_jump_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="check_for_floor"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="check_for_dive"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="apply_air_friction"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump" to="." method="normal_jump_processing"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump/Dive" to="." method="set_jump" binds= [3]]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump/Bounce off Enemy" to="." method="initial_jump_processing"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Jump/Idle" to="." method="start_jump_reset_timer"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall" to="." method="reset_pivot_buffer"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall" to="." method="reset_alignment"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall" to="." method="normal_jump_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall" to="." method="check_for_floor"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall" to="." method="check_for_dive"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall" to="." method="apply_air_friction"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall" to="." method="normal_jump_processing"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall/Idle" to="." method="start_jump_reset_timer"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall/Run" to="." method="start_jump_reset_timer"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall/Dive" to="." method="set_jump" binds= [3]]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Fall/Bounce off Enemy" to="." method="initial_jump_processing"]
-[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive" to="." method="look_forward"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive" to="." method="initial_jump_processing"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive" to="." method="normal_jump_processing"]
+[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive" to="." method="look_forward"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive" to="." method="check_for_floor"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive" to="." method="apply_air_friction"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive" to="." method="normal_jump_processing"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Dive/Bounce off Enemy" to="." method="initial_jump_processing"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Rollout" to="." method="initial_jump_processing"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Rollout" to="." method="normal_jump_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Rollout" to="." method="check_for_floor"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Rollout" to="." method="normal_jump_processing"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Rollout/Fall" to="." method="reset_jumps"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Rollout/Bounce off Enemy" to="." method="initial_jump_processing"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Slide" to="." method="reset_velocity"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Slide" to="." method="check_for_jump"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Slide" to="." method="wall_slide_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Slide" to="." method="check_for_floor"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Slide" to="." method="check_for_jump"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Slide/Jump" to="." method="set_jump" binds= [7.0]]
-[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="reset_jumps"]
-[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="reset_velocity"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="start_jump_reset_timer"]
+[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="reset_velocity"]
+[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="reset_jumps"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="check_for_floor"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="wall_climb_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="check_for_jump"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb" to="." method="check_for_floor"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb/Jump" to="." method="look_forward" flags=3]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Wall Climb/Jump" to="." method="set_jump" binds= [7.0]]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Coyote Time" to="." method="check_for_jump"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Coyote Time/Jump" to="." method="increment_jump" flags=3]
-[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="reset_pivot_buffer"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="initial_jump_processing"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="check_for_dive"]
+[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="reset_pivot_buffer"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="reset_alignment"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="normal_jump_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="check_for_floor"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="apply_air_friction"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy" to="." method="normal_jump_processing"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy/Idle" to="." method="start_jump_reset_timer"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy/Run" to="." method="start_jump_reset_timer"]
 [connection signal="taken" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Bounce off Enemy/Dive" to="." method="set_jump" binds= [3]]
-[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/ledge hang" to="." method="start_ledge_hang"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/ledge hang" to="." method="reset_velocity"]
+[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/ledge hang" to="." method="start_ledge_hang"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/ledge hang" to="." method="set_jump" binds= [1]]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/ledge hang" to="." method="ledge_hang_processing"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/ledge hang" to="." method="check_for_jump"]
-[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Ground Pound" to="." method="reset_jumps"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Ground Pound" to="." method="reset_velocity"]
+[connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Ground Pound" to="." method="reset_jumps"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Ground Pound" to="." method="check_for_floor"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CompoundState/Movement State/Aerial Movement Options/Ledge Climb" to="." method="set_ledge_climb_position"]
 [connection signal="state_entered" from="StateChart/ParallelState/Damage States/Take Damage" to="." method="look_backward"]
@@ -2000,7 +1828,7 @@ bones/35/rotation = Quaternion(-4.76526e-05, 0.961249, -0.275682, 0.000165821)
 [connection signal="area_entered" from="Interactable Detector" to="Interactable Detector" method="_on_area_entered"]
 [connection signal="area_exited" from="Interactable Detector" to="Interactable Detector" method="_on_area_exited"]
 
-[editable path="CameraPivot"]
 [editable path="Hazard Detector"]
 [editable path="CanvasLayer/HUD"]
 [editable path="model"]
+[editable path="CameraPivot"]

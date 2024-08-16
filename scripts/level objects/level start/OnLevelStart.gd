@@ -29,6 +29,16 @@ func _ready():
 			coins.multimesh.set_instance_transform(i,Transform3D(Basis(), Vector3.ZERO))
 		coins.visible = true
 	emit_signal("level_loaded")
+	
+	if $"%Opening Camera Shot" != null:
+		var tween = create_tween()
+		$"%OpeningCamera".priority = 10
+		
+		for child in $"%Opening Camera Shot".get_children():
+			var path_follow_node = child.get_child(0) as PathFollow3D
+			tween.tween_property(path_follow_node, "progress_ratio", 1, 10)
+		await tween.finished
+		$"%OpeningCamera".priority = 0
 
 func ensure_collectable_exists(collectable_name):
 	if not Global.WORLD_COLLECTIBLES.has(collectable_name):

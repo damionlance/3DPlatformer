@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dx43f0ws6wsw2"
+uid="uid://bail3cyw1ie53"
 path="res://.godot/imported/waterfall.glb-af27993cb0c29ac5ddce6358f01c923e.scn"
 
 [deps]
@@ -37,25 +37,17 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://assets/materials/garden/rock.tres"
 },
-"Crumble.TEMP": {
-"use_external/enabled": true,
-"use_external/path": "res://assets/materials/garden/crumbling rock.tres"
-},
 "Grass.TEMP": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/materials/garden/grass.tres"
 },
 "Rock.TEMP": {
 "use_external/enabled": true,
-"use_external/path": "res://assets/materials/garden/rock.tres"
-},
-"Splash": {
-"use_external/enabled": true,
-"use_external/path": "res://assets/materials/garden/wallSplash.tres"
+"use_external/path": "res://assets/materials/garden/rocks.tres"
 },
 "Waterfall": {
 "use_external/enabled": true,
-"use_external/path": "res://assets/materials/garden/waterfall.tres"
+"use_external/path": "res://assets/materials/garden/waterfall water.tres"
 }
 }
 }

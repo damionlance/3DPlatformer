@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://cd1d8dqh4hu4k"]
+
+[ext_resource type="Shader" path="res://assets/shaders/flower_petals.gdshader" id="1_qsttt"]
+[ext_resource type="Texture2D" uid="uid://k2wl6bxkmhet" path="res://assets/textures/garden/flower_packed.png" id="2_futy6"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qmvp7"]
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2njxa"]
+invert = true
+noise = SubResource("FastNoiseLite_qmvp7")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_qsttt")
+shader_parameter/petal_color_1 = Color(0.72885, 0.110038, 0.345309, 1)
+shader_parameter/petal_color_2 = Color(0.974919, 0.386487, 0.401241, 1)
+shader_parameter/center_color = Color(0.818018, 0.747721, 0.347642, 1)
+shader_parameter/petal_texture = ExtResource("2_futy6")
+shader_parameter/wind_speed = 0.12
+shader_parameter/wind_strength = 0.245
+shader_parameter/wind_texture_tile_size = 20.0
+shader_parameter/wind_vertical_strength = 0.3
+shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
+shader_parameter/character_position = null
+shader_parameter/character_radius = 3.0
+shader_parameter/character_push_strength = 1.0
+shader_parameter/wind_noise = SubResource("NoiseTexture2D_2njxa")

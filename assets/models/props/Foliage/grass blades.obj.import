@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c0qet4gtk6qnl"
+path="res://.godot/imported/grass blades.obj-a73f73f69f57680058e857e7d89c3d3b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/grass blades.obj-a73f73f69f57680058e857e7d89c3d3b.mesh"]
+
+source_file="res://assets/models/props/Foliage/grass blades.obj"
+dest_files=["res://.godot/imported/grass blades.obj-a73f73f69f57680058e857e7d89c3d3b.mesh", "res://.godot/imported/grass blades.obj-a73f73f69f57680058e857e7d89c3d3b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
