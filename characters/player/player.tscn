@@ -1,0 +1,752 @@
+[gd_scene format=3 uid="uid://llm2odawiuhk"]
+
+[ext_resource type="Script" uid="uid://cab5jiofsvvki" path="res://characters/player/scripts/player.gd" id="1_dirf7"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="1_ixbpm"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="2_c6leb"]
+[ext_resource type="Resource" uid="uid://bkfqrw5r1b8gu" path="res://characters/player/resources/player physics.tres" id="2_dirf7"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="3_dirf7"]
+[ext_resource type="Script" uid="uid://c37qg66pq7js4" path="res://characters/player/scripts/animation_tree.gd" id="3_on558"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="4_idpv6"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_rpf03"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="6_rpf03"]
+[ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="7_x5dtk"]
+[ext_resource type="Script" uid="uid://dxv67ijrjhf0" path="res://characters/player/camera_pivot.gd" id="8_x5dtk"]
+[ext_resource type="Script" uid="uid://c15v11tstrfo2" path="res://characters/player/scripts/camera_lookat_target.gd" id="11_3t07l"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_nacyp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nacyp"]
+size = Vector3(0.4086914, 0.19189453, 0.24414063)
+
+[sub_resource type="Animation" id="Animation_x7p2l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TemporaryBody:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TemporaryBody:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TemporaryBody/MeshInstance3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TemporaryBody/MeshInstance3D2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.25, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TemporaryBody/MeshInstance3D3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.25, 0.5)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TemporaryBody/MeshInstance3D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TemporaryBody/MeshInstance3D2:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TemporaryBody/MeshInstance3D3:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_icpky"]
+resource_name = "belly slide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TemporaryBody/MeshInstance3D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.5063247, 0.8597392)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TemporaryBody/MeshInstance3D3:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.023283213, 0.6366287, 1.2882051)]
+}
+
+[sub_resource type="Animation" id="Animation_58jvb"]
+resource_name = "dive"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TemporaryBody/MeshInstance3D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.5063247, 0.8597392)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TemporaryBody/MeshInstance3D3:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.023283213, 0.6366287, 1.2882051)]
+}
+
+[sub_resource type="Animation" id="Animation_8l73k"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TemporaryBody/MeshInstance3D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.25, 0), Vector3(0, 1.2, 0), Vector3(0, 1.25, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TemporaryBody/MeshInstance3D3:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.25, 0.5), Vector3(0, 1.2, 0.5), Vector3(0, 1.25, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_3t07l"]
+resource_name = "jump 1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TemporaryBody/MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.6875185, 0), Vector3(0, 0.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_on558"]
+resource_name = "jump 2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TemporaryBody/MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0), Vector3(0, 0.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gqopd"]
+resource_name = "jump 3"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TemporaryBody:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01666665, 0.26666665, 0.51666665, 0.76666665, 1.0166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5707964, 0, 0), Vector3(3.1415927, 0, 0), Vector3(4.712389, 0, 0), Vector3(6.2831855, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8afob"]
+resource_name = "lean left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TemporaryBody:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.2617994)]
+}
+
+[sub_resource type="Animation" id="Animation_dovo2"]
+resource_name = "lean right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TemporaryBody:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.2617994)]
+}
+
+[sub_resource type="Animation" id="Animation_aqrcq"]
+resource_name = "rollout"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TemporaryBody:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01666665, 0.26666665, 0.51666665, 0.76666665, 1.0166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5707964, 0, 0), Vector3(3.1415927, 0, 0), Vector3(4.712389, 0, 0), Vector3(6.2831855, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gmlin"]
+resource_name = "run forward"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TemporaryBody:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.2617994, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lvxji"]
+_data = {
+&"RESET": SubResource("Animation_x7p2l"),
+&"belly slide": SubResource("Animation_icpky"),
+&"dive": SubResource("Animation_58jvb"),
+&"idle": SubResource("Animation_8l73k"),
+&"jump 1": SubResource("Animation_3t07l"),
+&"jump 2": SubResource("Animation_on558"),
+&"jump 3": SubResource("Animation_gqopd"),
+&"lean left": SubResource("Animation_8afob"),
+&"lean right": SubResource("Animation_dovo2"),
+&"rollout": SubResource("Animation_aqrcq"),
+&"run forward": SubResource("Animation_gmlin")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xeka7"]
+radius = 0.35
+height = 1.7260742
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3t07l"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3t07l"]
+animation = &"jump 1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_on558"]
+animation = &"jump 2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gqopd"]
+animation = &"jump 3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_icpky"]
+advance_mode = 2
+advance_expression = "current_jump == 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_58jvb"]
+advance_mode = 2
+advance_expression = "current_jump == 1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8l73k"]
+advance_mode = 2
+advance_expression = "current_jump == 2"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_aqrcq"]
+"states/jump 1/node" = SubResource("AnimationNodeAnimation_3t07l")
+"states/jump 1/position" = Vector2(319, 27)
+"states/jump 2/node" = SubResource("AnimationNodeAnimation_on558")
+"states/jump 2/position" = Vector2(319, 100)
+"states/jump 3/node" = SubResource("AnimationNodeAnimation_gqopd")
+"states/jump 3/position" = Vector2(319, 175)
+transitions = ["Start", "jump 1", SubResource("AnimationNodeStateMachineTransition_icpky"), "Start", "jump 2", SubResource("AnimationNodeStateMachineTransition_58jvb"), "Start", "jump 3", SubResource("AnimationNodeStateMachineTransition_8l73k")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d2agh"]
+animation = &"dive"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_on558"]
+advance_mode = 2
+advance_expression = "velocity.y <= 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gqopd"]
+advance_mode = 2
+advance_expression = "velocity.y > 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aqrcq"]
+advance_mode = 2
+advance_expression = "velocity.y <= 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5mkjs"]
+advance_mode = 2
+advance_expression = "current_jump == 3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yybc7"]
+advance_mode = 2
+advance_expression = "current_jump == 3"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_d2agh"]
+states/Fall/node = SubResource("AnimationNodeStateMachine_3t07l")
+states/Fall/position = Vector2(338, 154)
+states/Jumps/node = SubResource("AnimationNodeStateMachine_aqrcq")
+states/Jumps/position = Vector2(338, 37)
+states/dive/node = SubResource("AnimationNodeAnimation_d2agh")
+states/dive/position = Vector2(479, 100)
+transitions = ["Start", "Fall", SubResource("AnimationNodeStateMachineTransition_on558"), "Start", "Jumps", SubResource("AnimationNodeStateMachineTransition_gqopd"), "Jumps", "Fall", SubResource("AnimationNodeStateMachineTransition_aqrcq"), "Jumps", "dive", SubResource("AnimationNodeStateMachineTransition_5mkjs"), "Fall", "dive", SubResource("AnimationNodeStateMachineTransition_yybc7")]
+graph_offset = Vector2(-58, -104)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p47bc"]
+animation = &"run forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_75vfm"]
+animation = &"lean left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0owmy"]
+animation = &"lean right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_qek5x"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_p47bc")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_0/name = &"run forward"
+blend_point_1/node = SubResource("AnimationNodeAnimation_75vfm")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_1/name = &"lean left"
+blend_point_2/node = SubResource("AnimationNodeAnimation_0owmy")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_2/name = &"lean right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lv4bx"]
+animation = &"belly slide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jgd8i"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7b6hw"]
+advance_mode = 2
+advance_condition = &"not_sliding"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e0pgg"]
+advance_mode = 2
+advance_condition = &"sliding"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lv4bx"]
+advance_mode = 2
+advance_expression = "velocity.x == 0 && velocity.z == 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4cx7u"]
+advance_mode = 2
+advance_expression = "velocity != Vector3(0,0,0)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w53g3"]
+advance_mode = 2
+advance_condition = &"not_sliding"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sbttr"]
+states/Run/node = SubResource("AnimationNodeBlendSpace2D_qek5x")
+states/Run/position = Vector2(610, 100)
+"states/belly slide/node" = SubResource("AnimationNodeAnimation_lv4bx")
+"states/belly slide/position" = Vector2(384, 197)
+states/idle/node = SubResource("AnimationNodeAnimation_jgd8i")
+states/idle/position = Vector2(384, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_7b6hw"), "Start", "belly slide", SubResource("AnimationNodeStateMachineTransition_e0pgg"), "Run", "idle", SubResource("AnimationNodeStateMachineTransition_lv4bx"), "idle", "Run", SubResource("AnimationNodeStateMachineTransition_4cx7u"), "belly slide", "idle", SubResource("AnimationNodeStateMachineTransition_w53g3")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_icpky"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kyfeq"]
+advance_mode = 2
+advance_condition = &"is_on_floor"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fpo3a"]
+advance_mode = 2
+advance_condition = &"not_on_floor"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d2agh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jgd8i"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nacyp"]
+"states/Aerial Animations/node" = SubResource("AnimationNodeStateMachine_d2agh")
+"states/Aerial Animations/position" = Vector2(574, -6)
+"states/Grounded Animations/node" = SubResource("AnimationNodeStateMachine_sbttr")
+"states/Grounded Animations/position" = Vector2(574, 102)
+states/RESET/node = SubResource("AnimationNodeAnimation_icpky")
+states/RESET/position = Vector2(338, 100)
+states/Start/position = Vector2(206, 100)
+transitions = ["Aerial Animations", "Grounded Animations", SubResource("AnimationNodeStateMachineTransition_kyfeq"), "Grounded Animations", "Aerial Animations", SubResource("AnimationNodeStateMachineTransition_fpo3a"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_d2agh"), "RESET", "Grounded Animations", SubResource("AnimationNodeStateMachineTransition_jgd8i")]
+graph_offset = Vector2(-219, -152)
+
+[sub_resource type="Resource" id="Resource_dirf7"]
+script = ExtResource("7_x5dtk")
+expression = "input_direction != Vector2(0,0)"
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"
+
+[sub_resource type="Resource" id="Resource_ky00p"]
+script = ExtResource("7_x5dtk")
+expression = "is_on_floor == false"
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"
+
+[sub_resource type="Resource" id="Resource_daw17"]
+script = ExtResource("7_x5dtk")
+expression = ""
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"
+
+[sub_resource type="Resource" id="Resource_3t07l"]
+script = ExtResource("7_x5dtk")
+expression = "velocity == Vector3(0,0,0) && input_direction == Vector2(0,0)"
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"
+
+[sub_resource type="Resource" id="Resource_gqopd"]
+script = ExtResource("7_x5dtk")
+expression = "is_on_floor == false && velocity.y <= 0"
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"
+
+[sub_resource type="Resource" id="Resource_43xo0"]
+script = ExtResource("7_x5dtk")
+expression = "is_on_floor == true"
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"
+
+[sub_resource type="Resource" id="Resource_x5dtk"]
+script = ExtResource("5_rpf03")
+
+[sub_resource type="SphereMesh" id="SphereMesh_xeka7"]
+radius = 0.05
+height = 0.1
+
+[sub_resource type="Gradient" id="Gradient_3t07l"]
+offsets = PackedFloat32Array(0.084415585, 0.44155845)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nacyp"]
+gradient = SubResource("Gradient_3t07l")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[node name="Player" type="CharacterBody3D" unique_id=583580179 node_paths=PackedStringArray("state_chart", "pcam", "anim_tree", "jump_timer", "stair_ahead_ray", "stair_below_ray")]
+collision_layer = 2
+collision_mask = 5
+floor_max_angle = 1.5603243
+script = ExtResource("1_dirf7")
+state_chart = NodePath("StateChart")
+physics_constants = ExtResource("2_dirf7")
+pcam = NodePath("CameraPivot/PhantomCamera3D")
+anim_tree = NodePath("AnimationTree")
+jump_timer = NodePath("JumpTimer")
+stair_ahead_ray = NodePath("StairsAhead")
+stair_below_ray = NodePath("StairsBelow")
+
+[node name="TemporaryBody" type="Node3D" parent="." unique_id=34695920]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TemporaryBody" unique_id=1590885350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("SphereMesh_nacyp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="TemporaryBody" unique_id=1402361647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+mesh = SubResource("SphereMesh_nacyp")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="TemporaryBody" unique_id=1198093540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0.5)
+mesh = SubResource("BoxMesh_nacyp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1640786704]
+libraries/ = SubResource("AnimationLibrary_lvxji")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=46659499]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8794011, 0)
+shape = SubResource("CapsuleShape3D_xeka7")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=374437344 node_paths=PackedStringArray("player")]
+tree_root = SubResource("AnimationNodeStateMachine_nacyp")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_on_floor = false
+parameters/conditions/not_on_floor = false
+"parameters/Grounded Animations/conditions/not_sliding" = false
+"parameters/Grounded Animations/conditions/sliding" = false
+"parameters/Grounded Animations/Run/blend_position" = Vector2(-0.0010683537, -0.0028249025)
+script = ExtResource("3_on558")
+player = NodePath("..")
+
+[node name="StateChart" type="Node" parent="." unique_id=418413100]
+script = ExtResource("1_ixbpm")
+initial_expression_properties = {
+"input_direction": Vector2(0, 0),
+"is_on_floor": false,
+"velocity": Vector3(0, 0, 0)
+}
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="CompoundState" type="Node" parent="StateChart" unique_id=208206098]
+script = ExtResource("2_c6leb")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/CompoundState" unique_id=492511267]
+script = ExtResource("3_dirf7")
+
+[node name="Move" type="Node" parent="StateChart/CompoundState/Idle" unique_id=2030673644]
+script = ExtResource("6_rpf03")
+to = NodePath("../../Move")
+guard = SubResource("Resource_dirf7")
+delay_in_seconds = "0.0"
+
+[node name="Fall" type="Node" parent="StateChart/CompoundState/Idle" unique_id=1010257320]
+script = ExtResource("6_rpf03")
+to = NodePath("../../Fall")
+guard = SubResource("Resource_ky00p")
+delay_in_seconds = "0.0"
+
+[node name="Jump" type="Node" parent="StateChart/CompoundState/Idle" unique_id=1040239521]
+script = ExtResource("6_rpf03")
+to = NodePath("../../Jump")
+event = &"Jump"
+guard = SubResource("Resource_daw17")
+delay_in_seconds = "0.0"
+
+[node name="Move" type="Node" parent="StateChart/CompoundState" unique_id=841470409]
+script = ExtResource("3_dirf7")
+
+[node name="Idle" type="Node" parent="StateChart/CompoundState/Move" unique_id=2094923512]
+script = ExtResource("6_rpf03")
+to = NodePath("../../Idle")
+guard = SubResource("Resource_3t07l")
+delay_in_seconds = "0.0"
+
+[node name="Fall" type="Node" parent="StateChart/CompoundState/Move" unique_id=119922097]
+script = ExtResource("6_rpf03")
+to = NodePath("../../Fall")
+guard = SubResource("Resource_ky00p")
+delay_in_seconds = "0.0"
+
+[node name="Jump" type="Node" parent="StateChart/CompoundState/Move" unique_id=149759730]
+script = ExtResource("6_rpf03")
+to = NodePath("../../Jump")
+event = &"Jump"
+delay_in_seconds = "0.0"
+
+[node name="Fall" type="Node" parent="StateChart/CompoundState" unique_id=556410695]
+script = ExtResource("3_dirf7")
+
+[node name="idle" type="Node" parent="StateChart/CompoundState/Fall" unique_id=1667741753]
+script = ExtResource("6_rpf03")
+to = NodePath("../../Idle")
+event = &"Landed"
+delay_in_seconds = "0.0"
+
+[node name="Dive" type="Node" parent="StateChart/CompoundState/Fall" unique_id=966494069]
+script = ExtResource("6_rpf03")
+to = NodePath("../../Dive")
+event = &"Dive"
+delay_in_seconds = "0.0"
+
+[node name="Jump" type="Node" parent="StateChart/CompoundState" unique_id=1659540110]
+script = ExtResource("3_dirf7")
+
+[node name="Fall" type="Node" parent="StateChart/CompoundState/Jump" unique_id=1255834363]
+script = ExtResource("6_rpf03")
+to = NodePath("../../Fall")
+guard = SubResource("Resource_gqopd")
+delay_in_seconds = "0.0"
+
+[node name="Dive" type="Node" parent="StateChart/CompoundState/Jump" unique_id=1691738048]
+script = ExtResource("6_rpf03")
+to = NodePath("../../Dive")
+event = &"Dive"
+delay_in_seconds = "0.0"
+
+[node name="idle" type="Node" parent="StateChart/CompoundState/Jump" unique_id=303433088]
+script = ExtResource("6_rpf03")
+to = NodePath("../../Idle")
+event = &"Landed"
+delay_in_seconds = "0.0"
+
+[node name="Dive" type="Node" parent="StateChart/CompoundState" unique_id=508410061]
+script = ExtResource("3_dirf7")
+
+[node name="Belly Slide" type="Node" parent="StateChart/CompoundState/Dive" unique_id=1208019968]
+script = ExtResource("6_rpf03")
+to = NodePath("../../Belly Slide")
+guard = SubResource("Resource_43xo0")
+delay_in_seconds = "0.0"
+
+[node name="Belly Slide" type="Node" parent="StateChart/CompoundState" unique_id=1705781782]
+script = ExtResource("3_dirf7")
+
+[node name="Rollout" type="Node" parent="StateChart/CompoundState/Belly Slide" unique_id=692003406]
+script = ExtResource("6_rpf03")
+to = NodePath("../../Rollout")
+event = &"Jump"
+delay_in_seconds = "0.0"
+
+[node name="Rollout" type="Node" parent="StateChart/CompoundState" unique_id=984036747]
+script = ExtResource("3_dirf7")
+
+[node name="idle" type="Node" parent="StateChart/CompoundState/Rollout" unique_id=1016326036]
+script = ExtResource("6_rpf03")
+to = NodePath("../../Idle")
+event = &"Landed"
+delay_in_seconds = "0.0"
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=575683360 node_paths=PackedStringArray("pcam", "player")]
+top_level = true
+script = ExtResource("8_x5dtk")
+pcam = NodePath("PhantomCamera3D")
+player = NodePath("..")
+
+[node name="PhantomCamera3D" type="Node3D" parent="CameraPivot" unique_id=945443055 node_paths=PackedStringArray("look_at_target")]
+transform = Transform3D(-0.9999999, 8.201168e-05, -0.0007541297, -1.4551915e-11, 0.99413866, 0.1081127, 0.000758576, 0.10811267, -0.9941385, 6.993822e-07, 3.87, -8)
+script = ExtResource("4_idpv6")
+look_at_mode = 2
+look_at_target = NodePath("../../CameraLookatTarget")
+tween_resource = SubResource("Resource_x5dtk")
+follow_offset = Vector3(0, 3.87, 0)
+follow_distance = 8.0
+horizontal_rotation_offset = 3.141592653589793
+spring_length = 8.0
+look_at_damping = true
+align_transform_with_view = Callable()
+align_rotation_with_view = Callable()
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="JumpTimer" type="Timer" parent="." unique_id=1638608164]
+one_shot = true
+
+[node name="CameraLookatTarget" type="Node3D" parent="." unique_id=108051682 node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+top_level = true
+script = ExtResource("11_3t07l")
+player = NodePath("..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraLookatTarget" unique_id=569912679]
+mesh = SubResource("SphereMesh_xeka7")
+
+[node name="Decal" type="Decal" parent="." unique_id=1687911146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.95, 0)
+size = Vector3(2, 12, 2)
+texture_albedo = SubResource("GradientTexture2D_nacyp")
+upper_fade = 1e-05
+
+[node name="StairsAhead" type="RayCast3D" parent="." unique_id=1342857295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.789)
+target_position = Vector3(0, -0.5, 0)
+collision_mask = 5
+
+[node name="StairsBelow" type="RayCast3D" parent="." unique_id=1854213616]
+target_position = Vector3(0, -0.75, 0)
+collision_mask = 5
+
+[connection signal="state_entered" from="StateChart/CompoundState/Idle" to="." method="reset_special_states"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Idle" to="." method="Idle"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Move" to="." method="look_forward"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Move" to="." method="default_movement_processing"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Fall" to="." method="fall"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Fall" to="." method="land_on_ground"]
+[connection signal="state_entered" from="StateChart/CompoundState/Jump" to="." method="start_jump"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Jump" to="." method="default_jump_processing"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Jump" to="." method="land_on_ground"]
+[connection signal="state_entered" from="StateChart/CompoundState/Dive" to="." method="dive"]
+[connection signal="state_entered" from="StateChart/CompoundState/Dive" to="." method="look_forward" binds= [0.0]]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Dive" to="." method="restricted_jump_processing"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Belly Slide" to="." method="apply_belly_slide_friction"]
+[connection signal="state_entered" from="StateChart/CompoundState/Rollout" to="." method="rollout"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Rollout" to="." method="restricted_jump_processing"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Rollout" to="." method="land_on_ground"]
+[connection signal="timeout" from="JumpTimer" to="." method="reset_jumps"]

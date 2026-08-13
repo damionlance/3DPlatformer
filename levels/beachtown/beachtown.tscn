@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://qy8yul6hygap"]
+
+[ext_resource type="PackedScene" uid="uid://cl7mw8cdmpu5" path="res://assets/models/blockouts/beachblockout.glb" id="1_w0akc"]
+[ext_resource type="PackedScene" uid="uid://llm2odawiuhk" path="res://characters/player/player.tscn" id="2_daw17"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_3ybdk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jn3sf"]
+
+[sub_resource type="Sky" id="Sky_xeka7"]
+sky_material = SubResource("ProceduralSkyMaterial_jn3sf")
+
+[sub_resource type="Environment" id="Environment_nacyp"]
+background_mode = 2
+sky = SubResource("Sky_xeka7")
+
+[node name="BeachtownBlockout" type="Node3D" unique_id=605168430]
+
+[node name="beachblockout" parent="." unique_id=1319178053 instance=ExtResource("1_w0akc")]
+
+[node name="Player" parent="." unique_id=583580179 instance=ExtResource("2_daw17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.908732, 13.96043, -27.207325)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2023351246]
+physics_interpolation_mode = 1
+transform = Transform3D(-1, -9.451501e-09, 8.6910354e-08, -4.440892e-16, 0.99413866, 0.10811256, -8.742277e-08, 0.10811256, -0.9941387, 6.993822e-07, 3.87, -8)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=743232706]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_3ybdk")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1622233444]
+environment = SubResource("Environment_nacyp")

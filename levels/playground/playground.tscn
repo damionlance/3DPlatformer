@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://cvkkgdcp2dk8v"]
+
+[ext_resource type="PackedScene" uid="uid://dv7kb47kqr3yo" path="res://assets/models/blockouts/playground.glb" id="1_6txw3"]
+[ext_resource type="PackedScene" uid="uid://llm2odawiuhk" path="res://characters/player/player.tscn" id="2_43xo0"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_43xo0"]
+[ext_resource type="PackedScene" uid="uid://egrvieqe3s2p" path="res://tools/dynamic objects/moving platform/Moving Platform.tscn" id="4_k01ge"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_on558"]
+sky_top_color = Color(0.406014, 0.5695686, 0.9421128, 1)
+sky_horizon_color = Color(0.557716, 0.6200722, 1, 1)
+ground_bottom_color = Color(0.21246737, 0.25356194, 0.35429418, 1)
+ground_horizon_color = Color(0.5400571, 0.6260316, 1, 1)
+sun_angle_max = 4.65
+sun_curve = 1621.4114
+
+[sub_resource type="Sky" id="Sky_xeka7"]
+sky_material = SubResource("ProceduralSkyMaterial_on558")
+
+[sub_resource type="Environment" id="Environment_nacyp"]
+background_mode = 2
+sky = SubResource("Sky_xeka7")
+ambient_light_source = 2
+ambient_light_color = Color(0.34407577, 0.34407574, 0.34407574, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.0
+fog_light_color = Color(0.4025139, 0.49786896, 0.98691565, 1)
+volumetric_fog_density = 0.0019
+
+[sub_resource type="Curve3D" id="Curve3D_k01ge"]
+resource_local_to_scene = true
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 15),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="playground" type="Node3D" unique_id=994830194]
+
+[node name="playground" parent="." unique_id=1408179412 instance=ExtResource("1_6txw3")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=682089898]
+environment = SubResource("Environment_nacyp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=546415139]
+transform = Transform3D(0.69538134, -0.3391662, 0.63357013, 0, 0.8816227, 0.47195503, -0.7186409, -0.32818872, 0.61306393, 0, 8.067724, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=583580179 instance=ExtResource("2_43xo0")]
+floor_max_angle = 0.7853982
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=984450448]
+physics_interpolation_mode = 1
+transform = Transform3D(-0.9999999, 8.201168e-05, -0.0007541297, -1.4551915e-11, 0.99413866, 0.1081127, 0.000758576, 0.10811267, -0.9941385, 6.993822e-07, 3.87, -8)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1893016941]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_43xo0")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Moving Platform" parent="." unique_id=953248198 instance=ExtResource("4_k01ge")]
+transform = Transform3D(0.00035484234, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0.00035484234, 14.682249, 1.5, -12.349)
+travel_time = 2.0
+easing_type = 2
+transition_type = 2
+loop_delay = 3.0
+
+[node name="Moving Platform2" parent="." unique_id=261784501 instance=ExtResource("4_k01ge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.061491, 1.5, -12.349)
+loop = false
+
+[node name="Path3D" parent="Moving Platform2" index="0" unique_id=2004114518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7657695, 0)
+curve = SubResource("Curve3D_k01ge")
+
+[editable path="Moving Platform2"]

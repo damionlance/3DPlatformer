@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bsax2ti68qqjm"]
+
+[ext_resource type="PackedScene" uid="uid://rowg3xo3i0ou" path="res://assets/models/blockouts/beach2.glb" id="1_jian7"]
+[ext_resource type="PackedScene" uid="uid://llm2odawiuhk" path="res://characters/player/player.tscn" id="2_fbuf4"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_fbuf4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jn3sf"]
+sky_top_color = Color(0.26205856, 0.47121513, 0.6298299, 1)
+sky_horizon_color = Color(0.41502193, 0.68156636, 0.90595067, 1)
+sun_angle_max = 6.48
+sun_curve = 1107.455
+
+[sub_resource type="Sky" id="Sky_xeka7"]
+sky_material = SubResource("ProceduralSkyMaterial_jn3sf")
+
+[sub_resource type="Environment" id="Environment_nacyp"]
+background_mode = 2
+sky = SubResource("Sky_xeka7")
+
+[node name="Node3D" type="Node3D" unique_id=1130107228]
+
+[node name="beach2" parent="." unique_id=1628726339 instance=ExtResource("1_jian7")]
+
+[node name="Player" parent="." unique_id=583580179 instance=ExtResource("2_fbuf4")]
+transform = Transform3D(-0.024583768, 0, -0.99969774, 0, 1, 0, 0.99969774, 0, -0.024583768, -2.6722374, 10.58518, 0.11606479)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=596122197]
+environment = SubResource("Environment_nacyp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=546872747]
+transform = Transform3D(-0.48199898, -0.5716046, 0.664037, 0.87617177, -0.3144507, 0.36529955, 0, 0.7578845, 0.65238875, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1389420543]
+physics_interpolation_mode = 1
+transform = Transform3D(-0.9999999, 8.201168e-05, -0.0007541297, -1.4551915e-11, 0.99413866, 0.1081127, 0.000758576, 0.10811267, -0.9941385, 6.993822e-07, 3.87, -8)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1368281780]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_fbuf4")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
