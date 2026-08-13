@@ -3,6 +3,17 @@
 [ext_resource type="PackedScene" uid="uid://rowg3xo3i0ou" path="res://assets/models/blockouts/beach2.glb" id="1_jian7"]
 [ext_resource type="PackedScene" uid="uid://llm2odawiuhk" path="res://characters/player/player.tscn" id="2_fbuf4"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_fbuf4"]
+[ext_resource type="Script" uid="uid://hfpe4nexc3iq" path="res://tools/dynamic objects/windmill/windmill.gd" id="4_fdc44"]
+[ext_resource type="Script" uid="uid://mhj374lnxm75" path="res://addons/proton_scatter/demos/loading.gd" id="5_72d11"]
+[ext_resource type="Script" uid="uid://dgqq1tf8prx5s" path="res://addons/proton_scatter/src/scatter.gd" id="6_mioxp"]
+[ext_resource type="Script" uid="uid://ba8jou0xje0c7" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="7_tr63j"]
+[ext_resource type="Script" uid="uid://b5s7ggmsi8g5u" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="8_ynr6m"]
+[ext_resource type="Script" uid="uid://gjjh4mw1wn51" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="9_h5p4f"]
+[ext_resource type="Script" uid="uid://b0332hlb7q5t1" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="10_4byk3"]
+[ext_resource type="Script" uid="uid://it6ja2wjneak" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="11_lrys4"]
+[ext_resource type="Script" uid="uid://c85i0481q4uog" path="res://addons/proton_scatter/src/scatter_item.gd" id="12_gv4yc"]
+[ext_resource type="Script" uid="uid://dx7e7heldjwmg" path="res://addons/proton_scatter/src/scatter_shape.gd" id="13_opv5w"]
+[ext_resource type="Script" uid="uid://stwgokpcvk0m" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="14_q1wn3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jn3sf"]
 sky_top_color = Color(0.26205856, 0.47121513, 0.6298299, 1)
@@ -17,18 +28,141 @@ sky_material = SubResource("ProceduralSkyMaterial_jn3sf")
 background_mode = 2
 sky = SubResource("Sky_xeka7")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nacyp"]
+size = Vector3(6, 1, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nacyp"]
+size = Vector3(6, 1, 6)
+
+[sub_resource type="Resource" id="Resource_72d11"]
+script = ExtResource("9_h5p4f")
+amount = 10000
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_mioxp"]
+script = ExtResource("10_4byk3")
+position = Vector3(0.2, 0, 0.2)
+rotation = Vector3(20, 360, 20)
+scale = Vector3(6, 5, 6)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_tr63j"]
+script = ExtResource("11_lrys4")
+max_slope = 20.0
+
+[sub_resource type="Resource" id="Resource_ynr6m"]
+script = ExtResource("7_tr63j")
+stack = Array[ExtResource("8_ynr6m")]([SubResource("Resource_72d11"), SubResource("Resource_mioxp"), SubResource("Resource_tr63j")])
+
+[sub_resource type="Curve3D" id="Curve3D_h5p4f"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 18.502783, 10.520045, -13.155996, 0, 0, 0, 0, 0, 0, 7.7457848, 8.409457, 9.514711, 0, 0, 0, 0, 0, 0, -12.667519, 9.22954, 8.278989, 0, 0, 0, 0, 0, 0, -14.693806, 8.554454, 6.430315, 0, 0, 0, 0, 0, 0, -31.261597, 4.6822085, -3.3247526, 0, 0, 0, 0, 0, 0, -25.882647, 5.961349, -13.099737),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[sub_resource type="Resource" id="Resource_nacyp"]
+script = ExtResource("14_q1wn3")
+curve = SubResource("Curve3D_h5p4f")
+metadata/_custom_type_script = "uid://stwgokpcvk0m"
+
+[sub_resource type="Curve3D" id="Curve3D_72d11"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 12.789015, 8.409458, -8.160785, 0, 0, 0, 0, 0, 0, 2.7093987, 8.409462, -9.258134, 0, 0, 0, 0, 0, 0, -0.9124718, 8.409462, -4.273328, 0, 0, 0, 0, 0, 0, -7.5842977, 8.409462, -4.043395, 0, 0, 0, 0, 0, 0, -10.564793, 8.390621, -7.5723543, 0, 0, 0, 0, 0, 0, -24.985777, 5.1909747, -12.300843, 0, 0, 0, 0, 0, 0, -28.246943, 4.344909, -7.791297, 0, 0, 0, 0, 0, 0, -13.861618, 7.7800975, -4.067645, 0, 0, 0, 0, 0, 0, -10.1726055, 8.409462, 1.597085, 0, 0, 0, 0, 0, 0, -1.3320975, 8.409458, 4.504118, 0, 0, 0, 0, 0, 0, 10.1330185, 8.409462, 4.150239),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 11
+
+[sub_resource type="Resource" id="Resource_xeka7"]
+script = ExtResource("14_q1wn3")
+curve = SubResource("Curve3D_72d11")
+metadata/_custom_type_script = "uid://stwgokpcvk0m"
+
+[sub_resource type="Resource" id="Resource_h5p4f"]
+script = ExtResource("9_h5p4f")
+amount = 100000
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_4byk3"]
+script = ExtResource("10_4byk3")
+position = Vector3(0.2, 0, 0.2)
+rotation = Vector3(20, 360, 20)
+scale = Vector3(6, 5, 6)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_lrys4"]
+script = ExtResource("11_lrys4")
+max_slope = 20.0
+
+[sub_resource type="Resource" id="Resource_gv4yc"]
+script = ExtResource("7_tr63j")
+stack = Array[ExtResource("8_ynr6m")]([SubResource("Resource_h5p4f"), SubResource("Resource_4byk3"), SubResource("Resource_lrys4")])
+
+[sub_resource type="Curve3D" id="Curve3D_opv5w"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -18.953987, 1.3423996, -84.96967, 0, 0, 0, 0, 0, 0, -13.844978, 3.2205963, -67.026085, 0, 0, 0, 0, 0, 0, -10.005486, 3.2205925, -41.213337, 0, 0, 0, 0, 0, 0, -9.814072, 3.2206001, -27.823542, 0, 0, 0, 0, 0, 0, -15.913475, 3.220604, -23.974329, 0, 0, 0, 0, 0, 0, 6.348545, 3.2206001, 12.515308, 0, 0, 0, 0, 0, 0, 15.336887, 3.2206001, 15.897093, 0, 0, 0, 0, 0, 0, 32.38724, 3.2206001, 18.106295, 0, 0, 0, 0, 0, 0, 43.18656, 1.2206001, 26.409252, 0, 0, 0, 0, 0, 0, 35.66598, 1.2206001, 52.195255, 0, 0, 0, 0, 0, 0, 16.128365, 1.2342186, 46.417152, 0, 0, 0, 0, 0, 0, -48.53601, 1.2646103, -20.640455, 0, 0, 0, 0, 0, 0, -38.2726, 1.2644005, -72.25743, 0, 0, 0, 0, 0, 0, -40.25541, 1.2612419, -95.4868),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 14
+
+[sub_resource type="Resource" id="Resource_q1wn3"]
+script = ExtResource("14_q1wn3")
+curve = SubResource("Curve3D_opv5w")
+
+[sub_resource type="Resource" id="Resource_opv5w"]
+script = ExtResource("9_h5p4f")
+amount = 10000
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_oa8xg"]
+script = ExtResource("10_4byk3")
+position = Vector3(0.2, 0, 0.2)
+rotation = Vector3(20, 360, 20)
+scale = Vector3(6, 5, 6)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_qxcm3"]
+script = ExtResource("11_lrys4")
+max_slope = 20.0
+
+[sub_resource type="Resource" id="Resource_6frt0"]
+script = ExtResource("7_tr63j")
+stack = Array[ExtResource("8_ynr6m")]([SubResource("Resource_opv5w"), SubResource("Resource_oa8xg"), SubResource("Resource_qxcm3")])
+
+[sub_resource type="Curve3D" id="Curve3D_aju2e"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 28.283484, -2.679493, 3.1955588, 0, 0, 0, 0, 0, 0, 16.455202, -2.679493, -5.1388226, 0, 0, 0, 0, 0, 0, -1.4657803, -2.679493, 18.624674, 0, 0, 0, 0, 0, 0, 6.279665, 5.05698, 27.666355, 0, 0, 0, 0, 0, 0, -17.320742, -2.6794968, 29.860498, 0, 0, 0, 0, 0, 0, -1.3493061, -2.679493, -13.090296, 0, 0, 0, 0, 0, 0, 27.859598, -1.6794968, -13.229378),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[sub_resource type="Resource" id="Resource_7mkv0"]
+script = ExtResource("14_q1wn3")
+curve = SubResource("Curve3D_aju2e")
+
+[sub_resource type="Curve3D" id="Curve3D_s182e"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 24.904322, -1.679493, -14.060669, 0, 0, 0, 0, 0, 0, 25.561144, -2.6794891, -8.9518585, 0, 0, 0, 0, 0, 0, 24.055471, -2.6794891, -6.7314835, 0, 0, 0, 0, 0, 0, 20.881327, -2.6794853, -5.68659, 0, 0, 0, 0, 0, 0, 17.127, -2.6794891, -7.3937263, 0, 0, 0, 0, 0, 0, 15.289843, -2.6794891, -7.9402905, 0, 0, 0, 0, 0, 0, 11.70764, -2.679493, -6.951664, 0, 0, 0, 0, 0, 0, 8.14443, -2.6794853, -5.2957077, 0, 0, 0, 0, 0, 0, 6.4169846, -2.6794777, -2.9714258, 0, 0, 0, 0, 0, 0, 4.6966496, -2.6794891, 0.43106103, 0, 0, 0, 0, 0, 0, 9.294622, -1.021946, 3.4393256, 0, 0, 0, 0, 0, 0, 4.4674854, -2.3662987, 11.082668, 0, 0, 0, 0, 0, 0, 0.7174244, -2.679493, 7.064414, 0, 0, 0, 0, 0, 0, -1.8433323, -2.679493, 7.0272236, 0, 0, 0, 0, 0, 0, -3.1686726, -2.679493, 6.5976753, 0, 0, 0, 0, 0, 0, -4.4282484, -2.679493, 5.857273, 0, 0, 0, 0, 0, 0, -4.822077, -2.6794968, 4.1464243, 0, 0, 0, 0, 0, 0, -4.1625023, -2.679493, 1.2598107, 0, 0, 0, 0, 0, 0, -3.4191456, -2.679493, -0.76788306, 0, 0, 0, 0, 0, 0, -2.4442844, -2.679493, -2.7773302, 0, 0, 0, 0, 0, 0, -1.4061794, -2.679493, -3.7006862, 0, 0, 0, 0, 0, 0, -0.21581459, -2.679493, -3.9552085, 0, 0, 0, 0, 0, 0, 0.5265293, -2.679493, -3.8749797, 0, 0, 0, 0, 0, 0, 1.5056057, -2.679493, -3.8579128, 0, 0, 0, 0, 0, 0, 2.5084057, -2.679493, -5.0977497, 0, 0, 0, 0, 0, 0, 3.6610584, -2.679493, -6.8740387, 0, 0, 0, 0, 0, 0, 6.3822346, -2.679493, -10.185737, 0, 0, 0, 0, 0, 0, 7.401842, -2.679493, -11.203655, 0, 0, 0, 0, 0, 0, 8.600824, -2.679493, -11.753976, 0, 0, 0, 0, 0, 0, 11.339613, -2.679493, -11.764791, 0, 0, 0, 0, 0, 0, 12.802416, -2.679493, -11.341088, 0, 0, 0, 0, 0, 0, 14.928045, -2.679493, -10.846546, 0, 0, 0, 0, 0, 0, 16.018663, -2.679493, -10.299029, 0, 0, 0, 0, 0, 0, 17.92296, -2.679493, -10.320714, 0, 0, 0, 0, 0, 0, 19.255793, -2.679493, -10.642572, 0, 0, 0, 0, 0, 0, 20.80379, -2.679493, -11.909014, 0, 0, 0, 0, 0, 0, 20.615442, -1.679493, -13.661075, 0, 0, 0, 0, 0, 0, 20.778563, -1.679493, -14.672661),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 38
+
+[sub_resource type="Resource" id="Resource_cqb5m"]
+script = ExtResource("14_q1wn3")
+curve = SubResource("Curve3D_s182e")
+
 [node name="Node3D" type="Node3D" unique_id=1130107228]
 
 [node name="beach2" parent="." unique_id=1628726339 instance=ExtResource("1_jian7")]
 
 [node name="Player" parent="." unique_id=583580179 instance=ExtResource("2_fbuf4")]
-transform = Transform3D(-0.024583768, 0, -0.99969774, 0, 1, 0, 0.99969774, 0, -0.024583768, -2.6722374, 10.58518, 0.11606479)
+transform = Transform3D(-0.024583768, 0, -0.99969774, 0, 1, 0, 0.99969774, 0, -0.024583768, -2.5835772, 8.983625, -3.7751656)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=596122197]
 environment = SubResource("Environment_nacyp")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=546872747]
-transform = Transform3D(-0.48199898, -0.5716046, 0.664037, 0.87617177, -0.3144507, 0.36529955, 0, 0.7578845, 0.65238875, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1389420543]
 physics_interpolation_mode = 1
@@ -40,3 +174,172 @@ process_priority = 300
 process_physics_priority = 300
 script = ExtResource("3_fbuf4")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Windmill" type="Node3D" parent="." unique_id=494016288 node_paths=PackedStringArray("pivot_point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.494816, 46.460594, -69.07794)
+script = ExtResource("4_fdc44")
+speed = 0.5
+pivot_point = NodePath("PivotPoint")
+
+[node name="PivotPoint" type="Node3D" parent="Windmill" unique_id=77074102]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Windmill/PivotPoint" unique_id=302445641]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Windmill/PivotPoint/Node3D" unique_id=305289188]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 7.450581e-09, 0, -7.450581e-09, 1.0000001, 0, 0, 0)
+remote_path = NodePath("../../../WindmillPlat")
+update_rotation = false
+
+[node name="Node3D2" type="Node3D" parent="Windmill/PivotPoint" unique_id=1297323314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Windmill/PivotPoint/Node3D2" unique_id=839829213]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 7.450581e-09, 0, -7.450581e-09, 1.0000001, 0, 0, 0)
+remote_path = NodePath("../../../WindmillPlat2")
+update_rotation = false
+
+[node name="Node3D3" type="Node3D" parent="Windmill/PivotPoint" unique_id=1653237430]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Windmill/PivotPoint/Node3D3" unique_id=1601987598]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 7.450581e-09, 0, -7.450581e-09, 1.0000001, 0, 0, 0)
+remote_path = NodePath("../../../WindmillPlat3")
+update_rotation = false
+
+[node name="Node3D4" type="Node3D" parent="Windmill/PivotPoint" unique_id=554609577]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Windmill/PivotPoint/Node3D4" unique_id=1185599428]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 7.450581e-09, 0, -7.450581e-09, 1.0000001, 0, 0, 0)
+remote_path = NodePath("../../../WindmillPlat4")
+update_rotation = false
+
+[node name="WindmillPlat" type="CharacterBody3D" parent="Windmill" unique_id=1109939347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Windmill/WindmillPlat" unique_id=873804009]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
+shape = SubResource("BoxShape3D_nacyp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Windmill/WindmillPlat" unique_id=1082575441]
+mesh = SubResource("BoxMesh_nacyp")
+
+[node name="WindmillPlat2" type="CharacterBody3D" parent="Windmill" unique_id=1327641345]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Windmill/WindmillPlat2" unique_id=389124711]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
+shape = SubResource("BoxShape3D_nacyp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Windmill/WindmillPlat2" unique_id=954010810]
+mesh = SubResource("BoxMesh_nacyp")
+
+[node name="WindmillPlat3" type="CharacterBody3D" parent="Windmill" unique_id=853529545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Windmill/WindmillPlat3" unique_id=98006564]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
+shape = SubResource("BoxShape3D_nacyp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Windmill/WindmillPlat3" unique_id=1515255512]
+mesh = SubResource("BoxMesh_nacyp")
+
+[node name="WindmillPlat4" type="CharacterBody3D" parent="Windmill" unique_id=304209916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Windmill/WindmillPlat4" unique_id=131955008]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
+shape = SubResource("BoxShape3D_nacyp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Windmill/WindmillPlat4" unique_id=718588065]
+mesh = SubResource("BoxMesh_nacyp")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1701680530]
+transform = Transform3D(0.85989183, -0.51043975, 0.0061154515, 0.2902633, 0.498765, 0.816689, -0.41992056, -0.7004889, 0.5770458, 0, 0, 0)
+shadow_enabled = true
+
+[node name="LoadingScreen" type="PanelContainer" parent="." unique_id=1033777779]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_72d11")
+
+[node name="Label" type="Label" parent="LoadingScreen" unique_id=2136033694]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Loading"
+
+[node name="Opening Grass" type="Node3D" parent="." unique_id=43424036]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.53694, 0.590527, -0.866904)
+script = ExtResource("6_mioxp")
+modifier_stack = SubResource("Resource_ynr6m")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Opening Grass" unique_id=487532708]
+script = ExtResource("12_gv4yc")
+source_scale_multiplier = 0.7
+path = "res://addons/proton_scatter/demos/assets/grass_2.tscn"
+
+[node name="SphereShape" type="Node3D" parent="Opening Grass" unique_id=1444774443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.66162, 1.19209e-07, -0.977096)
+script = ExtResource("13_opv5w")
+shape = SubResource("Resource_nacyp")
+
+[node name="ProtonScatterShape" type="Node3D" parent="Opening Grass" unique_id=652893901]
+script = ExtResource("13_opv5w")
+negative = true
+shape = SubResource("Resource_xeka7")
+metadata/_custom_type_script = "uid://dx7e7heldjwmg"
+
+[node name="Beach Grass" type="Node3D" parent="." unique_id=1420701975]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.864235, -13.2206, -0.89680743)
+script = ExtResource("6_mioxp")
+modifier_stack = SubResource("Resource_gv4yc")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Beach Grass" unique_id=329756470]
+script = ExtResource("12_gv4yc")
+source_scale_multiplier = 0.7
+path = "res://addons/proton_scatter/demos/assets/grass_2.tscn"
+
+[node name="SphereShape" type="Node3D" parent="Beach Grass" unique_id=148953005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.66162, 1.19209e-07, -0.977096)
+script = ExtResource("13_opv5w")
+shape = SubResource("Resource_q1wn3")
+
+[node name="Beach Grass2" type="Node3D" parent="." unique_id=1127958636]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.714317, 51.679493, -0.89680743)
+script = ExtResource("6_mioxp")
+modifier_stack = SubResource("Resource_6frt0")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Beach Grass2" unique_id=1605732788]
+script = ExtResource("12_gv4yc")
+source_scale_multiplier = 0.7
+path = "res://addons/proton_scatter/demos/assets/grass_2.tscn"
+
+[node name="SphereShape" type="Node3D" parent="Beach Grass2" unique_id=826591096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.66162, 1.19209e-07, -0.977096)
+script = ExtResource("13_opv5w")
+shape = SubResource("Resource_7mkv0")
+
+[node name="SphereShape2" type="Node3D" parent="Beach Grass2" unique_id=923791719]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.66162, 1.19209e-07, -0.977096)
+script = ExtResource("13_opv5w")
+negative = true
+shape = SubResource("Resource_cqb5m")
+
+[connection signal="build_completed" from="Opening Grass" to="LoadingScreen" method="_on_scatter_build_completed"]
+[connection signal="build_completed" from="Beach Grass" to="LoadingScreen" method="_on_scatter_build_completed"]
+[connection signal="build_completed" from="Beach Grass2" to="LoadingScreen" method="_on_scatter_build_completed"]

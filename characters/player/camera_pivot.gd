@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 			
 			pcam_new_rotation.y -= (angle)
 	
-	rotation.y = pcam_new_rotation.y
+	rotation = pcam_new_rotation
 	
 	previous_position = global_position
 	
