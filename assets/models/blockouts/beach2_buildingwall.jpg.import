@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cryu3tdhkbyps"
-path.s3tc="res://.godot/imported/beach2_stonepath.png-5c2708ce47ceeca033abb4d8d292cba4.s3tc.ctex"
+uid="uid://b7dnd33wy3lwk"
+path.s3tc="res://.godot/imported/beach2_buildingwall.jpg-6cce05f5dc57bc56954e0216698ff4f0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "cf52c9293bcf756fb90513c98cb6999e"
+"md5": "4b35e96a2c535ab6580f5d22c1b656dd"
 }
 
 [deps]
 
-source_file="res://assets/models/blockouts/beach2_stonepath.png"
-dest_files=["res://.godot/imported/beach2_stonepath.png-5c2708ce47ceeca033abb4d8d292cba4.s3tc.ctex"]
+source_file="res://assets/models/blockouts/beach2_buildingwall.jpg"
+dest_files=["res://.godot/imported/beach2_buildingwall.jpg-6cce05f5dc57bc56954e0216698ff4f0.s3tc.ctex"]
 
 [params]
 

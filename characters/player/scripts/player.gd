@@ -15,7 +15,7 @@ var facing_direction : Vector3 = Vector3.ZERO
 var current_jump : int = 0
 var can_increment_jump : bool = false
 
-var MAX_STEP_HEIGHT := 0.5
+var MAX_STEP_HEIGHT := 0.6
 var _snapped_to_stairs_last_frame := false
 var _last_frame_was_on_floor = -INF
 
@@ -183,15 +183,21 @@ func _snap_down_to_stairs_check() -> void:
 
 func _snap_up_stairs_check(delta : float) -> bool:
 	if not is_on_floor() and not _snapped_to_stairs_last_frame: return false
+	
+	if velocity.y > 0 or (velocity * Vector3(1,0,1)).length() == 0: return false
+	
 	var expected_move_motion = self.velocity * Vector3(1,0,1) * delta
 	var step_pos_with_clearance = self.global_transform.translated(expected_move_motion + Vector3(0, MAX_STEP_HEIGHT * 2, 0))
 	
+	
 	var down_check_result = PhysicsTestMotionResult3D.new()
-	if(_run_body_test_motion(step_pos_with_clearance, Vector3(0, -MAX_STEP_HEIGHT*2, 0), down_check_result)
-		and (down_check_result.get_collider().is_class("StaticBody3D"))):
-		var step_height = ((step_pos_with_clearance.origin + down_check_result.get_travel()) - self.global_position).y
-		if step_height > MAX_STEP_HEIGHT or step_height <= 0.01 or (down_check_result.get_collision_point() - self.global_position).y > MAX_STEP_HEIGHT: return false
-		stair_ahead_ray.global_position = down_check_result.get_collision_point() + Vector3(0, MAX_STEP_HEIGHT, 0) + expected_move_motion
+	if(_run_body_test_motion(step_pos_with_clearance, Vector3(0, -MAX_STEP_HEIGHT*2, 0), down_check_result)):
+		var step_height = ((step_pos_with_clearance.origin + down_check_result.get_travel()) - global_position).y
+		
+		if step_height > MAX_STEP_HEIGHT or step_height <= 0.01 or (down_check_result.get_collision_point() - global_position).y > MAX_STEP_HEIGHT: return false
+		
+		stair_ahead_ray.global_position = down_check_result.get_collision_point() + Vector3(0,MAX_STEP_HEIGHT * .5,0) + expected_move_motion.normalized() * .1
+		
 		stair_ahead_ray.force_raycast_update()
 		if stair_ahead_ray.is_colliding() and not is_surface_too_steep(stair_ahead_ray.get_collision_normal()):
 			self.global_position = (step_pos_with_clearance.origin+down_check_result.get_travel())

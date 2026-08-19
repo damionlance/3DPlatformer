@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cryu3tdhkbyps"
-path.s3tc="res://.godot/imported/beach2_stonepath.png-5c2708ce47ceeca033abb4d8d292cba4.s3tc.ctex"
+uid="uid://dj6rasi2fekxr"
+path.s3tc="res://.godot/imported/beach2_dirt.png-74064d644ea59b80d1ad0a03522f6407.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "cf52c9293bcf756fb90513c98cb6999e"
+"md5": "a9cf3de288f62debd315b4ba59567420"
 }
 
 [deps]
 
-source_file="res://assets/models/blockouts/beach2_stonepath.png"
-dest_files=["res://.godot/imported/beach2_stonepath.png-5c2708ce47ceeca033abb4d8d292cba4.s3tc.ctex"]
+source_file="res://assets/models/blockouts/beach2_dirt.png"
+dest_files=["res://.godot/imported/beach2_dirt.png-74064d644ea59b80d1ad0a03522f6407.s3tc.ctex"]
 
 [params]
 
