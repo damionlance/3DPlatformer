@@ -13,12 +13,13 @@ render_priority = 0
 shader = ExtResource("2_tx3ue")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_nacyp"]
-lightmap_size_hint = Vector2i(6, 45)
+resource_local_to_scene = true
+lightmap_size_hint = Vector2i(6, 42)
 material = SubResource("ShaderMaterial_1fyqe")
 add_uv2 = true
 top_radius = 0.1
 bottom_radius = 0.1
-height = 8.071604
+height = 7.47403
 radial_segments = 4
 rings = 64
 cap_top = false
