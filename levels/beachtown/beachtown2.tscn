@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://llm2odawiuhk" path="res://characters/player/player.tscn" id="2_fbuf4"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_fbuf4"]
 [ext_resource type="Script" uid="uid://hfpe4nexc3iq" path="res://tools/dynamic objects/windmill/windmill.gd" id="4_fdc44"]
+[ext_resource type="PackedScene" uid="uid://cy5xd51re2alh" path="res://tools/dynamic objects/tightrope/tightrope.tscn" id="5_dsyhu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jn3sf"]
 sky_top_color = Color(0.26205856, 0.47121513, 0.6298299, 1)
@@ -27,6 +28,7 @@ size = Vector3(6, 1, 6)
 [node name="Node3D" type="Node3D" unique_id=1130107228]
 
 [node name="beach2" parent="." unique_id=1628726339 instance=ExtResource("1_jian7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007171631, 0, -0.038150787)
 
 [node name="Player" parent="." unique_id=583580179 instance=ExtResource("2_fbuf4")]
 transform = Transform3D(-0.024583768, 0, -0.99969774, 0, 1, 0, 0.99969774, 0, -0.024583768, -2.5835772, 8.983625, -3.7751656)
@@ -129,3 +131,32 @@ mesh = SubResource("BoxMesh_nacyp")
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1701680530]
 transform = Transform3D(0.85989183, -0.51043975, 0.0061154515, 0.2902633, 0.498765, 0.816689, -0.41992056, -0.7004889, 0.5770458, 0, 0, 0)
 shadow_enabled = true
+
+[node name="TightRope" parent="." unique_id=718274285 instance=ExtResource("5_dsyhu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.67839, 9.793113, -48.14574)
+
+[node name="Anchor1" parent="TightRope" index="0" unique_id=1950822333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7861328, 1.0926161, 7.300728)
+
+[node name="TightRopeMesh" parent="TightRope" index="1" unique_id=1569573865]
+transform = Transform3D(-0.9342788, -0.3565431, 1.5584995e-08, 0, -4.3711385e-08, -1, 0.3565431, -0.9342788, 4.0838625e-08, 1.3930664, 0.54630804, 3.650364)
+instance_shader_parameters/a = 7.1197422030457425
+instance_shader_parameters/x0 = 2.962681824707315
+instance_shader_parameters/x2 = 7.8142924
+instance_shader_parameters/y0 = -8.291415177804911
+
+[node name="TightRope2" parent="." unique_id=965713604 instance=ExtResource("5_dsyhu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.100388, 10.950681, -67.09591)
+
+[node name="Anchor1" parent="TightRope2" index="0" unique_id=1950822333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.152866, -1.089468, 2.6417465)
+
+[node name="TightRopeMesh" parent="TightRope2" index="1" unique_id=1569573865]
+transform = Transform3D(-0.30824828, -0.95130587, 4.1582904e-08, 0, -4.3711385e-08, -1, 0.95130587, -0.30824828, 1.34739615e-08, 4.076433, -0.544734, 1.3208733)
+instance_shader_parameters/a = 7.820960394975279
+instance_shader_parameters/x0 = 5.228969222458763
+instance_shader_parameters/x2 = 8.570185
+instance_shader_parameters/y0 = -9.090320810703824
+
+[editable path="TightRope"]
+[editable path="TightRope2"]

@@ -483,11 +483,6 @@ script = ExtResource("7_x5dtk")
 expression = "is_on_floor == false"
 metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
-[sub_resource type="Resource" id="Resource_daw17"]
-script = ExtResource("7_x5dtk")
-expression = ""
-metadata/_custom_type_script = "uid://le5w1cm0ul8p"
-
 [sub_resource type="Resource" id="Resource_3t07l"]
 script = ExtResource("7_x5dtk")
 expression = "velocity == Vector3(0,0,0) && input_direction == Vector2(0,0)"
@@ -598,7 +593,6 @@ delay_in_seconds = "0.0"
 script = ExtResource("6_rpf03")
 to = NodePath("../../Jump")
 event = &"Jump"
-guard = SubResource("Resource_daw17")
 delay_in_seconds = "0.0"
 
 [node name="Move" type="Node" parent="StateChart/CompoundState" unique_id=841470409]
@@ -702,6 +696,8 @@ follow_distance = 8.0
 horizontal_rotation_offset = 3.141592653589793
 spring_length = 8.0
 look_at_damping = true
+align_transform_with_view = Callable()
+align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="JumpTimer" type="Timer" parent="." unique_id=1638608164]

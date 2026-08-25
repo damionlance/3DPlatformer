@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cy5xd51re2alh"]
+
+[ext_resource type="Script" uid="uid://n4vg3vhbwo1g" path="res://tools/dynamic objects/tightrope/tightrope.gd" id="1_0nxxj"]
+[ext_resource type="Shader" uid="uid://cygcfw01ao5el" path="res://tools/dynamic objects/tightrope/tightrope.gdshader" id="2_tx3ue"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_nacyp"]
+lightmap_size_hint = Vector2i(5, 3)
+radius = 0.1
+height = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1fyqe"]
+render_priority = 0
+shader = ExtResource("2_tx3ue")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nacyp"]
+lightmap_size_hint = Vector2i(6, 45)
+material = SubResource("ShaderMaterial_1fyqe")
+add_uv2 = true
+top_radius = 0.1
+bottom_radius = 0.1
+height = 8.071604
+radial_segments = 4
+rings = 64
+cap_top = false
+cap_bottom = false
+
+[node name="TightRope" type="Node3D" unique_id=718274285 node_paths=PackedStringArray("tightrope_mesh", "anchor1", "anchor2")]
+script = ExtResource("1_0nxxj")
+tightrope_mesh = NodePath("TightRopeMesh")
+anchor1 = NodePath("Anchor1")
+anchor2 = NodePath("")
+
+[node name="Anchor1" type="MeshInstance3D" parent="." unique_id=1950822333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.036628723, 8.071544)
+mesh = SubResource("SphereMesh_nacyp")
+
+[node name="TightRopeMesh" type="MeshInstance3D" parent="." unique_id=1569573865]
+transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0.018314362, 4.035772)
+instance_shader_parameters/a = 14.478327358992146
+instance_shader_parameters/x0 = 3.970912501914996
+instance_shader_parameters/x1 = 0.0
+instance_shader_parameters/x2 = 8.071544
+instance_shader_parameters/y0 = -15.044606836457941
+mesh = SubResource("CylinderMesh_nacyp")
