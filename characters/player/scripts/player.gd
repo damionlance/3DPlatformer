@@ -8,6 +8,8 @@ class_name Player extends CharacterBody3D
 @export var stair_ahead_ray : RayCast3D
 @export var stair_below_ray : RayCast3D
 
+var stage_manager : StageManager
+
 var input_direction : Vector2 = Vector2.ZERO
 var move_direction : Vector3 = Vector3.ZERO
 var facing_direction : Vector3 = Vector3.ZERO
@@ -205,3 +207,9 @@ func _snap_up_stairs_check(delta : float) -> bool:
 			_snapped_to_stairs_last_frame = true
 			return true
 	return false
+
+func enter_movement_constraint(type : String):
+	velocity = Vector3.ZERO
+	state_chart.send_event("constrained movement")
+	anim_tree.set("parameters/conditions/constrained_movement", true)
+	anim_tree.set("parameters/ConstrainedMovements/conditions/" + type, true)

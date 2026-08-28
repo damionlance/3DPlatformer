@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_43xo0"]
 [ext_resource type="PackedScene" uid="uid://egrvieqe3s2p" path="res://tools/dynamic objects/moving platform/Moving Platform.tscn" id="4_k01ge"]
 [ext_resource type="PackedScene" uid="uid://cy5xd51re2alh" path="res://tools/dynamic objects/tightrope/tightrope.tscn" id="5_1fyqe"]
+[ext_resource type="PackedScene" uid="uid://taqns3wqw6ki" path="res://tools/dynamic objects/climbable rope/climbable_rope.tscn" id="6_1fhyh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_on558"]
 sky_top_color = Color(0.406014, 0.5695686, 0.9421128, 1)
@@ -27,7 +28,7 @@ ambient_light_energy = 0.0
 fog_light_color = Color(0.4025139, 0.49786896, 0.98691565, 1)
 volumetric_fog_density = 0.0019
 
-[sub_resource type="Curve3D" id="Curve3D_1fyqe"]
+[sub_resource type="Curve3D" id="Curve3D_1fhyh"]
 resource_local_to_scene = true
 closed = true
 _data = {
@@ -38,6 +39,9 @@ point_count = 4
 
 [node name="playground" type="Node3D" unique_id=994830194]
 
+[node name="Player" parent="." unique_id=583580179 instance=ExtResource("2_43xo0")]
+floor_max_angle = 0.7853982
+
 [node name="playground" parent="." unique_id=1408179412 instance=ExtResource("1_6txw3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0027880669)
 
@@ -47,9 +51,6 @@ environment = SubResource("Environment_nacyp")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=546415139]
 transform = Transform3D(0.69538134, -0.3391662, 0.63357013, 0, 0.8816227, 0.47195503, -0.7186409, -0.32818872, 0.61306393, 0, 8.067724, 0)
 shadow_enabled = true
-
-[node name="Player" parent="." unique_id=583580179 instance=ExtResource("2_43xo0")]
-floor_max_angle = 0.7853982
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=984450448]
 physics_interpolation_mode = 1
@@ -75,23 +76,19 @@ loop = false
 
 [node name="Path3D" parent="Moving Platform2" index="0" unique_id=2004114518]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7657695, 0)
-curve = SubResource("Curve3D_1fyqe")
+curve = SubResource("Curve3D_1fhyh")
 
 [node name="TightRope" parent="." unique_id=718274285 instance=ExtResource("5_1fyqe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9376423, 5.3509336, 11.919344)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9045639, 3.892469)
 
-[node name="Anchor1" parent="TightRope" index="0" unique_id=1950822333]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9992847, 4.782134, 13.380163)
+[node name="Climbable Rope" parent="." unique_id=495571811 instance=ExtResource("6_1fhyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.963089, 0, 15.018527)
 
-[node name="Anchor2" parent="TightRope" index="1" unique_id=1163884697]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.876, 5.919733, 10.458526)
+[node name="Anchor" parent="Climbable Rope" index="0" unique_id=1847774679]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3991814, 10.45541, 1.3477869)
 
-[node name="TightRopeMesh" parent="TightRope" index="2" unique_id=1569573865]
-transform = Transform3D(-0.99945927, -0.031464428, -0.009546307, 0, 0.2903314, -0.95692617, 0.032880727, -0.95640874, -0.2901744, 0, 0, 0)
-instance_shader_parameters/a = 1.0440661493907726
-instance_shader_parameters/x0 = 1.1674904258421896
-instance_shader_parameters/x2 = 2.9242375
-instance_shader_parameters/y0 = -1.767735038742211
+[node name="MeshInstance3D" parent="Climbable Rope" index="1" unique_id=614792679]
+transform = Transform3D(0.6937553, 0.13157076, 0.70808613, 0, 0.9831649, -0.1826838, -0.7202105, 0.12673782, 0.68207633, 0.6995907, 5.227705, 0.6738939)
 
 [editable path="Moving Platform2"]
-[editable path="TightRope"]
+[editable path="Climbable Rope"]

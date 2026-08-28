@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://n4vg3vhbwo1g" path="res://tools/dynamic objects/tightrope/tightrope.gd" id="1_0nxxj"]
 [ext_resource type="Shader" uid="uid://cygcfw01ao5el" path="res://tools/dynamic objects/tightrope/tightrope.gdshader" id="2_tx3ue"]
+[ext_resource type="Script" uid="uid://3wc7756u4e1t" path="res://tools/dynamic objects/linear movement constraint/linear_movement_constraint.gd" id="3_cuett"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_nacyp"]
 lightmap_size_hint = Vector2i(5, 3)
@@ -14,32 +15,56 @@ shader = ExtResource("2_tx3ue")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_nacyp"]
 resource_local_to_scene = true
-lightmap_size_hint = Vector2i(6, 42)
+lightmap_size_hint = Vector2i(6, 59)
 material = SubResource("ShaderMaterial_1fyqe")
 add_uv2 = true
 top_radius = 0.1
 bottom_radius = 0.1
-height = 7.47403
+height = 10.953409
 radial_segments = 4
 rings = 64
 cap_top = false
 cap_bottom = false
 
-[node name="TightRope" type="Node3D" unique_id=718274285 node_paths=PackedStringArray("tightrope_mesh", "anchor1", "anchor2")]
-script = ExtResource("1_0nxxj")
-tightrope_mesh = NodePath("TightRopeMesh")
-anchor1 = NodePath("Anchor1")
-anchor2 = NodePath("")
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nacyp"]
+radius = 1.0
+height = 10.953409
 
-[node name="Anchor1" type="MeshInstance3D" parent="." unique_id=1950822333]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.036628723, 8.071544)
+[node name="TightRope" type="Node3D" unique_id=718274285 node_paths=PackedStringArray("movement_constraint", "mesh", "area3d", "collision_shape", "anchor")]
+script = ExtResource("1_0nxxj")
+movement_constraint = NodePath("LinearMovementConstraint")
+mesh = NodePath("TightRopeMesh")
+area3d = NodePath("TightRopeMesh/Area3D")
+collision_shape = NodePath("TightRopeMesh/Area3D/CollisionShape3D")
+anchor = NodePath("Anchor")
+
+[node name="Anchor" type="MeshInstance3D" parent="." unique_id=1950822333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04127872, 10.953409)
 mesh = SubResource("SphereMesh_nacyp")
 
 [node name="TightRopeMesh" type="MeshInstance3D" parent="." unique_id=1569573865]
-transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0.018314362, 4.035772)
-instance_shader_parameters/a = 14.478327358992146
-instance_shader_parameters/x0 = 3.970912501914996
+transform = Transform3D(-1, 1.509958e-07, -6.600236e-15, 0, -4.371139e-08, -1, -1.509958e-07, -1, 4.371139e-08, 0, -0.02063936, 5.4767046)
+instance_shader_parameters/a = 12.966316327055335
+instance_shader_parameters/x0 = 5.524145741178734
 instance_shader_parameters/x1 = 0.0
-instance_shader_parameters/x2 = 8.071544
-instance_shader_parameters/y0 = -15.044606836457941
+instance_shader_parameters/x2 = 10.953409
+instance_shader_parameters/y0 = -14.140332648058934
 mesh = SubResource("CylinderMesh_nacyp")
+
+[node name="Area3D" type="Area3D" parent="TightRopeMesh" unique_id=1357564035]
+transform = Transform3D(1, 0, 0, 0, -0.9999929, -0.003768586, 0, 0.003768586, -0.9999929, 0, 0, 0)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TightRopeMesh/Area3D" unique_id=1049808386]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("CapsuleShape3D_nacyp")
+
+[node name="LinearMovementConstraint" type="RemoteTransform3D" parent="." unique_id=1806289105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+update_scale = false
+script = ExtResource("3_cuett")
+offset = Vector3(0, -0.75, 0)
+
+[connection signal="body_entered" from="TightRopeMesh/Area3D" to="LinearMovementConstraint" method="_attach_body"]

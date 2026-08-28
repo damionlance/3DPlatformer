@@ -390,6 +390,18 @@ states/dive/position = Vector2(479, 100)
 transitions = ["Start", "Fall", SubResource("AnimationNodeStateMachineTransition_on558"), "Start", "Jumps", SubResource("AnimationNodeStateMachineTransition_gqopd"), "Jumps", "Fall", SubResource("AnimationNodeStateMachineTransition_aqrcq"), "Jumps", "dive", SubResource("AnimationNodeStateMachineTransition_5mkjs"), "Fall", "dive", SubResource("AnimationNodeStateMachineTransition_yybc7")]
 graph_offset = Vector2(-58, -104)
 
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_on558"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sbttr"]
+advance_mode = 2
+advance_condition = &"tightrope"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6pj1p"]
+states/Start/position = Vector2(201, 100)
+states/TightRope/node = SubResource("AnimationNodeStateMachine_on558")
+states/TightRope/position = Vector2(450, 100)
+transitions = ["Start", "TightRope", SubResource("AnimationNodeStateMachineTransition_sbttr")]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p47bc"]
 animation = &"run forward"
 
@@ -462,15 +474,34 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jgd8i"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3a7m8"]
+advance_mode = 2
+advance_condition = &"constrained_movement"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y3et5"]
+advance_mode = 2
+advance_condition = &"not_constrained_movement"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0mbv2"]
+advance_mode = 2
+advance_condition = &"not_constrained_movement"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8v65i"]
+advance_mode = 2
+advance_condition = &"constrained_movement"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nacyp"]
 "states/Aerial Animations/node" = SubResource("AnimationNodeStateMachine_d2agh")
 "states/Aerial Animations/position" = Vector2(574, -6)
+states/ConstrainedMovements/node = SubResource("AnimationNodeStateMachine_6pj1p")
+states/ConstrainedMovements/position = Vector2(890, 102)
+states/End/position = Vector2(1211, 102)
 "states/Grounded Animations/node" = SubResource("AnimationNodeStateMachine_sbttr")
 "states/Grounded Animations/position" = Vector2(574, 102)
 states/RESET/node = SubResource("AnimationNodeAnimation_icpky")
 states/RESET/position = Vector2(338, 100)
 states/Start/position = Vector2(206, 100)
-transitions = ["Aerial Animations", "Grounded Animations", SubResource("AnimationNodeStateMachineTransition_kyfeq"), "Grounded Animations", "Aerial Animations", SubResource("AnimationNodeStateMachineTransition_fpo3a"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_d2agh"), "RESET", "Grounded Animations", SubResource("AnimationNodeStateMachineTransition_jgd8i")]
+transitions = ["Aerial Animations", "Grounded Animations", SubResource("AnimationNodeStateMachineTransition_kyfeq"), "Grounded Animations", "Aerial Animations", SubResource("AnimationNodeStateMachineTransition_fpo3a"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_d2agh"), "RESET", "Grounded Animations", SubResource("AnimationNodeStateMachineTransition_jgd8i"), "Grounded Animations", "ConstrainedMovements", SubResource("AnimationNodeStateMachineTransition_3a7m8"), "ConstrainedMovements", "Grounded Animations", SubResource("AnimationNodeStateMachineTransition_y3et5"), "ConstrainedMovements", "Aerial Animations", SubResource("AnimationNodeStateMachineTransition_0mbv2"), "Aerial Animations", "ConstrainedMovements", SubResource("AnimationNodeStateMachineTransition_8v65i")]
 graph_offset = Vector2(-219, -152)
 
 [sub_resource type="Resource" id="Resource_dirf7"]
@@ -500,10 +531,6 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
 [sub_resource type="Resource" id="Resource_x5dtk"]
 script = ExtResource("5_rpf03")
-
-[sub_resource type="SphereMesh" id="SphereMesh_xeka7"]
-radius = 0.05
-height = 0.1
 
 [sub_resource type="Gradient" id="Gradient_3t07l"]
 offsets = PackedFloat32Array(0.084415585, 0.44155845)
@@ -553,8 +580,11 @@ shape = SubResource("CapsuleShape3D_xeka7")
 tree_root = SubResource("AnimationNodeStateMachine_nacyp")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/constrained_movement = false
 parameters/conditions/is_on_floor = false
+parameters/conditions/not_constrained_movement = false
 parameters/conditions/not_on_floor = false
+parameters/ConstrainedMovements/conditions/tightrope = false
 "parameters/Grounded Animations/conditions/not_sliding" = false
 "parameters/Grounded Animations/conditions/sliding" = false
 "parameters/Grounded Animations/Run/blend_position" = Vector2(-0.0010683537, -0.0028249025)
@@ -572,111 +602,130 @@ metadata/_custom_type_script = "uid://couw105c3bde4"
 
 [node name="CompoundState" type="Node" parent="StateChart" unique_id=208206098]
 script = ExtResource("2_c6leb")
-initial_state = NodePath("Idle")
+initial_state = NodePath("UnconstrainedMovement")
 
-[node name="Idle" type="Node" parent="StateChart/CompoundState" unique_id=492511267]
+[node name="UnconstrainedMovement" type="Node" parent="StateChart/CompoundState" unique_id=2146350785]
+script = ExtResource("2_c6leb")
+initial_state = NodePath("Fall")
+
+[node name="Idle" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement" unique_id=492511267]
 script = ExtResource("3_dirf7")
 
-[node name="Move" type="Node" parent="StateChart/CompoundState/Idle" unique_id=2030673644]
+[node name="Move" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement/Idle" unique_id=2030673644]
 script = ExtResource("6_rpf03")
 to = NodePath("../../Move")
 guard = SubResource("Resource_dirf7")
 delay_in_seconds = "0.0"
 
-[node name="Fall" type="Node" parent="StateChart/CompoundState/Idle" unique_id=1010257320]
+[node name="Fall" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement/Idle" unique_id=1010257320]
 script = ExtResource("6_rpf03")
 to = NodePath("../../Fall")
 guard = SubResource("Resource_ky00p")
 delay_in_seconds = "0.0"
 
-[node name="Jump" type="Node" parent="StateChart/CompoundState/Idle" unique_id=1040239521]
+[node name="Jump" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement/Idle" unique_id=1040239521]
 script = ExtResource("6_rpf03")
 to = NodePath("../../Jump")
 event = &"Jump"
 delay_in_seconds = "0.0"
 
-[node name="Move" type="Node" parent="StateChart/CompoundState" unique_id=841470409]
+[node name="Move" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement" unique_id=841470409]
 script = ExtResource("3_dirf7")
 
-[node name="Idle" type="Node" parent="StateChart/CompoundState/Move" unique_id=2094923512]
+[node name="Idle" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement/Move" unique_id=2094923512]
 script = ExtResource("6_rpf03")
 to = NodePath("../../Idle")
 guard = SubResource("Resource_3t07l")
 delay_in_seconds = "0.0"
 
-[node name="Fall" type="Node" parent="StateChart/CompoundState/Move" unique_id=119922097]
+[node name="Fall" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement/Move" unique_id=119922097]
 script = ExtResource("6_rpf03")
 to = NodePath("../../Fall")
 guard = SubResource("Resource_ky00p")
 delay_in_seconds = "0.0"
 
-[node name="Jump" type="Node" parent="StateChart/CompoundState/Move" unique_id=149759730]
+[node name="Jump" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement/Move" unique_id=149759730]
 script = ExtResource("6_rpf03")
 to = NodePath("../../Jump")
 event = &"Jump"
 delay_in_seconds = "0.0"
 
-[node name="Fall" type="Node" parent="StateChart/CompoundState" unique_id=556410695]
+[node name="Fall" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement" unique_id=556410695]
 script = ExtResource("3_dirf7")
 
-[node name="idle" type="Node" parent="StateChart/CompoundState/Fall" unique_id=1667741753]
+[node name="idle" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement/Fall" unique_id=1667741753]
 script = ExtResource("6_rpf03")
 to = NodePath("../../Idle")
 event = &"Landed"
 delay_in_seconds = "0.0"
 
-[node name="Dive" type="Node" parent="StateChart/CompoundState/Fall" unique_id=966494069]
+[node name="Dive" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement/Fall" unique_id=966494069]
 script = ExtResource("6_rpf03")
 to = NodePath("../../Dive")
 event = &"Dive"
 delay_in_seconds = "0.0"
 
-[node name="Jump" type="Node" parent="StateChart/CompoundState" unique_id=1659540110]
+[node name="Jump" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement" unique_id=1659540110]
 script = ExtResource("3_dirf7")
 
-[node name="Fall" type="Node" parent="StateChart/CompoundState/Jump" unique_id=1255834363]
+[node name="Fall" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement/Jump" unique_id=1255834363]
 script = ExtResource("6_rpf03")
 to = NodePath("../../Fall")
 guard = SubResource("Resource_gqopd")
 delay_in_seconds = "0.0"
 
-[node name="Dive" type="Node" parent="StateChart/CompoundState/Jump" unique_id=1691738048]
+[node name="Dive" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement/Jump" unique_id=1691738048]
 script = ExtResource("6_rpf03")
 to = NodePath("../../Dive")
 event = &"Dive"
 delay_in_seconds = "0.0"
 
-[node name="idle" type="Node" parent="StateChart/CompoundState/Jump" unique_id=303433088]
+[node name="idle" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement/Jump" unique_id=303433088]
 script = ExtResource("6_rpf03")
 to = NodePath("../../Idle")
 event = &"Landed"
 delay_in_seconds = "0.0"
 
-[node name="Dive" type="Node" parent="StateChart/CompoundState" unique_id=508410061]
+[node name="Dive" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement" unique_id=508410061]
 script = ExtResource("3_dirf7")
 
-[node name="Belly Slide" type="Node" parent="StateChart/CompoundState/Dive" unique_id=1208019968]
+[node name="Belly Slide" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement/Dive" unique_id=1208019968]
 script = ExtResource("6_rpf03")
 to = NodePath("../../Belly Slide")
 guard = SubResource("Resource_43xo0")
 delay_in_seconds = "0.0"
 
-[node name="Belly Slide" type="Node" parent="StateChart/CompoundState" unique_id=1705781782]
+[node name="Belly Slide" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement" unique_id=1705781782]
 script = ExtResource("3_dirf7")
 
-[node name="Rollout" type="Node" parent="StateChart/CompoundState/Belly Slide" unique_id=692003406]
+[node name="Rollout" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement/Belly Slide" unique_id=692003406]
 script = ExtResource("6_rpf03")
 to = NodePath("../../Rollout")
 event = &"Jump"
 delay_in_seconds = "0.0"
 
-[node name="Rollout" type="Node" parent="StateChart/CompoundState" unique_id=984036747]
+[node name="Rollout" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement" unique_id=984036747]
 script = ExtResource("3_dirf7")
 
-[node name="idle" type="Node" parent="StateChart/CompoundState/Rollout" unique_id=1016326036]
+[node name="idle" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement/Rollout" unique_id=1016326036]
 script = ExtResource("6_rpf03")
 to = NodePath("../../Idle")
 event = &"Landed"
+delay_in_seconds = "0.0"
+
+[node name="ConstrainedMovement" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement" unique_id=1304131286]
+script = ExtResource("6_rpf03")
+to = NodePath("../../ConstrainedMovement")
+event = &"constrained movement"
+delay_in_seconds = "0.0"
+
+[node name="ConstrainedMovement" type="Node" parent="StateChart/CompoundState" unique_id=2104068943]
+script = ExtResource("3_dirf7")
+
+[node name="Jump" type="Node" parent="StateChart/CompoundState/ConstrainedMovement" unique_id=370868652]
+script = ExtResource("6_rpf03")
+to = NodePath("../../UnconstrainedMovement/Jump")
+event = &"Jump"
 delay_in_seconds = "0.0"
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=575683360 node_paths=PackedStringArray("pcam", "player")]
@@ -709,9 +758,6 @@ top_level = true
 script = ExtResource("11_3t07l")
 player = NodePath("..")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraLookatTarget" unique_id=569912679]
-mesh = SubResource("SphereMesh_xeka7")
-
 [node name="Decal" type="Decal" parent="." unique_id=1687911146]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.95, 0)
 size = Vector3(2, 12, 2)
@@ -727,20 +773,25 @@ collision_mask = 5
 target_position = Vector3(0, -0.75, 0)
 collision_mask = 5
 
-[connection signal="state_entered" from="StateChart/CompoundState/Idle" to="." method="reset_special_states"]
-[connection signal="state_physics_processing" from="StateChart/CompoundState/Idle" to="." method="Idle"]
-[connection signal="state_physics_processing" from="StateChart/CompoundState/Move" to="." method="default_movement_processing"]
-[connection signal="state_physics_processing" from="StateChart/CompoundState/Move" to="." method="look_forward"]
-[connection signal="state_physics_processing" from="StateChart/CompoundState/Fall" to="." method="land_on_ground"]
-[connection signal="state_physics_processing" from="StateChart/CompoundState/Fall" to="." method="fall"]
-[connection signal="state_entered" from="StateChart/CompoundState/Jump" to="." method="start_jump"]
-[connection signal="state_physics_processing" from="StateChart/CompoundState/Jump" to="." method="land_on_ground"]
-[connection signal="state_physics_processing" from="StateChart/CompoundState/Jump" to="." method="default_jump_processing"]
-[connection signal="state_entered" from="StateChart/CompoundState/Dive" to="." method="dive"]
-[connection signal="state_entered" from="StateChart/CompoundState/Dive" to="." method="look_forward" binds= [0.0]]
-[connection signal="state_physics_processing" from="StateChart/CompoundState/Dive" to="." method="restricted_jump_processing"]
-[connection signal="state_physics_processing" from="StateChart/CompoundState/Belly Slide" to="." method="apply_belly_slide_friction"]
-[connection signal="state_entered" from="StateChart/CompoundState/Rollout" to="." method="rollout"]
-[connection signal="state_physics_processing" from="StateChart/CompoundState/Rollout" to="." method="restricted_jump_processing"]
-[connection signal="state_physics_processing" from="StateChart/CompoundState/Rollout" to="." method="land_on_ground"]
+[connection signal="state_entered" from="StateChart/CompoundState/UnconstrainedMovement/Idle" to="." method="reset_special_states"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/UnconstrainedMovement/Idle" to="." method="Idle"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/UnconstrainedMovement/Move" to="." method="look_forward"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/UnconstrainedMovement/Move" to="." method="default_movement_processing"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/UnconstrainedMovement/Fall" to="." method="fall"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/UnconstrainedMovement/Fall" to="." method="land_on_ground"]
+[connection signal="state_entered" from="StateChart/CompoundState/UnconstrainedMovement/Jump" to="." method="start_jump"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/UnconstrainedMovement/Jump" to="." method="default_jump_processing"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/UnconstrainedMovement/Jump" to="." method="land_on_ground"]
+[connection signal="state_entered" from="StateChart/CompoundState/UnconstrainedMovement/Dive" to="." method="dive"]
+[connection signal="state_entered" from="StateChart/CompoundState/UnconstrainedMovement/Dive" to="." method="look_forward" binds= [0.0]]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/UnconstrainedMovement/Dive" to="." method="restricted_jump_processing"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/UnconstrainedMovement/Belly Slide" to="." method="apply_belly_slide_friction"]
+[connection signal="state_entered" from="StateChart/CompoundState/UnconstrainedMovement/Rollout" to="." method="rollout"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/UnconstrainedMovement/Rollout" to="." method="restricted_jump_processing"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/UnconstrainedMovement/Rollout" to="." method="land_on_ground"]
+[connection signal="state_entered" from="StateChart/CompoundState/ConstrainedMovement" to="CameraPivot" method="start_camera_follow"]
+[connection signal="state_entered" from="StateChart/CompoundState/ConstrainedMovement" to="CameraLookatTarget" method="start_camera_follow"]
+[connection signal="state_exited" from="StateChart/CompoundState/ConstrainedMovement" to="AnimationTree" method="reset_all_constrained_movements"]
+[connection signal="state_exited" from="StateChart/CompoundState/ConstrainedMovement" to="CameraPivot" method="stop_camera_follow"]
+[connection signal="state_exited" from="StateChart/CompoundState/ConstrainedMovement" to="CameraLookatTarget" method="stop_camera_follow"]
 [connection signal="timeout" from="JumpTimer" to="." method="reset_jumps"]

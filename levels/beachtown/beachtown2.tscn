@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bsax2ti68qqjm"]
 
+[ext_resource type="Script" uid="uid://jqblnhmddu1b" path="res://levels/level manager.gd" id="1_5srd7"]
 [ext_resource type="PackedScene" uid="uid://rowg3xo3i0ou" path="res://assets/models/blockouts/beach2.glb" id="1_jian7"]
 [ext_resource type="PackedScene" uid="uid://llm2odawiuhk" path="res://characters/player/player.tscn" id="2_fbuf4"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_fbuf4"]
@@ -32,12 +33,12 @@ shader = ExtResource("6_vc3lm")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_5srd7"]
 resource_local_to_scene = true
-lightmap_size_hint = Vector2i(6, 41)
+lightmap_size_hint = Vector2i(6, 43)
 material = SubResource("ShaderMaterial_1fyqe")
 add_uv2 = true
 top_radius = 0.1
 bottom_radius = 0.1
-height = 7.3166428
+height = 7.667142
 radial_segments = 4
 rings = 64
 cap_top = false
@@ -56,7 +57,9 @@ rings = 64
 cap_top = false
 cap_bottom = false
 
-[node name="Node3D" type="Node3D" unique_id=1130107228]
+[node name="beachtown2" type="Node3D" unique_id=1130107228 node_paths=PackedStringArray("player")]
+script = ExtResource("1_5srd7")
+player = NodePath("Player")
 
 [node name="beach2" parent="." unique_id=1628726339 instance=ExtResource("1_jian7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007171631, 0, -0.038150787)
@@ -166,30 +169,36 @@ shadow_enabled = true
 [node name="TightRope" parent="." unique_id=718274285 instance=ExtResource("5_dsyhu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.67839, 9.793113, -48.14574)
 
-[node name="Anchor1" parent="TightRope" index="0" unique_id=1950822333]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4053841, -1.2689085, 7.180401)
+[node name="Anchor" parent="TightRope" index="0" unique_id=1950822333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7912025, 1.15798, 7.0465126)
 
 [node name="TightRopeMesh" parent="TightRope" index="1" unique_id=1569573865]
-transform = Transform3D(-0.9813791, -0.19208029, 8.396097e-09, 0, -4.3711385e-08, -1, 0.19208029, -0.9813791, 4.2897447e-08, 0.70269203, -0.63445425, 3.5902004)
-instance_shader_parameters/a = 6.986847101908667
-instance_shader_parameters/x0 = 4.8111503876785235
-instance_shader_parameters/x2 = 7.3166428
-instance_shader_parameters/y0 = -8.075372557414545
+transform = Transform3D(-0.9297181, -0.3682717, 1.6097669e-08, 0, -4.3711385e-08, -1, 0.3682717, -0.9297181, 4.063927e-08, 1.3956013, 0.57899, 3.5232563)
+instance_shader_parameters/a = 8.87157083718435
+instance_shader_parameters/x0 = 2.4792898342662033
+instance_shader_parameters/x2 = 7.579192
+instance_shader_parameters/y0 = -9.799258285802514
 mesh = SubResource("CylinderMesh_5srd7")
+
+[node name="Area3D" parent="TightRope/TightRopeMesh" index="0" unique_id=1357564035]
+transform = Transform3D(1, 0, 0, 0, -0.98676455, 0.16215865, 0, -0.16215865, -0.98676455, 0, 0, 0)
 
 [node name="TightRope2" parent="." unique_id=1925731315 instance=ExtResource("5_dsyhu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.34156, 10.787174, -67.90579)
 
-[node name="Anchor1" parent="TightRope2" index="0" unique_id=1950822333]
+[node name="Anchor" parent="TightRope2" index="0" unique_id=1950822333]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.148182, 6.717682, 8.039585)
 
 [node name="TightRopeMesh" parent="TightRope2" index="1" unique_id=1569573865]
 transform = Transform3D(-0.931154, -0.36462614, 1.5938316e-08, 0, -4.371139e-08, -1, 0.36462614, -0.931154, 4.0702034e-08, 1.574091, 3.358841, 4.0197926)
-instance_shader_parameters/a = 6.668663199217098
-instance_shader_parameters/x0 = -0.17794366461757782
+instance_shader_parameters/a = 8.122968504394088
+instance_shader_parameters/x0 = -1.2652101304765875
 instance_shader_parameters/x2 = 8.634001
-instance_shader_parameters/y0 = -10.02987836756066
+instance_shader_parameters/y0 = -11.580541549773214
 mesh = SubResource("CylinderMesh_awtoh")
+
+[node name="Area3D" parent="TightRope2/TightRopeMesh" index="0" unique_id=1357564035]
+transform = Transform3D(1, 0, 0, 0, -0.76737416, 0.6411993, 0, -0.6411993, -0.76737416, 0, 0, 0)
 
 [editable path="TightRope"]
 [editable path="TightRope2"]

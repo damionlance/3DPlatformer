@@ -9,3 +9,7 @@ func _physics_process(_delta: float) -> void:
 	set("parameters/conditions/dive", player.current_jump == 4)
 	set("parameters/Grounded Animations/conditions/sliding", player.sliding)
 	set("parameters/Grounded Animations/conditions/not_sliding", not player.sliding)
+
+func reset_all_constrained_movements() -> void:
+	set("parameters/conditions/constrained_movement", false)
+	set("parameters/ConstrainedMovements/conditions/tightrope", false)

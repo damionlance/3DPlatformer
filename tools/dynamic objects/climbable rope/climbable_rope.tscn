@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://taqns3wqw6ki"]
+
+[ext_resource type="Script" uid="uid://deliyi4x0mty7" path="res://tools/dynamic objects/climbable rope/climbable_rope.gd" id="1_7kavd"]
+[ext_resource type="Script" uid="uid://3wc7756u4e1t" path="res://tools/dynamic objects/linear movement constraint/linear_movement_constraint.gd" id="2_wuub2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_wuub2"]
+lightmap_size_hint = Vector2i(5, 3)
+radius = 0.1
+height = 0.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nacyp"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 10.634371
+radial_segments = 4
+rings = 64
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wuub2"]
+height = 10.634371
+
+[node name="Climbable Rope" type="Node3D" unique_id=495571811 node_paths=PackedStringArray("movement_constraint", "mesh", "area3d", "collision_shape", "anchor")]
+script = ExtResource("1_7kavd")
+movement_constraint = NodePath("LinearMovementConstraint")
+mesh = NodePath("MeshInstance3D")
+area3d = NodePath("MeshInstance3D/Area3D")
+collision_shape = NodePath("MeshInstance3D/Area3D/CollisionShape3D")
+anchor = NodePath("Anchor")
+
+[node name="Anchor" type="MeshInstance3D" parent="." unique_id=1847774679]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014251351, 4.4989653, 0)
+mesh = SubResource("SphereMesh_wuub2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=614792679]
+transform = Transform3D(-4.371139e-08, -0.0031643857, -0.99998873, 0, 0.99998873, -0.0031643857, 1, -1.383197e-10, -4.3710894e-08, -0.0071256757, 2.2494826, 0)
+mesh = SubResource("CylinderMesh_nacyp")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D" unique_id=1016699907]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D" unique_id=537247560]
+shape = SubResource("CapsuleShape3D_wuub2")
+
+[node name="LinearMovementConstraint" type="RemoteTransform3D" parent="." unique_id=1454233584]
+script = ExtResource("2_wuub2")
+vertical = true
+metadata/_custom_type_script = "uid://3wc7756u4e1t"
+
+[connection signal="body_entered" from="MeshInstance3D/Area3D" to="LinearMovementConstraint" method="_attach_body"]

@@ -6,10 +6,12 @@ var motion_offset_distance : float = 4.0
 var previous_position : Vector3 = Vector3.ZERO
 var sensitivity : float = 0.5
 
+var camera_follow : bool = false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	target_position = Vector3(player.global_position.x, global_position.y, player.global_position.z)
-	if player.is_on_floor():
+	if player.is_on_floor() or camera_follow:
 		target_position.y = player.global_position.y + 4
 	global_position = global_position.lerp(target_position, 0.5)
 	var camera_rotation = Input.get_vector("cam_left", "cam_right", "cam_down", "cam_up")
@@ -28,3 +30,9 @@ func _physics_process(delta: float) -> void:
 	previous_position = global_position
 	
 	pass
+
+func start_camera_follow() -> void:
+	camera_follow = true
+
+func stop_camera_follow() -> void:
+	camera_follow = false
