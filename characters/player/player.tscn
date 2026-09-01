@@ -719,6 +719,11 @@ to = NodePath("../../ConstrainedMovement")
 event = &"constrained movement"
 delay_in_seconds = "0.0"
 
+[node name="Bounce Pad" type="Node" parent="StateChart/CompoundState/UnconstrainedMovement" unique_id=733990090]
+script = ExtResource("6_rpf03")
+to = NodePath("../../Bounce Pad")
+delay_in_seconds = "0.0"
+
 [node name="ConstrainedMovement" type="Node" parent="StateChart/CompoundState" unique_id=2104068943]
 script = ExtResource("3_dirf7")
 
@@ -726,6 +731,27 @@ script = ExtResource("3_dirf7")
 script = ExtResource("6_rpf03")
 to = NodePath("../../UnconstrainedMovement/Jump")
 event = &"Jump"
+delay_in_seconds = "0.0"
+
+[node name="Bounce Pad" type="Node" parent="StateChart/CompoundState" unique_id=974270424]
+script = ExtResource("3_dirf7")
+
+[node name="Fall" type="Node" parent="StateChart/CompoundState/Bounce Pad" unique_id=291916439]
+script = ExtResource("6_rpf03")
+to = NodePath("../../UnconstrainedMovement/Fall")
+guard = SubResource("Resource_gqopd")
+delay_in_seconds = "0.0"
+
+[node name="Dive" type="Node" parent="StateChart/CompoundState/Bounce Pad" unique_id=1762110122]
+script = ExtResource("6_rpf03")
+to = NodePath("../../UnconstrainedMovement/Dive")
+event = &"Dive"
+delay_in_seconds = "0.0"
+
+[node name="idle" type="Node" parent="StateChart/CompoundState/Bounce Pad" unique_id=1270968864]
+script = ExtResource("6_rpf03")
+to = NodePath("../../UnconstrainedMovement/Idle")
+event = &"Landed"
 delay_in_seconds = "0.0"
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=575683360 node_paths=PackedStringArray("pcam", "player")]
@@ -745,8 +771,6 @@ follow_distance = 8.0
 horizontal_rotation_offset = 3.141592653589793
 spring_length = 8.0
 look_at_damping = true
-align_transform_with_view = Callable()
-align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="JumpTimer" type="Timer" parent="." unique_id=1638608164]
@@ -794,4 +818,7 @@ collision_mask = 5
 [connection signal="state_exited" from="StateChart/CompoundState/ConstrainedMovement" to="AnimationTree" method="reset_all_constrained_movements"]
 [connection signal="state_exited" from="StateChart/CompoundState/ConstrainedMovement" to="CameraPivot" method="stop_camera_follow"]
 [connection signal="state_exited" from="StateChart/CompoundState/ConstrainedMovement" to="CameraLookatTarget" method="stop_camera_follow"]
+[connection signal="state_entered" from="StateChart/CompoundState/Bounce Pad" to="." method="start_jump"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Bounce Pad" to="." method="default_jump_processing"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Bounce Pad" to="." method="land_on_ground"]
 [connection signal="timeout" from="JumpTimer" to="." method="reset_jumps"]

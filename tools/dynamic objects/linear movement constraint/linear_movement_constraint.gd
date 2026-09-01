@@ -18,7 +18,6 @@ func _process(delta: float) -> void:
 		return
 	_input_handling()
 	var test_pos = position + (movement_input * speed * delta) - offset
-	print(test_pos)
 	
 	if is_equal_approx(test_pos.length() + (anchor_pos - test_pos).length(), anchor_pos.length()):
 		position = test_pos + offset

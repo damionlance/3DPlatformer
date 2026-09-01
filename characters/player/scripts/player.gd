@@ -137,7 +137,8 @@ func reset_jumps() -> void:
 	current_jump = 0
 	can_increment_jump = false
 
-func start_jump() -> void:
+func start_jump(force_jump : int = -1) -> void:
+	if force_jump != -1: current_jump == force_jump
 	if can_increment_jump:
 		increment_jump()
 	velocity.y = physics_constants.all_jump_strengths[current_jump]
